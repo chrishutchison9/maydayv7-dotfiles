@@ -197,12 +197,16 @@
         "description": "Open Browser"
       },
       {
-        "key": "Super + Shift + E",
-        "description": "Open Emoji Picker"
-      },
-      {
         "key": "Super + Enter",
         "description": "Open Task Manager"
+      },
+      {
+        "key": "Super + Shift + T",
+        "description": "Open Text Editor"
+      },
+      {
+        "key": "Super + Shift + E",
+        "description": "Open Emoji Picker"
       },
       {
         "key": "Super + /",
@@ -259,15 +263,19 @@
     "name": "Navigation Gestures",
     "shortcuts": [
       {
-        "key": "3F ↑ Swipe",
+        "key": "3F ← Swipe",
         "description": "Show overview/apps grid"
       },
       {
-        "key": "3F ←/→ Swipe",
+        "key": "3F ↑ Swipe",
+        "description": "Switch workspaces directly"
+      },
+      {
+        "key": "4F ←/→ Swipe",
         "description": "Switch windows"
       },
       {
-        "key": "3F ↓ Swipe",
+        "key": "4F ↓ Swipe",
         "description": "Switch workspaces"
       },
       {

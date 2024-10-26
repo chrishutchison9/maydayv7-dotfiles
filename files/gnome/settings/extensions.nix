@@ -173,7 +173,7 @@
           {
             animation-time = 0.25;
             disable-topbar-styling = false;
-            gesture-horizontal-fingers = 3;
+            gesture-horizontal-fingers = 4;
             gesture-workspace-fingers = 4;
             horizontal-margin = 10;
             maximize-within-tiling = true;
@@ -353,7 +353,7 @@
           show-wst-labels-on-hover = true;
           smooth-blur-transitions = true;
           startup-state = 2;
-          swipe-tracker-module = false;
+          swipe-tracker-module = true;
           win-attention-handler-module = true;
           win-preview-icon-size = 1;
           win-preview-mid-mouse-btn-action = 1;
