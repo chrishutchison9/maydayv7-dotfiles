@@ -7,8 +7,8 @@
   ...
 } @ args:
 with files; let
-  inherit (config.gui) desktop;
   inherit (lib) gvariant hasPrefix mkIf mkForce mkMerge;
+  inherit (config.gui) desktop;
   exists = app: builtins.elem app config.apps.list;
 in {
   ## GNOME Configuration ##
@@ -152,6 +152,7 @@ in {
           gnome-sound-recorder
           gnome-text-editor
           gnome-tweaks
+          zenity
 
           # GNOME Games
           gnome-chess

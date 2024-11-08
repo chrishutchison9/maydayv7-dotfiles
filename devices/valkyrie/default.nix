@@ -16,10 +16,14 @@
     filesystem = "advanced";
     support = ["laptop" "mobile" "printer" "virtualisation"];
     modules = ["asus-zephyrus-ga402x-nvidia"];
-    vm.android.enable = true;
     cpu = {
       cores = 8;
       mode = "performance";
+    };
+
+    vm = {
+      vfio = "on";
+      android.enable = true;
     };
   };
 
@@ -52,7 +56,7 @@
   user = {
     name = "v7";
     description = "V 7";
-    groups = ["wheel" "keys"];
+    groups = ["wheel" "keys" "systemd-journal"];
     uid = 1000;
     shell = "zsh";
     shells = ["bash"];

@@ -32,8 +32,8 @@
         accept-flake-config = true
         warn-dirty = false
         experimental-features = nix-command flakes recursive-nix
-        min-free = ${toString (1024 * 1024 * 1024)}
-        max-free = ${toString (10 * 1024 * 1024 * 1024)}
+        min-free = ${builtins.toString (1024 * 1024 * 1024)}
+        max-free = ${builtins.toString (10 * 1024 * 1024 * 1024)}
       '';
     };
   };

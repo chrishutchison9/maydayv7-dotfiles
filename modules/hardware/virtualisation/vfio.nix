@@ -5,12 +5,17 @@
   ...
 }: let
   inherit (builtins) concatStringsSep elem;
-  inherit (lib) generators mkEnableOption mkForce mkIf mkMerge mkOption optionals types;
+  inherit (lib) generators mkForce mkIf mkMerge mkOption optionals types;
   enable = elem "virtualisation" config.hardware.support;
   cfg = config.hardware.vm;
 in {
   options.hardware.vm = {
-    vfio = mkEnableOption "Configure VFIO PCI passthrough";
+    vfio = mkOption {
+      description = "Configure VFIO PCI passthrough";
+      type = types.enum ["on" "off" "setup"];
+      default = "off";
+    };
+
     passthrough = mkOption {
       description = "PCI Device IDs for VFIO";
       type = types.listOf types.str;
@@ -23,18 +28,23 @@ in {
   };
 
   ## VFIO Configuration ##
-  config = mkMerge [
-    (mkIf enable {
+  config = mkIf (enable && cfg.vfio != "") (mkMerge [
+    {
       specialisation.vfio.configuration = {
         system.nixos.label = "special.vfio";
         hardware = {
-          vm.vfio = true;
+          vm.vfio = mkForce "on";
           cpu.mode = mkForce "performance";
         };
       };
-    })
+    }
 
-    (mkIf (enable && cfg.vfio) {
+    (mkIf (cfg.vfio == "on") {
+      specialisation.no-vfio.configuration = {
+        system.nixos.label = "special.no-vfio";
+        hardware.vm.vfio = mkForce "setup";
+      };
+
       boot = {
         kernelParams = [
           "amd_iommu=pt"
@@ -107,5 +117,5 @@ in {
         };
       };
     })
-  ];
+  ]);
 }

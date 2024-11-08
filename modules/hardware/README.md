@@ -31,9 +31,9 @@ Use [`scripts/pci.sh`](../../scripts/pci.sh) in order to determine the PCI Devic
 
 #### Windows Virtualisation
 
-In order to create a highly performant Windows VM using the `virt-manager` GUI and [Virtio](https://wiki.libvirt.org/Virtio.html) drivers, follow the instructions given on [this](https://sysguides.com/install-a-windows-11-virtual-machine-on-kvm) page. To configure GPU passthrough, add the relevant GPU and audio IDs to `hardware.vm.passthrough` (See the [Arch Wiki](https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF) for additional information), and enable `hardware.vm.vfio`. Confirm that the GPU is recognized within the Windows VM, and download the relevant drivers. In order to utilize full graphical bandwidth, one of the following must be done:
+In order to create a highly performant Windows VM using the `virt-manager` GUI and [Virtio](https://wiki.libvirt.org/Virtio.html) drivers, follow the instructions given on [this](https://sysguides.com/install-a-windows-11-virtual-machine-on-kvm) page. To configure GPU passthrough, add the relevant GPU and audio IDs to `hardware.vm.passthrough` (See the [Arch Wiki](https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF) for additional information), and set `hardware.vm.vfio` to `"on"`. Confirm that the GPU is recognized within the Windows VM, and download the relevant drivers. In order to utilize full graphical bandwidth, one of the following must be done:
 
 1. Connecting an external monitor to the GPU
 2. Using a dummy monitor plug or faking a display using [`Virtual Display Driver`](https://github.com/itsmikethetech/Virtual-Display-Driver), then using [Looking Glass](https://looking-glass.io/) to extract video output onto the main monitor. The configuration for Looking Glass on the Linux (client) side is already implemented, and only the Windows (host) needs to be configured by following instructions on [this](https://looking-glass.io/docs/stable/install/) page
 
-The `vfio` Specialisation can be selected in the boot menu to enable GPU passthrough when required
+The `vfio` Specialisation can be selected in the boot menu to enable GPU passthrough when required (when `hardware.vm.vfio` is set to `"setup"`)

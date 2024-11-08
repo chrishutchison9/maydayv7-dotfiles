@@ -17,6 +17,7 @@
   extensions = with pkgs.gnomeExtensions // hm.gvariant; ([
       {package = appindicator;}
       {package = control-monitor-brightness-and-volume-with-ddcutil;}
+      {package = latest.display-configuration-switcher;}
       {package = gamemode-indicator-in-system-settings;}
       {package = gsconnect;}
       {package = guillotine;}
@@ -37,7 +38,7 @@
       {
         package = top-bar-organizer;
         settings = {
-          center-box-order = ["dateMenu"];
+          center-box-order = [];
           left-box-order = [
             "WorkspaceMenu"
             "activities"
@@ -62,6 +63,7 @@
             "screenSharing"
             "screenRecording"
             "quickSettings"
+            "dateMenu"
           ];
         };
       }
@@ -83,7 +85,16 @@
         package = window-title-is-back;
         settings = {
           colored-icon = true;
+          show-icon = false;
           show-title = false;
+        };
+      }
+      {
+        package = latest.autohide-battery-percentage;
+        settings = {
+          hide-on-battery-level = 90;
+          hide-on-plugged-in = true;
+          hide-on-power-saving-disabled = false;
         };
       }
       {
@@ -127,12 +138,13 @@
       {
         package = shortcuts;
         settings = {
-          maxcolumns = 3;
+          maxcolumns = 4;
           shortcuts-file = files.gnome.shortcuts;
           shortcuts-toggle-overview = ["<Super>slash"];
+          show-icon = false;
           use-custom-shortcuts = true;
           use-transparency = true;
-          visibility = 50;
+          visibility = 55;
         };
       }
       {
@@ -165,6 +177,35 @@
           item-title-font-size = 20;
           search-bar-font-family = font;
           search-bar-font-size = 14;
+        };
+      }
+      {
+        package = rocketbar;
+        settings = {
+          appbutton-backlight-dominant-color = false;
+          appbutton-enable-drag-and-drop = true;
+          appbutton-enable-indicators = true;
+          appbutton-enable-minimize-action = true;
+          appbutton-enable-scroll = true;
+          appbutton-enable-sound-control = false;
+          appbutton-icon-size = 21;
+          appbutton-menu-require-click = true;
+          hotcorner-enable-in-fullscreen = false;
+          indicator-dominant-color-active = true;
+          indicator-dominant-color-inactive = false;
+          indicator-position = "top";
+          notification-counter-center-clock = false;
+          notification-counter-enabled = true;
+          notification-counter-hide-empty = false;
+          notification-service-count-attention-sources = false;
+          notification-service-enable-unity-dbus = true;
+          overview-enable-empty-space-clicks = false;
+          panel-enable-middle-button = false;
+          panel-menu-require-click = false;
+          taskbar-enabled = true;
+          taskbar-position = "center";
+          taskbar-preserve-position = true;
+          taskbar-show-favorites = false;
         };
       }
       {
@@ -295,7 +336,7 @@
           dash-bg-opacity = 50;
           dash-bg-radius = 0;
           dash-icon-scroll = 1;
-          dash-isolate-workspaces = true;
+          dash-isolate-workspaces = false;
           dash-max-icon-size = 64;
           dash-module = true;
           dash-position = 2;
@@ -314,8 +355,8 @@
           message-tray-module = true;
           new-window-focus-fix = false;
           new-window-monitor-fix = false;
-          notification-position = 1;
-          osd-position = 6;
+          notification-position = 2;
+          osd-position = 3;
           osd-window-module = true;
           overlay-key-module = true;
           overlay-key-primary = 1;
@@ -344,7 +385,7 @@
           secondary-ws-preview-shift = false;
           secondary-ws-thumbnail-scale = 5;
           secondary-ws-thumbnails-position = 2;
-          show-app-icon-position = 1;
+          show-app-icon-position = 0;
           show-bg-in-overview = true;
           show-search-entry = false;
           show-ws-preview-bg = false;

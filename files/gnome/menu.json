@@ -6,6 +6,29 @@
   "menu": [
     {
       "type": "submenu",
+      "title": "Audio",
+      "icon": "audio-headset-symbolic",
+      "items": [
+        {
+          "type": "command",
+          "title": "Test Sound",
+          "command": "find /run/current-system/sw/share/sounds/alsa/ -name '*_*' -exec aplay {} \\;",
+          "instancing": "singleInstance",
+          "icon": "test-symbolic",
+          "killOnDisable": false
+        },
+        {
+          "type": "command",
+          "title": "Microphone Boost",
+          "command": "sh -c 'VALUE=$(zenity --scale --text=\"Select Microphone Boost value\" --value=0 --min-value=0 --max-value=100 -–step=5); amixer -c 1 sset 'Mic Boost' $VALUE; amixer -c 1 sset 'Internal Mic Boost' $VALUE'",
+          "instancing": "singleInstance",
+          "icon": "microphone-symbolic",
+          "killOnDisable": false
+        }
+      ]
+    },
+    {
+      "type": "submenu",
       "title": "File Management",
       "icon": "fileopen",
       "items": [
@@ -27,7 +50,7 @@
         {
           "type": "switch",
           "title": "Android",
-          "icon": "application-x-addon-symbolic",
+          "icon": "goa-account-google-symbolic",
           "start": "sh -c 'nohup waydroid session start > /dev/null 2>&1&'",
           "stop": "waydroid session stop",
           "check": "sh -c 'waydroid status | grep RUNNING'",
@@ -36,7 +59,7 @@
         {
           "type": "switch",
           "title": "Windows",
-          "icon": "application-x-addon-symbolic",
+          "icon": "goa-account-msn-symbolic",
           "start": "virsh -c qemu:///system start Windows",
           "stop": "virsh -c qemu:///system shutdown Windows",
           "check": "sh -c 'virsh -c qemu:///system list | grep Windows'",
@@ -55,7 +78,7 @@
           "command": "xdg-open .config/guillotine.json",
           "instancing": "singleInstance",
           "icon": "preferences-other-symbolic",
-          "killOnDisable": false
+          "killOnDisable": true
         },
         {
           "type": "command",
