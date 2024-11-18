@@ -10,8 +10,13 @@ in {
   services.fwupd.enable = true;
 
   # Discrete GPU
-  boot.kernelParams = ["nvidia_drm.fbdev=1"];
   services.xserver.videoDrivers = mkForce ["nvidia"];
+  boot.kernelParams = [
+    "nvidia_drm.fbdev=1" # Wayland Support
+    "NVreg_UsePageAttributeTable=1" # PAT Support
+    "NVreg_RegistryDwords=RMUseSwI2c=0x01;RMI2cSpeed=100" # DDC/CI Support
+  ];
+
   hardware = {
     vm.passthrough = ["10de:28e0" "10de:22be"];
     nvidia = {

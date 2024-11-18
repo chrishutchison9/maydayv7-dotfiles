@@ -14,13 +14,13 @@
           "title": "Test Sound",
           "command": "find /run/current-system/sw/share/sounds/alsa/ -name '*_*' -exec aplay {} \\;",
           "instancing": "singleInstance",
-          "icon": "test-symbolic",
+          "icon": "sound-symbolic",
           "killOnDisable": false
         },
         {
           "type": "command",
           "title": "Microphone Boost",
-          "command": "sh -c 'VALUE=$(zenity --scale --text=\"Select Microphone Boost value\" --value=0 --min-value=0 --max-value=100 -–step=5); amixer -c 1 sset 'Mic Boost' $VALUE; amixer -c 1 sset 'Internal Mic Boost' $VALUE'",
+          "command": "sh -c \"VALUE=$(zenity --scale --text='Select Microphone Boost value' --value=0 --min-value=0 --max-value=100 --step=5); amixer -c 1 sset 'Mic Boost' $VALUE; amixer -c 1 sset 'Internal Mic Boost' $VALUE\"",
           "instancing": "singleInstance",
           "icon": "microphone-symbolic",
           "killOnDisable": false
@@ -29,15 +29,23 @@
     },
     {
       "type": "submenu",
-      "title": "File Management",
-      "icon": "fileopen",
+      "title": "Phone",
+      "icon": "smartphone-symbolic",
       "items": [
         {
           "type": "command",
-          "title": "iPhone",
+          "title": "iPhone File Transfer",
           "command": "systemctl restart usbmuxd.service",
           "instancing": "singleInstance",
-          "icon": "smartphone-symbolic",
+          "icon": "fileopen",
+          "killOnDisable": false
+        },
+        {
+          "type": "command",
+          "title": "ADB Screen Mirror",
+          "command": "scrcpy --video-codec=h265 --keyboard=uhid --stay-awake --turn-screen-off --power-off-on-close --shortcut-mod=rctrl",
+          "instancing": "singleInstance",
+          "icon": "display-projector-symbolic",
           "killOnDisable": false
         }
       ]

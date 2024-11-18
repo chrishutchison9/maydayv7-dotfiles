@@ -8,15 +8,13 @@
 in {
   ## Device Firmware ##
   config = lib.mkIf enable {
-    ## Android Compatibilty
-    # Android Device Bridge
+    # Android Compatibilty
     user.groups = ["adbusers"];
     programs.adb.enable = true;
 
-    ## iOS Compatibility
-    # File Transfer
+    # iOS Compatibility
     services.usbmuxd.enable = true;
-    environment.systemPackages = [pkgs.libimobiledevice];
+    environment.systemPackages = with pkgs; [libimobiledevice scrcpy];
 
     #!# Run 'systemctl restart usbmuxd.service' if it doesn't work
   };

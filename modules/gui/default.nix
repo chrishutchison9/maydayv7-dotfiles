@@ -41,6 +41,7 @@ in {
 
         # Utilities
         programs.seahorse.enable = true;
+        user.homeConfig.services.mpris-proxy.enable = true;
         services = {
           gvfs.enable = true;
           gnome.gnome-keyring.enable = true;

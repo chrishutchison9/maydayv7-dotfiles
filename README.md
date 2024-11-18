@@ -4,7 +4,7 @@
   <img alt="Logo" src="files/images/logo/dark.png">
 </picture>
 
-![Version](https://img.shields.io/github/v/release/maydayv7/dotfiles?include_prereleases&label=version&style=flat-square&logo=github) ![License](https://img.shields.io/github/license/maydayv7/dotfiles?color=dgreen&style=flat-square) ![Size](https://img.shields.io/github/repo-size/maydayv7/dotfiles?color=red&label=size&style=flat-square) [![NixOS](https://img.shields.io/badge/NixOS-23.11-9cf.svg?style=flat-square&logo=NixOS&logoColor=white)](https://nixos.org)
+![Version](https://img.shields.io/github/v/release/maydayv7/dotfiles?include_prereleases&label=version&style=flat-square&logo=github) ![License](https://img.shields.io/github/license/maydayv7/dotfiles?color=dgreen&style=flat-square) ![Size](https://img.shields.io/github/repo-size/maydayv7/dotfiles?color=red&label=size&style=flat-square) [![NixOS](https://img.shields.io/badge/NixOS-24.05-9cf.svg?style=flat-square&logo=NixOS&logoColor=white)](https://nixos.org)
 
 This [repository](https://github.com/maydayv7/dotfiles) contains the configuration and `dotfiles` for my continuously evolving multi-PC setup (using [Nix](https://nixos.org/)). All the devices I own, controlled by code. It also builds and deploys my website to [maydayv7.my.to](https://maydayv7.my.to). You can follow along with my [NixOS Desktop](https://maydayv7.my.to/series/nixos-desktop/) Series
 
@@ -31,6 +31,10 @@ This [repository](https://github.com/maydayv7/dotfiles) contains the configurati
 
 <details>
 <summary><i>Older...</i></summary>
+
+| ![GNOME 45](./files/images/desktop/old/gnome_45.png) |
+| :--------------------------------------------------: |
+|                      _GNOME 45_                      |
 
 | ![GNOME 44](./files/images/desktop/old/gnome_44.png) |
 | :--------------------------------------------------: |
@@ -503,7 +507,7 @@ You can navigate to the `README`s present in the various directories to know mor
 <details>
 <summary><b>Changelog</b></summary>
 
-### v24.1
+### v24.5
 
 - GNOME Improvements
   - Use [PaperWM](https://github.com/paperwm/PaperWM) and [Pano](https://github.com/oae/gnome-shell-pano)
@@ -784,7 +788,7 @@ You can navigate to the `README`s present in the various directories to know mor
 
 </details>
 
-> Last Updated: **October** 2024
+> Last Updated: **November** 2024
 
 If you like this project, consider leaving a [star](https://github.com/maydayv7/dotfiles)
 
