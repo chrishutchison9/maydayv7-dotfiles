@@ -100,6 +100,13 @@
 
         # Volume
         ", XF86AudioMute, exec, hyprutils volume mute"
+
+        # Keyboard Backlight
+        ", XF86KbdBrightnessUp, exec, hyprutils backlight up"
+        ", XF86KbdBrightnessDown, exec, hyprutils backlight down"
+
+        # Touchpad
+        ", XF86TouchpadToggle, exec, hyprutils toggle touchpad"
       ];
 
       # Repeat on Hold

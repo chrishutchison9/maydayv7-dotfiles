@@ -13,6 +13,7 @@
     # Usage #
       help                           - Show this information
       brightness [up,down]           - Screen Brightness Controls
+      backlight [up,down]            - Keyboard Backlight Controls
       volume [up,down,mute]          - Volume Controls
       media [next,previous,toggle]   - Media Controls
       minimize [show]                - Show Minimized windows
@@ -24,6 +25,7 @@
         monitor                      - Toggle specified Monitor
         panel                        - Toggle top Panel
         shader                       - Toggle Compositor Shader
+        touchpad                     - Toggle touchpad
   '';
 
   minimize = builtins.toFile "minimize.sh" ''
@@ -57,6 +59,7 @@ in
       waybar
 
       alsa-utils
+      brightnessctl
       brillo
       coreutils
       gnugrep
@@ -81,6 +84,7 @@ in
         media_icon="audio-speakers"
         if $show_album_art
         then
+          temp media-icon 1
           url=$(playerctl -f "{{mpris:artUrl}}" metadata)
           if [[ "$url" == "file://"* ]]
           then
@@ -110,6 +114,27 @@ in
           "down")
             brillo -u 300000 -U 5
             brightness_notification
+          ;;
+          "") error "Expected an Option" "Try 'hyprutils help' for more information" ;;
+          *) error "Unexpected Option 'brightness $2'" "Try 'hyprutils help' for more information" ;;
+          esac
+        ;;
+        "backlight")
+          backlight_notification() {
+            backlight="$(cat /sys/class/leds/*::kbd_backlight/brightness)"
+            light=0; if [ "$backlight" -eq 1 ]; then light=33; fi
+            if [ "$backlight" -eq 2 ]; then light=67; fi
+            if [ "$backlight" -eq 3 ]; then light=100; fi
+            notify backlight -i "keyboard" -h int:value:"$light" " $light%"
+          }
+          case "$2" in
+          "up")
+            brightnessctl -d "*::kbd_backlight" set 33%+
+            backlight_notification
+          ;;
+          "down")
+            brightnessctl -d "*::kbd_backlight" set 33%-
+            backlight_notification
           ;;
           "") error "Expected an Option" "Try 'hyprutils help' for more information" ;;
           *) error "Unexpected Option 'brightness $2'" "Try 'hyprutils help' for more information" ;;
@@ -291,6 +316,36 @@ in
             mapfile SHADERS < <(hyprshade ls)
             SHADER=$(zenity --list --title="Compositor Shader Toggle" --column="Shaders" "''${SHADERS[@]}" | sed "s/^[ \t]*//")
             hyprshade on "$SHADER" && hyprctl seterror ""
+          ;;
+          "touchpad")
+            temp touchpad 1
+            STATUS="$TEMP/status"
+            touchpad=$(hyprctl devices | grep touchpad | xargs)
+
+            enable() {
+              hyprctl keyword "device[$touchpad]:enabled" true
+              printf "true" >"$STATUS"
+              notify touchpad -i "touchpad" "Touchpad Enabled"
+            }
+
+            disable() {
+              hyprctl keyword "device[$touchpad]:enabled" false
+              printf "false" >"$STATUS"
+              notify touchpad -i "touchpad" "Touchpad Disabled"
+            }
+
+            if ! [ -f "$STATUS" ]
+            then
+              disable
+            else
+              if [ "$(cat "$STATUS")" = "true" ]
+              then
+                disable
+              elif [ "$(cat "$STATUS")" = "false" ]
+              then
+                enable
+              fi
+            fi
           ;;
           "") error "Expected an Option" "Try 'hyprutils help' for more information" ;;
           *) error "Unexpected Option 'toggle $2'" "Try 'hyprutils help' for more information" ;;

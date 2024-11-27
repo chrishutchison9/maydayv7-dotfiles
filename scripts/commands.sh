@@ -5,7 +5,7 @@
 
 temp(){
   TEMP=/tmp/"$1"
-  rm -rf "$TEMP"
+  if ! [ "$2" -eq 1 ]; then rm -rf "$TEMP"; fi
   mkdir -p "$TEMP"
 }
 
