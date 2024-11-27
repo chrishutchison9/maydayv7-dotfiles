@@ -4,13 +4,11 @@ pkgs: rec {
   name-alt = "Catppuccin";
 
   accent = "blue";
-  accent-alt = "Blue";
-
   variant = "macchiato";
   variant-alt = "Macchiato";
 
   gtk = {
-    name = "${name-alt}-${variant-alt}-Standard-${accent-alt}-Dark";
+    name = "${name}-${variant}-${accent}-standard";
     package = pkgs.catppuccin-gtk.override {
       accents = [accent];
       inherit variant;
@@ -18,10 +16,9 @@ pkgs: rec {
   };
 
   qt = {
-    name = "${name-alt}-${variant-alt}-${accent-alt}";
+    name = "${name}-${variant}-${accent}";
     package = pkgs.catppuccin-kvantum.override {
-      accent = accent-alt;
-      variant = variant-alt;
+      inherit accent variant;
     };
   };
 
