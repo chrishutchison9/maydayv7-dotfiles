@@ -26,21 +26,21 @@ in {
   };
 
   # Idle Daemon
-  services.swayidle = {
+  services.swayidle = let
+    lock = pre: post: "sh -c 'if ! ${getExe' pkgs.procps "pgrep"} -x swaylock; then ${pre}; ${getExe locker} -f ${post}; fi'";
+  in {
     enable = true;
     extraArgs = ["-w"];
     systemdTarget = "hyprland-session.target";
 
-    events = let
-      lock = pre: post: "sh -c 'if ! ${getExe' pkgs.procps "pgrep"} -x swaylock; then ${pre}; ${getExe locker} -f ${post}; fi'";
-    in [
+    events = [
       {
         event = "before-sleep";
         command = lock "" "";
       }
       {
         event = "lock";
-        command = lock "${getExe pkgs.playerctl} pause -a" "--grace 15 --grace-no-mouse";
+        command = lock "${getExe pkgs.playerctl} pause -a" "--fade-in 0.2 --grace 15 --grace-no-mouse";
       }
     ];
 
@@ -49,16 +49,22 @@ in {
         ${getExe' pkgs.pipewire "pw-cli"} info all | ${getExe pkgs.gnugrep} running
         if [ $? == 1 ]; then ${command}; fi
       ''}"; # Check if audio is playing
-      hyprctl = getExe' sys.programs.hyprland.package "hyprctl";
+      shader = getExe pkgs.hyprshade;
+      dpms = "${getExe' sys.programs.hyprland.package "hyprctl"} dispatch dpms";
     in [
       {
-        timeout = 300; # Turn off display
-        command = audio "${hyprctl} dispatch dpms off";
-        resumeCommand = "${hyprctl} dispatch dpms on";
+        timeout = 240; # Dim display
+        command = audio "${shader} on dim";
+        resumeCommand = "${shader} off";
       }
       {
-        timeout = 600; # Suspend then Hibernate device
-        command = audio "${hyprctl} dispatch dpms on && ${getExe' pkgs.systemd "systemctl"} suspend-then-hibernate";
+        timeout = 300; # Turn off display
+        command = audio "${dpms} off";
+        resumeCommand = "${dpms} on";
+      }
+      {
+        timeout = 500; # Suspend then Hibernate device
+        command = audio "${dpms} on && ${lock "" ""} && ${getExe' pkgs.systemd "systemctl"} suspend-then-hibernate ";
       }
     ];
   };

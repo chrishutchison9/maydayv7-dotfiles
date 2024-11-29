@@ -1,18 +1,18 @@
 {
   sys,
   config,
+  lib,
   pkgs,
   files,
   ...
 }: {
   ## Plugin Settings
-  # Pyprland
   home = {
     packages = with pkgs; [hyprshade pyprland];
     file = {
       ".config/hypr/pyprland.toml".text = files.hyprland.pypr;
       ".config/hypr/shaders" = {
-        source = "${pkgs.custom.hyprland-shaders}/share/hypr/shaders";
+        source = "${pkgs.custom.hyprshaders}/share/hypr/shaders";
         recursive = true;
       };
     };
@@ -21,7 +21,6 @@
   wayland.windowManager.hyprland = {
     plugins = with pkgs.hyprworld; [hycov hyprexpo Hypr-DarkWindow Hyprspace hyprsplit];
     settings = {
-      exec-once = ["pypr"];
       plugin = with sys.lib.stylix.colors; let
         gaps =
           builtins.toString
@@ -93,6 +92,28 @@
         "$mod, Tab, overview:toggle"
         "$mod SHIFT, Tab, overview:toggle, all"
       ];
+    };
+  };
+
+  # Pyprland
+  systemd.user.services.pyprland = {
+    Install.WantedBy = ["graphical-session.target"];
+    Unit = {
+      Description = "Hyprland Goodies";
+      PartOf = ["graphical-session.target"];
+    };
+
+    Service = let
+      pypr = lib.getExe pkgs.pyprland;
+    in {
+      Restart = "on-failure";
+      ExecStop = "${pypr} exit";
+      ExecStart = pkgs.writeShellScript "pypr-wrapper.sh" ''
+        ${files.path.systemd}
+        ${pypr} exit || true
+        rm "$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.pyprland.sock" || true
+        ${pypr}
+      '';
     };
   };
 }

@@ -40,8 +40,8 @@ use = "right"
 excludes = ["bluetooth", "network", "volume"]
 
 [scratchpads.network]
-command = "kitty --class kitty-nm nmtui"
-class = "kitty-nm"
+command = "sh -c 'env XDG_CURRENT_DESKTOP=GNOME gnome-control-center wifi'"
+class = "org.gnome.Settings"
 use = "right"
 excludes = ["bluetooth", "displays", "volume"]
 

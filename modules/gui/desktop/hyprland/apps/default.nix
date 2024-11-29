@@ -64,6 +64,24 @@ in {
     wl-screenrec
     wlr-randr
     xfce.exo
+
+    # Network Settings
+    (gnome-control-center.overrideAttrs (old: {
+      postInstall =
+        old.postInstall
+        + ''
+          dir=$out/share/applications
+          for panel in $dir/*
+          do
+            [ "$panel" = "$dir/gnome-network-panel.desktop" ] && continue
+            [ "$panel" = "$dir/gnome-wifi-panel.desktop" ] && continue
+            [ "$panel" = "$dir/gnome-wwan-panel.desktop" ] && continue
+            [ "$panel" = "$dir/gnome-sharing-panel.desktop" ] && continue
+            [ "$panel" = "$dir/gnome-wacom-panel.desktop" ] && continue
+            rm "$panel"
+          done
+        '';
+    }))
   ];
 
   user = {

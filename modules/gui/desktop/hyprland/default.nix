@@ -24,6 +24,7 @@ in {
       };
 
       # Session
+      services.displayManager.defaultSession = "Desktop";
       services.xserver.displayManager.session = [
         {
           name = "Desktop";
@@ -124,8 +125,16 @@ in {
 
       # Security
       security.pam.services = {
-        greetd.enableGnomeKeyring = true;
         swaylock.text = "auth include login";
+        greetd = {
+          enableGnomeKeyring = true;
+          text = ''
+            auth      substack      login
+            account   include       login
+            password  substack      login
+            session   include       login
+          '';
+        };
       };
     }
 
