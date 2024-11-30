@@ -34,6 +34,7 @@
           workspace_method = "first 1";
           enable_gesture = true;
           gesture_positive = false;
+          gesture_fingers = 4;
         };
 
         # Application Overview
@@ -58,8 +59,8 @@
           centerAligned = true;
           hideTopLayers = true;
           hideOverlayLayers = false;
-          showNewWorkspace = true;
-          showEmptyWorkspace = false;
+          showNewWorkspace = false;
+          showEmptyWorkspace = true;
           overrideGaps = true;
           gapsIn = gaps;
           gapsOut = gaps;

@@ -220,9 +220,15 @@ in {
     ## 3rd Party Apps Configuration
     (mkIf (desktop == "xfce") {
       user.homeConfig = {
-        # Discord Arc Theme
-        home.file.".config/BetterDiscord/data/stable/custom.css" =
-          mkIf (exists "discord") {text = ''@import url(https://rawcdn.githack.com/orblazer/discord-nordic/f3f6833c70d0b27b1cde986233b7009d61917812/nordic.theme.css);'';};
+        home.file = {
+          # Discord Nord Theme
+          ".config/BetterDiscord/data/stable/custom.css" =
+            mkIf (exists "discord") {text = ''@import url(https://rawcdn.githack.com/orblazer/discord-nordic/f3f6833c70d0b27b1cde986233b7009d61917812/nordic.theme.css);'';};
+
+          # Logseq Nord Theme
+          ".logseq/config.edn" =
+            mkIf (exists "notes") {text = ''{:custom-css-url "@import url('https://cdn.jsdelivr.net/gh/bad3r/logseq-nord-theme@latest/custom.min.css');"}'';};
+        };
 
         # Code Editor
         programs.vscode = mkIf (exists "vscode") {

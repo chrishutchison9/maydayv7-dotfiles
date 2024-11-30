@@ -218,6 +218,11 @@ in {
           # Discord DNOME Theme
           ".config/BetterDiscord/data/stable/custom.css" =
             mkIf (exists "discord") {text = ''@import url("https://raw.githack.com/GeopJr/DNOME/dist/DNOME.css");'';};
+
+          # Logseq Bonofix Theme
+          ".logseq/config.edn" =
+            mkIf (exists "notes")
+            {text = ''{:custom-css-url "@import url('https://cdn.jsdelivr.net/gh/sansui233/logseq-bonofix-theme/custom.css');"}'';};
         };
 
         # Code Editor

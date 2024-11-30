@@ -447,6 +447,8 @@ The [`home-manager`](https://github.com/nix-community/home-manager) module is us
 - ULauncher [Arc Theme](https://github.com/tjquillan/Arc-Dark-ULauncher): An Arc Dark Theme for ULauncher
 - ULauncher [Elementary Theme](https://github.com/heidefinnischen/ULauncher-elementary): ULauncher Themes for Elementary OS
 - [Catppuccin](https://github.com/catppuccin) Theme: A community-driven Pastel Theme consisting of 4 soothing warm Flavors with 26 eye-candy Colors each
+- Logseq [Bonofix Theme][https://github.com/Sansui233/logseq-bonofix-theme]: A clean Logseq theme with focus on long-time writing experience
+- Logseg [Nord Theme](https://github.com/Bad3r/Logseq-Nord-Theme): Logseq in an arctic, north-bluish color palette
 
 ### Important Links
 
@@ -785,15 +787,18 @@ You can navigate to the `README`s present in the various directories to know mor
 <summary><b>Known Limitations</b></summary>
 
 - Home Configuration isn't be decoupled from System
+
+### Manual Intervention
+
+- Online accounts have to be manually signed into
 - [Wine](./packages/wine) Applications have to be manually updated
-
-### TO FIX
-
-- GNOME [Pano](https://github.com/oae/gnome-shell-pano) needs to be manually updated till upstream stabilises
+- Plugins for Discord, ULauncher have to be manually updated
+- Logseq Plugins have to be manually installed
+- GNOME [Pano](https://github.com/oae/gnome-shell-pano) has to be manually updated until upstream stabilises
 
 </details>
 
-> Last Updated: **November** 2024
+> Last Updated: **December** 2024
 
 If you like this project, consider leaving a [star](https://github.com/maydayv7/dotfiles)
 

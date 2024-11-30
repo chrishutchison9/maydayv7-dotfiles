@@ -34,6 +34,8 @@
       "discord"
       "firefox"
       "git"
+      "media"
+      "notes"
       "office"
       "spotify"
       "vscode"

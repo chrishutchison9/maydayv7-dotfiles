@@ -102,6 +102,12 @@
     # Pictures
     images.profile = ./images/Profile.png;
 
+    # Logseq Notes
+    logseq = {
+      settings = ./logseq/settings;
+      prefs = readFile ./logseq/preferences.json;
+    };
+
     # Configuration Mutability
     mutability = rec {
       src = "https://gist.githubusercontent.com/piousdeer/b29c272eaeba398b864da6abf6cb5daa/raw/41e569ba110eb6ebbb463a6b1f5d9fe4f9e82375";

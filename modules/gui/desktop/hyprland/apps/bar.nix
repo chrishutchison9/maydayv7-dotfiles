@@ -103,7 +103,7 @@ in rec {
         "hyprland/workspaces" = {
           all-outputs = true;
           show-special = true;
-          format = "{icon}";
+          format = "<small>{name}</small> {icon}";
           on-scroll-up = "hyprctl dispatch workspace m+1";
           on-scroll-down = "hyprctl dispatch workspace m-1";
           persistent-workspaces."${sys.gui.display}" = 3;
@@ -142,6 +142,7 @@ in rec {
             "kitty" = "Terminal";
             "(.*) - kitty" = "Terminal";
             "clipse" = "Clipboard";
+            "Kebihelp" = "Shortcuts";
             "nwg-displays" = "Displays";
             "Ulauncher(.*)" = "Launcher";
             "(.*) - Geany" = "Text Editor";

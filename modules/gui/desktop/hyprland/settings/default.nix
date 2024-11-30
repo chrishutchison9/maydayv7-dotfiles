@@ -63,8 +63,8 @@ in {
         workspace_swipe = true;
         workspace_swipe_fingers = 3;
         workspace_swipe_forever = true;
-        workspace_swipe_use_r = true;
-        workspace_swipe_create_new = true;
+        workspace_swipe_use_r = false;
+        workspace_swipe_create_new = false;
       };
 
       # Cursor Settings

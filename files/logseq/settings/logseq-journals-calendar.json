@@ -1,0 +1,10 @@
+{
+  "disabled": false,
+  "backgroundColorOfContainerDark": "#@bg",
+  "backgroundColorOfContainerLight": "#@bg",
+  "firstDayOfWeek": 1,
+  "hotkey": null,
+  "keepOpenOnSelect": false,
+  "showTodayBtn": false,
+  "showWeekNumbers": true
+}

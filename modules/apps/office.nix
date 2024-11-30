@@ -39,7 +39,6 @@ in {
       gimp
       handbrake
       inkscape
-      pitivi
       xournalpp
 
       # Internet
@@ -50,10 +49,6 @@ in {
       thunderbird
       whatsapp-for-linux
       zoom-us
-
-      # Sound
-      pwvucontrol
-      qpwgraph
 
       # Utilities
       hunspell
@@ -72,7 +67,6 @@ in {
       # Persisted Files
       persist.files = [
         ".config/gscan2pdfrc"
-        ".config/rncbc.org/qpwgraph"
         ".config/zoomus.conf"
       ];
 
@@ -87,7 +81,6 @@ in {
         ".config/libreoffice"
         ".config/obs-studio"
         ".config/onlyoffice"
-        ".config/pitivi"
         ".config/whatsapp-for-linux"
         ".local/share/data"
         ".local/share/onlyoffice"
@@ -98,22 +91,17 @@ in {
         ".cache/zoom"
       ];
 
-      homeConfig = {
-        # Utilities
-        services.easyeffects.enable = true;
+      homeConfig.home.file = {
+        # Document Templates
+        "Templates" = {
+          source = files.templates;
+          recursive = true;
+        };
 
-        home.file = {
-          # Document Templates
-          "Templates" = {
-            source = files.templates;
-            recursive = true;
-          };
-
-          # Font Rendering
-          ".local/share/fonts" = {
-            source = "${pkgs.custom.fonts}/share/fonts";
-            recursive = true;
-          };
+        # Font Rendering
+        ".local/share/fonts" = {
+          source = "${pkgs.custom.fonts}/share/fonts";
+          recursive = true;
         };
       };
     };

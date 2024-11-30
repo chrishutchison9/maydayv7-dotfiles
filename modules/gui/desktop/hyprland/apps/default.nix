@@ -334,6 +334,10 @@ in {
           # Discord Chat
           ".config/BetterDiscord/data/stable/custom.css" = with theme;
             mkIf (exists "discord") {text = ''@import url("https://${name}.github.io/discord/dist/${name}-${variant}-${accent}.theme.css");'';};
+
+          # Logseq Notes
+          ".logseq/config.edn" = with theme;
+            mkIf (exists "notes") {text = ''{:custom-css-url "@import url('https://logseq.${name}.com/ctp-${variant}.css');"}'';};
         };
 
       # Code Editor

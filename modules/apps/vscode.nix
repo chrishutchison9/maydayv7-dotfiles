@@ -26,7 +26,9 @@ in {
         ];
 
         # Environment
-        xdg.mimeApps.defaultApplications = util.build.mime files.xdg.mime {text = ["code.desktop"];};
+        xdg.mimeApps.defaultApplications =
+          util.build.mime files.xdg.mime {text = ["code.desktop"];};
+
         programs.vscode = {
           enable = true;
           package = pkgs.vscode;
@@ -55,12 +57,15 @@ in {
               ms-python.python
               ms-vscode-remote.remote-ssh
               ms-vscode.cpptools
+              naumovs.color-highlight
               redhat.java
-              redhat.vscode-yaml
+              ritwickdey.liveserver
               yzhang.markdown-all-in-one
             ]
             ++ (with pkgs.code.vscode-marketplace; [
+              kisstkondoros.vscode-gutter-preview
               vscode-org-mode.org-mode
+              wayou.vscode-todo-highlight
             ]);
         };
       };
