@@ -77,10 +77,19 @@ in {
       targets.plymouth.enable = false;
     };
 
-    user.homeConfig.stylix.targets = {
-      firefox.enable = false;
-      spicetify.enable = mkIf (exists "spotify") true;
-      vscode.enable = mkIf (exists "vscode") false;
+    user.homeConfig.stylix = {
+      iconTheme = {
+        enable = true;
+        inherit (cfg.icons) package;
+        light = cfg.icons.name;
+        dark = cfg.icons.name;
+      };
+
+      targets = {
+        firefox.enable = false;
+        spicetify.enable = mkIf (exists "spotify") true;
+        vscode.enable = mkIf (exists "vscode") false;
+      };
     };
   };
 }

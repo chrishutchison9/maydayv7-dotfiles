@@ -513,6 +513,9 @@ You can navigate to the `README`s present in the various directories to know mor
 ### v25
 
 - Upgrade to NixOS v24.11 (Vicuna)!
+- Add Logseq Configuration
+- Hyprland Improvements
+- Use Vesktop instead of Discord
 
 ### v24.5
 

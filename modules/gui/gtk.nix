@@ -7,7 +7,6 @@
 }: let
   inherit (lib) mkEnableOption mkIf mkOption types;
   cfg = config.gui.gtk;
-  inherit (config.stylix) fonts;
 in {
   options.gui.gtk = {
     enable = mkEnableOption "Enable GTK Configuration";
@@ -55,11 +54,10 @@ in {
         gtk = {
           enable = true;
           inherit (cfg) theme;
-          iconTheme = config.gui.icons;
           cursorTheme = config.gui.cursors;
-          font = {
-            inherit (fonts.sansSerif) package name;
-            size = fonts.sizes.applications;
+          font = with config.stylix.fonts; {
+            inherit (sansSerif) package name;
+            size = sizes.applications;
           };
 
           gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
