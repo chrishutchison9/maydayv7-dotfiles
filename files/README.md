@@ -14,12 +14,14 @@ The `files` directory is used to store all my plain-text program configuration f
 - [`gtk`](./gtk) - GTK+ Theming and Styles
 - [`hyprland`](./hyprland) - Hyprland WM Configuration
 - [`images`](./images) - Personal Wallpapers and Profile Pictures
+- [`logseq`](./logseq) - Logseq Notes Configuration
 - [`nano`](./nano) - `nano` Text Editor Global Configuration
 - [`pantheon`](./pantheon) - Configuration Files for Pantheon Desktop
 - [`proprietary`](https://github.com/maydayv7/proprietary) - Custom Proprietary Files
 - [`templates`](./templates) - Document Templates
 - [`touchegg`](./touchegg) - Touchegg X11 Touchpad Gestures
 - [`ulauncher`](./ulauncher) - ULauncher Application Launcher Settings & Plugins
+- [`vesktop`](./vesktop) - Vesktop Discord Chat Configuration
 - [`vscode`](./vscode) - Visual Studio Code Editor Configuration
 - [`wine`](./wine) - Configuration and Theming for `wine` applications
 - [`xdg`](./xdg) - XDG Desktop Utilities Configuration

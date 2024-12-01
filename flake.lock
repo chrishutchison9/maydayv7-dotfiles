@@ -927,11 +927,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1712129369,
-        "narHash": "sha256-v3i9RMQjJ8Vgk8i0HK4CQgXAOuRtvPVupHri6rkjWzY=",
+        "lastModified": 1732998037,
+        "narHash": "sha256-HugmFD5pODeXZ22g+34Xv7cjPCXDiKsKqV1R3M9xppg=",
         "owner": "maydayv7",
         "repo": "proprietary",
-        "rev": "45552f2069239c3b59bee339503fc005423b5da6",
+        "rev": "d2c901db758e8a0ac0b007218ce8b930ab462f87",
         "type": "github"
       },
       "original": {

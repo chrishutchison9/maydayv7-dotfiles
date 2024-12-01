@@ -222,7 +222,7 @@ in {
       user.homeConfig = {
         home.file = {
           # Discord Nord Theme
-          ".config/BetterDiscord/data/stable/custom.css" =
+          ".config/vesktop/settings/quickCss.css" =
             mkIf (exists "discord") {text = ''@import url(https://rawcdn.githack.com/orblazer/discord-nordic/f3f6833c70d0b27b1cde986233b7009d61917812/nordic.theme.css);'';};
 
           # Logseq Nord Theme

@@ -792,7 +792,7 @@ You can navigate to the `README`s present in the various directories to know mor
 
 - Online accounts have to be manually signed into
 - [Wine](./packages/wine) Applications have to be manually updated
-- Plugins for Discord, ULauncher have to be manually updated
+- ULauncher Plugins have to be manually updated
 - Logseq Plugins have to be manually installed
 - GNOME [Pano](https://github.com/oae/gnome-shell-pano) has to be manually updated until upstream stabilises
 

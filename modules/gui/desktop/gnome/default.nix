@@ -216,7 +216,7 @@ in {
           ".mozilla/firefox/default/chrome/userContent.css".text = ''@import "${pkgs.custom.firefox-gnome-theme}/userContent.css";'';
 
           # Discord DNOME Theme
-          ".config/BetterDiscord/data/stable/custom.css" =
+          ".config/vesktop/settings/quickCss.css" =
             mkIf (exists "discord") {text = ''@import url("https://raw.githack.com/GeopJr/DNOME/dist/DNOME.css");'';};
 
           # Logseq Bonofix Theme

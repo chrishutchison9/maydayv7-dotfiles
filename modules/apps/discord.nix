@@ -4,27 +4,19 @@
   pkgs,
   files,
   ...
-}: let
+}:
+with files.vesktop; let
   enable = builtins.elem "discord" config.apps.list;
 in {
   ## Discord Configuration ##
   config = lib.mkIf enable {
-    environment.systemPackages = with pkgs; [betterdiscordctl discord];
+    environment.systemPackages = [pkgs.vesktop];
 
     user = {
-      persist.directories = [".config/BetterDiscord" ".config/discord"];
-      homeConfig.home = {
-        # Plugins
-        file.".config/BetterDiscord/plugins" = {
-          source = files.proprietary.discord;
-          recursive = true;
-        };
-
-        # Discord Activation
-        activation.discordSetup = lib.hm.dag.entryAfter ["writeBoundary"] ''
-          echo "Setting up Discord..."
-          run /usr/bin/env betterdiscordctl $VERBOSE_ARG install || true
-        '';
+      persist.directories = [".config/vesktop"];
+      homeConfig.home.file = {
+        ".config/vesktop/settings.json".text = prefs;
+        ".config/vesktop/settings/settings.json".text = settings;
       };
     };
   };

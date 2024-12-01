@@ -8,6 +8,10 @@
 }:
 with files.logseq; let
   enable = builtins.elem "notes" config.apps.list;
+  mutable = {
+    mutable = true;
+    force = true;
+  };
 in {
   ## Logseq Configuration ##
   config = lib.mkIf enable {
@@ -18,13 +22,13 @@ in {
       homeConfig.home.file =
         {
           ".config/logseq/configs.edn".text = ''{:window/native-titlebar? true}'';
-          ".logseq/preferences.json".text = prefs;
+          ".logseq/preferences.json" = {text = prefs;} // mutable;
         }
         // util.map.folder {
           directory = settings;
           path = ".logseq/settings";
           extension = ".json";
-          apply = text: {inherit text;};
+          apply = text: {inherit text;} // mutable;
           replace = {
             placeholders = ["@bg"];
             values = [config.lib.stylix.colors.base00];

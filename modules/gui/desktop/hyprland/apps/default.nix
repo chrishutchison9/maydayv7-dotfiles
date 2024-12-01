@@ -332,7 +332,7 @@ in {
         ## 3rd Party Apps Configuration
         // {
           # Discord Chat
-          ".config/BetterDiscord/data/stable/custom.css" = with theme;
+          ".config/vesktop/settings/quickCss.css" = with theme;
             mkIf (exists "discord") {text = ''@import url("https://${name}.github.io/discord/dist/${name}-${variant}-${accent}.theme.css");'';};
 
           # Logseq Notes
