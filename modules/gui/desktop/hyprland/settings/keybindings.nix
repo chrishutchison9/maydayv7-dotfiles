@@ -41,7 +41,7 @@
 
           # Window Minimization
           "ALT, Q, movetoworkspacesilent, special:minimized"
-          "ALT SHIFT, Q, exec, hyprutils minimize show"
+          "ALT SHIFT, Q, exec, hyprutils toggle minimized"
 
           # Cycle Workspaces
           "$mod, comma, split:workspace, m-1"

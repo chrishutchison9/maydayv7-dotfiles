@@ -46,16 +46,12 @@ _: {
       # Prompt Windows
       "dimaround, class:^(gcr-prompter)$"
       "dimaround, class:^(xdg-desktop-portal-gtk)$"
-      "dimaround, class:^(polkit-gnome-authentication-agent-1)$"
-      "stayfocused, class:^(polkit-gnome-authentication-agent-1)"
+      "pin, class:^(pinentry-)"
+      "dimaround, class:^(pinentry-)"
       "stayfocused, class:^(pinentry-)"
-
-      # Screen Share
-      "maxsize 1 1, class:^(xwaylandvideobridge)$"
-      "noanim, class:^(xwaylandvideobridge)$"
-      "noblur, class:^(xwaylandvideobridge)$"
-      "noinitialfocus, class:^(xwaylandvideobridge)$"
-      "opacity 0.0 override 0.0 override, class:^(xwaylandvideobridge)$"
+      "pin, class:^(gay.vaskel.Soteria)$"
+      "dimaround, class:^(gay.vaskel.Soteria)$"
+      "stayfocused, class:^(gay.vaskel.Soteria)"
     ];
   };
 }

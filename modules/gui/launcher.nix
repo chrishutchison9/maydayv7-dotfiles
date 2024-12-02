@@ -70,7 +70,11 @@ in {
 
         # Autostart
         systemd.user.services.ulauncher = {
-          Unit.Description = "Start ULauncher";
+          Unit = {
+            Description = "Start ULauncher";
+            After = ["graphical-session.target"];
+          };
+
           Install.WantedBy = ["graphical-session.target"];
           Service = {
             Type = "Simple";

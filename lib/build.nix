@@ -1,6 +1,24 @@
 lib: let
-  inherit (lib) flatten hasPrefix mapAttrsToList nameValuePair replaceStrings splitString;
-  inherit (builtins) concatStringsSep filter hasAttr listToAttrs map readFile;
+  inherit
+    (builtins)
+    concatStringsSep
+    filter
+    hasAttr
+    listToAttrs
+    map
+    match
+    readFile
+    ;
+
+  inherit
+    (lib)
+    flatten
+    hasPrefix
+    mapAttrsToList
+    nameValuePair
+    replaceStrings
+    splitString
+    ;
 in {
   ## Builder Functions ##
   # Mime Types Handler
@@ -36,4 +54,12 @@ in {
     else if (fonts != null)
     then replaceStrings font font' file
     else throw "One of 'colors' or 'fonts' must be declared";
+
+  # String Extractor
+  until = check: string: let
+    value = match "([^ ]+)${check}.*" string;
+  in
+    if (value == null)
+    then string
+    else concatStringsSep "" value;
 }

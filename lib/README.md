@@ -10,6 +10,7 @@ The `lib` directory contains custom-made utility functions (exposed as `util`), 
   - `mime`: Builds and sets `mimetype` values according to specified application and types
   - `script`: Builds script from specified file by removing `shebangs` and exporting as a _string_
   - `theme`: Builds specified file by replacing placeholders with provided theming elements
+  - `until`: Returns part of _string_ before specified character, or entire _string_ if character is not present
 
 - [`map`](./map.nix): Mapping functions primarily aimed at shortening code complexity -
 

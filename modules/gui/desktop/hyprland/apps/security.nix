@@ -27,20 +27,19 @@ in {
 
   # Idle Daemon
   services.swayidle = let
-    lock = pre: post: "sh -c 'if ! ${getExe' pkgs.procps "pgrep"} -x swaylock; then ${pre}; ${getExe locker} -f ${post}; fi'";
+    pause = "${getExe pkgs.playerctl} pause -a";
+    lock = pre: flag: "sh -c 'if ! ${getExe' pkgs.procps "pgrep"} -x swaylock; then ${pre}; ${getExe locker} -f ${flag}; fi'";
   in {
     enable = true;
     extraArgs = ["-w"];
-    systemdTarget = "hyprland-session.target";
-
     events = [
       {
         event = "before-sleep";
-        command = lock "" "";
+        command = lock pause "";
       }
       {
         event = "lock";
-        command = lock "${getExe pkgs.playerctl} pause -a" "--fade-in 0.2 --grace 15 --grace-no-mouse";
+        command = lock pause "--fade-in 0.2 --grace 15 --grace-no-mouse";
       }
     ];
 
@@ -90,24 +89,5 @@ in {
             "reboot"
           ]}
       '';
-  };
-
-  # Authorization Agent
-  systemd.user.services.polkit = {
-    Unit.Description = "Polkit Authentication";
-
-    Install = {
-      WantedBy = ["graphical-session.target"];
-      Wants = ["graphical-session.target"];
-      After = ["graphical-session.target"];
-    };
-
-    Service = {
-      Type = "simple";
-      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-      Restart = "on-failure";
-      RestartSec = 1;
-      TimeoutStopSec = 10;
-    };
   };
 }

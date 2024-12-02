@@ -23,20 +23,11 @@ in {
         };
       };
 
-      # Session
-      services.displayManager.defaultSession = "Desktop";
-      services.xserver.displayManager.session = [
-        {
-          name = "Desktop";
-          manage = "desktop";
-          start = "Hyprland &> /dev/null";
-        }
-      ];
-
       programs = {
         # WM
         hyprland = {
           enable = true;
+          withUWSM = true;
           xwayland.enable = true;
           package = pkgs.hyprworld.hyprland;
         };
@@ -52,16 +43,21 @@ in {
         };
       };
 
-      # Greeter
-      services.greetd.settings.default_session.command = with programs;
-        mkForce "${getExe hyprland.package} --config ${
-          pkgs.writeText "greeter.conf"
-          (replaceStrings ["@greeter"] [(getExe regreet.package)]
-            (util.build.theme {
-              inherit (config.lib.stylix) colors;
-              file = files.hyprland.greeter;
-            }))
-        } &> /dev/null";
+      services = {
+        # Auostart
+        xserver.desktopManager.runXdgAutostartIfNone = true;
+
+        # Greeter
+        greetd.settings.default_session.command = with programs;
+          mkForce "${getExe hyprland.package} --config ${
+            pkgs.writeText "greeter.conf"
+            (replaceStrings ["@greeter"] [(getExe regreet.package)]
+              (util.build.theme {
+                inherit (config.lib.stylix) colors;
+                file = files.hyprland.greeter;
+              }))
+          } &> /dev/null";
+      };
     }
 
     {
@@ -124,17 +120,10 @@ in {
       hardware.brillo.enable = true;
 
       # Security
+      security.soteria.enable = true;
       security.pam.services = {
+        greetd.enableGnomeKeyring = true;
         swaylock.text = "auth include login";
-        greetd = {
-          enableGnomeKeyring = true;
-          text = ''
-            auth      substack      login
-            account   include       login
-            password  substack      login
-            session   include       login
-          '';
-        };
       };
     }
 

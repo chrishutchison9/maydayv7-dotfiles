@@ -18,17 +18,22 @@ in rec {
   # Environment Setup
   home.packages = [pkgs.wttrbar];
   systemd.user = {
-    # nix-community/home-manager/4099
-    services.waybar.Service.ExecStart = lib.mkForce (pkgs.writeShellScript "waybar-wrapper.sh" ''
-      ${files.path.systemd}
-      ${lib.getExe programs.waybar.package}
-    '');
+    services.waybar = {
+      # nix-community/home-manager/pull/5785
+      Unit.After = lib.mkForce ["graphical-session.target"];
+
+      # nix-community/home-manager/4099
+      Service.ExecStart = lib.mkForce (pkgs.writeShellScript "waybar-wrapper.sh" ''
+        ${files.path.systemd}
+        ${lib.getExe programs.waybar.package}
+      '');
+    };
 
     # nix-community/home-manager/2064
     targets.tray = {
       Unit = {
         Description = "Home Manager System Tray";
-        Requires = ["graphical-session-pre.target"];
+        Requires = ["graphical-session.target"];
       };
     };
   };

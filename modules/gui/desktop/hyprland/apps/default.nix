@@ -7,7 +7,6 @@
   ...
 }:
 with files; let
-  inherit (lib) getExe mkIf;
   inherit (config.lib.stylix) colors;
   exists = app: builtins.elem app config.apps.list;
   theme = import ../theme.nix pkgs;
@@ -57,7 +56,9 @@ in {
     grim
     grimblast
     hyprkeys
+    hyprshade
     pavucontrol
+    pyprland
     slurp
     wev
     wl-clipboard
@@ -129,44 +130,55 @@ in {
       };
 
       # Shortcuts
-      wayland.windowManager.hyprland.settings.bind = [
-        "$mod SHIFT, slash, exec, pkill kebihelp || kebihelp show -a"
+      wayland.windowManager.hyprland.settings.bind = let
+        toggle = app: "pkill ${app} || uwsm app -u ${app}.scope -- ${app}";
+        runOnce = app: "pgrep ${app} || uwsm app -u ${app}.scope -- ${app}";
+      in [
+        "$mod SHIFT, slash, exec, ${toggle "kebihelp"} show -a"
         "$mod, slash, exec, ulauncher-toggle"
         "$mod, A, exec, nwg-drawer"
         "$mod SHIFT, A, exec, hyprutils toggle panel"
-        "$mod SHIFT, C, exec, hyprpicker -arf hex"
+        "$mod SHIFT, C, exec, ${runOnce "hyprpicker"} -arf hex"
         "$mod, D, exec, pypr toggle displays"
         "$mod, F, exec, thunar"
         "$mod, N, exec, dunstctl history-pop"
         "$mod, T, exec, kitty"
         "$mod SHIFT, T, exec, pypr toggle term"
-        ''$mod, V, exec, sh -c "if ! hyprctl clients | grep 'class: clipse'; then pypr show clip; fi"''
+        ''$mod, V, exec, sh -c "hyprctl clients | grep 'class: clipse' || pypr show clip"''
         "$mod, W, exec, firefox"
-        "$mod, Return, exec, missioncenter"
+        "$mod, Return, exec, ${runOnce "missioncenter"}"
         ", XF86Calculator, exec, qalculate-gtk"
-        "$mod, Escape, exec, sh -c 'if ! pgrep -x wlogout; then wlogout -p layer-shell; fi'"
+        "$mod, Escape, exec, ${toggle "wlogout"} -p layer-shell"
       ];
 
       # Autostart
-      wayland.windowManager.hyprland.settings.exec-once = [
-        "dbus-update-activation-environment --systemd --all"
+      wayland.windowManager.hyprland.settings.exec-once =
+        ["uwsm finalize"]
+        ++ (builtins.map (app: "uwsm app -t service -u ${util.build.until " " app}.service -- " + app) [
+          "hyprutils daemon"
 
-        # Application Drawer
-        "nwg-drawer -r"
+          # Application Drawer
+          "nwg-drawer -r"
 
-        # Clipboard Manager
-        "clipse -listen"
+          # Clipboard Manager
+          "clipse -listen"
 
-        # Desktop Icons
-        "dicons"
+          # Desktop Icons
+          "dicons"
 
-        # Minimized Windows
-        "hyprutils minimize"
-      ];
+          # Pyprland
+          "pypr"
+        ]);
 
       # Utilities
       services.playerctld.enable = true;
       services.poweralertd.enable = true;
+
+      # nix-community/home-manager/pull/5785
+      systemd.user.services = {
+        poweralertd.Unit.After = lib.mkForce ["graphical-session.target"];
+        dunst.Unit.After = lib.mkForce ["graphical-session.target"];
+      };
 
       # Wallpaper Daemon
       services.hyprpaper = {
@@ -274,21 +286,20 @@ in {
         tray = true;
       };
 
-      # Screen Share
-      systemd.user.services.xwaylandvideobridge = {
-        Unit.Description = "Stream Wayland windows to apps running under XWayland";
-        Install.wantedBy = ["graphical-session.target"];
-        Service = {
-          ExecStart = getExe pkgs.xwaylandvideobridge;
-          Restart = "on-failure";
-        };
-      };
-
       # Configuration Files
       home.file =
         {
           # Application Drawer
           ".config/nwg-drawer/drawer.css".text = hyprland.drawer;
+
+          # Pyprland
+          ".config/hypr/pyprland.toml".text = hyprland.pypr;
+
+          # Shaders
+          ".config/hypr/shaders" = {
+            source = "${pkgs.custom.hyprshaders}/share/hypr/shaders";
+            recursive = true;
+          };
 
           # Keybinds Viewer
           ".config/kebihelp.json".text = util.build.theme {
@@ -333,15 +344,15 @@ in {
         // {
           # Discord Chat
           ".config/vesktop/settings/quickCss.css" = with theme;
-            mkIf (exists "discord") {text = ''@import url("https://${name}.github.io/discord/dist/${name}-${variant}-${accent}.theme.css");'';};
+            lib.mkIf (exists "discord") {text = ''@import url("https://${name}.github.io/discord/dist/${name}-${variant}-${accent}.theme.css");'';};
 
           # Logseq Notes
           ".logseq/config.edn" = with theme;
-            mkIf (exists "notes") {text = ''{:custom-css-url "@import url('https://logseq.${name}.com/ctp-${variant}.css');"}'';};
+            lib.mkIf (exists "notes") {text = ''{:custom-css-url "@import url('https://logseq.${name}.com/ctp-${variant}.css');"}'';};
         };
 
       # Code Editor
-      programs.vscode = mkIf (exists "vscode") {
+      programs.vscode = lib.mkIf (exists "vscode") {
         extensions = with pkgs; [
           vscode-extensions.catppuccin.catppuccin-vsc-icons
           (catppuccin-vsc.override {

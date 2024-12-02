@@ -16,19 +16,19 @@
       backlight [up,down]            - Keyboard Backlight Controls
       volume [up,down,mute]          - Volume Controls
       media [next,previous,toggle]   - Media Controls
-      minimize [show]                - Show Minimized windows
       zoom [in,out]                  - Screen Zoom
       toggle 
         fancy                        - Toggle Compositor Effects
         float                        - Toggle window floating in current workspace
         idle                         - Toggle Idle Daemon service
+        minimized                    - Show minimized windows
         monitor                      - Toggle specified Monitor
         panel                        - Toggle top Panel
         shader                       - Toggle Compositor Shader
         touchpad                     - Toggle touchpad
   '';
 
-  minimize = builtins.toFile "minimize.sh" ''
+  daemon = builtins.toFile "daemon.sh" ''
     event_activespecial() {
       case "$WORKSPACENAME" in
       special:minimized*)
@@ -101,6 +101,10 @@ in
       case "$1" in
         "") error "Expected an Option" "${help}";;
         "help") echo -e "## Hyprland Utility Script ##\n${help}";;
+        "daemon")
+          info "Monitoring Hyprland Socket..."
+          socat -u UNIX-CONNECT:"$XDG_RUNTIME_DIR"/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock EXEC:"shellevents ${daemon}",nofork
+        ;;
         "brightness")
           brightness_notification() {
             brightness=$(brillo | grep -Po '[0-9]{1,3}' | head -n 1)
@@ -220,24 +224,6 @@ in
           *) error "Unexpected Option 'media $2'" "Try 'hyprutils help' for more information" ;;
           esac
         ;;
-        "minimize")
-          case "$2" in
-          "show")
-            if hyprctl workspaces | grep "special:minimized"
-            then
-              hyprctl dispatch workspace special:minimized
-            else
-              hyprctl notify 1 2000 0 "No minimized windows present"
-            fi
-          ;;
-          "")
-            info "Monitoring workspace 'special:minimized' activation..."
-            socat -u UNIX-CONNECT:"$XDG_RUNTIME_DIR"/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock \
-              EXEC:"shellevents ${minimize}",nofork
-          ;;
-          *) error "Unexpected Option 'minimize $2'" "Try 'hyprutils help' for more information" ;;
-          esac
-        ;;
         "zoom")
           ZOOM=$(hyprctl getoption cursor:zoom_factor | grep float | awk '{print $2}')
           case "$2" in
@@ -293,6 +279,14 @@ in
             else
               systemctl --user restart swayidle
               notify idle -i "system-lock-screen" "Started Idle Daemon"
+            fi
+          ;;
+          "minimized")
+            if hyprctl workspaces | grep "special:minimized"
+            then
+              hyprctl dispatch workspace special:minimized
+            else
+              hyprctl notify 1 2000 0 "No minimized windows present"
             fi
           ;;
           "monitor")
