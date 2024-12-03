@@ -6,7 +6,13 @@
 }: {
   ## Plugin Settings
   wayland.windowManager.hyprland = {
-    plugins = with pkgs.hyprworld; [hycov hyprexpo Hypr-DarkWindow Hyprspace hyprsplit];
+    plugins = with pkgs.hyprlandPlugins;
+      [hyprexpo hyprspace hyprsplit]
+      ++ (with pkgs.custom; [
+        hycov
+        hyprdark
+      ]);
+
     settings = {
       plugin = with sys.lib.stylix.colors; let
         gaps =

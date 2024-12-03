@@ -37,13 +37,6 @@ in {
               code = vscode.extensions."${system}";
               gaming = gaming.packages."${system}";
               wine = windows.packages."${system}";
-              hyprworld =
-                hyprland.packages."${system}"
-                // hyprland-plugins.packages."${system}"
-                // hycov.packages."${system}"
-                // hyprdark.packages."${system}"
-                // hyprspace.packages."${system}"
-                // hyprsplit.packages."${system}";
             })
           ];
       in {

@@ -29,7 +29,7 @@ in {
           enable = true;
           withUWSM = true;
           xwayland.enable = true;
-          package = pkgs.hyprworld.hyprland;
+          package = pkgs.hyprland;
         };
 
         # Login

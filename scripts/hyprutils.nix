@@ -53,7 +53,7 @@ in
       dunst
       zenity
       hyprshade
-      hyprworld.hyprland
+      hyprland
       custom.hyprshellevents
       swayidle
       waybar

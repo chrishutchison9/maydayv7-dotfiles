@@ -6,13 +6,13 @@
 with pkgs; let
   metadata = import ./metadata.nix;
 in
-  stdenv.mkDerivation {
-    pname = "firefox-elementary-theme";
+  stdenv.mkDerivation rec {
+    pname = "elementaryos-firefox-theme";
     version = metadata.rev;
 
     src = fetchFromGitHub {
       owner = "Zonnev";
-      repo = "elementaryos-firefox-theme";
+      repo = pname;
       inherit (metadata) rev sha256;
     };
 

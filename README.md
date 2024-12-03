@@ -9,7 +9,7 @@
 This [repository](https://github.com/maydayv7/dotfiles) contains the configuration and `dotfiles` for my continuously evolving multi-PC setup (using [Nix](https://nixos.org/)). All the devices I own, controlled by code. It also builds and deploys my website to [maydayv7.my.to](https://maydayv7.my.to). You can follow along with my [NixOS Desktop](https://maydayv7.my.to/series/nixos-desktop/) Series
 
 <details>
-<summary>Desktop Pictures</summary>
+<summary><b>Pictures</b></summary>
 
 **_Note:_** These may be outdated
 
@@ -28,6 +28,31 @@ This [repository](https://github.com/maydayv7/dotfiles) contains the configurati
 | ![Pantheon Desktop](./files/images/desktop/pantheon.png) |
 | :------------------------------------------------------: |
 |                    _Pantheon Desktop_                    |
+
+<details>
+<summary>Theming</summary>
+
+- [Hyfetch](https://github.com/hykilpikonna/hyfetch): Snazzy CLI System Information Tool
+- [Powerlevel10K](https://github.com/romkatv/powerlevel10k) Theme: ZSH Theme for the fancy-looking prompt with immense customization capabilities
+- [Arc Theme](https://github.com/jnsh/arc-theme): Flat GTK theme with transparent elements for various desktop shells, window managers and applications
+- [Bibata Cursor](https://github.com/ful1e5/Bibata_Cursor): Compact and material designed cursor set
+- [DNOME](https://github.com/GeopJr/DNOME) Discord Theme: Discord Theme inspired by Adwaita, designed to integrate Discord with GNOME
+- [Nordic](https://github.com/orblazer/discord-nordic) Discord Theme: Discord Theme using the [Nord](<(https://www.nordtheme.com/)>) color palette
+- [Firefox GNOME Theme](https://github.com/rafaelmardojai/firefox-gnome-theme): GNOME Theme for the Mozilla Firefox Browser, used for better desktop integration
+- [Firefox Elementary Theme](https://github.com/Zonnev/elementaryos-firefox-theme): Elementary OS Theme for the Mozilla Firefox Browser, used for better desktop integration
+- [VS Code Adwaita Theme](https://github.com/piousdeer/vscode-adwaita): Integrates Visual Studio Code with GNOME Desktop
+- [VS Code Arc Theme](https://github.com/alvesvaren/arc-dark-vscode): Port of the Arc Dark GTK Theme for Visual Studio Code
+- [VS Code Elementary Theme](https://github.com/sixpounder/vscode-elementary-theme): Integrates Visual Studio Code with Pantheon Desktop
+- [KvLibadwaita Kvantum Theme](https://github.com/GabePoel/KvLibadwaita): Integrates QT Apps with GNOME Desktop
+- [Arc KDE Theme](https://github.com/PapirusDevelopmentTeam/arc-kde): Port of the Arc GTK Theme for Plasma Desktop
+- ULauncher [Adwaita Theme](https://github.com/gabrbrand/adwaita-dark-ulauncher): ULauncher Theme based on GNOME Desktop's Adwaita Dark Theme
+- ULauncher [Arc Theme](https://github.com/tjquillan/Arc-Dark-ULauncher): An Arc Dark Theme for ULauncher
+- ULauncher [Elementary Theme](https://github.com/heidefinnischen/ULauncher-elementary): ULauncher Themes for Elementary OS
+- [Catppuccin](https://github.com/catppuccin) Theme: A community-driven Pastel Theme consisting of 4 soothing warm Flavors with 26 eye-candy Colors each
+- Logseq [Bonofix Theme][https://github.com/Sansui233/logseq-bonofix-theme]: A clean Logseq theme with focus on long-time writing experience
+- Logseg [Nord Theme](https://github.com/Bad3r/Logseq-Nord-Theme): Logseq in an arctic, north-bluish color palette
+
+</details>
 
 <details>
 <summary><i>Older...</i></summary>
@@ -428,30 +453,6 @@ The [`home-manager`](https://github.com/nix-community/home-manager) module is us
 
 ## Links
 
-### Theming
-
-- [Hyfetch](https://github.com/hykilpikonna/hyfetch): Snazzy CLI System Information Tool
-- [Powerlevel10K](https://github.com/romkatv/powerlevel10k) Theme: ZSH Theme for the fancy-looking prompt with immense customization capabilities
-- [Arc Theme](https://github.com/jnsh/arc-theme): Flat GTK theme with transparent elements for various desktop shells, window managers and applications
-- [Bibata Cursor](https://github.com/ful1e5/Bibata_Cursor): Compact and material designed cursor set
-- [DNOME](https://github.com/GeopJr/DNOME) Discord Theme: Discord Theme inspired by Adwaita, designed to integrate Discord with GNOME
-- [Nordic](https://github.com/orblazer/discord-nordic) Discord Theme: Discord Theme using the [Nord](<(https://www.nordtheme.com/)>) color palette
-- [Firefox GNOME Theme](https://github.com/rafaelmardojai/firefox-gnome-theme): GNOME Theme for the Mozilla Firefox Browser, used for better desktop integration
-- [Firefox Elementary Theme](https://github.com/Zonnev/elementaryos-firefox-theme): Elementary OS Theme for the Mozilla Firefox Browser, used for better desktop integration
-- [VS Code Adwaita Theme](https://github.com/piousdeer/vscode-adwaita): Integrates Visual Studio Code with GNOME Desktop
-- [VS Code Arc Theme](https://github.com/alvesvaren/arc-dark-vscode): Port of the Arc Dark GTK Theme for Visual Studio Code
-- [VS Code Elementary Theme](https://github.com/sixpounder/vscode-elementary-theme): Integrates Visual Studio Code with Pantheon Desktop
-- [KvLibadwaita Kvantum Theme](https://github.com/GabePoel/KvLibadwaita): Integrates QT Apps with GNOME Desktop
-- [Arc KDE Theme](https://github.com/PapirusDevelopmentTeam/arc-kde): Port of the Arc GTK Theme for Plasma Desktop
-- ULauncher [Adwaita Theme](https://github.com/gabrbrand/adwaita-dark-ulauncher): ULauncher Theme based on GNOME Desktop's Adwaita Dark Theme
-- ULauncher [Arc Theme](https://github.com/tjquillan/Arc-Dark-ULauncher): An Arc Dark Theme for ULauncher
-- ULauncher [Elementary Theme](https://github.com/heidefinnischen/ULauncher-elementary): ULauncher Themes for Elementary OS
-- [Catppuccin](https://github.com/catppuccin) Theme: A community-driven Pastel Theme consisting of 4 soothing warm Flavors with 26 eye-candy Colors each
-- Logseq [Bonofix Theme][https://github.com/Sansui233/logseq-bonofix-theme]: A clean Logseq theme with focus on long-time writing experience
-- Logseg [Nord Theme](https://github.com/Bad3r/Logseq-Nord-Theme): Logseq in an arctic, north-bluish color palette
-
-### Important Links
-
 **See:** A [Curated List](https://github.com/nix-community/awesome-nix) of the Best Resources in the Nix Community  
 **Also:** [This](https://nixos-and-flakes.thiscute.world/) website for beginners starting out with NixOS and Flakes
 
@@ -465,7 +466,7 @@ The [`home-manager`](https://github.com/nix-community/home-manager) module is us
 - NixOS [Hardware Modules](https://github.com/nixos/hardware)
 - Home Manager [Options](https://nix-community.github.io/home-manager/options.html)
 
-#### Other Sources
+### Other Sources
 
 - Tweag [Article](https://www.tweag.io/blog/2020-05-25-flakes/) introducing Flakes
 - Serokell's [Blog](https://serokell.io/blog/practical-nix-flakes) on Flakes
@@ -476,7 +477,7 @@ The [`home-manager`](https://github.com/nix-community/home-manager) module is us
 - Christine's [Blog Posts](https://christine.website/blog/series/nixos) addressing NixOS Security
 - [Graham's](https://grahamc.com/blog/erase-your-darlings) and [Elis'](https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/) Blog Posts on Ephemeral Partition Schemes
 
-#### Other Configurations
+### Other Configurations
 
 Here are some repositories that I may have shamelessly rummaged through for building my `dotfiles`:  
 _Thanks a lot! ;)_
@@ -514,8 +515,10 @@ You can navigate to the `README`s present in the various directories to know mor
 
 - Upgrade to NixOS v24.11 (Vicuna)!
 - Add Logseq Configuration
-- Hyprland Improvements
 - Use Vesktop instead of Discord
+- Hyprland Improvements
+  - Transition to UWSM
+  - Use `nixpkgs` version
 
 ### v24.5
 
