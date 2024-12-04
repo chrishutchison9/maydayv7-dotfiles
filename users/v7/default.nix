@@ -31,7 +31,7 @@
 
       # GTK+ Bookmarks
       ".config/gtk-3.0/bookmarks".text = lib.mkBefore ''
-        file://${config.home.homeDirectory}/Documents/TBD TBD
+        file://${config.home.homeDirectory}/Projects Projects
       '';
     };
   };

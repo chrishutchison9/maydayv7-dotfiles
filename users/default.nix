@@ -49,6 +49,7 @@ in {
       ".config/gtk-3.0/bookmarks".text = mkBefore ''
         file://${dir}/Downloads Downloads
         file://${dir}/Pictures Pictures
+        file://${dir}/Documents Documents
       '';
     };
 

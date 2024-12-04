@@ -16,16 +16,10 @@ in {
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 
   # File Manager
-  services.tumbler.enable = true;
-  programs = {
-    xfconf.enable = true;
-    thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-volman
-      ];
-    };
+  services.gnome.sushi.enable = true;
+  programs.nautilus-open-any-terminal = {
+    enable = true;
+    terminal = "kitty";
   };
 
   environment.systemPackages = with pkgs; [
@@ -42,6 +36,7 @@ in {
     custom.kebihelp
     lollypop
     mission-center
+    nautilus
     nwg-displays
     nwg-drawer
     overskride
@@ -92,9 +87,9 @@ in {
       ".config/mpv"
       ".config/nwg-displays"
       ".config/shotwell"
-      ".config/Thunar"
       ".local/share/clipboard"
       ".local/share/lollypop"
+      ".local/share/nautilus"
       ".local/share/shotwell"
       ".cache/shotwell"
     ];
@@ -105,7 +100,7 @@ in {
       # Default Applications
       xdg.mimeApps.defaultApplications = util.build.mime files.xdg.mime {
         audio = ["org.gnome.Lollypop.desktop"];
-        directory = ["thunar.desktop"];
+        directory = ["org.gnome.Nautilus.desktop"];
         image = ["org.gnome.Shotwell-Viewer.desktop"];
         magnet = ["transmission-gtk.desktop"];
         markdown = ["geany.desktop"];
@@ -140,7 +135,7 @@ in {
         "$mod SHIFT, A, exec, hyprutils toggle panel"
         "$mod SHIFT, C, exec, ${runOnce "hyprpicker"} -arf hex"
         "$mod, D, exec, pypr toggle displays"
-        "$mod, F, exec, thunar"
+        "$mod, F, exec, nautilus"
         "$mod, N, exec, dunstctl history-pop"
         "$mod, T, exec, kitty"
         "$mod SHIFT, T, exec, pypr toggle term"
@@ -286,6 +281,25 @@ in {
         tray = true;
       };
 
+      # File Manager
+      dconf.settings = {
+        "org/gtk/gtk4/settings/file-chooser".sort-directories-first = true;
+        "org/gnome/nautilus/icon-view" = {
+          captions = ["size" "date_modified" "none"];
+          default-zoom-level = "medium";
+        };
+
+        "org/gnome/nautilus/preferences" = {
+          click-policy = "single";
+          default-folder-viewer = "icon-view";
+          fts-enabled = true;
+          search-filter-time-type = "last_modified";
+          search-view = "list-view";
+          show-create-link = true;
+          show-delete-permanently = true;
+        };
+      };
+
       # Configuration Files
       home.file =
         {
@@ -333,12 +347,6 @@ in {
             TerminalEmulator=kitty
             TerminalEmulatorDismissed=true
           '';
-
-          # File Manager
-          ".config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml" = {
-            text = xfce.settings.thunar;
-            force = true;
-          };
         }
         ## 3rd Party Apps Configuration
         // {

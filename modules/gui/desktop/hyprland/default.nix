@@ -44,8 +44,18 @@ in {
       };
 
       services = {
-        # Auostart
-        xserver.desktopManager.runXdgAutostartIfNone = true;
+        # Session
+        displayManager.defaultSession = "Desktop";
+        xserver = {
+          desktopManager.runXdgAutostartIfNone = true;
+          displayManager.session = [
+            {
+              name = "Desktop";
+              manage = "desktop";
+              start = "uwsm start -S -F Hyprland &> /dev/null";
+            }
+          ];
+        };
 
         # Greeter
         greetd.settings.default_session.command = with programs;
