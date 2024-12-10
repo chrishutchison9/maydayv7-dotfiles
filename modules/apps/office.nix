@@ -93,9 +93,14 @@ in {
 
       homeConfig.home.file = {
         # Document Templates
-        "Templates" = {
+        "Templates" = rec {
           source = files.templates;
-          recursive = true;
+          target = ".init-templates";
+          onChange = ''
+            rm -rf ~/Templates
+            cp -rL ~/${target} ~/Templates
+            chmod -R 0777 ~/Templates
+          '';
         };
 
         # Font Rendering

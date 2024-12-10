@@ -36,8 +36,7 @@ in {
     ## Desktop Environment
     (mkIf (desktop != "" && !(hasSuffix "-iso" desktop))
       {
-        # Autostart Apps
-        user.persist.directories = [".config/autostart"];
+        user.persist.directories = [".config/autostart" ".local/share/gvfs-metadata"];
 
         # Utilities
         programs.seahorse.enable = true;

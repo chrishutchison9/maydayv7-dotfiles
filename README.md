@@ -519,6 +519,7 @@ You can navigate to the `README`s present in the various directories to know mor
 - Hyprland Improvements
   - Transition to UWSM
   - Use `nixpkgs` version
+  - Use [`nemo`](https://community.linuxmint.com/software/view/nemo) File Manager
 
 ### v24.5
 

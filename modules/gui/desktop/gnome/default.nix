@@ -167,7 +167,6 @@ in {
         fragments
         gnome-podcasts
         gnome-secrets
-        gradience
         gthumb
         lollypop
         mission-center

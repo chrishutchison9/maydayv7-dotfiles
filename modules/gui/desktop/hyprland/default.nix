@@ -11,133 +11,85 @@
   theme = import ./theme.nix pkgs;
 in {
   ## Hyprland Configuration ##
-  config = mkIf (desktop == "hyprland") (mkMerge [
-    ## Environment Setup
-    rec {
-      gui = {
-        xorg.enable = false;
-        wayland.enable = true;
-        launcher = {
-          enable = true;
-          shadow = false;
-        };
-      };
-
-      programs = {
-        # WM
-        hyprland = {
-          enable = true;
-          withUWSM = true;
-          xwayland.enable = true;
-          package = pkgs.hyprland;
-        };
-
-        # Login
-        regreet = {
-          enable = true;
-          package = pkgs.greetd.regreet;
-          settings.commands = {
-            reboot = ["systemctl" "reboot"];
-            poweroff = ["systemctl" "poweroff"];
+  config = mkIf (desktop == "hyprland") (
+    mkMerge (
+      # App Configuration
+      (builtins.map (path: import path (args // {inherit theme;}))
+        (util.map.modules.list ./apps))
+      ++ [
+        ## Environment Setup
+        rec {
+          gui = {
+            xorg.enable = false;
+            wayland.enable = true;
+            launcher = {
+              enable = true;
+              shadow = false;
+            };
           };
-        };
-      };
 
-      services = {
-        # Session
-        displayManager.defaultSession = "Desktop";
-        xserver = {
-          desktopManager.runXdgAutostartIfNone = true;
-          displayManager.session = [
-            {
-              name = "Desktop";
-              manage = "desktop";
-              start = "uwsm start -S -F Hyprland &> /dev/null";
-            }
-          ];
-        };
+          programs = {
+            # WM
+            hyprland = {
+              enable = true;
+              withUWSM = true;
+              xwayland.enable = true;
+              package = pkgs.hyprland;
+            };
 
-        # Greeter
-        greetd.settings.default_session.command = with programs;
-          mkForce "${getExe hyprland.package} --config ${
-            pkgs.writeText "greeter.conf"
-            (replaceStrings ["@greeter"] [(getExe regreet.package)]
-              (util.build.theme {
-                inherit (config.lib.stylix) colors;
-                file = files.hyprland.greeter;
-              }))
-          } &> /dev/null";
-      };
-    }
+            # Login
+            regreet = {
+              enable = true;
+              package = pkgs.greetd.regreet;
+              settings.commands = {
+                reboot = ["systemctl" "reboot"];
+                poweroff = ["systemctl" "poweroff"];
+              };
+            };
+          };
 
-    {
-      # Boot Splash
-      boot.plymouth = {
-        theme = with theme; "${name}-${variant}";
-        themePackages = [(pkgs.catppuccin-plymouth.override {inherit (theme) variant;})];
-      };
+          services = {
+            # Session
+            displayManager.defaultSession = "Desktop";
+            xserver = {
+              desktopManager.runXdgAutostartIfNone = true;
+              displayManager.session = [
+                {
+                  name = "Desktop";
+                  manage = "desktop";
+                  start = "uwsm start -S -F Hyprland &> /dev/null";
+                }
+              ];
+            };
 
-      # Greeter
-      environment.persist.directories = ["/var/cache/regreet"];
-      stylix.targets.regreet.enable = true;
-      programs.regreet = {
-        extraCss = mkForce "";
-        theme = mkForce theme.gtk;
-        iconTheme = mkForce theme.icons;
-      };
-    }
+            # Greeter
+            greetd.settings.default_session.command = with programs;
+              mkForce "${getExe hyprland.package} --config ${
+                pkgs.writeText "greeter.conf"
+                (replaceStrings ["@greeter"] [(getExe regreet.package)]
+                  (util.build.theme {
+                    inherit (config.lib.stylix) colors;
+                    file = files.hyprland.greeter;
+                  }))
+              } &> /dev/null";
+          };
+        }
+        {
+          environment.persist.directories = ["/var/cache/regreet"];
+          stylix.targets.regreet.enable = true;
+          programs.regreet = {
+            extraCss = mkForce "";
+            theme = mkForce theme.gtk;
+            iconTheme = mkForce theme.icons;
+          };
 
-    {
-      # Settings
-      user.persist.directories = [".config/hypr"];
-      user.homeConfig.imports = [./settings];
-
-      # Desktop Integration
-      stylix.base16Scheme = files.colors.catppuccin;
-      gui = with theme; {
-        fonts.enable = true;
-        inherit (theme) icons;
-        launcher.theme = theme.name;
-
-        gtk = {
-          enable = true;
-          theme = gtk;
-        };
-
-        qt = {
-          enable = true;
-          theme = qt;
-        };
-      };
-
-      ## Essential Utilities
-      xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
-      services = {
-        # Battery
-        power-profiles-daemon.enable = true;
-        upower.enable = true;
-
-        # Location
-        geoclue2 = {
-          enable = true;
-          geoProviderUrl = "https://beacondb.net/v1/geolocate";
-        };
-      };
-      location.provider = "geoclue2";
-
-      # Backlight
-      user.groups = ["input" "video"];
-      hardware.brillo.enable = true;
-
-      # Security
-      security.soteria.enable = true;
-      security.pam.services = {
-        greetd.enableGnomeKeyring = true;
-        swaylock.text = "auth include login";
-      };
-    }
-
-    ## Application Configuration
-    (import ./apps args)
-  ]);
+          # Settings
+          user = {
+            persist.directories = [".config/hypr"];
+            homeConfig.imports = [./settings];
+          };
+        }
+      ]
+    )
+  );
 }
