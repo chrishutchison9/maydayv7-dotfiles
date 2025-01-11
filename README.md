@@ -520,6 +520,8 @@ You can navigate to the `README`s present in the various directories to know mor
   - Transition to UWSM
   - Use `nixpkgs` version
   - Use [`nemo`](https://community.linuxmint.com/software/view/nemo) File Manager
+  - Add KDE Connect Support
+- Update Wine Packages
 
 ### v24.5
 
@@ -805,7 +807,7 @@ You can navigate to the `README`s present in the various directories to know mor
 
 </details>
 
-> Last Updated: **December** 2024
+> Last Updated: **January** 2025
 
 If you like this project, consider leaving a [star](https://github.com/maydayv7/dotfiles)
 

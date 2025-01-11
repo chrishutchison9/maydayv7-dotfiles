@@ -8,7 +8,7 @@ with lib.hm.gvariant; let
   fonts = sys.fonts.fontconfig.defaultFonts;
 in {
   ## Dconf Keys ##
-  # Generated via gvolpe/dconf2nix
+  # Generated via nix-community/dconf2nix
   # Use 'dconf watch /' to record changes
   dconf.settings = {
     # Desktop

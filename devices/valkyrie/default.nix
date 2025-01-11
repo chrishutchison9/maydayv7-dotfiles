@@ -7,7 +7,7 @@
   timezone = "Asia/Kolkata";
   locale = "IN";
 
-  kernel = "xanmod";
+  kernel = "xanmod_stable";
   kernelModules = ["nvme" "thunderbolt"];
 
   imports = [./drivers.nix];

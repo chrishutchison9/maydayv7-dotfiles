@@ -7,20 +7,15 @@ skip-meta = true
 
 # Who am I?
 
-I am **Vishrut Gurrala**, a 18 year old student in Bengaluru, India
+I am **Vishrut Gurrala** (19M), studying Computer Science at IIT Guwahati
 
-Tech Enthusiast (_read:_ live and breath technology) and avid reader
+Tech enthusiast (_read:_ fanatic) and avid reader
 
-# Digital Presence
+## Digital Presence
 
 Ways to follow or get in contact with me
 
-## Email
-
-<maydayv7@gmail.com>
-
-## Social Media
-
+- Mail: <maydayv7@gmail.com>
 - Github: @[maydayv7 ](https://github.com/maydayv7)
 - Reddit: @[maydayv7 ](https://reddit.com/u/maydayv7)
 - Discord: @MayDayV7#8064

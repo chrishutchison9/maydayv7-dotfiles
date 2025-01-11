@@ -43,15 +43,15 @@ in {
           mkwindowsapp-tools
           playonlinux
         ]
-        ++ optionals cfg.utilities ([notepad-plus-plus]
-          # Wrapped Packages
-          ++ (attrValues (util.map.modules ../../packages/wine
-            (name:
-              callPackage name {
-                inherit lib pkgs;
-                wine = cfg.package;
-                build = inputs.windows.lib."${pkgs.system}";
-              })))))
+        # Wrapped Packages
+        ++ optionals cfg.utilities
+        (attrValues (util.map.modules ../../packages/wine
+          (name:
+            callPackage name {
+              inherit lib pkgs;
+              wine = cfg.package;
+              build = inputs.windows.lib."${pkgs.system}";
+            }))))
     );
   };
 }

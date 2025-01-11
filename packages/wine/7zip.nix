@@ -20,17 +20,17 @@ in
 
     dontUnpack = true;
     wineArch = "win32";
-    enableInstallNotification = false;
     fileMap = {};
+    enableInstallNotification = false;
     nativeBuildInputs = [copyDesktopItems copyDesktopIcons];
 
     winAppInstall = ''
-      wine start /unix ${src} /S
+      $WINE start /unix ${src} /S
       wineserver -w
     '';
 
     winAppRun = ''
-      wine start /unix "$WINEPREFIX/drive_c/Program Files/7-Zip/7zFM.exe" "$ARGS"
+      $WINE start /unix "$WINEPREFIX/drive_c/Program Files/7-Zip/7zFM.exe" "$ARGS"
     '';
 
     installPhase = ''
