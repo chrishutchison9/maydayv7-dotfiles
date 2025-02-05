@@ -810,7 +810,7 @@ You can navigate to the `README`s present in the various directories to know mor
 
 </details>
 
-> Last Updated: **January** 2025
+> Last Updated: **February** 2025
 
 If you like this project, consider leaving a [star](https://github.com/maydayv7/dotfiles)
 

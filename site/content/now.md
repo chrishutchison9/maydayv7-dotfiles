@@ -7,8 +7,9 @@ This page is inspired by [NowNowNow](https://nownownow.com)
 
 Freshman at uni, never gonna get used to it
 
+- Fresh off hosting IITGMUN at [Alcheringa](https://www.alcheringa.in/)
 - Trying (failing) to study
 - Trying (failing) to code
-- Watching {{ url(path="anime", text="Anime", trail_slash=false) }}
+- Still watching {{ url(path="anime", text="Anime", trail_slash=false) }}
 
-> Last Updated: **January** 2025
+> Last Updated: **February** 2025
