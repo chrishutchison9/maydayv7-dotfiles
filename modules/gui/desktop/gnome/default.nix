@@ -90,7 +90,7 @@ in {
         gnupg.agent.pinentryPackage = mkForce pkgs.pinentry.gnome3;
         nautilus-open-any-terminal = {
           enable = true;
-          terminal = "blackbox";
+          terminal = "ghostty";
         };
 
         kdeconnect = {
@@ -115,12 +115,14 @@ in {
       hardware.i2c.enable = true;
     })
 
-    ## User Configuration
     (mkIf (desktop == "gnome") {
       user.homeConfig = {
         # Desktop Settings
         imports = [gnome.settings];
-        stylix.targets.gnome.enable = true;
+        stylix.targets = {
+          gnome.enable = true;
+          ghostty.enable = true;
+        };
 
         # Default Applications
         xdg.mimeApps.defaultApplications = util.build.mime xdg.mime {
@@ -135,6 +137,39 @@ in {
           text = ["org.gnome.TextEditor.desktop"];
           video = ["io.github.celluloid_player.Celluloid.desktop"];
         };
+
+        ## Terminal
+        programs.ghostty = {
+          enable = true;
+          settings = {
+            # Features
+            clipboard-paste-protection = true;
+            clipboard-trim-trailing-spaces = true;
+            copy-on-select = false;
+            mouse-hide-while-typing = true;
+            quit-after-last-window-closed = true;
+            scrollback-limit = 4200;
+            shell-integration-features = true;
+            window-vsync = true;
+
+            # Keybindings
+            keybind = [
+              "ctrl+h=goto_split:left"
+              "ctrl+j=goto_split:bottom"
+              "ctrl+k=goto_split:top"
+              "ctrl+l=goto_split:right"
+              "ctrl+shift+h=new_split:left"
+              "ctrl+shift+j=new_split:down"
+              "ctrl+shift+k=new_split:up"
+              "ctrl+shift+l=new_split:right"
+              "ctrl+shift+enter=new_split:auto"
+              "ctrl+shift+i=inspector:toggle"
+              "ctrl+shift+r=reload_config"
+              "ctrl+t=new_tab"
+              "ctrl+f=write_scrollback_file:open"
+            ];
+          };
+        };
       };
 
       ## Color Scheme
@@ -144,7 +179,8 @@ in {
       };
 
       ## Package List
-      environment. systemPackages = with pkgs; [
+      environment.systemPackages = with pkgs; [
+        ghostty
         gnome-boxes
         gnome-sound-recorder
         gnome-text-editor
@@ -158,18 +194,18 @@ in {
 
         # Circle
         apostrophe
-        blackbox-terminal
         curtail
         deja-dup
         dialect
         drawing
         fractal
         fragments
-        gnome-podcasts
+        gnome-decoder
         gnome-secrets
         gthumb
         lollypop
-        mission-center
+        resources
+        upscaler
         video-trimmer
         wike
         wordbook
@@ -184,6 +220,7 @@ in {
       user.persist.directories = [
         # Apps
         ".config/evolution"
+        ".config/ghostty"
         ".config/gnome-boxes"
         ".config/gnome-builder"
         ".local/share/epiphany"
@@ -209,11 +246,14 @@ in {
     ## 3rd Party Apps Configuration
     (mkIf (desktop == "gnome") {
       user.homeConfig = {
-        home.file = {
-          # Firefox GNOME Theme
-          ".mozilla/firefox/default/chrome/userChrome.css".text = ''@import "${pkgs.custom.firefox-gnome-theme}/userChrome.css";'';
-          ".mozilla/firefox/default/chrome/userContent.css".text = ''@import "${pkgs.custom.firefox-gnome-theme}/userContent.css";'';
+        # Firefox GNOME Theme
+        stylix.targets.firefox = {
+          enable = mkForce true;
+          profileNames = ["default"];
+          firefoxGnomeTheme.enable = true;
+        };
 
+        home.file = {
           # Discord DNOME Theme
           ".config/vesktop/settings/quickCss.css" =
             mkIf (exists "discord") {text = ''@import url("https://raw.githack.com/GeopJr/DNOME/dist/DNOME.css");'';};
@@ -231,7 +271,7 @@ in {
             "workbench.colorTheme" = "Adwaita Dark";
             "workbench.productIconTheme" = "adwaita";
             "window.titleBarStyle" = "custom";
-            "terminal.external.linuxExec" = "blackbox";
+            "terminal.external.linuxExec" = "ghostty";
           };
         };
       };

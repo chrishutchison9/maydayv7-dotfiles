@@ -57,8 +57,6 @@
       {
         iso = readFile ./gnome/iso;
         settings = ./gnome/settings;
-        shell = readFile ./gnome/shell.css;
-        tiling = readFile ./gnome/tiling.css;
       }
       // map.files {
         directory = ./gnome;
@@ -190,7 +188,6 @@
     xfce = {
       css = readFile ./xfce/gtk.css;
       panel = ./xfce/panel;
-      terminal = readFile ./xfce/terminalrc;
       settings =
         {directory = ./xfce/settings;}
         // map.files {

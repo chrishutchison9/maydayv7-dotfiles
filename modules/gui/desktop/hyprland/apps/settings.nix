@@ -94,6 +94,8 @@
 
       ## Window Rules
       windowrulev2 = lib.flatten ([
+          "pin, class:^(gnome-control-center)$"
+
           # Clipboard Manager
           "float, class:^(clipse)$"
 

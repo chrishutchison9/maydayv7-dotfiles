@@ -60,18 +60,6 @@ in {
       show-delete-permanently = true;
     };
 
-    "com/raggesilver/BlackBox" = {
-      font = "${head fonts.monospace} 11";
-      headerbar-drag-area = true;
-      notify-process-completion = true;
-      opacity = mkUint32 90;
-      remember-window-size = true;
-      show-headerbar = true;
-      show-menu-button = true;
-      terminal-bell = false;
-      pretty = true;
-    };
-
     "org/gnome/TextEditor" = {
       highlight-current-line = true;
       indent-style = "tab";
@@ -104,7 +92,7 @@ in {
         "google-chrome.desktop"
         "org.gnome.Geary.desktop"
         "org.gnome.Nautilus.desktop"
-        "com.raggesilver.BlackBox.desktop"
+        "com.mitchellh.ghostty.desktop"
         "org.gnome.TextEditor.desktop"
         "org.gnome.Settings.desktop"
       ];

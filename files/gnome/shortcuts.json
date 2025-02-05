@@ -7,112 +7,48 @@
         "description": "Close active window"
       },
       {
-        "key": "F11 / Super + Shift + F",
-        "description": "Make fullscreen/restore"
+        "key": "Alt + Space",
+        "description": "Activate window menu"
+      },
+      {
+        "key": "Super + ↑/↓",
+        "description": "Maximize/Minimize window"
       },
       {
         "key": "Super + M",
-        "description": "Maximize horizontally"
+        "description": "Toggle maximized window"
       },
       {
-        "key": "Super + ↑/←/↓/→",
-        "description": "Switch window columns"
+        "key": "Super + Shift + F",
+        "description": "Toggle fullscreen window"
       },
       {
-        "key": "Super + Shift + ↑/←/↓/→",
-        "description": "Move window to specified column"
+        "key": "Super + W/A/S/D",
+        "description": "Focus window in specified direction"
+      },
+      {
+        "key": "Super + Shift + W/A/S/D",
+        "description": "Move window to specified tile"
       },
       {
         "key": "Super + Mouse Drag",
         "description": "Move window"
       },
       {
-        "key": "Alt + Tab",
-        "description": "Switch between windows"
-      },
-      {
-        "key": "Alt + `",
-        "description": "Grab and drop windows"
-      },
-      {
-        "key": "Super + Tab",
-        "description": "Switch between workspaces"
-      },
-      {
-        "key": "Super + < / >",
-        "description": "Switch workspaces"
-      },
-      {
-        "key": "Super + Shift + < / >",
-        "description": "Move window to specified workspace"
-      },
-      {
-        "key": "Super + C",
-        "description": "Center window"
-      },
-      {
-        "key": "Super + N",
-        "description": "Duplicate window"
-      },
-      {
-        "key": "Super + H",
-        "description": "Minimize window"
-      },
-      {
-        "key": "Super + B",
-        "description": "Move window to active column"
-      },
-      {
-        "key": "Super + Shift + B",
-        "description": "Move window to new column"
-      },
-      {
-        "key": "Super + = / -",
-        "description": "Change window width"
-      },
-      {
-        "key": "Super + Shift + = / -",
-        "description": "Change window height"
-      },
-      {
-        "key": "Super + Shift + ; / '",
-        "description": "Drift viewport"
-      },
-      {
-        "key": "Super + `",
-        "description": "Toggle window float"
-      },
-      {
-        "key": "Super + Shift + `",
-        "description": "Show floating windows"
-      },
-      {
-        "key": "Super + Ctrl + `",
-        "description": "Switch between floating windows"
+        "key": "Super + Ctrl + Mouse Drag",
+        "description": "Tile window (Use 'Alt' to span)"
       },
       {
         "key": "Super + P",
-        "description": "Pin floating window"
+        "description": "Pin window above all others"
       },
       {
-        "key": "Super + ] / [",
-        "description": "Switch to specified monitor"
+        "key": "Alt + Tab",
+        "description": "Switches between applications"
       },
       {
-        "key": "Super + Shift + ] / [",
-        "description": "Move window to specified monitor"
-      },
-      {
-        "key": "Super + Ctrl + ] / [",
-        "description": "Swap workspaces with specified monitor"
-      },
-      {
-        "key": "Super + Shift + C",
-        "description": "Switch window focus mode"
-      },
-      {
-        "key": "Super + Shift + W",
-        "description": "Switch position of new windows"
+        "key": "Super + Tab",
+        "description": "Switches between windows of current application"
       }
     ]
   },
@@ -128,8 +64,28 @@
         "description": "Enter App Grid"
       },
       {
-        "key": "Alt + Space",
-        "description": "Activate window menu"
+        "key": "Super + 1,2,3...",
+        "description": "Run app by position in launcher"
+      },
+      {
+        "key": "; or ` in Overview",
+        "description": "Show open application windows"
+      },
+      {
+        "key": "Super + ←/→",
+        "description": "Switch workspaces"
+      },
+      {
+        "key": "Super + Home/End",
+        "description": "Switch to first/last workspace"
+      },
+      {
+        "key": "Super + Shift + ←/→",
+        "description": "Move window to specified workspace"
+      },
+      {
+        "key": "Super + Ctrl + ←/→",
+        "description": "Move window to specified monitor"
       },
       {
         "key": "Super + F2",
@@ -156,11 +112,11 @@
         "description": "Toggle zoom"
       },
       {
-        "key": "Super + Ctrl + =",
+        "key": "Super + =",
         "description": "Zoom in"
       },
       {
-        "key": "Super + Ctrl + -",
+        "key": "Super + -",
         "description": "Zoom out"
       },
       {
@@ -173,12 +129,8 @@
     "name": "Application Shortcuts",
     "shortcuts": [
       {
-        "key": "Super + 1,2,3...",
-        "description": "Run app by position in launcher"
-      },
-      {
-        "key": "; or ` in Overview",
-        "description": "Show open application windows"
+        "key": "Super + ~",
+        "description": "Open Settings"
       },
       {
         "key": "Super + F",
@@ -193,7 +145,7 @@
         "description": "Open Terminal"
       },
       {
-        "key": "Super + W",
+        "key": "Super + `",
         "description": "Open Browser"
       },
       {
@@ -263,20 +215,40 @@
     "name": "Navigation Gestures",
     "shortcuts": [
       {
-        "key": "3F ← Swipe",
-        "description": "Show overview/apps grid"
+        "key": "4F ↑ Swipe (←/→)",
+        "description": "Maximize/fullscreen/restore(/snap) a window"
       },
       {
         "key": "3F ↑ Swipe",
-        "description": "Switch workspaces directly"
+        "description": "Show overview/apps grid"
       },
       {
-        "key": "4F ←/→ Swipe",
-        "description": "Switch windows"
+        "key": "3F ↓ Swipe",
+        "description": "Minimize window"
+      },
+      {
+        "key": "3F ←/→ Swipe",
+        "description": "Switch workspaces"
+      },
+      {
+        "key": "4F Hold then Swipe",
+        "description": "Move window"
+      },
+      {
+        "key": "3F ↓ Swipe then ←/→",
+        "description": "Switch to previous/next window"
       },
       {
         "key": "4F ↓ Swipe",
-        "description": "Switch workspaces"
+        "description": "Show notification center"
+      },
+      {
+        "key": "4F Pinch Out",
+        "description": "Show desktop"
+      },
+      {
+        "key": "4F Pinch In",
+        "description": "Mute audio"
       },
       {
         "key": "2F ←/→ Swipe",

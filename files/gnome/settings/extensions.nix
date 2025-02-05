@@ -7,9 +7,10 @@
   ...
 }: let
   inherit (builtins) filter hasAttr head map;
-  inherit (lib) foldr hm mapAttrs' mkForce nameValuePair optionals recursiveUpdate;
+  inherit (lib) foldr hm mkForce optionals recursiveUpdate;
   homeDir = config.home.homeDirectory;
   font = head sys.fonts.fontconfig.defaultFonts.sansSerif;
+  inherit (sys.lib.stylix) colors;
 
   # Shell Extensions
   extensions = with pkgs.gnomeExtensions // hm.gvariant; ([
@@ -22,7 +23,10 @@
       {package = hide-minimized;}
       {package = invert-window-color;}
       {package = media-progress;}
+      {package = overview-hover;}
       {package = removable-drive-menu;}
+      {package = unmess;}
+      {package = window-state-manager;}
       {package = x11-gestures;}
       {package = xlanguagetray;}
       {
@@ -36,14 +40,11 @@
       {
         package = top-bar-organizer;
         settings = {
-          center-box-order = [];
+          center-box-order = ["dateMenu"];
           left-box-order = [
-            "WorkspaceMenu"
             "activities"
             "guillotine"
             "guillotine@fopdoodle.net"
-            "FocusButton"
-            "OpenPositionButton"
             "appMenu"
           ];
 
@@ -61,7 +62,6 @@
             "screenSharing"
             "screenRecording"
             "quickSettings"
-            "dateMenu"
           ];
         };
       }
@@ -78,6 +78,13 @@
         package = user-themes;
         name = "user-theme";
         settings.name = mkForce "custom";
+      }
+      {
+        package = fullscreen-avoider;
+        settings = {
+          move-hot-corners = true;
+          move-notifications = true;
+        };
       }
       {
         package = window-title-is-back;
@@ -114,6 +121,15 @@
         };
       }
       {
+        package = focus-changer;
+        settings = {
+          focus-down = ["<Super>s"];
+          focus-left = ["<Super>a"];
+          focus-right = ["<Super>d"];
+          focus-up = ["<Super>w"];
+        };
+      }
+      {
         package = vitals;
         settings = {
           hot-sensors = ["_default_icon_"];
@@ -121,6 +137,28 @@
           show-storage = false;
           show-gpu = true;
           include-static-gpu-info = false;
+        };
+      }
+      {
+        package = alttab-mod;
+        name = "altTab-mod";
+        settings = {
+          current-monitor-only = true;
+          current-monitor-only-window = true;
+          current-workspace-only = true;
+          disable-hover-select = false;
+          focus-on-select-window = true;
+          remove-delay = true;
+        };
+      }
+      {
+        package = auto-activities;
+        settings = {
+          detect-minimized = true;
+          hide-on-new-window = true;
+          show-apps = false;
+          skip-last-workspace = false;
+          skip-taskbar = true;
         };
       }
       {
@@ -136,13 +174,34 @@
       {
         package = shortcuts;
         settings = {
-          maxcolumns = 4;
+          maxcolumns = 3;
           shortcuts-file = files.gnome.shortcuts;
           shortcuts-toggle-overview = ["<Super>slash"];
           show-icon = false;
           use-custom-shortcuts = true;
           use-transparency = true;
           visibility = 55;
+        };
+      }
+      {
+        package = window-gestures;
+        name = "windowgestures";
+        settings = {
+          fn-fullscreen = true;
+          fn-maximized-snap = true;
+          fn-move = true;
+          fn-move-snap = true;
+          fn-resize = true;
+          pinch-enable = true;
+          pinch3-in = 0;
+          pinch3-out = 0;
+          pinch4-in = 14;
+          pinch4-out = 3;
+          swipe3-down = 1;
+          swipe4-updown = 22;
+          taphold-move = true;
+          three-finger = false;
+          use-active-window = true;
         };
       }
       {
@@ -178,125 +237,27 @@
         };
       }
       {
-        package = rocketbar;
+        package = tiling-shell;
+        name = "tilingshell";
         settings = {
-          appbutton-backlight-dominant-color = false;
-          appbutton-enable-drag-and-drop = true;
-          appbutton-enable-indicators = true;
-          appbutton-enable-minimize-action = true;
-          appbutton-enable-scroll = true;
-          appbutton-enable-sound-control = false;
-          appbutton-icon-size = 21;
-          appbutton-menu-require-click = true;
-          hotcorner-enable-in-fullscreen = false;
-          indicator-dominant-color-active = true;
-          indicator-dominant-color-inactive = false;
-          indicator-position = "top";
-          notification-counter-center-clock = false;
-          notification-counter-enabled = true;
-          notification-counter-hide-empty = false;
-          notification-service-count-attention-sources = false;
-          notification-service-enable-unity-dbus = true;
-          overview-enable-empty-space-clicks = false;
-          panel-enable-middle-button = false;
-          panel-menu-require-click = false;
-          taskbar-enabled = true;
-          taskbar-position = "center";
-          taskbar-preserve-position = true;
-          taskbar-show-favorites = false;
+          enable-blur-selected-tilepreview = false;
+          enable-blur-snap-assistant = false;
+          enable-snap-assist = false;
+          enable-tiling-system = true;
+          enable-window-border = true;
+          override-window-menu = true;
+          restore-window-original-size = true;
+          tiling-system-activation-key = ["0"];
+          top-edge-maximize = true;
+          window-border-width = mkUint32 2;
+          inner-gaps = mkUint32 5;
+          outer-gaps = mkUint32 5;
+          move-window-down = ["<Shift><Super>s"];
+          move-window-left = ["<Shift><Super>a"];
+          move-window-right = ["<Shift><Super>d"];
+          move-window-up = ["<Shift><Super>w"];
+          window-border-color = with colors; "rgb(${base0D-rgb-r},${base0D-rgb-g},${base0D-rgb-b})";
         };
-      }
-      {
-        package = pkgs.custom.gnome-paperwm;
-        settings =
-          {
-            animation-time = 0.25;
-            disable-topbar-styling = false;
-            gesture-horizontal-fingers = 4;
-            gesture-workspace-fingers = 4;
-            horizontal-margin = 10;
-            maximize-within-tiling = true;
-            open-window-position = 0;
-            open-window-position-option-up = true;
-            overview-ensure-viewport-animation = 1;
-            overview-min-windows-per-row = 4;
-            restore-attach-modal-dialogs = "true";
-            restore-edge-tiling = "false";
-            restore-workspaces-only-on-primary = "true";
-            selection-border-size = 5;
-            show-focus-mode-icon = true;
-            show-open-position-icon = true;
-            show-window-position-bar = true;
-            show-workspace-indicator = true;
-            topbar-mouse-scroll-enable = true;
-            use-default-background = true;
-            vertical-margin = 5;
-            vertical-margin-bottom = 5;
-            window-gap = 15;
-            winprops = [];
-          }
-          // mapAttrs' (name: value:
-            nameValuePair "keybindings/${name}" value) {
-            barf-out = [""];
-            barf-out-active = ["<Shift><Super>b"];
-            center-horizontally = ["<Super>c"];
-            center-vertically = [""];
-            close-window = ["<Super>q"];
-            cycle-height = [""];
-            cycle-height-backwards = [""];
-            cycle-width = [""];
-            cycle-width-backwards = [""];
-            drift-left = ["<Super>semicolon"];
-            drift-right = ["<Super>apostrophe"];
-            live-alt-tab = ["<Alt>Tab"];
-            live-alt-tab-backward = ["<Shift><Alt>Tab"];
-            live-alt-tab-scratch = ["<Control><Super>grave"];
-            live-alt-tab-scratch-backward = [""];
-            move-down = ["<Shift><Super>Down"];
-            move-down-workspace = ["<Shift><Super>greater"];
-            move-left = ["<Shift><Super>Left"];
-            move-monitor-above = [""];
-            move-monitor-below = [""];
-            move-monitor-left = ["<Shift><Super>braceleft"];
-            move-monitor-right = ["<Shift><Super>braceright"];
-            move-previous-workspace = [""];
-            move-previous-workspace-backward = [""];
-            move-right = ["<Shift><Super>Right"];
-            move-space-monitor-above = [""];
-            move-space-monitor-below = [""];
-            move-space-monitor-left = [""];
-            move-space-monitor-right = [""];
-            move-up = ["<Shift><Super>Up"];
-            move-up-workspace = ["<Shift><Super>comma"];
-            new-window = ["<Super>n"];
-            previous-workspace = ["<Super>Tab"];
-            previous-workspace-backward = ["<Shift><Super>Tab"];
-            resize-h-dec = ["<Shift><Super>underscore"];
-            resize-w-inc = ["<Super>equal"];
-            slurp-in = ["<Super>b"];
-            swap-monitor-above = [""];
-            swap-monitor-below = [""];
-            swap-monitor-left = ["<Control><Super>bracketleft"];
-            swap-monitor-right = ["<Control><Super>bracketright"];
-            switch-down-workspace = ["<Super>period"];
-            switch-first = [""];
-            switch-last = [""];
-            switch-left = ["<Super>Left"];
-            switch-monitor-above = [""];
-            switch-monitor-below = [""];
-            switch-monitor-left = ["<Super>bracketleft"];
-            switch-monitor-right = ["<Super>bracketright"];
-            switch-next = [""];
-            switch-previous = [""];
-            switch-up = ["<Super>Up"];
-            switch-up-workspace = ["<Super>comma"];
-            take-window = ["<Alt>grave"];
-            toggle-maximize-width = ["<Super>m"];
-            toggle-scratch = ["<Super>grave"];
-            toggle-scratch-layer = ["<Shift><Super>asciitilde"];
-            toggle-scratch-window = [""];
-            toggle-top-and-position-bar = [""];
-          };
       }
       {
         package = vertical-workspaces;
@@ -334,7 +295,7 @@
           dash-bg-opacity = 50;
           dash-bg-radius = 0;
           dash-icon-scroll = 1;
-          dash-isolate-workspaces = false;
+          dash-isolate-workspaces = true;
           dash-max-icon-size = 64;
           dash-module = true;
           dash-position = 2;
@@ -418,17 +379,28 @@
           ws-switcher-mode = 0;
           ws-switcher-wraparound = false;
           ws-thumbnail-scale = 10;
-          ws-thumbnail-scale-appgrid = 15;
+          ws-thumbnail-scale-appgrid = 20;
           ws-thumbnails-full = false;
-          ws-thumbnails-position = 0;
+          ws-thumbnails-position = 5;
           wst-position-adjust = 0;
         };
       }
     ]
     ++ optionals sys.gui.fancy [
+      {package = rounded-window-corners-reborn;}
+      {package = transparent-top-bar;}
       {
         package = panel-corners;
         settings.panel-corners = false;
+      }
+      {
+        package = gtk4-desktop-icons-ng-ding;
+        disable = true; #!# Currently buggy
+        settings = {
+          dark-text-in-labels = false;
+          show-drop-place = false;
+          show-network-volumes = false;
+        };
       }
     ]);
 in {

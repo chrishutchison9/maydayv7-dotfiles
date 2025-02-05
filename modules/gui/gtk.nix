@@ -46,7 +46,10 @@ in {
 
       homeConfig = {
         # Bookmarks
-        home.file.".config/gtk-3.0/bookmarks".text = files.gtk.bookmarks;
+        home.file.".config/gtk-3.0/bookmarks" = {
+          text = files.gtk.bookmarks;
+          force = true;
+        };
 
         # Theming
         stylix.targets.gtk.enable = false;

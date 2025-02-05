@@ -18,33 +18,34 @@ in {
       always-on-top = ["<Super>p"];
       begin-move = [];
       begin-resize = [];
-      close = ["<Alt>F4"];
+      close = ["<Super>q" "<Alt>F4"];
       cycle-group = [];
       cycle-group-backward = [];
-      maximize = [""];
-      minimize = ["<Super>h"];
-      move-to-center = [""];
+      maximize = ["<Super>Up"];
+      minimize = ["<Super>Down"];
+      move-to-center = ["<Super>c"];
       move-to-monitor-down = [];
-      move-to-monitor-left = [""];
-      move-to-monitor-right = [""];
+      move-to-monitor-left = ["<Primary><Super>Left"];
+      move-to-monitor-right = ["<Primary><Super>Right"];
       move-to-monitor-up = [];
       move-to-workspace-1 = [];
       move-to-workspace-down = [];
       move-to-workspace-last = [];
-      move-to-workspace-left = [""];
-      move-to-workspace-right = [""];
+      move-to-workspace-left = ["<Shift><Super>Left"];
+      move-to-workspace-right = ["<Shift><Super>Right"];
       move-to-workspace-up = [];
       panel-main-menu = [];
       panel-run-dialog = ["<Super>F2"];
-      switch-applications = [""];
-      switch-applications-backward = [""];
-      switch-group = [""];
-      switch-group-backward = [""];
+      switch-applications = ["<Alt>Tab"];
+      switch-applications-backward = ["<Shift><Alt>Tab"];
+      switch-group = ["<Super>Tab"];
+      switch-group-backward = ["<Shift><Super>Tab"];
       switch-to-workspace-down = [];
-      switch-to-workspace-left = [];
-      switch-to-workspace-right = [];
+      switch-to-workspace-left = ["<Super>Left"];
+      switch-to-workspace-right = ["<Super>Right"];
       switch-to-workspace-up = [];
-      toggle-maximized = ["F11"];
+      toggle-fullscreen = ["<Shift><Super>f"];
+      toggle-maximized = ["<Super>m"];
       unmaximize = [];
     };
 
@@ -74,12 +75,12 @@ in {
     "org/gnome/settings-daemon/plugins/media-keys" = {
       area-screenshot = ["Print"];
       area-screenshot-clip = [];
-      control-center = [""];
+      control-center = ["<Super><Shift>grave"];
       email = ["<Super>e"];
       home = ["<Super>f"];
       magnifier = ["<Super>x"];
-      magnifier-zoom-in = ["<Super><Primary>equal"];
-      magnifier-zoom-out = ["<Super><Primary>minus"];
+      magnifier-zoom-in = ["<Super>equal"];
+      magnifier-zoom-out = ["<Super>minus"];
       rotate-video-lock-static = [];
       screencast = ["<Alt>Print"];
       screenreader = [];
@@ -91,7 +92,7 @@ in {
       volume-up = ["AudioRaiseVolume"];
       window-screenshot = ["<Primary>Print"];
       window-screenshot-clip = [];
-      www = ["<Super>w"];
+      www = ["<Super>grave"];
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
@@ -101,13 +102,13 @@ in {
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
       binding = "<Super>Return";
-      command = "missioncenter";
+      command = "resources";
       name = "Task Manager";
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
       binding = "<Super>t";
-      command = "blackbox";
+      command = "ghostty";
       name = "Terminal";
     };
 
@@ -171,12 +172,8 @@ in {
     };
 
     "org/gnome/desktop/a11y/magnifier" = {
-      cross-hairs-clip = true;
-      cross-hairs-color = "#15519a";
-      cross-hairs-length = 1440;
-      cross-hairs-opacity = 1.0;
       mouse-tracking = "proportional";
-      show-cross-hairs = true;
+      show-cross-hairs = false;
     };
 
     "org/gnome/desktop/privacy" = {

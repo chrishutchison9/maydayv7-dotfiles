@@ -23,7 +23,7 @@
 
     vm = {
       vfio = "on";
-      android.enable = true;
+      android.enable = false;
     };
   };
 
@@ -48,9 +48,9 @@
   };
 
   gui = {
-    desktop = "hyprland";
+    desktop = "gnome";
     display = "eDP-1";
-    wallpaper = "Thread";
+    wallpaper = "Nix";
     fancy = true;
   };
 

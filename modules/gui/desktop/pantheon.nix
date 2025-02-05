@@ -127,9 +127,9 @@ in {
             };
 
             # Firefox Elementary Theme
-            ".mozilla/firefox/default/chrome/userChrome.css".source = "${pkgs.custom.firefox-elementary-theme}/Windows/userChrome.css";
-            ".mozilla/firefox/default/chrome/userContent.css".source = "${pkgs.custom.firefox-elementary-theme}/userContent.css";
-            ".mozilla/firefox/default/chrome/base.css".source = "${pkgs.custom.firefox-elementary-theme}/base.css";
+            ".mozilla/firefox/default/chrome/userChrome.css".source = "${pkgs.custom.firefox-elementary}/Windows/userChrome.css";
+            ".mozilla/firefox/default/chrome/userContent.css".source = "${pkgs.custom.firefox-elementary}/userContent.css";
+            ".mozilla/firefox/default/chrome/base.css".source = "${pkgs.custom.firefox-elementary}/base.css";
 
             # Panel Indicators
             ".config/autostart/ibus-daemon.desktop".text = ''
