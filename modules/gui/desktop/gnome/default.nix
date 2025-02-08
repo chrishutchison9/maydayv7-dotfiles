@@ -118,7 +118,7 @@ in {
     (mkIf (desktop == "gnome") {
       user.homeConfig = {
         # Desktop Settings
-        imports = [gnome.settings];
+        imports = [./settings];
         stylix.targets = {
           gnome.enable = true;
           ghostty.enable = true;

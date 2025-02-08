@@ -100,6 +100,10 @@
         "description": "Switch keyboard layout"
       },
       {
+        "key": "Ctrl + Alt + S",
+        "description": "Resize window to pre-defined sizes"
+      },
+      {
         "key": "Ctrl + Alt + Del",
         "description": "Open shutdown menu"
       },

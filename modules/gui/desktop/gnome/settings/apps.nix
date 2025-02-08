@@ -101,10 +101,12 @@ in {
     "org/gnome/desktop/app-folders" = {
       folder-children = [
         "1c3e59e4-a571-4ada-af1d-ed1ced384cfb"
+        "4bfbecbd-804e-4359-b1c2-00daef4c009e"
         "4f9e09f6-cbd8-4a4a-beb3-9ec7b3e672ff"
         "a136187d-1d93-4d35-8423-082f15957be9"
         "b79e9b82-2127-459b-9e82-11bd3be09d04"
         "cb1c8797-b52e-4df5-80d6-2c46e8f7ef22"
+        "e57a32e8-8e5d-4808-aad7-b1f9152d01ee"
       ];
     };
 
@@ -150,6 +152,22 @@ in {
       ];
     };
 
+    "org/gnome/desktop/app-folders/folders/e57a32e8-8e5d-4808-aad7-b1f9152d01ee" = {
+      name = "Accessories";
+      apps = [
+        "calibre-ebook-edit.desktop"
+        "calibre-ebook-viewer.desktop"
+        "calibre-lrfviewer.desktop"
+        "qt5ct.desktop"
+        "qt6ct.desktop"
+      ];
+    };
+
+    "org/gnome/desktop/app-folders/folders/4bfbecbd-804e-4359-b1c2-00daef4c009e" = {
+      name = "System";
+      apps = ["nvidia-settings.desktop" "rog-control-center.desktop"];
+    };
+
     "org/gnome/desktop/app-folders/folders/1c3e59e4-a571-4ada-af1d-ed1ced384cfb" = {
       name = "Wine";
       apps = [
@@ -161,6 +179,7 @@ in {
     };
 
     "org/gnome/desktop/app-folders/folders/cb1c8797-b52e-4df5-80d6-2c46e8f7ef22" = {
+      name = "Android";
       apps = [
         "waydroid.com.android.inputmethod.latin.desktop"
         "waydroid.org.lineageos.jelly.desktop"
@@ -176,9 +195,9 @@ in {
         "waydroid.org.lineageos.recorder.desktop"
         "waydroid.com.android.settings.desktop"
         "Waydroid.desktop"
+        "scrcpy.desktop"
+        "scrcpy-console.desktop"
       ];
-      name = "Android";
-      translate = false;
     };
   };
 }

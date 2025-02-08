@@ -13,6 +13,7 @@ compile_sass = true
 build_search_index = true
 
 # RSS Feed
+generate_feeds = true
 feed_filenames = ["rss.xml"]
 
 # Taxonomies
@@ -87,6 +88,6 @@ main_menu_items = [
 # Socials Bar
 email = "mailto:maydayv7@gmail.com"
 show_rss_badge = true
-rss_path = "blog/rss.xml"
+rss_path = "rss.xml"
 reddit_profile = "https://reddit.com/u/maydayv7"
 github_profile = "https://github.com/maydayv7"

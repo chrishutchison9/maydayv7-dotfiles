@@ -15,7 +15,9 @@
   # Shell Extensions
   extensions = with pkgs.gnomeExtensions // hm.gvariant; ([
       {package = appindicator;}
+      {package = arrange-windows;}
       {package = control-monitor-brightness-and-volume-with-ddcutil;}
+      {package = disconnect-wifi;}
       {package = display-configuration-switcher;}
       {package = gamemode-indicator-in-system-settings;}
       {package = gsconnect;}
@@ -23,8 +25,10 @@
       {package = hide-minimized;}
       {package = invert-window-color;}
       {package = media-progress;}
+      {package = night-light-slider-updated;}
       {package = overview-hover;}
       {package = removable-drive-menu;}
+      {package = screenshot-window-sizer;}
       {package = unmess;}
       {package = window-state-manager;}
       {package = x11-gestures;}
@@ -46,17 +50,19 @@
             "guillotine"
             "guillotine@fopdoodle.net"
             "appMenu"
+            "arrange-menu"
+            "tilingshell@ferrarodomenico.com"
           ];
 
           right-box-order = [
             "emoji-copy@felipeftn"
-            "tilingshell@ferrarodomenico.com"
             "a11y"
             "aggregateMenu"
             "drive-menu"
             "pano@elhan.io"
             "vitalsMenu"
             "dwellClick"
+            "color-picker@tuberry"
             "lockkeys"
             "keyboard"
             "screenSharing"
@@ -66,13 +72,22 @@
         };
       }
       {
+        package = color-picker;
+        settings.enable-format = true;
+      }
+      {
+        package = status-area-horizontal-spacing;
+        settings.hpadding = 4;
+      }
+      {
         package = lock-keys;
         name = "lockkeys";
         settings.style = "show-hide";
       }
       {
-        package = status-area-horizontal-spacing;
-        settings.hpadding = 4;
+        package = power-profile-indicator-2;
+        name = "power-profile";
+        settings.colored-icon = false;
       }
       {
         package = user-themes;
@@ -244,7 +259,7 @@
           enable-blur-snap-assistant = false;
           enable-snap-assist = false;
           enable-tiling-system = true;
-          enable-window-border = true;
+          enable-window-border = false;
           override-window-menu = true;
           restore-window-original-size = true;
           tiling-system-activation-key = ["0"];
@@ -256,7 +271,6 @@
           move-window-left = ["<Shift><Super>a"];
           move-window-right = ["<Shift><Super>d"];
           move-window-up = ["<Shift><Super>w"];
-          window-border-color = with colors; "rgb(${base0D-rgb-r},${base0D-rgb-g},${base0D-rgb-b})";
         };
       }
       {
@@ -387,11 +401,23 @@
       }
     ]
     ++ optionals sys.gui.fancy [
-      {package = rounded-window-corners-reborn;}
-      {package = transparent-top-bar;}
+      {
+        package = rounded-window-corners-reborn;
+        settings = {
+          skip-libadwaita-app = false;
+          skip-libhandy-app = false;
+          border-width = 2;
+          border-color = with colors; mkTuple [(mkDouble base0D-dec-r) (mkDouble base0D-dec-g) (mkDouble base0D-dec-b) 1.0];
+          global-rounded-corner-settings = ''{'padding': <{'left': 1, 'right': 1, 'top': 1, 'bottom': 1}>, 'keepRoundedCorners': <{'maximized': true, 'fullscreen': false}>, 'borderRadius': <uint32 12>, 'smoothing': <0.0>, 'enabled': <true>}'';
+        };
+      }
       {
         package = panel-corners;
-        settings.panel-corners = false;
+        settings.panel-corners = true;
+      }
+      {
+        package = transparent-window-moving;
+        settings.window-opacity = 200;
       }
       {
         package = gtk4-desktop-icons-ng-ding;

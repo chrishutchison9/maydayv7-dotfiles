@@ -19,7 +19,7 @@
       flake = "github:maydayv7/dotfiles";
       repo = "https://github.com/maydayv7/dotfiles";
 
-      # Set PATH for SystemD Services
+      # Set PATH for Services
       systemd = ''export PATH="''${XDG_BIN_HOME}:$HOME/.nix-profile/bin:/etc/profiles/per-user/$USER/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin"'';
     };
 
@@ -54,10 +54,7 @@
 
     # GNOME Desktop
     gnome =
-      {
-        iso = readFile ./gnome/iso;
-        settings = ./gnome/settings;
-      }
+      {iso = readFile ./gnome/iso;}
       // map.files {
         directory = ./gnome;
         extension = ".json";
