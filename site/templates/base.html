@@ -52,7 +52,8 @@ squiggle -%} {% import "macros/edit.html" as edit -%} {% import
         </div>
         <div>
           {{ social::socials_bar() }} {%- block theme -%} {{ footer::theme
-          (config = config) }} {%- endblock theme -%}
+          (config = config) }} {%- endblock theme -%} {%- block webring -%} {{
+          footer::webring (config = config) }} {%- endblock webring -%}
         </div>
       </footer>
       {%- endblock footer -%}

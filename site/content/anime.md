@@ -1,6 +1,6 @@
 +++
 title = "My Anime List"
-description = "A curated list of eastern pop culture that has interested me"
+description = "A list of anime that have interested me"
 
 [extra]
 ToC = true
@@ -28,6 +28,7 @@ comments = true
 - Clannad <sup>#</sup>
 - Classroom of the Elite <sup>#</sup> <sup>\*</sup>
 - Daily Life of an Immortal King <sup>#</sup>
+- Danna ga Nani o Itteiru ka Wakaranai Ken
 - Darling in the Franxx
 - Date a Live <sup>\*</sup> <sup>#</sup>
 - Death Note
@@ -43,7 +44,6 @@ comments = true
 - Heavenly Delusion <sup>\*</sup>
 - Higehiro
 - Horimiya
-- I Can't Understand What My Husband Is Saying
 - I Got a Cheat Skill in Another World and Became Unrivaled in The Real World, Too
 - I Want To Eat Your Pancreas
 - Ijinaraide, Nagatoro-san <sup>\*</sup> <sup>#</sup>
@@ -78,11 +78,11 @@ comments = true
 - Plastic Memories
 - Prison School
 - ReLIFE <sup>#</sup>
-- Rent-a-Girlfriend <sup>\*</sup>
+- Rent-a-Girlfriend <sup>#</sup>
 - RikeKoi <sup>#</sup>
 - Sankarea
 - Saint Cecilia and Pastor Lawrence <sup>\*</sup>
-- Scums Wish <sup>\*</sup>
+- Scums Wish
 - Sekai Saikou no Ansatsusha, Isekai Kizoku ni Tensei suru <sup>\*</sup>
 - Senryu Girl
 - Snow White with Red Hair <sup>#</sup>
@@ -115,48 +115,9 @@ comments = true
 - Yuri on Ice!
 - Zom 100: Bucket List of the Dead <sup>\*</sup> <sup>#</sup>
 
-# Manhua
+# Airing
 
-- Player <sup>\*</sup>
-- Solo Leveling <sup>\*</sup>
-- Something between Us
-- Tomb Raider King
-
-# Manga
-
-- Aishiteru Game wo Owarasetai <sup>\*</sup>
-- Akanabe-sensei Doesn't Know about Embarrassment <sup>\*</sup>
-- An Archdemon's Dilemma <sup>\*</sup>
-- Ako to Bambi <sup>\*</sup>
-- Classroom of the Elite <sup>\*</sup>
-- D-Frag!
-- Fetiple
-- Fujiyama-san wa Shishunki
-- Fuufu Ijou, Koibito Miman <sup>\*</sup>
-- Horimiya
-- I want to end the game I love <sup>\*</sup>
-- Kaguya-sama: Love is War
-- Kanan-sama wa Akumade Choroi <sup>\*</sup>
-- Kawaii dake ja nai Shikimori-san
-- Kubo-San Doesn't Leave Me Be <sup>\*</sup>
-- Meguro-san wa Hajimete ja Nai
-- My Wife has No Emotion <sup>\*</sup>
-- Oshi no Ko <sup>\*</sup>
-- Second Cutest Girl in my Class <sup>\*</sup>
-- Sensei wa Koi wo Oshierarenai
-- The Dangers in My Heart <sup>\*</sup>
-- Tokidoki Bosotto Russia-go de Dereru Tonari no Aalya-san <sup>\*</sup>
-- Tonikawa: To the Moon! <sup>\*</sup>
-- Watashi no Shiawase na Kekkon <sup>\*</sup>
-- Yamada-kun to Lv999 no Koi wo Suru <sup>\*</sup>
-
-# Web Comic
-
-- Down to Earth <sup>\*</sup>
-- Maybe Meant to Be <sup>\*</sup>
-- She's Hopeless
-- SubZero <sup>\*</sup>
-- The Beginning after the End <sup>\*</sup>
+- Blue Box
 
 # Wishlist
 

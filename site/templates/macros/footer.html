@@ -11,23 +11,26 @@
   </span>
 </div>
 {% endmacro copyright %} {% macro theme(config) %}
-<div class="columns">
-  <div class="column">
-    <div class="content is-flex">
-      <div class="theme-select-container">
-        Theme:
-        <select id="theme-select">
-          {% for theme in config.extra.color_schemes %} {% if
-          config.extra.theme_color %} {% set default_theme =
-          config.extra.theme_color %} {% else %} {% set default_theme = "red" %}
-          {% endif %} {% if default_theme == theme %}
-          <option selected="selected" value="{{ theme }}">{{ theme }}</option>
-          {% else %}
-          <option value="{{ theme }}">{{ theme }}</option>
-          {% endif %} {% endfor %}
-        </select>
-      </div>
-    </div>
-  </div>
+<div class="theme-select-container">
+  Theme:
+  <select id="theme-select">
+    {% for theme in config.extra.color_schemes %} {% if config.extra.theme_color
+    %} {% set default_theme = config.extra.theme_color %} {% else %} {% set
+    default_theme = "red" %} {% endif %} {% if default_theme == theme %}
+    <option selected="selected" value="{{ theme }}">{{ theme }}</option>
+    {% else %}
+    <option value="{{ theme }}">{{ theme }}</option>
+    {% endif %} {% endfor %}
+  </select>
 </div>
-{% endmacro theme %}
+{% endmacro theme %} {% macro webring(config) %} {% if config.extra.webring %}
+<div class="webring">
+  <a href="{{ config.extra.webring_url }}/prev/{{ config.extra.author }}"
+    ><- prev</a
+  >
+  <a href="{{ config.extra.webring_url }}">{{ config.extra.webring_name }}</a>
+  <a href="{{ config.extra.webring_url }}/next/{{ config.extra.author }}"
+    >next -></a
+  >
+</div>
+{% endif %} {% endmacro webring %}

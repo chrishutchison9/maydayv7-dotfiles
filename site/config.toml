@@ -91,3 +91,8 @@ show_rss_badge = true
 rss_path = "rss.xml"
 reddit_profile = "https://reddit.com/u/maydayv7"
 github_profile = "https://github.com/maydayv7"
+
+# Webring
+webring = true
+webring_name = "❄️"
+webring_url = "https://nixwebr.ing"

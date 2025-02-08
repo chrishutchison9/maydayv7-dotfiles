@@ -39,6 +39,41 @@
       -webkit-filter: var(--image-filter);
     }
   }
+
+  #theme-select {
+    background-color: var(--background);
+    border: 2px solid var(--accent-secondary-alpha-70);
+    color: var(--color);
+    cursor: pointer;
+    font-size: 0.95rem;
+    text-align: center;
+    margin: 5px;
+    transition: background-color 0.2s ease-in;
+
+    &:hover {
+      background-color: var(--accent-alpha-20);
+    }
+
+    &:active {
+      background-color: var(--accent-alpha-70);
+    }
+  }
+
+  .webring {
+    font-size: 0.8rem;
+    text-align: center;
+
+    a {
+      text-decoration: none;
+    }
+
+    img {
+      filter: var(--image-filter);
+      margin: 5px;
+      width: 10px;
+      -webkit-filter: var(--image-filter);
+    }
+  }
 }
 
 a.backlink {
