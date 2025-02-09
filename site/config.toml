@@ -91,6 +91,7 @@ show_rss_badge = true
 rss_path = "rss.xml"
 reddit_profile = "https://reddit.com/u/maydayv7"
 github_profile = "https://github.com/maydayv7"
+discord_profile = "https://discordlookup.com/user/519513852648357929"
 
 # Webring
 webring = true

@@ -56,6 +56,10 @@ blockquote {
     padding-bottom: 20px;
   }
 
+  &-icon {
+    padding-right: 0.35em;
+  }
+
   &-edit {
     font-size: 0.9rem;
     margin-top: 2rem;
@@ -148,8 +152,7 @@ blockquote {
       background: var(--accent-alpha-20);
       border-radius: $corner-radius;
       color: var(--accent-secondary);
-      font-family: "JetBrainsMono", Menlo, DejaVu Sans Mono, Monaco, Consolas,
-        Ubuntu Mono, monospace;
+      font-family: "JetBrainsMono", Menlo, DejaVu Sans Mono, monospace;
       font-feature-settings: normal;
       font-size: 0.95rem;
       margin: 0 2px;
@@ -159,8 +162,7 @@ blockquote {
     pre {
       border: 1px solid var(--border-color);
       border-radius: $corner-radius;
-      font-family: "JetBrainsMono", Menlo, DejaVu Sans Mono, Monaco, Consolas,
-        Ubuntu Mono, monospace;
+      font-family: "JetBrainsMono", Menlo, DejaVu Sans Mono, monospace;
       font-size: 0.95rem;
       overflow: auto;
       padding: 15px 10px;

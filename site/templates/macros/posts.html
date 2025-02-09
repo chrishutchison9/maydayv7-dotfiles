@@ -5,13 +5,13 @@
     <strong>@<a href="{{ page.permalink | safe }}">{{ page.title }}</a></strong>
   </span>
   {% else %}
-  <span class="post-readtime"> <i>{{ page.reading_time }}</i> min read </span>
-  {% endif %} :: <span class="post-wordcount"> <i>{{ page.word_count }}</i> words </span> {{ posts::taxonomies(taxonomy=page.taxonomies) }}
+  <span class="post-readtime"> <span class="post-icon"></span> <i>{{ page.reading_time }}</i> min </span>
+  {% endif %} :: <span class="post-wordcount"> <span class="post-icon"></span> <i>{{ page.word_count }}</i> words </span> {{ posts::taxonomies(taxonomy=page.taxonomies) }}
 </div>
 {% endmacro meta %} {% macro date(date, updated) %}
 <span class="post-date">
-  {%- if date -%} {{ date | date(format="%Y.%m.%d") }} {%- endif -%} {%- if
-  updated -%}, updated {{ updated | date(format="%Y.%m.%d") }} :: {%- endif -%}
+  {%- if date -%} <span class="post-icon"></span> {{ date | date(format="%Y.%m.%d") }} {%- endif -%} {%- if
+  updated -%}, 🖉 {{ updated | date(format="%Y.%m.%d") }} :: {%- endif -%}
 </span>
 {% endmacro date %} {% macro taxonomies(taxonomy) %} {% if taxonomy.series -%}
 {{ posts::series(series=taxonomy.series) }} {% endif -%} {% if taxonomy.tags -%}

@@ -100,7 +100,7 @@ Supports wide range of Multi-Media using [_shortcodes_](https://www.getzola.org/
 
 ## Video
 
-Here's a sample video played using **_YouTube_** $\copyright$
+Here's a sample video played using **_YouTube_** ©
 
 {{ youtube(id="C0DPdy98e4c") }}
 

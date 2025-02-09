@@ -18,7 +18,7 @@
   {%- endif -%} {%- if config.extra.email -%}
   <a href="{{ config.extra.email }}" style="text-decoration: none">
     {%- set email_image = resize_image(path="../static/social/mail.png",
-    width=33, height=33, op="scale", format="png") -%}
+    width=36, height=36, op="scale", format="png") -%}
     <img
       src="{{ email_image.url }}"
       style="display: inline"
@@ -41,6 +41,15 @@
       src="{{ reddit_image.url }}"
       style="display: inline"
       alt="Reddit Badge" />
+  </a>
+  {%- endif -%} {%- if config.extra.discord_profile -%}
+  <a href="{{ config.extra.discord_profile }}" style="text-decoration: none">
+    {%- set discord_image = resize_image(path="../static/social/discord.png",
+    width=39, height=39, op="scale", format="png") -%}
+    <img
+      src="{{ discord_image.url }}"
+      style="display: inline"
+      alt="Discord Badge" />
   </a>
   {%- endif -%}
 </div>

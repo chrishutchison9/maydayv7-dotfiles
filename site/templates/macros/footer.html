@@ -1,13 +1,12 @@
 {% macro copyright(config) %}
 <div class="copyright">
   <span>
-    © {{ now() | date(format="%Y") }} {{ config.extra.copyright | safe}} ::
-    Powered by {{ url::external(url="https://getzola.org/", text="Zola",
-    icon=false) }}
+    © {{ now() | date(format="%Y") }} {{ config.extra.copyright | safe}}
   </span>
   <span>
-    Like this Site? See Source Code {{ url::external(url=config.extra.repo_url,
-    text="Here", icon=false) }}
+    Powered by {{ url::external(url="https://getzola.org/", text="Zola",
+    icon=false) }} :: Site {{ url::external(url=config.extra.repo_url,
+    text="Source", icon=false) }}
   </span>
 </div>
 {% endmacro copyright %} {% macro theme(config) %}

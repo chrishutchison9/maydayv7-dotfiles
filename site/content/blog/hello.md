@@ -2,6 +2,7 @@
 title = "Hello World!"
 description = "Upholding Tradition ;)"
 date = 2022-02-15
+updated = 2025-01-01
 
 [taxonomies]
 tags = ["Misc"]
