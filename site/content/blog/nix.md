@@ -17,7 +17,7 @@ comments = true
 
 This Page is still under heavy development and may remain unfinished or subjected to major changes over time
 
-# Terminology
+# Introduction
 
 **Nix** is a purely **_functional_** _package manager_. This means that it treats packages like _values_ built by _functions_ that don’t have side-effects, and never change after they have been built (known as **immutability**). This results in the _purity_ of a package which ensures _reproducibility_ in any environment and at any future point in time. For every package that it builds, it firsts computes a **derivation** (by evaluating expressions written in the Nix _language_) which consists of information about all the _dependencies_ of a package, build commands, miscellaneous meta-information, and a _prefix_ or **_store path_** into which said package shall be installed, which is in the form of <code>/nix/store/<b>HASH</b>-<i>NAME</i>-<i>VERSION</i></code>, where the _hash_ is built from all the input dependencies required to build the package. Then, it **_realises_** that derivation by running the specified build commands in an isolated environment (in a **_sandbox_**). This allows Nix to guarantee reproducibility, and allows it to support **_binary cache_**, by _substituting_ the store path from some other location. This also enables us to have **_multiple versions_** of the same package, since each one will have it's own isolated prefix, and makes easy to **_rollback_** to a previous version of a package. And since the build environment is completely isolated from the host system, non-privileged users can install software completely _securely_
 

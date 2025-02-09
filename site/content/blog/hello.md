@@ -2,15 +2,15 @@
 title = "Hello World!"
 description = "Upholding Tradition ;)"
 date = 2022-02-15
-updated = 2025-01-01
+updated = 2025-02-10
 
 [taxonomies]
 tags = ["Misc"]
 
 [extra]
 math = true
-edit = true
-comments = true
+edit = false
+comments = false
 +++
 
 **Hello World!**
