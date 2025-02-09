@@ -17,7 +17,7 @@ function makeTeaser(body, terms) {
   var TERM_WEIGHT = 40;
   var NORMAL_WORD_WEIGHT = 2;
   var FIRST_WORD_WEIGHT = 8;
-  var TEASER_MAX_WORDS = 30;
+  var TEASER_MAX_WORDS = 20;
 
   var stemmedTerms = terms.map(function (w) {
     return elasticlunr.stemmer(w.toLowerCase());
@@ -110,7 +110,7 @@ function formatSearchResultItem(item, terms) {
     `</h1>` +
     `<div>${makeTeaser(item.doc.body, terms)}</div>` +
     `<a href='${item.ref}'>` +
-    `Read More <span class="icon is-small">→</span>` +
+    `<i>Read More <span class="icon is-small">→</span></i>` +
     `</a>` +
     "</div>"
   );
@@ -150,6 +150,15 @@ function initSearch() {
         $searchResults.style.display = "none";
         return;
       }
+
+      var number = document.createElement("p");
+      number.innerHTML =
+        '<div class="search-results__number">' +
+        `<b>${results.length}</b> ${
+          results.length === 1 ? "result" : "results"
+        }` +
+        "</div>";
+      $searchResultsItems.appendChild(number);
 
       currentTerm = term;
       for (var i = 0; i < Math.min(results.length, MAX_ITEMS); i++) {

@@ -12,6 +12,8 @@ Here's a general demo of how things look! [^1]
 
 Written in [**Markdown**](https://www.markdownguide.org/), rendered using Zola's `pulldown-cmark` parser
 
+- View the {{ url(path="sitemap.xml", text="Site Map", trail_slash=false) }}
+
 # Content
 
 [_Jet Brains_](https://www.jetbrains.com/lp/mono/) fonts are used for additional ligatures and irresistible **_style_**!
@@ -94,7 +96,7 @@ Supports wide range of Multi-Media using [_shortcodes_](https://www.getzola.org/
 
 ## Image
 
-{{ figure(src="https://github.com/maydayv7/proprietary/blob/45552f2069239c3b59bee339503fc005423b5da6/wallpapers/Island.jpg", alt="Island", style="border-style: inset; border-radius: 15px; width: 100%;", caption="A Nice Wallpaper", caption_style="font-weight: bold;") }}
+{{ figure(src="https://picsum.photos/700", alt="Random", style="border-style: inset; border-radius: 5px;", caption="Random Image", caption_style="font-weight: bold;") }}
 
 ## Video
 
