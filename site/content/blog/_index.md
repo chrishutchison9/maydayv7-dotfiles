@@ -12,7 +12,5 @@ feed_discovery = true
 
 # Welcome to My Blog!
 
-- View the {{ url(path="/archive/", text="Archive") }}
-- View all {{ url(path="/series/", text="Series") }}
-- View all {{ url(path="/tags/", text="Tags") }}
-- Subscribe to the {{ url(path="blog/rss.xml", text="RSS Feed", trail_slash=false) }}
+- View the {{ url(path="archive", text="Archive") }}
+- View all {{ url(path="series", text="Series") }} or {{ url(path="tags", text="Tags") }}

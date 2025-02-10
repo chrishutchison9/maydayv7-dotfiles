@@ -1,5 +1,5 @@
 +++
-title = "Sample"
+title = "Test"
 description = "Test Page"
 
 [extra]

@@ -40,6 +40,30 @@
     }
   }
 
+  .theme {
+    &-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    &_before {
+      transition: flex 0.5s;
+      flex-grow: 0;
+      @media (max-width: $tablet-max-width) {
+        flex-grow: 1;
+      }
+    }
+
+    &-content {
+      display: flex;
+      align-items: center;
+    }
+
+    &_after {
+      flex-grow: 1;
+    }
+  }
+
   #theme-select {
     background-color: var(--background);
     border: 2px solid var(--accent-secondary-alpha-70);
@@ -62,16 +86,10 @@
   .webring {
     font-size: 0.8rem;
     text-align: center;
+    margin: 5px;
 
     a {
       text-decoration: none;
-    }
-
-    img {
-      filter: var(--image-filter);
-      margin: 5px;
-      width: 10px;
-      -webkit-filter: var(--image-filter);
     }
   }
 }
