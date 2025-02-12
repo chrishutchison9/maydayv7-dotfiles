@@ -134,6 +134,6 @@ comments = true
 
 ---
 
-&#9744; --> Watch Status  
+☐ --> Watch Status  
 <sup>\*</sup> --> Incomplete  
 <sup>#</sup> --> Multiple Seasons

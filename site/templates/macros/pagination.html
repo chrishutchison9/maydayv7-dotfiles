@@ -4,8 +4,7 @@
     {% if paginator.previous -%}
     <span class="pagination__buttons-previous">
       <a href="{{ paginator.previous }}">
-        <span class="button_icon">←</span>
-        <span class="button__text">newer</span>
+        <span class="button__text"><- newer</span>
       </a>
     </span>
     {% endif -%} {% if paginator.number_pagers > 1 -%}
@@ -22,15 +21,15 @@
           value="{{ paginator.current_index }}"
           min="1"
           max="{{ paginator.number_pagers }}"
+          oninput="this.style.width = (this.value.length + 3) + 'ch';"
           required />/ {{ paginator.number_pagers }}
-        <button class="">Go</button>
+        <button>Go</button>
       </form>
     </div>
     {% endif -%} {% if paginator.next -%}
     <span class="pagination__buttons-next">
       <a href="{{ paginator.next }}">
-        <span class="button__text">older</span>
-        <span class="button_icon">→</span>
+        <span class="button__text">older -></span>
       </a>
     </span>
     {% endif -%}

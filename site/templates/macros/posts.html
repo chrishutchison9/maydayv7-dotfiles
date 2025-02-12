@@ -11,7 +11,7 @@
 {% endmacro meta %} {% macro date(date, updated) %}
 <span class="post-date">
   {%- if date -%} <span class="post-icon"></span> {{ date | date(format="%d.%m.%Y") }} {%- endif -%} {%- if date and updated -%} <span class="post-icon">,</span> {%- endif -%} {%- if
-  updated -%} 🖉 {{ updated | date(format="%d.%m.%Y") }} :: {%- endif -%}
+  updated -%} <span class="post-icon"></span> {{ updated | date(format="%d.%m.%Y") }} :: {%- endif -%}
 </span>
 {% endmacro date %} {% macro taxonomies(taxonomy) %} {% if taxonomy.series -%}
 {{ posts::series(series=taxonomy.series) }} {% endif -%} {% if taxonomy.tags -%}

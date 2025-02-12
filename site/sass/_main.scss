@@ -186,8 +186,26 @@ input {
   background: var(--background);
   border-color: var(--accent-secondary);
   color: var(--color);
-  font-family: "JetBrainsMono";
+  font-family: inherit;
   padding: 0.2rem;
+
+  &[type="checkbox"] {
+    appearance: none;
+    display: inline-flex;
+    vertical-align: bottom;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--accent-secondary);
+    height: 1rem;
+    width: 1rem;
+
+    &:checked:after {
+      content: "";
+      background-color: var(--accent);
+      height: 100%;
+      width: 100%;
+    }
+  }
 }
 
 @media (max-width: $phone-max-width) {
