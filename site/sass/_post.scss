@@ -24,7 +24,7 @@ blockquote {
 .copy {
   background: var(--background);
   border-color: var(--accent-secondary);
-  border-radius: 5px;
+  border-radius: $corner-radius;
   color: var(--color);
   font-family: inherit;
   display: block;
@@ -250,7 +250,7 @@ blockquote {
 
 .scroll-back {
   background-color: var(--accent-alpha-20);
-  border-radius: 10px;
+  border-radius: $corner-radius;
   border: none;
   bottom: 20px;
   color: var(--accent-secondary);

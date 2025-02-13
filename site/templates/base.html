@@ -45,6 +45,7 @@ squiggle -%} {% import "macros/edit.html" as edit -%} {% import
       {%- block pagination -%} {{ pagination::paginate(pagelink = current_url)
       }} {%- endblock pagination -%} {%- block footer -%}
       <footer class="footer">
+        {{ squiggle::squiggle() }}
         <div class="footer__inner">
           {%- block copyright -%} {{ footer::copyright(config = config) }} {%-
           endblock copyright -%} {%- block script -%} {{ js::mobile() }} {%-

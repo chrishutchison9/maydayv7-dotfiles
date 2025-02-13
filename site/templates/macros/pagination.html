@@ -1,4 +1,5 @@
-{% macro paginate(pagelink) %} {% if paginator %}
+{% macro paginate(pagelink) %} {% if paginator and paginator.number_pagers > 1
+%}
 <div class="pagination">
   <div class="pagination__buttons">
     {% if paginator.previous -%}
@@ -7,7 +8,7 @@
         <span class="button__text"><- newer</span>
       </a>
     </span>
-    {% endif -%} {% if paginator.number_pagers > 1 -%}
+    {% endif -%}
     <div class="pagination__buttons-input">
       <form
         class="pagination__form"
@@ -26,7 +27,7 @@
         <button>Go</button>
       </form>
     </div>
-    {% endif -%} {% if paginator.next -%}
+    {% if paginator.next -%}
     <span class="pagination__buttons-next">
       <a href="{{ paginator.next }}">
         <span class="button__text">older -></span>

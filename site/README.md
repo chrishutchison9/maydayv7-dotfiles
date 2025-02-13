@@ -44,7 +44,6 @@ To build the site, run `nix build`. In order to override the Base URL, <code>nix
   - [x] Figure : Extends Image - <code>{{ figure(caption_position="<i>left</i>", caption="<b>CAPTION</b>", caption_style="<i>font-weight: bold;</i>") }}</code>
   - [x] GitHub : Star Count - <code>{{ github(repo="<b>USER</b>/<b>NAME</b>") }}</code>
   - [x] YouTube : Embed Video - <code>{{ youtube(id="<b>ID</b>") }}</code>
-  - [x] Vimeo : Embed Video - <code>{{ vimeo(id="<b>ID</b>") }}</code>
 
 #### Credits
 

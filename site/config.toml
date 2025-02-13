@@ -48,7 +48,6 @@ include_content = true
 # Site Theme
 theme_color = "red"
 color_schemes = ["black", "blue", "red"]
-read_more = "Read More..."
 
 # Enable Math Typesetting with KaTeX
 # Use 'math=true' in [extra] on individual pages

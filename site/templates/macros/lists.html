@@ -16,8 +16,10 @@
     </div>
     {% if page.description or page.summary -%}
     <div>
-      <a class="read-more button" href="{{ page.permalink }}"
-        >{{ config.extra.read_more }} →</a
+      <i
+        ><a class="read-more button" href="{{ page.permalink }}"
+          >Read More -></a
+        ></i
       >
     </div>
     {% endif -%}
