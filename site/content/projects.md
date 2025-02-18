@@ -1,5 +1,5 @@
 +++
-title = "Highlighted Projects"
+title = "My Projects"
 
 [extra]
 skip-meta = true

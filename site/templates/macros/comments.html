@@ -13,7 +13,7 @@ js::comments() }} {% endif %} {% endmacro comments %} {% macro disqus() %}
   (function () {
     var d = document,
       s = d.createElement("script");
-    s.src = "https://{{config.extra.disqus.short_name}}.disqus.com/embed.js";
+    s.src = "https://{{ config.extra.disqus.short_name }}.disqus.com/embed.js";
     s.setAttribute("data-timestamp", +new Date());
     (d.head || d.body).appendChild(s);
   })();
@@ -28,10 +28,10 @@ js::comments() }} {% endif %} {% endmacro comments %} {% macro disqus() %}
 <div class="comments" id="giscus_thread">
   <script
     src="https://giscus.app/client.js"
-    data-repo="{{config.extra.giscus.repo}}"
-    data-repo-id="{{config.extra.giscus.repo_id}}"
-    data-category="{{config.extra.giscus.category}}"
-    data-category-id="{{config.extra.giscus.category_id}}"
+    data-repo="{{ config.extra.giscus.repo }}"
+    data-repo-id="{{ config.extra.giscus.repo_id }}"
+    data-category="{{ config.extra.giscus.category }}"
+    data-category-id="{{ config.extra.giscus.category_id }}"
     data-mapping="title"
     data-reactions-enabled="1"
     data-emit-metadata="0"

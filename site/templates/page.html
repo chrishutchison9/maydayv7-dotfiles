@@ -26,15 +26,11 @@ endblock math -%} {%- block title %}
     <li>{{ posts::meta(page=page, list=true) }}</li>
     {% endfor %}
   </ul>
-  {% endif %} {% if page.extra['feeds'] %}
+  {% endif %} {% if page.extra['feed'] %}
   <ul class="post-list">
     <li>
-      {{ url::internal(path=config.extra.rss_path, trailing_slash=false,
-      text="RSS link") }}
-    </li>
-    <li>
-      {{ url::internal(path="{{ get_url(path='blog/atom.xml',
-      trailing_slash=false) }}", text="Atom Link") }}
+      {{ url::internal(path=config.extra.feed_path, trailing_slash=false,
+      text="RSS Link") }}
     </li>
   </ul>
   {% endif %} {% if config.extra.edit_page and page.extra.edit %} {{

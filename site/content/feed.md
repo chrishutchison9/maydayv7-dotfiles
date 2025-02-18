@@ -1,7 +1,7 @@
 +++
-title = "Blog Feeds"
+title = "Blog Feed"
 
 [extra]
 skip-meta = true
-feeds = true
+feed = true
 +++

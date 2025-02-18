@@ -1,7 +1,7 @@
 {% macro socials_bar() %}
 <div class="socials-bar">
-  {%- if config.extra.show_rss_badge -%}
-  <a href="{{ config.extra.rss_path }}" style="text-decoration: none">
+  {%- if config.generate_feeds -%}
+  <a href="{{ config.extra.feed_path }}" style="text-decoration: none">
     {%- set rss_image = resize_image(path="../static/social/rss.png", width=33,
     height=33, op="scale", format="png") -%}
     <img src="{{ rss_image.url }}" style="display: inline" alt="RSS Badge" />
