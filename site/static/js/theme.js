@@ -102,7 +102,7 @@
         }
       });
     } else {
-      window.addEventListener("DOMContentLoaded", () => {
+      window.addEventListener("load", () => {
         updateThemeSelect(theme, setSelected);
       });
     }
@@ -115,7 +115,7 @@
       changeTheme(THEME, true);
       updateThemeSelect(THEME, true);
     }
-    window.addEventListener("DOMContentLoaded", () => {
+    window.addEventListener("load", () => {
       document.getElementById("theme-select").onchange = function () {
         changeTheme(this.value);
       };

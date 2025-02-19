@@ -37,6 +37,11 @@
       filter: var(--image-filter);
       margin: 5px;
       -webkit-filter: var(--image-filter);
+      transition: all 0.2s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
     }
   }
 

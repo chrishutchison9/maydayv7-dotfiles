@@ -3,10 +3,12 @@ var rootElement = document.documentElement;
 
 function handleScroll() {
   var scrollTotal = rootElement.scrollHeight - rootElement.clientHeight;
-  if (rootElement.scrollTop / scrollTotal > 0.7) {
-    scrollButton.style.display = "block";
+  if (rootElement.scrollTop / scrollTotal > 0.5) {
+    scrollButton.style.visibility = "visible";
+    scrollButton.style.opacity = 100;
   } else {
-    scrollButton.style.display = "none";
+    scrollButton.style.visibility = "hidden";
+    scrollButton.style.opacity = 0;
   }
 }
 
