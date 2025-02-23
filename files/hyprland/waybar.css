@@ -47,6 +47,12 @@ window#waybar {
   border: 2px solid @base04;
 }
 
+.modules-left #workspaces button.special {
+  opacity: 0.8;
+  padding-right: 3px;
+  margin-left: 5px;
+}
+
 #submap {
   color: @base00;
   background-color: @base08;
@@ -79,12 +85,7 @@ window#waybar {
 }
 
 #media .drawer box {
-  margin-left: 3px;
-}
-
-#mpris {
-  color: @base00;
-  background-color: @base05;
+  margin-right: 3px;
 }
 
 @keyframes blink {

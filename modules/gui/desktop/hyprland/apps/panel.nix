@@ -116,6 +116,7 @@ in {
             ignore-workspaces = ["special:scratch_.*"];
             format-icons = {
               default = "";
+              special = "";
               "1" = "";
               "2" = "";
               "3" = "";
@@ -126,8 +127,6 @@ in {
               "8" = "";
               "9" = "";
               OVERVIEW = "";
-              special = "";
-              "special:minimized" = "";
             };
           };
 
@@ -212,7 +211,7 @@ in {
           "group/media" = {
             orientation = "horizontal";
             modules = ["wireplumber" "mpris"];
-            drawer.transition-left-to-right = true;
+            drawer.transition-left-to-right = false;
           };
 
           wireplumber = {
@@ -228,9 +227,9 @@ in {
 
           mpris = {
             dynamic-len = 20;
-            dynamic-importance-order = ["title" "position" "length" "artist"];
-            dynamic-separator = "";
-            format = " {player} {dynamic}";
+            dynamic-order = ["title" "artist" "length"];
+            dynamic-separator = " - ";
+            format = " {player} - {dynamic}";
             format-paused = "󰏤 <i>{player}</i>";
             format-stopped = "";
             tooltip-format-stopped = "Not Playing";
@@ -248,7 +247,7 @@ in {
           "group/power" = {
             orientation = "horizontal";
             modules = ["battery" "power-profiles-daemon"];
-            drawer.transition-left-to-right = true;
+            drawer.transition-left-to-right = false;
           };
 
           battery = {
@@ -318,7 +317,7 @@ in {
           "group/notify" = {
             orientation = "horizontal";
             modules = ["custom/dunst" "idle_inhibitor"];
-            drawer.transition-left-to-right = true;
+            drawer.transition-left-to-right = false;
           };
 
           "custom/dunst" = {

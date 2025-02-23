@@ -21,19 +21,20 @@
         fancy                        - Toggle Compositor Effects
         float                        - Toggle window floating in current workspace
         idle                         - Toggle Idle Daemon service
-        minimized                    - Show minimized windows
+        minimize                     - Show minimized windows
         monitor                      - Toggle specified Monitor
         panel                        - Toggle top Panel
         shader                       - Toggle Compositor Shader
         touchpad                     - Toggle touchpad
   '';
 
+  minimize = "special:${files.hyprland.minimize}";
   daemon = builtins.toFile "daemon.sh" ''
     event_activespecial() {
       case "$WORKSPACENAME" in
-      special:minimized*)
+      ${minimize}*)
         hyprctl dispatch submap reset
-        hyprctl dispatch submap Minimized
+        hyprctl dispatch submap Minimize
       ;;
       esac
     }
@@ -281,10 +282,10 @@ in
               notify idle -i "system-lock-screen" "Started Idle Daemon"
             fi
           ;;
-          "minimized")
-            if hyprctl workspaces | grep "special:minimized"
+          "minimize")
+            if hyprctl workspaces | grep "${minimize}"
             then
-              hyprctl dispatch workspace special:minimized
+              hyprctl dispatch workspace ${minimize}
             else
               hyprctl notify 1 2000 0 "No minimized windows present"
             fi

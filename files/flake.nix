@@ -84,6 +84,9 @@
       # Greeter Configuration
       greeter = readFile ./hyprland/greeter.conf;
 
+      # Minimize Workspace
+      minimize = "";
+
       # Pyprland
       pypr = readFile ./hyprland/pypr.toml;
 

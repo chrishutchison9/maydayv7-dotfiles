@@ -32,7 +32,7 @@
 
         # Application Overview
         hycov = {
-          enable_hotarea = 1;
+          enable_hotarea = 0;
           hotarea_pos = 3;
           only_active_workspace = 1;
           overview_gappi = 24;
