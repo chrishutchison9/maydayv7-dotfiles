@@ -1,11 +1,12 @@
 {
   config,
   lib,
+  util,
   pkgs,
   files,
   ...
 }: let
-  inherit (lib) concatMapStringsSep getExe getExe';
+  inherit (lib) getExe getExe';
   locker = pkgs.swaylock-effects;
 in {
   ## Security Configuration
@@ -53,8 +54,8 @@ in {
 
       timeouts = let
         audio = command: "${pkgs.writeShellScript "audio" ''
-          ${getExe' pkgs.pipewire "pw-cli"} info all | ${getExe pkgs.gnugrep} running
-          if [ $? == 1 ]; then ${command}; fi
+          ${getExe pkgs.playerctl} status | grep Playing
+          if [ $? != 1 ]; then ${command}; fi
         ''}"; # Check if audio is playing
         shader = getExe pkgs.hyprshade;
         dpms = "${getExe' config.programs.hyprland.package "hyprctl"} dispatch dpms";
@@ -71,7 +72,7 @@ in {
         }
         {
           timeout = 500; # Suspend then Hibernate device
-          command = audio "${dpms} on && ${lock "" ""} && ${getExe' pkgs.systemd "systemctl"} suspend-then-hibernate ";
+          command = audio "${dpms} on && ${lock "" ""} && ${getExe' pkgs.systemd "systemctl"} suspend-then-hibernate";
         }
       ];
     };
@@ -79,24 +80,49 @@ in {
     # Logout
     programs.wlogout = {
       enable = true;
-      style =
-        files.hyprland.wlogout
-        + ''
-          ${concatMapStringsSep "\n" (
-              name: ''
-                #${name} {
-                  background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/${name}.png"));
-                }
-              ''
-            ) [
-              "lock"
-              "logout"
-              "suspend"
-              "hibernate"
-              "shutdown"
-              "reboot"
-            ]}
-        '';
+      style = util.build.theme {
+        inherit (config.lib.stylix) colors;
+        file = files.hyprland.wlogout;
+      };
+
+      layout = [
+        {
+          label = "lock";
+          action = "loginctl lock-session";
+          text = "";
+          keybind = "l";
+        }
+        {
+          label = "logout";
+          action = "loginctl terminate-user $USER";
+          text = "";
+          keybind = "e";
+        }
+        {
+          label = "shutdown";
+          action = "systemctl poweroff";
+          text = "";
+          keybind = "s";
+        }
+        {
+          label = "suspend";
+          action = "systemctl suspend";
+          text = "";
+          keybind = "u";
+        }
+        {
+          label = "hibernate";
+          action = "systemctl hibernate";
+          text = "";
+          keybind = "h";
+        }
+        {
+          label = "reboot";
+          action = "systemctl reboot";
+          text = "";
+          keybind = "r";
+        }
+      ];
     };
   };
 }

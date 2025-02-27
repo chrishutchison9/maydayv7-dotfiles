@@ -10,6 +10,7 @@ command = "kitty --class kitty-dropterm"
 class = "kitty-dropterm"
 lazy = true
 size = "75% 60%"
+unfocus = "hide"
 
 [scratchpads.clip]
 animation = "fromBottom"
@@ -24,7 +25,6 @@ animation = "fromRight"
 lazy = true
 size = "50% 90%"
 margin = 30
-unfocus = "hide"
 restore_excluded = true
 
 [scratchpads.bluetooth]
@@ -47,6 +47,6 @@ excludes = ["bluetooth", "displays", "volume"]
 
 [scratchpads.volume]
 command = "pavucontrol"
-class = "pavucontrol"
+class = "org.pulseaudio.pavucontrol"
 use = "right"
 excludes = ["bluetooth", "displays", "network"]

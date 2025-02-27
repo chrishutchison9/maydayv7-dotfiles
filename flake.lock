@@ -592,11 +592,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1732998037,
-        "narHash": "sha256-HugmFD5pODeXZ22g+34Xv7cjPCXDiKsKqV1R3M9xppg=",
+        "lastModified": 1740688134,
+        "narHash": "sha256-AwhCfXhk27Y4V+kWYIqeu3dK9OIy8elwQbf+QS7asqc=",
         "owner": "maydayv7",
         "repo": "proprietary",
-        "rev": "d2c901db758e8a0ac0b007218ce8b930ab462f87",
+        "rev": "9c31d3a59216d57f69bd281e93536ecfb7204a86",
         "type": "github"
       },
       "original": {

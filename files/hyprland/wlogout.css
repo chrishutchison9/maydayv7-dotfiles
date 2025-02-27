@@ -24,3 +24,9 @@ button:hover {
   background-color: rgba(255, 255, 255, 0.2);
   outline-style: none;
 }
+
+label {
+  font-size: 10rem;
+  margin: 5rem;
+  color: #@base05;
+}

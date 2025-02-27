@@ -164,7 +164,10 @@ in {
           "group/menu" = {
             orientation = "horizontal";
             modules = ["custom/dropdown" "keyboard-state" "tray"];
-            drawer.transition-left-to-right = true;
+            drawer = {
+              click-to-reveal = true;
+              transition-left-to-right = true;
+            };
           };
 
           "custom/dropdown" = {
@@ -211,7 +214,10 @@ in {
           "group/media" = {
             orientation = "horizontal";
             modules = ["wireplumber" "mpris"];
-            drawer.transition-left-to-right = false;
+            drawer = {
+              transition-left-to-right = false;
+              transition-duration = 1000;
+            };
           };
 
           wireplumber = {
@@ -233,6 +239,9 @@ in {
             format-paused = "󰏤 <i>{player}</i>";
             format-stopped = "";
             tooltip-format-stopped = "Not Playing";
+            on-click = "hyprutils media toggle";
+            on-click-right = "hyprutils media next";
+            on-click-middle = "hyprutils media previous";
           };
 
           backlight = {

@@ -58,7 +58,9 @@
   "Rules": {
     "default": "Desktop",
     "kitty": "Terminal",
-    "code": "Code"
+    "code": "Code",
+    "firefox": "Firefox",
+    "spotify": "Spotify"
   },
   "Keybindings": {
     "Desktop": {
@@ -268,7 +270,7 @@
             "label": "Terminal"
           },
           {
-            "value": "$mod Shift T",
+            "value": "$mod SHIFT T",
             "label": "Toggle Terminal in Quake mode"
           },
           {
@@ -419,11 +421,11 @@
             "label": "Copy line (empty selection)"
           },
           {
-            "value": "ALT Up/Down",
+            "value": "ALT Up / Down",
             "label": "Move line up/down"
           },
           {
-            "value": "SHIFT ALT Up/Down",
+            "value": "SHIFT ALT Up / Down",
             "label": "Copy line up/down"
           },
           {
@@ -443,11 +445,11 @@
             "label": "Jump to matching bracket"
           },
           {
-            "value": "CTRL ]/[",
+            "value": "CTRL ] / [",
             "label": "Indent/outdent line"
           },
           {
-            "value": "Home/End",
+            "value": "Home / End",
             "label": "Go to beginning/end of line"
           },
           {
@@ -459,11 +461,11 @@
             "label": "Go to end of file"
           },
           {
-            "value": "CTRL Up/Down",
+            "value": "CTRL Up / Down",
             "label": "Scroll line up/down"
           },
           {
-            "value": "ALT PgUp/PgDown",
+            "value": "ALT PgUp / PgDown",
             "label": "Scroll page up/down"
           },
           {
@@ -544,7 +546,7 @@
             "label": "Navigate editor group history"
           },
           {
-            "value": "ALT Left/Right",
+            "value": "ALT Left / Right",
             "label": "Go back/forward"
           },
           {
@@ -581,7 +583,7 @@
             "label": "Move last selection to next Find match"
           },
           {
-            "value": "ALT C/R/W",
+            "value": "ALT C / R / W",
             "label": "Toggle case-sensitive/regex/whole word"
           }
         ]
@@ -594,7 +596,7 @@
             "label": "Insert cursor"
           },
           {
-            "value": "CTRL ALT Up/Down",
+            "value": "CTRL ALT Up / Down",
             "label": "Insert cursor above/below"
           },
           {
@@ -651,19 +653,19 @@
             "label": "Split editor"
           },
           {
-            "value": "CTRL 1/2/3",
+            "value": "CTRL 1 / 2 / 3",
             "label": "Focus into 1st, 2nd, or 3rd editor group"
           },
           {
-            "value": "CTRL K + CTRL Left/Right",
+            "value": "CTRL K + CTRL Left / Right",
             "label": "Focus into previous/next editor group"
           },
           {
-            "value": "CTRL SHIFT PgUp/PgDown",
+            "value": "CTRL SHIFT PgUp / PgDown",
             "label": "Move editor left/right"
           },
           {
-            "value": "CTRL K + Left/Right",
+            "value": "CTRL K + Left / Right",
             "label": "Move active editor group"
           }
         ]
@@ -688,7 +690,7 @@
             "label": "Save As..."
           },
           {
-            "value": "CTRL K S",
+            "value": "CTRL K + S",
             "label": "Save All"
           },
           {
@@ -843,15 +845,15 @@
             "label": "Paste into active terminal"
           },
           {
-            "value": "CTRL Up/Down",
+            "value": "CTRL Up / Down",
             "label": "Scroll up/down"
           },
           {
-            "value": "SHIFT PgUp/PgDown",
+            "value": "SHIFT PgUp / PgDown",
             "label": "Scroll page up/down"
           },
           {
-            "value": "CTRL Home/End",
+            "value": "CTRL Home / End",
             "label": "Scroll to top/bottom"
           }
         ]
@@ -1039,7 +1041,7 @@
             "label": "Unicode input"
           },
           {
-            "value": "$mod =/+/-",
+            "value": "$mod = / + / -",
             "label": "Change font size"
           },
           {
@@ -1074,6 +1076,620 @@
           {
             "value": "$mod F6",
             "label": "Debug config"
+          }
+        ]
+      }
+    },
+    "Firefox": {
+      "_hidden": false,
+      "Navigation": {
+        "_hidden": false,
+        "keybindings": [
+          {
+            "value": "CTRL + Left",
+            "label": "Back"
+          },
+          {
+            "value": "CTRL + Right",
+            "label": "Forward"
+          },
+          {
+            "value": "ALT + Home",
+            "label": "Home"
+          },
+          {
+            "value": "CTRL + O",
+            "label": "Open File"
+          },
+          {
+            "value": "CTRL + R",
+            "label": "Reload"
+          },
+          {
+            "value": "CTRL + SHIFT + R",
+            "label": "Reload (override cache)"
+          },
+          {
+            "value": "CTRL + .",
+            "label": "Stop"
+          }
+        ]
+      },
+      "Current Page": {
+        "_hidden": false,
+        "keybindings": [
+          {
+            "value": "Tab",
+            "label": "Focus Next Link or Input Field"
+          },
+          {
+            "value": "SHIFT + Tab",
+            "label": "Focus Previous Link or Input Field"
+          },
+          {
+            "value": "Space",
+            "label": "Go Down a Screen"
+          },
+          {
+            "value": "SHIFT + Space",
+            "label": "Go Up a Screen"
+          },
+          {
+            "value": "CTRL + Down",
+            "label": "Go to Bottom of Page"
+          },
+          {
+            "value": "CTRL + Up",
+            "label": "Go to Top of Page"
+          },
+          {
+            "value": "F6",
+            "label": "Move to Next Frame"
+          },
+          {
+            "value": "SHIFT + F6",
+            "label": "Move to Previous Frame"
+          },
+          {
+            "value": "CTRL + P",
+            "label": "Print"
+          },
+          {
+            "value": "CTRL + S",
+            "label": "Save Page As"
+          },
+          {
+            "value": "CTRL + +",
+            "label": "Zoom In"
+          },
+          {
+            "value": "CTRL + -",
+            "label": "Zoom Out"
+          },
+          {
+            "value": "CTRL + 0",
+            "label": "Zoom Reset"
+          }
+        ]
+      },
+      "Editing": {
+        "_hidden": false,
+        "keybindings": [
+          {
+            "value": "CTRL + C",
+            "label": "Copy"
+          },
+          {
+            "value": "CTRL + X",
+            "label": "Cut"
+          },
+          {
+            "value": "Backspace",
+            "label": "Delete"
+          },
+          {
+            "value": "Home",
+            "label": "Go to Beginning of Line"
+          },
+          {
+            "value": "End",
+            "label": "Go to End of Line"
+          },
+          {
+            "value": "CTRL + V",
+            "label": "Paste"
+          },
+          {
+            "value": "CTRL + SHIFT + V",
+            "label": "Paste (as plain text)"
+          },
+          {
+            "value": "CTRL + SHIFT + Z",
+            "label": "Redo"
+          },
+          {
+            "value": "CTRL + A",
+            "label": "Select All"
+          },
+          {
+            "value": "CTRL + Z",
+            "label": "Undo"
+          }
+        ]
+      },
+      "Search": {
+        "_hidden": false,
+        "keybindings": [
+          {
+            "value": "CTRL  +  F",
+            "label": "Find"
+          },
+          {
+            "value": "CTRL + G",
+            "label": "Find Again"
+          },
+          {
+            "value": "CTRL + SHIFT + G",
+            "label": "Find Previous"
+          },
+          {
+            "value": "'",
+            "label": "Quick Find within link-text only"
+          },
+          {
+            "value": "/",
+            "label": "Quick Find"
+          },
+          {
+            "value": "Esc",
+            "label": "Close the Find or Quick Find bar"
+          },
+          {
+            "value": "CTRL + K",
+            "label": "Focus Search bar"
+          },
+          {
+            "value": "CTRL + Up / Down",
+            "label": "Change the Default Search Engine"
+          },
+          {
+            "value": "ALT + Up / Down",
+            "label": "View menu to switch, add, or manage search engines"
+          },
+          {
+            "value": "CTRL + W",
+            "label": "Close Tab"
+          },
+          {
+            "value": "CTRL + SHIFT + W",
+            "label": "Close Window"
+          },
+          {
+            "value": "CTRL + Tab",
+            "label": "Cycle through Tabs in Recently Used Order"
+          },
+          {
+            "value": "CTRL + Q",
+            "label": "Quit"
+          },
+          {
+            "value": "CTRL + ALT + Left",
+            "label": "Go one Tab to the Left"
+          },
+          {
+            "value": "CTRL + ALT + Right",
+            "label": "Go one Tab to the Right"
+          },
+          {
+            "value": "CTRL + SHIFT + PgUp",
+            "label": "Move Tab Left"
+          },
+          {
+            "value": "CTRL + SHIFT + PgDown",
+            "label": "Move Tab Right"
+          },
+          {
+            "value": "CTRL + SHIFT + Home",
+            "label": "Move Tab in focus to start"
+          },
+          {
+            "value": "CTRL + SHIFT + End",
+            "label": "Move Tab in focus to end"
+          },
+          {
+            "value": "CTRL + M",
+            "label": "Mute/Unmute Audio"
+          },
+          {
+            "value": "CTRL + T",
+            "label": "New Tab"
+          },
+          {
+            "value": "CTRL + N",
+            "label": "New Window"
+          },
+          {
+            "value": "CTRL + SHIFT + P",
+            "label": "New Private Window"
+          },
+          {
+            "value": "ALT + Enter",
+            "label": "Open Address in New Foreground Tab"
+          },
+          {
+            "value": "Enter",
+            "label": "Open Focused Bookmark or Link in Current Tab"
+          },
+          {
+            "value": "CTRL + Enter",
+            "label": "Open Focused Link in New Background Tab"
+          },
+          {
+            "value": "CTRL + SHIFT + Enter",
+            "label": "Open Focused Bookmark in New Background Tab"
+          },
+          {
+            "value": "SHIFT + Enter",
+            "label": "Open Focused Bookmark or Link in New Window"
+          },
+          {
+            "value": "CTRL + SHIFT + T",
+            "label": "Undo Close Tab"
+          },
+          {
+            "value": "CTRL + SHIFT + N",
+            "label": "Undo Close Window"
+          },
+          {
+            "value": "CTRL + 1-8",
+            "label": "Select Tab 1-8"
+          },
+          {
+            "value": "CTRL + 9",
+            "label": "Select Last Tab"
+          },
+          {
+            "value": "CTRL + SHIFT + X",
+            "label": "Moves the URL left or right"
+          }
+        ]
+      },
+      "History": {
+        "_hidden": false,
+        "keybindings": [
+          {
+            "value": "CTRL + SHIFT + H",
+            "label": "History sidebar"
+          },
+          {
+            "value": "CTRL + SHIFT + Delete",
+            "label": "Clear Recent History"
+          }
+        ]
+      },
+      "Bookmarks": {
+        "_hidden": false,
+        "keybindings": [
+          {
+            "value": "CTRL + SHIFT + D",
+            "label": "Bookmark All Tabs"
+          },
+          {
+            "value": "CTRL + D",
+            "label": "Bookmark This Page"
+          },
+          {
+            "value": "CTRL + B",
+            "label": "Bookmarks sidebar"
+          },
+          {
+            "value": "CTRL + SHIFT + S",
+            "label": "Library window (Bookmarks)"
+          },
+          {
+            "value": "(search field in Library) + Space",
+            "label": "Search for all Bookmarks"
+          }
+        ]
+      },
+      "Tools": {
+        "_hidden": false,
+        "keybindings": [
+          {
+            "value": "CTRL + J",
+            "label": "Downloads"
+          },
+          {
+            "value": "CTRL + SHIFT + A",
+            "label": "Add-ons"
+          },
+          {
+            "value": "CTRL + ALT + I",
+            "label": "Toggle Developer Tools"
+          },
+          {
+            "value": "CTRL + ALT + K",
+            "label": "Web Console"
+          },
+          {
+            "value": "CTRL + ALT + C",
+            "label": "Inspector"
+          },
+          {
+            "value": "CTRL + ALT + S",
+            "label": "Debugger"
+          },
+          {
+            "value": "SHIFT + F7",
+            "label": "Style Editor"
+          },
+          {
+            "value": "SHIFT + F5",
+            "label": "Profiler"
+          },
+          {
+            "value": "CTRL + ALT + E",
+            "label": "Network"
+          },
+          {
+            "value": "SHIFT + F2",
+            "label": "Developer Toolbar"
+          },
+          {
+            "value": "CTRL + ALT + M",
+            "label": "Responsive Design View"
+          },
+          {
+            "value": "SHIFT + F4",
+            "label": "Scratchpad"
+          },
+          {
+            "value": "CTRL + U",
+            "label": "Page Source"
+          },
+          {
+            "value": "CTRL + SHIFT + J",
+            "label": "Browser Console"
+          },
+          {
+            "value": "CTRL + I",
+            "label": "Page Info"
+          }
+        ]
+      },
+      "PDF Viewer": {
+        "_hidden": false,
+        "keybindings": [
+          {
+            "value": "N / J / Right",
+            "label": "Next page"
+          },
+          {
+            "value": "P / K / Left",
+            "label": "Previous page"
+          },
+          {
+            "value": "CTRL + +",
+            "label": "Zoom in"
+          },
+          {
+            "value": "CTRL + -",
+            "label": "Zoom out"
+          },
+          {
+            "value": "CTRL + 0",
+            "label": "Automatic Zoom"
+          },
+          {
+            "value": "R",
+            "label": "Rotate the document clockwise"
+          },
+          {
+            "value": "CTRL + R",
+            "label": "Rotate counterclockwise"
+          },
+          {
+            "value": "CTRL + ALT + P",
+            "label": "Switch to Presentation Mode"
+          },
+          {
+            "value": "S",
+            "label": "Choose Text Selection Tool"
+          },
+          {
+            "value": "H",
+            "label": "Choose Hand Tool"
+          },
+          {
+            "value": "CTRL + ALT + G",
+            "label": "Focus the Page Number input box"
+          }
+        ]
+      },
+      "Miscellaneous": {
+        "_hidden": false,
+        "keybindings": [
+          {
+            "value": "CTRL + Enter",
+            "label": "Complete .com address"
+          },
+          {
+            "value": "SHIFT + Enter",
+            "label": "Complete .net address"
+          },
+          {
+            "value": "CTRL + SHIFT + Enter",
+            "label": "Complete .org address"
+          },
+          {
+            "value": "SHIFT + Delete",
+            "label": "Delete Selected Autocomplete Entry"
+          },
+          {
+            "value": "CTRL + SHIFT + F",
+            "label": "Toggle Full Screen"
+          },
+          {
+            "value": "CTRL + ALT + R",
+            "label": "Toggle Reader Mode"
+          },
+          {
+            "value": "F7",
+            "label": "Caret Browsing"
+          },
+          {
+            "value": "CTRL + L",
+            "label": "Select Location Bar"
+          }
+        ]
+      },
+      "Media": {
+        "_hidden": false,
+        "keybindings": [
+          {
+            "value": "Space",
+            "label": "Toggle Play/Pause"
+          },
+          {
+            "value": "Down",
+            "label": "Decrease volume"
+          },
+          {
+            "value": "Up",
+            "label": "Increase volume"
+          },
+          {
+            "value": "CTRL + Down",
+            "label": "Mute audio"
+          },
+          {
+            "value": "CTRL + Up",
+            "label": "Unmute audio"
+          },
+          {
+            "value": "Left",
+            "label": "Seek back 15 seconds"
+          },
+          {
+            "value": "CTRL + Left",
+            "label": "Seek back 10%"
+          },
+          {
+            "value": "Right",
+            "label": "Seek forward 15 seconds"
+          },
+          {
+            "value": "CTRL + Right",
+            "label": "Seek forward 10%"
+          },
+          {
+            "value": "Home",
+            "label": "Seek to the beginning"
+          },
+          {
+            "value": "End",
+            "label": "Seek to the end"
+          }
+        ]
+      }
+    },
+    "Spotify": {
+      "_hidden": false,
+      "General": {
+        "_hidden": false,
+        "keybindings": [
+          {
+            "value": "CTRL + N",
+            "label": "Create new playlist"
+          },
+          {
+            "value": "CTRL + X",
+            "label": "Cut"
+          },
+          {
+            "value": "CTRL + C",
+            "label": "Copy"
+          },
+          {
+            "value": "CTRL + V",
+            "label": "Paste"
+          },
+          {
+            "value": "Del",
+            "label": "Delete"
+          },
+          {
+            "value": "CTRL + A",
+            "label": "Select all"
+          },
+          {
+            "value": "CTRL + F",
+            "label": "Filter (in Songs and Playlists)"
+          },
+          {
+            "value": "CTRL + L",
+            "label": "Give focus to search field"
+          },
+          {
+            "value": "ALT + Left",
+            "label": "Go back"
+          },
+          {
+            "value": "ALT + Right",
+            "label": "Go forward"
+          },
+          {
+            "value": "F1",
+            "label": "Show help"
+          },
+          {
+            "value": "CTRL + P",
+            "label": "Preferences"
+          },
+          {
+            "value": "CTRL + SHIFT + W",
+            "label": "Logout active user"
+          },
+          {
+            "value": "ALT + F4",
+            "label": "Quit"
+          }
+        ]
+      },
+      "Player": {
+        "_hidden": false,
+        "keybindings": [
+          {
+            "value": "Space",
+            "label": "Play/pause"
+          },
+          {
+            "value": "CTRL + Right",
+            "label": "Next track"
+          },
+          {
+            "value": "CTRL + Left",
+            "label": "Previous track"
+          },
+          {
+            "value": "CTRL + Up",
+            "label": "Volume up"
+          },
+          {
+            "value": "CTRL + Down",
+            "label": "Volume down"
+          },
+          {
+            "value": "CTRL + SHIFT + Down",
+            "label": "Mute"
+          },
+          {
+            "value": "CTRL + SHIFT + Up",
+            "label": "Max volume"
+          },
+          {
+            "value": "Enter",
+            "label": "Play selected row"
           }
         ]
       }
