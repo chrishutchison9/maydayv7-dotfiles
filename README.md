@@ -13,19 +13,19 @@ This [repository](https://github.com/maydayv7/dotfiles) contains the configurati
 
 **_Note:_** These may be outdated
 
-| ![Hyprland](./files/images/desktop/hyprland.png) |
+| ![Hyprland](./files/images/desktop/hyprland.jpg) |
 | :----------------------------------------------: |
 |                    _Hyprland_                    |
 
-| ![GNOME Desktop](./files/images/desktop/gnome.png) |
+| ![GNOME Desktop](./files/images/desktop/gnome.jpg) |
 | :------------------------------------------------: |
 |                  _GNOME Desktop_                   |
 
-| [![XFCE Desktop](./files/images/desktop/xfce.png)](https://www.reddit.com/r/unixporn/comments/19efxry/xfce_functional_and_beautiful/) |
+| [![XFCE Desktop](./files/images/desktop/xfce.jpg)](https://www.reddit.com/r/unixporn/comments/19efxry/xfce_functional_and_beautiful/) |
 | :-----------------------------------------------------------------------------------------------------------------------------------: |
 |                                                            _XFCE Desktop_                                                             |
 
-| ![Pantheon Desktop](./files/images/desktop/pantheon.png) |
+| ![Pantheon Desktop](./files/images/desktop/pantheon.jpg) |
 | :------------------------------------------------------: |
 |                    _Pantheon Desktop_                    |
 
@@ -57,15 +57,15 @@ This [repository](https://github.com/maydayv7/dotfiles) contains the configurati
 <details>
 <summary><i>Older...</i></summary>
 
-| ![GNOME 45](./files/images/desktop/old/gnome_45.png) |
+| ![GNOME 45](./files/images/desktop/old/gnome_45.jpg) |
 | :--------------------------------------------------: |
 |                      _GNOME 45_                      |
 
-| ![GNOME 44](./files/images/desktop/old/gnome_44.png) |
+| ![GNOME 44](./files/images/desktop/old/gnome_44.jpg) |
 | :--------------------------------------------------: |
 |                      _GNOME 44_                      |
 
-| [![GNOME 41](./files/images/desktop/old/gnome_41.png)](https://www.reddit.com/r/unixporn/comments/ssb7mf/gnome_my_dream/) |
+| [![GNOME 41](./files/images/desktop/old/gnome_41.jpg)](https://www.reddit.com/r/unixporn/comments/ssb7mf/gnome_my_dream/) |
 | :-----------------------------------------------------------------------------------------------------------------------: |
 |                                                        _GNOME 41_                                                         |
 
