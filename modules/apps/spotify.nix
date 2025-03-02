@@ -10,10 +10,10 @@
 in {
   ## Spotify Configuration ##
   config = lib.mkIf enable {
-    environment.systemPackages = with pkgs; [spotify spicetify-cli];
+    environment.systemPackages = with pkgs; [spotify spot spicetify-cli];
 
     user = {
-      persist.directories = [".config/spotify" ".cache/spotify"];
+      persist.directories = [".config/spotify" ".cache/spotify" ".cache/spot"];
       homeConfig = {
         imports = [inputs.spotify.homeManagerModules.default];
         programs.spicetify = {

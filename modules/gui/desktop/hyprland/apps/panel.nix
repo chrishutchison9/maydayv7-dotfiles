@@ -17,7 +17,7 @@ in {
     };
 
     # Environment Setup
-    home.packages = [pkgs.wttrbar];
+    home.packages = [pkgs.unstable.wttrbar];
     systemd.user = {
       services.waybar = {
         # nix-community/home-manager/pull/5785
@@ -154,11 +154,11 @@ in {
             on-click = "activate";
             on-click-middle = "fullscreen";
             on-click-right = "close";
-            ignore-list = [
-              "kitty-clip"
-              "kitty-dropterm"
-              "ulauncher"
-            ];
+            ignore-list = ["ulauncher"];
+            app_ids-mapping = {
+              kitty-clip = "diodon";
+              kitty-dropterm = "yakuake";
+            };
           };
 
           "group/menu" = {
@@ -291,14 +291,14 @@ in {
             format = "{}°";
             tooltip = true;
             interval = 3600;
-            exec = "wttrbar";
+            exec = "wttrbar --date-format %d/%m --nerd";
             return-type = "json";
           };
 
           clock = {
             interval = 1;
-            format = " {:%H:%M:%S}";
-            format-alt = "  {:%I:%M   %Y, %d %B, %A}";
+            format = " {:%H:%M:%S} ";
+            format-alt = " {:%I:%M   %A, %d %B %Y} ";
             tooltip-format = "<tt><small>{calendar}</small></tt>";
             calendar = {
               mode = "year";

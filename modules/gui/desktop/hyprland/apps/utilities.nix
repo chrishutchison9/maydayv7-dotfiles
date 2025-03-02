@@ -14,14 +14,15 @@ in {
     custom.desktop-icons
     custom.kebihelp
     font-manager
+    gnome-clocks
     gnome-disk-utility
     hyprpicker
-    mission-center
     nwg-displays
     nwg-drawer
     overskride
     qalculate-gtk
     remmina
+    resources
 
     # Utilities
     custom.hyprutils

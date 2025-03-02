@@ -22,7 +22,7 @@
     };
 
     vm = {
-      vfio = "on";
+      vfio = "setup";
       android.enable = false;
     };
   };
@@ -33,12 +33,14 @@
     list = [
       "discord"
       "firefox"
+      "games"
       "git"
       "media"
       "notes"
       "office"
       "spotify"
       "vscode"
+      "wine"
     ];
   };
 

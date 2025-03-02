@@ -61,7 +61,7 @@
         "$mod SHIFT, T, exec, pypr toggle term"
         ''$mod, V, exec, sh -c "hyprctl clients | grep 'class: clipse' || pypr show clip"''
         "$mod, W, exec, firefox"
-        "$mod, Return, exec, ${runOnce "missioncenter"}"
+        "$mod, Return, exec, ${runOnce "resources"}"
         ", XF86Calculator, exec, qalculate-gtk"
         "$mod, Escape, exec, ${toggle "wlogout"} -p layer-shell"
       ];

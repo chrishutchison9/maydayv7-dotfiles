@@ -64,7 +64,6 @@ in {
             ]
             ++ (with pkgs.code.vscode-marketplace; [
               kisstkondoros.vscode-gutter-preview
-              vscode-org-mode.org-mode
               wayou.vscode-todo-highlight
             ]);
         };
