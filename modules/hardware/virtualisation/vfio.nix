@@ -73,7 +73,7 @@ in {
       };
 
       # Looking Glass
-      user.groups = ["kvm" "libvirtd" "qemu-libvirtd"];
+      user.groups = ["qemu-libvirtd"];
       systemd.tmpfiles.rules = ["f /dev/shm/looking-glass 0660 root qemu-libvirtd -"];
       environment = {
         systemPackages = [pkgs.looking-glass-client];

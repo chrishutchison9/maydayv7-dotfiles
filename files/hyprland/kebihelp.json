@@ -292,6 +292,10 @@
           {
             "value": "$mod /",
             "label": "Application Launcher"
+          },
+          {
+            "value": "$mod SHIFT Esc",
+            "label": "Inhibit all keybindings"
           }
         ]
       },

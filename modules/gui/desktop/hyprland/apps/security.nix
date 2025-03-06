@@ -55,7 +55,7 @@ in {
       timeouts = let
         audio = command: "${pkgs.writeShellScript "audio" ''
           ${getExe pkgs.playerctl} status | ${getExe pkgs.gnugrep} Playing
-          if [ $? != 1 ]; then ${command}; fi
+          if [ $? == 1 ]; then ${command}; fi
         ''}"; # Check if audio is playing
         shader = getExe pkgs.hyprshade;
         dpms = "${getExe' config.programs.hyprland.package "hyprctl"} dispatch dpms";

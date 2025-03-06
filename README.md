@@ -524,7 +524,9 @@ You can navigate to the `README`s present in the various directories to know mor
 - GNOME Changes
   - Drop PaperWM for Tiling Shell
   - Drop Blackbox for Ghostty
+- Add Steam Support
 - Update Wine Packages
+- Improve Website
 
 ### v24.5
 

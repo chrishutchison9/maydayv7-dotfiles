@@ -59,7 +59,7 @@
         "$mod, N, exec, dunstctl history-pop"
         "$mod, T, exec, kitty"
         "$mod SHIFT, T, exec, pypr toggle term"
-        ''$mod, V, exec, sh -c "hyprctl clients | grep 'class: clipse' || pypr show clip"''
+        "$mod, V, exec, pypr show clip"
         "$mod, W, exec, firefox"
         "$mod, Return, exec, ${runOnce "resources"}"
         ", XF86Calculator, exec, qalculate-gtk"

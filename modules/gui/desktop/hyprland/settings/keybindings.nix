@@ -71,7 +71,7 @@
           "$mod, L, exec, loginctl lock-session"
 
           # Screenshot
-          ", Print, exec, grimblast --notify --freeze copysave area"
+          '', Print, exec, sh -c "pgrep slurp || grimblast --notify --freeze copysave area"''
           "CTRL, Print, exec, grimblast --notify --cursor copysave active"
           "SHIFT, Print, exec, grimblast --notify --cursor copysave output"
         ]
@@ -131,6 +131,12 @@
 
     ## Submaps
     extraConfig = ''
+      # Inhibit Keybinds
+      bind = $mod SHIFT, Escape, submap, Inhibit
+      submap = Inhibit
+      bind = $mod SHIFT, Escape, submap, reset
+      submap = reset
+
       # Window Resize
       bind = $mod, R, submap, Resize
       submap = Resize
@@ -140,6 +146,7 @@
       binde = , down, resizeactive, 0 10
       bindm = , mouse:272, resizewindow
       bind = , escape, submap, reset
+      bind = $mod, R, submap, reset
       submap = reset
 
       # Window Movement
@@ -157,6 +164,7 @@
       bind = SHIFT, up, moveactive, 0 -30
       bind = SHIFT, down, moveactive, 0 30
       bind = , escape, submap, reset
+      bind = $mod, M, submap, reset
       submap = reset
 
       # Window Minimization
