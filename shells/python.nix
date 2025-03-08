@@ -1,20 +1,20 @@
 pkgs: {
   name = "Python";
-  packages = with pkgs;
-  with python311Packages; [
-    python3
-    pip
+  packages = [
+    pkgs.python3
+    (pkgs.python3.withPackages (p:
+      with p; [
+        pip
+        autopep8
+        pylint
+        ipython
+        poetry-core
+        setuptools
 
-    autopep8
-    pylint
-
-    matplotlib
-    numpy
-    pandas
-
-    ipython
-    poetry-core
-    setuptools
+        matplotlib
+        numpy
+        pandas
+      ]))
   ];
 
   shellHook = ''

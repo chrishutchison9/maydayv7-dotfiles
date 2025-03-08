@@ -199,14 +199,17 @@ in {
             on-click = "pypr show bluetooth";
           };
 
-          network = {
+          network = let
+            tooltip = "Strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>";
+          in {
             format = "{ifname}";
             format-disconnected = "󰌙";
-            format-ethernet = "󰌘";
             format-wifi = "{icon}";
+            format-ethernet = "󰌘";
             format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
             format-linked = "󰈁 {ifname}";
-            tooltip-format = "Network: <big><b>{essid}</b></big>\nStrength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>";
+            tooltip-format-wifi = "Network: <big><b>{essid}</b></big>\n${tooltip}";
+            tooltip-format-ethernet = "Network: <big><b>Wired</b></big>\n${tooltip}";
             tooltip-format-disconnected = "󰌙 Disconnected";
             on-click = "pypr show network";
           };
@@ -349,7 +352,7 @@ in {
 
           idle_inhibitor = {
             format = "{icon}";
-            on-click = "hyprutils toggle idle";
+            on-click = "hyprutils toggle service swayidle";
             tooltip-format-activated = "Idle Inhibitor: On";
             tooltip-format-deactivated = "Idle Inhibitor: Off";
             format-icons = {

@@ -52,7 +52,7 @@
         "$mod SHIFT, slash, exec, ${toggle "kebihelp"} show -a"
         "$mod, slash, exec, ulauncher-toggle"
         "$mod, A, exec, nwg-drawer"
-        "$mod SHIFT, A, exec, hyprutils toggle panel"
+        "$mod SHIFT, A, exec, hyprutils toggle service waybar"
         "$mod SHIFT, C, exec, ${runOnce "hyprpicker"} -arf hex"
         "$mod, D, exec, pypr toggle displays"
         "$mod, F, exec, nemo"
@@ -123,6 +123,7 @@
           "immediate, class:^(.+exe)$"
 
           # Prompt Windows
+          "float, class:^(xdg-desktop-portal-gtk)"
           "dimaround, class:^(xdg-desktop-portal-gtk)"
         ]
         ++ (builtins.map (class: [

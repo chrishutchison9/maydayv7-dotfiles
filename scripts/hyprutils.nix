@@ -20,10 +20,9 @@
       toggle 
         fancy                        - Toggle Compositor Effects
         float                        - Toggle window floating in current workspace
-        idle                         - Toggle Idle Daemon service
         minimize                     - Show minimized windows
         monitor                      - Toggle specified Monitor
-        panel                        - Toggle top Panel
+        service ['name']             - Toggle SystemD Service
         shader                       - Toggle Compositor Shader
         touchpad                     - Toggle touchpad
   '';
@@ -56,8 +55,6 @@ in
       hyprshade
       hyprland
       custom.hyprshellevents
-      swayidle
-      waybar
 
       alsa-utils
       brightnessctl
@@ -272,16 +269,6 @@ in
             hyprctl notify 1 2000 0 "Toggled window floating on Workspace $WORKSPACE"
             hyprctl dispatch workspaceopt allfloat
           ;;
-          "idle")
-            if systemctl --user is-active swayidle
-            then
-              systemctl --user stop swayidle
-              notify idle -i "system-lock-screen" "Stopped Idle Daemon"
-            else
-              systemctl --user restart swayidle
-              notify idle -i "system-lock-screen" "Started Idle Daemon"
-            fi
-          ;;
           "minimize")
             if hyprctl workspaces | grep "${minimize}"
             then
@@ -298,12 +285,19 @@ in
               hyprctl keyword monitor "$3, preferred, auto, 1"
             fi
           ;;
-          "panel")
-            if systemctl --user is-active waybar
+          "service")
+            if [ -z "$3" ]
             then
-              systemctl --user stop waybar
+              error "Expected service name" "Try 'hyprutils help' for more information"
+            fi
+
+            if systemctl --user is-active "$3"
+            then
+              systemctl --user stop "$3"
+              notify service -i "system-config-services" "Stopped $3"
             else
-              systemctl --user start waybar
+              systemctl --user start "$3"
+              notify service -i "system-config-services" "Started $3"
             fi
           ;;
           "shader")

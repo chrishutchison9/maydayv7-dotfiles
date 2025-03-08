@@ -19,5 +19,10 @@
     "key": "ctrl+'",
     "command": "editor.action.addCommentLine",
     "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+shift+'",
+    "command": "editor.action.removeCommentLine",
+    "when": "editorTextFocus && !editorReadonly"
   }
 ]
