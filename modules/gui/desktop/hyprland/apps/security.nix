@@ -36,8 +36,8 @@ in {
 
     # Idle Daemon
     services.swayidle = let
-      pause = "${getExe pkgs.playerctl} pause -a";
-      lock = pre: flag: "sh -c 'if ! ${getExe' pkgs.procps "pgrep"} -x swaylock; then ${pre}; ${getExe locker} -f ${flag}; fi'";
+      pause = "${getExe pkgs.playerctl} pause -a;";
+      lock = pre: flag: "sh -c 'if ! ${getExe' pkgs.procps "pgrep"} -x swaylock; then ${pre} ${getExe locker} -f ${flag}; fi'";
     in {
       enable = true;
       extraArgs = ["-w"];

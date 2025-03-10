@@ -527,6 +527,7 @@ You can navigate to the `README`s present in the various directories to know mor
 - Add Steam Support
 - Update Wine Packages
 - Improve Website
+- Fix Python Shell
 
 ### v24.5
 
