@@ -81,9 +81,6 @@
       # Application Drawer
       drawer = readFile ./hyprland/drawer.css;
 
-      # Greeter Configuration
-      greeter = readFile ./hyprland/greeter.conf;
-
       # Minimize Workspace
       minimize = "";
 

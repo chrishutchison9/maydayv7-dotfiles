@@ -23,10 +23,10 @@
 #     Author  -> V 7 <maydayv7@gmail.com>     #
 #     License -> MIT                          #
 #     URL     -> github:maydayv7/dotfiles     #
-#     Version -> v25                          #
+#     Version -> NEXT                         #
 #   ---------------------------------------   #
 #           Welcome to Ground Zero!           #
-#       The Very Heart of my 'dotfiles'       #
+#       The very heart of my 'dotfiles'       #
 ###############################################
 {
   description = ''
@@ -137,6 +137,41 @@
         systems.follows = "systems";
         flake-utils.follows = "utils";
         home-manager.follows = "home-manager";
+      };
+    };
+
+    # Hyprland
+    hyprland = {
+      url = "github:hyprwm/Hyprland?ref=v0.47.1";
+      inputs = {
+        nixpkgs.follows = "stable";
+        systems.follows = "systems";
+      };
+    };
+
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    hyprdark = {
+      url = "github:micha4w/Hypr-DarkWindow?ref=v0.47.1";
+      inputs = {
+        hyprland.follows = "hyprland";
+        nix-filter.follows = "filters";
+      };
+    };
+
+    hyprsplit = {
+      url = "github:shezdy/hyprsplit?ref=v0.47.1";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    hyprtasking = {
+      url = "github:raybbian/hyprtasking";
+      inputs = {
+        hyprland.follows = "hyprland";
+        systems.follows = "systems";
       };
     };
 

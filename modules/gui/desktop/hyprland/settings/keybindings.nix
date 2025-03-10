@@ -11,8 +11,8 @@
       bind =
         [
           # Compositor Commands
-          "$mod, Q, killactive,"
           "ALT, F4, killactive,"
+          "$mod SHIFT, Q, forcekillactive,"
           "$mod, P, pin"
           "$mod, E, fullscreen, 1"
           "$mod SHIFT, E, fullscreen,"
@@ -26,6 +26,12 @@
           "$mod, down, movefocus, d"
           "ALT, A, focusurgentorlast"
           "ALT, A, alterzorder, top"
+
+          # Window Switcher
+          "ALT, Tab, cyclenext,"
+          "ALT, Tab, bringactivetotop,"
+          "ALT SHIFT, Tab, cyclenext, prev"
+          "ALT SHIFT, Tab, bringactivetotop,"
 
           # Window Swap
           "$mod SHIFT, left, swapwindow, l"

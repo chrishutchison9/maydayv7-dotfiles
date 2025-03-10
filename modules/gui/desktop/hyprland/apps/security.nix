@@ -71,8 +71,8 @@ in {
           resumeCommand = "${dpms} on";
         }
         {
-          timeout = 500; # Suspend then Hibernate device
-          command = audio "${dpms} on && ${lock "" ""} && ${getExe' pkgs.systemd "systemctl"} suspend-then-hibernate";
+          timeout = 500; # Suspend device
+          command = audio "${dpms} on && ${lock "" ""} && ${getExe' pkgs.systemd "systemctl"} suspend";
         }
       ];
     };

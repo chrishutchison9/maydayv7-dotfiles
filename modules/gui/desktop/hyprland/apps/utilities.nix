@@ -31,7 +31,7 @@ in {
     hyprkeys
     hyprshade
     pavucontrol
-    pyprland
+    unstable.pyprland
     slurp
     wev
     wl-clipboard

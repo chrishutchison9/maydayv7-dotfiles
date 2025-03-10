@@ -3,11 +3,10 @@
   lib,
   util,
   pkgs,
-  files,
   ...
 } @ args: let
   inherit (config.gui) desktop;
-  inherit (lib) getExe mkForce mkIf mkMerge replaceStrings;
+  inherit (lib) mkForce mkIf mkMerge;
   theme = import ./theme.nix pkgs;
 in {
   ## Hyprland Configuration ##
@@ -18,7 +17,7 @@ in {
         (util.map.modules.list ./apps))
       ++ [
         ## Environment Setup
-        rec {
+        {
           gui = {
             xorg.enable = false;
             wayland.enable = true;
@@ -34,13 +33,15 @@ in {
               enable = true;
               withUWSM = true;
               xwayland.enable = true;
-              package = pkgs.hyprland;
+              package = pkgs.hyprworld.hyprland;
+              portalPackage = pkgs.hyprworld.xdg-desktop-portal-hyprland;
             };
 
             # Login
             regreet = {
               enable = true;
               package = pkgs.greetd.regreet;
+              cageArgs = ["-s" "-m" "last"];
               settings.commands = {
                 reboot = ["systemctl" "reboot"];
                 poweroff = ["systemctl" "poweroff"];
@@ -48,23 +49,11 @@ in {
             };
           };
 
-          services = {
-            # Session
-            xserver.desktopManager.runXdgAutostartIfNone = true;
-
-            # Greeter
-            greetd.settings.default_session.command = with programs;
-              mkForce "${getExe hyprland.package} --config ${
-                pkgs.writeText "greeter.conf"
-                (replaceStrings ["@greeter"] [(getExe regreet.package)]
-                  (util.build.theme {
-                    inherit (config.lib.stylix) colors;
-                    file = files.hyprland.greeter;
-                  }))
-              } &> /dev/null";
-          };
+          # Session
+          services.xserver.desktopManager.runXdgAutostartIfNone = true;
         }
         {
+          # Greeter
           environment.persist.directories = ["/var/cache/regreet"];
           stylix.targets.regreet.enable = true;
           programs.regreet = {

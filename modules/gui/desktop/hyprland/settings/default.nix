@@ -4,7 +4,7 @@
   util,
   ...
 }: let
-  inherit (lib) mkForce mkIf;
+  inherit (lib) mkForce mkIf optionals;
   inherit (sys.gui) display fancy;
   inherit (sys.lib.stylix.colors) base03 base0A base0D;
 in {
@@ -21,10 +21,13 @@ in {
     '';
 
     settings = {
-      debug = {
-        disable_logs = false;
-        error_position = 1;
-      };
+      # GPU Support
+      env =
+        ["AQ_DRM_DEVICES, /dev/dri/card1:/dev/dri/card0"]
+        ++ optionals (builtins.elem "nvidia" sys.services.xserver.videoDrivers) [
+          "LIBVA_DRIVER_NAME, nvidia"
+          "__GLX_VENDOR_LIBRARY_NAME, nvidia"
+        ];
 
       # Display
       monitor = ", preferred, auto, 1";
@@ -83,11 +86,12 @@ in {
       };
 
       misc = {
-        enable_swallow = true; # Window Swallowing
-        focus_on_activate = true;
-
         disable_autoreload = false; # Enable configuration Polling
+        enable_swallow = true; # Window Swallowing
+
+        focus_on_activate = true;
         initial_workspace_tracking = 1;
+        middle_click_paste = false;
         new_window_takes_over_fullscreen = 2;
 
         # Interfere with wallpaper daemons
@@ -103,27 +107,24 @@ in {
         explicit_sync = 2;
       };
 
-      general =
-        {
-          allow_tearing = !fancy;
-          resize_on_border = true;
+      general = {
+        allow_tearing = !fancy;
+        resize_on_border = true;
 
-          # Floating Layout
-          snap = {
-            enabled = true;
-            window_gap = 15;
-            monitor_gap = 10;
-            border_overlap = true;
-          };
-        }
-        //
-        # Visuals
-        {
-          gaps_in = 5;
-          gaps_out = 5;
-          border_size = 2;
-          "col.active_border" = mkForce "rgb(${base0D}) rgb(${base0A}) 90deg";
+        # Floating Layout
+        snap = {
+          enabled = true;
+          window_gap = 15;
+          monitor_gap = 10;
+          border_overlap = true;
         };
+
+        # Visuals
+        gaps_in = 5;
+        gaps_out = 5;
+        border_size = 2;
+        "col.active_border" = mkForce "rgb(${base0D}) rgb(${base0A}) 90deg";
+      };
 
       group = let
         active = "rgb(${base0A}) rgb(${base0D}) 90deg";
@@ -197,6 +198,16 @@ in {
           contrast = 1.0;
           passes = 2;
         };
+      };
+
+      debug = {
+        disable_logs = false;
+        error_position = 1;
+      };
+
+      ecosystem = {
+        no_update_news = true;
+        no_donation_nag = true;
       };
     };
   };

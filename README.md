@@ -511,6 +511,10 @@ You can navigate to the `README`s present in the various directories to know mor
 <details>
 <summary><b>Changelog</b></summary>
 
+### NEXT
+
+- Update Hyprland to v0.47.1
+
 ### v25
 
 - Upgrade to NixOS v24.11 (Vicuna)!
@@ -810,6 +814,11 @@ You can navigate to the `README`s present in the various directories to know mor
 - ULauncher Plugins have to be manually updated
 - Logseq Plugins have to be manually installed
 - GNOME [Pano](https://github.com/oae/gnome-shell-pano) has to be manually updated until upstream stabilises
+- Cannot automatically hibernate on NVIDIA due to upstream [issue](https://forums.developer.nvidia.com/t/systemds-suspend-then-hibernate-not-working-in-nvidia-optimus-laptop/213690)
+
+### To Do
+
+- VFIO Support via GPU Hotplug instead of restart
 
 </details>
 

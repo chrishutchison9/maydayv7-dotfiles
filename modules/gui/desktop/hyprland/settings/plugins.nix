@@ -6,60 +6,33 @@
 }: {
   ## Plugin Settings
   wayland.windowManager.hyprland = {
-    plugins = with pkgs.hyprlandPlugins;
-      [hyprexpo hyprspace hyprsplit]
-      ++ (with pkgs.custom; [
-        hycov
-        hyprdark
-      ]);
+    plugins = with pkgs.hyprworld; [
+      Hypr-DarkWindow
+      hyprsplit
+      hyprtasking
+    ];
 
     settings = {
-      plugin = with sys.lib.stylix.colors; let
-        gaps =
-          builtins.toString
-          config.wayland.windowManager.hyprland.settings.general.gaps_in;
+      plugin = let
+        inherit (config.wayland.windowManager.hyprland.settings) general;
       in {
-        # Expose
-        hyprexpo = {
-          columns = 3;
-          gap_size = gaps;
-          bg_col = "rgb(${base00})";
-          workspace_method = "first 1";
-          enable_gesture = true;
-          gesture_positive = false;
-          gesture_fingers = 4;
-        };
+        # Overview
+        hyprtasking = {
+          layout = "grid";
+          inherit (general) border_size;
+          gap_size = general.gaps_in;
+          exit_behavior = "interacted";
+          bg_color = "0x${sys.lib.stylix.colors.base00-hex}";
+          gestures = {
+            enabled = true;
+            open_fingers = 3;
+            open_positive = true;
+          };
 
-        # Application Overview
-        hycov = {
-          enable_hotarea = 0;
-          hotarea_pos = 3;
-          only_active_workspace = 1;
-          overview_gappi = 24;
-          overview_gappo = 60;
-          enable_gesture = 0;
-          enable_alt_release_exit = 1;
-          alt_replace_key = "Alt_L";
-          alt_toggle_auto_next = 1;
-          enable_click_action = 1;
-        };
-
-        # Workspace Overview
-        overview = {
-          autoDrag = true;
-          dragAlpha = 0.4;
-          exitOnClick = true;
-          centerAligned = true;
-          hideTopLayers = true;
-          hideOverlayLayers = false;
-          showNewWorkspace = false;
-          showEmptyWorkspace = true;
-          overrideGaps = true;
-          gapsIn = gaps;
-          gapsOut = gaps;
-          panelBorderWidth = 0;
-          panelBorderColor = "rgb(${base0A})";
-          workspaceActiveBorder = "rgb(${base0D})";
+          grid = {
+            rows = 3;
+            cols = 3;
+          };
         };
 
         # Split Monitor Workspaces
@@ -67,24 +40,14 @@
       };
 
       bind = [
-        # Expose
-        "$mod, grave, hyprexpo:expo, toggle"
+        # Overview
+        "$mod, Tab, hyprtasking:toggle, cursor"
+        "$mod SHIFT, Tab, hyprtasking:toggle, all"
+        "$mod, Q, hyprtasking:killhovered"
 
         # Compositor Shaders
         "$mod, S, exec, hyprutils toggle shader"
         "$mod SHIFT, S, invertactivewindow"
-
-        # Application Overview
-        "ALT, Tab, hycov:toggleoverview"
-        "ALT SHIFT, Tab, hycov:toggleoverview, forceall"
-        "ALT, left, hycov:movefocus, l"
-        "ALT, right, hycov:movefocus, r"
-        "ALT, up, hycov:movefocus, u"
-        "ALT, down, hycov:movefocus, d"
-
-        # Workspace Overview
-        "$mod, Tab, overview:toggle"
-        "$mod SHIFT, Tab, overview:toggle, all"
       ];
     };
   };

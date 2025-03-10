@@ -133,6 +133,7 @@
           ]) [
             "pinentry-"
             "gay.vaskel.Soteria"
+            "gcr-prompter"
           ])
         ++ (builtins.map (title: [
             # Dialogs
