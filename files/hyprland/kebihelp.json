@@ -143,16 +143,16 @@
         "_hidden": false,
         "keybindings": [
           {
-            "value": "$mod Tab",
-            "label": "Show workspace overview for current monitor"
-          },
-          {
-            "value": "$mod SHIFT Tab",
-            "label": "Show workspace overview for all monitors"
+            "value": "$mod ` (or 4F Swipe Up)",
+            "label": "Show workspace overview"
           },
           {
             "value": "ALT [SHIFT] Tab",
-            "label": "Cycle [backwards] through open windows"
+            "label": "Cycle [backwards] through open windows on current workspace"
+          },
+          {
+            "value": "$mod [SHIFT] Tab",
+            "label": "Cycle [backwards] through open windows on all workspaces"
           },
           {
             "value": "ALT [SHIFT] `",
@@ -172,7 +172,7 @@
             "label": "Move window to workspace 'NUM' {1 to 9}"
           },
           {
-            "value": "$mod , or .",
+            "value": "$mod , or . (or 3F Swipe Left/Right)",
             "label": "Move to previous/next non-empty workspace"
           },
           {

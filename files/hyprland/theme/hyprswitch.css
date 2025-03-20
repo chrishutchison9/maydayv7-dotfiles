@@ -1,0 +1,39 @@
+:root {
+  --bg-color: rgba(0, 0, 0, 0.5);
+  --bg-color-hover: rgba(255, 255, 255, 0.2);
+  --border-radius: 10px;
+  --border-color: #@base04;
+  --border-color-active: #@base05;
+}
+
+.monitor {
+  background: var(--bg-color);
+  border: var(--border-size) solid var(--border-color-active);
+}
+
+.index {
+  color: #@base01;
+  background: var(--border-color-active);
+  border: var(--border-size) solid var(--border-color);
+}
+
+.workspace {
+  background: var(--bg-color);
+}
+
+.client {
+  background: transparent;
+}
+
+.client-image {
+  background: transparent;
+}
+
+.client:hover {
+  background-color: var(--bg-color-hover);
+}
+
+.client_active {
+  background: var(--bg-color-hover);
+  border: var(--border-size) solid var(--border-color-active);
+}

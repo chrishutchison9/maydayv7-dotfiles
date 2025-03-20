@@ -66,7 +66,11 @@ in {
             "hyprland/window"
           ];
 
-          modules-center = ["wlr/taskbar"];
+          modules-center = [
+            "wlr/taskbar"
+            "custom/minimize"
+          ];
+
           modules-right = [
             "group/menu"
             "bluetooth"
@@ -83,7 +87,6 @@ in {
             format = "";
             tooltip = false;
             on-click = "nwg-drawer";
-            on-click-right = "hyprctl dispatch hycov:toggleoverview";
           };
 
           "group/users" = {
@@ -109,24 +112,23 @@ in {
           "hyprland/workspaces" = {
             all-outputs = true;
             show-special = true;
-            format = "<small>{name}</small> {icon}";
+            format = "<small>{name}</small>{icon}";
             on-scroll-up = "hyprctl dispatch workspace m+1";
             on-scroll-down = "hyprctl dispatch workspace m-1";
             persistent-workspaces."${config.gui.display}" = 3;
-            ignore-workspaces = ["special:scratch_.*"];
+            ignore-workspaces = ["special:scratch_.*" "special:minimize"];
             format-icons = {
-              default = "";
-              special = "";
-              "1" = "";
-              "2" = "";
-              "3" = "";
-              "4" = "";
-              "5" = "";
-              "6" = "";
-              "7" = "";
-              "8" = "";
-              "9" = "";
-              OVERVIEW = "";
+              default = "";
+              special = " ";
+              "1" = " ";
+              "2" = " ";
+              "3" = " ";
+              "4" = " ";
+              "5" = " ";
+              "6" = " ";
+              "7" = " ";
+              "8" = " ";
+              "9" = " ";
             };
           };
 
@@ -159,6 +161,11 @@ in {
               kitty-clip = "diodon";
               kitty-dropterm = "yakuake";
             };
+          };
+
+          "custom/minimize" = {
+            format = "";
+            on-click = "hyprutils toggle minimize";
           };
 
           "group/menu" = {

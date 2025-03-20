@@ -1,8 +1,4 @@
-{
-  sys,
-  files,
-  ...
-}: {
+{sys, ...}: {
   ## Compositor Binds ##
   wayland.windowManager.hyprland = {
     ## Keybindings
@@ -12,6 +8,7 @@
         [
           # Compositor Commands
           "ALT, F4, killactive,"
+          "$mod, Q, killactive,"
           "$mod SHIFT, Q, forcekillactive,"
           "$mod, P, pin"
           "$mod, E, fullscreen, 1"
@@ -26,12 +23,6 @@
           "$mod, down, movefocus, d"
           "ALT, A, focusurgentorlast"
           "ALT, A, alterzorder, top"
-
-          # Window Switcher
-          "ALT, Tab, cyclenext,"
-          "ALT, Tab, bringactivetotop,"
-          "ALT SHIFT, Tab, cyclenext, prev"
-          "ALT SHIFT, Tab, bringactivetotop,"
 
           # Window Swap
           "$mod SHIFT, left, swapwindow, l"
@@ -50,7 +41,7 @@
           "$mod, C, centerwindow"
 
           # Window Minimization
-          "ALT, Q, movetoworkspacesilent, special:${files.hyprland.minimize}"
+          "ALT, Q, movetoworkspacesilent, special:minimize"
           "ALT SHIFT, Q, exec, hyprutils toggle minimize"
 
           # Cycle Workspaces
@@ -58,8 +49,8 @@
           "$mod, period, split:workspace, m+1"
 
           # Special Workspace
-          "$mod, 0, togglespecialworkspace, "
-          "$mod SHIFT, 0, exec, pypr toggle_special "
+          "$mod, 0, togglespecialworkspace, Stash"
+          "$mod SHIFT, 0, exec, pypr toggle_special Stash"
 
           # Move Window to Workspace
           "$mod SHIFT, comma, split:movetoworkspace, r-1"
@@ -183,7 +174,7 @@
       bind = , Return, submap, reset
       bind = , mouse:272, movetoworkspace, +0
       bind = , mouse:272, submap, reset
-      bind = , escape, togglespecialworkspace, ${files.hyprland.minimize}
+      bind = , escape, togglespecialworkspace, minimize
       bind = , escape, submap, reset
       submap = reset
     '';

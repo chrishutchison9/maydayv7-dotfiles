@@ -67,32 +67,26 @@
     gtk.bookmarks = readFile ./gtk/bookmarks;
 
     # Hyprland WM
-    hyprland = {
-      # Keybinds Viewer
-      kebihelp = readFile ./hyprland/kebihelp.json;
+    hyprland =
+      {
+        # Keybinds Viewer
+        kebihelp = readFile ./hyprland/kebihelp.json;
 
-      # Clipboard Manager
-      clipse = map.files {
-        directory = ./hyprland/clipse;
+        # Clipboard Manager
+        clipse = map.files {
+          directory = ./hyprland/clipse;
+          apply = readFile;
+          extension = ".json";
+        };
+
+        # Pyprland
+        pypr = readFile ./hyprland/pypr.toml;
+      }
+      // map.files {
+        directory = ./hyprland/theme;
         apply = readFile;
-        extension = ".json";
+        extension = ".css";
       };
-
-      # Application Drawer
-      drawer = readFile ./hyprland/drawer.css;
-
-      # Minimize Workspace
-      minimize = "";
-
-      # Pyprland
-      pypr = readFile ./hyprland/pypr.toml;
-
-      # Waybar
-      waybar = readFile ./hyprland/waybar.css;
-
-      # WLogout
-      wlogout = readFile ./hyprland/wlogout.css;
-    };
 
     # Pictures
     images.profile = ./images/Profile.png;

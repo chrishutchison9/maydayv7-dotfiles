@@ -27,11 +27,10 @@
         touchpad                     - Toggle touchpad
   '';
 
-  minimize = "special:${files.hyprland.minimize}";
   daemon = builtins.toFile "daemon.sh" ''
     event_activespecial() {
       case "$WORKSPACENAME" in
-      ${minimize}*)
+      special:minimize*)
         hyprctl dispatch submap reset
         hyprctl dispatch submap Minimize
       ;;
@@ -270,9 +269,9 @@ in
             hyprctl dispatch workspaceopt allfloat
           ;;
           "minimize")
-            if hyprctl workspaces | grep "${minimize}"
+            if hyprctl workspaces | grep "special:minimize"
             then
-              hyprctl dispatch workspace ${minimize}
+              hyprctl dispatch workspace special:minimize
             else
               hyprctl notify 1 2000 0 "No minimized windows present"
             fi

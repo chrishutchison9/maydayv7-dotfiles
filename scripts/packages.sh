@@ -28,12 +28,12 @@ update() {
     rev="$(cat "${t1}" | jq -r .rev)"
     sha256="$(cat "${t1}" | jq -r .sha256)"
     repo="$(cat "${t1}" | jq -r .repo)"
-    branch="$(cat "${t1}" | jq -r .branch)"             # Optional
-    release="$(cat "${t1}" | jq -r .release)"           # Optional
-    cargoHash="$(cat "${t1}" | jq -r .cargoHash)"   # Optional
-    vendorHash="$(cat "${t1}" | jq -r .vendorHash)" # Optional
-    skip="$(cat "${t1}" | jq -r .skip)"                 # Optional
-    upattr="$(cat "${t1}" | jq -r .upattr)";            # Optional
+    branch="$(cat "${t1}" | jq -r .branch)"          # Optional
+    release="$(cat "${t1}" | jq -r .release)"        # Optional
+    cargoHash="$(cat "${t1}" | jq -r .cargoHash)"    # Optional
+    vendorHash="$(cat "${t1}" | jq -r .vendorHash)"  # Optional
+    skip="$(cat "${t1}" | jq -r .skip)"              # Optional
+    upattr="$(cat "${t1}" | jq -r .upattr)";         # Optional
     if [[ "${upattr}" == "null" ]]
     then
       upattr="${pkgname}"

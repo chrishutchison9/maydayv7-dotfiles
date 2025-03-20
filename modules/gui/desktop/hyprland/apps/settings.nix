@@ -6,7 +6,11 @@
   files,
   theme,
   ...
-}: {
+}: let
+  inherit (lib) flatten;
+  inherit (builtins) map toFile;
+  inherit (util) build;
+in {
   ## App Environment
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 
@@ -44,33 +48,14 @@
         "SLURP_ARGS, -dc ${config.lib.stylix.colors.base0D}"
       ];
 
-      ## Shortcuts
-      bind = let
-        toggle = app: "pkill ${app} || uwsm app -u ${app}.scope -- ${app}";
-        runOnce = app: "pgrep ${app} || uwsm app -u ${app}.scope -- ${app}";
-      in [
-        "$mod SHIFT, slash, exec, ${toggle "kebihelp"} show -a"
-        "$mod, slash, exec, ulauncher-toggle"
-        "$mod, A, exec, nwg-drawer"
-        "$mod SHIFT, A, exec, hyprutils toggle service waybar"
-        "$mod SHIFT, C, exec, ${runOnce "hyprpicker"} -arf hex"
-        "$mod, D, exec, pypr toggle displays"
-        "$mod, F, exec, nemo"
-        "$mod, N, exec, dunstctl history-pop"
-        "$mod, T, exec, kitty"
-        "$mod SHIFT, T, exec, pypr toggle term"
-        "$mod, V, exec, pypr show clip"
-        "$mod, W, exec, firefox"
-        "$mod, Return, exec, ${runOnce "resources"}"
-        ", XF86Calculator, exec, qalculate-gtk"
-        "$mod, Escape, exec, ${toggle "wlogout"} -p layer-shell"
-      ];
-
       ## Autostart
       exec-once =
         ["uwsm finalize"]
-        ++ (builtins.map (app: "uwsm app -t service -u ${util.build.until " " app}.service -- " + app) [
+        ++ (map (app: "uwsm app -t service -u ${build.until " " app}.service -- " + app) [
           "hyprutils daemon"
+
+          # Pyprland
+          "pypr"
 
           # Application Drawer
           "nwg-drawer -r"
@@ -81,19 +66,55 @@
           # Desktop Icons
           "dicons"
 
-          # Pyprland
-          "pypr"
+          # Window Switcher
+          "hyprswitch init --workspaces-per-row 3 --custom-css ${toFile "style.css" (build.theme {
+            inherit (config.lib.stylix) colors;
+            file = files.hyprland.hyprswitch;
+          })} &"
         ]);
+
+      ## Shortcuts
+      bind = let
+        toggle = app: "pkill ${app} || uwsm app -u ${app}.scope -- ${app}";
+        runOnce = app: "pgrep ${app} || uwsm app -u ${app}.scope -- ${app}";
+      in [
+        # Applications
+        "$mod, F, exec, nemo"
+        "$mod, T, exec, kitty"
+        "$mod, W, exec, firefox"
+        "$mod, Return, exec, ${runOnce "resources"}"
+        ", XF86Calculator, exec, qalculate-gtk"
+
+        # Utilities
+        "$mod, A, exec, nwg-drawer"
+        "$mod, slash, exec, ulauncher-toggle"
+        "$mod SHIFT, slash, exec, ${toggle "kebihelp"} show -a"
+        "$mod SHIFT, C, exec, ${runOnce "hyprpicker"} -arf hex"
+        "$mod, D, exec, pypr toggle displays"
+        "$mod, Escape, exec, ${toggle "wlogout"} -p layer-shell"
+
+        # Tools
+        "$mod SHIFT, A, exec, hyprutils toggle service waybar"
+        "$mod, N, exec, dunstctl history-pop"
+        "$mod SHIFT, T, exec, pypr toggle term"
+        "$mod, V, exec, pypr show clip"
+
+        # Switcher
+        "ALT, Tab, exec, hyprswitch simple -w -m"
+        "ALT SHIFT, Tab, exec, hyprswitch simple -w -m -r"
+        "$mod, Tab, exec, hyprswitch gui --mod-key super --key tab --close mod-key-release --reverse-key=mod=shift --max-switch-offset 9 -m && hyprswitch dispatch"
+      ];
 
       ## Layer Rules
       layerrule = [
+        "blur, ^(hyprswitch)$"
         "blur, ^(logout_dialog)$"
         "blur, ^(nwg-drawer)$"
         "blur, ^(waybar)$"
       ];
 
       ## Window Rules
-      windowrulev2 = lib.flatten ([
+      windowrulev2 = flatten ([
           "pin, class:^(gnome-control-center)$"
 
           # Clipboard Manager
@@ -126,7 +147,7 @@
           "float, class:^(xdg-desktop-portal-gtk)"
           "dimaround, class:^(xdg-desktop-portal-gtk)"
         ]
-        ++ (builtins.map (class: [
+        ++ (map (class: [
             "pin, class:^(${class})"
             "dimaround, class:^(${class})"
             "stayfocused, class:^(${class})"
@@ -135,7 +156,7 @@
             "gay.vaskel.Soteria"
             "gcr-prompter"
           ])
-        ++ (builtins.map (title: [
+        ++ (map (title: [
             # Dialogs
             "float, title:^(${title})(.*)$"
           ]) [
