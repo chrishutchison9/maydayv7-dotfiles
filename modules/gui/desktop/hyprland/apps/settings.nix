@@ -64,7 +64,7 @@ in {
           "clipse -listen"
 
           # Desktop Icons
-          "dicons"
+          "pcmanfm-qt --desktop"
 
           # Window Switcher
           "hyprswitch init --workspaces-per-row 3 --custom-css ${toFile "style.css" (build.theme {

@@ -69,8 +69,8 @@
     # Hyprland WM
     hyprland =
       {
-        # Keybinds Viewer
-        kebihelp = readFile ./hyprland/kebihelp.json;
+        # Pyprland
+        pypr = readFile ./hyprland/pypr.toml;
 
         # Clipboard Manager
         clipse = map.files {
@@ -79,8 +79,11 @@
           extension = ".json";
         };
 
-        # Pyprland
-        pypr = readFile ./hyprland/pypr.toml;
+        # Keybinds Viewer
+        kebihelp = readFile ./hyprland/kebihelp.json;
+
+        # PcmanFM File Manager
+        pcmanfm = readFile ./hyprland/pcmanfm.conf;
       }
       // map.files {
         directory = ./hyprland/theme;
@@ -89,7 +92,10 @@
       };
 
     # Pictures
-    images.profile = ./images/Profile.png;
+    images = {
+      profile = ./images/Profile.png;
+      transparent = ./images/transparent.png;
+    };
 
     # Logseq Notes
     logseq = {

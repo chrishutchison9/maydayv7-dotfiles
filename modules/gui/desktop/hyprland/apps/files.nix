@@ -6,8 +6,9 @@
   files,
   ...
 }: let
-  inherit (lib) hm getExe getExe';
-  inherit (config.gui.launcher) terminal;
+  inherit (lib) hm getExe getExe' replaceStrings;
+  inherit (config.gui) icons launcher;
+  inherit (launcher) terminal;
   nemo = pkgs.nemo-with-extensions;
 in {
   ## File Manager Configuration
@@ -18,10 +19,16 @@ in {
       cinnamon-desktop
       bulky
       file-roller
+      lxqt.pcmanfm-qt
     ]);
 
   user = {
-    persist.directories = [".config/nemo" ".local/share/nemo"];
+    persist.directories = [
+      ".config/nemo"
+      ".local/share/nemo"
+      ".config/pcmanfm-qt"
+    ];
+
     homeConfig = {
       xdg.mimeApps.defaultApplications = util.build.mime files.xdg.mime {
         directory = ["nemo.desktop"];
@@ -64,17 +71,37 @@ in {
           unset DCONF_DBUS_RUN_SESSION
         '';
 
-        # Open in Terminal
-        file.".local/share/nemo/actions/terminal.nemo_action".text = ''
-          [Nemo Action]
-          Name=Open in Terminal
-          Comment=Opens ${terminal} in the selected folder
-          Exec=${terminal} --working-directory=%F
-          Icon-Name=${terminal}
-          Selection=any
-          Extensions=dir;
-          EscapeSpaces=true
-        '';
+        file = {
+          # Open in Terminal
+          ".local/share/nemo/actions/terminal.nemo_action".text = ''
+            [Nemo Action]
+            Name=Open in Terminal
+            Comment=Opens ${terminal} in the selected folder
+            Exec=${terminal} --working-directory=%F
+            Icon-Name=${terminal}
+            Selection=any
+            Extensions=dir;
+            EscapeSpaces=true
+          '';
+
+          # Desktop Icons
+          ".config/pcmanfm-qt/default/settings.conf".text =
+            replaceStrings [
+              "@icon"
+              "@font"
+              "@terminal"
+              "@wallpaper"
+              "@archiver"
+            ]
+            [
+              icons.name
+              config.stylix.fonts.sansSerif.name
+              terminal
+              (builtins.toString files.images.transparent)
+              "file-roller"
+            ]
+            files.hyprland.pcmanfm;
+        };
       };
     };
   };

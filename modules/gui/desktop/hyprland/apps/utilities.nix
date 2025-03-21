@@ -11,7 +11,6 @@ in {
   environment.systemPackages = with pkgs; [
     # Apps
     clipse
-    custom.desktop-icons
     custom.kebihelp
     font-manager
     gnome-clocks

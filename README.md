@@ -514,6 +514,8 @@ You can navigate to the `README`s present in the various directories to know mor
 ### NEXT
 
 - Update Hyprland to v0.47.1
+  - Use `hyprswitch` to switch between windows
+  - Use `pcmanfm-qt` to render desktop icons
 
 ### v25
 
