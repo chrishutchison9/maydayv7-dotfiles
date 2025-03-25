@@ -1,4 +1,4 @@
-{sys, ...}: {
+_: {
   ## Compositor Binds ##
   wayland.windowManager.hyprland = {
     ## Keybindings
@@ -10,11 +10,13 @@
           "ALT, F4, killactive,"
           "$mod, Q, killactive,"
           "$mod SHIFT, Q, forcekillactive,"
-          "$mod, P, pin"
-          "$mod, E, fullscreen, 1"
           "$mod SHIFT, E, fullscreen,"
+          "$mod, C, centerwindow"
+          "$mod, C, movecursortocorner, 2"
+          "$mod, E, fullscreen, 1"
+          "$mod, P, pin"
           "$mod, Space, togglesplit"
-          "$mod SHIFT, D, exec, hyprutils toggle monitor ${sys.gui.display}"
+          #!# "$mod SHIFT, S, toggleswallow"
 
           # Window Focus
           "$mod, left, movefocus, l"
@@ -38,15 +40,12 @@
           # Floating Mode
           "$mod, semicolon, togglefloating,"
           "$mod, apostrophe, exec, hyprutils toggle float"
-          "$mod, C, centerwindow"
-
-          # Window Minimization
-          "ALT, Q, movetoworkspacesilent, special:minimize"
-          "ALT SHIFT, Q, exec, hyprutils toggle minimize"
 
           # Cycle Workspaces
           "$mod, comma, split:workspace, m-1"
           "$mod, period, split:workspace, m+1"
+          "$mod CTRL, comma, split:workspace, -1"
+          "$mod CTRL, period, split:workspace, +1"
 
           # Special Workspace
           "$mod, 0, togglespecialworkspace, Stash"
@@ -66,6 +65,10 @@
 
           # Screen Lock
           "$mod, L, exec, loginctl lock-session"
+
+          # Window Minimization
+          "ALT, Q, movetoworkspacesilent, special:minimize"
+          "ALT SHIFT, Q, exec, hyprutils toggle minimize"
 
           # Screenshot
           '', Print, exec, sh -c "pgrep slurp || grimblast --notify --freeze copysave area"''
@@ -160,6 +163,8 @@
       bind = SHIFT, right, moveactive, 30 0
       bind = SHIFT, up, moveactive, 0 -30
       bind = SHIFT, down, moveactive, 0 30
+      bind = , comma, split:movetoworkspace, r-1
+      bind = , period, split:movetoworkspace, r+1
       bind = , escape, submap, reset
       bind = $mod, M, submap, reset
       submap = reset

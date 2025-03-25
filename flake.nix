@@ -23,7 +23,7 @@
 #     Author  -> V 7 <maydayv7@gmail.com>     #
 #     License -> MIT                          #
 #     URL     -> github:maydayv7/dotfiles     #
-#     Version -> NEXT                         #
+#     Version -> v25.5                        #
 #   ---------------------------------------   #
 #           Welcome to Ground Zero!           #
 #       The very heart of my 'dotfiles'       #
@@ -47,7 +47,7 @@
     # Proprietary Software
     proprietary = {
       url = "github:maydayv7/proprietary";
-      inputs.nixpkgs.follows = "stable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Packaged Games
@@ -67,7 +67,7 @@
     # Flakes Framework
     framework = {
       url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "stable";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
     # Flake Utility Functions
@@ -82,14 +82,14 @@
     # Syntax Formatter
     formatter = {
       url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "stable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     ## Feature Modules
     # User Home Manager
     home-manager = {
       url = "github:nix-community/home-manager?ref=release-24.11";
-      inputs.nixpkgs.follows = "stable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Hardware Support
@@ -97,11 +97,10 @@
 
     # Secure Boot
     boot = {
-      url = "github:nix-community/lanzaboote/v0.4.1";
+      url = "github:nix-community/lanzaboote/v0.4.2";
       inputs = {
-        nixpkgs.follows = "stable";
+        nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "framework";
-        flake-utils.follows = "utils";
       };
     };
 
@@ -118,7 +117,7 @@
     generators = {
       url = "github:nix-community/nixos-generators";
       inputs = {
-        nixlib.follows = "stable";
+        nixlib.follows = "nixpkgs";
         nixpkgs.follows = "unstable";
       };
     };
@@ -126,52 +125,17 @@
     # Nix Index Database
     index = {
       url = "github:Mic92/nix-index-database";
-      inputs.nixpkgs.follows = "stable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Base16 Theming
     stylix = {
       url = "github:danth/stylix?ref=release-24.11";
       inputs = {
-        nixpkgs.follows = "stable";
+        nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
         flake-utils.follows = "utils";
         home-manager.follows = "home-manager";
-      };
-    };
-
-    # Hyprland
-    hyprland = {
-      url = "github:hyprwm/Hyprland?ref=v0.47.1";
-      inputs = {
-        nixpkgs.follows = "stable";
-        systems.follows = "systems";
-      };
-    };
-
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    hyprdark = {
-      url = "github:micha4w/Hypr-DarkWindow?ref=v0.47.1";
-      inputs = {
-        hyprland.follows = "hyprland";
-        nix-filter.follows = "filters";
-      };
-    };
-
-    hyprsplit = {
-      url = "github:shezdy/hyprsplit?ref=v0.47.1";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    hyprtasking = {
-      url = "github:raybbian/hyprtasking";
-      inputs = {
-        hyprland.follows = "hyprland";
-        systems.follows = "systems";
       };
     };
 
@@ -192,7 +156,7 @@
     vscode = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs = {
-        nixpkgs.follows = "stable";
+        nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "utils";
       };
     };
@@ -202,11 +166,40 @@
       url = "github:emmanuelrosa/erosanix";
       inputs.nixpkgs.follows = "unstable";
     };
+
+    ## Hyprland
+    # Core
+    hyprland = {
+      url = "github:hyprwm/Hyprland?ref=v0.47.1";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+    };
+
+    # Plugins
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins?ref=v0.47.0";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    hyprdark = {
+      url = "github:micha4w/Hypr-DarkWindow?ref=v0.47.1";
+      inputs = {
+        hyprland.follows = "hyprland";
+        nix-filter.follows = "filters";
+      };
+    };
+
+    hyprsplit = {
+      url = "github:shezdy/hyprsplit?ref=v0.47.1";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 
   ## Configuration ##
   outputs = {self, ...} @ inputs: let
-    inherit (inputs.stable) lib;
+    inherit (inputs.nixpkgs) lib;
     map = import ./lib/map.nix lib;
   in
     inputs.framework.lib.mkFlake {inherit inputs;} {

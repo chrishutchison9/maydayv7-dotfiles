@@ -19,34 +19,3 @@ class = "kitty-clip"
 lazy = true
 size = "75% 65%"
 margin = 30
-
-[scratchpads.right]
-animation = "fromRight"
-lazy = true
-size = "50% 90%"
-margin = 30
-restore_excluded = true
-
-[scratchpads.bluetooth]
-command = "overskride"
-class = "io.github.kaii_lb.Overskride"
-use = "right"
-excludes = ["displays", "network", "volume"]
-
-[scratchpads.displays]
-command = "nwg-displays"
-class = "nwg-displays"
-use = "right"
-excludes = ["bluetooth", "network", "volume"]
-
-[scratchpads.network]
-command = "sh -c 'env XDG_CURRENT_DESKTOP=GNOME gnome-control-center wifi'"
-class = "org.gnome.Settings"
-use = "right"
-excludes = ["bluetooth", "displays", "volume"]
-
-[scratchpads.volume]
-command = "pavucontrol"
-class = "org.pulseaudio.pavucontrol"
-use = "right"
-excludes = ["bluetooth", "displays", "network"]

@@ -130,10 +130,6 @@ github:maydayv7/dotfiles
 │       ├───default: app
 │       ├───install: app
 │       └───nixos: app
-├───channels
-│   └───x86_64-linux
-│       ├───stable: package channel
-│       └───unstable: package channel
 ├───checks
 │   └───x86_64-linux
 │       ├───Device-gnome: derivation 'nixos-rebuild'
@@ -511,8 +507,9 @@ You can navigate to the `README`s present in the various directories to know mor
 <details>
 <summary><b>Changelog</b></summary>
 
-### NEXT
+### v25.5
 
+- Remove package `channels`
 - Update Hyprland to v0.47.1
   - Use `hyprswitch` to switch between windows
   - Use `pcmanfm-qt` to render desktop icons

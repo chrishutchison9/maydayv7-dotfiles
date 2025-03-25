@@ -2,7 +2,6 @@
   system = "x86_64-linux";
   name = "valkyrie";
   description = "PC - ASUS ROG Zephyrus G14";
-  channel = "stable";
 
   timezone = "Asia/Kolkata";
   locale = "IN";

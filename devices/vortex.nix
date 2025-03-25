@@ -2,7 +2,6 @@
   system = "x86_64-linux";
   name = "vortex";
   description = "PC - Dell Inspiron 15 5000";
-  channel = "stable";
 
   timezone = "Asia/Kolkata";
   locale = "IN";

@@ -131,7 +131,7 @@
           },
           {
             "value": "$mod C",
-            "label": "Center floating window"
+            "label": "Center floating window and/or move cursor to top right corner"
           },
           {
             "value": "$mod P",
@@ -143,7 +143,7 @@
         "_hidden": false,
         "keybindings": [
           {
-            "value": "$mod ` (or 4F Swipe Up)",
+            "value": "$mod ` (4F Swipe Up)",
             "label": "Show workspace overview"
           },
           {
@@ -172,8 +172,12 @@
             "label": "Move window to workspace 'NUM' {1 to 9}"
           },
           {
-            "value": "$mod , or . (or 3F Swipe Left/Right)",
-            "label": "Move to previous/next non-empty workspace"
+            "value": "$mod , or . (3F Swipe Left/Right)",
+            "label": "Move across non-empty workspaces"
+          },
+          {
+            "value": "$mod CTRL , or .",
+            "label": "Move across workspaces"
           },
           {
             "value": "$mod 0",
@@ -181,7 +185,7 @@
           },
           {
             "value": "$mod SHIFT 0",
-            "label": "Move window to/from special workspace stash"
+            "label": "Move window to/from stash"
           },
           {
             "value": "$mod SHIFT , or .",
@@ -225,8 +229,12 @@
             "label": "Toggle Compositor Shader"
           },
           {
-            "value": "$mod SHIFT S",
+            "value": "$mod I",
             "label": "Invert active window color"
+          },
+          {
+            "value": "$mod SHIFT S",
+            "label": "Toggle window swallowing"
           },
           {
             "value": "$mod SHIFT D",
@@ -280,6 +288,18 @@
           {
             "value": "$mod Enter",
             "label": "Task Manager"
+          },
+          {
+            "value": "$mod SHIFT B",
+            "label": "Bluetooth Settings"
+          },
+          {
+            "value": "$mod SHIFT P",
+            "label": "Volume Control"
+          },
+          {
+            "value": "$mod SHIFT N",
+            "label": "Network Settings"
           },
           {
             "value": "$mod N",
@@ -362,6 +382,10 @@
           {
             "value": "SHIFT <ARROW>",
             "label": "Move floating window"
+          },
+          {
+            "value": ", or .",
+            "label": "Move window across workspaces"
           },
           {
             "value": "C",

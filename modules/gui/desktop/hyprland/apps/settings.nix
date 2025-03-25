@@ -10,6 +10,7 @@
   inherit (lib) flatten;
   inherit (builtins) map toFile;
   inherit (util) build;
+  inherit (config.lib.stylix) colors;
 in {
   ## App Environment
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
@@ -45,7 +46,7 @@ in {
         "QT_WAYLAND_DISABLE_WINDOWDECORATION, 1"
 
         # Screengrab
-        "SLURP_ARGS, -dc ${config.lib.stylix.colors.base0D}"
+        "SLURP_ARGS, -dc ${colors.base0D}"
       ];
 
       ## Autostart
@@ -68,7 +69,7 @@ in {
 
           # Window Switcher
           "hyprswitch init --workspaces-per-row 3 --custom-css ${toFile "style.css" (build.theme {
-            inherit (config.lib.stylix) colors;
+            inherit colors;
             file = files.hyprland.hyprswitch;
           })} &"
         ]);
@@ -90,12 +91,17 @@ in {
         "$mod, slash, exec, ulauncher-toggle"
         "$mod SHIFT, slash, exec, ${toggle "kebihelp"} show -a"
         "$mod SHIFT, C, exec, ${runOnce "hyprpicker"} -arf hex"
-        "$mod, D, exec, pypr toggle displays"
+        "$mod SHIFT, B, exec, ${runOnce "overskride"}"
+        "$mod, D, exec, ${runOnce "nwg-displays"}"
+        "$mod SHIFT, P, exec, pavucontrol"
+        "$mod SHIFT, N, exec, sh -c 'env XDG_CURRENT_DESKTOP=GNOME gnome-control-center wifi'"
         "$mod, Escape, exec, ${toggle "wlogout"} -p layer-shell"
 
         # Tools
         "$mod SHIFT, A, exec, hyprutils toggle service waybar"
+        "$mod SHIFT, D, exec, hyprutils toggle monitor ${config.gui.display}"
         "$mod, N, exec, dunstctl history-pop"
+        "$mod, S, exec, hyprutils toggle shader"
         "$mod SHIFT, T, exec, pypr toggle term"
         "$mod, V, exec, pypr show clip"
 
@@ -114,19 +120,18 @@ in {
       ];
 
       ## Window Rules
-      windowrulev2 = flatten ([
-          "pin, class:^(gnome-control-center)$"
-
-          # Clipboard Manager
-          "float, class:^(clipse)$"
+      windowrulev2 = flatten (
+        [
+          # Settings
+          "stayfocused, class:^(gnome-control-center)$"
 
           # Application Launcher
-          "opacity 0.9 override, class:^(ulauncher)$"
+          "stayfocused, class:^(ulauncher)$"
+          "opacity 0.8 override, class:^(ulauncher)$"
           "move cursor -50% -50%, class:^(ulauncher)$"
 
           # Keybinds Viewer
           "pin, title:^(Kebihelp)$"
-          "float, title:^(Kebihelp)$"
           "stayfocused, title:^(Kebihelp)$"
           "opacity 0.9 override, title:^(Kebihelp)"
 
@@ -156,6 +161,18 @@ in {
             "gay.vaskel.Soteria"
             "gcr-prompter"
           ])
+        ++ (map (class: [
+            # Utilities
+            "float, class:^(${class})"
+            "pin, class:^(${class})"
+            #!# "persistentsize, class:^(${class})"
+          ]) [
+            "io.github.kaii_lb.Overskride"
+            "nwg-displays"
+            "org.pulseaudio.pavucontrol"
+            "gnome-control-center"
+            "org.gnome.Settings"
+          ])
         ++ (map (title: [
             # Dialogs
             "float, title:^(${title})(.*)$"
@@ -167,7 +184,8 @@ in {
             "Save File"
             "Select a File"
             ".*Properties"
-          ]));
+          ])
+      );
     };
   };
 }

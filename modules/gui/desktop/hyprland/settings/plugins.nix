@@ -33,9 +33,8 @@
         # Overview
         "$mod, grave, hyprexpo:expo, toggle"
 
-        # Compositor Shaders
-        "$mod, S, exec, hyprutils toggle shader"
-        "$mod SHIFT, S, invertactivewindow"
+        # Color Inversion
+        "$mod, I, invertactivewindow"
       ];
     };
   };

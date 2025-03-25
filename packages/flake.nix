@@ -1,5 +1,4 @@
 {
-  lib,
   util,
   inputs,
   ...
@@ -7,7 +6,7 @@
   inherit (util) map;
   inherit (builtins) any attrValues isPath;
 in {
-  ## Package Configuration ##
+  ## Packages Configuration ##
   perSystem = {
     self',
     system,
@@ -17,66 +16,48 @@ in {
     ...
   }:
     rec {
-      # Default Package Channel
+      # Package Channel
       _module.args.pkgs = legacyPackages;
-      legacyPackages = channels.stable;
-
-      # Package Channels
-      channels = with inputs; let
-        # Repository Configuration
+      legacyPackages = with inputs; let
+        # Channel Configuration
+        src = nixpkgs;
         config = import ../modules/nix/config.nix;
 
-        # Package Overrides
-        overlays =
-          (attrValues self.overlays or {})
-          ++ [
-            vsppuccin.overlays.default
-            (_: _: {
-              custom = self.packages."${system}";
-
-              code = vscode.extensions."${system}";
-              gaming = gaming.packages."${system}";
-              wine = windows.packages."${system}";
-              hyprworld =
-                hyprland.packages."${system}"
-                // hyprland-plugins.packages."${system}"
-                // hyprdark.packages."${system}"
-                // hyprsplit.packages."${system}"
-                // hyprtasking.packages."${system}"
-                // {inherit (hyprland.inputs.nixpkgs.legacyPackages."${system}") mesa;};
+        # Channel Patches
+        patches = map.patches ./patches;
+        pkgs' = import src {inherit system;};
+      in
+        (
+          if !(any isPath patches)
+          then import src
+          else
+            import (pkgs'.applyPatches {
+              inherit src patches;
+              name = "nixpkgs-patched-${src.shortRev}";
             })
-          ];
-      in {
-        stable = let
-          src = stable;
-          patches = map.patches ./patches;
-          pkgs' = import src {inherit system;};
-        in
-          (
-            if !(any isPath patches)
-            then import src
-            else
-              import (pkgs'.applyPatches {
-                inherit src patches;
-                name = "nixpkgs-patched-${src.shortRev}";
-              })
-          ) {
-            inherit system config;
-            overlays = overlays ++ [(_: _: {inherit (channels) unstable;})];
-          };
-
-        unstable = import unstable {
+        ) {
           inherit system config;
+
+          # Package Overrides
           overlays =
-            overlays
+            (attrValues self.overlays or {})
             ++ [
-              (pkg: _: {
-                inherit (channels) stable;
-                unstable = pkg;
+              vsppuccin.overlays.default
+              (_: _: {
+                custom = self.packages."${system}";
+
+                code = vscode.extensions."${system}";
+                gaming = gaming.packages."${system}";
+                wine = windows.packages."${system}";
+                hyprworld =
+                  hyprland.packages."${system}"
+                  // hyprland-plugins.packages."${system}"
+                  // hyprdark.packages."${system}"
+                  // hyprsplit.packages."${system}";
               })
-            ];
+            ]
+            ++ [(_: _: {unstable = import unstable {inherit system config;};})];
         };
-      };
     }
     // (let
       # Package Calling Function
@@ -99,21 +80,6 @@ in {
         // map.modules ../scripts call.script
         // inputs'.proprietary.packages;
     });
-
-  # Channel Module
-  imports = [
-    (_:
-      with lib;
-        inputs.framework.lib.mkTransposedPerSystemModule {
-          name = "channels";
-          option = mkOption {
-            type = with types; attrsOf (lazyAttrsOf raw);
-            default = {nixpkgs = import inputs.nixpkgs {};};
-            description = "Set of Package Channels";
-          };
-          file = ./flake.nix;
-        })
-  ];
 
   # Package Overrides
   flake.overlays = map.modules ./overlays import;

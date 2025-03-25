@@ -9,7 +9,6 @@ in
     name ? "nixos",
     description ? "",
     format ? null,
-    channel ? "stable",
     imports ? [],
     timezone,
     locale,
@@ -25,10 +24,10 @@ in
     users ? null,
   }: let
     # Package Channel
-    pkgs = self.channels."${system}"."${channel}";
+    pkgs = self.legacyPackages."${system}";
 
     # Configuration Libraries
-    inherit (inputs."${channel}") lib;
+    inherit (inputs.nixpkgs) lib;
     inherit (lib) fileContents makeOverridable mkIf;
     inherit
       (builtins)
@@ -142,7 +141,7 @@ in
                 else true;
 
               # Version
-              stateVersion = fileContents "${inputs."${channel}"}/.version";
+              stateVersion = fileContents "${inputs.nixpkgs}/.version";
               configurationRevision =
                 if (self ? rev)
                 then "${substring 0 8 self.lastModifiedDate}.${self.shortRev}"

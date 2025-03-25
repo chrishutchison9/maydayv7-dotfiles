@@ -16,7 +16,7 @@ in {
     gnome-clocks
     gnome-disk-utility
     hyprpicker
-    custom.hyprswitch
+    unstable.hyprswitch
     nwg-displays
     nwg-drawer
     overskride

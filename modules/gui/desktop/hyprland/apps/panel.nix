@@ -4,9 +4,7 @@
   pkgs,
   files,
   ...
-}: let
-  theme = import ../theme.nix pkgs;
-in {
+}: {
   ## Panel Configuration
   user.homeConfig = rec {
     stylix.targets.waybar = {
@@ -62,13 +60,12 @@ in {
             "custom/logo"
             "group/users"
             "hyprland/workspaces"
-            "hyprland/submap"
-            "hyprland/window"
+            "custom/minimize"
           ];
 
           modules-center = [
-            "wlr/taskbar"
-            "custom/minimize"
+            "hyprland/window"
+            "hyprland/submap"
           ];
 
           modules-right = [
@@ -115,7 +112,6 @@ in {
             format = "<small>{name}</small>{icon}";
             on-scroll-up = "hyprctl dispatch workspace m+1";
             on-scroll-down = "hyprctl dispatch workspace m-1";
-            persistent-workspaces."${config.gui.display}" = 3;
             ignore-workspaces = ["special:scratch_.*" "special:minimize"];
             format-icons = {
               default = "";
@@ -132,6 +128,11 @@ in {
             };
           };
 
+          "custom/minimize" = {
+            format = "";
+            on-click = "hyprutils toggle minimize";
+          };
+
           "hyprland/submap" = {
             always-on = false;
             tooltip = false;
@@ -140,44 +141,21 @@ in {
           };
 
           "hyprland/window" = {
-            format = "{class}";
-            max-length = 40;
+            format = "";
+            icon = true;
             separate-outputs = true;
-          };
-
-          "wlr/taskbar" = {
-            format = "{icon}";
-            icon-size = 20;
-            all-outputs = false;
-            active-first = false;
-            icon-theme = theme.icons.name;
-            markup = true;
-            tooltip-format = "Name: <big><b>{name}</b></big> <i>{short_state}</i>\nTitle: <b>{title}</b>";
-            on-click = "activate";
-            on-click-middle = "fullscreen";
-            on-click-right = "close";
-            ignore-list = ["ulauncher"];
-            app_ids-mapping = {
-              kitty-clip = "diodon";
-              kitty-dropterm = "yakuake";
-            };
-          };
-
-          "custom/minimize" = {
-            format = "";
-            on-click = "hyprutils toggle minimize";
           };
 
           "group/menu" = {
             orientation = "horizontal";
-            modules = ["custom/dropdown" "keyboard-state" "tray"];
+            modules = ["custom/hide" "keyboard-state" "tray"];
             drawer = {
               click-to-reveal = true;
               transition-left-to-right = true;
             };
           };
 
-          "custom/dropdown" = {
+          "custom/hide" = {
             format = "";
             tooltip = false;
           };
@@ -203,7 +181,7 @@ in {
             tooltip-format = " {status}";
             tooltip-format-connected = "{device_enumerate}";
             tooltip-format-enumerate-connected = " {device_alias} 󰂄 {device_battery_percentage}%";
-            on-click = "pypr show bluetooth";
+            on-click = "overskride";
           };
 
           network = let
@@ -218,7 +196,7 @@ in {
             tooltip-format-wifi = "Network: <big><b>{essid}</b></big>\n${tooltip}";
             tooltip-format-ethernet = "Network: <big><b>Wired</b></big>\n${tooltip}";
             tooltip-format-disconnected = "󰌙 Disconnected";
-            on-click = "pypr show network";
+            on-click = "sh -c 'env XDG_CURRENT_DESKTOP=GNOME gnome-control-center wifi'";
           };
 
           "group/media" = {
@@ -238,7 +216,7 @@ in {
             tooltip-format = "Volume: {volume}%\nDevice: {node_name}";
             format-muted = "";
             format-icons = ["" "" "󰕾" ""];
-            on-click = "pypr show volume";
+            on-click = "pavucontrol";
           };
 
           mpris = {
@@ -260,7 +238,7 @@ in {
             format-icons = ["" "" "" "" "" "" "" "" ""];
             on-scroll-down = "brillo -u 300000 -A 5";
             on-scroll-up = "brillo -u 300000 -U 5";
-            on-click = "pypr show displays";
+            on-click = "nwg-displays";
           };
 
           "group/power" = {

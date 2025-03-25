@@ -86,7 +86,7 @@ in {
       };
 
       misc = {
-        disable_autoreload = false; # Enable configuration Polling
+        disable_autoreload = true; # Disable configuration Polling
         enable_swallow = true; # Window Swallowing
 
         focus_on_activate = true;
@@ -149,6 +149,7 @@ in {
           height = 7;
           scrolling = true;
           gradients = true;
+          #!# rounding = 10;
           "col.active" = mkForce active;
           "col.locked_active" = mkForce active;
           "col.inactive" = mkForce inactive;
