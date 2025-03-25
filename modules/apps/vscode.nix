@@ -32,40 +32,41 @@ in {
         programs.vscode = {
           enable = true;
           package = pkgs.vscode;
+          profiles.default = {
+            # Keyboard Shortcuts
+            inherit keybindings;
 
-          # Keyboard Shortcuts
-          inherit keybindings;
+            # Settings
+            userSettings =
+              settings // {"editor.fontFamily" = "'${font}', 'monospace', monospace";};
 
-          # Settings
-          userSettings =
-            settings // {"editor.fontFamily" = "'${font}', 'monospace', monospace";};
-
-          # Useful Extensions
-          extensions = with pkgs.vscode-extensions;
-            [
-              aaron-bond.better-comments
-              divyanshuagrawal.competitive-programming-helper
-              dotjoshjohnson.xml
-              eamodio.gitlens
-              ecmel.vscode-html-css
-              editorconfig.editorconfig
-              esbenp.prettier-vscode
-              file-icons.file-icons
-              github.vscode-pull-request-github
-              jnoortheen.nix-ide
-              kamadorueda.alejandra
-              ms-python.python
-              ms-vscode-remote.remote-ssh
-              ms-vscode.cpptools
-              naumovs.color-highlight
-              redhat.java
-              ritwickdey.liveserver
-              yzhang.markdown-all-in-one
-            ]
-            ++ (with pkgs.code.vscode-marketplace; [
-              kisstkondoros.vscode-gutter-preview
-              wayou.vscode-todo-highlight
-            ]);
+            # Useful Extensions
+            extensions = with pkgs.vscode-extensions;
+              [
+                aaron-bond.better-comments
+                divyanshuagrawal.competitive-programming-helper
+                dotjoshjohnson.xml
+                eamodio.gitlens
+                ecmel.vscode-html-css
+                editorconfig.editorconfig
+                esbenp.prettier-vscode
+                file-icons.file-icons
+                github.vscode-pull-request-github
+                jnoortheen.nix-ide
+                kamadorueda.alejandra
+                ms-python.python
+                ms-vscode-remote.remote-ssh
+                ms-vscode.cpptools
+                naumovs.color-highlight
+                redhat.java
+                ritwickdey.liveserver
+                yzhang.markdown-all-in-one
+              ]
+              ++ (with pkgs.code.vscode-marketplace; [
+                kisstkondoros.vscode-gutter-preview
+                wayou.vscode-todo-highlight
+              ]);
+          };
         };
       };
     };

@@ -61,9 +61,6 @@ in {
           # Application Drawer
           "nwg-drawer -r"
 
-          # Clipboard Manager
-          "clipse -listen"
-
           # Desktop Icons
           "pcmanfm-qt --desktop"
 
@@ -165,7 +162,7 @@ in {
             # Utilities
             "float, class:^(${class})"
             "pin, class:^(${class})"
-            #!# "persistentsize, class:^(${class})"
+            "persistentsize, class:^(${class})"
           ]) [
             "io.github.kaii_lb.Overskride"
             "nwg-displays"

@@ -33,8 +33,8 @@ in {
               enable = true;
               withUWSM = true;
               xwayland.enable = true;
-              package = pkgs.hyprworld.hyprland;
-              portalPackage = pkgs.hyprworld.xdg-desktop-portal-hyprland;
+              package = pkgs.hyprland;
+              portalPackage = pkgs.xdg-desktop-portal-hyprland;
             };
 
             # Login
@@ -54,7 +54,7 @@ in {
         }
         {
           # Greeter
-          environment.persist.directories = ["/var/cache/regreet"];
+          environment.persist.directories = ["/var/lib/regreet"];
           stylix.targets.regreet.enable = true;
           programs.regreet = {
             extraCss = mkForce "";

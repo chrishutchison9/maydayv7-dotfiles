@@ -26,7 +26,7 @@ in {
     # Firmware
     services.samba.enable = true;
     hardware.xpadneo.enable = true;
-    hardware.opengl.driSupport32Bit = true;
+    hardware.graphics.enable32Bit = true;
 
     # Utilities
     user.persist.directories =

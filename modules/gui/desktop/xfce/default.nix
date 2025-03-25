@@ -231,7 +231,7 @@ in {
         };
 
         # Code Editor
-        programs.vscode = mkIf (exists "vscode") {
+        programs.vscode.profiles.default = mkIf (exists "vscode") {
           extensions = [pkgs.code.vscode-marketplace.alvesvaren.arc-dark];
           userSettings = {
             "workbench.colorTheme" = "Arc Dark Theme";

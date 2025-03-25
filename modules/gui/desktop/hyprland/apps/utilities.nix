@@ -16,7 +16,7 @@ in {
     gnome-clocks
     gnome-disk-utility
     hyprpicker
-    unstable.hyprswitch
+    hyprswitch
     nwg-displays
     nwg-drawer
     overskride
@@ -31,7 +31,7 @@ in {
     hyprkeys
     hyprshade
     pavucontrol
-    unstable.pyprland
+    pyprland
     slurp
     wev
     wl-clipboard
@@ -77,11 +77,7 @@ in {
   hardware.brillo.enable = true;
 
   user = {
-    persist.directories = [
-      ".config/nwg-displays"
-      ".local/share/clipboard"
-    ];
-
+    persist.directories = [".config/nwg-displays"];
     homeConfig = {
       # Wallpaper Daemon
       services.hyprpaper = {
@@ -117,13 +113,6 @@ in {
           inherit colors;
           inherit (config.stylix) fonts;
           file = kebihelp;
-        };
-
-        # Clipboard Manager
-        ".config/clipse/config.json".text = clipse.config;
-        ".config/clipse/theme.json".text = theme {
-          inherit colors;
-          file = clipse.theme;
         };
       };
     };

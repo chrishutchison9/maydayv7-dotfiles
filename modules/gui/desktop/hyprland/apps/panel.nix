@@ -1,42 +1,20 @@
 {
   config,
-  lib,
   pkgs,
   files,
   ...
 }: {
   ## Panel Configuration
-  user.homeConfig = rec {
+  user.homeConfig = {
     stylix.targets.waybar = {
       enable = true;
+      font = "sansSerif";
       enableCenterBackColors = true;
       enableLeftBackColors = true;
       enableRightBackColors = true;
     };
 
-    # Environment Setup
-    home.packages = [pkgs.unstable.wttrbar];
-    systemd.user = {
-      services.waybar = {
-        # nix-community/home-manager/pull/5785
-        Unit.After = lib.mkForce ["graphical-session.target"];
-
-        # nix-community/home-manager/4099
-        Service.ExecStart = lib.mkForce (pkgs.writeShellScript "waybar-wrapper.sh" ''
-          ${files.path.systemd}
-          ${lib.getExe programs.waybar.package}
-        '');
-      };
-
-      # nix-community/home-manager/2064
-      targets.tray = {
-        Unit = {
-          Description = "Home Manager System Tray";
-          Requires = ["graphical-session.target"];
-        };
-      };
-    };
-
+    home.packages = [pkgs.wttrbar];
     programs.waybar = {
       enable = true;
       systemd.enable = true;

@@ -6,10 +6,10 @@
 }: {
   ## Plugin Settings
   wayland.windowManager.hyprland = {
-    plugins = with pkgs.hyprworld; [
+    plugins = with pkgs.hyprlandPlugins; [
       hyprexpo
-      Hypr-DarkWindow
       hyprsplit
+      pkgs.custom.hyprdark
     ];
 
     settings = {

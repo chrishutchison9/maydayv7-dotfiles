@@ -49,11 +49,6 @@ in {
                 code = vscode.extensions."${system}";
                 gaming = gaming.packages."${system}";
                 wine = windows.packages."${system}";
-                hyprworld =
-                  hyprland.packages."${system}"
-                  // hyprland-plugins.packages."${system}"
-                  // hyprdark.packages."${system}"
-                  // hyprsplit.packages."${system}";
               })
             ]
             ++ [(_: _: {unstable = import unstable {inherit system config;};})];

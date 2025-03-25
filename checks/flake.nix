@@ -6,17 +6,10 @@
   ## Configuration Checks ##
   imports = [inputs.formatter.flakeModule];
 
-  perSystem = {
-    system,
-    pkgs,
-    ...
-  }: {
+  perSystem = {system, ...}: {
     ## Code Formatter
-    treefmt.config = rec {
-      package = pkgs.treefmt1; #!# Currently broken
-
-      projectRoot = ../.;
-      projectRootFile = "${projectRoot}/flake.nix";
+    treefmt.config = {
+      projectRootFile = "flake.nix";
       settings.global.excludes = [
         "_*"
         "result/**"
@@ -32,6 +25,7 @@
           enable = true;
           no-lambda-arg = true;
         };
+
         prettier = {
           enable = true;
           settings.bracketSameLine = true;

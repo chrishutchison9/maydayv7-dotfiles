@@ -162,7 +162,7 @@ in {
     ## 3rd Party Apps Configuration
     {
       # Code Editor
-      user.homeConfig.programs.vscode = mkIf (exists "vscode") {
+      user.homeConfig.programs.vscode.profiles.default = mkIf (exists "vscode") {
         extensions = [pkgs.code.vscode-marketplace.sixpounder.elementary-theme];
         userSettings = {
           "workbench.colorTheme" = "Elementary Dark";

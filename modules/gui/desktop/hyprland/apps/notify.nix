@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   theme,
   ...
 }: {
@@ -60,14 +59,6 @@
         power = {appname = "poweralertd";} // ignore;
         utility = {appname = "utility";} // ignore;
       };
-    };
-
-    # nix-community/home-manager/pull/5785
-    systemd.user.services = {
-      kdeconnect.Unit.After = lib.mkForce ["graphical-session.target"];
-      kdeconnect-indicator.Unit.After = lib.mkForce ["graphical-session.target"];
-      poweralertd.Unit.After = lib.mkForce ["graphical-session.target"];
-      dunst.Unit.After = lib.mkForce ["graphical-session.target"];
     };
   };
 }

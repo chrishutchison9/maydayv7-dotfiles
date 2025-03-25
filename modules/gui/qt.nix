@@ -30,6 +30,7 @@ in {
         style = "kvantum";
       };
 
+      stylix.targets.qt.enable = false;
       environment = {
         systemPackages = [package];
         etc."xdg/Kvantum/kvantum.kvconfig".text = ''

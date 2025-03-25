@@ -265,7 +265,7 @@ in {
         };
 
         # Code Editor
-        programs.vscode = mkIf (exists "vscode") {
+        programs.vscode.profiles.default = mkIf (exists "vscode") {
           extensions = [pkgs.vscode-extensions.piousdeer.adwaita-theme];
           userSettings = {
             "workbench.colorTheme" = "Adwaita Dark";

@@ -16,7 +16,7 @@ _: {
           "$mod, E, fullscreen, 1"
           "$mod, P, pin"
           "$mod, Space, togglesplit"
-          #!# "$mod SHIFT, S, toggleswallow"
+          "$mod SHIFT, S, toggleswallow"
 
           # Window Focus
           "$mod, left, movefocus, l"
@@ -36,6 +36,10 @@ _: {
           "$mod SHIFT, space, togglegroup"
           "ALT, grave, changegroupactive, f"
           "ALT SHIFT, grave, changegroupactive, b"
+          "$mod CTRL, left, moveintogroup, l"
+          "$mod CTRL, right, moveintogroup, r"
+          "$mod CTRL, up, moveintogroup, u"
+          "$mod CTRL, down, moveintogroup, d"
 
           # Floating Mode
           "$mod, semicolon, togglefloating,"
@@ -44,8 +48,10 @@ _: {
           # Cycle Workspaces
           "$mod, comma, split:workspace, m-1"
           "$mod, period, split:workspace, m+1"
-          "$mod CTRL, comma, split:workspace, -1"
-          "$mod CTRL, period, split:workspace, +1"
+          "$mod CTRL, comma, split:workspace, r-1"
+          "$mod CTRL, period, split:workspace, r+1"
+          "$mod, mouse_up, split:workspace, r-1"
+          "$mod, mouse_down, split:workspace, r+1"
 
           # Special Workspace
           "$mod, 0, togglespecialworkspace, Stash"
@@ -92,7 +98,6 @@ _: {
       bindm = [
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
-        "$mod SHIFT, mouse:272, moveintogroup"
       ];
 
       # Ignore Locked State

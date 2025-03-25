@@ -510,7 +510,7 @@ You can navigate to the `README`s present in the various directories to know mor
 ### v25.5
 
 - Remove package `channels`
-- Update Hyprland to v0.47.1
+- Update Hyprland to v0.48.0
   - Use `hyprswitch` to switch between windows
   - Use `pcmanfm-qt` to render desktop icons
 

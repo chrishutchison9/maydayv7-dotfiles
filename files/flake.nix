@@ -72,13 +72,6 @@
         # Pyprland
         pypr = readFile ./hyprland/pypr.toml;
 
-        # Clipboard Manager
-        clipse = map.files {
-          directory = ./hyprland/clipse;
-          apply = readFile;
-          extension = ".json";
-        };
-
         # Keybinds Viewer
         kebihelp = readFile ./hyprland/kebihelp.json;
 

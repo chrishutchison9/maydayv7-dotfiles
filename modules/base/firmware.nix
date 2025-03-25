@@ -3,7 +3,9 @@
   inputs,
   pkgs,
   ...
-}: {
+}: let
+  inherit (lib) getExe' mkForce;
+in {
   imports = [inputs.gaming.nixosModules.pipewireLowLatency];
 
   ## Device Firmware ##
@@ -12,10 +14,10 @@
     hardware = {
       graphics.enable = true;
       enableRedistributableFirmware = true;
-      pulseaudio.enable = lib.mkForce false;
     };
 
     # Audio
+    services.pulseaudio.enable = mkForce false;
     services.pipewire = {
       enable = true;
       alsa.enable = true;
@@ -32,7 +34,7 @@
     hardware.alsa.enablePersistence = true;
     services.actkbd = let
       step = "1%";
-      mixer = lib.getExe' pkgs.alsa-utils "amixer";
+      mixer = getExe' pkgs.alsa-utils "amixer";
     in {
       enable = true;
       bindings = [
@@ -107,7 +109,7 @@
       enable = true;
       settings = {
         PasswordAuthentication = true;
-        PermitRootLogin = lib.mkForce "no";
+        PermitRootLogin = mkForce "no";
       };
 
       hostKeys = [

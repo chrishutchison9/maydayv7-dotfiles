@@ -12,7 +12,7 @@ in {
   imports = util.map.modules.list ./.;
   stylix.targets.hyprland.enable = true;
   wayland.windowManager.hyprland = {
-    inherit (sys.programs.hyprland) enable package;
+    inherit (sys.programs.hyprland) enable package portalPackage;
 
     # Use 'nwg-displays' to configure monitors
     extraConfig = ''
@@ -146,10 +146,13 @@ in {
         groupbar = {
           enabled = true;
           render_titles = false;
-          height = 7;
           scrolling = true;
           gradients = true;
-          #!# rounding = 10;
+          height = 10;
+          indicator_height = 0;
+          gradient_rounding = 5;
+          gradient_round_only_edges = false;
+
           "col.active" = mkForce active;
           "col.locked_active" = mkForce active;
           "col.inactive" = mkForce inactive;

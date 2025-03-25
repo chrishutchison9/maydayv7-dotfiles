@@ -11,7 +11,7 @@ in {
   ## 3rd Party Apps Configuration
   user.homeConfig = {
     # Code Editor
-    programs.vscode = lib.mkIf (exists "vscode") {
+    programs.vscode.profiles.default = lib.mkIf (exists "vscode") {
       extensions = with pkgs; [
         vscode-extensions.catppuccin.catppuccin-vsc-icons
         (catppuccin-vsc.override {

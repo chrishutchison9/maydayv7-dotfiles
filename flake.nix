@@ -38,7 +38,7 @@
   inputs = {
     ## Package Repositories ##
     # NixOS Packages Repository
-    nixpkgs.follows = "stable";
+    nixpkgs.follows = "unstable";
     stable.url = "github:NixOS/nixpkgs?ref=nixos-24.11";
 
     # Unstable Packages Repository
@@ -88,7 +88,7 @@
     ## Feature Modules
     # User Home Manager
     home-manager = {
-      url = "github:nix-community/home-manager?ref=release-24.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -130,7 +130,7 @@
 
     # Base16 Theming
     stylix = {
-      url = "github:danth/stylix?ref=release-24.11";
+      url = "github:danth/stylix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
@@ -165,35 +165,6 @@
     windows = {
       url = "github:emmanuelrosa/erosanix";
       inputs.nixpkgs.follows = "unstable";
-    };
-
-    ## Hyprland
-    # Core
-    hyprland = {
-      url = "github:hyprwm/Hyprland?ref=v0.47.1";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-      };
-    };
-
-    # Plugins
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins?ref=v0.47.0";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    hyprdark = {
-      url = "github:micha4w/Hypr-DarkWindow?ref=v0.47.1";
-      inputs = {
-        hyprland.follows = "hyprland";
-        nix-filter.follows = "filters";
-      };
-    };
-
-    hyprsplit = {
-      url = "github:shezdy/hyprsplit?ref=v0.47.1";
-      inputs.hyprland.follows = "hyprland";
     };
   };
 

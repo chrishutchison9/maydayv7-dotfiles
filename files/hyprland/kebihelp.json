@@ -126,6 +126,10 @@
             "label": "Toggle application grouping"
           },
           {
+            "value": "$mod CTRL <ARROW>",
+            "label": "Move window into desired group"
+          },
+          {
             "value": "$mod ; or :",
             "label": "Toggle window float for one/all window(s)"
           },
@@ -327,8 +331,8 @@
             "label": "Window resize"
           },
           {
-            "value": "$mod SHIFT L'",
-            "label": "Move window into application group"
+            "value": "$mod Scroll",
+            "label": "Move across workspaces"
           },
           {
             "value": "",

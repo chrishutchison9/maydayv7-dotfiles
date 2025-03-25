@@ -1,0 +1,29 @@
+From e2bfdd171c186596ba76b34ebef8542c25104eb2 Mon Sep 17 00:00:00 2001
+From: "R. Ryantm" <ryantm-bot@ryantm.com>
+Date: Mon, 24 Mar 2025 02:24:13 +0000
+Subject: [PATCH] hyprlandPlugins.hyprsplit: 0.47.2 -> 0.48.0
+
+---
+ .../window-managers/hyprwm/hyprland-plugins/hyprsplit.nix     | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/pkgs/applications/window-managers/hyprwm/hyprland-plugins/hyprsplit.nix b/pkgs/applications/window-managers/hyprwm/hyprland-plugins/hyprsplit.nix
+index 2b9f24a55b9c33..03f3f6453386fa 100644
+--- a/pkgs/applications/window-managers/hyprwm/hyprland-plugins/hyprsplit.nix
++++ b/pkgs/applications/window-managers/hyprwm/hyprland-plugins/hyprsplit.nix
+@@ -9,13 +9,13 @@
+ }:
+ mkHyprlandPlugin hyprland rec {
+   pluginName = "hyprsplit";
+-  version = "0.47.2";
++  version = "0.48.0";
+ 
+   src = fetchFromGitHub {
+     owner = "shezdy";
+     repo = "hyprsplit";
+     rev = "refs/tags/v${version}";
+-    hash = "sha256-g3yq1TNLc3HIMXqs2wY9kUgDYsN8GHhc77wIOXjyn6E=";
++    hash = "sha256-FTp5mkrrgo/plCFHuFnx+EtDnQQoChq0mdKpb2a4LrQ=";
+   };
+ 
+   nativeBuildInputs = [

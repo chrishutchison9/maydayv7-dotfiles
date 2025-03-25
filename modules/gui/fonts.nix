@@ -70,27 +70,25 @@
     };
 
     # Font Packages
-    fonts.packages = with pkgs; [
-      corefonts
-      gyre-fonts
-      unifont
+    fonts.packages = with pkgs;
+      [
+        corefonts
+        gyre-fonts
+        unifont
 
-      fira
-      ibm-plex
-      roboto
-      roboto-slab
-      source-code-pro
-      ubuntu_font_family
-
+        fira
+        ibm-plex
+        roboto
+        roboto-slab
+        source-code-pro
+        ubuntu_font_family
+      ]
       # Patched Nerd Fonts
-      (nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "FiraMono"
-          "RobotoMono"
-          "SourceCodePro"
-        ];
-      })
-    ];
+      ++ (with pkgs.nerd-fonts; [
+        fira-code
+        fira-mono
+        roboto-mono
+        sauce-code-pro
+      ]);
   };
 }

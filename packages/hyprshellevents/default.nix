@@ -22,7 +22,7 @@ in
     nativeBuildInputs = [makeWrapper];
     postInstall = ''
       wrapProgram $out/bin/shellevents --prefix PATH ':' \
-        "${lib.makeBinPath [coreutils hyprworld.hyprland]}"
+        "${lib.makeBinPath [coreutils hyprland]}"
     '';
 
     meta = with lib; {

@@ -1,0 +1,97 @@
+From 84b02d3375ad1ebb0002105701e835b22c9ac3b3 Mon Sep 17 00:00:00 2001
+From: Mihai Fufezan <mihai@fufexan.net>
+Date: Sun, 23 Mar 2025 18:19:05 +0200
+Subject: [PATCH 1/2] hyprland: 0.47.2 -> 0.48.0
+
+---
+ pkgs/by-name/hy/hyprland/info.json   | 10 +++++-----
+ pkgs/by-name/hy/hyprland/package.nix |  8 +++++---
+ 2 files changed, 10 insertions(+), 8 deletions(-)
+
+diff --git a/pkgs/by-name/hy/hyprland/info.json b/pkgs/by-name/hy/hyprland/info.json
+index 32a0404a26a554..f01f9233f05eb2 100644
+--- a/pkgs/by-name/hy/hyprland/info.json
++++ b/pkgs/by-name/hy/hyprland/info.json
+@@ -1,7 +1,7 @@
+ {
+-  "branch": "v0.47.2-b",
+-  "commit_hash": "882f7ad7d2bbfc7440d0ccaef93b1cdd78e8e3ff",
+-  "commit_message": "version: bump to 0.47.2",
+-  "date": "2025-02-02",
+-  "tag": "v0.47.2"
++  "branch": "main",
++  "commit_hash": "5ee35f914f921e5696030698e74fb5566a804768",
++  "commit_message": "version: bump to 0.48.0",
++  "date": "2025-03-23",
++  "tag": "v0.48.0"
+ }
+diff --git a/pkgs/by-name/hy/hyprland/package.nix b/pkgs/by-name/hy/hyprland/package.nix
+index eca4e58f5761b9..59b7302af842c3 100644
+--- a/pkgs/by-name/hy/hyprland/package.nix
++++ b/pkgs/by-name/hy/hyprland/package.nix
+@@ -86,14 +86,14 @@ assert assertMsg (!hidpiXWayland)
+ 
+ customStdenv.mkDerivation (finalAttrs: {
+   pname = "hyprland" + optionalString debug "-debug";
+-  version = "0.47.2";
++  version = "0.48.0";
+ 
+   src = fetchFromGitHub {
+     owner = "hyprwm";
+     repo = "hyprland";
+     fetchSubmodules = true;
+     tag = "v${finalAttrs.version}";
+-    hash = "sha256-dSKR1VpjpdJVZ5dmLgIvAu3K+DYrSbohZkqxSQhjw8U=";
++    hash = "sha256-QfXnNrQSa9xDrlzl/dJvsFgMmPECveyU/7cKJ2YyIzI=";
+   };
+ 
+   postPatch = ''
+@@ -176,7 +176,7 @@ customStdenv.mkDerivation (finalAttrs: {
+     (optionals withSystemd [ systemd ])
+   ];
+ 
+-  mesonBuildType = if debug then "debugoptimized" else "release";
++  mesonBuildType = if debug then "debug" else "release";
+ 
+   dontStrip = debug;
+   strictDeps = true;
+@@ -186,6 +186,8 @@ customStdenv.mkDerivation (finalAttrs: {
+       "xwayland" = enableXWayland;
+       "legacy_renderer" = legacyRenderer;
+       "systemd" = withSystemd;
++      "uwsm" = false;
++      "hyprpm" = false;
+     })
+     (mapAttrsToList mesonBool {
+       # PCH provides no benefits when building with Nix
+
+From a7547840f3b2cce404439b76b053c595e196add0 Mon Sep 17 00:00:00 2001
+From: Mihai Fufezan <mihai@fufexan.net>
+Date: Sun, 23 Mar 2025 18:26:50 +0200
+Subject: [PATCH 2/2] hyprlandPlugins/hyprland-plugins: 0.47.0 -> 0.48.0
+
+---
+ .../hyprwm/hyprland-plugins/hyprland-plugins.nix            | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/pkgs/applications/window-managers/hyprwm/hyprland-plugins/hyprland-plugins.nix b/pkgs/applications/window-managers/hyprwm/hyprland-plugins/hyprland-plugins.nix
+index 753386fef4ea8e..5c41bc86d71903 100644
+--- a/pkgs/applications/window-managers/hyprwm/hyprland-plugins/hyprland-plugins.nix
++++ b/pkgs/applications/window-managers/hyprwm/hyprland-plugins/hyprland-plugins.nix
+@@ -14,13 +14,13 @@ let
+             mkHyprlandPlugin,
+           }:
+           let
+-            version = "0.47.0";
++            version = "0.48.0";
+ 
+             hyprland-plugins-src = fetchFromGitHub {
+               owner = "hyprwm";
+               repo = "hyprland-plugins";
+-              rev = "refs/tags/v${version}";
+-              hash = "sha256-zys4H2zSSIw54ecnYnBh2NUKZQraWD4B7qftuClrXho=";
++              tag = "v${version}";
++              hash = "sha256-q6v3nkJZdu45bwCuymQ+q3U7uwfA+M3GqsvZ0TgNsi4=";
+             };
+           in
+           mkHyprlandPlugin hyprland {
