@@ -30,6 +30,7 @@ in {
     grimblast
     hyprkeys
     hyprshade
+    hyprsunset
     pavucontrol
     pyprland
     slurp
@@ -59,18 +60,11 @@ in {
   ];
 
   ## Essential Utilities
+  # Power
   services = {
-    # Power
     power-profiles-daemon.enable = true;
     upower.enable = true;
-
-    # Location
-    geoclue2 = {
-      enable = true;
-      geoProviderUrl = "https://beacondb.net/v1/geolocate";
-    };
   };
-  location.provider = "geoclue2";
 
   # Backlight
   user.groups = ["input" "video"];
@@ -86,13 +80,6 @@ in {
           ipc = false;
           splash = true;
         };
-      };
-
-      # Display Temperature
-      services.gammastep = {
-        enable = true;
-        provider = "geoclue2";
-        tray = true;
       };
 
       home.file = with files.hyprland; {

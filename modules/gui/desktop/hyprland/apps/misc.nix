@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  inputs,
   pkgs,
   theme,
   ...
@@ -10,23 +11,19 @@
 in {
   ## 3rd Party Apps Configuration
   user.homeConfig = {
+    # Theme
+    imports = [inputs.catppuccin.homeManagerModules.catppuccin];
+    catppuccin = with theme; {
+      inherit accent;
+      flavor = variant;
+      vscode.enable = true;
+      thunderbird.enable = true;
+    };
+
     # Code Editor
     programs.vscode.profiles.default = lib.mkIf (exists "vscode") {
-      extensions = with pkgs; [
-        vscode-extensions.catppuccin.catppuccin-vsc-icons
-        (catppuccin-vsc.override {
-          inherit (theme) accent;
-          boldKeywords = true;
-          italicComments = true;
-          italicKeywords = true;
-          extraBordersEnabled = false;
-          workbenchMode = "default";
-          bracketMode = "rainbow";
-        })
-      ];
-
+      extensions = [pkgs.vscode-extensions.catppuccin.catppuccin-vsc-icons];
       userSettings = with theme; {
-        "workbench.colorTheme" = "${name-alt} ${variant-alt}";
         "workbench.iconTheme" = "${name}-${variant}";
         "terminal.external.linuxExec" = config.gui.launcher.terminal;
       };

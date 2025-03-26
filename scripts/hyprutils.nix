@@ -13,6 +13,7 @@
     # Usage #
       help                           - Show this information
       brightness [up,down]           - Screen Brightness Controls
+      temperature [up,down]          - Display Temperature Controls
       backlight [up,down]            - Keyboard Backlight Controls
       volume [up,down,mute]          - Volume Controls
       media [next,previous,toggle]   - Media Controls
@@ -49,22 +50,24 @@ in
   } (pkgs.writeShellApplication {
     name = "hyprutils";
     runtimeInputs = with pkgs; [
+      coreutils
+      gnugrep
+      socat
+      wget
+
       dunst
       zenity
       hyprshade
+      hyprsunset
       hyprland
       custom.hyprshellevents
 
       alsa-utils
       brightnessctl
       brillo
-      coreutils
-      gnugrep
       libnotify
       playerctl
-      socat
       systemd
-      wget
     ];
 
     text = ''
@@ -139,6 +142,33 @@ in
           ;;
           "") error "Expected an Option" "Try 'hyprutils help' for more information" ;;
           *) error "Unexpected Option 'brightness $2'" "Try 'hyprutils help' for more information" ;;
+          esac
+        ;;
+        "temperature")
+          if [[ ! $(pgrep hyprsunset) ]]
+          then
+            hyprsunset -i &
+          fi
+          temperature_notification() {
+            temperature=$(hyprctl hyprsunset temperature)
+            notify temperature -i "display" " $temperature K"
+          }
+          case "$2" in
+          "up")
+            hyprctl hyprsunset temperature +400
+            temperature_notification
+          ;;
+          "down")
+            hyprctl hyprsunset temperature -400
+            temperature_notification
+          ;;
+          "reset")
+            hyprctl hyprsunset temperature 6000
+            hyprctl hyprsunset identity
+            notify temperature -i "display" " Reset"
+          ;;
+          "") error "Expected an Option" "Try 'hyprutils help' for more information" ;;
+          *) error "Unexpected Option 'temperature $2'" "Try 'hyprutils help' for more information" ;;
           esac
         ;;
         "volume")

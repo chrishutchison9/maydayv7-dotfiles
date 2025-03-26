@@ -64,6 +64,9 @@ in {
           # Desktop Icons
           "pcmanfm-qt --desktop"
 
+          # Display Temperature
+          "hyprsunset -i"
+
           # Window Switcher
           "hyprswitch init --workspaces-per-row 3 --custom-css ${toFile "style.css" (build.theme {
             inherit colors;

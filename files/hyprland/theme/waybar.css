@@ -93,6 +93,10 @@ window#waybar {
   margin-right: 3px;
 }
 
+#custom-temperature {
+  color: @base07;
+}
+
 @keyframes blink {
   to {
     background-color: #ffffff;
@@ -138,6 +142,7 @@ window#waybar {
 #custom-dunst,
 #custom-logo,
 #custom-power,
+#custom-temperature,
 #custom-weather,
 #keyboard-state,
 #mpris,

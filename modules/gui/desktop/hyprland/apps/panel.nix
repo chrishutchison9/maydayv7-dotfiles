@@ -51,7 +51,7 @@
             "bluetooth"
             "network"
             "group/media"
-            "backlight"
+            "group/display"
             "group/power"
             "custom/weather"
             "clock"
@@ -210,13 +210,27 @@
             on-click-middle = "hyprutils media previous";
           };
 
+          "group/display" = {
+            orientation = "horizontal";
+            modules = ["backlight" "custom/temperature"];
+            drawer.transition-left-to-right = false;
+          };
+
           backlight = {
             format = "{icon}";
             tooltip-format = "Backlight: {percent}%";
             format-icons = ["" "" "" "" "" "" "" "" ""];
-            on-scroll-down = "brillo -u 300000 -A 5";
-            on-scroll-up = "brillo -u 300000 -U 5";
+            on-scroll-up = "hyprutils brightness down";
+            on-scroll-down = "hyprutils brightness up";
             on-click = "nwg-displays";
+          };
+
+          "custom/temperature" = {
+            format = "";
+            tooltip = false;
+            on-scroll-up = "hyprutils temperature up";
+            on-scroll-down = "hyprutils temperature down";
+            on-click = "hyprutils temperature reset";
           };
 
           "group/power" = {

@@ -151,8 +151,13 @@
       };
     };
 
+    # Catppuccin Theme
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # VS Code Extensions
-    vsppuccin.url = "github:catppuccin/vscode";
     vscode = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs = {

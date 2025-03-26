@@ -42,16 +42,15 @@ in {
           overlays =
             (attrValues self.overlays or {})
             ++ [
-              vsppuccin.overlays.default
               (_: _: {
                 custom = self.packages."${system}";
+                unstable = import unstable {inherit system config;};
 
                 code = vscode.extensions."${system}";
                 gaming = gaming.packages."${system}";
                 wine = windows.packages."${system}";
               })
-            ]
-            ++ [(_: _: {unstable = import unstable {inherit system config;};})];
+            ];
         };
     }
     // (let
