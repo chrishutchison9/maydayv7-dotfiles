@@ -15,6 +15,7 @@
     filesystem = "advanced";
     support = ["laptop" "mobile" "printer" "virtualisation"];
     modules = ["asus-zephyrus-ga402x-nvidia"];
+    gpu = "nvidia";
     cpu = {
       cores = 8;
       mode = "performance";
@@ -22,6 +23,7 @@
 
     vm = {
       vfio = "setup";
+      passthrough = ["10de:28e0" "10de:22be"];
       android.enable = false;
     };
   };

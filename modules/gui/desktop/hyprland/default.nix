@@ -3,10 +3,11 @@
   lib,
   util,
   pkgs,
+  files,
   ...
 } @ args: let
   inherit (config.gui) desktop;
-  inherit (lib) mkForce mkIf mkMerge;
+  inherit (lib) getExe mkForce mkIf mkMerge replaceStrings;
   theme = import ./theme.nix pkgs;
 in {
   ## Hyprland Configuration ##
@@ -17,7 +18,7 @@ in {
         (util.map.modules.list ./apps))
       ++ [
         ## Environment Setup
-        {
+        rec {
           gui = {
             xorg.enable = false;
             wayland.enable = true;
@@ -41,7 +42,6 @@ in {
             regreet = {
               enable = true;
               package = pkgs.greetd.regreet;
-              cageArgs = ["-s" "-m" "last"];
               settings.commands = {
                 reboot = ["systemctl" "reboot"];
                 poweroff = ["systemctl" "poweroff"];
@@ -49,8 +49,31 @@ in {
             };
           };
 
-          # Session
-          services.xserver.desktopManager.runXdgAutostartIfNone = true;
+          services = {
+            # Session
+            displayManager.defaultSession = "Desktop";
+            xserver = {
+              desktopManager.runXdgAutostartIfNone = true;
+              displayManager.session = [
+                {
+                  name = "Desktop";
+                  manage = "desktop";
+                  start = "uwsm start -S -F Hyprland &> /dev/null";
+                }
+              ];
+            };
+
+            # Greeter
+            greetd.settings.default_session.command = with programs;
+              mkForce "${getExe hyprland.package} --config ${
+                pkgs.writeText "greeter.conf"
+                (replaceStrings ["@greeter"] [(getExe regreet.package)]
+                  (util.build.theme {
+                    inherit (config.lib.stylix) colors;
+                    file = files.hyprland.greeter;
+                  }))
+              } &> /dev/null";
+          };
         }
         {
           # Greeter

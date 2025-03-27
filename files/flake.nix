@@ -77,6 +77,9 @@
 
         # PcmanFM File Manager
         pcmanfm = readFile ./hyprland/pcmanfm.conf;
+
+        # Greeter Configuration
+        greeter = readFile ./hyprland/greeter.conf;
       }
       // map.files {
         directory = ./hyprland/theme;

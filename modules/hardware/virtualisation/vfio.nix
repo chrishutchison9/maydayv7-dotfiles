@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (builtins) concatStringsSep elem;
-  inherit (lib) generators mkForce mkIf mkMerge mkOption optionals types;
+  inherit (lib) generators mkForce mkIf mkMerge mkOption types;
   enable = elem "virtualisation" config.hardware.support;
   cfg = config.hardware.vm;
 in {
@@ -56,20 +56,12 @@ in {
           ("vfio-pci.ids=" + concatStringsSep "," cfg.passthrough)
         ];
 
-        kernelModules =
-          [
-            "vfio"
-            "vfio_pci"
-            "vfio_iommu_type1"
-            "vfio_virqfd"
-          ]
-          # GPU Passthrough
-          ++ optionals (elem "nvidia" config.services.xserver.videoDrivers) [
-            "nvidia"
-            "nvidia_modeset"
-            "nvidia_uvm"
-            "nvidia_drm"
-          ];
+        kernelModules = [
+          "vfio"
+          "vfio_pci"
+          "vfio_iommu_type1"
+          "vfio_virqfd"
+        ];
       };
 
       # Looking Glass

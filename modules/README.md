@@ -66,6 +66,7 @@ Configuration [Builder](./configuration.nix)
   - `cpu` -
     - `cores`: Number of CPU Cores - Ex. `4`
     - `mode`: CPU Frequency Governor Mode - `"ondemand" / "performance" / "powersave"`
+  - `gpu`: Discrete GPU Support - `null / "nvidia"`
   - `filesystem`: Disk File System Choice - `"simple" / "advanced"` -
     - `persist`: System Files to Preserve across Reboots (while using `advanced` File System Layout)
   - `modules`: List of Hardware Configuration Modules imported from [`inputs.hardware`](https://github.com/nixos/nixos-hardware) - Ex. `[ "common-pc" ]`

@@ -4,7 +4,7 @@
   util,
   ...
 }: let
-  inherit (lib) mkForce mkIf optionals;
+  inherit (lib) mkForce mkIf;
   inherit (sys.gui) display fancy;
   inherit (sys.lib.stylix.colors) base03 base0A base0D;
 in {
@@ -22,12 +22,7 @@ in {
 
     settings = {
       # GPU Support
-      env =
-        ["AQ_DRM_DEVICES, /dev/dri/card1:/dev/dri/card0"]
-        ++ optionals (builtins.elem "nvidia" sys.services.xserver.videoDrivers) [
-          "LIBVA_DRIVER_NAME, nvidia"
-          "__GLX_VENDOR_LIBRARY_NAME, nvidia"
-        ];
+      env = ["AQ_DRM_DEVICES, /dev/dri/card1:/dev/dri/card0"];
 
       # Display
       monitor = ", preferred, auto, 1";

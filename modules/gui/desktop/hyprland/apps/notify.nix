@@ -56,8 +56,13 @@
         };
 
         fullscreen_delay.fullscreen = "delay";
-        power = {appname = "poweralertd";} // ignore;
         utility = {appname = "utility";} // ignore;
+        power =
+          {
+            appname = "poweralertd";
+            icon = "preferences-system-power";
+          }
+          // ignore;
       };
     };
   };
