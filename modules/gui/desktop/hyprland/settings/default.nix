@@ -32,6 +32,7 @@ in {
       };
 
       input = {
+        follow_mouse = 1; # Focus on cursor move
         focus_on_close = 1;
 
         # Keyboard
@@ -39,7 +40,6 @@ in {
         numlock_by_default = true;
 
         # Mouse
-        follow_mouse = 1; # Focus on cursor move
         accel_profile = "flat";
         touchpad = {
           tap-to-click = true;

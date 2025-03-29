@@ -155,11 +155,11 @@ in
           }
           case "$2" in
           "up")
-            hyprctl hyprsunset temperature +400
+            hyprctl hyprsunset temperature +200
             temperature_notification
           ;;
           "down")
-            hyprctl hyprsunset temperature -400
+            hyprctl hyprsunset temperature -200
             temperature_notification
           ;;
           "reset")

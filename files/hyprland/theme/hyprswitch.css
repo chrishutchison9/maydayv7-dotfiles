@@ -1,6 +1,7 @@
 :root {
-  --bg-color: rgba(0, 0, 0, 0.5);
-  --bg-color-hover: rgba(255, 255, 255, 0.2);
+  --bg-color: rgba(@bg-r, @bg-g, @bg-b, 0.5);
+  --bg-color-active: rgba(255, 255, 255, 0.2);
+  --bg-color-hover: rgba(255, 255, 255, 0.4);
   --border-radius: 10px;
   --border-color: #@base04;
   --border-color-active: #@base05;
@@ -19,6 +20,11 @@
 
 .workspace {
   background: var(--bg-color);
+  border: none;
+}
+
+.workspace_active {
+  border: var(--border-size) solid var(--border-color-active);
 }
 
 .client {
@@ -34,6 +40,6 @@
 }
 
 .client_active {
-  background: var(--bg-color-hover);
+  background: var(--bg-color-active);
   border: var(--border-size) solid var(--border-color-active);
 }
