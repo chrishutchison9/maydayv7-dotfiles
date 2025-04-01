@@ -1,4 +1,4 @@
-From 882d96f3e755c91626ce769a22841e49e540f811 Mon Sep 17 00:00:00 2001
+From b457b39340679f8606312546887561fe0aa5fb02 Mon Sep 17 00:00:00 2001
 From: TomaSajt <62384384+TomaSajt@users.noreply.github.com>
 Date: Wed, 12 Mar 2025 22:42:18 +0100
 Subject: [PATCH] logseq: init at 0.10.9-unstable-2025-03-11
@@ -7,9 +7,9 @@ Subject: [PATCH] logseq: init at 0.10.9-unstable-2025-03-11
  .../electron-forge-disable-signing.patch      |  24 ++
  ...ectron-forge-package-instead-of-make.patch |  13 +
  .../lo/logseq/hardcode-git-paths.patch        |  98 ++++++
- pkgs/by-name/lo/logseq/package.nix            | 292 ++++++++++++++++++
+ pkgs/by-name/lo/logseq/package.nix            | 296 ++++++++++++++++++
  pkgs/top-level/aliases.nix                    |   1 -
- 5 files changed, 427 insertions(+), 1 deletion(-)
+ 5 files changed, 431 insertions(+), 1 deletion(-)
  create mode 100644 pkgs/by-name/lo/logseq/electron-forge-disable-signing.patch
  create mode 100644 pkgs/by-name/lo/logseq/electron-forge-package-instead-of-make.patch
  create mode 100644 pkgs/by-name/lo/logseq/hardcode-git-paths.patch
@@ -17,7 +17,7 @@ Subject: [PATCH] logseq: init at 0.10.9-unstable-2025-03-11
 
 diff --git a/pkgs/by-name/lo/logseq/electron-forge-disable-signing.patch b/pkgs/by-name/lo/logseq/electron-forge-disable-signing.patch
 new file mode 100644
-index 00000000000000..8f4d118c93d784
+index 0000000000000..8f4d118c93d78
 --- /dev/null
 +++ b/pkgs/by-name/lo/logseq/electron-forge-disable-signing.patch
 @@ -0,0 +1,24 @@
@@ -47,7 +47,7 @@ index 00000000000000..8f4d118c93d784
 +     {
 diff --git a/pkgs/by-name/lo/logseq/electron-forge-package-instead-of-make.patch b/pkgs/by-name/lo/logseq/electron-forge-package-instead-of-make.patch
 new file mode 100644
-index 00000000000000..480fedd2f18eb2
+index 0000000000000..480fedd2f18eb
 --- /dev/null
 +++ b/pkgs/by-name/lo/logseq/electron-forge-package-instead-of-make.patch
 @@ -0,0 +1,13 @@
@@ -66,7 +66,7 @@ index 00000000000000..480fedd2f18eb2
 +     "electron:publish:github": "electron-forge publish",
 diff --git a/pkgs/by-name/lo/logseq/hardcode-git-paths.patch b/pkgs/by-name/lo/logseq/hardcode-git-paths.patch
 new file mode 100644
-index 00000000000000..3de53ab57baaa2
+index 0000000000000..3de53ab57baaa
 --- /dev/null
 +++ b/pkgs/by-name/lo/logseq/hardcode-git-paths.patch
 @@ -0,0 +1,98 @@
@@ -170,10 +170,10 @@ index 00000000000000..3de53ab57baaa2
 +  {clj-kondo/clj-kondo {:version "2023.05.26"}}
 diff --git a/pkgs/by-name/lo/logseq/package.nix b/pkgs/by-name/lo/logseq/package.nix
 new file mode 100644
-index 00000000000000..bc7287d0cf6be0
+index 0000000000000..75b61ff080e88
 --- /dev/null
 +++ b/pkgs/by-name/lo/logseq/package.nix
-@@ -0,0 +1,292 @@
+@@ -0,0 +1,296 @@
 +{
 +  lib,
 +  stdenv,
@@ -372,7 +372,11 @@ index 00000000000000..bc7287d0cf6be0
 +    patchShebangs tldraw/apps/tldraw-logseq/node_modules
 +
 +    yarn --offline --cwd tldraw postinstall
-+    yarn --offline --cwd packages/amplify postinstall
++
++    export npm_config_nodedir=${nodejs}
++    pushd packages/amplify
++    npm rebuild --verbose
++    popd
 +
 +    export npm_config_nodedir=${electron-headers}
 +
@@ -467,7 +471,7 @@ index 00000000000000..bc7287d0cf6be0
 +  };
 +})
 diff --git a/pkgs/top-level/aliases.nix b/pkgs/top-level/aliases.nix
-index ab6fcfff4c273a..67bdab40630e61 100644
+index ab6fcfff4c273..67bdab40630e6 100644
 --- a/pkgs/top-level/aliases.nix
 +++ b/pkgs/top-level/aliases.nix
 @@ -919,7 +919,6 @@ mapAliases {

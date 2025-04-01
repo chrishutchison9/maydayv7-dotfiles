@@ -2,6 +2,7 @@
   config,
   pkgs,
   files,
+  theme,
   ...
 }: {
   ## Panel Configuration
@@ -38,12 +39,13 @@
             "custom/logo"
             "group/users"
             "hyprland/workspaces"
-            "custom/minimize"
+            "hyprland/submap"
+            "hyprland/window"
           ];
 
           modules-center = [
-            "hyprland/window"
-            "hyprland/submap"
+            "wlr/taskbar"
+            "custom/minimized"
           ];
 
           modules-right = [
@@ -90,7 +92,7 @@
             format = "<small>{name}</small>{icon}";
             on-scroll-up = "hyprctl dispatch workspace m+1";
             on-scroll-down = "hyprctl dispatch workspace m-1";
-            ignore-workspaces = ["special:scratch_.*" "special:minimize"];
+            ignore-workspaces = ["special:scratch_.*" "special:minimized"];
             format-icons = {
               default = "";
               special = " ";
@@ -106,11 +108,6 @@
             };
           };
 
-          "custom/minimize" = {
-            format = "";
-            on-click = "hyprutils toggle minimize";
-          };
-
           "hyprland/submap" = {
             always-on = false;
             tooltip = false;
@@ -119,9 +116,32 @@
           };
 
           "hyprland/window" = {
-            format = "";
-            icon = true;
+            format = "{class}";
+            icon = false;
             separate-outputs = true;
+          };
+
+          "wlr/taskbar" = {
+            format = "{icon}";
+            icon-size = 20;
+            all-outputs = false;
+            active-first = false;
+            icon-theme = theme.icons.name;
+            markup = true;
+            tooltip-format = "Name: <big><b>{name}</b></big> <i>{short_state}</i>\nTitle: <b>{title}</b>";
+            on-click = "activate";
+            on-click-middle = "minimize";
+            on-click-right = "close";
+            ignore-list = [
+              "kitty-clip"
+              "kitty-dropterm"
+              "ulauncher"
+            ];
+          };
+
+          "custom/minimized" = {
+            format = "";
+            on-click = "hyprutils toggle minimized";
           };
 
           "group/menu" = {

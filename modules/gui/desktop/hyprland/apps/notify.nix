@@ -46,7 +46,6 @@
           mouse_right_click = "close_current";
           offset = "5x5";
           padding = 8;
-          plain_text = "no";
           progress_bar_corner_radius = 10;
           separator_height = 1;
           show_indicators = false;
@@ -57,10 +56,10 @@
 
         fullscreen_delay.fullscreen = "delay";
         utility = {appname = "utility";} // ignore;
-        power =
+        upower =
           {
             appname = "poweralertd";
-            icon = "preferences-system-power";
+            new_icon = "/run/current-system/sw/share/icons/${theme.icons.name}/24x24/apps/preferences-system-power.svg";
           }
           // ignore;
       };

@@ -12,7 +12,7 @@ in {
   ## 3rd Party Apps Configuration
   user.homeConfig = {
     # Theme
-    imports = [inputs.catppuccin.homeManagerModules.catppuccin];
+    imports = [inputs.catppuccin.homeModules.catppuccin];
     catppuccin = with theme; {
       inherit accent;
       flavor = variant;

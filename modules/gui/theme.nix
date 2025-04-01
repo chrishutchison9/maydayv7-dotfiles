@@ -74,7 +74,10 @@ in {
       };
 
       homeManagerIntegration.autoImport = true;
-      targets.plymouth.enable = false;
+      targets = {
+        plymouth.enable = false;
+        chromium.enable = false;
+      };
     };
 
     user.homeConfig.stylix = {

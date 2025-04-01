@@ -21,7 +21,7 @@
       toggle 
         fancy                        - Toggle Compositor Effects
         float                        - Toggle window floating in current workspace
-        minimize                     - Show minimized windows
+        minimized                    - Show minimized windows
         monitor                      - Toggle specified Monitor
         service ['name']             - Toggle SystemD Service
         shader                       - Toggle Compositor Shader
@@ -31,10 +31,18 @@
   daemon = builtins.toFile "daemon.sh" ''
     event_activespecial() {
       case "$WORKSPACENAME" in
-      special:minimize*)
+      special:minimized*)
         hyprctl dispatch submap reset
-        hyprctl dispatch submap Minimize
+        hyprctl dispatch submap Minimized
       ;;
+      esac
+    }
+
+    event_minimized() {
+      WINDOW="address:0x$WINDOWADDRESS"
+      case "$MINIMIZED" in
+      0) hyprctl dispatch movetoworkspace "+0, $WINDOW" ;;
+      1) hyprctl dispatch movetoworkspacesilent "special:minimized, $WINDOW" ;;
       esac
     }
   '';
@@ -298,10 +306,10 @@ in
             hyprctl notify 1 2000 0 "Toggled window floating on Workspace $WORKSPACE"
             hyprctl dispatch workspaceopt allfloat
           ;;
-          "minimize")
+          "minimized")
             if hyprctl workspaces | grep "special:minimize"
             then
-              hyprctl dispatch workspace special:minimize
+              hyprctl dispatch workspace special:minimized
             else
               hyprctl notify 1 2000 0 "No minimized windows present"
             fi

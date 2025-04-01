@@ -73,8 +73,8 @@ _: {
           "$mod, L, exec, loginctl lock-session"
 
           # Window Minimization
-          "ALT, Q, movetoworkspacesilent, special:minimize"
-          "ALT SHIFT, Q, exec, hyprutils toggle minimize"
+          "ALT, Q, movetoworkspacesilent, special:minimized"
+          "ALT SHIFT, Q, exec, hyprutils toggle minimized"
 
           # Screenshot
           '', Print, exec, sh -c "pgrep slurp || grimblast --notify --freeze copysave area"''
@@ -175,7 +175,7 @@ _: {
       submap = reset
 
       # Window Minimization
-      submap = Minimize
+      submap = Minimized
       bind = , left, movefocus, l
       bind = , right, movefocus, r
       bind = , up, movefocus, u
@@ -184,7 +184,7 @@ _: {
       bind = , Return, submap, reset
       bind = , mouse:272, movetoworkspace, +0
       bind = , mouse:272, submap, reset
-      bind = , escape, togglespecialworkspace, minimize
+      bind = , escape, togglespecialworkspace, minimized
       bind = , escape, submap, reset
       submap = reset
     '';

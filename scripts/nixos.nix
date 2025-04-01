@@ -253,7 +253,7 @@ in
           elif grep -wq "$2" <<<"${nixosConfigurations}" &> /dev/null
           then
             echo "Building '$2' Device Image..."
-            nix build  ${path.system}#nixosConfigurations."$2".config.formats.iso
+            nix build ${path.system}#nixosConfigurations."$2".config.formats.iso
           else
             error "Unknown Variant '$2'" "# Available Variants #\n  Install Media: ${installMedia}\n  Devices: ${nixosConfigurations}"
           fi

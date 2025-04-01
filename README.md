@@ -127,7 +127,7 @@ $ nix flake show
 github:maydayv7/dotfiles
 ├───apps
 │   └───x86_64-linux
-│       ├───default: app
+│       ├───hyprutils: app
 │       ├───install: app
 │       └───nixos: app
 ├───checks
@@ -139,7 +139,7 @@ github:maydayv7/dotfiles
 │   └───x86_64-linux
 │       ├───cc: development environment 'C'
 │       ├───default: development environment 'devShell'
-│       ├───format: development environment 'Formatter'
+│       ├───format: development environment 'nix-shell'
 │       ├───java: development environment 'Java'
 │       ├───lua: development environment 'Lua'
 │       ├───python: development environment 'Python'
@@ -152,7 +152,7 @@ github:maydayv7/dotfiles
 │   └───x86_64-linux: package 'treefmt'
 ├───installMedia: device install media
 ├───legacyPackages
-│   └───x86_64-linux (References 'stable' channel)
+│   └───x86_64-linux (Default package channel)
 ├───lib: utility library functions
 ├───nixosConfigurations
 │   ├───futura: NixOS configuration
@@ -161,8 +161,10 @@ github:maydayv7/dotfiles
 ├───overlays
 ├───packages
 │   └───x86_64-linux
-│       ├───install: package 'install'
-│       └───nixos: package 'nixos'
+│       ├───install: package 'os-install'
+│       ├───nixos: package 'nixos'
+│       └───website: package 'website-stable'
+├───systems: supported architectures
 └───templates
     └───default: template: My NixOS Configuration
 ```

@@ -171,6 +171,35 @@
       url = "github:emmanuelrosa/erosanix";
       inputs.nixpkgs.follows = "unstable";
     };
+
+    ## Hyprland
+    # Core
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+    };
+
+    # Plugins
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    hyprsplit = {
+      url = "github:shezdy/hyprsplit";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    hyprdark = {
+      url = "github:micha4w/Hypr-DarkWindow";
+      inputs = {
+        hyprland.follows = "hyprland";
+        nix-filter.follows = "filters";
+      };
+    };
   };
 
   ## Configuration ##

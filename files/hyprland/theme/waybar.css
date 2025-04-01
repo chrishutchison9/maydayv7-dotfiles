@@ -58,12 +58,17 @@ window#waybar {
   background-color: @base08;
 }
 
+.modules-left #window {
+  color: @base0C;
+  background-color: transparent;
+}
+
 #taskbar button.active {
-  background: @base03;
+  background: @base0C;
 }
 
 #taskbar button.minimized {
-  border: 2px solid @base03;
+  border: 2px solid @base0C;
 }
 
 #taskbar button.urgent {

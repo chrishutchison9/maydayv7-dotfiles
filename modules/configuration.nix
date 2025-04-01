@@ -87,25 +87,24 @@ in
                 then [user]
                 else users
               )
-              ++ (
-                if (format != null)
-                then [(getAttr format inputs.generators.nixosModules)]
-                else []
-              )
               ++ util.map.array (hardware.modules or []) inputs.hardware.nixosModules
               ++ (
-                if (format == "iso")
+                if (format != null)
                 then [
-                  {
-                    environment.systemPackages = [pkgs.custom.install];
+                  (getAttr format inputs.generators.nixosModules)
+                  (
+                    if (format == "iso")
+                    then {
+                      image.baseName = lib.mkForce "nixos";
+                      environment.systemPackages = [pkgs.custom.install];
 
-                    # Disabled Modules
-                    user.homeConfig = lib.mkForce {};
-                    sops.secrets = lib.mkForce {};
-                  }
+                      # Disabled Modules
+                      user.homeConfig = lib.mkForce {};
+                      sops.secrets = lib.mkForce {};
+                    }
+                    else {environment.systemPackages = [pkgs.custom.nixos];}
+                  )
                 ]
-                else if (format != "iso")
-                then [{environment.systemPackages = [pkgs.custom.nixos];}]
                 else []
               );
 

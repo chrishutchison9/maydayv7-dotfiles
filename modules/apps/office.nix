@@ -26,6 +26,16 @@ in {
           obs-source-switcher
         ];
       };
+
+      chromium = {
+        enable = true;
+        extensions = [
+          "cjpalhdlnbpafiamejdnhcphjbkeiagm" # UBlock Origin
+          "djflhoibgkdhkhhcedjiklpkjnoahfmg" # User Agent Switcher
+          "lckanjgmijmafbedllaakclkaicjfmnk" # ClearURLs
+          "oofgbpoabipfcfjapgnbbjjaenockbdp" # SetupVPN
+        ];
+      };
     };
 
     environment.systemPackages = with pkgs; [

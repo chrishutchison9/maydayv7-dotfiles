@@ -16,14 +16,13 @@ in {
     installMedia =
       listToAttrs (builtins.map (name:
         nameValuePair name (build.device {
-          format = "iso";
           description = "Install Media";
+          format = "iso";
 
           # Region
           timezone = "Asia/Kolkata";
           locale = "IN";
 
-          kernelModules = ["nvme"];
           kernel = "lts";
           gui.desktop = name + "-iso";
 

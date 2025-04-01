@@ -6,10 +6,10 @@
 }: {
   ## Plugin Settings
   wayland.windowManager.hyprland = {
-    plugins = with pkgs.hyprlandPlugins; [
+    plugins = with pkgs.hyprworld; [
       hyprexpo
       hyprsplit
-      pkgs.custom.hyprdark
+      #!# Hypr-DarkWindow
     ];
 
     settings = {
@@ -34,7 +34,7 @@
         "$mod, grave, hyprexpo:expo, toggle"
 
         # Color Inversion
-        "$mod, I, invertactivewindow"
+        #!# "$mod, I, invertactivewindow"
       ];
     };
   };
