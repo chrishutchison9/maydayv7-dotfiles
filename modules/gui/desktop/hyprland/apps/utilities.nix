@@ -1,10 +1,13 @@
 {
   config,
+  lib,
   util,
   pkgs,
   files,
   ...
 }: let
+  inherit (lib) getExe;
+  inherit (builtins) toFile;
   inherit (util.build) theme;
   inherit (config.lib.stylix) colors;
 in {
@@ -34,7 +37,9 @@ in {
     pavucontrol
     pyprland
     slurp
+    waycorner
     wev
+    wlclock
     wl-clipboard
     wl-screenrec
     wlr-randr
@@ -82,6 +87,34 @@ in {
         };
       };
 
+      systemd.user.services = let
+        run = about: command: {
+          Install.WantedBy = ["graphical-session.target"];
+          Unit.Description = about;
+          Service = {
+            Type = "Simple";
+            ExecStart = command;
+          };
+        };
+      in {
+        waycorner = run "Hot Corners" (getExe pkgs.waycorner);
+        wlclock = with colors; run "Desktop Clock" "${getExe pkgs.wlclock} --layer bottom --exclusive-zone true --position top-right --margin 10 --size 300 --corner-radius 10 --border-size 2 --hand-width 7 --marking-width 3 --background-colour #ffffff00 --clock-colour #${base0D} --border-colour #${base00}";
+        hyprswitch = run "Window Switcher" "${getExe pkgs.hyprswitch} init --workspaces-per-row 3 --custom-css ${toFile "style.css" (theme {
+          inherit colors;
+          file = files.hyprland.hyprswitch;
+        })}";
+      };
+
+      # Network Settings
+      xdg.desktopEntries."org.gnome.Settings" = {
+        name = "Network Settings";
+        comment = "Gnome Control Center";
+        icon = "org.gnome.Settings";
+        exec = "env XDG_CURRENT_DESKTOP=gnome gnome-control-center";
+        categories = ["X-Preferences"];
+        terminal = false;
+      };
+
       home.file = with files.hyprland; {
         # Application Drawer
         ".config/nwg-drawer/drawer.css".text = drawer;
@@ -89,9 +122,12 @@ in {
         # Pyprland
         ".config/hypr/pyprland.toml".text = pypr;
 
+        # Hot Corners
+        ".config/waycorner/config.toml".text = waycorner;
+
         # Shaders
         ".config/hypr/shaders" = {
-          source = "${pkgs.custom.hyprshaders}/share/hypr/shaders";
+          source = files.proprietary.shaders;
           recursive = true;
         };
 

@@ -31,7 +31,7 @@
   };
 in {
   ## USER Configuration ##
-  imports = modules.list ./. ++ [inputs.home-manager.nixosModules.home-manager];
+  imports = modules.list ./. ++ [inputs.home.nixosModules.home-manager];
 
   options = {
     # Global Home Manager Configuration

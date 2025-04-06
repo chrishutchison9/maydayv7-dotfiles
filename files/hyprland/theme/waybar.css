@@ -7,6 +7,13 @@
 
 window#waybar {
   background-color: transparent;
+  border: 2px solid @base00;
+}
+
+tooltip {
+  background: alpha(@base00, 0.9);
+  color: @base05;
+  border: 1px solid @base0D;
 }
 
 #custom-logo {
@@ -94,6 +101,10 @@ window#waybar {
   opacity: 0.8;
 }
 
+.modules-right #network.disconnected {
+  background-color: @base08;
+}
+
 #media .drawer box {
   margin-right: 3px;
 }
@@ -158,10 +169,18 @@ window#waybar {
 #user,
 #window,
 #wireplumber {
-  padding: 3px 5px;
-  margin: 1px;
+  padding: 2px 5px;
+  margin: 5px 1px;
+}
+
+#custom-power {
+  margin-right: 0;
+}
+
+#power-profiles-daemon {
+  margin-right: 5px;
 }
 
 #workspaces {
-  margin: 0 3px;
+  margin: 4px 1px;
 }

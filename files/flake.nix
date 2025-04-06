@@ -72,6 +72,9 @@
         # Pyprland
         pypr = readFile ./hyprland/pypr.toml;
 
+        # Hot Corners
+        waycorner = readFile ./hyprland/waycorner.toml;
+
         # Keybinds Viewer
         kebihelp = readFile ./hyprland/kebihelp.json;
 
@@ -113,6 +116,9 @@
       };
     };
 
+    # Nano Text Editor
+    nano = readFile ./nano/nanorc;
+
     # Pantheon Desktop
     pantheon = {
       dconf = ./pantheon/dconf.nix;
@@ -128,9 +134,6 @@
     # Custom Proprietary Files
     proprietary = inputs.proprietary.files;
     inherit (proprietary) wallpapers;
-
-    # Nano Text Editor
-    nano = readFile ./nano/nanorc;
 
     # Interactive Nix Shell
     repl = ./repl.nix;

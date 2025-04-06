@@ -73,7 +73,7 @@ in
         inherit system;
         specialArgs = {
           inherit util inputs files;
-          lib = lib // {inherit (inputs.home-manager.lib) hm;};
+          lib = lib // {inherit (inputs.home.lib) hm;};
         };
 
         modules = [
@@ -102,10 +102,10 @@ in
                       user.homeConfig = lib.mkForce {};
                       sops.secrets = lib.mkForce {};
                     }
-                    else {environment.systemPackages = [pkgs.custom.nixos];}
+                    else {}
                   )
                 ]
-                else []
+                else [{environment.systemPackages = [pkgs.custom.nixos];}]
               );
 
             inherit apps gui hardware nix shell;

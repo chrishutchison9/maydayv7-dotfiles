@@ -1,8 +1,13 @@
 {
   config,
+  lib,
   theme,
   ...
-}: {
+}: let
+  inherit (lib) mkForce;
+  inherit (theme) icons;
+  inherit (config.lib.stylix) colors;
+in {
   ## Notifications Configuration
   # Phone Connect
   user.persist.directories = [".config/kdeconnect"];
@@ -19,14 +24,14 @@
     # Notifications Daemon
     stylix.targets.dunst.enable = true;
     services.dunst = let
-      ignore = {
+      system = {
         history_ignore = "yes";
         fullscreen = "show";
-        highlight = "#${config.lib.stylix.colors.base07}";
+        highlight = "#${colors.base07}";
       };
     in {
       enable = true;
-      iconTheme = theme.icons;
+      iconTheme = icons;
       settings = {
         global = {
           alignment = "center";
@@ -37,7 +42,7 @@
           horizontal_padding = 8;
           icon_corner_radius = 10;
           icon_position = "left";
-          icon_theme = theme.icons.name;
+          icon_theme = icons.name;
           indicate_hidden = "yes";
           markup = "yes";
           max_icon_size = 64;
@@ -54,14 +59,17 @@
           word_wrap = "yes";
         };
 
+        urgency_low.frame_color = mkForce "#${colors.base0E}";
+        urgency_normal.frame_color = mkForce "#${colors.base0D}";
         fullscreen_delay.fullscreen = "delay";
-        utility = {appname = "utility";} // ignore;
+        screenshot = {appname = "grimblast";} // system;
+        utility = {appname = "utility";} // system;
         upower =
           {
             appname = "poweralertd";
-            new_icon = "/run/current-system/sw/share/icons/${theme.icons.name}/24x24/apps/preferences-system-power.svg";
+            new_icon = "/run/current-system/sw/share/icons/${icons.name}/24x24/apps/preferences-system-power.svg";
           }
-          // ignore;
+          // system;
       };
     };
   };

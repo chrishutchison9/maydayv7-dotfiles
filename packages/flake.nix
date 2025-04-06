@@ -51,9 +51,9 @@ in {
                 wine = windows.packages."${system}";
                 hyprworld =
                   hyprland.packages."${system}"
-                  // hyprland-plugins.packages."${system}"
-                  // hyprdark.packages."${system}"
-                  // hyprsplit.packages."${system}";
+                  // hyprplugins.packages."${system}"
+                  // hyprsplit.packages."${system}"
+                  // hyprcursors.packages."${system}";
               })
             ];
         };

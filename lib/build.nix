@@ -42,8 +42,8 @@ in {
     fonts ? null,
     file,
   }: let
-    color = ["@accent" "@white" "@bg-r" "@bg-g" "@bg-b" "@base00" "@base01" "@base02" "@base03" "@base04" "@base05" "@base06" "@base07" "@base08" "@base09" "@base0A" "@base0B" "@base0C" "@base0D" "@base0E" "@base0F"];
-    color' = with colors; [colors."${accent}" "FFFFFF" base00-rgb-r base00-rgb-g base00-rgb-b base00 base01 base02 base03 base04 base05 base06 base07 base08 base09 base0A base0B base0C base0D base0E base0F];
+    color = ["@accent" "@white" "@base00" "@base01" "@base02" "@base03" "@base04" "@base05" "@base06" "@base07" "@base08" "@base09" "@base0A" "@base0B" "@base0C" "@base0D" "@base0E" "@base0F"];
+    color' = with colors; [colors."${accent}" "FFFFFF" base00 base01 base02 base03 base04 base05 base06 base07 base08 base09 base0A base0B base0C base0D base0E base0F];
     font = ["@font" "@monospace"];
     font' = with fonts; [sansSerif.name monospace.name];
   in

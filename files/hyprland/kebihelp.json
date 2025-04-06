@@ -233,10 +233,6 @@
             "label": "Toggle Compositor Shader"
           },
           {
-            "value": "$mod I",
-            "label": "Invert active window color"
-          },
-          {
             "value": "$mod SHIFT S",
             "label": "Toggle window swallowing"
           },

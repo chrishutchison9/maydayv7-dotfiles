@@ -87,7 +87,7 @@
 
     ## Feature Modules
     # User Home Manager
-    home-manager = {
+    home = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -135,7 +135,7 @@
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
         flake-utils.follows = "utils";
-        home-manager.follows = "home-manager";
+        home-manager.follows = "home";
       };
     };
 
@@ -183,7 +183,7 @@
     };
 
     # Plugins
-    hyprland-plugins = {
+    hyprplugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
@@ -193,11 +193,11 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    hyprdark = {
-      url = "github:micha4w/Hypr-DarkWindow";
+    hyprcursors = {
+      url = "github:VirtCode/hypr-dynamic-cursors";
       inputs = {
         hyprland.follows = "hyprland";
-        nix-filter.follows = "filters";
+        nixpkgs.follows = "nixpkgs";
       };
     };
   };

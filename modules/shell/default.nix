@@ -18,13 +18,12 @@ in {
 
   config = mkMerge [
     {
-      # Environment Settings
-      environment = {
-        systemPackages = [pkgs.nano];
-
-        # Default Editor
-        variables."EDITOR" = "nano";
-        etc.nanorc.text = files.nano;
+      # Text Editor
+      environment.variables."EDITOR" = "nano";
+      programs.nano = {
+        enable = true;
+        syntaxHighlight = true;
+        nanorc = files.nano;
       };
     }
 
@@ -36,8 +35,10 @@ in {
         btop
         eza
         fd
+        hstr
         hyfetch
         lolcat
+        micro
         tree
         yazi
       ];
@@ -57,7 +58,10 @@ in {
       user = {
         persist = {
           files = [".hstr_favorites"];
-          directories = [".local/share/direnv"];
+          directories = [
+            ".config/micro"
+            ".local/share/direnv"
+          ];
         };
 
         homeConfig = {
@@ -94,6 +98,30 @@ in {
                 icons = "auto";
                 git = true;
                 extraOptions = ["--group-directories-first"];
+              };
+
+              # Micro Configuration
+              micro = {
+                enable = true;
+                settings = {
+                  autoindent = true;
+                  backup = true;
+                  clipboard = "external";
+                  cursorline = true;
+                  eofnewline = false;
+                  helpsplit = "vsplit";
+                  hltrailingws = true;
+                  infobar = true;
+                  matchbrace = true;
+                  keymenu = true;
+                  mouse = true;
+                  reload = "prompt";
+                  ruler = true;
+                  saveundo = true;
+                  smartpaste = true;
+                  statusline = true;
+                  syntax = true;
+                };
               };
             };
 

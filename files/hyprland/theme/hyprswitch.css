@@ -1,5 +1,5 @@
 :root {
-  --bg-color: rgba(@bg-r, @bg-g, @bg-b, 0.5);
+  --bg-color: alpha(#@base00, 0.5);
   --bg-color-active: rgba(255, 255, 255, 0.2);
   --bg-color-hover: rgba(255, 255, 255, 0.4);
   --border-radius: 10px;

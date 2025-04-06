@@ -137,8 +137,10 @@ _: {
     ## Submaps
     extraConfig = ''
       # Inhibit Keybinds
+      bind = $mod SHIFT, Escape, exec, hyprutils toggle service waycorner
       bind = $mod SHIFT, Escape, submap, Inhibit
       submap = Inhibit
+      bind = $mod SHIFT, Escape, exec, hyprutils toggle service waycorner
       bind = $mod SHIFT, Escape, submap, reset
       submap = reset
 

@@ -7,16 +7,16 @@
   theme,
   ...
 }: let
-  inherit (lib) flatten;
-  inherit (builtins) map toFile;
-  inherit (util) build;
-  inherit (config.lib.stylix) colors;
+  inherit (builtins) map toString;
+  inherit (config.gui) cursors display;
+  cursor = "${cursors.name}-Hyprcursor";
 in {
   ## App Environment
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 
   # Desktop Integration
   stylix.base16Scheme = files.colors.catppuccin;
+  environment.systemPackages = [pkgs.custom.bibata-hyprcursor];
   gui = with theme; {
     fonts.enable = true;
     inherit (theme) icons;
@@ -40,19 +40,27 @@ in {
       button-layout = "appmenu";
     };
 
+    # Cursor
+    xdg.dataFile."icons/${cursor}".source = "${cursors.package}/share/icons/${cursor}";
     wayland.windowManager.hyprland.settings = {
       env = [
+        "HYPRCURSOR_THEME, ${cursor}"
+        "HYPRCURSOR_SIZE, ${toString cursors.size}"
+
         # QT Apps
         "QT_WAYLAND_DISABLE_WINDOWDECORATION, 1"
 
-        # Screengrab
-        "SLURP_ARGS, -dc ${colors.base0D}"
+        # Screenshot
+        "SLURP_ARGS, -dc ${config.lib.stylix.colors.base0D}"
       ];
 
       ## Autostart
       exec-once =
-        ["uwsm finalize"]
-        ++ (map (app: "uwsm app -t service -u ${build.until " " app}.service -- " + app) [
+        [
+          "uwsm finalize"
+          "hyprctl setcursor ${cursor} ${toString cursors.size}"
+        ]
+        ++ (map (app: "uwsm app -t service -u ${util.build.until " " app}.service -- " + app) [
           "hyprutils daemon"
 
           # Pyprland
@@ -66,12 +74,6 @@ in {
 
           # Display Temperature
           "hyprsunset -i"
-
-          # Window Switcher
-          "hyprswitch init --workspaces-per-row 3 --custom-css ${toFile "style.css" (build.theme {
-            inherit colors;
-            file = files.hyprland.hyprswitch;
-          })} &"
         ]);
 
       ## Shortcuts
@@ -99,7 +101,7 @@ in {
 
         # Tools
         "$mod SHIFT, A, exec, hyprutils toggle service waybar"
-        "$mod SHIFT, D, exec, hyprutils toggle monitor ${config.gui.display}"
+        "$mod SHIFT, D, exec, hyprutils toggle monitor ${display}"
         "$mod, N, exec, dunstctl history-pop"
         "$mod, S, exec, hyprutils toggle shader"
         "$mod SHIFT, T, exec, pypr toggle term"
@@ -117,10 +119,11 @@ in {
         "blur, ^(logout_dialog)$"
         "blur, ^(nwg-drawer)$"
         "blur, ^(waybar)$"
+        "blur, ^(wlclock)$"
       ];
 
       ## Window Rules
-      windowrulev2 = flatten (
+      windowrulev2 = lib.flatten (
         [
           # Settings
           "stayfocused, class:^(gnome-control-center)$"

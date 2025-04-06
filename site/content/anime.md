@@ -14,6 +14,7 @@ comments = true
 - 86 <sup>#</sup> <sup>\*</sup>
 - 100 Kanojo <sup>#</sup> <sup>\*</sup>
 - A Condition called Love
+- A Galaxy Next Door <sup>\*</sup>
 - A Sign of Affection
 - A Silent Voice
 - Aharen-san wa Hakarenai

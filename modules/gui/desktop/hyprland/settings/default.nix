@@ -6,7 +6,7 @@
 }: let
   inherit (lib) mkForce mkIf;
   inherit (sys.gui) display fancy;
-  inherit (sys.lib.stylix.colors) base03 base0A base0D;
+  inherit (sys.lib.stylix.colors) base03 base07 base0D;
 in {
   ## Hyprland Settings
   imports = util.map.modules.list ./.;
@@ -115,15 +115,15 @@ in {
         };
 
         # Visuals
-        gaps_in = 5;
-        gaps_out = 5;
+        gaps_in = 3;
+        gaps_out = 3;
         border_size = 2;
-        "col.active_border" = mkForce "rgb(${base0D}) rgb(${base0A}) 90deg";
+        "col.active_border" = mkForce "rgb(${base0D}) rgb(${base07}) 90deg";
       };
 
       group = let
-        active = "rgb(${base0A}) rgb(${base0D}) 90deg";
-        inactive = "rgb(${base03}) rgb(${base0D}) 90deg";
+        active = "rgb(${base07}) rgb(${base0D}) 90deg";
+        inactive = "rgb(${base03}) rgb(${base07}) 90deg";
       in {
         auto_group = true;
         insert_after_current = true;
@@ -140,10 +140,11 @@ in {
 
         groupbar = {
           enabled = true;
-          render_titles = false;
           scrolling = true;
           gradients = true;
           height = 10;
+          render_titles = false;
+          keep_upper_gap = false;
           indicator_height = 0;
           gradient_rounding = 5;
           gradient_round_only_edges = false;
