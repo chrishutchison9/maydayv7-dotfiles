@@ -40,7 +40,7 @@
           };
 
           mode =
-            if (sys.gui.fancy)
+            if sys.gui.fancy
             then "tilt"
             else "none";
           tilt.function = "negative_quadratic";

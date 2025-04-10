@@ -4,12 +4,10 @@
   border-radius: 10px;
   min-height: 0;
 }
-
 window#waybar {
   background-color: transparent;
   border: 2px solid @base00;
 }
-
 tooltip {
   background: alpha(@base00, 0.9);
   color: @base05;
@@ -20,41 +18,37 @@ tooltip {
   color: #ffffff;
 }
 
+#user {
+  background-color: @base0F;
+  color: @base00;
+}
 #user > image {
   padding-right: 5px;
 }
-
 #users .drawer box {
   margin-left: 5px;
 }
-
 #custom-power {
   color: @base08;
 }
 
-#waybar.empty #window {
-  background: none;
-}
-
-.modules-left #workspaces button {
+#workspaces button {
+  color: @base00;
+  background-color: @base07;
   border: 2px solid @base00;
   padding: 4px 6px;
 }
-
-.modules-left #workspaces button.active {
+#workspaces button.active {
   background-color: @base05;
 }
-
-.modules-left #workspaces button.empty {
+#workspaces button.empty {
   color: @base07;
   background-color: transparent;
 }
-
-.modules-left #workspaces button.hosting-monitor.visible {
+#workspaces button.hosting-monitor.visible {
   border: 2px solid @base04;
 }
-
-.modules-left #workspaces button.special {
+#workspaces button.special {
   opacity: 0.8;
   padding-right: 3px;
   margin-left: 5px;
@@ -65,7 +59,7 @@ tooltip {
   background-color: @base08;
 }
 
-.modules-left #window {
+#window {
   color: @base0C;
   background-color: transparent;
 }
@@ -73,11 +67,9 @@ tooltip {
 #taskbar button.active {
   background: @base0C;
 }
-
 #taskbar button.minimized {
   border: 2px solid @base0C;
 }
-
 #taskbar button.urgent {
   border: 2px solid @base08;
 }
@@ -85,41 +77,56 @@ tooltip {
 #custom-dropdown {
   color: #ffffff;
 }
-
 #tray {
   color: #ffffff;
   margin: 0;
   padding: 0;
 }
-
 #tray * {
   margin-left: 8px;
 }
-
-.modules-right #keyboard-state {
+#keyboard-state {
   color: @base05;
   opacity: 0.8;
 }
 
-.modules-right #network.disconnected {
-  background-color: @base08;
+#network {
+  background-color: @base0B;
+  color: @base00;
+}
+#network.disconnected {
+  background-color: @base06;
 }
 
 #media .drawer box {
   margin-right: 3px;
 }
+#wireplumber {
+  background-color: @base09;
+  color: @base00;
+}
+#wireplumber.muted {
+  background-color: @base06;
+}
 
+#backlight {
+  background-color: @base0E;
+  color: @base00;
+}
 #custom-temperature {
   color: @base07;
 }
 
+#battery {
+  background-color: @base0A;
+  color: @base00;
+}
 @keyframes blink {
   to {
     background-color: #ffffff;
   }
 }
-
-.modules-right #battery.critical:not(.charging) {
+#battery.critical:not(.charging) {
   background-color: @base08;
   animation-name: blink;
   animation-duration: 0.5s;
@@ -127,25 +134,31 @@ tooltip {
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
-
-#power-profiles-daemon {
-  color: @base0C;
+#power-profiles-daemon.performance {
+  color: @base08;
+}
+#power-profiles-daemon.balanced {
+  color: @base0A;
+}
+#power-profiles-daemon.power-saver {
+  color: @base0B;
 }
 
 #custom-weather {
   color: @base00;
-  background-color: @base06;
+  background-color: @base05;
 }
 
-.modules-right #clock {
-  background-color: @base0A;
+#clock {
+  background-color: @base0D;
+  color: @base00;
 }
 
 #custom-dunst {
   color: @base0A;
 }
 
-.modules-right #idle_inhibitor {
+#idle_inhibitor {
   color: @base09;
   background-color: transparent;
 }

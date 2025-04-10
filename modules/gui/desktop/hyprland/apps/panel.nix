@@ -10,9 +10,7 @@
     stylix.targets.waybar = {
       enable = true;
       font = "sansSerif";
-      enableCenterBackColors = true;
-      enableLeftBackColors = true;
-      enableRightBackColors = true;
+      addCss = false;
     };
 
     home.packages = [pkgs.wttrbar];
