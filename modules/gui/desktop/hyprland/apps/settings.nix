@@ -16,7 +16,7 @@ in {
 
   # Desktop Integration
   stylix.base16Scheme = files.colors.catppuccin;
-  environment.systemPackages = [pkgs.custom.bibata-hyprcursor];
+  environment.systemPackages = [pkgs.custom.cursors];
   gui = with theme; {
     fonts.enable = true;
     inherit (theme) icons;

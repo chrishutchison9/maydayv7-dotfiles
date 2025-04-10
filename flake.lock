@@ -1024,11 +1024,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1743975352,
-        "narHash": "sha256-KWD0XUUsYzGDaAVPOJiEO8Cq5FyH2fMfOHVq7J5mKck=",
+        "lastModified": 1744317917,
+        "narHash": "sha256-5JFxVNHllu7QeLidWgm8adHCDfFInRpT0X7/ZE0TorE=",
         "owner": "maydayv7",
         "repo": "proprietary",
-        "rev": "f1652c9e3fe111538b5949b28d80101f92c832af",
+        "rev": "3c5878e7f1fa2672cc63bb7b18e9d694278c130d",
         "type": "github"
       },
       "original": {
