@@ -45,8 +45,9 @@ in {
               return $old_exit_status
             }
 
-            if [ "$TERM" != "linux" ]; then
-              PROMPT_COMMAND="_update_ps1;$PROMPT_COMMAND"
+            if [ "$TERM" != "linux" ]
+            then
+              PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
             fi
           '';
 

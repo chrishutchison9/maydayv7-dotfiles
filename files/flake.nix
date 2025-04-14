@@ -37,7 +37,7 @@
     };
 
     # Hyfetch
-    fetch = readFile ./fetch/config.conf;
+    fetch = readFile ./fetch/config.jsonc;
 
     # Geany Text Editor
     geany = map.files {

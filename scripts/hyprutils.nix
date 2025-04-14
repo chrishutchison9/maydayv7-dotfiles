@@ -65,9 +65,9 @@ in
 
       dunst
       zenity
+      hyprland
       hyprshade
       hyprsunset
-      hyprland
       custom.hyprshellevents
 
       alsa-utils
@@ -153,10 +153,6 @@ in
           esac
         ;;
         "temperature")
-          if [[ ! $(pgrep hyprsunset) ]]
-          then
-            hyprsunset -i &
-          fi
           temperature_notification() {
             temperature=$(hyprctl hyprsunset temperature)
             notify temperature -i "display" " $temperature K"

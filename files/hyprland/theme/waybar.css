@@ -88,6 +88,7 @@ tooltip {
 #keyboard-state {
   color: @base05;
   opacity: 0.8;
+  border: 2px solid @base04;
 }
 
 #network {
@@ -107,6 +108,9 @@ tooltip {
 }
 #wireplumber.muted {
   background-color: @base06;
+}
+#mpris {
+  color: @base05;
 }
 
 #backlight {
@@ -173,6 +177,7 @@ tooltip {
 #custom-power,
 #custom-temperature,
 #custom-weather,
+#idle_inhibitor,
 #keyboard-state,
 #mpris,
 #network,

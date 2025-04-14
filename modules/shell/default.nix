@@ -28,20 +28,25 @@ in {
     }
 
     (mkIf config.shell.utilities {
-      # Utilities
-      environment.systemPackages = with pkgs; [
-        bat
-        browsh
-        btop
-        eza
-        fd
-        hstr
-        hyfetch
-        lolcat
-        micro
-        tree
-        yazi
-      ];
+      environment = {
+        # Utilities
+        systemPackages = with pkgs; [
+          bat
+          browsh
+          btop
+          eza
+          fastfetch
+          fd
+          hstr
+          lolcat
+          micro
+          tree
+          yazi
+        ];
+
+        # Fetch
+        etc."fastfetch/config.jsonc".text = fetch;
+      };
 
       ## Program Configuration
       services.lorri.enable = true; # Faster 'nix shell'
@@ -125,9 +130,6 @@ in {
               };
             };
 
-          # Fetch
-          home.file.".config/neofetch/config.conf".text = fetch;
-
           # Command Aliases
           home.shellAliases = {
             hi = "echo 'Hi there. How are you?'";
@@ -140,7 +142,7 @@ in {
             grep = "grep --color";
             colors = "${scripts.colors}";
             edit = "sudo $EDITOR";
-            sike = "neowofetch";
+            sike = "fastfetch";
           };
         };
       };

@@ -32,6 +32,7 @@
         enable = true;
         allowDuplicates = false;
         historySize = 150;
+        imageDisplay.type = "kitty";
         theme = with config.lib.stylix.colors; {
           useCustomTheme = true;
           DimmedDesc = "#${base07}";

@@ -13,7 +13,6 @@
 
     <!--
       Global animation Colors
-      Specify Hex Code or use 'auto'
     -->
     <property name="color">5294E2</property>
     <property name="borderColor">383C4A</property>

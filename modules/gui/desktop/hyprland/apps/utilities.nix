@@ -78,12 +78,33 @@ in {
   user = {
     persist.directories = [".config/nwg-displays"];
     homeConfig = {
-      # Wallpaper Daemon
-      services.hyprpaper = {
-        enable = true;
-        settings = {
-          ipc = false;
-          splash = true;
+      services = {
+        # Wallpaper Daemon
+        hyprpaper = {
+          enable = true;
+          settings = {
+            ipc = false;
+            splash = true;
+          };
+        };
+
+        # Display Temperature
+        hyprsunset = {
+          enable = true;
+          extraArgs = ["--identity"];
+          transitions = {
+            sunrise = {
+              calendar = "*-*-* 07:00:00";
+              requests = [
+                ["temperature" "6000"]
+                ["identity"]
+              ];
+            };
+            sunset = {
+              calendar = "*-*-* 19:00:00";
+              requests = [["temperature" "4000"]];
+            };
+          };
         };
       };
 

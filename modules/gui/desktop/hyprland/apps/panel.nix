@@ -219,7 +219,7 @@
             dynamic-len = 20;
             dynamic-order = ["title" "artist" "length"];
             dynamic-separator = " - ";
-            format = " {player} - {dynamic}";
+            format = " {player}";
             format-paused = "󰏤 <i>{player}</i>";
             format-stopped = "";
             tooltip-format-stopped = "Not Playing";

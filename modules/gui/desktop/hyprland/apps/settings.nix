@@ -71,9 +71,6 @@ in {
 
           # Desktop Icons
           "pcmanfm-qt --desktop"
-
-          # Display Temperature
-          "hyprsunset -i"
         ]);
 
       ## Shortcuts
