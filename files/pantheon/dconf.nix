@@ -19,6 +19,7 @@ in {
     "io/elementary/desktop/wingpanel/sound".max-volume = 100.0;
     "io/elementary/desktop/wingpanel/power".show-percentage = true;
     "io/elementary/desktop/wingpanel/bluetooth".bluetooth-enabled = false;
+
     "io/elementary/switchboard/keyboard".first-launch = false;
     "io/elementary/files/preferences".singleclick-select = false;
     "io/elementary/settings-daemon/datetime".show-weeks = true;
@@ -30,13 +31,10 @@ in {
       clock-format = "24h";
       clock-show-weekday = true;
       cursor-size = 32;
-      document-font-name = "${head fonts.sansSerif} 12";
       enable-animations = true;
       enable-hot-corners = true;
-      font-name = "${head fonts.sansSerif} 12";
       gtk-enable-primary-paste = true;
       locate-pointer = true;
-      monospace-font-name = "${head fonts.monospace} 13";
       text-scaling-factor = 1.0;
     };
 
@@ -261,33 +259,33 @@ in {
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+      name = "Task Manager";
       binding = "<Primary><Alt>Return";
       command = "com.github.stsdc.monitor";
-      name = "com.github.stsdc.monitor";
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+      name = "Terminal";
       binding = "<Super>t";
       command = "io.elementary.terminal";
-      name = "io.elementary.terminal";
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
+      name = "Calculator";
       binding = "Calculator";
       command = "io.elementary.calculator";
-      name = "io.elementary.calculator";
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" = {
+      name = "Launcher";
       binding = "<Super>slash";
       command = "ulauncher-toggle";
-      name = "ulauncher-toggle";
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4" = {
+      name = "Clipboard";
       binding = "<Super>v";
       command = "gtk-launch com.github.hezral.clips";
-      name = "gtk-launch com.github.hezral.clips";
     };
 
     # Gestures

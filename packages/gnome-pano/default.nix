@@ -8,22 +8,22 @@ with pkgs; let
 in
   stdenv.mkDerivation rec {
     pname = "pano";
-    version = "v23-alpha3";
+    version = "v23-alpha5";
     src = fetchzip {
       url = "https://github.com/oae/gnome-shell-pano/releases/download/${version}/${uuid}.zip";
-      sha256 = "sha256-LYpxsl/PC8hwz0ZdH5cDdSZPRmkniBPUCqHQxB4KNhc=";
+      sha256 = "sha256-kTaJOSyFtBa/fl3Mot8Q8qyhwJwhcbBY4FvdztqUP4w=";
       stripRoot = false;
     };
 
     patches = [
       (substituteAll {
         src = ./imports.patch;
-        inherit gsound libgda;
+        inherit gsound libgda5;
       })
     ];
 
     nativeBuildInputs = [wrapGAppsHook];
-    buildInputs = [gnome-shell libgda gsound];
+    buildInputs = [gnome-shell libgda5 gsound];
     installPhase = ''
       mkdir -p $out/share/gnome-shell/extensions
       cp -r -T . $out/share/gnome-shell/extensions/${uuid}

@@ -46,6 +46,7 @@ Configuration [Builder](./configuration.nix)
       - `package`: GTK+ Theme Package
   - `qt` -
     - `enable`: Enable QT Configuration - `true / false`
+    - `style`: QT Application Style - `null / "gtk" / "kvantum" / "qtct"`
     - `theme` -
       - `name`: QT Application Theme
       - `package`: QT Theme Package

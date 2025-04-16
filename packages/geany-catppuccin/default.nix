@@ -17,6 +17,7 @@ in
     };
 
     dontBuild = true;
+    patches = [./selection.patch];
     installPhase = ''
       mkdir -p $out/share/geany/colorschemes/
       cp -r ./src/. $out/share/geany/colorschemes/

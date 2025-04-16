@@ -128,34 +128,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Base16 Theming
-    stylix = {
-      url = "github:danth/stylix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-        flake-utils.follows = "utils";
-        home-manager.follows = "home";
-      };
-    };
-
     # Declarative Flatpak Wrapper
     flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
-
-    # Spicetify Module
-    spotify = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-      };
-    };
-
-    # Catppuccin Theme
-    catppuccin = {
-      url = "github:catppuccin/nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # VS Code Extensions
     vscode = {
@@ -170,6 +144,39 @@
     windows = {
       url = "github:emmanuelrosa/erosanix";
       inputs.nixpkgs.follows = "unstable";
+    };
+
+    ## Theming
+    # Base16 Theming Module
+    stylix = {
+      url = "github:danth/stylix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+        flake-utils.follows = "utils";
+        home-manager.follows = "home";
+      };
+    };
+
+    # Spicetify Module
+    spotify = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+    };
+
+    # Darkly QT Style
+    darkly = {
+      url = "github:Bali10050/Darkly";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Catppuccin Theme
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     ## Hyprland

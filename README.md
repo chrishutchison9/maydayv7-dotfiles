@@ -503,8 +503,6 @@ _Thanks a lot! ;)_
 
 ---
 
-You can navigate to the `README`s present in the various directories to know more about them
-
 <details>
 <summary><b>Changelog</b></summary>
 
@@ -822,7 +820,7 @@ You can navigate to the `README`s present in the various directories to know mor
 
 </details>
 
-> Last Updated: **February** 2025
+> Last Updated: **April** 2025
 
 If you like this project, consider leaving a [star](https://github.com/maydayv7/dotfiles)
 

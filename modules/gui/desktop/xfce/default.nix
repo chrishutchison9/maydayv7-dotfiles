@@ -63,6 +63,7 @@ in {
 
         qt = {
           enable = true;
+          style = "kvantum";
           theme = {
             name = "KvArcDark";
             package = pkgs.arc-kde-theme;
@@ -151,6 +152,7 @@ in {
 
         # Default Applications
         xdg.mimeApps.defaultApplications = util.build.mime xdg.mime {
+          archive = ["org.gnome.FileRoller.desktop"];
           audio = ["org.xfce.Parole.desktop"];
           calendar = ["org.xfce.orage.desktop"];
           directory = ["thunar.desktop"];

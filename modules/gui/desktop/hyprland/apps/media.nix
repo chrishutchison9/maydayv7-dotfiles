@@ -7,8 +7,8 @@
   ## Media Configuration
   environment.systemPackages = with pkgs; [
     celluloid
-    evince
     lollypop
+    papers
     playerctl
     shotwell
     transmission_4-gtk
@@ -28,9 +28,10 @@
       # Default Applications
       xdg.mimeApps.defaultApplications = util.build.mime files.xdg.mime {
         audio = ["org.gnome.Lollypop.desktop"];
+        document = ["org.gnome.Papers.desktop"];
         image = ["org.gnome.Shotwell-Viewer.desktop"];
         magnet = ["transmission-gtk.desktop"];
-        pdf = ["org.gnome.Evince.desktop"];
+        pdf = ["org.gnome.Papers.desktop"];
         video = ["io.github.celluloid_player.Celluloid.desktop"];
       };
 

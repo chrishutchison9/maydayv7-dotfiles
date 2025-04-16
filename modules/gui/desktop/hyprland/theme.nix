@@ -8,11 +8,10 @@ pkgs: rec {
   variant-alt = "Macchiato";
 
   gtk = {
-    name = "${name-alt}-GTK-Dark-${variant-alt}";
-    package = pkgs.magnetic-catppuccin-gtk.override {
-      shade = "dark";
-      accent = ["default"];
-      tweaks = [variant];
+    name = "${name}-${variant}-${accent}-standard";
+    package = pkgs.catppuccin-gtk.override {
+      accents = [accent];
+      inherit variant;
     };
   };
 

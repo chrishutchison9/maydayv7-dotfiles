@@ -31,6 +31,11 @@ in {
           };
         };
 
+        qt = {
+          enable = true;
+          style = "gtk";
+        };
+
         cursors = {
           name = "elementary";
           package = pkgs.pantheon.elementary-icon-theme;
@@ -45,11 +50,8 @@ in {
       };
 
       # Essential Utilities
+      apps.list = ["firefox"];
       services.pantheon.apps.enable = true;
-      programs = {
-        firefox.enable = true;
-        pantheon-tweaks.enable = true;
-      };
 
       # Panel Indicators
       services.xserver.desktopManager.pantheon.extraWingpanelIndicators = with pkgs; [
@@ -58,9 +60,6 @@ in {
       ];
 
       environment = {
-        # QT Theme
-        variables."QT_QPA_PLATFORMTHEME" = "gtk3";
-
         # Panel Indicator Compatibility
         pathsToLink = ["/libexec"];
 
@@ -68,6 +67,7 @@ in {
         systemPackages = with pkgs.pantheon // pkgs; [
           appeditor
           gthumb
+          pantheon-tweaks
           torrential
         ];
       };
@@ -93,6 +93,7 @@ in {
     {
       user.homeConfig = {
         imports = [pantheon.dconf];
+        stylix.targets.gnome.enable = false;
 
         # Default Applications
         xdg.mimeApps.defaultApplications = util.build.mime xdg.mime {

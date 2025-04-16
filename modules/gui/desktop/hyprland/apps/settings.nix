@@ -30,6 +30,7 @@ in {
     qt = {
       enable = true;
       theme = qt;
+      style = "kvantum";
     };
   };
 

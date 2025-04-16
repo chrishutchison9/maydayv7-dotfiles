@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  util,
   inputs,
   pkgs,
   files,
@@ -101,22 +102,28 @@ in {
         ".cache/zoom"
       ];
 
-      homeConfig.home.file = {
-        # Document Templates
-        "Templates" = rec {
-          source = files.templates;
-          target = ".init-templates";
-          onChange = ''
-            rm -rf ~/Templates
-            cp -rL ~/${target} ~/Templates
-            chmod -R 0777 ~/Templates
-          '';
-        };
+      homeConfig = {
+        # File Associations
+        xdg.mimeApps.defaultApplications =
+          util.build.mime files.xdg.mime {office = ["onlyoffice-desktopeditors.desktop"];};
 
-        # Font Rendering
-        ".local/share/fonts" = {
-          source = "${pkgs.custom.fonts}/share/fonts";
-          recursive = true;
+        home.file = {
+          # Document Templates
+          "Templates" = rec {
+            source = files.templates;
+            target = ".init-templates";
+            onChange = ''
+              rm -rf ~/Templates
+              cp -rL ~/${target} ~/Templates
+              chmod -R 0777 ~/Templates
+            '';
+          };
+
+          # Font Rendering
+          ".local/share/fonts" = {
+            source = "${pkgs.custom.fonts}/share/fonts";
+            recursive = true;
+          };
         };
       };
     };

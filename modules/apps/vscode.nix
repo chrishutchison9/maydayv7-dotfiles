@@ -26,8 +26,10 @@ in {
         ];
 
         # Environment
-        xdg.mimeApps.defaultApplications =
-          util.build.mime files.xdg.mime {text = ["code.desktop"];};
+        xdg.mimeApps.defaultApplications = util.build.mime files.xdg.mime {
+          markdown = ["code.desktop"];
+          text = ["code.desktop"];
+        };
 
         programs.vscode = {
           enable = true;

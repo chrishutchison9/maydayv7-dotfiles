@@ -67,6 +67,7 @@ in {
 
         qt = {
           enable = true;
+          style = "kvantum";
           theme = {
             name = "KvLibadwaitaDark";
             package = pkgs.custom.kvlibadwaita;
@@ -126,14 +127,16 @@ in {
 
         # Default Applications
         xdg.mimeApps.defaultApplications = util.build.mime xdg.mime {
+          archive = ["org.gnome.FileRoller.desktop"];
           audio = ["org.gnome.Lollypop.desktop"];
           calendar = ["org.gnome.Calendar.desktop"];
+          document = ["org.gnome.Papers.desktop"];
           directory = ["org.gnome.Nautilus.desktop"];
           image = ["org.gnome.Loupe.desktop"];
           magnet = ["de.haeckerfelix.Fragments.desktop"];
           mail = ["org.gnome.Geary.desktop"];
           markdown = ["org.gnome.gitlab.somas.Apostrophe.desktop"];
-          pdf = ["org.gnome.Evince.desktop"];
+          pdf = ["org.gnome.Papers.desktop"];
           text = ["org.gnome.TextEditor.desktop"];
           video = ["io.github.celluloid_player.Celluloid.desktop"];
         };
@@ -185,6 +188,7 @@ in {
         gnome-sound-recorder
         gnome-text-editor
         gnome-tweaks
+        papers
         zenity
 
         # Games
