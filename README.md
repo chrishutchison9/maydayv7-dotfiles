@@ -32,24 +32,25 @@ This [repository](https://github.com/maydayv7/dotfiles) contains the configurati
 <details>
 <summary>Theming</summary>
 
-- [Powerlevel10K](https://github.com/romkatv/powerlevel10k) Theme: ZSH Theme for the fancy-looking prompt with immense customization capabilities
+- [Adwaita GTK3](https://github.com/lassekongo83/adw-gtk3): Theme from `libadwaita` ported to GTK3
 - [Arc Theme](https://github.com/jnsh/arc-theme): Flat GTK theme with transparent elements for various desktop shells, window managers and applications
+- [Arc KDE Theme](https://github.com/PapirusDevelopmentTeam/arc-kde): Port of the Arc GTK Theme for Plasma Desktop
 - [Bibata Cursor](https://github.com/ful1e5/Bibata_Cursor): Compact and material designed cursor set
+- [Catppuccin](https://github.com/catppuccin) Theme: A community-driven Pastel Theme consisting of 4 soothing warm Flavors with 26 eye-candy Colors each
 - [DNOME](https://github.com/GeopJr/DNOME) Discord Theme: Discord Theme inspired by Adwaita, designed to integrate Discord with GNOME
+- Firefox [Elementary Theme](https://github.com/Zonnev/elementaryos-firefox-theme): Elementary OS Theme for the Mozilla Firefox Browser, used for better desktop integration
+- Firefox [GNOME Theme](https://github.com/rafaelmardojai/firefox-gnome-theme): GNOME Theme for the Mozilla Firefox Browser, used for better desktop integration
+- [KvLibadwaita](https://github.com/GabePoel/KvLibadwaita) Kvantum Theme: Integrates QT Apps with GNOME Desktop
 - [Nordic](https://github.com/orblazer/discord-nordic) Discord Theme: Discord Theme using the [Nord](<(https://www.nordtheme.com/)>) color palette
-- [Firefox GNOME Theme](https://github.com/rafaelmardojai/firefox-gnome-theme): GNOME Theme for the Mozilla Firefox Browser, used for better desktop integration
-- [Firefox Elementary Theme](https://github.com/Zonnev/elementaryos-firefox-theme): Elementary OS Theme for the Mozilla Firefox Browser, used for better desktop integration
+- [Starship](https://starship.rs/) Prompt Theme: Minimal, blazing-fast, and infinitely customizable prompt for any shell
 - [VS Code Adwaita Theme](https://github.com/piousdeer/vscode-adwaita): Integrates Visual Studio Code with GNOME Desktop
 - [VS Code Arc Theme](https://github.com/alvesvaren/arc-dark-vscode): Port of the Arc Dark GTK Theme for Visual Studio Code
 - [VS Code Elementary Theme](https://github.com/sixpounder/vscode-elementary-theme): Integrates Visual Studio Code with Pantheon Desktop
-- [KvLibadwaita Kvantum Theme](https://github.com/GabePoel/KvLibadwaita): Integrates QT Apps with GNOME Desktop
-- [Arc KDE Theme](https://github.com/PapirusDevelopmentTeam/arc-kde): Port of the Arc GTK Theme for Plasma Desktop
+- Logseg [Nord Theme](https://github.com/Bad3r/Logseq-Nord-Theme): Logseq in an arctic, north-bluish color palette
+- Logseq [Bonofix Theme][https://github.com/Sansui233/logseq-bonofix-theme]: A clean Logseq theme with focus on long-time writing experience
 - ULauncher [Adwaita Theme](https://github.com/gabrbrand/adwaita-dark-ulauncher): ULauncher Theme based on GNOME Desktop's Adwaita Dark Theme
 - ULauncher [Arc Theme](https://github.com/tjquillan/Arc-Dark-ULauncher): An Arc Dark Theme for ULauncher
 - ULauncher [Elementary Theme](https://github.com/heidefinnischen/ULauncher-elementary): ULauncher Themes for Elementary OS
-- [Catppuccin](https://github.com/catppuccin) Theme: A community-driven Pastel Theme consisting of 4 soothing warm Flavors with 26 eye-candy Colors each
-- Logseq [Bonofix Theme][https://github.com/Sansui233/logseq-bonofix-theme]: A clean Logseq theme with focus on long-time writing experience
-- Logseg [Nord Theme](https://github.com/Bad3r/Logseq-Nord-Theme): Logseq in an arctic, north-bluish color palette
 
 </details>
 
@@ -512,6 +513,9 @@ _Thanks a lot! ;)_
 - Update Hyprland to v0.48.0
   - Use `hyprswitch` to switch between windows
   - Use `pcmanfm-qt` to render desktop icons
+- Update Shell Configuration
+  - Use `fastfetch`
+  - Use [`starship`](https://starship.rs/) shell prompt theme
 
 ### v25
 

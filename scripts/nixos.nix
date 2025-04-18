@@ -205,7 +205,7 @@ in
             error "Expected a Build Command"
           else
             echo "Executing Command '" "''${@:2}" "'..."
-            cachix authtoken "$(find ${path.system} -name cachix-token.secret -exec sops --config ${sops} -d {} \+)"
+            cachix authtoken "$(find ${path.system} -name cachix-token.secret -exec sops --config ${path.sops} -d {} \+)"
             cachix watch-exec ${path.cache} "''${@:2}"
         fi
       ;;
@@ -388,7 +388,7 @@ in
           "") error "Expected 'name' of Secret";;
           *)
             echo "Creating Secret '$3'..."
-            sops --config ${sops} -i ${path.system}/"$3".secret
+            sops --config ${path.sops} -i ${path.system}/"$3".secret
           ;;
           esac
         ;;
@@ -399,7 +399,7 @@ in
             if find ${path.system} -name "$3".secret | grep "secret" &> /dev/null
             then
               echo "Editing Secret '$3'..."
-              find ${path.system} -name "$3".secret -exec sops --config ${sops} -i {} \+
+              find ${path.system} -name "$3".secret -exec sops --config ${path.sops} -i {} \+
             else
               error "Unknown Secret '$3'"
             fi
@@ -408,20 +408,20 @@ in
         ;;
         "list")
           echo "## Secrets in ${path.system} ##"
-          grep / ${sops} | sed -e 's|- path_regex:||' -e 's/\/\.\*\$//' -e 's|   |${path.system}/|' | xargs tree -C --noreport -P '*.secret' -I '_*' | sed 's/\.secret//'
+          grep / ${path.sops} | sed -e 's|- path_regex:||' -e 's/\/\.\*\$//' -e 's|   |${path.system}/|' | xargs tree -C --noreport -P '*.secret' -I '_*' | sed 's/\.secret//'
         ;;
         "show")
           if find ${path.system} -name "$3".secret | grep "secret" &> /dev/null
           then
             echo "Showing Secret '$3'..."
-            find ${path.system} -name "$3".secret -exec sops --config ${sops} -d {} \+
+            find ${path.system} -name "$3".secret -exec sops --config ${path.sops} -d {} \+
           else
             error "Unknown Secret '$3'"
           fi
         ;;
         "update")
           echo "Updating Secrets..."
-          find ${path.system} -name '*.secret' ! -name '_*' -exec sops --config ${sops} updatekeys {} \;
+          find ${path.system} -name '*.secret' ! -name '_*' -exec sops --config ${path.sops} updatekeys {} \;
         ;;
         *) error "Unknown Option '$2'" "${usage.secret}";;
         esac
@@ -452,7 +452,7 @@ in
           cp -r "$KEY"/. ./keys
         fi
         echo "Importing Keys..."
-        find ./keys -name '*.gpg' -exec sudo gpg --homedir ${files.gpg} --import {} \+
+        find ./keys -name '*.gpg' -exec sudo gpg --homedir ${path.gpg} --import {} \+
         rm -rf ./keys
         newline
 

@@ -151,7 +151,7 @@ in {
         gtk = {gtk3.extraCss = xfce.css;};
 
         # Default Applications
-        xdg.mimeApps.defaultApplications = util.build.mime xdg.mime {
+        xdg.mimeApps.defaultApplications = util.build.mime {
           archive = ["org.gnome.FileRoller.desktop"];
           audio = ["org.xfce.Parole.desktop"];
           calendar = ["org.xfce.orage.desktop"];

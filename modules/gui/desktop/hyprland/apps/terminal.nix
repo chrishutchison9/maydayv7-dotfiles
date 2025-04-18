@@ -21,6 +21,7 @@
         copy_on_select = "clipboard";
         scrollback_lines = 10000;
 
+        confirm_os_window_close = 2;
         enable_audio_bell = "no";
         visual_bell_duration = "0.1";
       };

@@ -1,4 +1,4 @@
-### Base 16 Color Schemes
+### Base16 Color Schemes
 
 The color schemes are specified according to the following format -
 

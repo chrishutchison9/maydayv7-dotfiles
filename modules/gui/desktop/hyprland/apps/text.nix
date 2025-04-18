@@ -16,7 +16,7 @@
 
     homeConfig = {
       # Text Editor
-      xdg.mimeApps.defaultApplications = util.build.mime files.xdg.mime {
+      xdg.mimeApps.defaultApplications = util.build.mime {
         markdown = ["geany.desktop"];
         text = ["geany.desktop"];
       };

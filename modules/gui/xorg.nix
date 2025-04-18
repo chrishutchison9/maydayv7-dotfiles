@@ -1,8 +1,4 @@
-{
-  lib,
-  files,
-  ...
-}: let
+{lib, ...}: let
   inherit (lib) mkDefault mkForce mkOption types;
 in {
   options.gui.xorg.enable = mkOption {
@@ -13,7 +9,6 @@ in {
 
   ## X11 Server Configuration ##
   config = {
-    user.homeConfig.xresources.extraConfig = files.xorg;
     services.xserver = {
       enable = true;
       autorun = true;
@@ -21,6 +16,15 @@ in {
       # Driver Settings
       videoDrivers = mkDefault ["modesetting"];
     };
+
+    user.homeConfig.xresources.extraConfig = ''
+      Xft.antialias: 1
+      Xft.autohint: 0
+      Xft.hinting: 1
+      Xft.hintstyle: hintslight
+      Xft.lcdfilter: lcddefault
+      Xft.rgba: rgb
+    '';
 
     # System Specialisation
     specialisation.xorg.configuration = {

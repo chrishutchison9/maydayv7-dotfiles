@@ -3,7 +3,6 @@
   lib,
   util,
   pkgs,
-  files,
   ...
 }: let
   enable = builtins.elem "firefox" config.apps.list;
@@ -19,7 +18,7 @@ in {
       persist.directories = [".cache/mozilla/firefox" ".mozilla/firefox"];
       homeConfig = {
         # File Associations
-        xdg.mimeApps.defaultApplications = util.build.mime files.xdg.mime {
+        xdg.mimeApps.defaultApplications = util.build.mime {
           browser = ["firefox.desktop"];
         };
 

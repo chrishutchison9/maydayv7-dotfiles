@@ -105,7 +105,7 @@ in {
       homeConfig = {
         # File Associations
         xdg.mimeApps.defaultApplications =
-          util.build.mime files.xdg.mime {office = ["onlyoffice-desktopeditors.desktop"];};
+          util.build.mime {office = ["onlyoffice-desktopeditors.desktop"];};
 
         home.file = {
           # Document Templates

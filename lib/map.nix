@@ -29,16 +29,15 @@ lib: let
     ;
 
   # Import Checks
-  checkName = name: type: type != null && !(hasPrefix "_" name);
-  checkAttr = name: let
-    file = import name;
-  in
-    typeOf file == "set" || typeOf file == "lambda";
+  checkName = name: _: !(hasPrefix "_" name);
+  checkAttr = name: let type = typeOf (import name); in type == "set" || type == "lambda";
 in rec {
   ## Mapping Functions ##
   array = list: func: forEach list (name: getAttrFromPath [name] func);
-  filter = name: func: attrs: filterAttrs name (mapAttrs' func attrs);
   list = func: foldl' (x: y: x + y + " ") "" (attrNames func);
+  filter = name: func: attrs:
+    filterAttrs (_: type: type != null)
+    (mapAttrs' func (filterAttrs name attrs));
 
   ## Files Map
   files = {

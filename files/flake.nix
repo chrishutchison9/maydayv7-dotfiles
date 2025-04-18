@@ -15,6 +15,9 @@
       system = "/etc/nixos"; # Configuration Directory
       persist = "/nix/state"; # Persisted Files
 
+      gpg = "/etc/gpg"; # GPG Keys Directory
+      sops = ../secrets/secrets.yaml; # Encrypted Secrets
+
       cache = "maydayv7-dotfiles";
       flake = "github:maydayv7/dotfiles";
       repo = "https://github.com/maydayv7/dotfiles";
@@ -23,6 +26,10 @@
       systemd = ''export PATH="''${XDG_BIN_HOME}:$HOME/.nix-profile/bin:/etc/profiles/per-user/$USER/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin"'';
     };
 
+    # Interactive Nix Shell
+    # To explore syntax and configuration
+    repl = ./repl.nix;
+
     # ASCII Art
     ascii = map.files {
       directory = ./ascii;
@@ -30,14 +37,20 @@
       recursive = true;
     };
 
+    # Directory Bookmarks
+    bookmarks = ''
+      file:///data/files Files
+      file:/// Computer
+    '';
+
     # Base16 Color Schemes
     colors = map.files {
       directory = ./colors;
       extension = ".yaml";
     };
 
-    # Hyfetch
-    fetch = readFile ./fetch/config.jsonc;
+    # Fastfetch
+    fetch = readFile ./fastfetch.jsonc;
 
     # Geany Text Editor
     geany = map.files {
@@ -47,7 +60,7 @@
     };
 
     # X11 Touchpad Gestures
-    gestures = readFile ./touchegg/gestures.xml;
+    gestures = readFile ./touchegg.xml;
 
     # 'git' Version Control
     git.hooks = ./git/hooks;
@@ -59,12 +72,6 @@
         directory = ./gnome;
         extension = ".json";
       };
-
-    # GPG Keys Directory
-    gpg = "/etc/gpg";
-
-    # GTK+ Settings
-    gtk.bookmarks = readFile ./gtk/bookmarks;
 
     # Hyprland WM
     hyprland =
@@ -117,7 +124,7 @@
     };
 
     # Nano Text Editor
-    nano = readFile ./nano/nanorc;
+    nano = readFile ./nanorc;
 
     # Pantheon Desktop
     pantheon = {
@@ -135,18 +142,12 @@
     proprietary = inputs.proprietary.files;
     inherit (proprietary) wallpapers;
 
-    # Interactive Nix Shell
-    repl = ./repl.nix;
-
     # Bash Scripts
     scripts = map.files {
       directory = ../scripts;
       apply = build.script;
       extension = ".sh";
     };
-
-    # 'sops' Encrypted Secrets
-    sops = ../secrets/secrets.yaml;
 
     # Document Templates
     templates = ./templates;
@@ -177,9 +178,6 @@
       extension = ".json";
     };
 
-    # XDG Settings
-    xdg.mime = import ./xdg/mime.nix;
-
     # XFCE Desktop
     xfce = {
       css = readFile ./xfce/gtk.css;
@@ -195,12 +193,6 @@
 
     # My Personal Website
     website = ../site;
-
-    # XORG Display Server
-    xorg = readFile ./xorg/Xresources;
-
-    # Z Shell
-    zsh.prompt = readFile ./zsh/p10k.zsh;
   };
 
   perSystem = _: {

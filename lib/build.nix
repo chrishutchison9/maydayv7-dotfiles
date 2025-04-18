@@ -22,12 +22,12 @@ lib: let
 in {
   ## Builder Functions ##
   # Mime Types Handler
-  mime = values: option:
+  mime = option:
     listToAttrs (flatten (mapAttrsToList (name: types:
       if hasAttr name option
       then map (type: nameValuePair type option."${name}") types
       else [])
-    values));
+    (import ./_mime.nix)));
 
   # Script Builder
   script = file:

@@ -26,7 +26,7 @@ in {
         ];
 
         # Environment
-        xdg.mimeApps.defaultApplications = util.build.mime files.xdg.mime {
+        xdg.mimeApps.defaultApplications = util.build.mime {
           markdown = ["code.desktop"];
           text = ["code.desktop"];
         };

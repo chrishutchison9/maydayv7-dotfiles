@@ -96,7 +96,7 @@ in {
         stylix.targets.gnome.enable = false;
 
         # Default Applications
-        xdg.mimeApps.defaultApplications = util.build.mime xdg.mime {
+        xdg.mimeApps.defaultApplications = util.build.mime {
           audio = ["io.elementary.files.desktop"];
           calendar = ["io.elementary.calendar.desktop"];
           directory = ["io.elementary.files.desktop"];

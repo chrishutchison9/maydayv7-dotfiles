@@ -1,7 +1,6 @@
 {
   util,
   pkgs,
-  files,
   ...
 }: {
   ## Media Configuration
@@ -26,7 +25,7 @@
 
     homeConfig = {
       # Default Applications
-      xdg.mimeApps.defaultApplications = util.build.mime files.xdg.mime {
+      xdg.mimeApps.defaultApplications = util.build.mime {
         audio = ["org.gnome.Lollypop.desktop"];
         document = ["org.gnome.Papers.desktop"];
         image = ["org.gnome.Shotwell-Viewer.desktop"];

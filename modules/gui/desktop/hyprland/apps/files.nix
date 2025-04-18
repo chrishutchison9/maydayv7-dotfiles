@@ -30,7 +30,7 @@ in {
     ];
 
     homeConfig = {
-      xdg.mimeApps.defaultApplications = util.build.mime files.xdg.mime {
+      xdg.mimeApps.defaultApplications = util.build.mime {
         archive = ["org.gnome.FileRoller.desktop"];
         directory = ["nemo.desktop"];
       };

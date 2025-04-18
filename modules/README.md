@@ -99,4 +99,5 @@ Configuration [Builder](./configuration.nix)
 
 - [`shell`](./shell): Module that contains User Shell Environment Configuration -
   - `utilities`: Enable Additional Shell Utilities - `true / false`
+  - `prompt`: Enable Fancy Shell Prompt - `true / false`
   - `support`: List of Additional Supported Shells - Ex. `[ "bash" ]`

@@ -22,7 +22,6 @@
     };
   };
 
-  shell.utilities = true;
   apps = {
     wine.utilities = true;
     list = [
@@ -33,6 +32,11 @@
       "vscode"
       "wine"
     ];
+  };
+
+  shell = {
+    prompt = true;
+    utilities = true;
   };
 
   nix = {
