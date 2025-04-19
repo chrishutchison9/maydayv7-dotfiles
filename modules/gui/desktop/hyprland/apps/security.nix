@@ -89,20 +89,26 @@ in {
         {
           label = "lock";
           action = "loginctl lock-session";
-          text = "";
+          text = "";
           keybind = "l";
         }
         {
           label = "logout";
           action = "loginctl terminate-user $USER";
-          text = "";
+          text = "↶";
           keybind = "e";
         }
         {
           label = "shutdown";
           action = "systemctl poweroff";
-          text = "";
+          text = "⏻";
           keybind = "s";
+        }
+        {
+          label = "reboot";
+          action = "systemctl reboot";
+          text = "↺";
+          keybind = "r";
         }
         {
           label = "suspend";
@@ -115,12 +121,6 @@ in {
           action = "systemctl hibernate";
           text = "";
           keybind = "h";
-        }
-        {
-          label = "reboot";
-          action = "systemctl reboot";
-          text = "";
-          keybind = "r";
         }
       ];
     };

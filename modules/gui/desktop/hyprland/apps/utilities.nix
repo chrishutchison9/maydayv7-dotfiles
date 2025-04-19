@@ -119,7 +119,7 @@ in {
         };
       in {
         waycorner = run "Hot Corners" (getExe pkgs.waycorner);
-        wlclock = with colors; run "Desktop Clock" "${getExe pkgs.wlclock} --layer bottom --exclusive-zone true --position top-right --margin 10 --size 300 --corner-radius 10 --border-size 2 --hand-width 7 --marking-width 3 --background-colour #ffffff00 --clock-colour #${base0D} --border-colour #${base00}";
+        wlclock = with colors; run "Desktop Clock" "${getExe pkgs.wlclock} --layer bottom --exclusive-zone true --position top-right --margin 10 --size 300 --corner-radius 10 --border-size 2 --hand-width 7 --marking-width 3 --background-colour #${base00}4d --clock-colour #${base0D} --border-colour #${base00}";
         hyprswitch = run "Window Switcher" "${getExe pkgs.hyprswitch} init --workspaces-per-row 3 --custom-css ${toFile "style.css" (theme {
           inherit colors;
           file = files.hyprland.hyprswitch;

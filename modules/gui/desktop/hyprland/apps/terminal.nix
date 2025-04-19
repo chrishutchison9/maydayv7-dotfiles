@@ -16,14 +16,18 @@
 
       settings = {
         kitty_mod = "ctrl+shift";
-        placement_strategy = "center";
-
-        copy_on_select = "clipboard";
-        scrollback_lines = 10000;
-
         confirm_os_window_close = 2;
+        copy_on_select = "clipboard";
+        placement_strategy = "center";
+        scrollback_lines = 10000;
         enable_audio_bell = "no";
         visual_bell_duration = "0.1";
+
+        cursor_shape = "beam";
+        cursor_shape_unfocused = "underline";
+        tab_bar_style = "powerline";
+        tab_powerline_style = "round";
+        window_padding_width = 10;
       };
     };
 

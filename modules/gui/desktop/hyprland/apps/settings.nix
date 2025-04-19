@@ -117,7 +117,9 @@ in {
         "blur, ^(logout_dialog)$"
         "blur, ^(nwg-drawer)$"
         "blur, ^(waybar)$"
+        "ignorealpha, ^(waybar)$"
         "blur, ^(wlclock)$"
+        "ignorealpha, ^(wlclock)$"
       ];
 
       ## Window Rules

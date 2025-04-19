@@ -1044,11 +1044,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1744317917,
-        "narHash": "sha256-5JFxVNHllu7QeLidWgm8adHCDfFInRpT0X7/ZE0TorE=",
+        "lastModified": 1745080454,
+        "narHash": "sha256-Ylk1g6/yy+/4vQ+0E6oOYcwtQ2Kk0vbcimvK21a8ppI=",
         "owner": "maydayv7",
         "repo": "proprietary",
-        "rev": "3c5878e7f1fa2672cc63bb7b18e9d694278c130d",
+        "rev": "7fcbd8b32736128dd29bb106b855a926c0338f10",
         "type": "github"
       },
       "original": {

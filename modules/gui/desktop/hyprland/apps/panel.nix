@@ -59,7 +59,7 @@
           ];
 
           "custom/logo" = {
-            format = "";
+            format = "󱄅";
             tooltip = false;
             on-click = "nwg-drawer";
           };
@@ -79,7 +79,7 @@
           };
 
           "custom/power" = {
-            format = "";
+            format = "⏻";
             tooltip = false;
             on-click = "wlogout -p layer-shell";
           };
@@ -165,8 +165,8 @@
               capslock = "󰪛 {icon}";
             };
             format-icons = {
-              locked = "";
-              unlocked = "";
+              locked = "";
+              unlocked = "";
             };
           };
 
@@ -210,8 +210,8 @@
             reverse-scrolling = 1;
             format = "{icon}";
             tooltip-format = "Volume: {volume}%\nDevice: {node_name}";
+            format-icons = ["󰕿" "󰖀" "󰕾"];
             format-muted = "";
-            format-icons = ["" "" "󰕾" ""];
             on-click = "pavucontrol";
           };
 
@@ -279,7 +279,7 @@
             tooltip-format = "Power Profile: {profile}";
             format-icons = {
               default = "";
-              performance = "";
+              performance = "󱄟";
               balanced = "";
               power-saver = "";
             };
@@ -295,8 +295,8 @@
 
           clock = {
             interval = 1;
-            format = " {:%H:%M:%S} ";
-            format-alt = " {:%I:%M   %A, %d %B %Y} ";
+            format = "󰅐 {:%H:%M:%S} ";
+            format-alt = "󰅐 {:%I:%M    %A, %d %B %Y} ";
             tooltip-format = "<tt><small>{calendar}</small></tt>";
             calendar = {
               mode = "year";

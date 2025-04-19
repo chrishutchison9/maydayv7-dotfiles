@@ -9,7 +9,7 @@
   ## Font Configuration ##
   config = lib.mkIf config.gui.fonts.enable rec {
     fonts = {
-      enableDefaultPackages = false;
+      enableDefaultPackages = true;
       fontDir.enable = true;
 
       ## Render Settings
@@ -40,27 +40,27 @@
 
     stylix.fonts = {
       # Default Fonts
-      serif = {
-        package = pkgs.noto-fonts;
-        name = "Noto Serif";
+      sansSerif = {
+        package = pkgs.adwaita-fonts;
+        name = "Adwaita Sans";
       };
 
-      sansSerif = {
-        package = pkgs.custom.fonts;
-        name = "ProductSans Nerd Font";
+      serif = {
+        package = pkgs.eb-garamond;
+        name = "EB Garamond";
       };
 
       monospace = {
-        package = pkgs.meslo-lgs-nf;
-        name = "MesloLGS NF";
+        package = pkgs.custom.fonts;
+        name = "Iosvmata";
       };
 
       emoji = {
-        package = pkgs.noto-fonts-color-emoji;
-        name = "Noto Color Emoji";
+        package = pkgs.twitter-color-emoji;
+        name = "Twitter Color Emoji";
       };
 
-      # Font Size
+      # Font Sizes
       sizes = {
         applications = 11;
         desktop = 11;
@@ -70,25 +70,20 @@
     };
 
     # Font Packages
-    fonts.packages = with pkgs;
-      [
-        corefonts
-        gyre-fonts
-        unifont
+    fonts.packages = with pkgs; [
+      font-awesome
+      nerd-fonts.symbols-only
+      noto-fonts
 
-        fira
-        ibm-plex
-        roboto
-        roboto-slab
-        source-code-pro
-        ubuntu_font_family
-      ]
-      # Patched Nerd Fonts
-      ++ (with pkgs.nerd-fonts; [
-        fira-code
-        fira-mono
-        roboto-mono
-        sauce-code-pro
-      ]);
+      fira
+      fira-code
+      fira-mono
+      ibm-plex
+      roboto
+      roboto-mono
+      roboto-slab
+      source-code-pro
+      ubuntu_font_family
+    ];
   };
 }

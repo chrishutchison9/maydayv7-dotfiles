@@ -26,19 +26,19 @@
     },
     {
       "type": "cpu",
-      "key": "  ",
+      "key": "  ",
       "keyColor": "cyan",
       "showPeCoreCount": true
     },
     {
       "type": "gpu",
-      "key": "  ﬙",
+      "key": "  ",
       "keyColor": "cyan",
       "driverSpecific": true
     },
     {
       "type": "display",
-      "key": "  ",
+      "key": "  󰹑",
       "keyColor": "cyan"
     },
     {
@@ -97,7 +97,7 @@
     },
     {
       "type": "lm",
-      "key": "  ",
+      "key": "  ",
       "keyColor": "blue"
     },
     {
@@ -117,13 +117,13 @@
     },
     {
       "type": "theme",
-      "key": "  ",
+      "key": "  󰃣",
       "keyColor": "light_red",
       "format": "{2}"
     },
     {
       "type": "icons",
-      "key": "  ",
+      "key": "  󱢈",
       "keyColor": "light_red"
     },
     {
@@ -138,7 +138,7 @@
     "break",
     {
       "type": "custom",
-      "format": "┌─⮞ {#1}Time{#}"
+      "format": "┌─⮞ {#1}Uptime{#}"
     },
     {
       "type": "command",
@@ -148,12 +148,7 @@
     },
     {
       "type": "uptime",
-      "key": "  ⊗",
-      "keyColor": "magenta"
-    },
-    {
-      "type": "datetime",
-      "key": "  ",
+      "key": "  ",
       "keyColor": "magenta"
     },
     {

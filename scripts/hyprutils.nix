@@ -88,6 +88,10 @@ in
         notify-send -a "utility" -t 1000 -h string:x-dunst-stack-tag:"$1" "''${@:2}"
       }
 
+      hyprnotify() {
+        hyprctl notify "$1" 1500 0 "  $2  "
+      }
+
       get_media_icon() {
         media_icon="audio-speakers"
         if $show_album_art
@@ -116,7 +120,7 @@ in
         "brightness")
           brightness_notification() {
             brightness=$(brillo | grep -Po '[0-9]{1,3}' | head -n 1)
-            notify brightness -i "display" -h int:value:"$brightness" " $brightness%"
+            notify brightness -i "display" -h int:value:"$brightness" "🔅 $brightness%"
           }
           case "$2" in
           "up")
@@ -137,7 +141,7 @@ in
             light=0; if [ "$backlight" -eq 1 ]; then light=33; fi
             if [ "$backlight" -eq 2 ]; then light=67; fi
             if [ "$backlight" -eq 3 ]; then light=100; fi
-            notify backlight -i "keyboard" -h int:value:"$light" " $light%"
+            notify backlight -i "keyboard" -h int:value:"$light" "🔅 $light%"
           }
           case "$2" in
           "up")
@@ -155,7 +159,7 @@ in
         "temperature")
           temperature_notification() {
             temperature=$(hyprctl hyprsunset temperature)
-            notify temperature -i "display" " $temperature K"
+            notify temperature -i "display" "🌡 $temperature K"
           }
           case "$2" in
           "up")
@@ -169,7 +173,7 @@ in
           "reset")
             hyprctl hyprsunset temperature 6000
             hyprctl hyprsunset identity
-            notify temperature -i "display" " Reset"
+            notify temperature -i "display" "🌡 Reset"
           ;;
           "") error "Expected an Option" "Try 'hyprutils help' for more information" ;;
           *) error "Unexpected Option 'temperature $2'" "Try 'hyprutils help' for more information" ;;
@@ -181,9 +185,12 @@ in
             mute=$(amixer get Master | grep '%' | grep -oE '[^ ]+$' | grep off | head -n1)
             if [ "$volume" -eq 0 ] || [ "$mute" == "[off]" ]
             then
-              volume_icon=""
+              volume_icon="🔇"
+            elif [ "$volume" -lt 50 ]
+            then
+              volume_icon="🔉"
             else
-              volume_icon=""
+              volume_icon="🔊"
             fi
 
             song_title=$(playerctl -f "{{title}}" metadata)
@@ -261,16 +268,16 @@ in
           "in")
             ZOOM=$(echo "$ZOOM" | awk '{print $1 + 0.2}')
             hyprctl keyword cursor:zoom_factor "$ZOOM"
-            hyprctl notify 1 1000 0 "Zoomed In ($ZOOM""x)"
+            hyprnotify 1 "Zoomed In ($ZOOM""x)"
           ;;
           "out")
             if [ "$ZOOM" = "1.000000" ]
             then
-              hyprctl notify 3 2000 0 "Already zoomed out"
+              hyprnotify 3 "Already zoomed out"
             else
               ZOOM=$(echo "$ZOOM" | awk '{print $1 - 0.2}')
               hyprctl keyword cursor:zoom_factor "$ZOOM"
-              hyprctl notify 1 1000 0 "Zoomed Out ($ZOOM""x)"
+              hyprnotify 1 "Zoomed Out ($ZOOM""x)"
             fi
           ;;
           "") error "Expected an Option" "Try 'hyprutils help' for more information" ;;
@@ -283,7 +290,7 @@ in
             FANCY=$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
             if [ "$FANCY" = 1 ]
             then
-              hyprctl notify 1 2000 0 "Compositor Effects Disabled"
+              hyprnotify 1 "Compositor Effects Disabled"
               hyprctl --batch "\
                 keyword animations:enabled 0;\
                 keyword decoration:shadow:enabled 0;\
@@ -294,12 +301,12 @@ in
                 keyword decoration:rounding 0"
               exit
             fi
-            hyprctl notify 1 2000 0 "Compositor Effects Enabled"
+            hyprnotify 1 "Compositor Effects Enabled"
             hyprctl reload
           ;;
           "float")
             WORKSPACE=$(hyprctl activeworkspace | grep "workspace ID" | awk '{print $3}')
-            hyprctl notify 1 2000 0 "Toggled window floating on Workspace $WORKSPACE"
+            hyprnotify 1 "Toggled window floating on Workspace $WORKSPACE"
             hyprctl dispatch workspaceopt allfloat
           ;;
           "minimized")
@@ -307,7 +314,7 @@ in
             then
               hyprctl dispatch workspace special:minimized
             else
-              hyprctl notify 1 2000 0 "No minimized windows present"
+              hyprnotify 1 "No minimized windows present"
             fi
           ;;
           "monitor")

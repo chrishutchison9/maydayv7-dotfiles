@@ -7,16 +7,41 @@
   options.shell.prompt = lib.mkEnableOption "Enable Fancy Shell Prompt";
 
   config = lib.mkIf config.shell.prompt {
-    programs.starship = {
+    programs.starship = let
+      open = "";
+      close = "";
+      char = "⮞";
+
+      build = a: b: c:
+        build' {
+          icon = a;
+          var = b;
+          color = c;
+        };
+
+      build' = {
+        icon,
+        var,
+        color,
+        style ? "fg:white",
+        end ? "[${close}](fg:base04)",
+        ...
+      }: "[─](fg:base04)[${open}](fg:${color})[${icon}](fg:base01 bg:${color})[${close}](fg:${color} bg:base04)[ ${var}](${style} bg:base04)${end}";
+    in {
       enable = true;
       settings = {
         add_newline = true;
-        continuation_prompt = "⮞⮞ ";
-        format = "[╭](fg:base04)$os$directory$git_branch$git_status$fill$c$python$java$nodejs$dotnet$status$cmd_duration$shell$time$username$hostname$line_break$character";
+        continuation_prompt = "${char} ";
+        format = "[╭](fg:base04)$os$directory$git_branch$git_status$fill$c$python$java$nodejs$dotnet$status$cmd_duration$shell$username$hostname$time$line_break$character";
+        character = {
+          format = "[╰─$symbol](fg:base04) ";
+          success_symbol = "[${char}](fg:bold white)";
+          error_symbol = "[${char}](fg:bold red)";
+        };
 
         os = {
           disabled = false;
-          format = "(fg:base04)[](fg:white)[$symbol](fg:base01 bg:white)[](fg:white)";
+          format = "(fg:base04)[${open}](fg:white)[$symbol](fg:base01 bg:white)[${close}](fg:white)";
           symbols = {
             Android = "";
             Arch = "";
@@ -32,7 +57,7 @@
 
         directory = {
           disabled = false;
-          format = "[─](fg:base04)[](fg:blue)[](fg:base01 bg:blue)[](fg:blue bg:base04)[ $read_only$truncation_symbol$path](fg:white bg:base04)[](fg:base04)";
+          format = build "󰉋" "$read_only$truncation_symbol$path" "blue";
           home_symbol = "~";
           truncation_symbol = "…/";
           truncation_length = 4;
@@ -42,13 +67,17 @@
 
         git_branch = {
           disabled = false;
-          format = "[─](fg:base04)[](fg:green)[$symbol](fg:base01 bg:green)[](fg:green bg:base04)[ $branch](fg:white bg:base04)";
-          symbol = "";
+          format = build' {
+            icon = "";
+            var = "$branch";
+            color = "green";
+            end = "";
+          };
         };
 
         git_status = {
           disabled = false;
-          format = "[$ahead_behind$all_status](fg:green bg:base04)[](fg:base04)";
+          format = "[$ahead_behind$all_status](fg:green bg:base04)[${close}](fg:base04)";
           ahead = " ⇡$count";
           behind = " ⇣$count";
           diverged = " ⇡$ahead_count ⇣$behind_count";
@@ -62,30 +91,11 @@
           up_to_date = "";
         };
 
-        c = {
-          format = "[─](fg:base04)[](fg:blue)[$symbol](fg:base01 bg:blue)[](fg:blue bg:base04)[ $version](fg:white bg:base04)[](fg:base04)";
-          symbol = " C";
-        };
-
-        python = {
-          format = "[─](fg:base04)[](fg:green)[$symbol](fg:base01 bg:green)[](fg:green bg:base04)[ $version](fg:white bg:base04)[](fg:base04)";
-          symbol = " Python";
-        };
-
-        java = {
-          format = "[─](fg:base04)[](fg:red)[$symbol](fg:base01 bg:red)[](fg:red bg:base04)[ $version](fg:white bg:base04)[](fg:base04)";
-          symbol = " Java";
-        };
-
-        nodejs = {
-          format = "[─](fg:base04)[](fg:green)[$symbol](fg:base01 bg:green)[](fg:green bg:base04)[ $version](fg:white bg:base04)[](fg:base04)";
-          symbol = "󰎙 Node.js";
-        };
-
-        dotnet = {
-          format = "[─](fg:base04)[](fg:purple)[$symbol](fg:base01 bg:purple)[](fg:purple bg:base04)[ $tfm](fg:white bg:base04)[](fg:base04)";
-          symbol = " .NET";
-        };
+        c.format = build " C" "$version" "bright-white";
+        python.format = build " Python" "$version" "bright-white";
+        java.format = build " Java" "$version" "bright-white";
+        nodejs.format = build "󰎙 Node.js" "$version" "bright-white";
+        dotnet.format = build "󰪮 .NET" "$version" "bright-white";
 
         fill = {
           symbol = "─";
@@ -94,46 +104,45 @@
 
         status = {
           disabled = false;
-          format = "[─](fg:base04)[](fg:red)[](fg:base01 bg:red)[](fg:red bg:base04)[ $status](fg:white bg:base04)[](fg:base04)";
+          format = build "" "$status" "red";
         };
 
         cmd_duration = {
           min_time = 500;
-          format = "[─](fg:base04)[](fg:orange)[󰦖](fg:base01 bg:orange)[](fg:orange bg:base04)[ $duration](fg:white bg:base04)[](fg:base04)";
+          format = build "󰦖" "$duration" "orange";
         };
 
         shell = {
           disabled = false;
-          format = "[─](fg:base04)[](fg:purple)[](fg:base01 bg:purple)[](fg:purple bg:base04)[ $indicator](fg:white bg:base04)[](fg:base04)";
+          format = build "" "$indicator" "purple";
           bash_indicator = "bash";
           fish_indicator = "fish";
           zsh_indicator = "zsh";
           unknown_indicator = "shell";
         };
 
-        time = {
-          disabled = false;
-          format = "[─](fg:base04)[](fg:yellow)[](fg:base01 bg:yellow)[](fg:yellow bg:base04)[ $time](fg:white bg:base04)[](fg:base04)";
-          time_format = "%H:%M";
-        };
-
         username = {
-          format = "[─](fg:base04)[](fg:bright-blue)[](fg:base01 bg:bright-blue)[](fg:bright-blue bg:base04)[ $user]($style bg:base04)[](fg:base04)";
           show_always = true;
           style_user = "fg:white";
           style_root = "bold fg:red";
+          format = build' {
+            icon = "";
+            var = "$user";
+            color = "yellow";
+            style = "$style";
+          };
         };
 
         hostname = {
           disabled = false;
-          format = "[─](fg:base04)[](fg:cyan)[](fg:base01 bg:cyan)[](fg:cyan bg:base04)[ $hostname](fg:white bg:base04)[](fg:base04)";
+          format = build "" "$hostname" "cyan";
           ssh_only = false;
         };
 
-        character = {
-          format = "[╰─$symbol](fg:base04) ";
-          success_symbol = "[⮞](fg:bold white)";
-          error_symbol = "[⮞](fg:bold red)";
+        time = {
+          disabled = false;
+          format = build "" "$time" "blue";
+          time_format = "%H:%M";
         };
 
         palette = "base16";
