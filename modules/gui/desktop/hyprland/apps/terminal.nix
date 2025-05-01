@@ -4,7 +4,6 @@
   ...
 }: {
   ## Terminal Configuration
-  gui.launcher.terminal = "kitty";
   user.homeConfig = {
     programs.kitty = {
       enable = true;

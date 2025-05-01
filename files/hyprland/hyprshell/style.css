@@ -1,0 +1,91 @@
+:root {
+  --text-color: #@white;
+  --bg-color: alpha(#@base00, 0.5);
+  --bg-color-active: rgba(255, 255, 255, 0.2);
+  --bg-color-hover: rgba(255, 255, 255, 0.4);
+  --border-radius: 10px;
+  --border-color: #@base04;
+  --border-color-active: #@base05;
+  --border-style: solid;
+  --border-style-secondary: dashed;
+  --launcher-animation-speed: 0.3s;
+}
+
+/* Overview */
+
+.monitor {
+  background: var(--bg-color);
+  border-color: var(--border-color-active);
+}
+
+.monitor:hover {
+  background: var(--bg-color);
+}
+
+.workspace {
+  background: var(--bg-color);
+  border-color: var(--bg-color);
+}
+
+.workspace.active {
+  border-color: var(--border-color-active);
+}
+
+.client:hover {
+  background-color: var(--bg-color-hover);
+}
+
+.client.active {
+  background: var(--bg-color-active);
+  border-color: var(--border-color-active);
+}
+
+/* Launcher */
+
+.launcher {
+  padding: 2px;
+  border: 2px var(--border-style) var(--border-color-active);
+}
+
+.launcher-input {
+  color: var(--text-color);
+  margin: 6px;
+  padding: 4px 12px;
+}
+
+.launcher-results {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.launcher-item {
+  color: var(--text-color);
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.launcher-exec {
+  font-size: 0.8rem;
+  color: var(--border-color);
+  font-family: @monospace;
+}
+
+.launcher-key {
+  font-size: 0.8em;
+  font-weight: bold;
+  font-family: @monospace;
+}
+
+.launcher-plugins {
+  padding: 2px;
+}
+
+.launcher-plugin {
+  padding: 4px;
+}
+
+.launcher-plugin-key {
+  font-size: 0.8em;
+  font-weight: bold;
+  font-family: @monospace;
+}

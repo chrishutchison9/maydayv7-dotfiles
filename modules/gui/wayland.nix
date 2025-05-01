@@ -17,7 +17,6 @@
     };
 
     # Programs Support
-    gui.launcher.server = "wayland";
     xdg.portal.wlr.enable = true;
     programs.xwayland.enable = true;
   };

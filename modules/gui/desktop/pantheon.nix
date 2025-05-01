@@ -41,12 +41,6 @@ in {
           package = pkgs.pantheon.elementary-icon-theme;
           size = 32;
         };
-
-        launcher = {
-          enable = true;
-          theme = "elementary";
-          terminal = "io.elementary.terminal";
-        };
       };
 
       # Essential Utilities

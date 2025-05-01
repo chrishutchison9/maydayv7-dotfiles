@@ -247,7 +247,6 @@ in {
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/"
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/"
       ];
     };
 
@@ -277,12 +276,6 @@ in {
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" = {
-      name = "Launcher";
-      binding = "<Super>slash";
-      command = "ulauncher-toggle";
-    };
-
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4" = {
       name = "Clipboard";
       binding = "<Super>v";
       command = "gtk-launch com.github.hezral.clips";

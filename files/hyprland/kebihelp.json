@@ -147,16 +147,16 @@
         "_hidden": false,
         "keybindings": [
           {
+            "value": "$mod Tab",
+            "label": "Application Launcher and Overview"
+          },
+          {
             "value": "$mod ` (4F Swipe Up)",
             "label": "Show workspace overview"
           },
           {
             "value": "ALT [SHIFT] Tab",
             "label": "Cycle [backwards] through open windows on current workspace"
-          },
-          {
-            "value": "$mod [SHIFT] Tab",
-            "label": "Cycle [backwards] through open windows on all workspaces"
           },
           {
             "value": "ALT [SHIFT] `",
@@ -225,6 +225,10 @@
             "label": "Zoom in/out"
           },
           {
+            "value": "$mod SHIFT -",
+            "label": "Zoom out fully"
+          },
+          {
             "value": "$mod L or Esc",
             "label": "Lock screen / System Logoff"
           },
@@ -290,6 +294,10 @@
             "label": "Task Manager"
           },
           {
+            "value": "$mod +",
+            "label": "Calculator"
+          },
+          {
             "value": "$mod SHIFT B",
             "label": "Bluetooth Settings"
           },
@@ -304,10 +312,6 @@
           {
             "value": "$mod N",
             "label": "Show received notifications in order"
-          },
-          {
-            "value": "$mod /",
-            "label": "Application Launcher"
           },
           {
             "value": "$mod SHIFT Esc",

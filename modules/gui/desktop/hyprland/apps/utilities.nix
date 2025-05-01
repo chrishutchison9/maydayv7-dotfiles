@@ -7,8 +7,6 @@
   ...
 }: let
   inherit (lib) getExe;
-  inherit (builtins) toFile;
-  inherit (util.build) theme;
   inherit (config.lib.stylix) colors;
 in {
   environment.systemPackages = with pkgs; [
@@ -19,13 +17,14 @@ in {
     gnome-clocks
     gnome-disk-utility
     hyprpicker
-    hyprswitch
+    hyprworld.hyprshell
     nwg-displays
     nwg-drawer
     overskride
     qalculate-gtk
     remmina
     resources
+    smile
 
     # Utilities
     custom.hyprutils
@@ -76,7 +75,11 @@ in {
   hardware.brillo.enable = true;
 
   user = {
-    persist.directories = [".config/nwg-displays"];
+    persist.directories = [
+      ".config/nwg-displays"
+      ".local/share/hyprshell"
+    ];
+
     homeConfig = {
       services = {
         # Wallpaper Daemon
@@ -109,21 +112,23 @@ in {
       };
 
       systemd.user.services = let
+        target = ["graphical-session.target"];
         run = about: command: {
-          Install.WantedBy = ["graphical-session.target"];
-          Unit.Description = about;
+          Install.WantedBy = target;
+          Unit = {
+            Description = about;
+            After = target;
+          };
           Service = {
-            Type = "Simple";
+            Restart = "always";
+            RestartSec = 1;
             ExecStart = command;
           };
         };
       in {
+        hyprshell = run "Launcher" "${getExe pkgs.hyprworld.hyprshell} run";
         waycorner = run "Hot Corners" (getExe pkgs.waycorner);
         wlclock = with colors; run "Desktop Clock" "${getExe pkgs.wlclock} --layer bottom --exclusive-zone true --position top-right --margin 10 --size 300 --corner-radius 10 --border-size 2 --hand-width 7 --marking-width 3 --background-colour #${base00}4d --clock-colour #${base0D} --border-colour #${base00}";
-        hyprswitch = run "Window Switcher" "${getExe pkgs.hyprswitch} init --workspaces-per-row 3 --custom-css ${toFile "style.css" (theme {
-          inherit colors;
-          file = files.hyprland.hyprswitch;
-        })}";
       };
 
       # Network Settings
@@ -136,27 +141,33 @@ in {
         terminal = false;
       };
 
-      home.file = with files.hyprland; {
+      home.file = with files.hyprland; let
+        build = file:
+          util.build.theme {
+            inherit colors file;
+            inherit (config.stylix) fonts;
+          };
+      in {
         # Application Drawer
         ".config/nwg-drawer/drawer.css".text = drawer;
 
         # Pyprland
         ".config/hypr/pyprland.toml".text = pypr;
 
+        # Keybinds Viewer
+        ".config/kebihelp.json".text = build kebihelp;
+
         # Hot Corners
         ".config/waycorner/config.toml".text = waycorner;
+
+        # Launcher
+        ".config/hyprshell/config.ron".text = hyprshell.config;
+        ".config/hyprshell/styles.css".text = build hyprshell.style;
 
         # Shaders
         ".config/hypr/shaders" = {
           source = files.proprietary.shaders.path;
           recursive = true;
-        };
-
-        # Keybinds Viewer
-        ".config/kebihelp.json".text = theme {
-          inherit colors;
-          inherit (config.stylix) fonts;
-          file = kebihelp;
         };
       };
     };

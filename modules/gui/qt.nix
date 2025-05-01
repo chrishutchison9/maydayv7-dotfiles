@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  inputs,
   pkgs,
   ...
 }: let
@@ -80,9 +79,9 @@ in {
       })
 
       (mkIf (qt.style == "qtct") (let
-        pkg = with inputs.darkly.packages.${pkgs.system}; [
+        pkg = with pkgs; [
+          darkly
           darkly-qt5
-          darkly-qt6
         ];
 
         conf = version:

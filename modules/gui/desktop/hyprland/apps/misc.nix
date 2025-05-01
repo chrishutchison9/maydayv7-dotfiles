@@ -25,7 +25,7 @@ in {
       extensions = [pkgs.vscode-extensions.catppuccin.catppuccin-vsc-icons];
       userSettings = with theme; {
         "workbench.iconTheme" = "${name}-${variant}";
-        "terminal.external.linuxExec" = config.gui.launcher.terminal;
+        "terminal.external.linuxExec" = "kitty";
       };
     };
 

@@ -24,11 +24,7 @@
     ];
 
     # Opacity
-    opacityRules = [
-      "95:class_g = 'Code'"
-      "95:class_g = 'Ulauncher'"
-    ];
-
+    opacityRules = ["95:class_g = 'Code'"];
     wintypes = {
       tooltip = {opacity = 0.8;};
       popup_menu = {opacity = 0.9;};
@@ -141,7 +137,6 @@
   };
 
   # Theme Fixes
-  gui.launcher.shadow = false;
   user.homeConfig = {
     gtk.gtk3.extraCss = lib.mkBefore "decoration { box-shadow: none; }";
     programs.firefox.profiles.default.settings."browser.tabs.inTitlebar" = 0;

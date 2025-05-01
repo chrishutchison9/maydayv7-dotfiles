@@ -53,7 +53,8 @@ in {
                   hyprland.packages."${system}"
                   // hyprplugins.packages."${system}"
                   // hyprsplit.packages."${system}"
-                  // hyprcursors.packages."${system}";
+                  // hyprcursors.packages."${system}"
+                  // hyprshell.packages."${system}";
               })
             ];
         };

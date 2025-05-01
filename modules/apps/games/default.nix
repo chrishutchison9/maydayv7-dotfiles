@@ -1,13 +1,24 @@
 {
   config,
   lib,
+  util,
   pkgs,
   ...
 }: let
-  inherit (lib) mkIf mkOverride;
+  inherit (lib) mkIf mkOption mkOverride types;
+  inherit (util.map) modules;
   enable = builtins.elem "games" config.apps.list;
   wine = builtins.elem "wine" config.apps.list;
+  wine' = pkgs.gaming.wine-tkg;
 in {
+  imports = modules.list ./.;
+
+  options.apps.games = mkOption {
+    description = "List of Installed Games";
+    type = types.listOf (types.enum (modules.name ./.));
+    default = [];
+  };
+
   ## Games Configuration ##
   config = mkIf enable {
     assertions = [
@@ -21,10 +32,10 @@ in {
     ];
 
     # Packages
-    apps.wine.package = pkgs.gaming.wine-ge;
     environment.systemPackages = with pkgs; [
       bottles
       lutris
+      wine'
     ];
 
     # Steam
@@ -41,19 +52,24 @@ in {
     gui.fancy = mkOverride 999 false;
     programs.gamemode.enable = true;
 
-    # Directories
-    user.persist.directories = [
-      "Games"
-      ".cache/lutris"
-      ".config/lutris"
-      ".local/share/bottles"
-      ".local/share/lutris"
+    user = {
+      # Runner
+      homeConfig.xdg.dataFile."lutris/runners/wine/wine-tkg".source = wine';
 
-      # Steam
-      ".local/share/applications"
-      ".local/share/icons/hicolor"
-      ".steam"
-      ".local/share/Steam"
-    ];
+      # Directories
+      persist.directories = [
+        "Games"
+        ".cache/lutris"
+        ".config/lutris"
+        ".local/share/bottles"
+        ".local/share/lutris"
+
+        # Steam
+        ".local/share/applications"
+        ".local/share/icons/hicolor"
+        ".steam"
+        ".local/share/Steam"
+      ];
+    };
   };
 }

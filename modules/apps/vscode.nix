@@ -54,6 +54,7 @@ in {
                 esbenp.prettier-vscode
                 file-icons.file-icons
                 github.vscode-pull-request-github
+                jgclark.vscode-todo-highlight
                 jnoortheen.nix-ide
                 kamadorueda.alejandra
                 ms-python.python
@@ -62,11 +63,11 @@ in {
                 naumovs.color-highlight
                 redhat.java
                 ritwickdey.liveserver
+                tomoki1207.pdf
                 yzhang.markdown-all-in-one
               ]
               ++ (with pkgs.code.vscode-marketplace; [
                 kisstkondoros.vscode-gutter-preview
-                wayou.vscode-todo-highlight
               ]);
           };
         };

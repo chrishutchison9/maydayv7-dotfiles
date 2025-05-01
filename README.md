@@ -48,9 +48,6 @@ This [repository](https://github.com/maydayv7/dotfiles) contains the configurati
 - [VS Code Elementary Theme](https://github.com/sixpounder/vscode-elementary-theme): Integrates Visual Studio Code with Pantheon Desktop
 - Logseg [Nord Theme](https://github.com/Bad3r/Logseq-Nord-Theme): Logseq in an arctic, north-bluish color palette
 - Logseq [Bonofix Theme][https://github.com/Sansui233/logseq-bonofix-theme]: A clean Logseq theme with focus on long-time writing experience
-- ULauncher [Adwaita Theme](https://github.com/gabrbrand/adwaita-dark-ulauncher): ULauncher Theme based on GNOME Desktop's Adwaita Dark Theme
-- ULauncher [Arc Theme](https://github.com/tjquillan/Arc-Dark-ULauncher): An Arc Dark Theme for ULauncher
-- ULauncher [Elementary Theme](https://github.com/heidefinnischen/ULauncher-elementary): ULauncher Themes for Elementary OS
 
 </details>
 
@@ -511,11 +508,16 @@ _Thanks a lot! ;)_
 
 - Remove package `channels`
 - Update Hyprland to v0.48.0
-  - Use `hyprswitch` to switch between windows
+  - Use `hyprshell` to switch between windows
   - Use `pcmanfm-qt` to render desktop icons
+  - Use animations from [end4](https://github.com/end-4/dots-hyprland)
+  - New `pyprland` scratchpads
 - Update Shell Configuration
   - Use `fastfetch`
   - Use [`starship`](https://starship.rs/) shell prompt theme
+- Improve QT Theming
+- Add `apps.games`
+- Drop ULauncher Configuration (`gui.launcher`)
 
 ### v25
 
@@ -813,7 +815,6 @@ _Thanks a lot! ;)_
 
 - Online accounts have to be manually signed into
 - [Wine](./packages/wine) Applications have to be manually updated
-- ULauncher Plugins have to be manually updated
 - Logseq Plugins have to be manually installed
 - GNOME [Pano](https://github.com/oae/gnome-shell-pano) has to be manually updated until upstream stabilises
 - Cannot automatically hibernate on NVIDIA due to upstream [issue](https://forums.developer.nvidia.com/t/systemds-suspend-then-hibernate-not-working-in-nvidia-optimus-laptop/213690)

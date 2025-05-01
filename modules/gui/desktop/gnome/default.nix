@@ -201,7 +201,6 @@ in {
         curtail
         deja-dup
         dialect
-        drawing
         fractal
         fragments
         gnome-decoder

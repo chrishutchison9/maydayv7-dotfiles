@@ -30,6 +30,7 @@
 
   apps = {
     wine.utilities = true;
+    games = ["osu"];
     list = [
       "discord"
       "firefox"

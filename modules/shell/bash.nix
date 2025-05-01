@@ -28,7 +28,6 @@ in {
         shopt -s extglob
         shopt -s globstar
         shopt -s histappend
-        shopt -s no_empty_cmd_completion
 
         # Command History
         HISTCONTROL=erasedups:ignoredups:ignorespace

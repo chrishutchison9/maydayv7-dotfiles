@@ -69,12 +69,6 @@ in {
             package = pkgs.arc-kde-theme;
           };
         };
-
-        launcher = {
-          enable = true;
-          theme = theme.name;
-          terminal = "xfce4-terminal";
-        };
       };
 
       # Essential Utilities

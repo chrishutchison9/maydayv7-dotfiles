@@ -167,12 +167,6 @@
       };
     };
 
-    # Darkly QT Style
-    darkly = {
-      url = "github:Bali10050/Darkly";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Catppuccin Theme
     catppuccin = {
       url = "github:catppuccin/nix";
@@ -206,6 +200,12 @@
         hyprland.follows = "hyprland";
         nixpkgs.follows = "nixpkgs";
       };
+    };
+
+    # Launcher
+    hyprshell = {
+      url = "github:H3rmt/hyprswitch?ref=hyprshell";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

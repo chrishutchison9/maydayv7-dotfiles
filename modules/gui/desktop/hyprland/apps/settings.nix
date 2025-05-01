@@ -20,7 +20,6 @@ in {
   gui = with theme; {
     fonts.enable = true;
     inherit (theme) icons;
-    launcher.theme = theme.name;
 
     gtk = {
       enable = true;
@@ -84,11 +83,11 @@ in {
         "$mod, T, exec, kitty"
         "$mod, W, exec, firefox"
         "$mod, Return, exec, ${runOnce "resources"}"
+        "$mod SHIFT, equal, exec, pypr toggle calc"
         ", XF86Calculator, exec, qalculate-gtk"
 
         # Utilities
         "$mod, A, exec, nwg-drawer"
-        "$mod, slash, exec, ulauncher-toggle"
         "$mod SHIFT, slash, exec, ${toggle "kebihelp"} show -a"
         "$mod SHIFT, C, exec, ${runOnce "hyprpicker"} -arf hex"
         "$mod SHIFT, B, exec, ${runOnce "overskride"}"
@@ -104,18 +103,18 @@ in {
         "$mod, S, exec, hyprutils toggle shader"
         "$mod SHIFT, T, exec, pypr toggle term"
         "$mod, V, exec, pypr show clip"
-
-        # Switcher
-        "ALT, Tab, exec, hyprswitch simple -w -m"
-        "ALT SHIFT, Tab, exec, hyprswitch simple -w -m -r"
-        "$mod, Tab, exec, hyprswitch gui --mod-key super --key tab --close mod-key-release --reverse-key=mod=shift --max-switch-offset 9 -m && hyprswitch dispatch"
+        "$mod, backslash, exec, pypr toggle emoji"
       ];
 
       ## Layer Rules
       layerrule = [
-        "blur, ^(hyprswitch)$"
+        "blur, ^(hyprshell_overview)$"
+        "dimaround, ^(hyprshell_overview)$"
         "blur, ^(logout_dialog)$"
+        "animation fade, ^(logout_dialog)$"
         "blur, ^(nwg-drawer)$"
+        "dimaround, ^(nwg-drawer)$"
+        "animation fade, ^(nwg-drawer)$"
         "blur, ^(waybar)$"
         "ignorealpha, ^(waybar)$"
         "blur, ^(wlclock)$"
@@ -127,11 +126,6 @@ in {
         [
           # Settings
           "stayfocused, class:^(gnome-control-center)$"
-
-          # Application Launcher
-          "stayfocused, class:^(ulauncher)$"
-          "opacity 0.8 override, class:^(ulauncher)$"
-          "move cursor -50% -50%, class:^(ulauncher)$"
 
           # Keybinds Viewer
           "pin, title:^(Kebihelp)$"

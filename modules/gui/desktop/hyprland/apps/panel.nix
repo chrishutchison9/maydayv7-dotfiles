@@ -133,7 +133,6 @@
             ignore-list = [
               "kitty-clip"
               "kitty-dropterm"
-              "ulauncher"
             ];
           };
 
@@ -287,10 +286,12 @@
 
           "custom/weather" = {
             format = "{}°";
+            return-type = "json";
+            exec = "wttrbar --date-format %d/%m --nerd";
             tooltip = true;
             interval = 3600;
-            exec = "wttrbar --date-format %d/%m --nerd";
-            return-type = "json";
+            signal = 7;
+            on-click = "pkill -RTMIN+7 waybar";
           };
 
           clock = {

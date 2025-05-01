@@ -21,9 +21,6 @@
       cache = "maydayv7-dotfiles";
       flake = "github:maydayv7/dotfiles";
       repo = "https://github.com/maydayv7/dotfiles";
-
-      # Set PATH for Services
-      systemd = ''export PATH="''${XDG_BIN_HOME}:$HOME/.nix-profile/bin:/etc/profiles/per-user/$USER/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin"'';
     };
 
     # Interactive Nix Shell
@@ -90,6 +87,12 @@
 
         # Greeter Configuration
         greeter = readFile ./hyprland/greeter.conf;
+
+        # Launcher
+        hyprshell = {
+          config = readFile ./hyprland/hyprshell/config.ron;
+          style = readFile ./hyprland/hyprshell/style.css;
+        };
       }
       // map.files {
         directory = ./hyprland/theme;
@@ -151,18 +154,6 @@
 
     # Document Templates
     templates = ./templates;
-
-    # ULauncher Application Launcher
-    ulauncher =
-      map.files {
-        directory = ./ulauncher/settings;
-        apply = readFile;
-        extension = ".json";
-      }
-      // {
-        themes = ./ulauncher/themes;
-        extensions = ./ulauncher/extensions;
-      };
 
     # Vesktop Discord Chat
     vesktop = map.files {

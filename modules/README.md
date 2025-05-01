@@ -6,7 +6,8 @@ Configuration [Builder](./configuration.nix)
 
 - [`apps`](./apps): Module that configures various apps and/or environments -
 
-  - `list`: List of all enabled applications - `[ "discord" "firefox" "flatpak" "games" "git" "office" "spotify" "wine" ]`
+  - `list`: List of enabled applications - `[ "discord" "firefox" "flatpak" "games" "git" "office" "spotify" "wine" ]`
+  - `games`: List of installed games - `[ "osu" ]`
   - `git` -
     - `hosting` -
       - `enable`: Enable Gitea Code Hosting - `true / false`
@@ -50,12 +51,6 @@ Configuration [Builder](./configuration.nix)
     - `theme` -
       - `name`: QT Application Theme
       - `package`: QT Theme Package
-  - `launcher` -
-    - `enable`: Enable Application Launcher - `true / false`
-    - `shadow`: Control Launcher Window Shadow - `true / false`
-    - `server`: Display Server to be used by Launcher - `"x11" / "wayland"`
-    - `terminal`: Terminal to be used by Launcher - Ex. `[ "xterm" ]`
-    - `theme`: Theme to be used by Launcher (Taken from `files.ulauncher.themes`)
   - `wayland` -
     - `enable`: Enable Wayland Configuration - `true / false`
   - `xorg` -

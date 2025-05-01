@@ -129,8 +129,9 @@ _: {
         ", XF86MonBrightnessDown, exec, hyprutils brightness down"
 
         # Magnifier
-        "$mod, equal, exec, hyprutils zoom in"
-        "$mod, minus, exec, hyprutils zoom out"
+        "$mod, equal, exec, pypr zoom ++0.5"
+        "$mod, minus, exec, pypr zoom --0.5"
+        "$mod SHIFT, minus, exec, pypr zoom"
       ];
     };
 

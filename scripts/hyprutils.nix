@@ -17,7 +17,6 @@
       backlight [up,down]            - Keyboard Backlight Controls
       volume [up,down,mute]          - Volume Controls
       media [next,previous,toggle]   - Media Controls
-      zoom [in,out]                  - Screen Zoom
       toggle 
         fancy                        - Toggle Compositor Effects
         float                        - Toggle window floating in current workspace
@@ -92,6 +91,10 @@ in
         hyprctl notify "$1" 1500 0 "  $2  "
       }
 
+      fail() {
+        error "$1" "Try 'hyprutils help' for more information"
+      }
+
       get_media_icon() {
         media_icon="audio-speakers"
         if $show_album_art
@@ -131,8 +134,8 @@ in
             brillo -u 300000 -U 5
             brightness_notification
           ;;
-          "") error "Expected an Option" "Try 'hyprutils help' for more information" ;;
-          *) error "Unexpected Option 'brightness $2'" "Try 'hyprutils help' for more information" ;;
+          "") fail "Expected an Option" ;;
+          *) fail "Unexpected Option 'brightness $2'" ;;
           esac
         ;;
         "backlight")
@@ -152,8 +155,8 @@ in
             brightnessctl -d "*::kbd_backlight" set 33%-
             backlight_notification
           ;;
-          "") error "Expected an Option" "Try 'hyprutils help' for more information" ;;
-          *) error "Unexpected Option 'brightness $2'" "Try 'hyprutils help' for more information" ;;
+          "") fail "Expected an Option" ;;
+          *) fail "Unexpected Option 'brightness $2'" ;;
           esac
         ;;
         "temperature")
@@ -175,8 +178,8 @@ in
             hyprctl hyprsunset identity
             notify temperature -i "display" "🌡 Reset"
           ;;
-          "") error "Expected an Option" "Try 'hyprutils help' for more information" ;;
-          *) error "Unexpected Option 'temperature $2'" "Try 'hyprutils help' for more information" ;;
+          "") fail "Expected an Option" ;;
+          *) fail "Unexpected Option 'temperature $2'" ;;
           esac
         ;;
         "volume")
@@ -223,8 +226,8 @@ in
             amixer set Master 1+ toggle
             volume_notification
           ;;
-          "") error "Expected an Option" "Try 'hyprutils help' for more information" ;;
-          *) error "Unexpected Option 'volume $2'" "Try 'hyprutils help' for more information" ;;
+          "") fail "Expected an Option" ;;
+          *) fail "Unexpected Option 'volume $2'" ;;
           esac
         ;;
         "media")
@@ -258,30 +261,8 @@ in
             playerctl play-pause
             music_notification
           ;;
-          "") error "Expected an Option" "Try 'hyprutils help' for more information" ;;
-          *) error "Unexpected Option 'media $2'" "Try 'hyprutils help' for more information" ;;
-          esac
-        ;;
-        "zoom")
-          ZOOM=$(hyprctl getoption cursor:zoom_factor | grep float | awk '{print $2}')
-          case "$2" in
-          "in")
-            ZOOM=$(echo "$ZOOM" | awk '{print $1 + 0.2}')
-            hyprctl keyword cursor:zoom_factor "$ZOOM"
-            hyprnotify 1 "Zoomed In ($ZOOM""x)"
-          ;;
-          "out")
-            if [ "$ZOOM" = "1.000000" ]
-            then
-              hyprnotify 3 "Already zoomed out"
-            else
-              ZOOM=$(echo "$ZOOM" | awk '{print $1 - 0.2}')
-              hyprctl keyword cursor:zoom_factor "$ZOOM"
-              hyprnotify 1 "Zoomed Out ($ZOOM""x)"
-            fi
-          ;;
-          "") error "Expected an Option" "Try 'hyprutils help' for more information" ;;
-          *) error "Unexpected Option 'zoom $2'" "Try 'hyprutils help' for more information" ;;
+          "") fail "Expected an Option" ;;
+          *) fail "Unexpected Option 'media $2'" ;;
           esac
         ;;
         "toggle")
@@ -328,7 +309,7 @@ in
           "service")
             if [ -z "$3" ]
             then
-              error "Expected service name" "Try 'hyprutils help' for more information"
+              fail "Expected service name"
             fi
 
             if systemctl --user is-active "$3"
@@ -376,8 +357,8 @@ in
               fi
             fi
           ;;
-          "") error "Expected an Option" "Try 'hyprutils help' for more information" ;;
-          *) error "Unexpected Option 'toggle $2'" "Try 'hyprutils help' for more information" ;;
+          "") fail "Expected an Option" ;;
+          *) fail "Unexpected Option 'toggle $2'" ;;
           esac
         ;;
       esac

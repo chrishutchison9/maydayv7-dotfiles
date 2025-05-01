@@ -7,8 +7,8 @@
   ...
 }: let
   inherit (lib) hm getExe getExe' replaceStrings;
-  inherit (config.gui) icons launcher;
-  inherit (launcher) terminal;
+  inherit (config.gui) icons;
+  terminal = "kitty";
   nemo = pkgs.nemo-with-extensions;
 in {
   ## File Manager Configuration

@@ -6,7 +6,7 @@
 }: let
   inherit (lib) mkForce mkIf;
   inherit (sys.gui) display fancy;
-  inherit (sys.lib.stylix.colors) base03 base07 base0D;
+  inherit (sys.lib.stylix.colors) base03 base05 base0D;
 in {
   ## Hyprland Settings
   imports = util.map.modules.list ./.;
@@ -118,13 +118,10 @@ in {
         gaps_in = 3;
         gaps_out = 3;
         border_size = 2;
-        "col.active_border" = mkForce "rgb(${base0D}) rgb(${base07}) 90deg";
+        "col.active_border" = mkForce "rgb(${base0D}) rgb(${base05}) 90deg";
       };
 
-      group = let
-        active = "rgb(${base07}) rgb(${base0D}) 90deg";
-        inactive = "rgb(${base03}) rgb(${base07}) 90deg";
-      in {
+      group = {
         auto_group = true;
         insert_after_current = true;
         drag_into_group = 2;
@@ -132,52 +129,45 @@ in {
         merge_groups_on_groupbar = true;
         merge_floated_into_tiled_on_groupbar = false;
         group_on_movetoworkspace = false;
-
-        "col.border_active" = mkForce active;
-        "col.border_locked_active" = mkForce active;
-        "col.border_inactive" = mkForce inactive;
-        "col.border_locked_inactive" = mkForce inactive;
+        "col.border_active" = mkForce "rgb(${base05}) rgb(${base0D}) 90deg";
+        "col.border_inactive" = mkForce "rgb(${base05}) rgb(${base03}) 90deg";
 
         groupbar = {
           enabled = true;
           scrolling = true;
           gradients = true;
-          height = 10;
-          render_titles = false;
+          height = 15;
+          font_size = 10;
+          render_titles = true;
           keep_upper_gap = false;
           indicator_height = 0;
           gradient_rounding = 5;
           gradient_round_only_edges = false;
-
-          "col.active" = mkForce active;
-          "col.locked_active" = mkForce active;
-          "col.inactive" = mkForce inactive;
-          "col.locked_inactive" = mkForce inactive;
+          "col.active" = mkForce "rgb(${base03}) rgb(${base0D}) 90deg";
+          "col.inactive" = mkForce "rgb(${base03})";
         };
       };
 
       animation = {
         bezier = [
-          "fluentish, 0, 0.2, 0.4, 1"
-          "easeOutCircle, 0, 0.55, 0.45, 1"
-          "easeOutCubic, 0.33, 1, 0.68, 1"
-          "easeInOutSine, 0.37, 0, 0.63, 1"
+          "accelerate, 0.3, 0, 0.8, 0.15"
+          "decelerate, 0.05, 0.7, 0.1, 1"
+          "zoom, 0.38, 0.04, 1, 0.07"
+          "crash, 0.1, 1, 0, 1"
         ];
 
         animation = [
-          "windowsIn, 1, 1.7, easeOutCubic, slide"
-          "windowsOut, 1, 1.7, easeOutCubic, slide"
-          "windowsMove, 1, 2.5, easeInOutSine, slide"
-
-          # Fading
-          "fadeIn, 1, 3, easeOutCubic"
-          "fadeOut, 1, 3, easeOutCubic"
-          "fadeSwitch, 1, 5, easeOutCircle"
-          "fadeShadow, 1, 5, easeOutCircle"
-          "fadeDim, 1, 6, fluentish"
-          "border, 1, 2.7, easeOutCircle"
-          "workspaces, 1, 2, fluentish, slide"
-          "specialWorkspace, 1, 3, fluentish, slidevert"
+          "border, 1, 10, default"
+          "fade, 1, 3, decelerate"
+          "fadeLayersIn, 1, 2, crash"
+          "fadeLayersOut, 1, 0.5, zoom"
+          "layersIn, 1, 3, crash, slide"
+          "layersOut, 1, 1.6, zoom"
+          "specialWorkspace, 1, 3, decelerate, slidevert"
+          "windows, 1, 3, decelerate, popin 60%"
+          "windowsIn, 1, 3, decelerate, popin 60%"
+          "windowsOut, 1, 3, accelerate, popin 60%"
+          "workspaces, 1, 7, crash, slide"
         ];
       };
 

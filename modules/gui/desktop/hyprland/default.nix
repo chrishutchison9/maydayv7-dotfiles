@@ -22,10 +22,6 @@ in {
           gui = {
             xorg.enable = false;
             wayland.enable = true;
-            launcher = {
-              enable = true;
-              shadow = false;
-            };
           };
 
           programs = {

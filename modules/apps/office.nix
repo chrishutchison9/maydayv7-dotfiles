@@ -47,6 +47,7 @@ in {
       libreoffice
 
       # Graphics
+      drawing
       gimp
       handbrake
       inkscape
