@@ -3,7 +3,8 @@
   pkgs,
   files,
   ...
-}: let
+}:
+let
   inherit (lib) licenses recursiveUpdate;
 
   help = ''
@@ -46,321 +47,325 @@
     }
   '';
 in
-  recursiveUpdate {
+recursiveUpdate
+  {
     meta = {
       mainProgram = "hyprutils";
       description = "Hyprland Utility Script";
       homepage = files.path.repo;
       license = licenses.gpl3Only;
-      maintainers = ["maydayv7"];
+      maintainers = [ "maydayv7" ];
     };
-  } (pkgs.writeShellApplication {
-    name = "hyprutils";
-    runtimeInputs = with pkgs; [
-      coreutils
-      gnugrep
-      socat
-      wget
+  }
+  (
+    pkgs.writeShellApplication {
+      name = "hyprutils";
+      runtimeInputs = with pkgs; [
+        coreutils
+        gnugrep
+        socat
+        wget
 
-      dunst
-      zenity
-      hyprland
-      hyprshade
-      hyprsunset
-      custom.hyprshellevents
+        dunst
+        zenity
+        hyprland
+        hyprshade
+        hyprsunset
+        custom.hyprshellevents
 
-      alsa-utils
-      brightnessctl
-      brillo
-      libnotify
-      playerctl
-      systemd
-    ];
+        alsa-utils
+        brightnessctl
+        brillo
+        libnotify
+        playerctl
+        systemd
+      ];
 
-    text = ''
-      set +eu
-      ${files.scripts.commands}
-      show_album_art=true
-      show_music_in_volume_indicator=true
+      text = ''
+        set +eu
+        ${files.scripts.commands}
+        show_album_art=true
+        show_music_in_volume_indicator=true
 
-      notify() {
-        notify-send -a "utility" -t 1000 -h string:x-dunst-stack-tag:"$1" "''${@:2}"
-      }
+        notify() {
+          notify-send -a "utility" -t 1000 -h string:x-dunst-stack-tag:"$1" "''${@:2}"
+        }
 
-      hyprnotify() {
-        hyprctl notify "$1" 1500 0 "  $2  "
-      }
+        hyprnotify() {
+          hyprctl notify "$1" 1500 0 "  $2  "
+        }
 
-      fail() {
-        error "$1" "Try 'hyprutils help' for more information"
-      }
+        fail() {
+          error "$1" "Try 'hyprutils help' for more information"
+        }
 
-      get_media_icon() {
-        media_icon="audio-speakers"
-        if $show_album_art
-        then
-          temp media-icon 1
-          url=$(playerctl -f "{{mpris:artUrl}}" metadata)
-          if [[ "$url" == "file://"* ]]
+        get_media_icon() {
+          media_icon="audio-speakers"
+          if $show_album_art
           then
-            media_icon="''${url/file:\/\//}"
-          elif [[ "$url" == "http://"* ]] || [[ "$url" == "https://"* ]]
-          then
-            filename="$(echo "$url" | sed "s/.*\///")"
-            if [ ! -f "$TEMP/$filename" ]; then wget -O "$TEMP/$filename" "$url"; fi
-            media_icon="$TEMP/$filename"
+            temp media-icon 1
+            url=$(playerctl -f "{{mpris:artUrl}}" metadata)
+            if [[ "$url" == "file://"* ]]
+            then
+              media_icon="''${url/file:\/\//}"
+            elif [[ "$url" == "http://"* ]] || [[ "$url" == "https://"* ]]
+            then
+              filename="$(echo "$url" | sed "s/.*\///")"
+              if [ ! -f "$TEMP/$filename" ]; then wget -O "$TEMP/$filename" "$url"; fi
+              media_icon="$TEMP/$filename"
+            fi
           fi
-        fi
-      }
+        }
 
-      case "$1" in
-        "") error "Expected an Option" "${help}";;
-        "help") echo -e "## Hyprland Utility Script ##\n${help}";;
-        "daemon")
-          info "Monitoring Hyprland Socket..."
-          socat -u UNIX-CONNECT:"$XDG_RUNTIME_DIR"/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock EXEC:"shellevents ${daemon}",nofork
-        ;;
-        "brightness")
-          brightness_notification() {
-            brightness=$(brillo | grep -Po '[0-9]{1,3}' | head -n 1)
-            notify brightness -i "display" -h int:value:"$brightness" "🔅 $brightness%"
-          }
-          case "$2" in
-          "up")
-            brillo -u 300000 -A 5
-            brightness_notification
+        case "$1" in
+          "") error "Expected an Option" "${help}";;
+          "help") echo -e "## Hyprland Utility Script ##\n${help}";;
+          "daemon")
+            info "Monitoring Hyprland Socket..."
+            socat -u UNIX-CONNECT:"$XDG_RUNTIME_DIR"/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock EXEC:"shellevents ${daemon}",nofork
           ;;
-          "down")
-            brillo -u 300000 -U 5
-            brightness_notification
+          "brightness")
+            brightness_notification() {
+              brightness=$(brillo | grep -Po '[0-9]{1,3}' | head -n 1)
+              notify brightness -i "display" -h int:value:"$brightness" "🔅 $brightness%"
+            }
+            case "$2" in
+            "up")
+              brillo -u 300000 -A 5
+              brightness_notification
+            ;;
+            "down")
+              brillo -u 300000 -U 5
+              brightness_notification
+            ;;
+            "") fail "Expected an Option" ;;
+            *) fail "Unexpected Option 'brightness $2'" ;;
+            esac
           ;;
-          "") fail "Expected an Option" ;;
-          *) fail "Unexpected Option 'brightness $2'" ;;
-          esac
-        ;;
-        "backlight")
-          backlight_notification() {
-            backlight="$(cat /sys/class/leds/*::kbd_backlight/brightness)"
-            light=0; if [ "$backlight" -eq 1 ]; then light=33; fi
-            if [ "$backlight" -eq 2 ]; then light=67; fi
-            if [ "$backlight" -eq 3 ]; then light=100; fi
-            notify backlight -i "keyboard" -h int:value:"$light" "🔅 $light%"
-          }
-          case "$2" in
-          "up")
-            brightnessctl -d "*::kbd_backlight" set 33%+
-            backlight_notification
+          "backlight")
+            backlight_notification() {
+              backlight="$(cat /sys/class/leds/*::kbd_backlight/brightness)"
+              light=0; if [ "$backlight" -eq 1 ]; then light=33; fi
+              if [ "$backlight" -eq 2 ]; then light=67; fi
+              if [ "$backlight" -eq 3 ]; then light=100; fi
+              notify backlight -i "keyboard" -h int:value:"$light" "🔅 $light%"
+            }
+            case "$2" in
+            "up")
+              brightnessctl -d "*::kbd_backlight" set 33%+
+              backlight_notification
+            ;;
+            "down")
+              brightnessctl -d "*::kbd_backlight" set 33%-
+              backlight_notification
+            ;;
+            "") fail "Expected an Option" ;;
+            *) fail "Unexpected Option 'brightness $2'" ;;
+            esac
           ;;
-          "down")
-            brightnessctl -d "*::kbd_backlight" set 33%-
-            backlight_notification
+          "temperature")
+            temperature_notification() {
+              temperature=$(hyprctl hyprsunset temperature)
+              notify temperature -i "display" "🌡 $temperature K"
+            }
+            case "$2" in
+            "up")
+              hyprctl hyprsunset temperature +200
+              temperature_notification
+            ;;
+            "down")
+              hyprctl hyprsunset temperature -200
+              temperature_notification
+            ;;
+            "reset")
+              hyprctl hyprsunset temperature 6000
+              hyprctl hyprsunset identity
+              notify temperature -i "display" "🌡 Reset"
+            ;;
+            "") fail "Expected an Option" ;;
+            *) fail "Unexpected Option 'temperature $2'" ;;
+            esac
           ;;
-          "") fail "Expected an Option" ;;
-          *) fail "Unexpected Option 'brightness $2'" ;;
-          esac
-        ;;
-        "temperature")
-          temperature_notification() {
-            temperature=$(hyprctl hyprsunset temperature)
-            notify temperature -i "display" "🌡 $temperature K"
-          }
-          case "$2" in
-          "up")
-            hyprctl hyprsunset temperature +200
-            temperature_notification
-          ;;
-          "down")
-            hyprctl hyprsunset temperature -200
-            temperature_notification
-          ;;
-          "reset")
-            hyprctl hyprsunset temperature 6000
-            hyprctl hyprsunset identity
-            notify temperature -i "display" "🌡 Reset"
-          ;;
-          "") fail "Expected an Option" ;;
-          *) fail "Unexpected Option 'temperature $2'" ;;
-          esac
-        ;;
-        "volume")
-          volume_notification() {
-            volume=$(amixer get Master | grep '%' | head -n 1 | cut -d '[' -f 2 | cut -d '%' -f 1)
-            mute=$(amixer get Master | grep '%' | grep -oE '[^ ]+$' | grep off | head -n1)
-            if [ "$volume" -eq 0 ] || [ "$mute" == "[off]" ]
-            then
-              volume_icon="🔇"
-            elif [ "$volume" -lt 50 ]
-            then
-              volume_icon="🔉"
-            else
-              volume_icon="🔊"
-            fi
+          "volume")
+            volume_notification() {
+              volume=$(amixer get Master | grep '%' | head -n 1 | cut -d '[' -f 2 | cut -d '%' -f 1)
+              mute=$(amixer get Master | grep '%' | grep -oE '[^ ]+$' | grep off | head -n1)
+              if [ "$volume" -eq 0 ] || [ "$mute" == "[off]" ]
+              then
+                volume_icon="🔇"
+              elif [ "$volume" -lt 50 ]
+              then
+                volume_icon="🔉"
+              else
+                volume_icon="🔊"
+              fi
 
-            song_title=$(playerctl -f "{{title}}" metadata)
-            get_media_icon
-            if $show_music_in_volume_indicator && [ -n "$song_title" ]
-            then
+              song_title=$(playerctl -f "{{title}}" metadata)
+              get_media_icon
+              if $show_music_in_volume_indicator && [ -n "$song_title" ]
+              then
+                song_artist=$(playerctl -f "{{artist}}" metadata)
+                if [ -z "$song_artist" ]
+                then
+                  notify volume -h int:value:"$volume" -i "$media_icon" "$volume_icon $volume%" "$song_title"
+                else
+                  notify volume -h int:value:"$volume" -i "$media_icon" "$volume_icon $volume%" "$song_title\nBy $song_artist"
+                fi
+              else
+                notify volume -h int:value:"$volume" -i "$media_icon" "$volume_icon $volume%"
+              fi
+            }
+            case "$2" in
+            "up")
+              amixer set Master on
+              amixer sset Master 5%+
+              volume_notification
+            ;;
+            "down")
+              amixer set Master on
+              amixer sset Master 5%-
+              volume_notification
+            ;;
+            "mute")
+              amixer set Master 1+ toggle
+              volume_notification
+            ;;
+            "") fail "Expected an Option" ;;
+            *) fail "Unexpected Option 'volume $2'" ;;
+            esac
+          ;;
+          "media")
+            music_notification() {
+              song_title=$(playerctl -f "{{title}}" metadata)
               song_artist=$(playerctl -f "{{artist}}" metadata)
-              if [ -z "$song_artist" ]
+              song_album=$(playerctl -f "{{album}}" metadata)
+              get_media_icon
+              if [ -z "$song_album" ]
               then
-                notify volume -h int:value:"$volume" -i "$media_icon" "$volume_icon $volume%" "$song_title"
+                if [ -z "$song_artist" ]
+                then
+                  notify music -i "$media_icon" "$song_title"
+                else
+                  notify music -i "$media_icon" "$song_title" "By $song_artist"
+                fi
               else
-                notify volume -h int:value:"$volume" -i "$media_icon" "$volume_icon $volume%" "$song_title\nBy $song_artist"
+                notify music -i "$media_icon" "$song_title" "By $song_artist from $song_album"
               fi
-            else
-              notify volume -h int:value:"$volume" -i "$media_icon" "$volume_icon $volume%"
-            fi
-          }
-          case "$2" in
-          "up")
-            amixer set Master on
-            amixer sset Master 5%+
-            volume_notification
-          ;;
-          "down")
-            amixer set Master on
-            amixer sset Master 5%-
-            volume_notification
-          ;;
-          "mute")
-            amixer set Master 1+ toggle
-            volume_notification
-          ;;
-          "") fail "Expected an Option" ;;
-          *) fail "Unexpected Option 'volume $2'" ;;
-          esac
-        ;;
-        "media")
-          music_notification() {
-            song_title=$(playerctl -f "{{title}}" metadata)
-            song_artist=$(playerctl -f "{{artist}}" metadata)
-            song_album=$(playerctl -f "{{album}}" metadata)
-            get_media_icon
-            if [ -z "$song_album" ]
-            then
-              if [ -z "$song_artist" ]
-              then
-                notify music -i "$media_icon" "$song_title"
-              else
-                notify music -i "$media_icon" "$song_title" "By $song_artist"
-              fi
-            else
-              notify music -i "$media_icon" "$song_title" "By $song_artist from $song_album"
-            fi
-          }
-          case "$2" in
-          "next")
-            playerctl next
-            sleep 0.5 && music_notification
-          ;;
-          "previous")
-            playerctl previous
-            sleep 0.5 && music_notification
+            }
+            case "$2" in
+            "next")
+              playerctl next
+              sleep 0.5 && music_notification
+            ;;
+            "previous")
+              playerctl previous
+              sleep 0.5 && music_notification
+            ;;
+            "toggle")
+              playerctl play-pause
+              music_notification
+            ;;
+            "") fail "Expected an Option" ;;
+            *) fail "Unexpected Option 'media $2'" ;;
+            esac
           ;;
           "toggle")
-            playerctl play-pause
-            music_notification
-          ;;
-          "") fail "Expected an Option" ;;
-          *) fail "Unexpected Option 'media $2'" ;;
-          esac
-        ;;
-        "toggle")
-          case "$2" in
-          "fancy")
-            FANCY=$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
-            if [ "$FANCY" = 1 ]
-            then
-              hyprnotify 1 "Compositor Effects Disabled"
-              hyprctl --batch "\
-                keyword animations:enabled 0;\
-                keyword decoration:shadow:enabled 0;\
-                keyword decoration:blur:enabled 0;\
-                keyword general:gaps_in 0;\
-                keyword general:gaps_out 0;\
-                keyword general:border_size 1;\
-                keyword decoration:rounding 0"
-              exit
-            fi
-            hyprnotify 1 "Compositor Effects Enabled"
-            hyprctl reload
-          ;;
-          "float")
-            WORKSPACE=$(hyprctl activeworkspace | grep "workspace ID" | awk '{print $3}')
-            hyprnotify 1 "Toggled window floating on Workspace $WORKSPACE"
-            hyprctl dispatch workspaceopt allfloat
-          ;;
-          "minimized")
-            if hyprctl workspaces | grep "special:minimize"
-            then
-              hyprctl dispatch workspace special:minimized
-            else
-              hyprnotify 1 "No minimized windows present"
-            fi
-          ;;
-          "monitor")
-            if hyprctl monitors | grep "$3"
-            then
-              hyprctl keyword monitor "$3, disable"
-            else
-              hyprctl keyword monitor "$3, preferred, auto, 1"
-            fi
-          ;;
-          "service")
-            if [ -z "$3" ]
-            then
-              fail "Expected service name"
-            fi
+            case "$2" in
+            "fancy")
+              FANCY=$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
+              if [ "$FANCY" = 1 ]
+              then
+                hyprnotify 1 "Compositor Effects Disabled"
+                hyprctl --batch "\
+                  keyword animations:enabled 0;\
+                  keyword decoration:shadow:enabled 0;\
+                  keyword decoration:blur:enabled 0;\
+                  keyword general:gaps_in 0;\
+                  keyword general:gaps_out 0;\
+                  keyword general:border_size 1;\
+                  keyword decoration:rounding 0"
+                exit
+              fi
+              hyprnotify 1 "Compositor Effects Enabled"
+              hyprctl reload
+            ;;
+            "float")
+              WORKSPACE=$(hyprctl activeworkspace | grep "workspace ID" | awk '{print $3}')
+              hyprnotify 1 "Toggled window floating on Workspace $WORKSPACE"
+              hyprctl dispatch workspaceopt allfloat
+            ;;
+            "minimized")
+              if hyprctl workspaces | grep "special:minimize"
+              then
+                hyprctl dispatch workspace special:minimized
+              else
+                hyprnotify 1 "No minimized windows present"
+              fi
+            ;;
+            "monitor")
+              if hyprctl monitors | grep "$3"
+              then
+                hyprctl keyword monitor "$3, disable"
+              else
+                hyprctl keyword monitor "$3, preferred, auto, 1"
+              fi
+            ;;
+            "service")
+              if [ -z "$3" ]
+              then
+                fail "Expected service name"
+              fi
 
-            if systemctl --user is-active "$3"
-            then
-              systemctl --user stop "$3"
-              notify service -i "system-config-services" "Stopped $3"
-            else
-              systemctl --user start "$3"
-              notify service -i "system-config-services" "Started $3"
-            fi
-          ;;
-          "shader")
-            hyprshade off
-            mapfile SHADERS < <(hyprshade ls)
-            SHADER=$(zenity --list --title="Compositor Shader Toggle" --column="Shaders" "''${SHADERS[@]}" | sed "s/^[ \t]*//")
-            hyprshade on "$SHADER" && hyprctl seterror ""
-          ;;
-          "touchpad")
-            temp touchpad 1
-            STATUS="$TEMP/status"
-            touchpad=$(hyprctl devices | grep touchpad | xargs)
+              if systemctl --user is-active "$3"
+              then
+                systemctl --user stop "$3"
+                notify service -i "system-config-services" "Stopped $3"
+              else
+                systemctl --user start "$3"
+                notify service -i "system-config-services" "Started $3"
+              fi
+            ;;
+            "shader")
+              hyprshade off
+              mapfile SHADERS < <(hyprshade ls)
+              SHADER=$(zenity --list --title="Compositor Shader Toggle" --column="Shaders" "''${SHADERS[@]}" | sed "s/^[ \t]*//")
+              hyprshade on "$SHADER" && hyprctl seterror ""
+            ;;
+            "touchpad")
+              temp touchpad 1
+              STATUS="$TEMP/status"
+              touchpad=$(hyprctl devices | grep touchpad | xargs)
 
-            enable() {
-              hyprctl keyword "device[$touchpad]:enabled" true
-              printf "true" >"$STATUS"
-              notify touchpad -i "touchpad" "Touchpad Enabled"
-            }
+              enable() {
+                hyprctl keyword "device[$touchpad]:enabled" true
+                printf "true" >"$STATUS"
+                notify touchpad -i "touchpad" "Touchpad Enabled"
+              }
 
-            disable() {
-              hyprctl keyword "device[$touchpad]:enabled" false
-              printf "false" >"$STATUS"
-              notify touchpad -i "touchpad" "Touchpad Disabled"
-            }
+              disable() {
+                hyprctl keyword "device[$touchpad]:enabled" false
+                printf "false" >"$STATUS"
+                notify touchpad -i "touchpad" "Touchpad Disabled"
+              }
 
-            if ! [ -f "$STATUS" ]
-            then
-              disable
-            else
-              if [ "$(cat "$STATUS")" = "true" ]
+              if ! [ -f "$STATUS" ]
               then
                 disable
-              elif [ "$(cat "$STATUS")" = "false" ]
-              then
-                enable
+              else
+                if [ "$(cat "$STATUS")" = "true" ]
+                then
+                  disable
+                elif [ "$(cat "$STATUS")" = "false" ]
+                then
+                  enable
+                fi
               fi
-            fi
+            ;;
+            "") fail "Expected an Option" ;;
+            *) fail "Unexpected Option 'toggle $2'" ;;
+            esac
           ;;
-          "") fail "Expected an Option" ;;
-          *) fail "Unexpected Option 'toggle $2'" ;;
-          esac
-        ;;
-      esac
-    '';
-  })
+        esac
+      '';
+    }
+  )

@@ -6,25 +6,37 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (builtins) attrNames map;
-  inherit (lib) hasPrefix mkIf mkOption optionals removePrefix types;
+  inherit (lib)
+    hasPrefix
+    mkIf
+    mkOption
+    optionals
+    removePrefix
+    types
+    ;
+
   cfg = config.base;
-in {
+in
+{
   ## BASE Configuration ##
-  imports = util.map.modules.list ./. ++ [inputs.generators.nixosModules.all-formats];
+  imports = util.map.modules.list ./. ++ [ inputs.generators.nixosModules.all-formats ];
 
   options.base = {
     kernel = mkOption {
       description = "Linux Kernel Variant to be used";
       default = "lts";
-      type = types.enum (["lts"] ++ (map (name: removePrefix "linux_" name) (attrNames pkgs.linuxKernel.kernels)));
+      type = types.enum (
+        [ "lts" ] ++ (map (name: removePrefix "linux_" name) (attrNames pkgs.linuxKernel.kernels))
+      );
     };
 
     kernelModules = mkOption {
       description = "Linux Kernel Modules to load";
       type = with types; listOf str;
-      default = [];
+      default = [ ];
     };
   };
 
@@ -32,13 +44,21 @@ in {
     # Kernel Configuration
     boot = {
       kernelPackages =
-        if (cfg.kernel == "lts")
-        then options.boot.kernelPackages.default
-        else pkgs.linuxKernel.packages."${"linux_" + cfg.kernel}";
+        if (cfg.kernel == "lts") then
+          options.boot.kernelPackages.default
+        else
+          pkgs.linuxKernel.packages."${"linux_" + cfg.kernel}";
 
-      initrd.availableKernelModules =
-        optionals (cfg.kernelModules != [])
-        (cfg.kernelModules ++ ["ahci" "sd_mod" "usbhid" "usb_storage" "xhci_pci"]);
+      initrd.availableKernelModules = optionals (cfg.kernelModules != [ ]) (
+        cfg.kernelModules
+        ++ [
+          "ahci"
+          "sd_mod"
+          "usbhid"
+          "usb_storage"
+          "xhci_pci"
+        ]
+      );
     };
 
     # Documentation
@@ -49,7 +69,8 @@ in {
 
     # Essential Utilities
     environment = {
-      variables."NIXOS_SPECIALISATION" = with config.system.nixos;
+      variables."NIXOS_SPECIALISATION" =
+        with config.system.nixos;
         mkIf (hasPrefix "special." label) (removePrefix "special." label);
 
       systemPackages = with pkgs; [

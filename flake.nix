@@ -210,28 +210,30 @@
   };
 
   ## Configuration ##
-  outputs = {self, ...} @ inputs: let
-    inherit (inputs.nixpkgs) lib;
-    map = import ./lib/map.nix lib;
-  in
-    inputs.framework.lib.mkFlake {inherit inputs;} {
+  outputs =
+    { self, ... }@inputs:
+    let
+      inherit (inputs.nixpkgs) lib;
+      map = import ./lib/map.nix lib;
+    in
+    inputs.framework.lib.mkFlake { inherit inputs; } {
       inherit (self) systems;
       debug = false;
 
-      _module.args = {util = self.lib;};
       imports = map.flake ./.;
+      _module.args = {
+        util = self.lib;
+      };
 
       flake = {
         # Supported Architectures
         systems = import inputs.systems;
 
         ## Custom Library Functions ##
-        lib =
-          lib.recursiveUpdate (map.modules ./lib (file: import file lib))
-          {
-            nixpkgs = lib;
-            build.device = import ./modules/configuration.nix inputs;
-          };
+        lib = lib.recursiveUpdate (map.modules ./lib (file: import file lib)) {
+          nixpkgs = lib;
+          build.device = import ./modules/configuration.nix inputs;
+        };
 
         ## Configuration Template ##
         templates.default = with inputs.filters.lib; {

@@ -83,16 +83,21 @@ _: {
         ]
         ++
         # Workspaces
-        (with builtins;
-          concatLists (genList (
-              n: let
+        (
+          with builtins;
+          concatLists (
+            genList (
+              n:
+              let
                 num = toString (n + 1);
-              in [
+              in
+              [
                 "$mod, ${num}, split:workspace, ${num}"
                 "$mod SHIFT, ${num}, split:movetoworkspace, ${num}"
               ]
-            )
-            9));
+            ) 9
+          )
+        );
 
       # Mouse
       bindm = [

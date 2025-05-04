@@ -5,12 +5,24 @@
   util,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (builtins) map;
   inherit (util.map.modules) list name;
-  inherit (lib) hasSuffix mkEnableOption mkForce mkIf mkMerge mkOption optional types;
+  inherit (lib)
+    hasSuffix
+    mkEnableOption
+    mkForce
+    mkIf
+    mkMerge
+    mkOption
+    optional
+    types
+    ;
+
   inherit (config.gui) desktop;
-in {
+in
+{
   ## GUI Configuration ##
   imports = list ./. ++ list ./desktop;
 
@@ -25,39 +37,48 @@ in {
 
     desktop = mkOption {
       description = "GUI Desktop Choice";
-      type = types.enum ((name ./desktop) ++ map (x: x + "-iso") (import ./desktop/iso.nix) ++ [""]);
+      type = types.enum ((name ./desktop) ++ map (x: x + "-iso") (import ./desktop/iso.nix) ++ [ "" ]);
       default = "";
     };
   };
 
   config = mkMerge [
-    {warnings = optional (desktop == "") (options.gui.desktop.description + " is unset");}
+    { warnings = optional (desktop == "") (options.gui.desktop.description + " is unset"); }
 
     ## Desktop Environment
-    (mkIf (desktop != "" && !(hasSuffix "-iso" desktop))
-      {
-        user.persist.directories = [".config/autostart" ".local/share/gvfs-metadata"];
+    (mkIf (desktop != "" && !(hasSuffix "-iso" desktop)) {
+      user.persist.directories = [
+        ".config/autostart"
+        ".local/share/gvfs-metadata"
+      ];
 
-        # Utilities
-        programs.seahorse.enable = true;
-        user.homeConfig.services.mpris-proxy.enable = true;
-        services = {
-          gvfs.enable = true;
-          gnome.gnome-keyring.enable = true;
-        };
+      # Utilities
+      programs.seahorse.enable = true;
+      user.homeConfig.services.mpris-proxy.enable = true;
+      services = {
+        gvfs.enable = true;
+        gnome.gnome-keyring.enable = true;
+      };
 
-        # Desktop Integration
-        environment.pathsToLink = ["/share/xdg-desktop-portal" "/share/applications"];
-        xdg.portal = {
-          enable = true;
-          xdgOpenUsePortal = true;
-        };
-      })
+      # Desktop Integration
+      environment.pathsToLink = [
+        "/share/xdg-desktop-portal"
+        "/share/applications"
+      ];
+
+      xdg.portal = {
+        enable = true;
+        xdgOpenUsePortal = true;
+      };
+    })
 
     ## Install Media
     (mkIf (hasSuffix "-iso" desktop) {
       xdg.portal.enable = mkForce false;
-      environment.systemPackages = with pkgs; [epiphany gparted];
+      environment.systemPackages = with pkgs; [
+        epiphany
+        gparted
+      ];
     })
   ];
 }

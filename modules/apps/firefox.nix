@@ -4,22 +4,28 @@
   util,
   pkgs,
   ...
-}: let
+}:
+let
   enable = builtins.elem "firefox" config.apps.list;
-in {
+in
+{
   ## Firefox Browser Configuration ##
   config = lib.mkIf enable {
     environment = {
-      systemPackages = [pkgs.firefox];
+      systemPackages = [ pkgs.firefox ];
       sessionVariables.MOZ_USE_XINPUT2 = "1";
     };
 
     user = {
-      persist.directories = [".cache/mozilla/firefox" ".mozilla/firefox"];
+      persist.directories = [
+        ".cache/mozilla/firefox"
+        ".mozilla/firefox"
+      ];
+
       homeConfig = {
         # File Associations
         xdg.mimeApps.defaultApplications = util.build.mime {
-          browser = ["firefox.desktop"];
+          browser = [ "firefox.desktop" ];
         };
 
         # Profile
@@ -38,15 +44,16 @@ in {
             };
 
             # Extensions
-            ExtensionSettings = let
-              extension = shortId: uuid: {
-                name = uuid;
-                value = {
-                  installation_mode = "normal_installed";
-                  install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
+            ExtensionSettings =
+              let
+                extension = shortId: uuid: {
+                  name = uuid;
+                  value = {
+                    installation_mode = "normal_installed";
+                    install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
+                  };
                 };
-              };
-            in
+              in
               builtins.listToAttrs [
                 (extension "clearurls" "{74145f27-f039-47ce-a470-a662b129930a}")
                 (extension "setupvpn" "@setupvpncom")

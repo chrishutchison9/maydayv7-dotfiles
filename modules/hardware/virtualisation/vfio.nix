@@ -3,23 +3,37 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (builtins) concatStringsSep elem;
-  inherit (lib) generators mkForce mkIf mkMerge mkOption types;
+  inherit (lib)
+    generators
+    mkForce
+    mkIf
+    mkMerge
+    mkOption
+    types
+    ;
+
   enable = elem "virtualisation" config.hardware.support;
   cfg = config.hardware.vm;
-in {
+in
+{
   options.hardware.vm = {
     vfio = mkOption {
       description = "Configure VFIO PCI passthrough";
-      type = types.enum ["on" "off" "setup"];
+      type = types.enum [
+        "on"
+        "off"
+        "setup"
+      ];
       default = "off";
     };
 
     passthrough = mkOption {
       description = "PCI Device IDs for VFIO";
       type = types.listOf types.str;
-      default = [];
+      default = [ ];
       example = [
         "10de:28e0" # Graphics
         "10de:22be" # Audio
@@ -65,11 +79,11 @@ in {
       };
 
       # Looking Glass
-      user.groups = ["qemu-libvirtd"];
-      systemd.tmpfiles.rules = ["f /dev/shm/looking-glass 0660 root qemu-libvirtd -"];
+      user.groups = [ "qemu-libvirtd" ];
+      systemd.tmpfiles.rules = [ "f /dev/shm/looking-glass 0660 root qemu-libvirtd -" ];
       environment = {
-        systemPackages = [pkgs.looking-glass-client];
-        etc."looking-glass-client.ini".text = generators.toINI {} {
+        systemPackages = [ pkgs.looking-glass-client ];
+        etc."looking-glass-client.ini".text = generators.toINI { } {
           app.renderer = "egl";
           win = {
             title = "Virtual Machine";

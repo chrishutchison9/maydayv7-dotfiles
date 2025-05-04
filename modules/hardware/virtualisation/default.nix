@@ -4,26 +4,40 @@
   util,
   pkgs,
   ...
-}: let
+}:
+let
   enable = builtins.elem "virtualisation" config.hardware.support;
-in {
+in
+{
   imports = util.map.modules.list ./.;
 
   ## Virtualisation Settings ##
   config = lib.mkIf enable {
     # Environment Setup
-    user.groups = ["kvm" "libvirtd"];
-    user.persist.directories = [".config/libvirt" ".local/share/libvirt"];
-    environment.persist.directories = ["/var/lib/libvirt"];
+    user.groups = [
+      "kvm"
+      "libvirtd"
+    ];
+    user.persist.directories = [
+      ".config/libvirt"
+      ".local/share/libvirt"
+    ];
+    environment.persist.directories = [ "/var/lib/libvirt" ];
     security.virtualisation.flushL1DataCache = "cond";
     boot = {
-      kernelModules = ["kvm-amd" "kvm-intel"];
+      kernelModules = [
+        "kvm-amd"
+        "kvm-intel"
+      ];
       extraModprobeConfig = "options kvm_intel nested=1";
     };
 
     # VM Packages
-    environment.systemPackages = with pkgs; [libguestfs virtiofsd];
     programs.virt-manager.enable = true;
+    environment.systemPackages = with pkgs; [
+      libguestfs
+      virtiofsd
+    ];
 
     #!# Run 'virsh net-start default' to start virtual network service
 
@@ -41,7 +55,7 @@ in {
           swtpm.enable = true;
           ovmf = {
             enable = true;
-            packages = [pkgs.OVMFFull.fd];
+            packages = [ pkgs.OVMFFull.fd ];
           };
         };
       };

@@ -3,17 +3,19 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (builtins) any attrValues elem;
   enable = any (value: elem "bash" value.shells) (attrValues config.user.settings);
-in {
+in
+{
   ## Bourne Shell Configuration ##
   config = lib.mkIf enable {
     # Shell Environment
-    environment.shells = [pkgs.bashInteractive];
+    environment.shells = [ pkgs.bashInteractive ];
     user.persist = {
-      files = [".bash_history"];
-      directories = [".local/share/bash"];
+      files = [ ".bash_history" ];
+      directories = [ ".local/share/bash" ];
     };
 
     programs.bash = {

@@ -4,11 +4,20 @@
   util,
   files,
   ...
-}: let
+}:
+let
   inherit (builtins) attrValues map;
-  inherit (lib) mkBefore mkIf mkOption types;
+  inherit (lib)
+    mkBefore
+    mkIf
+    mkOption
+    types
+    ;
+
   cfg = config.credentials.key;
-in {
+  dir = config.home.homeDirectory;
+in
+{
   options.credentials = {
     name = mkOption {
       description = "Work User Name";
@@ -39,9 +48,7 @@ in {
 
   ## Home Configuration ##
   config = {
-    home.file = let
-      dir = config.home.homeDirectory;
-    in {
+    home.file = {
       # Wallpapers
       ".local/share/backgrounds".source = files.wallpapers.path;
 
@@ -66,13 +73,19 @@ in {
       };
 
       publicKeys =
-        map (source: {
-          inherit source;
-          trust = "ultimate";
-        }) (attrValues (util.map.files {
-          directory = ../secrets/keys;
-          extension = ".gpg";
-        }));
+        map
+          (source: {
+            inherit source;
+            trust = "ultimate";
+          })
+          (
+            attrValues (
+              util.map.files {
+                directory = ../secrets/keys;
+                extension = ".gpg";
+              }
+            )
+          );
     };
 
     # XDG Configuration

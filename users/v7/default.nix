@@ -4,7 +4,8 @@
   pkgs,
   files,
   ...
-}: {
+}:
+{
   # Personal Credentials
   credentials = {
     name = "maydayv7";
@@ -15,7 +16,7 @@
 
   # Home Configuration
   home = {
-    packages = [pkgs.home-manager];
+    packages = [ pkgs.home-manager ];
 
     # Directory Symlinks
     file = with files; {
@@ -26,8 +27,7 @@
       ".config/goa-1.0/accounts.conf".text = builtins.readFile ./accounts.conf;
 
       # Dotfiles
-      "Projects/dotfiles".source =
-        config.lib.file.mkOutOfStoreSymlink path.system;
+      "Projects/dotfiles".source = config.lib.file.mkOutOfStoreSymlink path.system;
 
       # GTK+ Bookmarks
       ".config/gtk-3.0/bookmarks".text = lib.mkBefore ''

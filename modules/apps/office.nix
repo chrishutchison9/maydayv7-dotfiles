@@ -6,11 +6,13 @@
   pkgs,
   files,
   ...
-}: let
+}:
+let
   enable = builtins.elem "office" config.apps.list;
-in {
+in
+{
   ## Office Environment Configuration ##
-  imports = [inputs.windows.nixosModules.onlyoffice];
+  imports = [ inputs.windows.nixosModules.onlyoffice ];
   config = lib.mkIf enable {
     # Applications
     programs = {
@@ -71,7 +73,12 @@ in {
 
     # Dictionaries
     environment = {
-      pathsToLink = ["/share/hunspell" "/share/myspell" "/share/hyphen"];
+      pathsToLink = [
+        "/share/hunspell"
+        "/share/myspell"
+        "/share/hyphen"
+      ];
+
       variables."DICPATH" = "/run/current-system/sw/share/hunspell:/run/current-system/sw/share/hyphen";
     };
 
@@ -105,8 +112,9 @@ in {
 
       homeConfig = {
         # File Associations
-        xdg.mimeApps.defaultApplications =
-          util.build.mime {office = ["onlyoffice-desktopeditors.desktop"];};
+        xdg.mimeApps.defaultApplications = util.build.mime {
+          office = [ "onlyoffice-desktopeditors.desktop" ];
+        };
 
         home.file = {
           # Document Templates

@@ -4,21 +4,38 @@
   util,
   files,
   ...
-}: let
-  inherit (lib) filterAttrs mkAfter mkDefault mkForce mkIf;
-  inherit (builtins) all attrNames attrValues hasAttr mapAttrs readFile;
+}:
+let
+  inherit (lib)
+    filterAttrs
+    mkAfter
+    mkDefault
+    mkForce
+    mkIf
+    ;
+
+  inherit (builtins)
+    all
+    attrNames
+    attrValues
+    hasAttr
+    mapAttrs
+    readFile
+    ;
+
   inherit (config.sops) secrets;
   inherit (config.user) settings;
   enable = all (value: value.minimal) (attrValues settings);
   directory = ../../users/passwords;
-in {
+in
+{
   ## Security Settings ##
   config = {
     # Passwords
     services.openssh.enable = mkIf enable (mkForce false);
     sops.secrets =
-      if enable
-      then (mkForce {})
+      if enable then
+        (mkForce { })
       else
         util.map.secrets {
           inherit directory;
@@ -26,13 +43,12 @@ in {
         };
 
     users = {
-      users =
-        mapAttrs (name: value: {
-          hashedPasswordFile = mkIf (!value.minimal) secrets."${name}.secret".path;
-        })
-        settings;
+      users = mapAttrs (name: value: {
+        hashedPasswordFile = mkIf (!value.minimal) secrets."${name}.secret".path;
+      }) settings;
       extraUsers.root.hashedPasswordFile =
-        mkIf (hasAttr "root.secret" secrets) secrets."root.secret".path;
+        mkIf (hasAttr "root.secret" secrets)
+          secrets."root.secret".path;
     };
 
     # Authentication
@@ -50,7 +66,10 @@ in {
           commands = [
             {
               command = "ALL";
-              options = ["NOPASSWD" "SETENV"];
+              options = [
+                "NOPASSWD"
+                "SETENV"
+              ];
             }
           ];
         }
@@ -58,20 +77,18 @@ in {
     };
 
     # Recovery Account
-    specialisation.recovery.configuration =
-      mkIf (!(all (value: value.minimal) (attrValues settings)))
-      {
-        security.sudo.extraConfig = mkAfter "recovery ALL=(ALL:ALL) NOPASSWD:ALL";
-        users.extraUsers.recovery = {
-          name = "recovery";
-          description = "Recovery Account";
-          isNormalUser = true;
-          uid = 1100;
-          group = "users";
-          extraGroups = ["wheel"];
-          useDefaultShell = true;
-          initialHashedPassword = mkDefault (readFile (directory + "/default"));
-        };
+    specialisation.recovery.configuration = mkIf (!(all (value: value.minimal) (attrValues settings))) {
+      security.sudo.extraConfig = mkAfter "recovery ALL=(ALL:ALL) NOPASSWD:ALL";
+      users.extraUsers.recovery = {
+        name = "recovery";
+        description = "Recovery Account";
+        isNormalUser = true;
+        uid = 1100;
+        group = "users";
+        extraGroups = [ "wheel" ];
+        useDefaultShell = true;
+        initialHashedPassword = mkDefault (readFile (directory + "/default"));
       };
+    };
   };
 }

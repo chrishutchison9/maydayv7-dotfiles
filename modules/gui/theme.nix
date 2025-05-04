@@ -5,13 +5,23 @@
   pkgs,
   files,
   ...
-}: let
-  inherit (lib) attrNames hasSuffix mkIf mkOption optionals types;
+}:
+let
+  inherit (lib)
+    attrNames
+    hasSuffix
+    mkIf
+    mkOption
+    optionals
+    types
+    ;
+
   cfg = config.gui;
   enable = !(cfg.desktop == "" || hasSuffix "-iso" cfg.desktop);
   exists = app: builtins.elem app config.apps.list;
-in {
-  imports = [inputs.stylix.nixosModules.stylix];
+in
+{
+  imports = [ inputs.stylix.nixosModules.stylix ];
 
   options.gui = {
     icons = {
@@ -59,8 +69,11 @@ in {
   ## Application Theming ##
   config = rec {
     environment.systemPackages =
-      [stylix.cursor.package]
-      ++ optionals enable [cfg.icons.package cfg.cursors.package];
+      [ stylix.cursor.package ]
+      ++ optionals enable [
+        cfg.icons.package
+        cfg.cursors.package
+      ];
 
     stylix = {
       inherit enable;

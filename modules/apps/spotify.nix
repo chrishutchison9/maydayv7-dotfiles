@@ -4,18 +4,29 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   enable = builtins.elem "spotify" config.apps.list;
   spice = inputs.spotify.legacyPackages.${pkgs.system};
-in {
+in
+{
   ## Spotify Configuration ##
   config = lib.mkIf enable {
-    environment.systemPackages = with pkgs; [spotify spot spicetify-cli];
+    environment.systemPackages = with pkgs; [
+      spotify
+      spot
+      spicetify-cli
+    ];
 
     user = {
-      persist.directories = [".config/spotify" ".cache/spotify" ".cache/spot"];
+      persist.directories = [
+        ".config/spotify"
+        ".cache/spotify"
+        ".cache/spot"
+      ];
+
       homeConfig = {
-        imports = [inputs.spotify.homeManagerModules.default];
+        imports = [ inputs.spotify.homeManagerModules.default ];
         programs.spicetify = {
           enable = true;
 

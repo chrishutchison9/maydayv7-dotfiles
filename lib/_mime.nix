@@ -71,9 +71,12 @@
     "x-scheme-handler/unknown"
   ];
 
-  calendar = ["text/calendar" "x-scheme-handler/webcal"];
+  calendar = [
+    "text/calendar"
+    "x-scheme-handler/webcal"
+  ];
 
-  directory = ["inode/directory"];
+  directory = [ "inode/directory" ];
 
   document = [
     "application/illustrator"
@@ -133,11 +136,11 @@
     "image/x-tga"
   ];
 
-  magnet = ["x-scheme-handler/magnet"];
+  magnet = [ "x-scheme-handler/magnet" ];
 
-  mail = ["x-scheme-handler/mailto"];
+  mail = [ "x-scheme-handler/mailto" ];
 
-  markdown = ["text/markdown"];
+  markdown = [ "text/markdown" ];
 
   office = [
     "application/rtf"
@@ -152,7 +155,7 @@
     "application/vnd.ms-powerpoint"
   ];
 
-  pdf = ["application/pdf"];
+  pdf = [ "application/pdf" ];
 
   text = [
     "text/plain"

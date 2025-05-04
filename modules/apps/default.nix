@@ -2,17 +2,19 @@
   lib,
   util,
   ...
-}: let
+}:
+let
   inherit (util.map) modules;
   inherit (lib) mkOption types;
-in {
+in
+{
   ## APPS Configuration ##
   imports = modules.list ./.;
 
   options.apps.list = mkOption {
     description = "List of Enabled Applications";
     type = types.listOf (types.enum (modules.name ./.));
-    default = [];
+    default = [ ];
   };
 
   # AppImage Support

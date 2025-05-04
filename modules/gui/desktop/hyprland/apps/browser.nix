@@ -1,6 +1,7 @@
-{theme, ...}: {
+{ theme, ... }:
+{
   ## Browser Configuration
-  apps.list = ["firefox"];
+  apps.list = [ "firefox" ];
   user.homeConfig = {
     programs.firefox = {
       policies.ExtensionSettings = {

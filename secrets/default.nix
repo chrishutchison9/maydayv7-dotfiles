@@ -5,16 +5,18 @@
   pkgs,
   files,
   ...
-}: let
+}:
+let
   path = files.path.gpg;
-in {
-  imports = [inputs.sops.nixosModules.sops];
+in
+{
+  imports = [ inputs.sops.nixosModules.sops ];
 
   ## Authentication Credentials Management ##
   config = {
     environment = {
-      persist.directories = [path];
-      systemPackages = [pkgs.sops];
+      persist.directories = [ path ];
+      systemPackages = [ pkgs.sops ];
     };
 
     sops = {
@@ -22,15 +24,12 @@ in {
       gnupg.home = path;
 
       # Encrypted Secrets
-      secrets = let
-        directory = ./. + "/${config.networking.hostName}";
-      in
-        util.map.secrets {directory = ./.;}
-        // (
-          if (builtins.pathExists directory)
-          then util.map.secrets {inherit directory;}
-          else {}
-        );
+      secrets =
+        let
+          directory = ./. + "/${config.networking.hostName}";
+        in
+        util.map.secrets { directory = ./.; }
+        // (if (builtins.pathExists directory) then util.map.secrets { inherit directory; } else { });
     };
   };
 }

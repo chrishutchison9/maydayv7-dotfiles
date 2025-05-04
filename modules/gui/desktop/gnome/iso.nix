@@ -3,14 +3,16 @@
   pkgs,
   files,
   ...
-}: let
+}:
+let
   inherit (lib) mkForce;
-in {
+in
+{
   services.xserver = {
     displayManager.gdm.autoSuspend = false; # Disable Suspension
     desktopManager.gnome = {
       extraGSettingsOverrides = files.gnome.iso;
-      extraGSettingsOverridePackages = [pkgs.gnome-settings-daemon];
+      extraGSettingsOverridePackages = [ pkgs.gnome-settings-daemon ];
       favoriteAppsOverride = ''
         [org.gnome.shell]
         favorite-apps=[ 'org.gnome.Epiphany.desktop', 'nixos-manual.desktop', 'org.gnome.Console.desktop', 'org.gnome.Nautilus.desktop', 'gparted.desktop' ]

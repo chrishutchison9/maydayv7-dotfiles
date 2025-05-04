@@ -6,12 +6,22 @@
   files,
   ...
 }:
-with files; let
+with files;
+let
   inherit (util.map) modules;
   inherit (builtins) listToAttrs map;
-  inherit (lib) getExe' mkEnableOption mkBefore mkIf mkMerge nameValuePair;
+  inherit (lib)
+    getExe'
+    mkEnableOption
+    mkBefore
+    mkIf
+    mkMerge
+    nameValuePair
+    ;
+
   shells = lib.remove "prompt" (modules.name ./.);
-in {
+in
+{
   ## SHELL Configuration ##
   imports = modules.list ./.;
 
@@ -65,10 +75,14 @@ in {
       ## Program Configuration
       services.lorri.enable = true; # Faster 'nix shell'
       programs =
-        listToAttrs (map (shell:
-          nameValuePair shell
-          {promptInit = mkBefore ''eval $(${getExe' pkgs.thefuck "thefuck"} --alias "fix")'';})
-        shells)
+        listToAttrs (
+          map (
+            shell:
+            nameValuePair shell {
+              promptInit = mkBefore ''eval $(${getExe' pkgs.thefuck "thefuck"} --alias "fix")'';
+            }
+          ) shells
+        )
         // {
           command-not-found.enable = true; # Command Not Found Search
           yazi.enable = true; # File Browser
@@ -91,14 +105,14 @@ in {
             settings = {
               style = "full";
               italic-text = "always";
-              map-syntax = [".ignore:Git Ignore"];
+              map-syntax = [ ".ignore:Git Ignore" ];
             };
           };
         };
 
       user = {
         persist = {
-          files = [".hstr_favorites"];
+          files = [ ".hstr_favorites" ];
           directories = [
             ".config/micro"
             ".local/share/direnv"
@@ -116,7 +130,7 @@ in {
               colors = "auto";
               icons = "auto";
               git = true;
-              extraOptions = ["--group-directories-first"];
+              extraOptions = [ "--group-directories-first" ];
             };
 
             # Micro Configuration

@@ -2,15 +2,16 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib) hasPrefix mkIf;
-in {
+in
+{
   services.fwupd.enable = true;
 
   # https://gitlab.freedesktop.org/drm/amd/-/issues/3388
   boot.kernelParams = [
-    (mkIf (config.hardware.cpu.mode == "performance")
-      "amdgpu.dcdebugmask=0x10")
+    (mkIf (config.hardware.cpu.mode == "performance") "amdgpu.dcdebugmask=0x10")
   ];
 
   # Remap Keys
@@ -20,7 +21,7 @@ in {
   '';
 
   # ASUS Software
-  user.persist.directories = [".config/rog"];
+  user.persist.directories = [ ".config/rog" ];
   services.asusd = {
     enable = true;
     enableUserService = true;

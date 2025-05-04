@@ -4,19 +4,27 @@
   util,
   pkgs,
   ...
-}: let
-  inherit (lib) mkIf mkOption mkOverride types;
+}:
+let
+  inherit (lib)
+    mkIf
+    mkOption
+    mkOverride
+    types
+    ;
+
   inherit (util.map) modules;
   enable = builtins.elem "games" config.apps.list;
   wine = builtins.elem "wine" config.apps.list;
   wine' = pkgs.gaming.wine-tkg;
-in {
+in
+{
   imports = modules.list ./.;
 
   options.apps.games = mkOption {
     description = "List of Installed Games";
     type = types.listOf (types.enum (modules.name ./.));
-    default = [];
+    default = [ ];
   };
 
   ## Games Configuration ##

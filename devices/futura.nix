@@ -12,17 +12,24 @@
     boot = "efi";
     cpu.cores = 4;
     filesystem = "simple";
-    support = ["laptop"];
-    modules = ["common-pc" "common-pc-laptop" "common-cpu-intel"];
+    support = [ "laptop" ];
+    modules = [
+      "common-pc"
+      "common-pc-laptop"
+      "common-cpu-intel"
+    ];
   };
 
-  apps.list = ["firefox" "office"];
   gui.desktop = "xfce";
+  apps.list = [
+    "firefox"
+    "office"
+  ];
 
   # User Navya
   user = {
     name = "navya";
-    groups = ["wheel"];
+    groups = [ "wheel" ];
     description = "Navya";
     shell = "zsh";
   };

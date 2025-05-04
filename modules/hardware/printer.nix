@@ -3,19 +3,28 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   enable = builtins.elem "printer" config.hardware.support;
-in {
+in
+{
   ## Printer Firmware ##
   config = lib.mkIf enable {
     # Scanning
-    user.groups = ["lp" "scanner"];
+    user.groups = [
+      "lp"
+      "scanner"
+    ];
     hardware.sane.enable = true;
 
     # Printing
     services.printing = {
       enable = true;
-      drivers = with pkgs; [gutenprint brlaser cnijfilter2];
+      drivers = with pkgs; [
+        gutenprint
+        brlaser
+        cnijfilter2
+      ];
       extraConf = ''
         DefaultPaperSize A4
       '';

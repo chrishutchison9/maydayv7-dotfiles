@@ -5,17 +5,25 @@
   pkgs,
   files,
   ...
-} @ args: let
+}@args:
+let
+  inherit (lib)
+    getExe
+    mkForce
+    mkIf
+    mkMerge
+    replaceStrings
+    ;
+
   inherit (config.gui) desktop;
-  inherit (lib) getExe mkForce mkIf mkMerge replaceStrings;
   theme = import ./theme.nix pkgs;
-in {
+in
+{
   ## Hyprland Configuration ##
   config = mkIf (desktop == "hyprland") (
     mkMerge (
       # App Configuration
-      (builtins.map (path: import path (args // {inherit theme;}))
-        (util.map.modules.list ./apps))
+      (builtins.map (path: import path (args // { inherit theme; })) (util.map.modules.list ./apps))
       ++ [
         ## Environment Setup
         rec {
@@ -39,8 +47,14 @@ in {
               enable = true;
               package = pkgs.greetd.regreet;
               settings.commands = {
-                reboot = ["systemctl" "reboot"];
-                poweroff = ["systemctl" "poweroff"];
+                reboot = [
+                  "systemctl"
+                  "reboot"
+                ];
+                poweroff = [
+                  "systemctl"
+                  "poweroff"
+                ];
               };
             };
           };
@@ -60,20 +74,23 @@ in {
             };
 
             # Greeter
-            greetd.settings.default_session.command = with programs;
+            greetd.settings.default_session.command =
+              with programs;
               mkForce "${getExe hyprland.package} --config ${
-                pkgs.writeText "greeter.conf"
-                (replaceStrings ["@greeter"] [(getExe regreet.package)]
-                  (util.build.theme {
-                    inherit (config.lib.stylix) colors;
-                    file = files.hyprland.greeter;
-                  }))
+                pkgs.writeText "greeter.conf" (
+                  replaceStrings [ "@greeter" ] [ (getExe regreet.package) ] (
+                    util.build.theme {
+                      inherit (config.lib.stylix) colors;
+                      file = files.hyprland.greeter;
+                    }
+                  )
+                )
               } &> /dev/null";
           };
         }
         {
           # Greeter
-          environment.persist.directories = ["/var/lib/regreet"];
+          environment.persist.directories = [ "/var/lib/regreet" ];
           stylix.targets.regreet.enable = true;
           programs.regreet = {
             extraCss = mkForce "";
@@ -83,8 +100,8 @@ in {
 
           # Settings
           user = {
-            persist.directories = [".config/hypr"];
-            homeConfig.imports = [./settings];
+            persist.directories = [ ".config/hypr" ];
+            homeConfig.imports = [ ./settings ];
           };
         }
       ]

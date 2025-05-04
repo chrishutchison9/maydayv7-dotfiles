@@ -3,10 +3,12 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (builtins) any attrValues elem;
   enable = any (value: elem "zsh" value.shells) (attrValues config.user.settings);
-in {
+in
+{
   ## Z Shell Configuration ##
   config = lib.mkIf enable {
     # Shell Environment
@@ -49,8 +51,8 @@ in {
 
     system.userActivationScripts.zshrc = "touch .zshrc";
     user.persist = {
-      files = [".zsh_history"];
-      directories = [".cache/zsh"];
+      files = [ ".zsh_history" ];
+      directories = [ ".cache/zsh" ];
     };
   };
 }

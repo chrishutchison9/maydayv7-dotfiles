@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   options.gui.fonts.enable = lib.mkEnableOption "Enable Fonts Configuration";
 
   ## Font Configuration ##
@@ -28,13 +29,15 @@
         };
 
         # Emoji Support
-        defaultFonts = let
-          emoji = [stylix.fonts.emoji.name];
-        in {
-          monospace = emoji;
-          sansSerif = emoji;
-          serif = emoji;
-        };
+        defaultFonts =
+          let
+            emoji = [ stylix.fonts.emoji.name ];
+          in
+          {
+            monospace = emoji;
+            sansSerif = emoji;
+            serif = emoji;
+          };
       };
     };
 

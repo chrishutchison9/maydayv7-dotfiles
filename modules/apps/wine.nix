@@ -5,12 +5,21 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (builtins) attrValues elem map;
-  inherit (lib) mkIf mkEnableOption mkOption optionals types;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    mkOption
+    optionals
+    types
+    ;
+
   cfg = config.apps.wine;
   enable = elem "wine" config.apps.list;
-in {
+in
+{
   options.apps.wine = {
     utilities = mkEnableOption "Install Utility Windows apps";
     package = mkOption {
@@ -29,29 +38,39 @@ in {
     hardware.graphics.enable32Bit = true;
 
     # Utilities
-    user.persist.directories =
-      [".wine" ".cache/wine" ".cache/winetricks"]
-      ++ optionals cfg.utilities [".config/notepad++"];
+    user.persist.directories = [
+      ".wine"
+      ".cache/wine"
+      ".cache/winetricks"
+    ] ++ optionals cfg.utilities [ ".config/notepad++" ];
 
-    environment.systemPackages = with pkgs.wine // pkgs; (
-      map (name:
-        if (name.override.__functionArgs ? wine)
-        then name.override {wine = cfg.package;}
-        else name) ([
-          cfg.package
-          winetricks
-          mkwindowsapp-tools
-          playonlinux
-        ]
-        # Wrapped Packages
-        ++ optionals cfg.utilities
-        (attrValues (util.map.modules ../../packages/wine
-          (name:
-            callPackage name {
-              inherit lib pkgs;
-              wine = cfg.package;
-              build = inputs.windows.lib."${pkgs.system}";
-            }))))
-    );
+    environment.systemPackages =
+      with pkgs.wine // pkgs;
+      (map
+        (
+          name: if (name.override.__functionArgs ? wine) then name.override { wine = cfg.package; } else name
+        )
+        (
+          [
+            cfg.package
+            winetricks
+            mkwindowsapp-tools
+            playonlinux
+          ]
+          # Wrapped Packages
+          ++ optionals cfg.utilities (
+            attrValues (
+              util.map.modules ../../packages/wine (
+                name:
+                callPackage name {
+                  inherit lib pkgs;
+                  wine = cfg.package;
+                  build = inputs.windows.lib."${pkgs.system}";
+                }
+              )
+            )
+          )
+        )
+      );
   };
 }

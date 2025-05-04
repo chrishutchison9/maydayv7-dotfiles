@@ -1,10 +1,15 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   ## NIX Configuration ##
-  imports = [./index.nix ./registry.nix ./tools.nix];
+  imports = [
+    ./index.nix
+    ./registry.nix
+    ./tools.nix
+  ];
 
   config = {
     # Settings
-    user.persist.directories = [".cache/nix"];
+    user.persist.directories = [ ".cache/nix" ];
     nix = {
       # Version
       package = pkgs.nixFlakes;
@@ -21,8 +26,14 @@
         sandbox = true;
 
         # User Permissions
-        allowed-users = ["root" "@wheel"];
-        trusted-users = ["root" "@wheel"];
+        allowed-users = [
+          "root"
+          "@wheel"
+        ];
+        trusted-users = [
+          "root"
+          "@wheel"
+        ];
 
         # Binary Cache
         inherit ((import ../../flake.nix).nixConfig) trusted-substituters trusted-public-keys;

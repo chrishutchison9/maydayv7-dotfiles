@@ -3,11 +3,13 @@
   lib,
   util,
   ...
-}: let
+}:
+let
   inherit (lib) mkForce mkIf;
   inherit (sys.gui) display fancy;
   inherit (sys.lib.stylix.colors) base03 base05 base0D;
-in {
+in
+{
   ## Hyprland Settings
   imports = util.map.modules.list ./.;
   stylix.targets.hyprland.enable = true;
@@ -22,7 +24,7 @@ in {
 
     settings = {
       # GPU Support
-      env = ["AQ_DRM_DEVICES, /dev/dri/card1:/dev/dri/card0"];
+      env = [ "AQ_DRM_DEVICES, /dev/dri/card1:/dev/dri/card0" ];
 
       # Display
       monitor = ", preferred, auto, 1";

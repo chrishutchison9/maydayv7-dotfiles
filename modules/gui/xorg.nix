@@ -1,6 +1,13 @@
-{lib, ...}: let
-  inherit (lib) mkDefault mkForce mkOption types;
-in {
+{ lib, ... }:
+let
+  inherit (lib)
+    mkDefault
+    mkForce
+    mkOption
+    types
+    ;
+in
+{
   options.gui.xorg.enable = mkOption {
     description = "Enable X11 Server Configuration";
     type = types.bool;
@@ -14,7 +21,7 @@ in {
       autorun = true;
 
       # Driver Settings
-      videoDrivers = mkDefault ["modesetting"];
+      videoDrivers = mkDefault [ "modesetting" ];
     };
 
     user.homeConfig.xresources.extraConfig = ''

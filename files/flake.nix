@@ -2,192 +2,194 @@
   util,
   inputs,
   ...
-}: {
+}:
+{
   ## Program Configuration and 'dotfiles' ##
-  flake.files = let
-    inherit (util) build map;
-    inherit (builtins) fromJSON readFile;
-  in rec {
-    # File Paths
-    path = {
-      toplevel = ./.;
+  flake.files =
+    let
+      inherit (util) build map;
+      inherit (builtins) fromJSON readFile;
+    in
+    rec {
+      # File Paths
+      path = {
+        toplevel = ./.;
 
-      system = "/etc/nixos"; # Configuration Directory
-      persist = "/nix/state"; # Persisted Files
+        system = "/etc/nixos"; # Configuration Directory
+        persist = "/nix/state"; # Persisted Files
 
-      gpg = "/etc/gpg"; # GPG Keys Directory
-      sops = ../secrets/secrets.yaml; # Encrypted Secrets
+        gpg = "/etc/gpg"; # GPG Keys Directory
+        sops = ../secrets/secrets.yaml; # Encrypted Secrets
 
-      cache = "maydayv7-dotfiles";
-      flake = "github:maydayv7/dotfiles";
-      repo = "https://github.com/maydayv7/dotfiles";
-    };
-
-    # Interactive Nix Shell
-    # To explore syntax and configuration
-    repl = ./repl.nix;
-
-    # ASCII Art
-    ascii = map.files {
-      directory = ./ascii;
-      extension = "";
-      recursive = true;
-    };
-
-    # Directory Bookmarks
-    bookmarks = ''
-      file:///data/files Files
-      file:/// Computer
-    '';
-
-    # Base16 Color Schemes
-    colors = map.files {
-      directory = ./colors;
-      extension = ".yaml";
-    };
-
-    # Fastfetch
-    fetch = readFile ./fastfetch.jsonc;
-
-    # Geany Text Editor
-    geany = map.files {
-      directory = ./geany;
-      apply = readFile;
-      extension = ".conf";
-    };
-
-    # X11 Touchpad Gestures
-    gestures = readFile ./touchegg.xml;
-
-    # 'git' Version Control
-    git.hooks = ./git/hooks;
-
-    # GNOME Desktop
-    gnome =
-      {iso = readFile ./gnome/iso;}
-      // map.files {
-        directory = ./gnome;
-        extension = ".json";
+        cache = "maydayv7-dotfiles";
+        flake = "github:maydayv7/dotfiles";
+        repo = "https://github.com/maydayv7/dotfiles";
       };
 
-    # Hyprland WM
-    hyprland =
-      {
-        # Pyprland
-        pypr = readFile ./hyprland/pypr.toml;
+      # Interactive Nix Shell
+      # To explore syntax and configuration
+      repl = ./repl.nix;
 
-        # Hot Corners
-        waycorner = readFile ./hyprland/waycorner.toml;
+      # ASCII Art
+      ascii = map.files {
+        directory = ./ascii;
+        extension = "";
+        recursive = true;
+      };
 
-        # Keybinds Viewer
-        kebihelp = readFile ./hyprland/kebihelp.json;
+      # Directory Bookmarks
+      bookmarks = ''
+        file:///data/files Files
+        file:/// Computer
+      '';
 
-        # PcmanFM File Manager
-        pcmanfm = readFile ./hyprland/pcmanfm.conf;
+      # Base16 Color Schemes
+      colors = map.files {
+        directory = ./colors;
+        extension = ".yaml";
+      };
 
-        # Greeter Configuration
-        greeter = readFile ./hyprland/greeter.conf;
+      # Fastfetch
+      fetch = readFile ./fastfetch.jsonc;
 
-        # Launcher
-        hyprshell = {
-          config = readFile ./hyprland/hyprshell/config.ron;
-          style = readFile ./hyprland/hyprshell/style.css;
-        };
-      }
-      // map.files {
-        directory = ./hyprland/theme;
+      # Geany Text Editor
+      geany = map.files {
+        directory = ./geany;
         apply = readFile;
-        extension = ".css";
+        extension = ".conf";
       };
 
-    # Pictures
-    images = {
-      profile = ./images/Profile.png;
-      transparent = ./images/transparent.png;
-    };
+      # X11 Touchpad Gestures
+      gestures = readFile ./touchegg.xml;
 
-    # Logseq Notes
-    logseq = {
-      settings = ./logseq/settings;
-      prefs = readFile ./logseq/preferences.json;
-    };
+      # 'git' Version Control
+      git.hooks = ./git/hooks;
 
-    # Configuration Mutability
-    mutability = rec {
-      src = "https://gist.githubusercontent.com/piousdeer/b29c272eaeba398b864da6abf6cb5daa/raw/41e569ba110eb6ebbb463a6b1f5d9fe4f9e82375";
-      module = {
-        url = src + "/mutability.nix";
-        sha256 = "4b5ca670c1ac865927e98ac5bf5c131eca46cc20abf0bd0612db955bfc979de8";
+      # GNOME Desktop
+      gnome =
+        {
+          iso = readFile ./gnome/iso;
+        }
+        // map.files {
+          directory = ./gnome;
+          extension = ".json";
+        };
+
+      # Hyprland WM
+      hyprland =
+        {
+          # Pyprland
+          pypr = readFile ./hyprland/pypr.toml;
+
+          # Hot Corners
+          waycorner = readFile ./hyprland/waycorner.toml;
+
+          # Keybinds Viewer
+          kebihelp = readFile ./hyprland/kebihelp.json;
+
+          # PcmanFM File Manager
+          pcmanfm = readFile ./hyprland/pcmanfm.conf;
+
+          # Greeter Configuration
+          greeter = readFile ./hyprland/greeter.conf;
+
+          # Launcher
+          hyprshell = {
+            config = readFile ./hyprland/hyprshell/config.ron;
+            style = readFile ./hyprland/hyprshell/style.css;
+          };
+        }
+        // map.files {
+          directory = ./hyprland/theme;
+          apply = readFile;
+          extension = ".css";
+        };
+
+      # Pictures
+      images = {
+        profile = ./images/Profile.png;
+        transparent = ./images/transparent.png;
       };
 
-      vscode = {
-        url = src + "/vscode.nix";
-        sha256 = "fed877fa1eefd94bc4806641cea87138df78a47af89c7818ac5e76ebacbd025f";
+      # Logseq Notes
+      logseq = {
+        settings = ./logseq/settings;
+        prefs = readFile ./logseq/preferences.json;
       };
-    };
 
-    # Nano Text Editor
-    nano = readFile ./nanorc;
+      # Configuration Mutability
+      mutability = rec {
+        src = "https://gist.githubusercontent.com/piousdeer/b29c272eaeba398b864da6abf6cb5daa/raw/41e569ba110eb6ebbb463a6b1f5d9fe4f9e82375";
+        module = {
+          url = src + "/mutability.nix";
+          sha256 = "4b5ca670c1ac865927e98ac5bf5c131eca46cc20abf0bd0612db955bfc979de8";
+        };
 
-    # Pantheon Desktop
-    pantheon = {
-      dconf = ./pantheon/dconf.nix;
+        vscode = {
+          url = src + "/vscode.nix";
+          sha256 = "fed877fa1eefd94bc4806641cea87138df78a47af89c7818ac5e76ebacbd025f";
+        };
+      };
+
+      # Nano Text Editor
+      nano = readFile ./nanorc;
 
       # Plank Dock
       plank = {
-        autostart = readFile ./pantheon/plank/dock.desktop;
-        launchers = ./pantheon/plank/launchers;
-        theme = readFile ./pantheon/plank/dock.theme;
+        autostart = readFile ./plank/dock.desktop;
+        launchers = ./plank/launchers;
+        theme = readFile ./plank/dock.theme;
       };
+
+      # Custom Proprietary Files
+      proprietary = inputs.proprietary.files;
+      inherit (proprietary) wallpapers;
+
+      # Bash Scripts
+      scripts = map.files {
+        directory = ../scripts;
+        apply = build.script;
+        extension = ".sh";
+      };
+
+      # Document Templates
+      templates = ./templates;
+
+      # Vesktop Discord Chat
+      vesktop = map.files {
+        directory = ./vesktop;
+        apply = readFile;
+        extension = ".json";
+      };
+
+      # Visual Studio Code Editor
+      vscode = map.files {
+        directory = ./vscode;
+        apply = file: fromJSON (readFile file);
+        extension = ".json";
+      };
+
+      # XFCE Desktop
+      xfce = {
+        css = readFile ./xfce/gtk.css;
+        panel = ./xfce/panel;
+        settings =
+          {
+            directory = ./xfce/settings;
+          }
+          // map.files {
+            directory = ./xfce/settings;
+            apply = readFile;
+            extension = ".xml";
+          };
+      };
+
+      # My Personal Website
+      website = ../site;
     };
-
-    # Custom Proprietary Files
-    proprietary = inputs.proprietary.files;
-    inherit (proprietary) wallpapers;
-
-    # Bash Scripts
-    scripts = map.files {
-      directory = ../scripts;
-      apply = build.script;
-      extension = ".sh";
-    };
-
-    # Document Templates
-    templates = ./templates;
-
-    # Vesktop Discord Chat
-    vesktop = map.files {
-      directory = ./vesktop;
-      apply = readFile;
-      extension = ".json";
-    };
-
-    # Visual Studio Code Editor
-    vscode = map.files {
-      directory = ./vscode;
-      apply = file: fromJSON (readFile file);
-      extension = ".json";
-    };
-
-    # XFCE Desktop
-    xfce = {
-      css = readFile ./xfce/gtk.css;
-      panel = ./xfce/panel;
-      settings =
-        {directory = ./xfce/settings;}
-        // map.files {
-          directory = ./xfce/settings;
-          apply = readFile;
-          extension = ".xml";
-        };
-    };
-
-    # My Personal Website
-    website = ../site;
-  };
 
   perSystem = _: {
     # Formatting Errors
-    treefmt.config.programs.prettier.excludes = ["files/xfce/gtk.css"];
+    treefmt.config.programs.prettier.excludes = [ "files/xfce/gtk.css" ];
   };
 }

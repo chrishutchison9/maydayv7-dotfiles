@@ -5,24 +5,39 @@
   inputs,
   pkgs,
   ...
-}: let
-  inherit (lib) mkDefault mkForce mkIf mkMerge mkOption optional types;
+}:
+let
+  inherit (lib)
+    mkDefault
+    mkForce
+    mkIf
+    mkMerge
+    mkOption
+    optional
+    types
+    ;
+
   loader = config.hardware.boot;
-in {
-  imports = [inputs.boot.nixosModules.lanzaboote];
+in
+{
+  imports = [ inputs.boot.nixosModules.lanzaboote ];
 
   options.hardware.boot = mkOption {
     description = "Supported Boot Firmware";
-    type = types.nullOr (types.enum ["mbr" "efi" "secure"]);
+    type = types.nullOr (
+      types.enum [
+        "mbr"
+        "efi"
+        "secure"
+      ]
+    );
     default = "efi";
   };
 
   ## Boot Configuration ##
   config =
     {
-      warnings =
-        optional (loader == null)
-        (options.hardware.boot.description + " is unset");
+      warnings = optional (loader == null) (options.hardware.boot.description + " is unset");
     }
     // mkIf (loader != null) (mkMerge [
       {
@@ -94,8 +109,8 @@ in {
         };
 
         environment = {
-          systemPackages = [pkgs.sbctl];
-          persist.directories = [boot.lanzaboote.pkiBundle];
+          systemPackages = [ pkgs.sbctl ];
+          persist.directories = [ boot.lanzaboote.pkiBundle ];
         };
       })
     ]);

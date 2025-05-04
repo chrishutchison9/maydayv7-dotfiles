@@ -2,8 +2,8 @@ pkgs: {
   name = "Python";
   packages = [
     pkgs.python3
-    (pkgs.python3.withPackages (p:
-      with p; [
+    (pkgs.python3.withPackages (
+      p: with p; [
         pip
         autopep8
         pylint
@@ -14,7 +14,8 @@ pkgs: {
         matplotlib
         numpy
         pandas
-      ]))
+      ]
+    ))
   ];
 
   shellHook = ''

@@ -2,7 +2,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   options.gui.wayland.enable = lib.mkEnableOption "Enable Wayland Configuration";
 
   ## Wayland Configuration ##

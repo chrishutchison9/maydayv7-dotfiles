@@ -5,16 +5,24 @@
   pkgs,
   files,
   ...
-}: let
-  inherit (lib) hm getExe getExe' replaceStrings;
+}:
+let
+  inherit (lib)
+    hm
+    getExe
+    getExe'
+    replaceStrings
+    ;
+
   inherit (config.gui) icons;
   terminal = "kitty";
   nemo = pkgs.nemo-with-extensions;
-in {
+in
+{
   ## File Manager Configuration
-  services.dbus.packages = [nemo];
+  services.dbus.packages = [ nemo ];
   environment.systemPackages =
-    [nemo]
+    [ nemo ]
     ++ (with pkgs; [
       cinnamon-desktop
       bulky
@@ -31,8 +39,8 @@ in {
 
     homeConfig = {
       xdg.mimeApps.defaultApplications = util.build.mime {
-        archive = ["org.gnome.FileRoller.desktop"];
-        directory = ["nemo.desktop"];
+        archive = [ "org.gnome.FileRoller.desktop" ];
+        directory = [ "nemo.desktop" ];
       };
 
       # Settings
@@ -40,7 +48,7 @@ in {
         "org/gtk/gtk4/settings/file-chooser".sort-directories-first = true;
         "org/nemo/search".search-reverse-sort = false;
         "org/nemo/desktop".show-desktop-icons = false;
-        "org/nemo/plugins".disabled-actions = ["change-background.nemo_action"];
+        "org/nemo/plugins".disabled-actions = [ "change-background.nemo_action" ];
         "org/nemo/icon-view".captions = [
           "size"
           "date_modified"
@@ -60,7 +68,7 @@ in {
 
       home = {
         # Bulk Renamer
-        activation.nemo-rename = hm.dag.entryAfter ["writeBoundary"] ''
+        activation.nemo-rename = hm.dag.entryAfter [ "writeBoundary" ] ''
           if [[ -v DBUS_SESSION_BUS_ADDRESS ]]
           then
             export DCONF_DBUS_RUN_SESSION=""
@@ -87,21 +95,22 @@ in {
 
           # Desktop Icons
           ".config/pcmanfm-qt/default/settings.conf".text =
-            replaceStrings [
-              "@icon"
-              "@font"
-              "@terminal"
-              "@wallpaper"
-              "@archiver"
-            ]
-            [
-              icons.name
-              config.stylix.fonts.sansSerif.name
-              terminal
-              (builtins.toString files.images.transparent)
-              "file-roller"
-            ]
-            files.hyprland.pcmanfm;
+            replaceStrings
+              [
+                "@icon"
+                "@font"
+                "@terminal"
+                "@wallpaper"
+                "@archiver"
+              ]
+              [
+                icons.name
+                config.stylix.fonts.sansSerif.name
+                terminal
+                (builtins.toString files.images.transparent)
+                "file-roller"
+              ]
+              files.hyprland.pcmanfm;
         };
       };
     };

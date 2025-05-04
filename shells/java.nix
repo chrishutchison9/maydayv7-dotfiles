@@ -1,9 +1,15 @@
 pkgs: {
   name = "Java";
-  packages = with pkgs; [jdk nodejs scala sbt yarn];
+  packages = with pkgs; [
+    jdk
+    nodejs
+    scala
+    sbt
+    yarn
+  ];
+
   shellHook = ''
     echo "## Java Development Shell ##"
-
     NPM_DIR="$XDG_DATA_HOME/npm"
     mkdir "$NPM_DIR"
     echo -e "cache=$XDG_CACHE_HOME/npm\nprefix=$XDG_DATA_HOME/npm" > "$NPM_DIR/config"

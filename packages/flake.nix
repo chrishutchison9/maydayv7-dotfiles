@@ -2,49 +2,55 @@
   util,
   inputs,
   ...
-}: let
+}:
+let
   inherit (util) map;
   inherit (builtins) any attrValues isPath;
-in {
+in
+{
   ## Packages Configuration ##
-  perSystem = {
-    self',
-    system,
-    lib,
-    inputs',
-    pkgs,
-    ...
-  }:
+  perSystem =
+    {
+      self',
+      system,
+      lib,
+      inputs',
+      pkgs,
+      ...
+    }:
     rec {
       # Package Channel
       _module.args.pkgs = legacyPackages;
-      legacyPackages = with inputs; let
-        # Channel Configuration
-        src = nixpkgs;
-        config = import ../modules/nix/config.nix;
+      legacyPackages =
+        with inputs;
+        let
+          # Channel Configuration
+          src = nixpkgs;
+          config = import ../modules/nix/config.nix;
 
-        # Channel Patches
-        patches = map.patches ./patches;
-        pkgs' = import src {inherit system;};
-      in
+          # Channel Patches
+          patches = map.patches ./patches;
+          pkgs' = import src { inherit system; };
+        in
         (
-          if !(any isPath patches)
-          then import src
+          if !(any isPath patches) then
+            import src
           else
-            import (pkgs'.applyPatches {
-              inherit src patches;
-              name = "nixpkgs-patched-${src.shortRev}";
-            })
-        ) {
-          inherit system config;
+            import (
+              pkgs'.applyPatches {
+                inherit src patches;
+                name = "nixpkgs-patched-${src.shortRev}";
+              }
+            )
+        )
+          {
+            inherit system config;
 
-          # Package Overrides
-          overlays =
-            (attrValues self.overlays or {})
-            ++ [
+            # Package Overrides
+            overlays = (attrValues self.overlays or { }) ++ [
               (_: _: {
                 custom = self.packages."${system}";
-                unstable = import unstable {inherit system config;};
+                unstable = import unstable { inherit system config; };
 
                 code = vscode.extensions."${system}";
                 gaming = gaming.packages."${system}";
@@ -57,29 +63,31 @@ in {
                   // hyprshell.packages."${system}";
               })
             ];
-        };
-    }
-    // (let
-      # Package Calling Function
-      call = rec {
-        __functor = _: name: pkg name {};
-        pkg = name: args: pkgs.callPackage name ({inherit lib util pkgs;} // args);
-        script = name:
-          pkg name {
-            inherit inputs;
-            inherit (inputs.self) files;
           };
-      };
-    in {
-      # Custom Packages
-      apps =
-        map.modules ../scripts (name: inputs.utils.lib.mkApp {drv = call.script name;})
-        // {default = self'.apps.nixos;};
-      packages =
-        map.modules ./. call
-        // map.modules ../scripts call.script
-        // inputs'.proprietary.packages;
-    });
+    }
+    // (
+      let
+        # Package Calling Function
+        call = rec {
+          __functor = _: name: pkg name { };
+          pkg = name: args: pkgs.callPackage name ({ inherit lib util pkgs; } // args);
+          script =
+            name:
+            pkg name {
+              inherit inputs;
+              inherit (inputs.self) files;
+            };
+        };
+      in
+      {
+        # Custom Packages
+        apps = map.modules ../scripts (name: inputs.utils.lib.mkApp { drv = call.script name; }) // {
+          default = self'.apps.nixos;
+        };
+        packages =
+          map.modules ./. call // map.modules ../scripts call.script // inputs'.proprietary.packages;
+      }
+    );
 
   # Package Overrides
   flake.overlays = map.modules ./overlays import;

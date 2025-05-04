@@ -5,12 +5,21 @@
   pkgs,
   files,
   ...
-} @ args:
-with files; let
-  inherit (lib) gvariant hasPrefix mkIf mkForce mkMerge;
+}@args:
+with files;
+let
+  inherit (lib)
+    gvariant
+    hasPrefix
+    mkIf
+    mkForce
+    mkMerge
+    ;
+
   inherit (config.gui) desktop;
   exists = app: builtins.elem app config.apps.list;
-in {
+in
+{
   ## GNOME Configuration ##
   config = mkIf (hasPrefix "gnome" desktop) (mkMerge [
     ## Environment Setup
@@ -76,7 +85,7 @@ in {
       };
 
       services = {
-        udev.packages = [pkgs.gnome-settings-daemon];
+        udev.packages = [ pkgs.gnome-settings-daemon ];
         telepathy.enable = true;
         switcherooControl.enable = true;
         gnome = {
@@ -86,7 +95,7 @@ in {
         };
       };
 
-      apps.list = ["firefox"];
+      apps.list = [ "firefox" ];
       programs = {
         gnupg.agent.pinentryPackage = mkForce pkgs.pinentry.gnome3;
         nautilus-open-any-terminal = {
@@ -112,14 +121,14 @@ in {
       };
 
       # Screen Brightness
-      user.groups = ["i2c"];
+      user.groups = [ "i2c" ];
       hardware.i2c.enable = true;
     })
 
     (mkIf (desktop == "gnome") {
       user.homeConfig = {
         # Desktop Settings
-        imports = [./settings];
+        imports = [ ./settings ];
         stylix.targets = {
           gnome.enable = true;
           ghostty.enable = true;
@@ -127,18 +136,18 @@ in {
 
         # Default Applications
         xdg.mimeApps.defaultApplications = util.build.mime {
-          archive = ["org.gnome.FileRoller.desktop"];
-          audio = ["org.gnome.Lollypop.desktop"];
-          calendar = ["org.gnome.Calendar.desktop"];
-          document = ["org.gnome.Papers.desktop"];
-          directory = ["org.gnome.Nautilus.desktop"];
-          image = ["org.gnome.Loupe.desktop"];
-          magnet = ["de.haeckerfelix.Fragments.desktop"];
-          mail = ["org.gnome.Geary.desktop"];
-          markdown = ["org.gnome.gitlab.somas.Apostrophe.desktop"];
-          pdf = ["org.gnome.Papers.desktop"];
-          text = ["org.gnome.TextEditor.desktop"];
-          video = ["io.github.celluloid_player.Celluloid.desktop"];
+          archive = [ "org.gnome.FileRoller.desktop" ];
+          audio = [ "org.gnome.Lollypop.desktop" ];
+          calendar = [ "org.gnome.Calendar.desktop" ];
+          document = [ "org.gnome.Papers.desktop" ];
+          directory = [ "org.gnome.Nautilus.desktop" ];
+          image = [ "org.gnome.Loupe.desktop" ];
+          magnet = [ "de.haeckerfelix.Fragments.desktop" ];
+          mail = [ "org.gnome.Geary.desktop" ];
+          markdown = [ "org.gnome.gitlab.somas.Apostrophe.desktop" ];
+          pdf = [ "org.gnome.Papers.desktop" ];
+          text = [ "org.gnome.TextEditor.desktop" ];
+          video = [ "io.github.celluloid_player.Celluloid.desktop" ];
         };
 
         ## Terminal
@@ -252,24 +261,25 @@ in {
         # Firefox GNOME Theme
         stylix.targets.firefox = {
           enable = mkForce true;
-          profileNames = ["default"];
+          profileNames = [ "default" ];
           firefoxGnomeTheme.enable = true;
         };
 
         home.file = {
           # Discord DNOME Theme
-          ".config/vesktop/settings/quickCss.css" =
-            mkIf (exists "discord") {text = ''@import url("https://raw.githack.com/GeopJr/DNOME/dist/DNOME.css");'';};
+          ".config/vesktop/settings/quickCss.css" = mkIf (exists "discord") {
+            text = ''@import url("https://raw.githack.com/GeopJr/DNOME/dist/DNOME.css");'';
+          };
 
           # Logseq Bonofix Theme
-          ".logseq/config.edn" =
-            mkIf (exists "notes")
-            {text = ''{:custom-css-url "@import url('https://cdn.jsdelivr.net/gh/sansui233/logseq-bonofix-theme/custom.css');"}'';};
+          ".logseq/config.edn" = mkIf (exists "notes") {
+            text = ''{:custom-css-url "@import url('https://cdn.jsdelivr.net/gh/sansui233/logseq-bonofix-theme/custom.css');"}'';
+          };
         };
 
         # Code Editor
         programs.vscode.profiles.default = mkIf (exists "vscode") {
-          extensions = [pkgs.vscode-extensions.piousdeer.adwaita-theme];
+          extensions = [ pkgs.vscode-extensions.piousdeer.adwaita-theme ];
           userSettings = {
             "workbench.colorTheme" = "Adwaita Dark";
             "workbench.productIconTheme" = "adwaita";

@@ -6,29 +6,41 @@
   files,
   ...
 }:
-with files.vscode; let
+with files.vscode;
+let
   inherit (builtins) elem head;
   enable = elem "vscode" config.apps.list;
   font = head config.fonts.fontconfig.defaultFonts.monospace;
-in {
+in
+{
   ## Visual Studio Code Editor Configuration ##
   config = lib.mkIf enable rec {
-    environment.systemPackages = [pkgs.nil user.homeConfig.programs.vscode.package];
+    environment.systemPackages = [
+      pkgs.nil
+      user.homeConfig.programs.vscode.package
+    ];
 
     user = {
-      persist.directories = [".config/Code" ".vscode"];
+      persist.directories = [
+        ".config/Code"
+        ".vscode"
+      ];
+
       homeConfig = {
         # Mutable Configuration File
         imports = [
-          ({config, ...}: (import (builtins.fetchurl {
-            inherit (files.mutability.vscode) url sha256;
-          }) {inherit config lib pkgs;}))
+          (
+            { config, ... }:
+            (import (builtins.fetchurl {
+              inherit (files.mutability.vscode) url sha256;
+            }) { inherit config lib pkgs; })
+          )
         ];
 
         # Environment
         xdg.mimeApps.defaultApplications = util.build.mime {
-          markdown = ["code.desktop"];
-          text = ["code.desktop"];
+          markdown = [ "code.desktop" ];
+          text = [ "code.desktop" ];
         };
 
         programs.vscode = {
@@ -39,11 +51,13 @@ in {
             inherit keybindings;
 
             # Settings
-            userSettings =
-              settings // {"editor.fontFamily" = "'${font}', 'monospace', monospace";};
+            userSettings = settings // {
+              "editor.fontFamily" = "'${font}', 'monospace', monospace";
+            };
 
             # Useful Extensions
-            extensions = with pkgs.vscode-extensions;
+            extensions =
+              with pkgs.vscode-extensions;
               [
                 aaron-bond.better-comments
                 divyanshuagrawal.competitive-programming-helper
@@ -56,7 +70,6 @@ in {
                 github.vscode-pull-request-github
                 jgclark.vscode-todo-highlight
                 jnoortheen.nix-ide
-                kamadorueda.alejandra
                 ms-python.python
                 ms-vscode-remote.remote-ssh
                 ms-vscode.cpptools

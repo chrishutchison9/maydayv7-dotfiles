@@ -32,22 +32,26 @@ This [repository](https://github.com/maydayv7/dotfiles) contains the configurati
 <details>
 <summary>Theming</summary>
 
+- [Starship](https://starship.rs/) Prompt Theme: Minimal, blazing-fast, and infinitely customizable prompt for any shell
+- [Bibata Cursor](https://github.com/ful1e5/Bibata_Cursor): Compact and material designed cursor set
+- [Papirus Icon Theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme): Pixel perfect icon theme for Linux
+- [Catppuccin](https://github.com/catppuccin) Theme: A community-driven Pastel Theme consisting of 4 soothing warm Flavors with 26 eye-candy Colors each
+
 - [Adwaita GTK3](https://github.com/lassekongo83/adw-gtk3): Theme from `libadwaita` ported to GTK3
+- [KvLibadwaita](https://github.com/GabePoel/KvLibadwaita) Kvantum Theme: Integrates QT Apps with GNOME Desktop
+- Firefox [GNOME Theme](https://github.com/rafaelmardojai/firefox-gnome-theme): GNOME Theme for the Mozilla Firefox Browser, used for better desktop integration
+- VS Code [Adwaita Theme](https://github.com/piousdeer/vscode-adwaita): Integrates Visual Studio Code with GNOME Desktop
+- Discord [DNOME](https://github.com/GeopJr/DNOME) Theme: Discord Theme inspired by Adwaita, designed to integrate Discord with GNOME
+
 - [Arc Theme](https://github.com/jnsh/arc-theme): Flat GTK theme with transparent elements for various desktop shells, window managers and applications
 - [Arc KDE Theme](https://github.com/PapirusDevelopmentTeam/arc-kde): Port of the Arc GTK Theme for Plasma Desktop
-- [Bibata Cursor](https://github.com/ful1e5/Bibata_Cursor): Compact and material designed cursor set
-- [Catppuccin](https://github.com/catppuccin) Theme: A community-driven Pastel Theme consisting of 4 soothing warm Flavors with 26 eye-candy Colors each
-- [DNOME](https://github.com/GeopJr/DNOME) Discord Theme: Discord Theme inspired by Adwaita, designed to integrate Discord with GNOME
-- Firefox [Elementary Theme](https://github.com/Zonnev/elementaryos-firefox-theme): Elementary OS Theme for the Mozilla Firefox Browser, used for better desktop integration
-- Firefox [GNOME Theme](https://github.com/rafaelmardojai/firefox-gnome-theme): GNOME Theme for the Mozilla Firefox Browser, used for better desktop integration
-- [KvLibadwaita](https://github.com/GabePoel/KvLibadwaita) Kvantum Theme: Integrates QT Apps with GNOME Desktop
-- [Nordic](https://github.com/orblazer/discord-nordic) Discord Theme: Discord Theme using the [Nord](<(https://www.nordtheme.com/)>) color palette
-- [Starship](https://starship.rs/) Prompt Theme: Minimal, blazing-fast, and infinitely customizable prompt for any shell
-- [VS Code Adwaita Theme](https://github.com/piousdeer/vscode-adwaita): Integrates Visual Studio Code with GNOME Desktop
-- [VS Code Arc Theme](https://github.com/alvesvaren/arc-dark-vscode): Port of the Arc Dark GTK Theme for Visual Studio Code
-- [VS Code Elementary Theme](https://github.com/sixpounder/vscode-elementary-theme): Integrates Visual Studio Code with Pantheon Desktop
+- VS Code [Arc Theme](https://github.com/alvesvaren/arc-dark-vscode): Port of the Arc Dark GTK Theme for Visual Studio Code
+- Discord [Nordic](https://github.com/orblazer/discord-nordic) Theme: Discord Theme using the [Nord](<(https://www.nordtheme.com/)>) color palette
 - Logseg [Nord Theme](https://github.com/Bad3r/Logseq-Nord-Theme): Logseq in an arctic, north-bluish color palette
-- Logseq [Bonofix Theme][https://github.com/Sansui233/logseq-bonofix-theme]: A clean Logseq theme with focus on long-time writing experience
+
+- Firefox [Elementary Theme](https://github.com/Zonnev/elementaryos-firefox-theme): Elementary OS Theme for the Mozilla Firefox Browser, used for better desktop integration
+- VS Code [Elementary Theme](https://github.com/sixpounder/vscode-elementary-theme): Integrates Visual Studio Code with Pantheon Desktop
+- Logseq [Bonofix Theme](https://github.com/Sansui233/logseq-bonofix-theme): A clean Logseq theme with focus on long-time writing experience
 
 </details>
 
@@ -435,7 +439,7 @@ The system build cache is publicly hosted using [Cachix](https://www.cachix.org)
 
 #### Continuous Integration
 
-This repository makes use of [`GitHub Actions`](./checks/github/workflows) in order to automatically check the configuration syntax on every commit (using and [`statix`](https://github.com/nerdypepper/statix)) and format it (using [`treefmt`](https://github.com/numtide/treefmt)), update the `inputs` every week, build the configuration and upload the build cache to [Cachix](https://app.cachix.org/cache/maydayv7-dotfiles) as well as publish the Install Media `.iso` to a draft Release upon creation of a tag (You can also find `GitLab CI/CD` configuration in [`.gitlab`](./checks/gitlab/.gitlab-ci.yml)). A `git` [hook](./.git-hooks) is used to check the commit message to adhere to the [`Conventional Commits`](https://www.conventionalcommits.org) specification
+This repository makes use of [`GitHub Actions`](./checks/github/workflows) in order to automatically check the configuration syntax on every commit and format it (using [`treefmt-nix`](https://github.com/numtide/treefmt-nix)), update the `inputs` and build the Install Media `.iso` every month, and upload the build cache to [Cachix](https://app.cachix.org/cache/maydayv7-dotfiles) (You can also find `GitLab CI/CD` configuration in [`.gitlab`](./checks/gitlab/.gitlab-ci.yml)). A `git` [hook](./.git-hooks) is used to check the commit message to adhere to the [`Conventional Commits`](https://www.conventionalcommits.org) specification
 
 ###### Variables
 
@@ -444,7 +448,7 @@ This repository makes use of [`GitHub Actions`](./checks/github/workflows) in or
 
 ### Home Manager
 
-The [`home-manager`](https://github.com/nix-community/home-manager) module is used in tandem with the system configuration in order to define user-specific configuration. The `config.user.homeConfig` option has been declared in [`modules/user/default.nix`](./modules/user/default.nix) independent of the original module, from which the final configuration is built, in order to prevent infinite recursion while configuring multiple users per system. The system `config` can be accessed using the `sys` parameter in `home-manager` modules
+The [`home-manager`](https://github.com/nix-community/home-manager) module is used in tandem with the system configuration in order to define user-specific configuration. The `config.user.homeConfig` option, from which the final user configuration is built, has been declared in [`modules/user/default.nix`](./modules/user/default.nix) in order to effortlessly configure shared configuration for all users of the system. The system `config` can be accessed using the `sys` parameter in `home-manager` modules
 
 ## Links
 
@@ -825,7 +829,7 @@ _Thanks a lot! ;)_
 
 </details>
 
-> Last Updated: **April** 2025
+> Last Updated: **May** 2025
 
 If you like this project, consider leaving a [star](https://github.com/maydayv7/dotfiles)
 

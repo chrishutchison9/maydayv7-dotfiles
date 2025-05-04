@@ -6,17 +6,19 @@
   files,
   theme,
   ...
-}: let
+}:
+let
   inherit (builtins) map toString;
   inherit (config.gui) cursors display;
   cursor = "${cursors.name}-Hyprcursor";
-in {
+in
+{
   ## App Environment
-  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # Desktop Integration
   stylix.base16Scheme = files.colors.catppuccin;
-  environment.systemPackages = [pkgs.custom.cursors];
+  environment.systemPackages = [ pkgs.custom.cursors ];
   gui = with theme; {
     fonts.enable = true;
     inherit (theme) icons;
@@ -74,37 +76,39 @@ in {
         ]);
 
       ## Shortcuts
-      bind = let
-        toggle = app: "pkill ${app} || uwsm app -u ${app}.scope -- ${app}";
-        runOnce = app: "pgrep ${app} || uwsm app -u ${app}.scope -- ${app}";
-      in [
-        # Applications
-        "$mod, F, exec, nemo"
-        "$mod, T, exec, kitty"
-        "$mod, W, exec, firefox"
-        "$mod, Return, exec, ${runOnce "resources"}"
-        "$mod SHIFT, equal, exec, pypr toggle calc"
-        ", XF86Calculator, exec, qalculate-gtk"
+      bind =
+        let
+          toggle = app: "pkill ${app} || uwsm app -u ${app}.scope -- ${app}";
+          runOnce = app: "pgrep ${app} || uwsm app -u ${app}.scope -- ${app}";
+        in
+        [
+          # Applications
+          "$mod, F, exec, nemo"
+          "$mod, T, exec, kitty"
+          "$mod, W, exec, firefox"
+          "$mod, Return, exec, ${runOnce "resources"}"
+          "$mod SHIFT, equal, exec, pypr toggle calc"
+          ", XF86Calculator, exec, qalculate-gtk"
 
-        # Utilities
-        "$mod, A, exec, nwg-drawer"
-        "$mod SHIFT, slash, exec, ${toggle "kebihelp"} show -a"
-        "$mod SHIFT, C, exec, ${runOnce "hyprpicker"} -arf hex"
-        "$mod SHIFT, B, exec, ${runOnce "overskride"}"
-        "$mod, D, exec, ${runOnce "nwg-displays"}"
-        "$mod SHIFT, P, exec, pavucontrol"
-        "$mod SHIFT, N, exec, sh -c 'env XDG_CURRENT_DESKTOP=GNOME gnome-control-center wifi'"
-        "$mod, Escape, exec, ${toggle "wlogout"} -p layer-shell"
+          # Utilities
+          "$mod, A, exec, nwg-drawer"
+          "$mod SHIFT, slash, exec, ${toggle "kebihelp"} show -a"
+          "$mod SHIFT, C, exec, ${runOnce "hyprpicker"} -arf hex"
+          "$mod SHIFT, B, exec, ${runOnce "overskride"}"
+          "$mod, D, exec, ${runOnce "nwg-displays"}"
+          "$mod SHIFT, P, exec, pavucontrol"
+          "$mod SHIFT, N, exec, sh -c 'env XDG_CURRENT_DESKTOP=GNOME gnome-control-center wifi'"
+          "$mod, Escape, exec, ${toggle "wlogout"} -p layer-shell"
 
-        # Tools
-        "$mod SHIFT, A, exec, hyprutils toggle service waybar"
-        "$mod SHIFT, D, exec, hyprutils toggle monitor ${display}"
-        "$mod, N, exec, dunstctl history-pop"
-        "$mod, S, exec, hyprutils toggle shader"
-        "$mod SHIFT, T, exec, pypr toggle term"
-        "$mod, V, exec, pypr show clip"
-        "$mod, backslash, exec, pypr toggle emoji"
-      ];
+          # Tools
+          "$mod SHIFT, A, exec, hyprutils toggle service waybar"
+          "$mod SHIFT, D, exec, hyprutils toggle monitor ${display}"
+          "$mod, N, exec, dunstctl history-pop"
+          "$mod, S, exec, hyprutils toggle shader"
+          "$mod SHIFT, T, exec, pypr toggle term"
+          "$mod, V, exec, pypr show clip"
+          "$mod, backslash, exec, pypr toggle emoji"
+        ];
 
       ## Layer Rules
       layerrule = [
@@ -149,31 +153,39 @@ in {
           "float, class:^(xdg-desktop-portal-gtk)"
           "dimaround, class:^(xdg-desktop-portal-gtk)"
         ]
-        ++ (map (class: [
+        ++ (map
+          (class: [
             "pin, class:^(${class})"
             "dimaround, class:^(${class})"
             "stayfocused, class:^(${class})"
-          ]) [
+          ])
+          [
             "pinentry-"
             "gay.vaskel.Soteria"
             "gcr-prompter"
-          ])
-        ++ (map (class: [
+          ]
+        )
+        ++ (map
+          (class: [
             # Utilities
             "float, class:^(${class})"
             "pin, class:^(${class})"
             "persistentsize, class:^(${class})"
-          ]) [
+          ])
+          [
             "io.github.kaii_lb.Overskride"
             "nwg-displays"
             "org.pulseaudio.pavucontrol"
             "gnome-control-center"
             "org.gnome.Settings"
-          ])
-        ++ (map (title: [
+          ]
+        )
+        ++ (map
+          (title: [
             # Dialogs
             "float, title:^(${title})(.*)$"
-          ]) [
+          ])
+          [
             "Library"
             "Open File"
             "Open Folder"
@@ -181,7 +193,8 @@ in {
             "Save File"
             "Select a File"
             ".*Properties"
-          ])
+          ]
+        )
       );
     };
   };

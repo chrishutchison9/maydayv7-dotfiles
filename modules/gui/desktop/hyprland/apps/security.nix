@@ -5,10 +5,12 @@
   pkgs,
   files,
   ...
-}: let
+}:
+let
   inherit (lib) getExe getExe';
   locker = pkgs.swaylock-effects;
-in {
+in
+{
   ## Security Configuration
   # User Authentication
   security = {
@@ -35,47 +37,55 @@ in {
     };
 
     # Idle Daemon
-    services.swayidle = let
-      pause = "${getExe pkgs.playerctl} pause -a;";
-      lock = pre: flag: "sh -c 'if ! ${getExe' pkgs.procps "pgrep"} -x swaylock; then ${pre} ${getExe locker} -f ${flag}; fi'";
-    in {
-      enable = true;
-      extraArgs = ["-w"];
-      events = [
-        {
-          event = "before-sleep";
-          command = lock pause "";
-        }
-        {
-          event = "lock";
-          command = lock pause "--fade-in 0.2 --grace 15 --grace-no-mouse";
-        }
-      ];
+    services.swayidle =
+      let
+        pause = "${getExe pkgs.playerctl} pause -a;";
+        lock =
+          pre: flag:
+          "sh -c 'if ! ${getExe' pkgs.procps "pgrep"} -x swaylock; then ${pre} ${getExe locker} -f ${flag}; fi'";
+      in
+      {
+        enable = true;
+        extraArgs = [ "-w" ];
+        events = [
+          {
+            event = "before-sleep";
+            command = lock pause "";
+          }
+          {
+            event = "lock";
+            command = lock pause "--fade-in 0.2 --grace 15 --grace-no-mouse";
+          }
+        ];
 
-      timeouts = let
-        audio = command: "${pkgs.writeShellScript "audio" ''
-          ${getExe pkgs.playerctl} status | ${getExe pkgs.gnugrep} Playing
-          if [ $? == 1 ]; then ${command}; fi
-        ''}"; # Check if audio is playing
-        shader = getExe pkgs.hyprshade;
-        dpms = "${getExe' config.programs.hyprland.package "hyprctl"} dispatch dpms";
-      in [
-        {
-          timeout = 240; # Dim display
-          command = audio "${shader} on dim";
-          resumeCommand = "${shader} off";
-        }
-        {
-          timeout = 300; # Turn off display
-          command = audio "${dpms} off";
-          resumeCommand = "${dpms} on";
-        }
-        {
-          timeout = 500; # Suspend device
-          command = audio "${dpms} on && ${lock "" ""} && ${getExe' pkgs.systemd "systemctl"} suspend";
-        }
-      ];
-    };
+        timeouts =
+          let
+            audio =
+              command:
+              "${pkgs.writeShellScript "audio" ''
+                ${getExe pkgs.playerctl} status | ${getExe pkgs.gnugrep} Playing
+                if [ $? == 1 ]; then ${command}; fi
+              ''}"; # Check if audio is playing
+            shader = getExe pkgs.hyprshade;
+            dpms = "${getExe' config.programs.hyprland.package "hyprctl"} dispatch dpms";
+          in
+          [
+            {
+              timeout = 240; # Dim display
+              command = audio "${shader} on dim";
+              resumeCommand = "${shader} off";
+            }
+            {
+              timeout = 300; # Turn off display
+              command = audio "${dpms} off";
+              resumeCommand = "${dpms} on";
+            }
+            {
+              timeout = 500; # Suspend device
+              command = audio "${dpms} on && ${lock "" ""} && ${getExe' pkgs.systemd "systemctl"} suspend";
+            }
+          ];
+      };
 
     # Logout
     programs.wlogout = {

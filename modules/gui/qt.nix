@@ -3,16 +3,32 @@
   lib,
   pkgs,
   ...
-}: let
-  inherit (lib) mkDefault mkEnableOption mkIf mkMerge mkOption types;
+}:
+let
+  inherit (lib)
+    mkDefault
+    mkEnableOption
+    mkIf
+    mkMerge
+    mkOption
+    types
+    ;
+
   inherit (config.gui) qt icons;
   inherit (config.stylix) fonts;
-in {
+in
+{
   options.gui.qt = {
     enable = mkEnableOption "Enable QT Configuration";
     style = mkOption {
       description = "QT Application Style";
-      type = types.nullOr (types.enum ["gtk" "kvantum" "qtct"]);
+      type = types.nullOr (
+        types.enum [
+          "gtk"
+          "kvantum"
+          "qtct"
+        ]
+      );
       default = null;
     };
 
@@ -30,7 +46,8 @@ in {
   };
 
   ## QT Configuration ##
-  config = with qt.theme;
+  config =
+    with qt.theme;
     mkIf qt.enable (mkMerge [
       {
         stylix.targets.qt.enable = false;
@@ -54,7 +71,7 @@ in {
         };
 
         environment = {
-          systemPackages = [package];
+          systemPackages = [ package ];
           etc."xdg/Kvantum/kvantum.kvconfig".text = ''
             [General]
             Theme=${name}
@@ -78,51 +95,57 @@ in {
         };
       })
 
-      (mkIf (qt.style == "qtct") (let
-        pkg = with pkgs; [
-          darkly
-          darkly-qt5
-        ];
+      (mkIf (qt.style == "qtct") (
+        let
+          pkg = with pkgs; [
+            darkly
+            darkly-qt5
+          ];
 
-        conf = version:
-          lib.generators.toINI {} {
-            Appearance = {
-              style = "Lightly";
-              standard_dialogs = "default";
-              icon_theme = icons.name;
-              custom_palette = true;
-              color_scheme_path = "${package}/share/${version}/colors/${name}.conf";
+          conf =
+            version:
+            lib.generators.toINI { } {
+              Appearance = {
+                style = "Lightly";
+                standard_dialogs = "default";
+                icon_theme = icons.name;
+                custom_palette = true;
+                color_scheme_path = "${package}/share/${version}/colors/${name}.conf";
+              };
+
+              Fonts =
+                let
+                  size = fonts.sizes.applications;
+                in
+                {
+                  fixed = "\"${fonts.monospace.name},${size},-1,5,50,0,0,0,0,0,Regular\"";
+                  general = "\"${fonts.sansSerif.name},${size},-1,5,50,0,0,0,0,0,Regular\"";
+                };
+            };
+        in
+        {
+          qt.platformTheme = "qt5ct";
+          environment = {
+            systemPackages = pkg;
+            etc = {
+              "xdg/qt5ct/qt5ct.conf" = conf "qt5ct";
+              "xdg/qt6ct/qt6ct.conf" = conf "qt6ct";
+            };
+          };
+
+          user.homeConfig = {
+            qt = {
+              enable = true;
+              platformTheme.name = "qtct";
+              style.package = pkg;
             };
 
-            Fonts = let
-              size = fonts.sizes.applications;
-            in {
-              fixed = "\"${fonts.monospace.name},${size},-1,5,50,0,0,0,0,0,Regular\"";
-              general = "\"${fonts.sansSerif.name},${size},-1,5,50,0,0,0,0,0,Regular\"";
+            xdg.configFile = {
+              "qt5ct/qt5ct.conf" = conf "qt5ct";
+              "qt6ct/qt6ct.conf" = conf "qt6ct";
             };
           };
-      in {
-        qt.platformTheme = "qt5ct";
-        environment = {
-          systemPackages = pkg;
-          etc = {
-            "xdg/qt5ct/qt5ct.conf" = conf "qt5ct";
-            "xdg/qt6ct/qt6ct.conf" = conf "qt6ct";
-          };
-        };
-
-        user.homeConfig = {
-          qt = {
-            enable = true;
-            platformTheme.name = "qtct";
-            style.package = pkg;
-          };
-
-          xdg.configFile = {
-            "qt5ct/qt5ct.conf" = conf "qt5ct";
-            "qt6ct/qt6ct.conf" = conf "qt6ct";
-          };
-        };
-      }))
+        }
+      ))
     ]);
 }

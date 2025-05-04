@@ -2,11 +2,19 @@
   config,
   lib,
   ...
-}: let
-  inherit (lib) mkEnableOption mkIf mkOption types;
+}:
+let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
+
   inherit (config.apps.git.hosting) enable domain secret;
   opt = config.apps.git.hosting;
-in {
+in
+{
   options.apps.git.hosting = {
     enable = mkEnableOption "Enable Gitea Code Hosting";
     domain = mkOption {
@@ -35,7 +43,7 @@ in {
     ];
 
     # User Configuration
-    user.groups = ["gitea"];
+    user.groups = [ "gitea" ];
     users.users.git = {
       useDefaultShell = true;
       home = "/var/lib/gitea";
@@ -63,10 +71,14 @@ in {
     };
 
     # NGINX Secured Reverse Proxy
-    environment.persist.directories = ["/srv"];
+    environment.persist.directories = [ "/srv" ];
     networking.firewall = {
-      allowedUDPPorts = [7000];
-      allowedTCPPorts = [80 443 7000];
+      allowedUDPPorts = [ 7000 ];
+      allowedTCPPorts = [
+        80
+        443
+        7000
+      ];
     };
 
     security.acme = {
@@ -77,7 +89,7 @@ in {
         email = "admin@${domain}";
         dnsProvider = "cloudflare";
         credentialsFile = secret;
-        extraLegoFlags = ["--dns.resolvers=8.8.8.8:53"];
+        extraLegoFlags = [ "--dns.resolvers=8.8.8.8:53" ];
       };
     };
 

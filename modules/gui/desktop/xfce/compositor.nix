@@ -2,7 +2,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   ## Picom Compositor Configuration ##
   services.picom = rec {
     enable = true;
@@ -24,11 +25,11 @@
     ];
 
     # Opacity
-    opacityRules = ["95:class_g = 'Code'"];
+    opacityRules = [ "95:class_g = 'Code'" ];
     wintypes = {
-      tooltip = {opacity = 0.8;};
-      popup_menu = {opacity = 0.9;};
-      dropdown_menu = {opacity = 0.9;};
+      tooltip.opacity = 0.8;
+      popup_menu.opacity = 0.9;
+      dropdown_menu.opacity = 0.9;
     };
 
     settings =
@@ -47,25 +48,28 @@
             "class_g='Xfce4-panel'"
           ];
       }
-      // # Fade
-      {
+      # Fade
+      // {
         fading = true;
         fade-in-step = 0.03;
         fade-out-step = 0.1;
         fade-delta = 15;
         no-fading-openclose = false;
       }
-      // # Blur
-      {
+      # Blur
+      // {
         blur-method = "dual_kawase";
         blur-strength = 3;
         blur-background-exclude = shadowExclude;
       }
-      // # Animation
-      {
+      # Animation
+      // {
         animations = [
           {
-            triggers = ["close" "hide"];
+            triggers = [
+              "close"
+              "hide"
+            ];
             preset = "disappear";
             scale = 0.4;
             opacity = {
@@ -77,7 +81,10 @@
             shadow-opacity = "opacity";
           }
           {
-            triggers = ["open" "show"];
+            triggers = [
+              "open"
+              "show"
+            ];
             opacity = {
               curve = "cubic-bezier(0.3,1.0,0.4,1)";
               duration = 0.4;
@@ -101,7 +108,7 @@
             shadow-offset-y = "offset-y";
           }
           {
-            triggers = ["geometry"];
+            triggers = [ "geometry" ];
             scale-x = {
               curve = "cubic-bezier(0.3,1.0,0.4,1)";
               duration = 0.4;

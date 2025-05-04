@@ -10,7 +10,7 @@ pkgs: rec {
   gtk = {
     name = "${name}-${variant}-${accent}-standard";
     package = pkgs.catppuccin-gtk.override {
-      accents = [accent];
+      accents = [ accent ];
       inherit variant;
     };
   };

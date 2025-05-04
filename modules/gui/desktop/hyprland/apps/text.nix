@@ -5,9 +5,10 @@
   files,
   theme,
   ...
-}: {
+}:
+{
   ## Text Configuration
-  environment.systemPackages = [pkgs.geany];
+  environment.systemPackages = [ pkgs.geany ];
   user = {
     persist.directories = [
       ".config/clipse"
@@ -17,14 +18,16 @@
     homeConfig = {
       # Text Editor
       xdg.mimeApps.defaultApplications = util.build.mime {
-        markdown = ["geany.desktop"];
-        text = ["geany.desktop"];
+        markdown = [ "geany.desktop" ];
+        text = [ "geany.desktop" ];
       };
 
       home.file = with files.geany; {
         ".config/geany/geany.conf".text = settings;
         ".config/geany/keybindings.conf".text = keybindings;
-        ".config/geany/colorschemes/theme.conf".source = with theme; "${pkgs.custom.geany-catppuccin}/share/geany/colorschemes/${name}-${variant}.conf";
+        ".config/geany/colorschemes/theme.conf".source =
+          with theme;
+          "${pkgs.custom.geany-catppuccin}/share/geany/colorschemes/${name}-${variant}.conf";
       };
 
       # Clipboard Manager

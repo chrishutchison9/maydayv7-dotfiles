@@ -4,9 +4,11 @@
   pkgs,
   files,
   ...
-}: let
+}:
+let
   enable = builtins.elem "laptop" config.hardware.support;
-in {
+in
+{
   ## Laptop Configuration ##
   config = lib.mkIf enable {
     services.logind = {
@@ -26,11 +28,16 @@ in {
       [Desktop Entry]
       Type=Application
       Name=audio-tweaks
-      Exec=${pkgs.writeShellApplication {
-        name = "audio";
-        text = files.scripts.audio;
-        runtimeInputs = with pkgs; [glib playerctl];
-      }}/bin/audio
+      Exec=${
+        pkgs.writeShellApplication {
+          name = "audio";
+          text = files.scripts.audio;
+          runtimeInputs = with pkgs; [
+            glib
+            playerctl
+          ];
+        }
+      }/bin/audio
     '';
 
     # Touchpad

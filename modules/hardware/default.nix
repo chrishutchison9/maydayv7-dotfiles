@@ -4,11 +4,13 @@
   lib,
   util,
   ...
-}: let
+}:
+let
   inherit (util.map) modules;
   inherit (lib) mkForce mkOption types;
   cfg = config.hardware;
-in {
+in
+{
   ## HARDWARE Configuration ##
   imports = modules.list ./.;
 
@@ -22,7 +24,11 @@ in {
 
       mode = mkOption {
         description = "CPU Frequency Governor Mode";
-        type = enum ["ondemand" "performance" "powersave"];
+        type = enum [
+          "ondemand"
+          "performance"
+          "powersave"
+        ];
         default = "powersave";
       };
     };
@@ -30,13 +36,13 @@ in {
     modules = mkOption {
       description = "List of Modules imported from 'inputs.hardware'";
       type = listOf (enum (attrNames inputs.hardware.nixosModules));
-      default = [];
+      default = [ ];
     };
 
     support = mkOption {
       description = "List of Additional Supported Hardware";
       type = listOf (enum (modules.name ./.));
-      default = [];
+      default = [ ];
     };
   };
 

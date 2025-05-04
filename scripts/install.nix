@@ -4,7 +4,8 @@
   files,
   ...
 }:
-with files.path; let
+with files.path;
+let
   inherit (lib) licenses recursiveUpdate;
 
   # File System Operations
@@ -91,89 +92,93 @@ with files.path; let
     }
   '';
 in
-  recursiveUpdate {
+recursiveUpdate
+  {
     meta = {
       mainProgram = "os-install";
       description = "System Install Script";
       homepage = repo;
       license = licenses.gpl3Only;
-      maintainers = ["maydayv7"];
+      maintainers = [ "maydayv7" ];
     };
-  } (pkgs.writeShellApplication {
-    name = "os-install";
-    runtimeInputs = with pkgs; [
-      coreutils
-      dosfstools
-      git
-      gparted
-      nixFlakes
-      ntfs3g
-      parted
-      util-linux
-      zfs
-    ];
+  }
+  (
+    pkgs.writeShellApplication {
+      name = "os-install";
+      runtimeInputs = with pkgs; [
+        coreutils
+        dosfstools
+        git
+        gparted
+        nixFlakes
+        ntfs3g
+        parted
+        util-linux
+        zfs
+      ];
 
-    text = ''
-      set +eu
-      ${files.scripts.commands}
-      ${partitions}
+      text = ''
+        set +eu
+        ${files.scripts.commands}
+        ${partitions}
 
-      internet
-      if [ "$EUID" -ne 0 ]
-      then
-        error "This Command must be Executed as 'root'"
-      fi
+        internet
+        if [ "$EUID" -ne 0 ]
+        then
+          error "This Command must be Executed as 'root'"
+        fi
 
-      warn "Disk will be Completely Wiped for Automatic Partitioning"
-      read -rp "Do you want to Automatically Create the Partitions? (Y/N): " choice
-        case $choice in
-          [Yy]*) partition_disk;;
-          *) warn "You must Create, Format and Label the Partitions on your own"; gparted &> /dev/null;;
-        esac
-      newline
-      read -rp "Select Filesystem to use for Disk (simple/advanced): " choice
-        case $choice in
-          1|[Ss]*)
-            read -rp "Do you want to Create and Format the EXT4 Partitions? (Y/N): " choice
-              case $choice in
-                [Yy]*) create_ext4; mount_ext4;;
-                *) warn "Assuming that Required EXT4 Partition has already been Created"; mount_ext4;;
-              esac
-          ;;
-          2|[Aa]*)
-            read -rp "Do you want to Create the ZFS Pool and Datasets? (Y/N): " choice
-              case $choice in
-                [Yy]*) create_zfs; mount_zfs;;
-                *) warn "Assuming that Required ZFS Pool and Datasets have already been Created"; mount_zfs;;
-              esac
-          ;;
-          *) error "Choose (1)simple or (2)advanced";;
-        esac
-      newline
-
-      mount_other
-      systemd-machine-id-setup --root=/mnt
-      newline
-
-      read -rp "Enter Name of Device to Install: " HOST
-      read -rp "Enter Path to Repository (path/URL): " URL
-      if [ -z "$URL" ]
-      then
-        URL=${flake}
-      fi
-      echo "Installing System from '$URL'..."
-      until nixos-install --no-root-passwd --root /mnt --flake "$URL"#"$HOST"
-      do
+        warn "Disk will be Completely Wiped for Automatic Partitioning"
+        read -rp "Do you want to Automatically Create the Partitions? (Y/N): " choice
+          case $choice in
+            [Yy]*) partition_disk;;
+            *) warn "You must Create, Format and Label the Partitions on your own"; gparted &> /dev/null;;
+          esac
         newline
-        info "Couldn't finish installation. Trying again..."
-      done
-      newline
+        read -rp "Select Filesystem to use for Disk (simple/advanced): " choice
+          case $choice in
+            1|[Ss]*)
+              read -rp "Do you want to Create and Format the EXT4 Partitions? (Y/N): " choice
+                case $choice in
+                  [Yy]*) create_ext4; mount_ext4;;
+                  *) warn "Assuming that Required EXT4 Partition has already been Created"; mount_ext4;;
+                esac
+            ;;
+            2|[Aa]*)
+              read -rp "Do you want to Create the ZFS Pool and Datasets? (Y/N): " choice
+                case $choice in
+                  [Yy]*) create_zfs; mount_zfs;;
+                  *) warn "Assuming that Required ZFS Pool and Datasets have already been Created"; mount_zfs;;
+                esac
+            ;;
+            *) error "Choose (1)simple or (2)advanced";;
+          esac
+        newline
 
-      unmount_all
-      newline
+        mount_other
+        systemd-machine-id-setup --root=/mnt
+        newline
 
-      info "Run 'nixos setup' after rebooting to finish the install"
-      info "Select the (Recovery) boot menu option and run the above script as the 'recovery' user"
-      restart
-    '';
-  })
+        read -rp "Enter Name of Device to Install: " HOST
+        read -rp "Enter Path to Repository (path/URL): " URL
+        if [ -z "$URL" ]
+        then
+          URL=${flake}
+        fi
+        echo "Installing System from '$URL'..."
+        until nixos-install --no-root-passwd --root /mnt --flake "$URL"#"$HOST"
+        do
+          newline
+          info "Couldn't finish installation. Trying again..."
+        done
+        newline
+
+        unmount_all
+        newline
+
+        info "Run 'nixos setup' after rebooting to finish the install"
+        info "Select the (Recovery) boot menu option and run the above script as the 'recovery' user"
+        restart
+      '';
+    }
+  )

@@ -4,10 +4,18 @@
   pkgs,
   files,
   ...
-}: let
-  inherit (lib) mkEnableOption mkIf mkOption types;
+}:
+let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
+
   cfg = config.gui.gtk;
-in {
+in
+{
   options.gui.gtk = {
     enable = mkEnableOption "Enable GTK Configuration";
     theme = {
@@ -27,9 +35,9 @@ in {
   config = mkIf cfg.enable {
     # Environment Setup
     programs.dconf.enable = true;
-    services.dbus.packages = [pkgs.dconf];
+    services.dbus.packages = [ pkgs.dconf ];
     environment = {
-      systemPackages = [cfg.theme.package];
+      systemPackages = [ cfg.theme.package ];
       variables."GTK_THEME" = cfg.theme.name;
     };
 

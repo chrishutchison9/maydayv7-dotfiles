@@ -3,10 +3,12 @@
   lib,
   ...
 }:
-with lib.hm.gvariant; let
+with lib.hm.gvariant;
+let
   inherit (builtins) head;
   fonts = sys.fonts.fontconfig.defaultFonts;
-in {
+in
+{
   ## Dconf Keys ##
   # Generated via nix-community/dconf2nix
   # Use 'dconf watch /' to record changes
@@ -103,9 +105,9 @@ in {
     };
 
     "org/gnome/mutter/keybindings" = {
-      cancel-input-capture = ["<Super><Shift>Escape"];
-      toggle-tiled-left = [];
-      toggle-tiled-right = [];
+      cancel-input-capture = [ "<Super><Shift>Escape" ];
+      toggle-tiled-left = [ ];
+      toggle-tiled-right = [ ];
     };
 
     # Apps
@@ -181,67 +183,70 @@ in {
 
     # Keyboard Shortcuts
     "org/gnome/desktop/wm/keybindings" = {
-      begin-move = [];
-      begin-resize = [];
-      close = ["<Super>q" "<Alt>F4"];
-      cycle-group = [];
-      cycle-group-backward = [];
-      maximize = [""];
-      minimize = ["<Super>Down"];
-      move-to-monitor-down = [];
-      move-to-monitor-left = ["<Shift><Super>Left"];
-      move-to-monitor-right = ["<Shift><Super>Right"];
-      move-to-monitor-up = [];
-      move-to-workspace-1 = [];
-      move-to-workspace-2 = [""];
-      move-to-workspace-3 = [""];
-      move-to-workspace-4 = [""];
-      move-to-workspace-5 = [""];
-      move-to-workspace-6 = [""];
-      move-to-workspace-7 = [""];
-      move-to-workspace-8 = [""];
-      move-to-workspace-9 = [""];
-      move-to-workspace-down = [];
-      move-to-workspace-last = [];
-      move-to-workspace-left = ["<Primary><Super>Left"];
-      move-to-workspace-right = ["<Primary><Super>Right"];
-      move-to-workspace-up = [];
-      show-desktop = ["<Super>d"];
-      switch-applications = ["<Alt>Tab"];
-      switch-applications-backward = ["<Shift><Alt>Tab"];
-      switch-group = ["<Super>Tab"];
-      switch-group-backward = ["<Shift><Super>Tab"];
-      switch-to-workspace-1 = ["<Super>Home"];
-      switch-to-workspace-2 = [""];
-      switch-to-workspace-3 = [""];
-      switch-to-workspace-4 = [""];
-      switch-to-workspace-5 = [""];
-      switch-to-workspace-6 = [""];
-      switch-to-workspace-7 = [""];
-      switch-to-workspace-8 = [""];
-      switch-to-workspace-9 = [""];
-      switch-to-workspace-down = [];
-      switch-to-workspace-last = ["<Super>End"];
-      switch-to-workspace-left = ["<Super>Left"];
-      switch-to-workspace-right = ["<Super>Right"];
-      switch-to-workspace-up = [];
-      toggle-maximized = ["<Super>Up"];
-      unmaximize = [];
+      begin-move = [ ];
+      begin-resize = [ ];
+      close = [
+        "<Super>q"
+        "<Alt>F4"
+      ];
+      cycle-group = [ ];
+      cycle-group-backward = [ ];
+      maximize = [ "" ];
+      minimize = [ "<Super>Down" ];
+      move-to-monitor-down = [ ];
+      move-to-monitor-left = [ "<Shift><Super>Left" ];
+      move-to-monitor-right = [ "<Shift><Super>Right" ];
+      move-to-monitor-up = [ ];
+      move-to-workspace-1 = [ ];
+      move-to-workspace-2 = [ "" ];
+      move-to-workspace-3 = [ "" ];
+      move-to-workspace-4 = [ "" ];
+      move-to-workspace-5 = [ "" ];
+      move-to-workspace-6 = [ "" ];
+      move-to-workspace-7 = [ "" ];
+      move-to-workspace-8 = [ "" ];
+      move-to-workspace-9 = [ "" ];
+      move-to-workspace-down = [ ];
+      move-to-workspace-last = [ ];
+      move-to-workspace-left = [ "<Primary><Super>Left" ];
+      move-to-workspace-right = [ "<Primary><Super>Right" ];
+      move-to-workspace-up = [ ];
+      show-desktop = [ "<Super>d" ];
+      switch-applications = [ "<Alt>Tab" ];
+      switch-applications-backward = [ "<Shift><Alt>Tab" ];
+      switch-group = [ "<Super>Tab" ];
+      switch-group-backward = [ "<Shift><Super>Tab" ];
+      switch-to-workspace-1 = [ "<Super>Home" ];
+      switch-to-workspace-2 = [ "" ];
+      switch-to-workspace-3 = [ "" ];
+      switch-to-workspace-4 = [ "" ];
+      switch-to-workspace-5 = [ "" ];
+      switch-to-workspace-6 = [ "" ];
+      switch-to-workspace-7 = [ "" ];
+      switch-to-workspace-8 = [ "" ];
+      switch-to-workspace-9 = [ "" ];
+      switch-to-workspace-down = [ ];
+      switch-to-workspace-last = [ "<Super>End" ];
+      switch-to-workspace-left = [ "<Super>Left" ];
+      switch-to-workspace-right = [ "<Super>Right" ];
+      switch-to-workspace-up = [ ];
+      toggle-maximized = [ "<Super>Up" ];
+      unmaximize = [ ];
     };
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
-      email = ["<Super>e"];
-      home = ["<Super>f"];
-      magnifier-zoom-in = ["<Super>equal"];
-      magnifier-zoom-out = ["<Super>minus"];
-      play = ["F4"];
-      screenreader = [];
-      screensaver = ["<Super>l"];
-      terminal = ["<Super>t"];
-      volume-down = ["AudioLowerVolume"];
-      volume-mute = [""];
-      volume-up = ["AudioRaiseVolume"];
-      www = ["<Super>w"];
+      email = [ "<Super>e" ];
+      home = [ "<Super>f" ];
+      magnifier-zoom-in = [ "<Super>equal" ];
+      magnifier-zoom-out = [ "<Super>minus" ];
+      play = [ "F4" ];
+      screenreader = [ ];
+      screensaver = [ "<Super>l" ];
+      terminal = [ "<Super>t" ];
+      volume-down = [ "AudioLowerVolume" ];
+      volume-mute = [ "" ];
+      volume-up = [ "AudioRaiseVolume" ];
+      www = [ "<Super>w" ];
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
@@ -251,10 +256,10 @@ in {
     };
 
     "org/pantheon/desktop/gala/keybindings" = {
-      area-screenshot = ["Print"];
-      expose-windows = [""];
-      pip = [""];
-      screenshot = ["<Shift>Print"];
+      area-screenshot = [ "Print" ];
+      expose-windows = [ "" ];
+      pip = [ "" ];
+      screenshot = [ "<Shift>Print" ];
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {

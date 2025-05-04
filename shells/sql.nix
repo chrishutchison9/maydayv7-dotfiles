@@ -1,6 +1,6 @@
 pkgs: {
   name = "SQL";
-  buildInputs = [pkgs.mariadb];
+  buildInputs = [ pkgs.mariadb ];
   shellHook = ''
     MYSQL_BASEDIR=${pkgs.mariadb}
     MYSQL_HOME=$HOME/.mysql

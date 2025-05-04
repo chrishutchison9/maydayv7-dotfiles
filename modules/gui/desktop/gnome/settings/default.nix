@@ -4,9 +4,11 @@
   util,
   ...
 }:
-with lib.hm.gvariant; let
+with lib.hm.gvariant;
+let
   fonts = sys.fonts.fontconfig.defaultFonts;
-in {
+in
+{
   imports = util.map.modules.list ./.;
 
   ## Dconf Keys ##
@@ -15,84 +17,87 @@ in {
   dconf.settings = {
     # Keyboard Shortcuts
     "org/gnome/desktop/wm/keybindings" = {
-      always-on-top = ["<Super>p"];
-      begin-move = [];
-      begin-resize = [];
-      close = ["<Super>q" "<Alt>F4"];
-      cycle-group = [];
-      cycle-group-backward = [];
-      maximize = ["<Super>Up"];
-      minimize = ["<Super>Down"];
-      move-to-center = ["<Super>c"];
-      move-to-monitor-down = [];
-      move-to-monitor-left = ["<Primary><Super>Left"];
-      move-to-monitor-right = ["<Primary><Super>Right"];
-      move-to-monitor-up = [];
-      move-to-workspace-1 = [];
-      move-to-workspace-down = [];
-      move-to-workspace-last = [];
-      move-to-workspace-left = ["<Shift><Super>Left"];
-      move-to-workspace-right = ["<Shift><Super>Right"];
-      move-to-workspace-up = [];
-      panel-main-menu = [];
-      panel-run-dialog = ["<Super>F2"];
-      switch-applications = ["<Alt>Tab"];
-      switch-applications-backward = ["<Shift><Alt>Tab"];
-      switch-group = ["<Super>Tab"];
-      switch-group-backward = ["<Shift><Super>Tab"];
-      switch-to-workspace-down = [];
-      switch-to-workspace-left = ["<Super>Left"];
-      switch-to-workspace-right = ["<Super>Right"];
-      switch-to-workspace-up = [];
-      toggle-fullscreen = ["<Shift><Super>f"];
-      toggle-maximized = ["<Super>m"];
-      unmaximize = [];
+      always-on-top = [ "<Super>p" ];
+      begin-move = [ ];
+      begin-resize = [ ];
+      close = [
+        "<Super>q"
+        "<Alt>F4"
+      ];
+      cycle-group = [ ];
+      cycle-group-backward = [ ];
+      maximize = [ "<Super>Up" ];
+      minimize = [ "<Super>Down" ];
+      move-to-center = [ "<Super>c" ];
+      move-to-monitor-down = [ ];
+      move-to-monitor-left = [ "<Primary><Super>Left" ];
+      move-to-monitor-right = [ "<Primary><Super>Right" ];
+      move-to-monitor-up = [ ];
+      move-to-workspace-1 = [ ];
+      move-to-workspace-down = [ ];
+      move-to-workspace-last = [ ];
+      move-to-workspace-left = [ "<Shift><Super>Left" ];
+      move-to-workspace-right = [ "<Shift><Super>Right" ];
+      move-to-workspace-up = [ ];
+      panel-main-menu = [ ];
+      panel-run-dialog = [ "<Super>F2" ];
+      switch-applications = [ "<Alt>Tab" ];
+      switch-applications-backward = [ "<Shift><Alt>Tab" ];
+      switch-group = [ "<Super>Tab" ];
+      switch-group-backward = [ "<Shift><Super>Tab" ];
+      switch-to-workspace-down = [ ];
+      switch-to-workspace-left = [ "<Super>Left" ];
+      switch-to-workspace-right = [ "<Super>Right" ];
+      switch-to-workspace-up = [ ];
+      toggle-fullscreen = [ "<Shift><Super>f" ];
+      toggle-maximized = [ "<Super>m" ];
+      unmaximize = [ ];
     };
 
     "org/gnome/mutter/keybindings" = {
-      toggle-tiled-left = [];
-      toggle-tiled-right = [];
+      toggle-tiled-left = [ ];
+      toggle-tiled-right = [ ];
     };
 
     "org/gnome/shell/keybindings" = {
-      focus-active-notification = [];
-      open-application-menu = [];
-      switch-to-application-1 = ["<Super>1"];
-      switch-to-application-2 = ["<Super>2"];
-      switch-to-application-3 = ["<Super>3"];
-      switch-to-application-4 = ["<Super>4"];
-      switch-to-application-5 = ["<Super>5"];
-      switch-to-application-6 = ["<Super>6"];
-      switch-to-application-7 = ["<Super>7"];
-      switch-to-application-8 = ["<Super>8"];
-      switch-to-application-9 = ["<Super>9"];
-      toggle-application-view = [];
-      toggle-message-tray = ["<Super><Shift>n"];
-      toggle-overview = [];
-      toggle-quick-settings = [];
+      focus-active-notification = [ ];
+      open-application-menu = [ ];
+      switch-to-application-1 = [ "<Super>1" ];
+      switch-to-application-2 = [ "<Super>2" ];
+      switch-to-application-3 = [ "<Super>3" ];
+      switch-to-application-4 = [ "<Super>4" ];
+      switch-to-application-5 = [ "<Super>5" ];
+      switch-to-application-6 = [ "<Super>6" ];
+      switch-to-application-7 = [ "<Super>7" ];
+      switch-to-application-8 = [ "<Super>8" ];
+      switch-to-application-9 = [ "<Super>9" ];
+      toggle-application-view = [ ];
+      toggle-message-tray = [ "<Super><Shift>n" ];
+      toggle-overview = [ ];
+      toggle-quick-settings = [ ];
     };
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
-      area-screenshot = ["Print"];
-      area-screenshot-clip = [];
-      control-center = ["<Super><Shift>grave"];
-      email = ["<Super>e"];
-      home = ["<Super>f"];
-      magnifier = ["<Super>x"];
-      magnifier-zoom-in = ["<Super>equal"];
-      magnifier-zoom-out = ["<Super>minus"];
-      rotate-video-lock-static = [];
-      screencast = ["<Alt>Print"];
-      screenreader = [];
-      screenshot = ["<Shift>Print"];
-      screenshot-clip = [];
-      screensaver = ["<Super>l"];
-      terminal = ["<Super>t"];
-      volume-down = ["AudioLowerVolume"];
-      volume-up = ["AudioRaiseVolume"];
-      window-screenshot = ["<Primary>Print"];
-      window-screenshot-clip = [];
-      www = ["<Super>grave"];
+      area-screenshot = [ "Print" ];
+      area-screenshot-clip = [ ];
+      control-center = [ "<Super><Shift>grave" ];
+      email = [ "<Super>e" ];
+      home = [ "<Super>f" ];
+      magnifier = [ "<Super>x" ];
+      magnifier-zoom-in = [ "<Super>equal" ];
+      magnifier-zoom-out = [ "<Super>minus" ];
+      rotate-video-lock-static = [ ];
+      screencast = [ "<Alt>Print" ];
+      screenreader = [ ];
+      screenshot = [ "<Shift>Print" ];
+      screenshot-clip = [ ];
+      screensaver = [ "<Super>l" ];
+      terminal = [ "<Super>t" ];
+      volume-down = [ "AudioLowerVolume" ];
+      volume-up = [ "AudioRaiseVolume" ];
+      window-screenshot = [ "<Primary>Print" ];
+      window-screenshot-clip = [ ];
+      www = [ "<Super>grave" ];
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
@@ -136,7 +141,10 @@ in {
       edge-tiling = false;
       focus-change-on-pointer-rest = true;
       workspaces-only-on-primary = true;
-      experimental-features = ["scale-monitor-framebuffer" "xwayland-native-scaling"];
+      experimental-features = [
+        "scale-monitor-framebuffer"
+        "xwayland-native-scaling"
+      ];
     };
 
     "org/gnome/desktop/interface" = {

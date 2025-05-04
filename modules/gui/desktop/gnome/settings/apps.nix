@@ -3,15 +3,18 @@
   lib,
   ...
 }:
-with lib.hm.gvariant; let
+with lib.hm.gvariant;
+let
   inherit (builtins) head;
   fonts = sys.fonts.fontconfig.defaultFonts;
-in {
+in
+{
   dconf.settings = {
     # GTK+ Apps
     "org/gnome/desktop/calendar".show-weekdate = true;
     "ca/desrt/dconf-editor".show-warning = false;
-    "org/gnome/shell/world-clocks".locations = "[<(uint32 2, <('Coordinated Universal Time (UTC)', '@UTC', false, @a(dd) [], @a(dd) [])>)>]";
+    "org/gnome/shell/world-clocks".locations =
+      "[<(uint32 2, <('Coordinated Universal Time (UTC)', '@UTC', false, @a(dd) [], @a(dd) [])>)>]";
 
     "org/gnome/desktop/search-providers" = {
       sort-order = [
@@ -26,7 +29,11 @@ in {
       compose-as-html = true;
       formatting-toolbar-visible = false;
       migrated-config = true;
-      optional-plugins = ["email-templates" "sent-sound" "mail-merge"];
+      optional-plugins = [
+        "email-templates"
+        "sent-sound"
+        "mail-merge"
+      ];
       startup-notifications = true;
     };
 
@@ -46,7 +53,11 @@ in {
 
     "org/gtk/gtk4/settings/file-chooser".sort-directories-first = true;
     "org/gnome/nautilus/icon-view" = {
-      captions = ["size" "date_modified" "none"];
+      captions = [
+        "size"
+        "date_modified"
+        "none"
+      ];
       default-zoom-level = "medium";
     };
 
@@ -72,7 +83,7 @@ in {
       auto-hide-map = true;
       auto-save-timeout = 60;
       completion-n-rows = 7;
-      draw-spaces = ["tab"];
+      draw-spaces = [ "tab" ];
       highlight-current-line = true;
       highlight-matching-brackets = true;
       overscroll = 7;
@@ -165,7 +176,10 @@ in {
 
     "org/gnome/desktop/app-folders/folders/4bfbecbd-804e-4359-b1c2-00daef4c009e" = {
       name = "System";
-      apps = ["nvidia-settings.desktop" "rog-control-center.desktop"];
+      apps = [
+        "nvidia-settings.desktop"
+        "rog-control-center.desktop"
+      ];
     };
 
     "org/gnome/desktop/app-folders/folders/1c3e59e4-a571-4ada-af1d-ed1ced384cfb" = {

@@ -4,7 +4,8 @@
   files,
   theme,
   ...
-}: {
+}:
+{
   ## Panel Configuration
   user.homeConfig = {
     stylix.targets.waybar = {
@@ -13,7 +14,7 @@
       addCss = false;
     };
 
-    home.packages = [pkgs.wttrbar];
+    home.packages = [ pkgs.wttrbar ];
     programs.waybar = {
       enable = true;
       systemd.enable = true;
@@ -66,7 +67,10 @@
 
           "group/users" = {
             orientation = "horizontal";
-            modules = ["user" "custom/power"];
+            modules = [
+              "user"
+              "custom/power"
+            ];
             drawer.transition-left-to-right = true;
           };
 
@@ -90,7 +94,10 @@
             format = "<small>{name}</small>{icon}";
             on-scroll-up = "hyprctl dispatch workspace m+1";
             on-scroll-down = "hyprctl dispatch workspace m-1";
-            ignore-workspaces = ["special:scratch_.*" "special:minimized"];
+            ignore-workspaces = [
+              "special:scratch_.*"
+              "special:minimized"
+            ];
             format-icons = {
               default = "";
               special = " ";
@@ -143,7 +150,11 @@
 
           "group/menu" = {
             orientation = "horizontal";
-            modules = ["custom/hide" "keyboard-state" "tray"];
+            modules = [
+              "custom/hide"
+              "keyboard-state"
+              "tray"
+            ];
             drawer = {
               click-to-reveal = true;
               transition-left-to-right = true;
@@ -179,24 +190,35 @@
             on-click = "overskride";
           };
 
-          network = let
-            tooltip = "Strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>";
-          in {
-            format = "{ifname}";
-            format-disconnected = "󰌙";
-            format-wifi = "{icon}";
-            format-ethernet = "󰌘";
-            format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
-            format-linked = "󰈁 {ifname}";
-            tooltip-format-wifi = "Network: <big><b>{essid}</b></big>\n${tooltip}";
-            tooltip-format-ethernet = "Network: <big><b>Wired</b></big>\n${tooltip}";
-            tooltip-format-disconnected = "󰌙 Disconnected";
-            on-click = "sh -c 'env XDG_CURRENT_DESKTOP=GNOME gnome-control-center wifi'";
-          };
+          network =
+            let
+              tooltip = "Strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>";
+            in
+            {
+              format = "{ifname}";
+              format-disconnected = "󰌙";
+              format-wifi = "{icon}";
+              format-ethernet = "󰌘";
+              format-icons = [
+                "󰤯"
+                "󰤟"
+                "󰤢"
+                "󰤥"
+                "󰤨"
+              ];
+              format-linked = "󰈁 {ifname}";
+              tooltip-format-wifi = "Network: <big><b>{essid}</b></big>\n${tooltip}";
+              tooltip-format-ethernet = "Network: <big><b>Wired</b></big>\n${tooltip}";
+              tooltip-format-disconnected = "󰌙 Disconnected";
+              on-click = "sh -c 'env XDG_CURRENT_DESKTOP=GNOME gnome-control-center wifi'";
+            };
 
           "group/media" = {
             orientation = "horizontal";
-            modules = ["wireplumber" "mpris"];
+            modules = [
+              "wireplumber"
+              "mpris"
+            ];
             drawer = {
               transition-left-to-right = false;
               transition-duration = 1000;
@@ -209,14 +231,22 @@
             reverse-scrolling = 1;
             format = "{icon}";
             tooltip-format = "Volume: {volume}%\nDevice: {node_name}";
-            format-icons = ["󰕿" "󰖀" "󰕾"];
+            format-icons = [
+              "󰕿"
+              "󰖀"
+              "󰕾"
+            ];
             format-muted = "";
             on-click = "pavucontrol";
           };
 
           mpris = {
             dynamic-len = 20;
-            dynamic-order = ["title" "artist" "length"];
+            dynamic-order = [
+              "title"
+              "artist"
+              "length"
+            ];
             dynamic-separator = " - ";
             format = " {player}";
             format-paused = "󰏤 <i>{player}</i>";
@@ -229,14 +259,27 @@
 
           "group/display" = {
             orientation = "horizontal";
-            modules = ["backlight" "custom/temperature"];
+            modules = [
+              "backlight"
+              "custom/temperature"
+            ];
             drawer.transition-left-to-right = false;
           };
 
           backlight = {
             format = "{icon}";
             tooltip-format = "Backlight: {percent}%";
-            format-icons = ["" "" "" "" "" "" "" "" ""];
+            format-icons = [
+              ""
+              ""
+              ""
+              ""
+              ""
+              ""
+              ""
+              ""
+              ""
+            ];
             on-scroll-up = "hyprutils brightness down";
             on-scroll-down = "hyprutils brightness up";
             on-click = "nwg-displays";
@@ -252,7 +295,10 @@
 
           "group/power" = {
             orientation = "horizontal";
-            modules = ["battery" "power-profiles-daemon"];
+            modules = [
+              "battery"
+              "power-profiles-daemon"
+            ];
             drawer.transition-left-to-right = false;
           };
 
@@ -263,7 +309,13 @@
             format = "{icon}";
             tooltip-format = "Battery: {capacity}%";
             format-charging = "";
-            format-icons = ["" "" "" "" ""];
+            format-icons = [
+              ""
+              ""
+              ""
+              ""
+              ""
+            ];
             on-click-right = "hyprutils toggle fancy";
             states = {
               good = 80;
@@ -324,7 +376,10 @@
 
           "group/notify" = {
             orientation = "horizontal";
-            modules = ["custom/dunst" "idle_inhibitor"];
+            modules = [
+              "custom/dunst"
+              "idle_inhibitor"
+            ];
             drawer.transition-left-to-right = false;
           };
 
@@ -333,17 +388,24 @@
             on-click = "dunstctl history-pop";
             on-click-right = "dunstctl set-paused toggle";
             restart-interval = 1;
-            exec = with pkgs; "${writeShellApplication {
-              name = "notify";
-              runtimeInputs = [coreutils dunst];
-              text = ''
-                COUNT=$(dunstctl count waiting)
-                ENABLED=""
-                DISABLED=""
-                if [ "$COUNT" != 0 ]; then DISABLED=" $COUNT"; fi
-                if dunstctl is-paused | grep -q "false" ; then echo "$ENABLED"; else echo "$DISABLED"; fi
-              '';
-            }}/bin/notify";
+            exec =
+              with pkgs;
+              "${
+                writeShellApplication {
+                  name = "notify";
+                  runtimeInputs = [
+                    coreutils
+                    dunst
+                  ];
+                  text = ''
+                    COUNT=$(dunstctl count waiting)
+                    ENABLED=""
+                    DISABLED=""
+                    if [ "$COUNT" != 0 ]; then DISABLED=" $COUNT"; fi
+                    if dunstctl is-paused | grep -q "false" ; then echo "$ENABLED"; else echo "$DISABLED"; fi
+                  '';
+                }
+              }/bin/notify";
           };
 
           idle_inhibitor = {

@@ -813,11 +813,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1745884815,
-        "narHash": "sha256-tqkJdi2K4UtBrxh/CN2Og+rfgW56m9UlnWYrG76UnnE=",
+        "lastModified": 1746122011,
+        "narHash": "sha256-jIZD8k6pbsr5eer0BwFCTuUyso11cnQldYwLF9oMp3w=",
         "owner": "H3rmt",
         "repo": "hyprswitch",
-        "rev": "058525f9dbb84319010f677f45f34fa007fd61b8",
+        "rev": "02bd2c400616cb96cd21ccc6b2f530143fcb511b",
         "type": "github"
       },
       "original": {

@@ -6,11 +6,13 @@
   files,
   ...
 }:
-with files; let
+with files;
+let
   inherit (config.gui) desktop;
   exists = app: builtins.elem app config.apps.list;
   inherit (lib) mkIf mkMerge;
-in {
+in
+{
   ## Pantheon Desktop Configuration ##
   config = mkIf (desktop == "pantheon") (mkMerge [
     ## Environment Setup
@@ -44,7 +46,7 @@ in {
       };
 
       # Essential Utilities
-      apps.list = ["firefox"];
+      apps.list = [ "firefox" ];
       services.pantheon.apps.enable = true;
 
       # Panel Indicators
@@ -55,7 +57,7 @@ in {
 
       environment = {
         # Panel Indicator Compatibility
-        pathsToLink = ["/libexec"];
+        pathsToLink = [ "/libexec" ];
 
         # Apps
         systemPackages = with pkgs.pantheon // pkgs; [
@@ -86,24 +88,24 @@ in {
     ## User Configuration
     {
       user.homeConfig = {
-        imports = [pantheon.dconf];
+        imports = [ ./settings.nix ];
         stylix.targets.gnome.enable = false;
 
         # Default Applications
         xdg.mimeApps.defaultApplications = util.build.mime {
-          audio = ["io.elementary.files.desktop"];
-          calendar = ["io.elementary.calendar.desktop"];
-          directory = ["io.elementary.files.desktop"];
-          image = ["io.elementary.photos.desktop"];
-          pdf = ["org.gnome.Evince.desktop"];
-          text = ["io.elementary.code.desktop"];
-          video = ["io.elementary.videos.desktop"];
+          audio = [ "io.elementary.files.desktop" ];
+          calendar = [ "io.elementary.calendar.desktop" ];
+          directory = [ "io.elementary.files.desktop" ];
+          image = [ "io.elementary.photos.desktop" ];
+          pdf = [ "org.gnome.Evince.desktop" ];
+          text = [ "io.elementary.code.desktop" ];
+          video = [ "io.elementary.videos.desktop" ];
         };
 
         # App Indicator Autostart
         systemd.user.services.indicator-application-gtk3 = {
           Unit.Description = "Application Indicator";
-          Install.wantedBy = ["graphical-session.target"];
+          Install.wantedBy = [ "graphical-session.target" ];
           Service = {
             Type = "Simple";
             ExecStart = "${pkgs.indicator-application-gtk3}/libexec/indicator-application/indicator-application-service";
@@ -111,7 +113,7 @@ in {
         };
 
         home = {
-          file = with pantheon; {
+          file = {
             # Plank Dock
             ".config/autostart/Dock.desktop".text = plank.autostart;
             ".local/share/plank/themes/default/dock.theme".text = plank.theme;
@@ -122,8 +124,10 @@ in {
             };
 
             # Firefox Elementary Theme
-            ".mozilla/firefox/default/chrome/userChrome.css".source = "${pkgs.custom.firefox-elementary}/Windows/userChrome.css";
-            ".mozilla/firefox/default/chrome/userContent.css".source = "${pkgs.custom.firefox-elementary}/userContent.css";
+            ".mozilla/firefox/default/chrome/userChrome.css".source =
+              "${pkgs.custom.firefox-elementary}/Windows/userChrome.css";
+            ".mozilla/firefox/default/chrome/userContent.css".source =
+              "${pkgs.custom.firefox-elementary}/userContent.css";
             ".mozilla/firefox/default/chrome/base.css".source = "${pkgs.custom.firefox-elementary}/base.css";
 
             # Panel Indicators
@@ -158,7 +162,7 @@ in {
     {
       # Code Editor
       user.homeConfig.programs.vscode.profiles.default = mkIf (exists "vscode") {
-        extensions = [pkgs.code.vscode-marketplace.sixpounder.elementary-theme];
+        extensions = [ pkgs.code.vscode-marketplace.sixpounder.elementary-theme ];
         userSettings = {
           "workbench.colorTheme" = "Elementary Dark";
           "terminal.external.linuxExec" = "io.elementary.terminal";
@@ -166,8 +170,8 @@ in {
       };
 
       # Flatpak Apps
-      warnings = ["Flatpak app support is enabled by default while using Pantheon Desktop"];
-      apps.list = ["flatpak"];
+      warnings = [ "Flatpak app support is enabled by default while using Pantheon Desktop" ];
+      apps.list = [ "flatpak" ];
       services.flatpak = {
         remotes = [
           {

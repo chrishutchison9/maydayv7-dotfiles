@@ -3,10 +3,12 @@
   inputs,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) getExe' mkForce;
-in {
-  imports = [inputs.gaming.nixosModules.pipewireLowLatency];
+in
+{
+  imports = [ inputs.gaming.nixosModules.pipewireLowLatency ];
 
   ## Device Firmware ##
   config = {
@@ -32,37 +34,45 @@ in {
 
     security.rtkit.enable = true;
     hardware.alsa.enablePersistence = true;
-    services.actkbd = let
-      step = "1%";
-      mixer = getExe' pkgs.alsa-utils "amixer";
-    in {
-      enable = true;
-      bindings = [
-        {
-          keys = [113]; # "Mute" Key
-          events = ["key"];
-          command = "${mixer} -q set Master toggle";
-        }
-        {
-          keys = [114]; # "Lower Volume" Key
-          events = ["key" "rep"];
-          command = "${mixer} -q set Master ${step}- unmute";
-        }
-        {
-          keys = [115]; # "Raise Volume" Key
-          events = ["key" "rep"];
-          command = "${mixer} -q set Master ${step}+ unmute";
-        }
-        {
-          keys = [190]; # "Mic Mute" Key
-          events = ["key"];
-          command = "${mixer} -q set Capture toggle";
-        }
-      ];
-    };
+    services.actkbd =
+      let
+        step = "1%";
+        mixer = getExe' pkgs.alsa-utils "amixer";
+      in
+      {
+        enable = true;
+        bindings = [
+          {
+            keys = [ 113 ]; # "Mute" Key
+            events = [ "key" ];
+            command = "${mixer} -q set Master toggle";
+          }
+          {
+            keys = [ 114 ]; # "Lower Volume" Key
+            events = [
+              "key"
+              "rep"
+            ];
+            command = "${mixer} -q set Master ${step}- unmute";
+          }
+          {
+            keys = [ 115 ]; # "Raise Volume" Key
+            events = [
+              "key"
+              "rep"
+            ];
+            command = "${mixer} -q set Master ${step}+ unmute";
+          }
+          {
+            keys = [ 190 ]; # "Mic Mute" Key
+            events = [ "key" ];
+            command = "${mixer} -q set Capture toggle";
+          }
+        ];
+      };
 
     # Network Settings
-    user.groups = ["networkmanager"];
+    user.groups = [ "networkmanager" ];
     environment.persist.directories = [
       "/var/lib/alsa"
       "/etc/NetworkManager/system-connections"

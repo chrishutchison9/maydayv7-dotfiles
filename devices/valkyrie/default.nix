@@ -7,30 +7,42 @@
   locale = "IN";
 
   kernel = "xanmod_stable";
-  kernelModules = ["nvme" "thunderbolt"];
+  kernelModules = [
+    "nvme"
+    "thunderbolt"
+  ];
 
-  imports = [./drivers.nix];
+  imports = [ ./drivers.nix ];
   hardware = {
     boot = "secure";
     filesystem = "advanced";
-    support = ["laptop" "mobile" "printer" "virtualisation"];
-    modules = ["asus-zephyrus-ga402x-nvidia"];
+    modules = [ "asus-zephyrus-ga402x-nvidia" ];
     gpu = "nvidia";
     cpu = {
       cores = 8;
       mode = "performance";
     };
 
+    support = [
+      "laptop"
+      "mobile"
+      "printer"
+      "virtualisation"
+    ];
+
     vm = {
-      vfio = "setup";
-      passthrough = ["10de:28e0" "10de:22be"];
       android.enable = false;
+      vfio = "setup";
+      passthrough = [
+        "10de:28e0"
+        "10de:22be"
+      ];
     };
   };
 
   apps = {
     wine.utilities = true;
-    games = ["osu"];
+    games = [ "osu" ];
     list = [
       "discord"
       "firefox"
@@ -66,9 +78,13 @@
   user = {
     name = "v7";
     description = "V 7";
-    groups = ["wheel" "keys" "systemd-journal"];
     uid = 1000;
     shell = "zsh";
-    shells = ["bash"];
+    shells = [ "bash" ];
+    groups = [
+      "wheel"
+      "keys"
+      "systemd-journal"
+    ];
   };
 }

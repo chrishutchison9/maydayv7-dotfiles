@@ -1,8 +1,6 @@
 {
-  "better-comments.highlightPlainText": true,
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorStyle": "line-thin",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "editor.smoothScrolling": true,
   "editor.suggest.preview": true,
@@ -15,19 +13,7 @@
   "extensions.autoUpdate": false,
   "extensions.ignoreRecommendations": true,
   "files.autoSave": "onWindowChange",
-  "files.exclude": {
-    "**/.classpath": true,
-    "**/.factorypath": true,
-    "**/.project": true,
-    "**/.settings": true
-  },
   "files.trimFinalNewlines": true,
-  "gitlens.advanced.commitOrdering": "date",
-  "gitlens.advanced.fileHistoryFollowsRenames": true,
-  "nix.enableLanguageServer": true,
-  "nix.formatterPath": "alejandra",
-  "nix.serverPath": "nil",
-  "scm.repositories.visible": 7,
   "search.showLineNumbers": true,
   "search.smartCase": true,
   "search.useGlobalIgnoreFiles": true,
@@ -35,6 +21,25 @@
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.enableVisualBell": true,
   "terminal.integrated.tabs.separator": " / ",
+  "update.mode": "none",
+  "window.autoDetectColorScheme": false,
+  "window.closeWhenEmpty": true,
+  "window.commandCenter": true,
+  "window.dialogStyle": "custom",
+  "window.doubleClickIconToClose": true,
+  "window.menuBarVisibility": "toggle",
+  "window.titleSeparator": " / ",
+  "workbench.commandPalette.preserveInput": true,
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.list.horizontalScrolling": true,
+  "workbench.list.smoothScrolling": true,
+  "workbench.startupEditor": "readme",
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "better-comments.highlightPlainText": true,
+  "gitlens.advanced.commitOrdering": "date",
+  "gitlens.advanced.fileHistoryFollowsRenames": true,
+  "scm.repositories.visible": 7,
   "todohighlight.isCaseSensitive": true,
   "todohighlight.keywords": [
     {
@@ -63,18 +68,22 @@
       "backgroundColor": "#3498db"
     }
   ],
-  "update.mode": "none",
-  "window.autoDetectColorScheme": false,
-  "window.closeWhenEmpty": true,
-  "window.commandCenter": true,
-  "window.dialogStyle": "custom",
-  "window.doubleClickIconToClose": true,
-  "window.menuBarVisibility": "toggle",
-  "window.titleSeparator": " / ",
-  "window.zoomLevel": 1,
-  "workbench.commandPalette.preserveInput": true,
-  "workbench.editor.highlightModifiedTabs": true,
-  "workbench.list.horizontalScrolling": true,
-  "workbench.list.smoothScrolling": true,
-  "workbench.startupEditor": "readme"
+  "nix.enableLanguageServer": true,
+  "nix.serverPath": "nil",
+  "nix.serverSettings": {
+    "nil": {
+      "formatting": {
+        "command": ["nixfmt"]
+      }
+    }
+  },
+  "[nix]": {
+    "editor.defaultFormatter": "jnoortheen.nix-ide"
+  },
+  "[cpp]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  }
 }

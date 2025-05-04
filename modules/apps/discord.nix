@@ -5,15 +5,17 @@
   files,
   ...
 }:
-with files.vesktop; let
+with files.vesktop;
+let
   enable = builtins.elem "discord" config.apps.list;
-in {
+in
+{
   ## Discord Configuration ##
   config = lib.mkIf enable {
-    environment.systemPackages = [pkgs.vesktop];
+    environment.systemPackages = [ pkgs.vesktop ];
 
     user = {
-      persist.directories = [".config/vesktop"];
+      persist.directories = [ ".config/vesktop" ];
       homeConfig.home.file = {
         ".config/vesktop/settings.json".text = prefs;
         ".config/vesktop/settings/settings.json".text = settings;

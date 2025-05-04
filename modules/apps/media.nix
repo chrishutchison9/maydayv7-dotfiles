@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   enable = builtins.elem "media" config.apps.list;
-in {
+in
+{
   ## Media Configuration ##
   config = lib.mkIf enable {
     environment.systemPackages = with pkgs; [
@@ -16,8 +18,8 @@ in {
 
     user = {
       persist = {
-        files = [".config/rncbc.org/qpwgraph"];
-        directories = [".config/pitivi"];
+        files = [ ".config/rncbc.org/qpwgraph" ];
+        directories = [ ".config/pitivi" ];
       };
 
       # Audio Effects

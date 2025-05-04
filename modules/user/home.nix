@@ -3,7 +3,8 @@
   lib,
   files,
   ...
-}: {
+}:
+{
   ## User Home Configuration ##
   config = {
     # Environment Settings
@@ -19,9 +20,12 @@
         ../../users
 
         # Mutable Configuration Files
-        ({config, ...}: (import (builtins.fetchurl {
-          inherit (files.mutability.module) url sha256;
-        }) {inherit config lib;}))
+        (
+          { config, ... }:
+          (import (builtins.fetchurl {
+            inherit (files.mutability.module) url sha256;
+          }) { inherit config lib; })
+        )
       ];
 
       # SystemD User Services

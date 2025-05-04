@@ -3,7 +3,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   ## Plugin Settings
   wayland.windowManager.hyprland = {
     plugins = with pkgs.hyprworld; [
@@ -38,17 +39,13 @@
             effects = false;
             ipc = false;
           };
-
-          mode =
-            if sys.gui.fancy
-            then "tilt"
-            else "none";
+          mode = if sys.gui.fancy then "tilt" else "none";
           tilt.function = "negative_quadratic";
         };
       };
 
       # Overview
-      bind = ["$mod, grave, hyprexpo:expo, toggle"];
+      bind = [ "$mod, grave, hyprexpo:expo, toggle" ];
     };
   };
 }

@@ -4,8 +4,12 @@
   pkgs,
   files,
   ...
-}: {
-  imports = [./hosting.nix ./runner.nix];
+}:
+{
+  imports = [
+    ./hosting.nix
+    ./runner.nix
+  ];
 
   ## 'git' Configuration ##
   config = lib.mkIf (builtins.elem "git" config.apps.list) {
@@ -21,9 +25,9 @@
 
     # Settings
     user = {
-      persist.directories = [".config/gh"];
+      persist.directories = [ ".config/gh" ];
       homeConfig = {
-        imports = [./user.nix];
+        imports = [ ./user.nix ];
 
         # Hooks
         home.file.".git-hooks".source = files.git.hooks;
@@ -75,7 +79,15 @@
             };
 
             # Globally Ignored Files
-            ignores = ["*~*" "*.bak" ".direnv" ".vscode" "result" "result-*" "tags.*"];
+            ignores = [
+              "*~*"
+              "*.bak"
+              ".direnv"
+              ".vscode"
+              "result"
+              "result-*"
+              "tags.*"
+            ];
 
             # Additional Parameters
             extraConfig = {

@@ -5,18 +5,26 @@
   pkgs,
   files,
   ...
-} @ args:
-with files; let
-  inherit (config.gui) desktop display fancy icons wallpaper;
-  exists = app: builtins.elem app config.apps.list;
+}@args:
+with files;
+let
   inherit (lib) hasPrefix mkIf mkMerge;
+  exists = app: builtins.elem app config.apps.list;
+  inherit (config.gui)
+    desktop
+    display
+    fancy
+    icons
+    wallpaper
+    ;
 
   # GTK+ Theme
   theme = {
     name = "Arc-Dark";
     package = pkgs.arc-theme;
   };
-in {
+in
+{
   ## XFCE Configuration ##
   config = mkIf (hasPrefix "xfce" desktop) (mkMerge [
     {
@@ -72,11 +80,11 @@ in {
       };
 
       # Essential Utilities
-      xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+      xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
       services = {
         blueman.enable = true;
         touchegg.enable = true;
-        xserver.displayManager.lightdm.greeters.gtk = {inherit theme;};
+        xserver.displayManager.lightdm.greeters.gtk = { inherit theme; };
       };
 
       programs = {
@@ -115,7 +123,7 @@ in {
         xfce4-windowck-plugin
         (writeShellApplication {
           name = "xfce4-panel-toggle";
-          runtimeInputs = [xfce.xfconf];
+          runtimeInputs = [ xfce.xfconf ];
           text = ''
             for num in {0,1}
             do
@@ -142,19 +150,21 @@ in {
       user.homeConfig = {
         # GTK+ Theming
         stylix.targets.xfce.enable = false;
-        gtk = {gtk3.extraCss = xfce.css;};
+        gtk = {
+          gtk3.extraCss = xfce.css;
+        };
 
         # Default Applications
         xdg.mimeApps.defaultApplications = util.build.mime {
-          archive = ["org.gnome.FileRoller.desktop"];
-          audio = ["org.xfce.Parole.desktop"];
-          calendar = ["org.xfce.orage.desktop"];
-          directory = ["thunar.desktop"];
-          image = ["org.xfce.ristretto.desktop"];
-          magnet = ["transmission-gtk.desktop"];
-          pdf = ["atril.desktop"];
-          text = ["org.xfce.mousepad.desktop"];
-          video = ["org.xfce.Parole.desktop"];
+          archive = [ "org.gnome.FileRoller.desktop" ];
+          audio = [ "org.xfce.Parole.desktop" ];
+          calendar = [ "org.xfce.orage.desktop" ];
+          directory = [ "thunar.desktop" ];
+          image = [ "org.xfce.ristretto.desktop" ];
+          magnet = [ "transmission-gtk.desktop" ];
+          pdf = [ "atril.desktop" ];
+          text = [ "org.xfce.mousepad.desktop" ];
+          video = [ "org.xfce.Parole.desktop" ];
         };
 
         home.file =
@@ -167,10 +177,10 @@ in {
             directory = xfce.panel;
             path = ".config/xfce4/panel";
             extension = ".rc";
-            apply = text: {inherit text;};
+            apply = text: { inherit text; };
             replace = {
-              placeholders = ["@font"];
-              values = [config.stylix.fonts.sansSerif.name];
+              placeholders = [ "@font" ];
+              values = [ config.stylix.fonts.sansSerif.name ];
             };
           }
           // util.map.folder {
@@ -202,11 +212,7 @@ in {
                 config.stylix.cursor.name
                 config.stylix.fonts.sansSerif.name
                 config.stylix.fonts.monospace.name
-                (
-                  if fancy
-                  then "false"
-                  else "true"
-                )
+                (if fancy then "false" else "true")
               ];
             };
           };
@@ -218,17 +224,19 @@ in {
       user.homeConfig = {
         home.file = {
           # Discord Nord Theme
-          ".config/vesktop/settings/quickCss.css" =
-            mkIf (exists "discord") {text = ''@import url(https://rawcdn.githack.com/orblazer/discord-nordic/f3f6833c70d0b27b1cde986233b7009d61917812/nordic.theme.css);'';};
+          ".config/vesktop/settings/quickCss.css" = mkIf (exists "discord") {
+            text = ''@import url(https://rawcdn.githack.com/orblazer/discord-nordic/f3f6833c70d0b27b1cde986233b7009d61917812/nordic.theme.css);'';
+          };
 
           # Logseq Nord Theme
-          ".logseq/config.edn" =
-            mkIf (exists "notes") {text = ''{:custom-css-url "@import url('https://cdn.jsdelivr.net/gh/bad3r/logseq-nord-theme@latest/custom.min.css');"}'';};
+          ".logseq/config.edn" = mkIf (exists "notes") {
+            text = ''{:custom-css-url "@import url('https://cdn.jsdelivr.net/gh/bad3r/logseq-nord-theme@latest/custom.min.css');"}'';
+          };
         };
 
         # Code Editor
         programs.vscode.profiles.default = mkIf (exists "vscode") {
-          extensions = [pkgs.code.vscode-marketplace.alvesvaren.arc-dark];
+          extensions = [ pkgs.code.vscode-marketplace.alvesvaren.arc-dark ];
           userSettings = {
             "workbench.colorTheme" = "Arc Dark Theme";
             "terminal.external.linuxExec" = "xfce4-terminal";

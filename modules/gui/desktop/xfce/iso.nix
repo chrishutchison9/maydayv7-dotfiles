@@ -2,9 +2,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkForce;
-in {
+in
+{
   # Excluded Packages
   environment.xfce.excludePackages = with (pkgs.xfce // pkgs); [
     tango-icon-theme

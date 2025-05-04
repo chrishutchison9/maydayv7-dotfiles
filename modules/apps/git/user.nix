@@ -3,10 +3,12 @@
   options,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.credentials;
   opt = options.credentials.mail.description;
-in {
+in
+{
   ## User Credentials ##
   # Warnings
   assertions = [

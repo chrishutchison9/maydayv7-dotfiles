@@ -7,19 +7,27 @@
   locale = "IN";
 
   kernel = "xanmod";
-  kernelModules = ["nvme" "thunderbolt"];
+  kernelModules = [
+    "nvme"
+    "thunderbolt"
+  ];
 
-  imports = [{services.fwupd.enable = true;}];
+  imports = [ { services.fwupd.enable = true; } ];
   hardware = {
     boot = "secure";
     filesystem = "advanced";
-    support = ["laptop" "mobile" "printer" "virtualisation"];
-    modules = ["dell-inspiron-5509"];
-    vm.android.enable = false;
+    modules = [ "dell-inspiron-5509" ];
     cpu = {
       cores = 8;
       mode = "performance";
     };
+
+    support = [
+      "laptop"
+      "mobile"
+      "printer"
+      "virtualisation"
+    ];
   };
 
   apps = {
@@ -55,9 +63,12 @@
   user = {
     name = "v7";
     description = "V 7";
-    groups = ["wheel" "keys"];
     uid = 1000;
     shell = "zsh";
-    shells = ["bash"];
+    shells = [ "bash" ];
+    groups = [
+      "wheel"
+      "keys"
+    ];
   };
 }

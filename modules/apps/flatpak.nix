@@ -3,10 +3,12 @@
   lib,
   inputs,
   ...
-}: let
+}:
+let
   enable = builtins.elem "flatpak" config.apps.list;
-in {
-  imports = [inputs.flatpak.nixosModules.nix-flatpak];
+in
+{
+  imports = [ inputs.flatpak.nixosModules.nix-flatpak ];
 
   ## Flatpak Configuration ##
   config = lib.mkIf enable {
@@ -18,8 +20,12 @@ in {
     ];
 
     xdg.portal.enable = true;
-    environment.persist.directories = ["/var/lib/flatpak"];
-    user.persist.directories = [".cache/flatpak" ".local/share/flatpak" ".var/app"];
+    environment.persist.directories = [ "/var/lib/flatpak" ];
+    user.persist.directories = [
+      ".cache/flatpak"
+      ".local/share/flatpak"
+      ".var/app"
+    ];
 
     services.flatpak = {
       enable = true;
@@ -41,19 +47,23 @@ in {
       # Use `flatpak remote-info --log` to find commit revisions
       packages = [
         /*
-        {
-          appId = "";
-          origin = "";
-          commit = "";
-        }
+          {
+            appId = "";
+            origin = "";
+            commit = "";
+          }
         */
       ];
 
       # Platform Integration
       overrides.global = {
         Context = {
-          sockets = ["wayland" "!x11" "fallback-x11"];
-          filesystems = ["~/.config/dconf:ro"];
+          filesystems = [ "~/.config/dconf:ro" ];
+          sockets = [
+            "wayland"
+            "!x11"
+            "fallback-x11"
+          ];
         };
 
         Environment = {

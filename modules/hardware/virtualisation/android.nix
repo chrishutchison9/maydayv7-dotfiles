@@ -4,9 +4,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf optional;
-in {
+in
+{
   options.hardware.vm.android.enable = mkEnableOption "Enable Android Virtualisation";
 
   ## Android Virtualisation ##
@@ -28,7 +30,7 @@ in {
     '';
 
     virtualisation.waydroid.enable = true;
-    environment.systemPackages = [pkgs.wl-clipboard];
+    environment.systemPackages = [ pkgs.wl-clipboard ];
 
     #!# Run 'waydroid init -s GAPPS -f' to install system image
 
@@ -39,8 +41,8 @@ in {
     };
 
     user = {
-      groups = ["android"];
-      persist.directories = [".local/share/waydroid"];
+      groups = [ "android" ];
+      persist.directories = [ ".local/share/waydroid" ];
     };
 
     environment.persist.directories = [
