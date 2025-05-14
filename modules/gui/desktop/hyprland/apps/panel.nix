@@ -89,7 +89,7 @@
           };
 
           "hyprland/workspaces" = {
-            all-outputs = true;
+            all-outputs = false;
             show-special = true;
             format = "<small>{name}</small>{icon}";
             on-scroll-up = "hyprctl dispatch workspace m+1";

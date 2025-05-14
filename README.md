@@ -511,7 +511,7 @@ _Thanks a lot! ;)_
 ### v25.5
 
 - Remove package `channels`
-- Update Hyprland to v0.48.0
+- Update Hyprland to v0.49
   - Use `hyprshell` to switch between windows
   - Use `pcmanfm-qt` to render desktop icons
   - Use animations from [end4](https://github.com/end-4/dots-hyprland)

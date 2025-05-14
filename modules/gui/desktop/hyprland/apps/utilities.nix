@@ -19,7 +19,6 @@ in
     gnome-clocks
     gnome-disk-utility
     hyprpicker
-    hyprworld.hyprshell
     nwg-displays
     nwg-drawer
     overskride
@@ -80,11 +79,7 @@ in
   ];
 
   user = {
-    persist.directories = [
-      ".config/nwg-displays"
-      ".local/share/hyprshell"
-    ];
-
+    persist.directories = [ ".config/nwg-displays" ];
     homeConfig = {
       services = {
         # Wallpaper Daemon
@@ -129,19 +124,14 @@ in
           target = [ "graphical-session.target" ];
           run = about: command: {
             Install.WantedBy = target;
+            Service.ExecStart = command;
             Unit = {
               Description = about;
               After = target;
             };
-            Service = {
-              Restart = "always";
-              RestartSec = 1;
-              ExecStart = command;
-            };
           };
         in
         {
-          hyprshell = run "Launcher" "${getExe pkgs.hyprworld.hyprshell} run";
           waycorner = run "Hot Corners" (getExe pkgs.waycorner);
           wlclock =
             with colors;
@@ -158,39 +148,29 @@ in
         terminal = false;
       };
 
-      home.file =
-        with files.hyprland;
-        let
-          build =
-            file:
-            util.build.theme {
-              inherit colors file;
-              inherit (config.stylix) fonts;
-            };
-        in
-        {
-          # Application Drawer
-          ".config/nwg-drawer/drawer.css".text = drawer;
+      home.file = with files.hyprland; {
+        # Application Drawer
+        ".config/nwg-drawer/drawer.css".text = drawer;
 
-          # Pyprland
-          ".config/hypr/pyprland.toml".text = pypr;
+        # Pyprland
+        ".config/hypr/pyprland.toml".text = pypr;
 
-          # Keybinds Viewer
-          ".config/kebihelp.json".text = build kebihelp;
+        # Hot Corners
+        ".config/waycorner/config.toml".text = waycorner;
 
-          # Hot Corners
-          ".config/waycorner/config.toml".text = waycorner;
-
-          # Launcher
-          ".config/hyprshell/config.ron".text = hyprshell.config;
-          ".config/hyprshell/styles.css".text = build hyprshell.style;
-
-          # Shaders
-          ".config/hypr/shaders" = {
-            source = files.proprietary.shaders.path;
-            recursive = true;
-          };
+        # Keybinds Viewer
+        ".config/kebihelp.json".text = util.build.theme {
+          inherit colors;
+          inherit (config.stylix) fonts;
+          file = kebihelp;
         };
+
+        # Shaders
+        ".config/hypr/shaders" = {
+          source = files.proprietary.shaders.path;
+          recursive = true;
+        };
+      };
     };
   };
 }

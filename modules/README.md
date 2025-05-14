@@ -7,7 +7,7 @@ Configuration [Builder](./configuration.nix)
 - [`apps`](./apps): Module that configures various apps and/or environments -
 
   - `list`: List of enabled applications - `[ "discord" "firefox" "flatpak" "games" "git" "office" "spotify" "wine" ]`
-  - `games`: List of installed games - `[ "osu" ]`
+  - `games`: List of installed games - `[ "minecraft" "osu" ]`
   - `git` -
     - `hosting` -
       - `enable`: Enable Gitea Code Hosting - `true / false`

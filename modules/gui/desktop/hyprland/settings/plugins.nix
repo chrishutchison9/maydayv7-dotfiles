@@ -8,26 +8,16 @@
   ## Plugin Settings
   wayland.windowManager.hyprland = {
     plugins = with pkgs.hyprworld; [
-      hyprexpo
       hyprsplit
       hypr-dynamic-cursors
+      Hyprspace
+      Hypr-DarkWindow
     ];
 
     settings = {
       plugin = {
         # Workspaces per Monitor
         hyprsplit.num_workspaces = 9;
-
-        # Workspace Overview
-        hyprexpo = {
-          columns = 3;
-          workspace_method = "first 1";
-          enable_gesture = true;
-          gesture_positive = false;
-          gesture_fingers = 4;
-          bg_col = "rgb(${sys.lib.stylix.colors.base00})";
-          gap_size = config.wayland.windowManager.hyprland.settings.general.gaps_in;
-        };
 
         # Cursor Effects
         dynamic-cursors = {
@@ -42,10 +32,39 @@
           mode = if sys.gui.fancy then "tilt" else "none";
           tilt.function = "negative_quadratic";
         };
+
+        # Workspace Overview
+        overview =
+          with sys.lib.stylix.colors;
+          let
+            gaps = builtins.toString config.wayland.windowManager.hyprland.settings.general.gaps_in;
+          in
+          {
+            autoDrag = true;
+            dragAlpha = 0.4;
+            exitOnClick = true;
+            centerAligned = true;
+            hideTopLayers = true;
+            hideOverlayLayers = false;
+            showNewWorkspace = false;
+            showEmptyWorkspace = true;
+            overrideGaps = true;
+            gapsIn = gaps;
+            gapsOut = gaps;
+            panelBorderWidth = 0;
+            panelBorderColor = "rgb(${base0A})";
+            workspaceActiveBorder = "rgb(${base0D})";
+          };
       };
 
-      # Overview
-      bind = [ "$mod, grave, hyprexpo:expo, toggle" ];
+      bind = [
+        # Overview
+        "$mod, grave, overview:toggle"
+        "$mod SHIFT, grave, overview:toggle, all"
+
+        # Color Inversion
+        "$mod, I, invertactivewindow"
+      ];
     };
   };
 }

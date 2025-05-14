@@ -21,7 +21,6 @@
       cores = 8;
       mode = "performance";
     };
-
     support = [
       "laptop"
       "mobile"

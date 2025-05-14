@@ -139,17 +139,19 @@ in
           scrolling = true;
           gradients = true;
           height = 15;
-          font_size = 10;
           render_titles = true;
+          font_size = 10;
+          font_weight_active = "bold";
           keep_upper_gap = false;
           indicator_height = 0;
           gradient_rounding = 5;
           gradient_round_only_edges = false;
-          "col.active" = mkForce "rgb(${base03}) rgb(${base0D}) 90deg";
+          "col.active" = mkForce "rgba(${base0D}99)";
           "col.inactive" = mkForce "rgb(${base03})";
         };
       };
 
+      animations.workspace_wraparound = true;
       animation = {
         bezier = [
           "accelerate, 0.3, 0, 0.8, 0.15"

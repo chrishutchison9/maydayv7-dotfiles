@@ -202,9 +202,25 @@
       };
     };
 
+    hyprspace = {
+      url = "github:KZDKM/Hyprspace";
+      inputs = {
+        hyprland.follows = "hyprland";
+        systems.follows = "systems";
+      };
+    };
+
+    hyprdark = {
+      url = "github:micha4w/Hypr-DarkWindow";
+      inputs = {
+        hyprland.follows = "hyprland";
+        nix-filter.follows = "filters";
+      };
+    };
+
     # Launcher
     hyprshell = {
-      url = "github:H3rmt/hyprswitch?ref=hyprshell";
+      url = "github:H3rmt/hyprshell-test";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

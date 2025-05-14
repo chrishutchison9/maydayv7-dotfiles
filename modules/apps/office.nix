@@ -68,7 +68,7 @@ in
       hunspell
       hunspellDicts.en_US-large
       hyphen
-      ventoy-full
+      popsicle
     ];
 
     # Dictionaries

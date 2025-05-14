@@ -51,13 +51,24 @@ in
         "org/nemo/plugins".disabled-actions = [ "change-background.nemo_action" ];
         "org/nemo/icon-view".captions = [
           "size"
+          "type"
           "date_modified"
-          "none"
         ];
 
         "org/nemo/preferences" = {
           click-policy = "double";
+          date-format = "informal";
+          inherit-folder-viewer = true;
           quick-renames-with-pause-in-between = true;
+          show-advanced-permissions = true;
+          show-new-folder-icon-toolbar = false;
+          show-show-thumbnails-toolbar = true;
+          tooltips-in-icon-view = true;
+          tooltips-in-list-view = false;
+          tooltips-show-access-date = true;
+          tooltips-show-birth-date = true;
+          tooltips-show-file-type = true;
+          tooltips-show-mod-date = true;
         };
 
         "org/nemo/preferences/menu-config" = {

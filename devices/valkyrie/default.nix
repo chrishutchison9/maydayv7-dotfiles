@@ -22,7 +22,6 @@
       cores = 8;
       mode = "performance";
     };
-
     support = [
       "laptop"
       "mobile"
@@ -42,7 +41,6 @@
 
   apps = {
     wine.utilities = true;
-    games = [ "osu" ];
     list = [
       "discord"
       "firefox"
@@ -54,6 +52,10 @@
       "spotify"
       "vscode"
       "wine"
+    ];
+    games = [
+      "minecraft"
+      "osu"
     ];
   };
 

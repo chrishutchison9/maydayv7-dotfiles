@@ -92,12 +92,6 @@
 
           # Greeter Configuration
           greeter = readFile ./hyprland/greeter.conf;
-
-          # Launcher
-          hyprshell = {
-            config = readFile ./hyprland/hyprshell/config.ron;
-            style = readFile ./hyprland/hyprshell/style.css;
-          };
         }
         // map.files {
           directory = ./hyprland/theme;

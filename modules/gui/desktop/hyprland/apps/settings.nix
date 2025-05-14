@@ -9,6 +9,7 @@
 }:
 let
   inherit (builtins) map toString;
+  inherit (lib) flatten getExe;
   inherit (config.gui) cursors display;
   cursor = "${cursors.name}-Hyprcursor";
 in
@@ -92,7 +93,7 @@ in
 
           # Utilities
           "$mod, A, exec, nwg-drawer"
-          "$mod SHIFT, slash, exec, ${toggle "kebihelp"} show -a"
+          "$mod, slash, exec, ${toggle "kebihelp"} show -a"
           "$mod SHIFT, C, exec, ${runOnce "hyprpicker"} -arf hex"
           "$mod SHIFT, B, exec, ${runOnce "overskride"}"
           "$mod, D, exec, ${runOnce "nwg-displays"}"
@@ -110,8 +111,16 @@ in
           "$mod, backslash, exec, pypr toggle emoji"
         ];
 
+      ## Permissions
+      permission = [
+        "${config.programs.hyprland.portalPackage}/libexec/.xdg-desktop-portal-hyprland-wrapped, screencopy, allow"
+        "${getExe pkgs.grim}, screencopy, allow"
+        "${getExe pkgs.wl-screenrec}, screencopy, allow"
+      ];
+
       ## Layer Rules
       layerrule = [
+        "noanim, ^(hyprpicker)$"
         "blur, ^(hyprshell_overview)$"
         "dimaround, ^(hyprshell_overview)$"
         "blur, ^(logout_dialog)$"
@@ -126,7 +135,7 @@ in
       ];
 
       ## Window Rules
-      windowrulev2 = lib.flatten (
+      windowrulev2 = flatten (
         [
           # Settings
           "stayfocused, class:^(gnome-control-center)$"
