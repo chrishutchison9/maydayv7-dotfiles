@@ -9,7 +9,6 @@ comments = true
 
 # Seen
 
-- 100 Kanojo <sup>#</sup> <sup>\*</sup>
 - 3D Kanojo
 - 86 <sup>#</sup> <sup>\*</sup>
 - 100 Kanojo <sup>#</sup> <sup>\*</sup>
@@ -78,7 +77,6 @@ comments = true
 - Masamune's Revenge <sup>#</sup>
 - Mashle: Magic and Muscles <sup>#</sup> <sup>\*</sup>
 - My Dress-Up Darling <sup>#</sup>
-- My Happy Marriage <sup>#</sup> <sup>\*</sup>
 - My Senpai is Annoying
 - Mushoku Tensei <sup>#</sup> <sup>\*</sup>
 - NieR:Automata Ver1.1a <sup>\*</sup>
@@ -125,6 +123,7 @@ comments = true
 - Uzaki-chan wa Asobitai! <sup>#</sup> <sup>\*</sup>
 - Violet Evergarden <sup>#</sup>
 - Vermeil in Gold <sup>\*</sup>
+- Watashi no Shiawase na Kekkon <sup>#</sup> <sup>\*</sup>
 - Weathering With You
 - When will Ayumu make his Move <sup>\*</sup>
 - Why Raeliana Ended Up at the Duke's Mansion

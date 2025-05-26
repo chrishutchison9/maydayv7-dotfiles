@@ -222,24 +222,22 @@ in
     ## 3rd Party Apps Configuration
     (mkIf (desktop == "xfce") {
       user.homeConfig = {
-        home.file = {
-          # Discord Nord Theme
-          ".config/vesktop/settings/quickCss.css" = mkIf (exists "discord") {
-            text = ''@import url(https://rawcdn.githack.com/orblazer/discord-nordic/f3f6833c70d0b27b1cde986233b7009d61917812/nordic.theme.css);'';
-          };
-
-          # Logseq Nord Theme
-          ".logseq/config.edn" = mkIf (exists "notes") {
-            text = ''{:custom-css-url "@import url('https://cdn.jsdelivr.net/gh/bad3r/logseq-nord-theme@latest/custom.min.css');"}'';
-          };
+        # Logseq Nord Theme
+        home.file.".logseq/config.edn" = mkIf (exists "notes") {
+          text = ''{:custom-css-url "@import url('https://cdn.jsdelivr.net/gh/bad3r/logseq-nord-theme@latest/custom.min.css');"}'';
         };
 
-        # Code Editor
-        programs.vscode.profiles.default = mkIf (exists "vscode") {
-          extensions = [ pkgs.code.vscode-marketplace.alvesvaren.arc-dark ];
-          userSettings = {
-            "workbench.colorTheme" = "Arc Dark Theme";
-            "terminal.external.linuxExec" = "xfce4-terminal";
+        programs = {
+          # Discord Nord Theme
+          nixcord.quickCss = mkIf (exists "discord") ''@import url(https://rawcdn.githack.com/orblazer/discord-nordic/f3f6833c70d0b27b1cde986233b7009d61917812/nordic.theme.css);'';
+
+          # Code Editor
+          vscode.profiles.default = mkIf (exists "vscode") {
+            extensions = [ pkgs.code.vscode-marketplace.alvesvaren.arc-dark ];
+            userSettings = {
+              "workbench.colorTheme" = "Arc Dark Theme";
+              "terminal.external.linuxExec" = "xfce4-terminal";
+            };
           };
         };
       };

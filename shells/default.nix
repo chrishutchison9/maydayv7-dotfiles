@@ -16,7 +16,7 @@ mkShell {
     ]
     ++ [
       figlet
-      hyfetch
+      fastfetch
     ];
 
   shellHook = ''

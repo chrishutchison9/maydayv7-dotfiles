@@ -110,7 +110,7 @@
       inputs.nixpkgs.follows = "unstable";
     };
 
-    # File System Persistent State Handler
+    # Filesystem State Handler
     impermanence.url = "github:nix-community/impermanence";
 
     # System Image Generators
@@ -137,6 +137,16 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "utils";
+      };
+    };
+
+    # Discord Module
+    nixcord = {
+      url = "github:kaylorben/nixcord";
+      inputs = {
+        nixpkgs.follows = "unstable";
+        systems.follows = "systems";
+        treefmt-nix.follows = "formatter";
       };
     };
 

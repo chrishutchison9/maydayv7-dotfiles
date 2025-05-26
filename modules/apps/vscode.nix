@@ -55,32 +55,40 @@ in
               "editor.fontFamily" = "'${font}', 'monospace', monospace";
             };
 
-            # Useful Extensions
+            ## Editor Extensions
             extensions =
               with pkgs.vscode-extensions;
               [
-                aaron-bond.better-comments
-                divyanshuagrawal.competitive-programming-helper
-                dotjoshjohnson.xml
+                aaron-bond.better-comments # Annotations
+                editorconfig.editorconfig # .editorconfig
+                esbenp.prettier-vscode # Formatter
+                file-icons.file-icons # File Icons
+                naumovs.color-highlight # Color Viewer
+
+                # Git
                 eamodio.gitlens
-                ecmel.vscode-html-css
-                editorconfig.editorconfig
-                esbenp.prettier-vscode
-                file-icons.file-icons
                 github.vscode-pull-request-github
-                jgclark.vscode-todo-highlight
-                jnoortheen.nix-ide
-                ms-python.python
-                ms-vscode-remote.remote-ssh
-                ms-vscode.cpptools
-                naumovs.color-highlight
-                redhat.java
+
+                divyanshuagrawal.competitive-programming-helper # CP
+                jnoortheen.nix-ide # Nix
+                ms-python.python # Python
+                ms-vscode.cpptools # C/C++
+                redhat.java # Java
+                rust-lang.rust-analyzer # Rust
+                tomoki1207.pdf # PDF Viewer
+                yzhang.markdown-all-in-one # Markdown
+
+                # HTML+CSS+XML
+                ecmel.vscode-html-css
+                formulahendry.auto-rename-tag
+                redhat.vscode-xml
+
+                # JS
+                dbaeumer.vscode-eslint
                 ritwickdey.liveserver
-                tomoki1207.pdf
-                yzhang.markdown-all-in-one
               ]
               ++ (with pkgs.code.vscode-marketplace; [
-                kisstkondoros.vscode-gutter-preview
+                kisstkondoros.vscode-gutter-preview # Image Preview
               ]);
           };
         };

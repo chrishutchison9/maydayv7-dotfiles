@@ -1,11 +1,10 @@
 {
   config,
   lib,
+  inputs,
   pkgs,
-  files,
   ...
 }:
-with files.vesktop;
 let
   enable = builtins.elem "discord" config.apps.list;
 in
@@ -13,12 +12,78 @@ in
   ## Discord Configuration ##
   config = lib.mkIf enable {
     environment.systemPackages = [ pkgs.vesktop ];
-
     user = {
       persist.directories = [ ".config/vesktop" ];
-      homeConfig.home.file = {
-        ".config/vesktop/settings.json".text = prefs;
-        ".config/vesktop/settings/settings.json".text = settings;
+      homeConfig = {
+        imports = [ inputs.nixcord.homeModules.nixcord ];
+        programs.nixcord = {
+          enable = true;
+          discord.enable = false;
+          vesktop = {
+            enable = true;
+            package = pkgs.vesktop;
+          };
+
+          config = {
+            useQuickCss = true; # Theming
+            frameless = false;
+            transparent = false;
+
+            # Vencord Plugins
+            plugins = {
+              betterFolders = {
+                enable = true;
+                showFolderIcon = "moreThanOne";
+                closeAllHomeButton = true;
+              };
+              betterGifAltText.enable = true;
+              betterGifPicker.enable = true;
+              betterRoleContext.enable = true;
+              betterSessions.enable = true;
+              betterSettings.enable = true;
+              biggerStreamPreview.enable = true;
+              blurNSFW.enable = true;
+              copyEmojiMarkdown.enable = true;
+              copyFileContents.enable = true;
+              copyUserURLs.enable = true;
+              crashHandler.enable = true;
+              decor.enable = true;
+              emoteCloner.enable = true;
+              favoriteEmojiFirst.enable = true;
+              favoriteGifSearch.enable = true;
+              fixImagesQuality.enable = true;
+              fixSpotifyEmbeds.enable = true;
+              friendsSince.enable = true;
+              fullSearchContext.enable = true;
+              imageZoom.enable = true;
+              memberCount.enable = true;
+              mentionAvatars.enable = true;
+              messageClickActions.enable = true;
+              messageLinkEmbeds.enable = true;
+              moreKaomoji.enable = true;
+              pinDMs.enable = true;
+              platformIndicators.enable = true;
+              previewMessage.enable = true;
+              quickMention.enable = true;
+              readAllNotificationsButton.enable = true;
+              relationshipNotifier.enable = true;
+              replyTimestamp.enable = true;
+              serverInfo.enable = true;
+              serverListIndicators.enable = true;
+              showHiddenChannels.enable = true;
+              showHiddenThings.enable = true;
+              showMeYourName.enable = true;
+              showTimeoutDuration.enable = true;
+              typingTweaks.enable = true;
+              validUser.enable = true;
+              voiceChatDoubleClick.enable = true;
+              voiceDownload.enable = true;
+              voiceMessages.enable = true;
+              webKeybinds.enable = true;
+              webScreenShareFixes.enable = true;
+            };
+          };
+        };
       };
     };
   };

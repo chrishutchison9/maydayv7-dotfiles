@@ -22,7 +22,7 @@ let
         fancy                        - Toggle Compositor Effects
         float                        - Toggle window floating in current workspace
         minimized                    - Show minimized windows
-        monitor                      - Toggle specified Monitor
+        monitor 'name'               - Toggle specified Monitor
         service ['name']             - Toggle SystemD Service
         shader                       - Toggle Compositor Shader
         touchpad                     - Toggle touchpad
@@ -303,12 +303,18 @@ recursiveUpdate
               fi
             ;;
             "monitor")
-              if hyprctl monitors | grep "$3"
+              if [ -z "$3" ]
+              then
+                fail "Expected monitor name"
+              fi
+
+              if hyprctl monitors | grep "Monitor $3"
               then
                 hyprctl keyword monitor "$3, disable"
               else
                 hyprctl keyword monitor "$3, preferred, auto, 1"
               fi
+              hyprctl reload
             ;;
             "service")
               if [ -z "$3" ]
@@ -365,6 +371,7 @@ recursiveUpdate
             *) fail "Unexpected Option 'toggle $2'" ;;
             esac
           ;;
+          *) fail "Unexpected Option '$1'" ;;
         esac
       '';
     }

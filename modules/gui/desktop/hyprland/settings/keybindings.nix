@@ -188,6 +188,7 @@ _: {
       bind = , right, movefocus, r
       bind = , up, movefocus, u
       bind = , down, movefocus, d
+      bind = , Q, killactive,
       bind = , Return, movetoworkspace, +0
       bind = , Return, submap, reset
       bind = , mouse:272, movetoworkspace, +0

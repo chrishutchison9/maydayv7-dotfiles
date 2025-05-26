@@ -1,19 +1,24 @@
-pkgs: {
+pkgs:
+let
+  pkg = pkgs.mariadb;
+in
+{
   name = "SQL";
-  buildInputs = [ pkgs.mariadb ];
+  buildInputs = [ pkg ];
   shellHook = ''
-    MYSQL_BASEDIR=${pkgs.mariadb}
+    alias mysql='mysql -u root'
     MYSQL_HOME=$HOME/.mysql
     MYSQL_DATADIR=$MYSQL_HOME/data
     export MYSQL_UNIX_PORT=$MYSQL_HOME/mysql.sock
     MYSQL_PID_FILE=$MYSQL_HOME/mysql.pid
-    alias mysql='mysql -u root'
 
-    if [ ! -d "$MYSQL_HOME" ]; then
-      # Make sure to use normal authentication method otherwise we can only
-      # connect with unix account, but users do not actually exist in NixOS
+    if [ ! -d "$MYSQL_HOME" ]
+    then
+      # Make sure to use normal authentication method
+      # otherwise we can only connect with unix account
+      # but users do not actually exist in NixOS
       mysql_install_db --auth-root-authentication-method=normal \
-        --datadir=$MYSQL_DATADIR --basedir=$MYSQL_BASEDIR \
+        --datadir=$MYSQL_DATADIR --basedir=${pkg} \
         --pid-file=$MYSQL_PID_FILE
     fi
 

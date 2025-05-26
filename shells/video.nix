@@ -8,6 +8,6 @@ pkgs: {
     handbrake
     mpv
     obs-studio
-    youtube-dl
+    yt-dlp
   ];
 }

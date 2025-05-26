@@ -418,6 +418,10 @@
           {
             "value": "<ARROW>",
             "label": "Focus window in desired direction"
+          },
+          {
+            "value": "Q",
+            "label": "Close selected window"
           }
         ]
       }

@@ -29,9 +29,9 @@
 
           height = 30;
           spacing = 3;
-          margin-top = 3;
+          margin-top = 2;
           margin-right = 5;
-          margin-bottom = 5;
+          margin-bottom = 1;
           margin-left = 5;
 
           modules-left = [

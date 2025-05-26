@@ -149,13 +149,6 @@
       # Document Templates
       templates = ./templates;
 
-      # Vesktop Discord Chat
-      vesktop = map.files {
-        directory = ./vesktop;
-        apply = readFile;
-        extension = ".json";
-      };
-
       # Visual Studio Code Editor
       vscode = map.files {
         directory = ./vscode;

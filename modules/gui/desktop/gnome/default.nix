@@ -265,26 +265,24 @@ in
           firefoxGnomeTheme.enable = true;
         };
 
-        home.file = {
-          # Discord DNOME Theme
-          ".config/vesktop/settings/quickCss.css" = mkIf (exists "discord") {
-            text = ''@import url("https://raw.githack.com/GeopJr/DNOME/dist/DNOME.css");'';
-          };
-
-          # Logseq Bonofix Theme
-          ".logseq/config.edn" = mkIf (exists "notes") {
-            text = ''{:custom-css-url "@import url('https://cdn.jsdelivr.net/gh/sansui233/logseq-bonofix-theme/custom.css');"}'';
-          };
+        # Logseq Bonofix Theme
+        home.file.".logseq/config.edn" = mkIf (exists "notes") {
+          text = ''{:custom-css-url "@import url('https://cdn.jsdelivr.net/gh/sansui233/logseq-bonofix-theme/custom.css');"}'';
         };
 
-        # Code Editor
-        programs.vscode.profiles.default = mkIf (exists "vscode") {
-          extensions = [ pkgs.vscode-extensions.piousdeer.adwaita-theme ];
-          userSettings = {
-            "workbench.colorTheme" = "Adwaita Dark";
-            "workbench.productIconTheme" = "adwaita";
-            "window.titleBarStyle" = "custom";
-            "terminal.external.linuxExec" = "ghostty";
+        programs = {
+          # Discord DNOME Theme
+          nixcord.quickCss = mkIf (exists "discord") ''@import url("https://raw.githack.com/GeopJr/DNOME/dist/DNOME.css");'';
+
+          # Code Editor
+          vscode.profiles.default = mkIf (exists "vscode") {
+            extensions = [ pkgs.vscode-extensions.piousdeer.adwaita-theme ];
+            userSettings = {
+              "workbench.colorTheme" = "Adwaita Dark";
+              "workbench.productIconTheme" = "adwaita";
+              "window.titleBarStyle" = "custom";
+              "terminal.external.linuxExec" = "ghostty";
+            };
           };
         };
       };

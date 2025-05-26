@@ -49,9 +49,9 @@
       "media"
       "notes"
       "office"
-      "spotify"
       "vscode"
       "wine"
+      "youtube"
     ];
     games = [
       "minecraft"

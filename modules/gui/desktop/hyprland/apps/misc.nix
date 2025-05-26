@@ -7,6 +7,7 @@
   ...
 }:
 let
+  inherit (lib) mkIf;
   inherit (builtins) concatStringsSep elem map;
   exists = app: elem app config.apps.list;
 in
@@ -22,27 +23,27 @@ in
       thunderbird.enable = true;
     };
 
-    # Code Editor
-    programs.vscode.profiles.default = lib.mkIf (exists "vscode") {
-      extensions = [ pkgs.vscode-extensions.catppuccin.catppuccin-vsc-icons ];
-      userSettings = with theme; {
-        "workbench.iconTheme" = "${name}-${variant}";
-        "terminal.external.linuxExec" = "kitty";
+    programs = {
+      # Code Editor
+      vscode.profiles.default = mkIf (exists "vscode") {
+        extensions = [ pkgs.vscode-extensions.catppuccin.catppuccin-vsc-icons ];
+        userSettings = with theme; {
+          "workbench.iconTheme" = "${name}-${variant}";
+          "terminal.external.linuxExec" = "kitty";
+        };
       };
+
+      # Discord Chat
+      nixcord.quickCss =
+        with theme;
+        mkIf (exists "discord") ''@import url("https://${name}.github.io/discord/dist/${name}-${variant}-${accent}.theme.css");'';
     };
 
     home.file = {
-      # Discord Chat
-      ".config/vesktop/settings/quickCss.css" =
-        with theme;
-        lib.mkIf (exists "discord") {
-          text = ''@import url("https://${name}.github.io/discord/dist/${name}-${variant}-${accent}.theme.css");'';
-        };
-
       # Logseq Notes
       ".logseq/config.edn" =
         with theme;
-        lib.mkIf (exists "notes") {
+        mkIf (exists "notes") {
           text = ''{:custom-css-url "@import url('https://logseq.${name}.com/ctp-${variant}.css');"}'';
         };
 
