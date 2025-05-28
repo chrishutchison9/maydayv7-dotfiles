@@ -66,14 +66,10 @@
       git.hooks = ./git/hooks;
 
       # GNOME Desktop
-      gnome =
-        {
-          iso = readFile ./gnome/iso;
-        }
-        // map.files {
-          directory = ./gnome;
-          extension = ".json";
-        };
+      gnome = map.files {
+        directory = ./gnome;
+        extension = ".json";
+      };
 
       # Hyprland WM
       hyprland =
@@ -128,13 +124,6 @@
       # Nano Text Editor
       nano = readFile ./nanorc;
 
-      # Plank Dock
-      plank = {
-        autostart = readFile ./plank/dock.desktop;
-        launchers = ./plank/launchers;
-        theme = readFile ./plank/dock.theme;
-      };
-
       # Custom Proprietary Files
       proprietary = inputs.proprietary.files;
       inherit (proprietary) wallpapers;
@@ -156,27 +145,7 @@
         extension = ".json";
       };
 
-      # XFCE Desktop
-      xfce = {
-        css = readFile ./xfce/gtk.css;
-        panel = ./xfce/panel;
-        settings =
-          {
-            directory = ./xfce/settings;
-          }
-          // map.files {
-            directory = ./xfce/settings;
-            apply = readFile;
-            extension = ".xml";
-          };
-      };
-
       # My Personal Website
       website = ../site;
     };
-
-  perSystem = _: {
-    # Formatting Errors
-    treefmt.config.programs.prettier.excludes = [ "files/xfce/gtk.css" ];
-  };
 }

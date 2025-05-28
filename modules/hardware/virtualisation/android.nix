@@ -13,16 +13,6 @@ in
 
   ## Android Virtualisation ##
   config = mkIf config.hardware.vm.android.enable {
-    assertions = [
-      {
-        assertion = config.gui.wayland.enable;
-        message = ''
-          Wayland support is required
-          - Use a DE that supports Wayland
-        '';
-      }
-    ];
-
     warnings = optional (config.boot.kernelPackages != options.boot.kernelPackages.default) ''
       Android Virtualisation may not work
       - Kernel may not have requisite 'binder' module
@@ -32,7 +22,7 @@ in
     virtualisation.waydroid.enable = true;
     environment.systemPackages = [ pkgs.wl-clipboard ];
 
-    #!# Run 'waydroid init -s GAPPS -f' to install system image
+    # ? # Run 'waydroid init -s GAPPS -f' to install system image
 
     # Environment Setup
     users.groups.android = {

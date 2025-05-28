@@ -23,7 +23,6 @@
 #     Author  -> V 7 <maydayv7@gmail.com>     #
 #     License -> MIT                          #
 #     URL     -> github:maydayv7/dotfiles     #
-#     Version -> v25.5                        #
 #   ---------------------------------------   #
 #           Welcome to Ground Zero!           #
 #       The very heart of my 'dotfiles'       #
@@ -38,8 +37,8 @@
   inputs = {
     ## Package Repositories ##
     # NixOS Packages Repository
-    nixpkgs.follows = "unstable";
-    stable.url = "github:NixOS/nixpkgs?ref=nixos-24.11";
+    nixpkgs.follows = "stable";
+    stable.url = "github:NixOS/nixpkgs?ref=nixos-25.05";
 
     # Unstable Packages Repository
     unstable.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
@@ -88,7 +87,7 @@
     ## Feature Modules
     # User Home Manager
     home = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager?ref=release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -112,15 +111,6 @@
 
     # Filesystem State Handler
     impermanence.url = "github:nix-community/impermanence";
-
-    # System Image Generators
-    generators = {
-      url = "github:nix-community/nixos-generators";
-      inputs = {
-        nixlib.follows = "nixpkgs";
-        nixpkgs.follows = "unstable";
-      };
-    };
 
     # Nix Index Database
     index = {
@@ -159,11 +149,11 @@
     ## Theming
     # Base16 Theming Module
     stylix = {
-      url = "github:danth/stylix";
+      url = "github:nix-community/stylix?ref=release-25.05";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
-        flake-utils.follows = "utils";
+        flake-parts.follows = "framework";
         home-manager.follows = "home";
       };
     };

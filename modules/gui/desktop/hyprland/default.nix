@@ -27,11 +27,6 @@ in
       ++ [
         ## Environment Setup
         rec {
-          gui = {
-            xorg.enable = false;
-            wayland.enable = true;
-          };
-
           programs = {
             # WM
             hyprland = {
@@ -59,8 +54,8 @@ in
             };
           };
 
+          # Session
           services = {
-            # Session
             displayManager.defaultSession = "Desktop";
             xserver = {
               desktopManager.runXdgAutostartIfNone = true;
