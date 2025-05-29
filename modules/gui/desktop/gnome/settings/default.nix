@@ -101,7 +101,6 @@ in
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
       ];
     };
 
@@ -112,15 +111,9 @@ in
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-      binding = "<Super>t";
+      binding = "<Super><Shift>t";
       command = "ghostty";
       name = "Terminal";
-    };
-
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
-      binding = "<Super><Shift>t";
-      command = "gnome-text-editor";
-      name = "Text Editor";
     };
 
     "org/gnome/desktop/wm/preferences" = {

@@ -1,4 +1,8 @@
-_: {
+_:
+let
+  inherit (builtins) concatLists genList toString;
+in
+{
   ## Compositor Binds ##
   wayland.windowManager.hyprland = {
     ## Keybindings
@@ -83,21 +87,18 @@ _: {
         ]
         ++
         # Workspaces
-        (
-          with builtins;
-          concatLists (
-            genList (
-              n:
-              let
-                num = toString (n + 1);
-              in
-              [
-                "$mod, ${num}, split:workspace, ${num}"
-                "$mod SHIFT, ${num}, split:movetoworkspace, ${num}"
-              ]
-            ) 9
-          )
-        );
+        (concatLists (
+          genList (
+            n:
+            let
+              num = toString (n + 1);
+            in
+            [
+              "$mod, ${num}, split:workspace, ${num}"
+              "$mod SHIFT, ${num}, split:movetoworkspace, ${num}"
+            ]
+          ) 9
+        ));
 
       # Mouse
       bindm = [

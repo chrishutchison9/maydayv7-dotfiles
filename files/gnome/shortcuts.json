@@ -3,11 +3,11 @@
     "name": "Window Navigation",
     "shortcuts": [
       {
-        "key": "Alt + F4 / Super + Q",
+        "key": "ALT + F4 / Super + Q",
         "description": "Close active window"
       },
       {
-        "key": "Alt + Space",
+        "key": "ALT + Space",
         "description": "Activate window menu"
       },
       {
@@ -19,7 +19,7 @@
         "description": "Toggle maximized window"
       },
       {
-        "key": "Super + Shift + F",
+        "key": "Super + SHIFT + F",
         "description": "Toggle fullscreen window"
       },
       {
@@ -27,7 +27,7 @@
         "description": "Focus window in specified direction"
       },
       {
-        "key": "Super + Shift + W/A/S/D",
+        "key": "Super + SHIFT + W/A/S/D",
         "description": "Move window to specified tile"
       },
       {
@@ -35,20 +35,20 @@
         "description": "Move window"
       },
       {
-        "key": "Super + Ctrl + Mouse Drag",
-        "description": "Tile window (Use 'Alt' to span)"
+        "key": "Super + CTRL + Mouse Drag",
+        "description": "Tile window ('ALT' to span)"
       },
       {
         "key": "Super + P",
         "description": "Pin window above all others"
       },
       {
-        "key": "Alt + Tab",
-        "description": "Switches between applications"
+        "key": "ALT + Tab",
+        "description": "Switch between applications"
       },
       {
         "key": "Super + Tab",
-        "description": "Switches between windows of current application"
+        "description": "Switch between windows of current app"
       }
     ]
   },
@@ -76,19 +76,19 @@
         "description": "Switch to first/last workspace"
       },
       {
-        "key": "Super + Shift + ←/→",
-        "description": "Move window to specified workspace"
+        "key": "Super + SHIFT + ←/→",
+        "description": "Move window between workspaces"
       },
       {
-        "key": "Super + Ctrl + ←/→",
-        "description": "Move window to specified monitor"
+        "key": "Super + CTRL + ←/→",
+        "description": "Move window between monitors"
       },
       {
         "key": "Super + F2",
         "description": "Run Dialog"
       },
       {
-        "key": "Super + Shift + N",
+        "key": "Super + SHIFT + N",
         "description": "Show notification tray"
       },
       {
@@ -96,11 +96,11 @@
         "description": "Switch keyboard layout"
       },
       {
-        "key": "Ctrl + Alt + S",
+        "key": "CTRL + ALT + S",
         "description": "Resize window to pre-defined sizes"
       },
       {
-        "key": "Ctrl + Alt + Del",
+        "key": "CTRL + ALT + Del",
         "description": "Open shutdown menu"
       },
       {
@@ -137,11 +137,11 @@
         "description": "Open Files"
       },
       {
-        "key": "Super + V",
-        "description": "Open Clipboard (Use 'Ctrl' for incognito)"
+        "key": "Super + T",
+        "description": "Open Dropdown Terminal"
       },
       {
-        "key": "Super + T",
+        "key": "Super + SHIFT + T",
         "description": "Open Terminal"
       },
       {
@@ -149,15 +149,15 @@
         "description": "Open Browser"
       },
       {
+        "key": "Super + V",
+        "description": "Open Clipboard ('CTRL' for incognito)"
+      },
+      {
         "key": "Super + Enter",
         "description": "Open Task Manager"
       },
       {
-        "key": "Super + Shift + T",
-        "description": "Open Text Editor"
-      },
-      {
-        "key": "Super + Shift + E",
+        "key": "Super + SHIFT + E",
         "description": "Open Emoji Picker"
       },
       {
@@ -165,19 +165,19 @@
         "description": "Show this shortcuts menu"
       },
       {
-        "key": "Ctrl + W",
+        "key": "CTRL + W",
         "description": "Close tab in tabbed apps"
       },
       {
-        "key": "Ctrl + T",
+        "key": "CTRL + T",
         "description": "Opens new tab in tabbed apps"
       },
       {
-        "key": "Ctrl + Shift + T",
+        "key": "CTRL + SHIFT + T",
         "description": "Reopen last closed tab in browser"
       },
       {
-        "key": "Ctrl + /",
+        "key": "CTRL + /",
         "description": "Code Editor command palette"
       },
       {
@@ -198,24 +198,60 @@
         "description": "Take region screenshot"
       },
       {
-        "key": "Shift + Print",
+        "key": "SHIFT + Print",
         "description": "Take full screenshot"
       },
       {
-        "key": "Ctrl + Print",
+        "key": "CTRL + Print",
         "description": "Take window screenshot"
       },
       {
-        "key": "Alt + Print",
+        "key": "ALT + Print",
         "description": "Video capture desktop"
       }
     ]
   },
   {
-    "name": "Overview Actions TODO",
+    "name": "Overview Actions",
     "shortcuts": [
       {
-        "key": "; or `",
+        "key": "Tab",
+        "description": "Focus next window"
+      },
+      {
+        "key": "Super + Tab",
+        "description": "Focus next monitor"
+      },
+      {
+        "key": "ALT + Tab",
+        "description": "Focus dash icons"
+      },
+      {
+        "key": "PgUp/PgDown or CTRL + Tab",
+        "description": "Switch between workspaces"
+      },
+      {
+        "key": "SHIFT + PgUp/PgDown or Scroll",
+        "description": "Reorder workspaces"
+      },
+      {
+        "key": "SHIFT + ←/→",
+        "description": "Move window between workspaces ('CTRL' for new)"
+      },
+      {
+        "key": "Delete",
+        "description": "Close window"
+      },
+      {
+        "key": "SHIFT + CTRL + Delete",
+        "description": "Close all windows on workspace"
+      },
+      {
+        "key": "SHIFT + Enter",
+        "description": "Move window between monitors"
+      },
+      {
+        "key": "Space or `",
         "description": "Show open application windows"
       },
       {
