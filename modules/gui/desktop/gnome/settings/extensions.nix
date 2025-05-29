@@ -9,15 +9,19 @@
 let
   inherit (builtins)
     filter
+    genList
     hasAttr
     head
     map
+    toString
     ;
 
   inherit (lib)
     foldr
     hm
+    listToAttrs
     mkForce
+    nameValuePair
     optionals
     recursiveUpdate
     ;
@@ -33,7 +37,6 @@ let
       [
         { package = appindicator; }
         { package = arrange-windows; }
-        { package = control-monitor-brightness-and-volume-with-ddcutil; }
         { package = disconnect-wifi; }
         { package = display-configuration-switcher; }
         { package = gsconnect; }
@@ -90,6 +93,10 @@ let
         {
           package = status-area-horizontal-spacing;
           settings.hpadding = 4;
+        }
+        {
+          package = brightness-control-using-ddcutil;
+          settings.hide-system-indicator = true;
         }
         {
           package = color-picker;
@@ -188,23 +195,16 @@ let
           };
         }
         {
-          package = auto-activities;
-          settings = {
-            detect-minimized = true;
-            hide-on-new-window = true;
-            show-apps = false;
-            skip-last-workspace = false;
-            skip-taskbar = true;
-          };
-        }
-        {
           package = caffeine;
           settings = {
             indicator-position = 0;
-            inhibit-apps = [ "startcenter.desktop" ];
             nightlight-control = "never";
             show-indicator = "always";
             show-notifications = false;
+            inhibit-apps = [
+              "startcenter.desktop"
+              "virt-manager.desktop"
+            ];
           };
         }
         {
@@ -241,14 +241,31 @@ let
           };
         }
         {
-          package = wsp-windows-search-provider;
-          name = "windows-search-provider";
-          settings = {
-            custom-prefixes = "; `";
-            results-order = 1;
-            search-commands = false;
-            search-method = 1;
-          };
+          package = ddterm;
+          path = "com/github/amezin/ddterm";
+          settings =
+            {
+              dterm-toggle-hotkey = [ "<Super>t" ];
+              hide-window-on-esc = true;
+              panel-icon-type = "none";
+              shortcut-find = [ "<Control>f" ];
+              shortcut-page-close = [ "<Control>w" ];
+              shortcut-win-new-tab = [ "<Control>t" ];
+              show-animation = "ease-in-sine";
+              show-animation-duration = 0.2;
+              hide-animation = "ease-out-sine";
+              hide-animation-duration = 0.1;
+              window-skip-taskbar = false;
+            }
+            // (listToAttrs (
+              genList (
+                n:
+                let
+                  num = toString (n + 1);
+                in
+                nameValuePair "shortcut-switch-to-tab-${num}" [ "<Control>${num}" ]
+              ) 9
+            ));
         }
         {
           package = pano;
@@ -280,6 +297,7 @@ let
             enable-blur-snap-assistant = false;
             enable-snap-assist = false;
             enable-tiling-system = true;
+            enable-tiling-system-windows-suggestions = true;
             enable-window-border = false;
             override-window-menu = true;
             restore-window-original-size = true;
@@ -295,6 +313,16 @@ let
           };
         }
         {
+          package = wsp-windows-search-provider;
+          name = "windows-search-provider";
+          settings = {
+            custom-prefixes = "`";
+            results-order = 1;
+            search-commands = false;
+            search-method = 1;
+          };
+        }
+        {
           package = vertical-workspaces;
           settings = {
             aaa-loading-profile = true;
@@ -302,7 +330,8 @@ let
             animation-speed-factor = 100;
             app-display-module = true;
             app-favorites-module = true;
-            app-folder-order = 2;
+            app-folder-order = 1;
+            app-folder-remove-button = 0;
             app-grid-active-preview = false;
             app-grid-animation = 4;
             app-grid-bg-blur-sigma = 40;
@@ -319,6 +348,7 @@ let
             app-grid-order = 1;
             app-grid-page-width-scale = 80;
             app-grid-performance = true;
+            app-grid-remember-page = true;
             app-grid-rows = 0;
             app-grid-spacing = 12;
             center-app-grid = true;
@@ -360,6 +390,7 @@ let
             overview-esc-behavior = 1;
             overview-mode = 0;
             panel-module = true;
+            panel-overview-style = 1;
             panel-position = 0;
             panel-visibility = 0;
             recent-files-search-provider-module = false;
@@ -427,7 +458,7 @@ let
           settings = {
             skip-libadwaita-app = false;
             skip-libhandy-app = false;
-            border-width = 2;
+            border-width = -1;
             border-color =
               with colors;
               mkTuple [
@@ -437,6 +468,10 @@ let
                 1.0
               ];
             global-rounded-corner-settings = ''{'padding': <{'left': 1, 'right': 1, 'top': 1, 'bottom': 1}>, 'keepRoundedCorners': <{'maximized': true, 'fullscreen': false}>, 'borderRadius': <uint32 12>, 'smoothing': <0.0>, 'enabled': <true>}'';
+            blacklist = [
+              "com.desktop.ding"
+              "com.github.amezin.ddterm"
+            ];
           };
         }
         {
@@ -449,7 +484,6 @@ let
         }
         {
           package = gtk4-desktop-icons-ng-ding;
-          disable = true; # ! # Currently buggy
           settings = {
             dark-text-in-labels = false;
             show-drop-place = false;
@@ -482,7 +516,9 @@ in
         ext:
         if (hasAttr "settings" ext) then
           (
-            if (hasAttr "name" ext) then
+            if (hasAttr "path" ext) then
+              { "${ext.path}" = ext.settings; }
+            else if (hasAttr "name" ext) then
               { "org/gnome/shell/extensions/${ext.name}" = ext.settings; }
             else
               { "org/gnome/shell/extensions/${ext.package.extensionPortalSlug}" = ext.settings; }

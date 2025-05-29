@@ -37,7 +37,7 @@ This [repository](https://github.com/maydayv7/dotfiles) contains the configurati
 - [KvLibadwaita](https://github.com/GabePoel/KvLibadwaita) Kvantum Theme: Integrates QT Apps with GNOME Desktop
 - Firefox [GNOME Theme](https://github.com/rafaelmardojai/firefox-gnome-theme): GNOME Theme for the Mozilla Firefox Browser, used for better desktop integration
 - VS Code [Adwaita Theme](https://github.com/piousdeer/vscode-adwaita): Integrates Visual Studio Code with GNOME Desktop
-- Discord [DNOME](https://github.com/GeopJr/DNOME) Theme: Discord Theme inspired by Adwaita, designed to integrate Discord with GNOME
+- Discord [GNOME Theme](https://github.com/ricewind012/discord-gnome-theme): A GNOME theme for Discord, following the Adwaita style & GNOME HIG
 
 - Firefox [Elementary Theme](https://github.com/Zonnev/elementaryos-firefox-theme): Elementary OS Theme for the Mozilla Firefox Browser, used for better desktop integration
 - VS Code [Elementary Theme](https://github.com/sixpounder/vscode-elementary-theme): Integrates Visual Studio Code with Pantheon Desktop

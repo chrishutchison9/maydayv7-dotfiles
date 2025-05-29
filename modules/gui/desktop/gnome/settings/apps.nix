@@ -75,7 +75,7 @@ in
       highlight-current-line = true;
       indent-style = "tab";
       show-line-numbers = true;
-      show-map = true;
+      show-map = false;
       tab-width = mkUint32 4;
     };
 

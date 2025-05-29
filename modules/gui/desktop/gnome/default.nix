@@ -226,8 +226,8 @@ in
         };
 
         programs = {
-          # Discord DNOME Theme
-          nixcord.quickCss = mkIf (exists "discord") ''@import url("https://raw.githack.com/GeopJr/DNOME/dist/DNOME.css");'';
+          # Discord GNOME Theme
+          nixcord.quickCss = mkIf (exists "discord") ''@import url("https://raw.githubusercontent.com/ricewind012/discord-gnome-theme/master/gnome.theme.css");'';
 
           # Code Editor
           vscode.profiles.default = mkIf (exists "vscode") {

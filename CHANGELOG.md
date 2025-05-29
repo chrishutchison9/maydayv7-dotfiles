@@ -2,6 +2,7 @@
 
 ### May
 
+- Use `ddterm` with GNOME
 - Update to NixOS 25.05 (Warbler)
   - Drop XFCE Desktop
   - Drop `nixos-generators` -> Refactor install media configuration
