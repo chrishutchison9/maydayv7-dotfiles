@@ -37,16 +37,15 @@ in
               custom = self.packages."${system}";
               unstable = import unstable { inherit system config; };
 
-              code = vscode.extensions."${system}";
               gaming = gaming.packages."${system}";
+              code = vscode.extensions."${system}";
               wine = windows.packages."${system}";
               hyprworld =
                 hyprland.packages."${system}"
                 // hyprplugins.packages."${system}"
                 // hyprsplit.packages."${system}"
                 // hyprcursors.packages."${system}"
-                // hyprspace.packages."${system}"
-                // hyprdark.packages."${system}";
+                // hyprspace.packages."${system}";
             })
           ];
         };

@@ -7,11 +7,12 @@
 }:
 let
   enable = builtins.elem "discord" config.apps.list;
+  package = pkgs.vesktop;
 in
 {
   ## Discord Configuration ##
   config = lib.mkIf enable {
-    environment.systemPackages = [ pkgs.vesktop ];
+    environment.systemPackages = [ package ];
     user = {
       persist.directories = [ ".config/vesktop" ];
       homeConfig = {
@@ -21,11 +22,12 @@ in
           discord.enable = false;
           vesktop = {
             enable = true;
-            package = pkgs.vesktop;
+            inherit package;
           };
 
           config = {
-            useQuickCss = true; # Theming
+            # Theming
+            useQuickCss = true;
             frameless = false;
             transparent = false;
 

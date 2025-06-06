@@ -135,8 +135,7 @@
       url = "github:kaylorben/nixcord";
       inputs = {
         nixpkgs.follows = "unstable";
-        systems.follows = "systems";
-        treefmt-nix.follows = "formatter";
+        flake-parts.follows = "framework";
       };
     };
 
@@ -210,17 +209,9 @@
       };
     };
 
-    hyprdark = {
-      url = "github:micha4w/Hypr-DarkWindow";
-      inputs = {
-        hyprland.follows = "hyprland";
-        nix-filter.follows = "filters";
-      };
-    };
-
     # Launcher
     hyprshell = {
-      url = "github:H3rmt/hyprshell-test";
+      url = "github:H3rmt/hyprswitch?ref=hyprshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

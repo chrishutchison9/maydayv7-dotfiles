@@ -84,13 +84,13 @@ This [repository](https://github.com/maydayv7/dotfiles) contains the configurati
 - Configuration for multiple Desktop Environments
 - Incorporates PipeWire, Wayland, ...!
 - Automatically builds and deploys my [Website](./site)
-- Authentication Credentials Management using the [`sops`](https://github.com/Mic92/sops-nix) Module and [`gnupg`](https://gnupg.org/) Keys
-- Comprehensive User Configuration using the tightly integrated [`home-manager`](https://github.com/nix-community/home-manager) module, with [support](./modules/user/default.nix) for configuring shared user configuration, global conditionals and user-specific configuration
-- Ephemeral, Opt-In File System State using the [`impermanence`](https://github.com/nix-community/impermanence) module and [ZFS](https://zfsonlinux.org/)
+- Credentials management using the [`sops-nix`](https://github.com/Mic92/sops-nix) module and [`gnupg`](https://gnupg.org/) keys
+- Comprehensive User Configuration using the [`home-manager`](https://github.com/nix-community/home-manager) module, with [support](./modules/user/default.nix) for setting global conditionals and shared/user-specific configuration
+- Ephemeral, Opt-In filesystem state using the [`impermanence`](https://github.com/nix-community/impermanence) module and [ZFS](https://zfsonlinux.org/)
 - Support for Secure Boot using [`lanzaboote`](https://github.com/nix-community/lanzaboote)
-- Support for Multiple Programming Language Development [`shells`](./shells) integrated with [`direnv`](https://direnv.net/) and [`lorri`](https://github.com/nix-community/lorri)
-- Automatic `packages` Updates using [`update.sh`](./packages/update.sh)
-- Syntax [Formatting](./modules/nix/format.nix) using [`treefmt`](https://github.com/numtide/treefmt) and [`treefmt-nix`](https://github.com/numtide/treefmt-nix)
+- Support for multiple development [`shells`](./shells) integrated with [`direnv`](https://direnv.net/) and [`lorri`](https://github.com/nix-community/lorri)
+- Automatic `packages` updates using [`update.sh`](./packages/update.sh)
+- Syntax [formatting](./modules/nix/format.nix) using [`treefmt`](https://github.com/numtide/treefmt)
 - Support for `source` filters with [`nix-filter`](https://github.com/numtide/nix-filter)
 - Support for Base16 color theming using [`stylix`](https://github.com/danth/stylix)
 - Support for declaratively installing [Flatpak](./modules/apps/flatpak.nix) applications using [`nix-flatpak`](https://github.com/gmodena/nix-flatpak)
@@ -412,19 +412,15 @@ The `hardware.modules` option can be used to load relevant configuration from [`
 
 See [this](./modules/hardware/README.md) for additional information
 
-### Build
-
-While rebuilding system with Flakes, make sure that any file with unstaged changes will not be included. Use `git add .` in cases where the `git` tree is dirty
-
-#### Cache
+### Cache
 
 The system build cache is publicly hosted using [Cachix](https://www.cachix.org) at [maydayv7-dotfiles](https://app.cachix.org/cache/maydayv7-dotfiles), and can be used while building the system to prevent rebuilding from scratch
 
-#### Continuous Integration
+### Continuous Integration
 
 This repository makes use of [`GitHub Actions`](./checks/github/workflows) in order to automatically check the configuration syntax on every commit and format it (using [`treefmt-nix`](https://github.com/numtide/treefmt-nix)), update the `inputs` and build the Install Media `.iso` every month, and upload the build cache to [Cachix](https://app.cachix.org/cache/maydayv7-dotfiles) (You can also find `GitLab CI/CD` configuration in [`.gitlab`](./checks/gitlab/.gitlab-ci.yml)). A `git` [hook](./.git-hooks) is used to check the commit message to adhere to the [`Conventional Commits`](https://www.conventionalcommits.org) specification
 
-###### Variables
+##### Variables
 
 - [`ACCESS_TOKEN`](./secrets/github-token.secret): Personal Access Token (To create one - [GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token), [GitLab](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html))
 - [`CACHIX_TOKEN`](./secrets/cachix-token.secret): Cachix Authentication Token
@@ -507,7 +503,7 @@ _Thanks a lot! ;)_
 
 </details>
 
-> Last Updated: **May** 2025
+> Last Updated: **June** 2025
 
 If you like this project, consider leaving a [star](https://github.com/maydayv7/dotfiles)
 

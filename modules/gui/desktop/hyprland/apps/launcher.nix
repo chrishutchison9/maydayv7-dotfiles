@@ -25,6 +25,7 @@
           default_terminal = "kitty";
           width = 700;
           max_items = 10;
+          show_when_empty = false;
           plugins = {
             applications = {
               run_cache_weeks = 4;

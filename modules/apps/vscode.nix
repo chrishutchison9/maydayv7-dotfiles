@@ -10,13 +10,14 @@ let
   inherit (builtins) elem head;
   enable = elem "vscode" config.apps.list;
   font = head config.fonts.fontconfig.defaultFonts.monospace;
+  package = pkgs.vscode;
 in
 {
   ## Visual Studio Code Editor Configuration ##
-  config = lib.mkIf enable rec {
+  config = lib.mkIf enable {
     environment.systemPackages = [
+      package
       pkgs.nil
-      user.homeConfig.programs.vscode.package
     ];
 
     user = {
@@ -44,7 +45,7 @@ in
 
         programs.vscode = {
           enable = true;
-          package = pkgs.vscode;
+          inherit package;
           profiles.default = with files.vscode; {
             # Keyboard Shortcuts
             inherit keybindings;
@@ -63,6 +64,7 @@ in
                 esbenp.prettier-vscode # Formatter
                 file-icons.file-icons # File Icons
                 naumovs.color-highlight # Color Viewer
+                johnpapa.vscode-peacock # Workspace Color
 
                 # Git
                 eamodio.gitlens

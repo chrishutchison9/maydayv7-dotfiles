@@ -61,6 +61,7 @@ comments = true
 - Kaguya-sama: Love is War <sup>#</sup>
 - Kakegurui <sup>#</sup>
 - Kakkou no Iinazuke
+- Kamisama Hajimemashita <sup>#</sup>
 - Kanojo mo Kanojo <sup>#</sup>
 - Kawaii dake ja nai Shikimori-san
 - Kimi ni Todoke <sup>#</sup>
@@ -106,6 +107,7 @@ comments = true
 - Suki na Ko ga Megane wo Wasureta
 - Suzume's Door Locking
 - Sword Art Online <sup>#</sup>
+- Taisho Otome Fairy Tale
 - Tengoku Daimakyou <sup>\*</sup>
 - That time I got reincarnated as a Slime <sup>#</sup> <sup>\*</sup>
 - The Ancient Magus' Bride <sup>#</sup> <sup>\*</sup>
@@ -114,6 +116,7 @@ comments = true
 - The Irregular at Magic High School <sup>#</sup> <sup>\*</sup>
 - The Pet Girl of Sakurasou <sup>\*</sup>
 - The Quintessential Quintuplets <sup>#</sup>
+- To Be Hero X <sup>\*</sup>
 - Tomodachi Game <sup>\*</sup>
 - Tomo-chan wa Onnanoko!
 - Tonikawa: To the Moon! <sup>\*</sup>

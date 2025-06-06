@@ -11,7 +11,6 @@
       hyprsplit
       hypr-dynamic-cursors
       Hyprspace
-      Hypr-DarkWindow
     ];
 
     settings = {
@@ -58,12 +57,8 @@
       };
 
       bind = [
-        # Overview
         "$mod, grave, overview:toggle"
         "$mod SHIFT, grave, overview:toggle, all"
-
-        # Color Inversion
-        "$mod, I, invertactivewindow"
       ];
     };
   };

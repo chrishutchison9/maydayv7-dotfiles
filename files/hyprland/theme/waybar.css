@@ -91,6 +91,14 @@ tooltip {
   border: 2px solid @base04;
 }
 
+#bluetooth {
+  color: #ffffff;
+  background-color: transparent;
+}
+#bluetooth.disabled {
+  background-color: transparent;
+}
+
 #network {
   background-color: @base0B;
   color: @base00;

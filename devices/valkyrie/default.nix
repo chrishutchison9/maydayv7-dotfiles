@@ -70,9 +70,9 @@
   };
 
   gui = {
-    desktop = "gnome";
+    desktop = "hyprland";
     display = "eDP-1";
-    wallpaper = "Sunrise";
+    wallpaper = "Thread";
     fancy = true;
   };
 
