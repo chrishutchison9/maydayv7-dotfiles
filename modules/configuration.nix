@@ -1,8 +1,19 @@
 inputs:
 let
-  inherit (inputs) self;
+  inherit (inputs) self nixpkgs;
   util = self.lib;
   inherit (self) files;
+
+  inherit (nixpkgs) lib;
+  inherit (lib) fileContents mkIf;
+  inherit (builtins)
+    attrValues
+    hashString
+    map
+    removeAttrs
+    replaceStrings
+    substring
+    ;
 in
 ## Configuration Build Function ##
 {
@@ -26,18 +37,6 @@ in
 let
   # Package Channel
   pkgs = self.legacyPackages."${system}";
-
-  # Configuration Libraries
-  inherit (inputs.nixpkgs) lib;
-  inherit (lib) fileContents mkIf;
-  inherit (builtins)
-    attrValues
-    hashString
-    map
-    removeAttrs
-    replaceStrings
-    substring
-    ;
 
   # User Build Function
   user' =
@@ -71,9 +70,8 @@ let
       };
     };
 in
-# Assertions
-assert (user == null) -> (users != null);
 ## Device Configuration ##
+assert (user == null) -> (users != null); # User must be defined
 import ((self.patchedPkgs system) + "/nixos/lib/eval-config.nix") {
   inherit system;
 
@@ -127,7 +125,7 @@ import ((self.patchedPkgs system) + "/nixos/lib/eval-config.nix") {
         };
 
         # Version
-        stateVersion = fileContents "${inputs.nixpkgs}/lib/.version";
+        stateVersion = fileContents "${nixpkgs}/lib/.version";
         configurationRevision =
           if (self ? rev) then
             "${substring 0 8 self.lastModifiedDate}.${self.shortRev}"

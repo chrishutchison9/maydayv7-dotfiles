@@ -7,15 +7,24 @@
   ...
 }:
 let
-  enable = builtins.elem "notes" config.apps.list;
+  inherit (lib) mkIf mkOption types;
   mutable = {
     mutable = true;
     force = true;
   };
+
+  enable = builtins.elem "notes" config.apps.list;
+  cfg = config.apps.logseq;
 in
 {
+  options.apps.logseq.style = mkOption {
+    description = "Path to Logseq Notes CSS";
+    type = types.str;
+    default = "";
+  };
+
   ## Logseq Configuration ##
-  config = lib.mkIf enable {
+  config = mkIf enable {
     environment.systemPackages = [ pkgs.logseq ];
 
     user = {
@@ -31,6 +40,9 @@ in
           ".logseq/preferences.json" = {
             text = prefs;
           } // mutable;
+          ".logseq/config/config.edn".text = mkIf (
+            cfg.style != ""
+          ) ''{:custom-css-url "@import ${cfg.style};"}'';
         }
         // util.map.folder {
           directory = settings;

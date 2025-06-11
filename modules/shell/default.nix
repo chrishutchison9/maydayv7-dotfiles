@@ -2,6 +2,7 @@
   config,
   lib,
   util,
+  inputs,
   pkgs,
   files,
   ...
@@ -30,10 +31,26 @@ in
     {
       # Text Editor
       environment.variables."EDITOR" = "nano";
-      programs.nano = {
-        enable = true;
-        syntaxHighlight = true;
-        nanorc = files.nano;
+      programs = {
+        nano = {
+          enable = true;
+          syntaxHighlight = true;
+          nanorc = files.nano;
+        };
+
+        # Terminal Multiplexer
+        tmux = {
+          enable = true;
+          keyMode = "emacs";
+          shortcut = "Space";
+          aggressiveResize = true;
+          baseIndex = 1;
+          clock24 = true;
+          escapeTime = 0;
+          historyLimit = 50000;
+          terminal = "tmux-256color";
+          extraConfig = files.tmux;
+        };
       };
     }
 
@@ -106,6 +123,23 @@ in
               italic-text = "always";
               map-syntax = [ ".ignore:Git Ignore" ];
             };
+          };
+
+          # Terminal Multiplexer
+          tmux = with config.lib.stylix.colors; {
+            plugins = with pkgs.tmuxPlugins; [
+              open
+              yank
+              inputs.tmux.packages."${pkgs.system}".default
+            ];
+
+            extraConfigBeforePlugins = ''
+              set -g @minimal-tmux-bg "#${base02}"
+              set -g @minimal-tmux-fg "#${base05}"
+              set -g @minimal-tmux-use-arrow true
+              set -g @minimal-tmux-right-arrow ""
+              set -g @minimal-tmux-left-arrow ""
+            '';
           };
         };
 

@@ -18,7 +18,7 @@
     programs.waybar = {
       enable = true;
       systemd.enable = true;
-      package = pkgs.waybar;
+      package = pkgs.waypkgs.waybar;
       style = files.hyprland.waybar;
 
       # Panel

@@ -87,6 +87,7 @@ in
 
       homeManagerIntegration.autoImport = true;
       targets = {
+        console.enable = true;
         plymouth.enable = false;
         chromium.enable = false;
       };

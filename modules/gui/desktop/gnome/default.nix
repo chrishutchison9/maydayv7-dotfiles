@@ -220,11 +220,6 @@ in
           firefoxGnomeTheme.enable = true;
         };
 
-        # Logseq Bonofix Theme
-        home.file.".logseq/config.edn" = mkIf (exists "notes") {
-          text = ''{:custom-css-url "@import url('https://cdn.jsdelivr.net/gh/sansui233/logseq-bonofix-theme/custom.css');"}'';
-        };
-
         programs = {
           # Discord GNOME Theme
           nixcord.quickCss = mkIf (exists "discord") ''@import url("https://raw.githubusercontent.com/ricewind012/discord-gnome-theme/master/gnome.theme.css");'';
@@ -241,6 +236,9 @@ in
           };
         };
       };
+
+      # Logseq Bonofix Theme
+      apps.logseq.style = "url('https://cdn.jsdelivr.net/gh/sansui233/logseq-bonofix-theme/custom.css')";
 
       # Flatpak Apps
       services.flatpak = mkIf config.services.flatpak.enable {

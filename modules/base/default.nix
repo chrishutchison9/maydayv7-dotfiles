@@ -66,6 +66,13 @@ in
       man.enable = true;
     };
 
+    # Console
+    console = {
+      earlySetup = true;
+      packages = [ pkgs.terminus_font ];
+      font = "${pkgs.terminus_font}/share/consolefonts/ter-132n.psf.gz";
+    };
+
     # Essential Utilities
     environment = {
       variables."NIXOS_SPECIALISATION" =

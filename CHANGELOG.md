@@ -1,5 +1,13 @@
 ## 2025
 
+### June
+
+- Use `nixpkgs-wayland`
+- Add YT Music configuration
+- Add `tmux` configuration
+- Drop KMSCon
+- Update `adwaita` colors
+
 ### May
 
 - Use `ddterm` with GNOME

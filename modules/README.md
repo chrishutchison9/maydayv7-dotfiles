@@ -19,6 +19,8 @@ Configuration [Builder](./configuration.nix)
   - `wine` -
     - `enable`: Install Utility Windows apps - `true / false`
     - `package`: Package to use for `wine` - Ex. `pkgs.winePackages.staging`
+  - `logseq.style`: Path to Logseq Notes CSS
+  - `ytmusic.style`: YouTube Music CSS
 
 - [`base`](./base): Module that contains the base common/shared configuration -
 
@@ -31,8 +33,7 @@ Configuration [Builder](./configuration.nix)
   - `display`: Main GUI Display - Ex. `"HDMI-A-1"`
   - `wallpaper`: Desktop Wallpaper Choice (taken from `files.wallpapers`)
   - `fancy`: Enable Fancy GUI Effects - `true / false`
-  - `fonts` -
-    - `enable`: Enable Fonts Configuration - `true / false`
+  - `fonts.enable`: Enable Fonts Configuration - `true / false`
   - `icons` -
     - `name`: Application Icons Theme - Ex. `Papirus`
     - `package`: Icons Package - Ex. `pkgs.papirus-icon-theme`

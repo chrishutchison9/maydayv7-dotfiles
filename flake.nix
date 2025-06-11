@@ -43,16 +43,19 @@
     # Unstable Packages Repository
     unstable.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
 
-    # Proprietary Software
-    proprietary = {
-      url = "github:maydayv7/proprietary";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Packaged Games
     gaming = {
       url = "github:fufexan/nix-gaming";
       inputs.flake-parts.follows = "framework";
+    };
+
+    # Wayland Packages
+    waypkgs.url = "github:nix-community/nixpkgs-wayland";
+
+    # Proprietary Software
+    proprietary = {
+      url = "github:maydayv7/proprietary";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     ## Configuration Modules ##
@@ -172,6 +175,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Tmux Theme
+    tmux = {
+      url = "github:niksingh710/minimal-tmux-status";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     ## Hyprland
     # Core
     hyprland = {
@@ -266,10 +275,11 @@
     trusted-substituters = [
       "https://maydayv7-dotfiles.cachix.org"
       "https://cache.nixos.org"
-      "https://hyprland.cachix.org"
+      "https://nixpkgs-unfree.cachix.org"
       "https://nix-community.cachix.org"
       "https://nix-gaming.cachix.org"
-      "https://nixpkgs-unfree.cachix.org"
+      "https://nixpkgs-wayland.cachix.org"
+      "https://hyprland.cachix.org"
       "https://catppuccin.cachix.org"
     ];
 
@@ -277,10 +287,11 @@
     trusted-public-keys = [
       "maydayv7-dotfiles.cachix.org-1:dpECO0Z2ZMttY6JgWHuAR5M7cqeyfFjUsvHdnMz+j6U="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-      "nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs="
+      "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
     ];
   };

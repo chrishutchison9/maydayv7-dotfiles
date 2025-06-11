@@ -24,12 +24,13 @@
           enable = true;
           default_terminal = "kitty";
           width = 700;
-          max_items = 10;
-          show_when_empty = false;
+          max_items = 4;
+          show_when_empty = true;
           plugins = {
             applications = {
               run_cache_weeks = 4;
               show_execs = true;
+              show_actions_submenu = true;
             };
             websearch.engines = [
               {

@@ -2,24 +2,53 @@
   config,
   lib,
   pkgs,
+  files,
   ...
 }:
 let
-  enable = builtins.elem "youtube" config.apps.list;
+  inherit (builtins) elem toFile;
+  inherit (lib)
+    mkIf
+    mkOption
+    replaceStrings
+    types
+    ;
+
+  enable = elem "youtube" config.apps.list;
 in
 {
+  options.apps.ytmusic.style = mkOption {
+    description = "YouTube Music CSS";
+    type = types.str;
+    default = "";
+  };
+
   ## YT Configuration ##
-  config = lib.mkIf enable {
+  config = mkIf enable {
     environment.systemPackages = with pkgs; [
       youtube-music
       youtube-tui
       yt-dlp
     ];
 
-    user.persist.directories = [
-      ".config/YouTube Music"
-      ".config/youtube-tui"
-      ".local/share/youtube-tui"
-    ];
+    user = {
+      persist.directories = [
+        ".config/YouTube Music"
+        ".config/youtube-tui"
+        ".local/share/youtube-tui"
+      ];
+
+      homeConfig.home.file.".config/YouTube Music/config.json" = {
+        text =
+          replaceStrings
+            [ "@theme" ]
+            [
+              (toFile "style.css" config.apps.ytmusic.style)
+            ]
+            files.youtube;
+        mutable = true;
+        force = true;
+      };
+    };
   };
 }
