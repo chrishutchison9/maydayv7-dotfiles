@@ -7,66 +7,69 @@
 }:
 {
   ## Launcher Configuration
-  user.homeConfig = {
-    imports = [ inputs.hyprshell.homeModules.hyprshell ];
-    programs.hyprshell = {
-      enable = true;
-      systemd.enable = true;
-      styleFile = util.build.theme {
-        inherit (config.lib.stylix) colors;
-        file = files.hyprland.hyprshell;
-      };
-
-      settings = {
-        layerrules = false;
-
-        launcher = {
-          enable = true;
-          default_terminal = "kitty";
-          width = 700;
-          max_items = 4;
-          show_when_empty = true;
-          plugins = {
-            applications = {
-              run_cache_weeks = 4;
-              show_execs = true;
-              show_actions_submenu = true;
-            };
-            websearch.engines = [
-              {
-                url = "https://www.google.com/search?q={}";
-                name = "Google";
-                key = "g";
-              }
-            ];
-          };
+  user = {
+    persist.directories = [ ".local/share/hyprshell" ];
+    homeConfig = {
+      imports = [ inputs.hyprshell.homeModules.hyprshell ];
+      programs.hyprshell = {
+        enable = true;
+        systemd.enable = true;
+        styleFile = util.build.theme {
+          inherit (config.lib.stylix) colors;
+          file = files.hyprland.hyprshell;
         };
 
-        windows = {
-          scale = 9.0;
-          workspaces_per_row = 3;
-          strip_html_from_workspace_title = true;
+        settings = {
+          layerrules = false;
 
-          overview = {
-            open = {
-              modifier = "super";
-              key = "tab";
-            };
-            navigate = {
-              forward = "tab";
-              reverse.mod = "shift";
+          launcher = {
+            enable = true;
+            default_terminal = "kitty";
+            width = 700;
+            max_items = 4;
+            show_when_empty = true;
+            plugins = {
+              applications = {
+                run_cache_weeks = 4;
+                show_execs = true;
+                show_actions_submenu = true;
+              };
+              websearch.engines = [
+                {
+                  url = "https://www.google.com/search?q={}";
+                  name = "Google";
+                  key = "g";
+                }
+              ];
             };
           };
 
-          switch = {
-            open.modifier = "alt";
-            navigate = {
-              forward = "tab";
-              reverse.mod = "shift";
+          windows = {
+            scale = 9.0;
+            workspaces_per_row = 3;
+            strip_html_from_workspace_title = true;
+
+            overview = {
+              open = {
+                modifier = "super";
+                key = "tab";
+              };
+              navigate = {
+                forward = "tab";
+                reverse.mod = "shift";
+              };
             };
-            other = {
-              hide_filtered = true;
-              filter_by = [ "current_workspace" ];
+
+            switch = {
+              open.modifier = "alt";
+              navigate = {
+                forward = "tab";
+                reverse.mod = "shift";
+              };
+              other = {
+                hide_filtered = true;
+                filter_by = [ "current_workspace" ];
+              };
             };
           };
         };

@@ -2,6 +2,9 @@
 
 ### June
 
+- Hyprland QOL Fixes
+  - `dunst` use pause levels
+  - `waybar` separate configuration for different monitors
 - Use `nixpkgs-wayland`
 - Add YT Music configuration
 - Add `tmux` configuration

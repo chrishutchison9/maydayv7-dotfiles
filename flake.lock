@@ -815,17 +815,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1749648513,
-        "narHash": "sha256-2Gl1k1deCEsYHAGePJXSQzLG2GUs1QxzpQu4wpS1980=",
+        "lastModified": 1749648368,
+        "narHash": "sha256-LTK7Fu2XoUmA5zONnb6bmHCPZXWTUhNaA1a1BqOA98Y=",
         "owner": "H3rmt",
-        "repo": "hyprswitch",
-        "rev": "2b4243c7a32e39c53331ace08fad71c17bcf7252",
+        "repo": "hyprshell",
+        "rev": "3adc2b9aa0c4219d9eeb02ea89d1a85bf2524c7f",
         "type": "github"
       },
       "original": {
         "owner": "H3rmt",
         "ref": "hyprshell",
-        "repo": "hyprswitch",
+        "repo": "hyprshell",
         "type": "github"
       }
     },

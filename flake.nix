@@ -220,7 +220,7 @@
 
     # Launcher
     hyprshell = {
-      url = "github:H3rmt/hyprswitch?ref=hyprshell";
+      url = "github:H3rmt/hyprshell?ref=hyprshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

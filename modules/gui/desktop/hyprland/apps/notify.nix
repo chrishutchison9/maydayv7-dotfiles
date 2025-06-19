@@ -28,9 +28,10 @@ in
     services.dunst =
       let
         system = {
-          history_ignore = "yes";
           fullscreen = "show";
           highlight = "#${colors.base07}";
+          history_ignore = "yes";
+          override_pause_level = 70;
         };
       in
       {
