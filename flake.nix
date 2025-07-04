@@ -148,6 +148,15 @@
       inputs.nixpkgs.follows = "unstable";
     };
 
+    # Minecraft Server
+    minecraft = {
+      url = "github:Infinidoge/nix-minecraft";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "utils";
+      };
+    };
+
     ## Theming
     # Base16 Theming Module
     stylix = {
@@ -220,8 +229,12 @@
 
     # Launcher
     hyprshell = {
-      url = "github:H3rmt/hyprshell?ref=hyprshell";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:H3rmt/hyprshell?ref=hyprshell-release";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "framework";
+        home-manager.follows = "home";
+      };
     };
   };
 
@@ -280,6 +293,7 @@
       "https://nix-gaming.cachix.org"
       "https://nixpkgs-wayland.cachix.org"
       "https://hyprland.cachix.org"
+      "https://hyprshell.cachix.org"
       "https://catppuccin.cachix.org"
     ];
 
@@ -292,6 +306,7 @@
       "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
       "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "hyprshell.cachix.org-1:seKSn/sAyobGjsRqe6deRKP/VZcsTorGt5/QqCeQrvU="
       "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
     ];
   };

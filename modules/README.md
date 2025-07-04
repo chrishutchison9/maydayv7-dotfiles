@@ -7,7 +7,6 @@ Configuration [Builder](./configuration.nix)
 - [`apps`](./apps): Module that configures various apps and/or environments -
 
   - `list`: List of enabled applications - `[ "discord" "firefox" "flatpak" "games" "git" "office" "spotify" "wine" ]`
-  - `games`: List of installed games - `[ "minecraft" "osu" ]`
   - `git` -
     - `hosting` -
       - `enable`: Enable Gitea Code Hosting - `true / false`
@@ -21,6 +20,10 @@ Configuration [Builder](./configuration.nix)
     - `package`: Package to use for `wine` - Ex. `pkgs.winePackages.staging`
   - `logseq.style`: Path to Logseq Notes CSS
   - `ytmusic.style`: YouTube Music CSS
+  - `games`: List of installed games - `[ "minecraft" "mc-server" "osu" ]`
+  - `mc-server`: Configure Minecraft Server -
+    - `memory`: Memory (GB) allocated to server - Ex. `12`
+    - `config`: Server Properties (See [here](https://minecraft.fandom.com/wiki/Server.properties))
 
 - [`base`](./base): Module that contains the base common/shared configuration -
 

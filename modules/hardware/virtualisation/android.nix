@@ -1,3 +1,4 @@
+# ? # Run 'waydroid init -s GAPPS -f' to install system image
 {
   config,
   options,
@@ -21,8 +22,6 @@ in
 
     virtualisation.waydroid.enable = true;
     environment.systemPackages = [ pkgs.wl-clipboard ];
-
-    # ? # Run 'waydroid init -s GAPPS -f' to install system image
 
     # Environment Setup
     users.groups.android = {

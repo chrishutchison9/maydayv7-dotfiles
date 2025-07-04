@@ -55,11 +55,15 @@ in
       };
 
       user = {
-        homeConfig.services.mpris-proxy.enable = true;
         persist.directories = [
           ".config/autostart"
           ".local/share/gvfs-metadata"
         ];
+
+        homeConfig.services = {
+          poweralertd.enable = true; # Power alerts
+          mpris-proxy.enable = true; # Audio devices
+        };
       };
 
       # Environment Setup

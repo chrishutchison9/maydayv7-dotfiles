@@ -494,6 +494,7 @@ _Thanks a lot! ;)_
 
 - Online accounts have to be manually signed into
 - [Wine](./packages/wine) Applications have to be manually updated
+- Minecraft [Server](./modules/apps/games/mc-server.nix) has to be manually updated
 - Logseq Plugins have to be manually installed
 - Cannot automatically hibernate on NVIDIA due to upstream [issue](https://forums.developer.nvidia.com/t/systemds-suspend-then-hibernate-not-working-in-nvidia-optimus-laptop/213690)
 

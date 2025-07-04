@@ -163,6 +163,21 @@
         "type": "github"
       }
     },
+    "crane_2": {
+      "locked": {
+        "lastModified": 1750266157,
+        "narHash": "sha256-tL42YoNg9y30u7zAqtoGDNdTyXTi8EALDeCB13FtbQA=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "e37c943371b73ed87faf33f7583860f81f1d5a48",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
     "filters": {
       "locked": {
         "lastModified": 1731533336,
@@ -227,6 +242,22 @@
       }
     },
     "flake-compat_3": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1747046372,
+        "narHash": "sha256-CIVLLkVgvHYbgI2UpXvIIBJ12HWgX+fjA8Xf8PUmqCY=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "9100a0f413b0c601e0533d1d94ffd501ce2e7885",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "flake-compat_4": {
       "locked": {
         "lastModified": 1733328505,
         "narHash": "sha256-NeCCThCEP3eCl2l/+27kNNK7QrwZB1IJCrXfrbv5oqU=",
@@ -240,7 +271,7 @@
         "url": "https://flakehub.com/f/edolstra/flake-compat/1.tar.gz"
       }
     },
-    "flake-compat_4": {
+    "flake-compat_5": {
       "locked": {
         "lastModified": 1733328505,
         "narHash": "sha256-NeCCThCEP3eCl2l/+27kNNK7QrwZB1IJCrXfrbv5oqU=",
@@ -255,7 +286,7 @@
         "type": "github"
       }
     },
-    "flake-compat_5": {
+    "flake-compat_6": {
       "locked": {
         "lastModified": 1746162366,
         "narHash": "sha256-5SSSZ/oQkwfcAz/o/6TlejlVGqeK08wyREBQ5qFFPhM=",
@@ -270,7 +301,7 @@
         "type": "github"
       }
     },
-    "flake-compat_6": {
+    "flake-compat_7": {
       "flake": false,
       "locked": {
         "lastModified": 1673956053,
@@ -810,21 +841,28 @@
     },
     "hyprshell": {
       "inputs": {
+        "crane": "crane_2",
+        "flake-parts": [
+          "framework"
+        ],
+        "home-manager": [
+          "home"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1749648368,
-        "narHash": "sha256-LTK7Fu2XoUmA5zONnb6bmHCPZXWTUhNaA1a1BqOA98Y=",
+        "lastModified": 1750983993,
+        "narHash": "sha256-AfOG2MCHRp/p894mJhCRRGTLd+DpWKAp3Epf5dR7S/E=",
         "owner": "H3rmt",
         "repo": "hyprshell",
-        "rev": "3adc2b9aa0c4219d9eeb02ea89d1a85bf2524c7f",
+        "rev": "601c7eb1a61854d0d70b257447e9ddc044810855",
         "type": "github"
       },
       "original": {
         "owner": "H3rmt",
-        "ref": "hyprshell",
+        "ref": "hyprshell-release",
         "repo": "hyprshell",
         "type": "github"
       }
@@ -976,9 +1014,33 @@
         "type": "github"
       }
     },
-    "nixcord": {
+    "minecraft": {
       "inputs": {
         "flake-compat": "flake-compat_3",
+        "flake-utils": [
+          "utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1751163853,
+        "narHash": "sha256-TgZaxZMJM7Oyp4ClDhevGAX8bHeIZ0hh5u6m99+8XWo=",
+        "owner": "Infinidoge",
+        "repo": "nix-minecraft",
+        "rev": "620b8a095b4e4958e071a7ef712f752d6e82dfcf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Infinidoge",
+        "repo": "nix-minecraft",
+        "type": "github"
+      }
+    },
+    "nixcord": {
+      "inputs": {
+        "flake-compat": "flake-compat_4",
         "flake-parts": [
           "framework"
         ],
@@ -1179,6 +1241,7 @@
         "hyprsplit": "hyprsplit",
         "impermanence": "impermanence",
         "index": "index",
+        "minecraft": "minecraft",
         "nixcord": "nixcord",
         "nixpkgs": [
           "stable"
@@ -1284,7 +1347,7 @@
         "base16-helix": "base16-helix",
         "base16-vim": "base16-vim",
         "firefox-gnome-theme": "firefox-gnome-theme",
-        "flake-compat": "flake-compat_4",
+        "flake-compat": "flake-compat_5",
         "flake-parts": [
           "framework"
         ],
@@ -1570,7 +1633,7 @@
     },
     "waypkgs": {
       "inputs": {
-        "flake-compat": "flake-compat_5",
+        "flake-compat": "flake-compat_6",
         "lib-aggregate": "lib-aggregate",
         "nixpkgs": "nixpkgs_2"
       },
@@ -1590,7 +1653,7 @@
     },
     "windows": {
       "inputs": {
-        "flake-compat": "flake-compat_6",
+        "flake-compat": "flake-compat_7",
         "nixpkgs": [
           "unstable"
         ]

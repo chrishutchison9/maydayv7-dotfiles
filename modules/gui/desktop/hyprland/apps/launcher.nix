@@ -21,55 +21,52 @@
 
         settings = {
           layerrules = false;
-
-          launcher = {
-            enable = true;
-            default_terminal = "kitty";
-            width = 700;
-            max_items = 4;
-            show_when_empty = true;
-            plugins = {
-              applications = {
-                run_cache_weeks = 4;
-                show_execs = true;
-                show_actions_submenu = true;
-              };
-              websearch.engines = [
-                {
-                  url = "https://www.google.com/search?q={}";
-                  name = "Google";
-                  key = "g";
-                }
-              ];
-            };
-          };
+          kill_bind = "ctrl+shift, r";
 
           windows = {
+            enable = true;
             scale = 9.0;
-            workspaces_per_row = 3;
-            strip_html_from_workspace_title = true;
+            items_per_row = 3;
 
             overview = {
-              open = {
-                modifier = "super";
-                key = "tab";
-              };
-              navigate = {
-                forward = "tab";
-                reverse.mod = "shift";
+              enable = true;
+              modifier = "super";
+              key = "tab";
+              strip_html_from_workspace_title = true;
+
+              launcher = {
+                enable = true;
+                launch_modifier = "alt";
+                default_terminal = "kitty";
+                width = 700;
+                max_items = 4;
+                show_when_empty = true;
+                plugins = {
+                  applications = {
+                    run_cache_weeks = 4;
+                    show_execs = true;
+                    show_actions_submenu = true;
+                  };
+                  websearch.engines = [
+                    {
+                      url = "https://www.google.com/search?q={}";
+                      name = "Google";
+                      key = "g";
+                    }
+                    {
+                      url = "https://en.wikipedia.org/wiki/Special:Search?search={}";
+                      name = "Wikipedia";
+                      key = "w";
+                    }
+                  ];
+                };
               };
             };
 
             switch = {
-              open.modifier = "alt";
-              navigate = {
-                forward = "tab";
-                reverse.mod = "shift";
-              };
-              other = {
-                hide_filtered = true;
-                filter_by = [ "current_workspace" ];
-              };
+              enable = true;
+              modifier = "alt";
+              filter_by = [ "current_workspace" ];
             };
           };
         };

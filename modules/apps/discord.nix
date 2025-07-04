@@ -81,6 +81,7 @@ in
               voiceChatDoubleClick.enable = true;
               voiceDownload.enable = true;
               voiceMessages.enable = true;
+              volumeBooster.enable = true;
               webKeybinds.enable = true;
               webScreenShareFixes.enable = true;
             };

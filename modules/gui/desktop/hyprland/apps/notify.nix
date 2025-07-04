@@ -20,9 +20,6 @@ in
       indicator = true;
     };
 
-    # Alerts
-    services.poweralertd.enable = true;
-
     # Notifications Daemon
     stylix.targets.dunst.enable = true;
     services.dunst =

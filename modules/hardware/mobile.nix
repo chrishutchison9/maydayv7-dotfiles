@@ -1,3 +1,4 @@
+# ? # Run 'systemctl restart usbmuxd' if iOS doesn't work
 {
   config,
   lib,
@@ -20,7 +21,5 @@ in
       libimobiledevice
       scrcpy
     ];
-
-    # ? # Run 'systemctl restart usbmuxd.service' if it doesn't work
   };
 }

@@ -1,5 +1,10 @@
 ## 2025
 
+### July
+
+- Add Minecraft Server Configuration
+- Update GNOME Extensions
+
 ### June
 
 - Hyprland QOL Fixes

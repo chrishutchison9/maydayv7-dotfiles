@@ -12,7 +12,11 @@
     "thunderbolt"
   ];
 
-  imports = [ ./drivers.nix ];
+  imports = [
+    ./drivers.nix
+    ./mc-server.nix
+  ];
+
   hardware = {
     boot = "secure";
     filesystem = "advanced";

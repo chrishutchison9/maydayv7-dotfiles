@@ -45,6 +45,7 @@ let
         { package = invert-window-color; }
         { package = media-progress; }
         { package = night-light-slider-updated; }
+        { package = notification-counter; }
         { package = overview-hover; }
         { package = removable-drive-menu; }
         { package = screenshot-window-sizer; }
@@ -95,12 +96,20 @@ let
           settings.hpadding = 4;
         }
         {
+          package = autohide-battery;
+          settings.hide-on = 80;
+        }
+        {
           package = brightness-control-using-ddcutil;
           settings.hide-system-indicator = true;
         }
         {
           package = color-picker;
           settings.enable-format = true;
+        }
+        {
+          package = focus-follows-workspace;
+          settings.move-cursor = true;
         }
         {
           package = gamemode-shell-extension;
@@ -135,14 +144,6 @@ let
             colored-icon = true;
             show-icon = false;
             show-title = false;
-          };
-        }
-        {
-          package = autohide-battery-percentage;
-          settings = {
-            hide-on-battery-level = 90;
-            hide-on-plugged-in = true;
-            hide-on-power-saving-disabled = false;
           };
         }
         {
@@ -183,15 +184,30 @@ let
           };
         }
         {
-          package = alttab-mod;
-          name = "altTab-mod";
+          package = workspace-switcher-manager;
           settings = {
-            current-monitor-only = true;
-            current-monitor-only-window = true;
-            current-workspace-only = true;
-            disable-hover-select = false;
-            focus-on-select-window = true;
-            remove-delay = true;
+            active-show-win-title = false;
+            active-show-ws-name = true;
+            inactive-show-ws-name = true;
+            modifiers-hide-popup = true;
+            monitor = 0;
+            popup-mode = 0;
+            popup-opacity = 100;
+            vertical = 5;
+            ws-ignore-last = false;
+            ws-wraparound = true;
+          };
+        }
+        {
+          package = bluetooth-battery-meter;
+          name = "Bluetooth-Battery-Meter";
+          settings = {
+            enable-battery-indicator-text = false;
+            enable-battery-level-text = true;
+            enable-upower-level-icon = true;
+            level-indicator-color = 0;
+            level-indicator-type = 0;
+            swap-icon-text = false;
           };
         }
         {
@@ -205,6 +221,20 @@ let
               "startcenter.desktop"
               "virt-manager.desktop"
             ];
+          };
+        }
+        {
+          package = coverflow-alt-tab;
+          name = "coverflowalttab";
+          settings = {
+            hide-panel = false;
+            highlight-mouse-over = false;
+            icon-style = "Classic";
+            position = "Bottom";
+            raise-mouse-over = true;
+            switch-per-monitor = true;
+            switcher-looping-method = "Flip Stack";
+            switcher-style = "Coverflow";
           };
         }
         {
@@ -379,8 +409,8 @@ let
             message-tray-module = true;
             new-window-focus-fix = false;
             new-window-monitor-fix = false;
-            notification-position = 2;
-            osd-position = 3;
+            notification-position = 1;
+            osd-position = 2;
             osd-window-module = true;
             overlay-key-module = true;
             overlay-key-primary = 1;

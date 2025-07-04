@@ -48,6 +48,7 @@ in
                 // hyprcursors.packages."${system}"
                 // hyprspace.packages."${system}";
             })
+            minecraft.overlay
           ];
         };
     }

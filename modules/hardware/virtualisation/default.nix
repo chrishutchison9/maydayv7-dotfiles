@@ -1,3 +1,4 @@
+# ? # Run 'virsh net-start default' to start virtual network service
 {
   config,
   lib,
@@ -38,8 +39,6 @@ in
       libguestfs
       virtiofsd
     ];
-
-    # ? # Run 'virsh net-start default' to start virtual network service
 
     # VM Utilities
     virtualisation = {
