@@ -14,7 +14,7 @@
 
   imports = [
     ./drivers.nix
-    ./mc-server.nix
+    ./minecraft.nix
   ];
 
   hardware = {

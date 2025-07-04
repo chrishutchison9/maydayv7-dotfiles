@@ -27,22 +27,19 @@ in
     catppuccin = with theme; {
       inherit accent;
       flavor = variant;
-      vscode.enable = true;
+
       thunderbird.enable = true;
+      vesktop.enable = true;
+      vscode.enable = true;
     };
 
-    programs = with theme; {
-      # Code Editor
-      vscode.profiles.default = mkIf (exists "vscode") {
-        extensions = [ pkgs.vscode-extensions.catppuccin.catppuccin-vsc-icons ];
-        userSettings = {
-          "workbench.iconTheme" = "${name}-${variant}";
-          "terminal.external.linuxExec" = "kitty";
-        };
+    # Code Editor
+    programs.vscode.profiles.default = mkIf (exists "vscode") {
+      extensions = [ pkgs.vscode-extensions.catppuccin.catppuccin-vsc-icons ];
+      userSettings = {
+        "workbench.iconTheme" = with theme; "${name}-${variant}";
+        "terminal.external.linuxExec" = "kitty";
       };
-
-      # Discord Chat
-      nixcord.quickCss = mkIf (exists "discord") ''@import url("https://${name}.github.io/discord/dist/${name}-${variant}-${accent}.theme.css");'';
     };
 
     # KDE Apps

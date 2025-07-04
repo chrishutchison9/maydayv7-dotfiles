@@ -2,6 +2,7 @@
 
 ### July
 
+- Improve `nixos apply --delta`
 - Add Minecraft Server Configuration
 - Update GNOME Extensions
 

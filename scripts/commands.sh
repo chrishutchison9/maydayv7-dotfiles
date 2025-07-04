@@ -5,8 +5,8 @@
 
 temp(){
   TEMP=/tmp/"$1"
-  if ! [ "$2" -eq 1 ]; then rm -rf "$TEMP"; fi
-  mkdir -p "$TEMP"
+  if [ "$2" != "1" ]; then rm -rf "$TEMP"; fi
+  if [ "$2" != "2" ]; then mkdir -p "$TEMP"; fi
 }
 
 extract() {
@@ -50,7 +50,7 @@ internet() {
 }
 
 restart() {
-  read -rp "Do you want to Reboot the System? (Y/N): " choice
+  read -rp "Do you want to Reboot the System? (Y/*): " choice
     case $choice in
       [Yy]*) reboot;;
       *) exit;;

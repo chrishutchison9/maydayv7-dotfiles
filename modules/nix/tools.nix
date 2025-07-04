@@ -19,6 +19,7 @@
     environment.systemPackages = with pkgs; [
       cachix
       manix
+      nix-output-monitor
       nixfmt-rfc-style
       nodePackages.prettier
       shellcheck

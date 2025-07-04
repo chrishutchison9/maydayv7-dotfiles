@@ -129,7 +129,7 @@ recursiveUpdate
         fi
 
         warn "Disk will be Completely Wiped for Automatic Partitioning"
-        read -rp "Do you want to Automatically Create the Partitions? (Y/N): " choice
+        read -rp "Do you want to Automatically Create the Partitions? (Y/*): " choice
           case $choice in
             [Yy]*) partition_disk;;
             *) warn "You must Create, Format and Label the Partitions on your own"; gparted &> /dev/null;;
@@ -138,14 +138,14 @@ recursiveUpdate
         read -rp "Select Filesystem to use for Disk (simple/advanced): " choice
           case $choice in
             1|[Ss]*)
-              read -rp "Do you want to Create and Format the EXT4 Partitions? (Y/N): " choice
+              read -rp "Do you want to Create and Format the EXT4 Partitions? (Y/*): " choice
                 case $choice in
                   [Yy]*) create_ext4; mount_ext4;;
                   *) warn "Assuming that Required EXT4 Partition has already been Created"; mount_ext4;;
                 esac
             ;;
             2|[Aa]*)
-              read -rp "Do you want to Create the ZFS Pool and Datasets? (Y/N): " choice
+              read -rp "Do you want to Create the ZFS Pool and Datasets? (Y/*): " choice
                 case $choice in
                   [Yy]*) create_zfs; mount_zfs;;
                   *) warn "Assuming that Required ZFS Pool and Datasets have already been Created"; mount_zfs;;

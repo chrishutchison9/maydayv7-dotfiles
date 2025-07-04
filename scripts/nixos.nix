@@ -90,19 +90,21 @@ recursiveUpdate
     pkgs.writeShellApplication {
       name = "nixos";
       runtimeInputs = with pkgs; [
-        cachix
         coreutils
-        git
         gnugrep
-        gnupg
         gnused
+        git
         jq
-        manix
-        nixFlakes
-        nvd
-        sops
         tree
+        gnupg
+        sops
         wine.mkwindowsapp-tools
+
+        nixFlakes
+        cachix
+        manix
+        nix-output-monitor
+        nvd
       ];
 
       text = ''
@@ -159,17 +161,24 @@ recursiveUpdate
             fi
           ;;
           "--delta")
-            temp nixos-build
-            pushd "$TEMP" &> /dev/null
             echo "Building Configuration..."
-            if nixos-rebuild build --flake ${path.system}#
+            temp nixos-build 2
+            HOSTNAME=$(cat /etc/hostname)
+            if nom build ${path.system}#nixosConfigurations."$HOSTNAME".config.system.build.toplevel --out-link "$TEMP"
             then
               echo "Processing Delta..."
-              nvd diff /run/current-system result
+              nvd diff /run/current-system "$TEMP"
+              read -rp "Do you want to apply the configuration? (Y/*): " choice
+              case $choice in
+                [Yy]*)
+                  echo "Applying Configuration..."
+                  sudo "$TEMP"/bin/switch-to-configuration switch
+                ;;
+                *) exit;;
+              esac
             else
               error "Couldn't build generation successfully"
             fi
-            popd &> /dev/null
           ;;
           "--test")
             echo "Testing Configuration..."

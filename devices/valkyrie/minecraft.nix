@@ -1,7 +1,8 @@
 { config, ... }:
 {
   ## Minecraft Server
-  specialisation.mc-server.configuration = {
+  specialisation.minecraft.configuration = {
+    system.nixos.label = "special.minecraft";
     apps = {
       games = [ "mc-server" ];
       mc-server = {
