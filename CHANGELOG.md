@@ -2,6 +2,8 @@
 
 ### July
 
+- Update Hyprland to v0.50
+- Rename `hardware.filesystem` -> `hardware.fs` and improve
 - Improve `nixos apply --delta`
 - Add Minecraft Server Configuration
 - Update GNOME Extensions

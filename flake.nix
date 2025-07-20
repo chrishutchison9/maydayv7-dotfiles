@@ -195,7 +195,7 @@
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
+        nixpkgs.follows = "unstable";
         systems.follows = "systems";
       };
     };

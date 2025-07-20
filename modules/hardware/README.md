@@ -15,7 +15,7 @@ _If the `advanced` filesystem scheme is used, the keys need to be created after 
 
 ### File System
 
-The system may be set up using either a `simple` or `advanced` filesystem layout. The advanced ZFS encrypted opt-in state filesystem configuration allows for a vastly improved experience, preventing formation of cruft and exerting total control over the device state, by erasing the system at every boot, keeping only what's required
+The system may be set up using either a `simple` or `advanced` filesystem scheme. The advanced ZFS encrypted opt-in state filesystem configuration allows for a vastly improved experience, preventing formation of cruft and exerting total control over the device state, by erasing the system at every boot, keeping only what's required
 
 #### Data Storage
 

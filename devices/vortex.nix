@@ -15,7 +15,7 @@
   imports = [ { services.fwupd.enable = true; } ];
   hardware = {
     boot = "secure";
-    filesystem = "advanced";
+    fs.scheme = "advanced";
     modules = [ "dell-inspiron-5509" ];
     cpu = {
       cores = 8;

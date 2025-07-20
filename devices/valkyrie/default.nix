@@ -19,7 +19,7 @@
 
   hardware = {
     boot = "secure";
-    filesystem = "advanced";
+    fs.scheme = "advanced";
     modules = [ "asus-zephyrus-ga402x-nvidia" ];
     gpu = "nvidia";
     cpu = {
@@ -91,6 +91,7 @@
       "wheel"
       "keys"
       "systemd-journal"
+      "minecraft"
     ];
   };
 }

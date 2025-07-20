@@ -23,18 +23,19 @@ let
     types
     ;
 
-  inherit (config.hardware) filesystem;
+  inherit (config.hardware.fs) scheme;
 in
 {
   imports =
     [ inputs.impermanence.nixosModule ]
     ++ [
       (mkAliasOptionModule [ "environment" "persist" ] [ "environment" "persistence" files.path.persist ])
+      (mkAliasOptionModule [ "hardware" "fs" "persist" ] [ "environment" "persistence" "/data" ])
     ];
 
   options = with types; {
-    hardware.filesystem = mkOption {
-      description = "Disk File System Choice";
+    hardware.fs.scheme = mkOption {
+      description = "Disk Filesystem Scheme";
       type = nullOr (enum [
         "simple"
         "advanced"
@@ -62,7 +63,7 @@ in
   ## File System Configuration ##
   config = mkMerge [
     {
-      warnings = optional (filesystem == null) (options.hardware.filesystem.description + " is unset");
+      warnings = optional (scheme == null) (options.hardware.fs.scheme.description + " is unset");
 
       ## Common Partitions
       boot.supportedFilesystems = {
@@ -72,7 +73,7 @@ in
       };
     }
 
-    (mkIf (filesystem != null) {
+    (mkIf (scheme != null) {
       programs.fuse.userAllowOther = true;
 
       # EFI System Partition
@@ -84,10 +85,21 @@ in
       # SWAP Partition
       swapDevices = [ { device = "/dev/disk/by-partlabel/swap"; } ];
       boot.kernel.sysctl."vm.swappiness" = 1;
+
+      system.activationScripts.dotfiles =
+        with files.path;
+        let
+          path = if scheme == "advanced" then "${persist}/" else "";
+          dir = "${path}${system}";
+        in
+        ''
+          chown root:keys ${dir}
+          chmod 774 -R ${dir}
+        '';
     })
 
     ## Simple File System Configuration using EXT4 ##
-    (mkIf (filesystem == "simple") {
+    (mkIf (scheme == "simple") {
       fileSystems = {
         # ROOT Partition
         "/" = {
@@ -98,7 +110,7 @@ in
     })
 
     ## Advanced File System Configuration using ZFS ##
-    (mkIf (filesystem == "advanced") (
+    (mkIf (scheme == "advanced") (
       let
         rollback = ''
           zfs rollback -r fspool/system/root@blank && echo "Rollback Complete!"
@@ -203,58 +215,6 @@ in
           };
         };
 
-        system.activationScripts.dotfiles =
-          let
-            dir = with files.path; "${persist}/${system}";
-          in
-          ''
-            chown root:keys ${dir}
-            chmod 774 -R ${dir}
-          '';
-
-        user.homeConfig.systemd.user.services.persist-trash = {
-          Unit.Description = "Persist Trash Folder";
-          Install.WantedBy = [ "default.target" ];
-          Service =
-            let
-              dir = ''
-                LOCAL="$HOME/.local/share/Trash"
-                PERSIST="/data/home/$USER/Trash"
-                mkdir -p "$LOCAL"
-              '';
-            in
-            {
-              Type = "oneshot";
-              RemainAfterExit = true;
-              StandardOutput = "journal";
-              ExecStart = "${
-                pkgs.writeShellApplication {
-                  name = "retrieve";
-                  runtimeInputs = [ pkgs.coreutils ];
-                  text = ''
-                    ${dir}
-                    if [ -d "$PERSIST" ]
-                    then
-                      cp -r "$PERSIST"/. "$LOCAL"
-                      rm -rf "$PERSIST"
-                    fi
-                  '';
-                }
-              }/bin/retrieve";
-              ExecStop = "${
-                pkgs.writeShellApplication {
-                  name = "migrate";
-                  runtimeInputs = [ pkgs.coreutils ];
-                  text = ''
-                    ${dir}
-                    mkdir -p "$PERSIST"
-                    cp -r "$LOCAL"/. "$PERSIST"
-                  '';
-                }
-              }/bin/migrate";
-            };
-        };
-
         # Maintainence
         services.zfs = {
           trim.enable = true;
@@ -266,6 +226,45 @@ in
             weekly = 3;
             monthly = 1;
           };
+        };
+
+        systemd.user.services.persist-trash = {
+          description = "Persist Trash Folder";
+          wantedBy = [ "default.target" ];
+          path = [ pkgs.coreutils ];
+          serviceConfig =
+            let
+              run =
+                script:
+                "${
+                  pkgs.writeShellApplication {
+                    name = "script";
+                    runtimeInputs = [ pkgs.coreutils ];
+                    text = ''
+                      LOCAL="$HOME/.local/share/Trash"
+                      PERSIST="/data/home/$USER/Trash"
+                      mkdir -p "$LOCAL"
+                      ${script}
+                    '';
+                  }
+                }/bin/script";
+            in
+            {
+              Type = "oneshot";
+              RemainAfterExit = true;
+              StandardOutput = "journal";
+              ExecStart = run ''
+                if [ -d "$PERSIST" ]
+                then
+                  cp -r "$PERSIST"/. "$LOCAL"
+                  rm -rf "$PERSIST"
+                fi
+              '';
+              ExecStop = run ''
+                mkdir -p "$PERSIST"
+                cp -r "$LOCAL"/. "$PERSIST"
+              '';
+            };
         };
       }
     ))

@@ -110,11 +110,7 @@ in
         # Graphics
         vrr = 1;
       };
-
-      render = {
-        direct_scanout = true;
-        explicit_sync = 2;
-      };
+      render.direct_scanout = 1;
 
       general = {
         allow_tearing = !fancy;
@@ -123,14 +119,16 @@ in
         # Floating Layout
         snap = {
           enabled = true;
-          window_gap = 15;
-          monitor_gap = 10;
           border_overlap = true;
+          respect_gaps = true;
+          monitor_gap = 10;
+          window_gap = 15;
         };
 
         # Visuals
         gaps_in = 3;
         gaps_out = 3;
+        float_gaps = 3;
         border_size = 2;
         "col.active_border" = mkForce "rgb(${base0D}) rgb(${base05}) 90deg";
       };

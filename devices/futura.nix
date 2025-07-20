@@ -11,7 +11,7 @@
   hardware = {
     boot = "efi";
     cpu.cores = 4;
-    filesystem = "simple";
+    fs.scheme = "simple";
     support = [ "laptop" ];
     modules = [
       "common-pc"

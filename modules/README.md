@@ -24,6 +24,7 @@ Configuration [Builder](./configuration.nix)
   - `mc-server`: Configure Minecraft Server -
     - `memory`: Memory (GB) allocated to server - Ex. `12`
     - `config`: Server Properties (See [here](https://minecraft.fandom.com/wiki/Server.properties))
+    - `vc-port`: Port for [Simple Voice Chat](https://modrinth.com/plugin/simple-voice-chat) - Ex. `24454`
 
 - [`base`](./base): Module that contains the base common/shared configuration -
 
@@ -59,12 +60,13 @@ Configuration [Builder](./configuration.nix)
 - [`hardware`](./hardware): Module that configures device and additional hardware -
 
   - `boot`: Supported Boot Firmware - `"mbr" / "efi" / "secure"`
+  - `fs`: File System Configuration -
+    - `scheme`: Disk Filesystem Scheme - `"simple" / "advanced"`
+    - `persist`: System Files to Preserve across Reboots (while using `advanced` File System Layout)
   - `cpu` -
     - `cores`: Number of CPU Cores - Ex. `4`
     - `mode`: CPU Frequency Governor Mode - `"ondemand" / "performance" / "powersave"`
   - `gpu`: Discrete GPU Support - `null / "nvidia"`
-  - `filesystem`: Disk File System Choice - `"simple" / "advanced"` -
-    - `persist`: System Files to Preserve across Reboots (while using `advanced` File System Layout)
   - `modules`: List of Hardware Configuration Modules imported from [`inputs.hardware`](https://github.com/nixos/nixos-hardware) - Ex. `[ "common-pc" ]`
   - `support`: List of Additional Supported Hardware - `[ "laptop" "mobile" "printer" "virtualisation" ]`
   - `vm`: Configure Virtualisation Support -

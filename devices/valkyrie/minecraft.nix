@@ -7,6 +7,7 @@
       games = [ "mc-server" ];
       mc-server = {
         memory = 16;
+        vc-port = 24454;
         config = {
           motd = "My World";
           gamemode = "survival";

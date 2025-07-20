@@ -311,7 +311,7 @@ Example `flake.nix`:
       hardware = {
         boot = "efi";
         cores = 4;
-        filesystem = "simple";
+        fs.scheme = "simple";
         modules = [ /* Imported from 'nixos-hardware' */];
       };
 
