@@ -74,6 +74,9 @@
       # Hyprland WM
       hyprland =
         {
+          # Custom Shaders
+          shaders = ./hyprland/shaders;
+
           # Pyprland
           pypr = readFile ./hyprland/pypr.toml;
 

@@ -1209,11 +1209,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1745080454,
-        "narHash": "sha256-Ylk1g6/yy+/4vQ+0E6oOYcwtQ2Kk0vbcimvK21a8ppI=",
+        "lastModified": 1753270975,
+        "narHash": "sha256-bI3F+PqAHVK0g+H2B+wFK7r7z+BmHsqyRY5I477Zcuo=",
         "owner": "maydayv7",
         "repo": "proprietary",
-        "rev": "7fcbd8b32736128dd29bb106b855a926c0338f10",
+        "rev": "182c2803995962c7e3ea5e491ae4294325766e59",
         "type": "github"
       },
       "original": {

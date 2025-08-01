@@ -166,7 +166,7 @@ in
 
         # Shaders
         ".config/hypr/shaders" = {
-          source = files.proprietary.shaders.path;
+          source = shaders;
           recursive = true;
         };
       };
