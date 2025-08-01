@@ -165,7 +165,6 @@
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
         flake-parts.follows = "framework";
-        home-manager.follows = "home";
       };
     };
 

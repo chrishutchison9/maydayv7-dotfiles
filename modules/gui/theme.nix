@@ -94,7 +94,7 @@ in
     };
 
     user.homeConfig.stylix = {
-      iconTheme = {
+      icons = {
         enable = true;
         inherit (cfg.icons) package;
         light = cfg.icons.name;
