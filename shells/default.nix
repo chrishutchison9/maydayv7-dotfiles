@@ -5,19 +5,18 @@
 with pkgs;
 mkShell {
   name = "devShell";
-  packages =
-    [
-      git
-      gnupg
-      jq
-      nixFlakes
-      sops
-      treefmt
-    ]
-    ++ [
-      figlet
-      fastfetch
-    ];
+  packages = [
+    git
+    gnupg
+    jq
+    nixFlakes
+    sops
+    treefmt
+  ]
+  ++ [
+    figlet
+    fastfetch
+  ];
 
   shellHook = ''
     echo -e "\e[36m## Default Developer Shell ##"

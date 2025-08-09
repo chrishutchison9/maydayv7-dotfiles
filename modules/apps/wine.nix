@@ -42,7 +42,8 @@ in
       ".wine"
       ".cache/wine"
       ".cache/winetricks"
-    ] ++ optionals cfg.utilities [ ".config/notepad++" ];
+    ]
+    ++ optionals cfg.utilities [ ".config/notepad++" ];
 
     environment.systemPackages =
       with pkgs.wine // pkgs;

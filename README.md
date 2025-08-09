@@ -504,7 +504,7 @@ _Thanks a lot! ;)_
 
 </details>
 
-> Last Updated: **June** 2025
+> Last Updated: **August** 2025
 
 If you like this project, consider leaving a [star](https://github.com/maydayv7/dotfiles)
 

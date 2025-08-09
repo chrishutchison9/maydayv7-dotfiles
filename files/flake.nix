@@ -72,31 +72,30 @@
       };
 
       # Hyprland WM
-      hyprland =
-        {
-          # Custom Shaders
-          shaders = ./hyprland/shaders;
+      hyprland = {
+        # Custom Shaders
+        shaders = ./hyprland/shaders;
 
-          # Pyprland
-          pypr = readFile ./hyprland/pypr.toml;
+        # Pyprland
+        pypr = readFile ./hyprland/pypr.toml;
 
-          # Hot Corners
-          waycorner = readFile ./hyprland/waycorner.toml;
+        # Hot Corners
+        waycorner = readFile ./hyprland/waycorner.toml;
 
-          # Keybinds Viewer
-          kebihelp = readFile ./hyprland/kebihelp.json;
+        # Keybinds Viewer
+        kebihelp = readFile ./hyprland/kebihelp.json;
 
-          # PcmanFM File Manager
-          pcmanfm = readFile ./hyprland/pcmanfm.conf;
+        # PcmanFM File Manager
+        pcmanfm = readFile ./hyprland/pcmanfm.conf;
 
-          # Greeter Configuration
-          greeter = readFile ./hyprland/greeter.conf;
-        }
-        // map.files {
-          directory = ./hyprland/theme;
-          apply = readFile;
-          extension = ".css";
-        };
+        # Greeter Configuration
+        greeter = readFile ./hyprland/greeter.conf;
+      }
+      // map.files {
+        directory = ./hyprland/theme;
+        apply = readFile;
+        extension = ".css";
+      };
 
       # Pictures
       images = {

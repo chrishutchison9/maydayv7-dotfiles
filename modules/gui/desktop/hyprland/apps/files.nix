@@ -21,14 +21,15 @@ in
 {
   ## File Manager Configuration
   services.dbus.packages = [ nemo ];
-  environment.systemPackages =
-    [ nemo ]
-    ++ (with pkgs; [
-      cinnamon-desktop
-      bulky
-      file-roller
-      lxqt.pcmanfm-qt
-    ]);
+  environment.systemPackages = [
+    nemo
+  ]
+  ++ (with pkgs; [
+    cinnamon-desktop
+    bulky
+    file-roller
+    lxqt.pcmanfm-qt
+  ]);
 
   user = {
     persist.directories = [

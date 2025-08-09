@@ -39,7 +39,8 @@ in
           ".config/logseq/configs.edn".text = ''{:window/native-titlebar? true}'';
           ".logseq/preferences.json" = {
             text = prefs;
-          } // mutable;
+          }
+          // mutable;
           ".logseq/config/config.edn".text = mkIf (
             cfg.style != ""
           ) ''{:custom-css-url "@import ${cfg.style};"}'';

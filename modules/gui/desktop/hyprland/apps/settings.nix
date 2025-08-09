@@ -57,23 +57,22 @@ in
       ];
 
       ## Autostart
-      exec-once =
-        [
-          "uwsm finalize"
-          "hyprctl setcursor ${cursor} ${toString cursors.size}"
-        ]
-        ++ (map (app: "uwsm app -t service -u ${util.build.until " " app}.service -- " + app) [
-          "hyprutils daemon"
+      exec-once = [
+        "uwsm finalize"
+        "hyprctl setcursor ${cursor} ${toString cursors.size}"
+      ]
+      ++ (map (app: "uwsm app -t service -u ${util.build.until " " app}.service -- " + app) [
+        "hyprutils daemon"
 
-          # Pyprland
-          "pypr"
+        # Pyprland
+        "pypr"
 
-          # Application Drawer
-          "nwg-drawer -r"
+        # Application Drawer
+        "nwg-drawer -r"
 
-          # Desktop Icons
-          "pcmanfm-qt --desktop"
-        ]);
+        # Desktop Icons
+        "pcmanfm-qt --desktop"
+      ]);
 
       ## Shortcuts
       bind =

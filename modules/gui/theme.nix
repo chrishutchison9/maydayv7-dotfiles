@@ -67,12 +67,13 @@ in
 
   ## Application Theming ##
   config = rec {
-    environment.systemPackages =
-      [ stylix.cursor.package ]
-      ++ optionals enable [
-        cfg.icons.package
-        cfg.cursors.package
-      ];
+    environment.systemPackages = [
+      stylix.cursor.package
+    ]
+    ++ optionals enable [
+      cfg.icons.package
+      cfg.cursors.package
+    ];
 
     stylix = {
       inherit enable;

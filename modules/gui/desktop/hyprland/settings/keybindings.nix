@@ -8,84 +8,83 @@ in
     ## Keybindings
     settings = {
       "$mod" = "SUPER";
-      bind =
-        [
-          # Compositor Commands
-          "ALT, F4, killactive,"
-          "$mod, Q, killactive,"
-          "$mod SHIFT, Q, forcekillactive,"
-          "$mod SHIFT, E, fullscreen,"
-          "$mod, C, centerwindow"
-          "$mod, C, movecursortocorner, 2"
-          "$mod, E, fullscreen, 1"
-          "$mod, P, pin"
-          "$mod, Space, togglesplit"
-          "$mod SHIFT, S, toggleswallow"
+      bind = [
+        # Compositor Commands
+        "ALT, F4, killactive,"
+        "$mod, Q, killactive,"
+        "$mod SHIFT, Q, forcekillactive,"
+        "$mod SHIFT, E, fullscreen,"
+        "$mod, C, centerwindow"
+        "$mod, C, movecursortocorner, 2"
+        "$mod, E, fullscreen, 1"
+        "$mod, P, pin"
+        "$mod, Space, togglesplit"
+        "$mod SHIFT, S, toggleswallow"
 
-          # Window Focus
-          "$mod, left, movefocus, l"
-          "$mod, right, movefocus, r"
-          "$mod, up, movefocus, u"
-          "$mod, down, movefocus, d"
-          "ALT, A, focusurgentorlast"
-          "ALT, A, alterzorder, top"
+        # Window Focus
+        "$mod, left, movefocus, l"
+        "$mod, right, movefocus, r"
+        "$mod, up, movefocus, u"
+        "$mod, down, movefocus, d"
+        "ALT, A, focusurgentorlast"
+        "ALT, A, alterzorder, top"
 
-          # Window Swap
-          "$mod SHIFT, left, swapwindow, l"
-          "$mod SHIFT, right, swapwindow, r"
-          "$mod SHIFT, up, swapwindow, u"
-          "$mod SHIFT, down, swapwindow, d"
+        # Window Swap
+        "$mod SHIFT, left, swapwindow, l"
+        "$mod SHIFT, right, swapwindow, r"
+        "$mod SHIFT, up, swapwindow, u"
+        "$mod SHIFT, down, swapwindow, d"
 
-          # Window Groups
-          "$mod SHIFT, space, togglegroup"
-          "ALT, grave, changegroupactive, f"
-          "ALT SHIFT, grave, changegroupactive, b"
-          "$mod CTRL, left, moveintogroup, l"
-          "$mod CTRL, right, moveintogroup, r"
-          "$mod CTRL, up, moveintogroup, u"
-          "$mod CTRL, down, moveintogroup, d"
+        # Window Groups
+        "$mod SHIFT, space, togglegroup"
+        "ALT, grave, changegroupactive, f"
+        "ALT SHIFT, grave, changegroupactive, b"
+        "$mod CTRL, left, moveintogroup, l"
+        "$mod CTRL, right, moveintogroup, r"
+        "$mod CTRL, up, moveintogroup, u"
+        "$mod CTRL, down, moveintogroup, d"
 
-          # Floating Mode
-          "$mod, semicolon, togglefloating,"
-          "$mod, apostrophe, exec, hyprutils toggle float"
+        # Floating Mode
+        "$mod, semicolon, togglefloating,"
+        "$mod, apostrophe, exec, hyprutils toggle float"
 
-          # Cycle Workspaces
-          "$mod, comma, split:workspace, m-1"
-          "$mod, period, split:workspace, m+1"
-          "$mod CTRL, comma, split:workspace, r-1"
-          "$mod CTRL, period, split:workspace, r+1"
-          "$mod, mouse_up, split:workspace, r-1"
-          "$mod, mouse_down, split:workspace, r+1"
+        # Cycle Workspaces
+        "$mod, comma, split:workspace, m-1"
+        "$mod, period, split:workspace, m+1"
+        "$mod CTRL, comma, split:workspace, r-1"
+        "$mod CTRL, period, split:workspace, r+1"
+        "$mod, mouse_up, split:workspace, r-1"
+        "$mod, mouse_down, split:workspace, r+1"
 
-          # Special Workspace
-          "$mod, 0, togglespecialworkspace, Stash"
-          "$mod SHIFT, 0, exec, pypr toggle_special Stash"
+        # Special Workspace
+        "$mod, 0, togglespecialworkspace, Stash"
+        "$mod SHIFT, 0, exec, pypr toggle_special Stash"
 
-          # Move Window to Workspace
-          "$mod SHIFT, comma, split:movetoworkspace, r-1"
-          "$mod SHIFT, period, split:movetoworkspace, r+1"
+        # Move Window to Workspace
+        "$mod SHIFT, comma, split:movetoworkspace, r-1"
+        "$mod SHIFT, period, split:movetoworkspace, r+1"
 
-          # Cycle Monitors
-          "$mod ALT, comma, focusmonitor, l"
-          "$mod ALT, period, focusmonitor, r"
+        # Cycle Monitors
+        "$mod ALT, comma, focusmonitor, l"
+        "$mod ALT, period, focusmonitor, r"
 
-          # Move Window to Monitor
-          "$mod SHIFT ALT, comma, movewindow, mon:-1"
-          "$mod SHIFT ALT, period, movewindow, mon:+1"
+        # Move Window to Monitor
+        "$mod SHIFT ALT, comma, movewindow, mon:-1"
+        "$mod SHIFT ALT, period, movewindow, mon:+1"
 
-          # Screen Lock
-          "$mod, L, exec, loginctl lock-session"
+        # Screen Lock
+        "$mod, L, exec, loginctl lock-session"
 
-          # Window Minimization
-          "ALT, Q, movetoworkspacesilent, special:minimized"
-          "ALT SHIFT, Q, exec, hyprutils toggle minimized"
+        # Window Minimization
+        "ALT, Q, movetoworkspacesilent, special:minimized"
+        "ALT SHIFT, Q, exec, hyprutils toggle minimized"
 
-          # Screenshot
-          '', Print, exec, sh -c "pgrep slurp || grimblast --notify --freeze copysave area"''
-          "CTRL, Print, exec, grimblast --notify --cursor copysave active"
-          "SHIFT, Print, exec, grimblast --notify --cursor copysave output"
-        ]
-        ++
+        # Screenshot
+        '', Print, exec, sh -c "pgrep slurp || grimblast --notify --freeze copysave area"''
+        "CTRL, Print, exec, grimblast --notify --cursor copysave active"
+        "SHIFT, Print, exec, grimblast --notify --cursor copysave output"
+      ]
+      ++
         # Workspaces
         (concatLists (
           genList (

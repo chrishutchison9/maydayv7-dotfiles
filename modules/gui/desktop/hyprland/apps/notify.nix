@@ -66,14 +66,17 @@ in
           fullscreen_delay.fullscreen = "delay";
           screenshot = {
             appname = "grimblast";
-          } // system;
+          }
+          // system;
           utility = {
             appname = "utility";
-          } // system;
+          }
+          // system;
           upower = {
             appname = "poweralertd";
             new_icon = "/run/current-system/sw/share/icons/${icons.name}/24x24/apps/preferences-system-power.svg";
-          } // system;
+          }
+          // system;
         };
       };
   };

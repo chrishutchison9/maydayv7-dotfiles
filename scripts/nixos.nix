@@ -34,7 +34,6 @@ let
         list [ 'pattern' ]              - Lists all Installed Packages [ Returns Matches ]
         locate 'package'                - Locates Installed Package
         run [ 'path' ] 'command'        - Runs Specified Command [ from 'path' ] (Wraps 'nix run')
-        save                            - Saves Configuration State to Repository
         search 'term' [ 'source' ]      - Searches for Packages [ Providing 'term' ] or Configuration Options
         secret 'choice' [ 'path' ]      - Manages 'sops' Encrypted Secrets
         setup                           - Sets up NixOS System (on First Boot)
@@ -261,7 +260,7 @@ recursiveUpdate
             if grep -wq "$2" <<<"${nixosConfigurations}" &> /dev/null
             then
               echo "Building '$2' Image..."
-              nix build ${path.system}#nixosConfigurations."$2".config.system.build.images.iso
+              nom build ${path.system}#nixosConfigurations."$2".config.system.build.images.iso
             else
               error "Unknown Device '$2'" "# Available Devices #\n ${nixosConfigurations}"
             fi
@@ -339,25 +338,12 @@ recursiveUpdate
         ;;
         "run")
           export NIXPKGS_ALLOW_UNFREE=1
-          if [[ "$2" == *[:/]* ]] || grep -wq "$2" <<<"${list inputs + "nixpkgs"}"
+          if [[ "$2" == *[:/]* ]] || grep -wq "$2" <<<"${list inputs}"
           then
             nix run "$2"#"$3" --impure -- "''${@:4}"
           else
             nix run ${path.system}#"$2" --impure -- "''${@:3}"
           fi
-        ;;
-        "save")
-          echo "Saving Changes..."
-          pushd ${path.system} &> /dev/null
-          git stash
-          git pull --rebase
-          git branch save
-          git checkout save
-          git stash pop
-          git add .
-          git commit
-          git push --set-upstream origin save --force
-          popd &> /dev/null
         ;;
         "search")
           case $2 in

@@ -273,29 +273,28 @@ let
         {
           package = ddterm;
           path = "com/github/amezin/ddterm";
-          settings =
-            {
-              dterm-toggle-hotkey = [ "<Super>t" ];
-              hide-window-on-esc = true;
-              panel-icon-type = "none";
-              shortcut-find = [ "<Control>f" ];
-              shortcut-page-close = [ "<Control>w" ];
-              shortcut-win-new-tab = [ "<Control>t" ];
-              show-animation = "ease-in-sine";
-              show-animation-duration = 0.2;
-              hide-animation = "ease-out-sine";
-              hide-animation-duration = 0.1;
-              window-skip-taskbar = false;
-            }
-            // (listToAttrs (
-              genList (
-                n:
-                let
-                  num = toString (n + 1);
-                in
-                nameValuePair "shortcut-switch-to-tab-${num}" [ "<Control>${num}" ]
-              ) 9
-            ));
+          settings = {
+            dterm-toggle-hotkey = [ "<Super>t" ];
+            hide-window-on-esc = true;
+            panel-icon-type = "none";
+            shortcut-find = [ "<Control>f" ];
+            shortcut-page-close = [ "<Control>w" ];
+            shortcut-win-new-tab = [ "<Control>t" ];
+            show-animation = "ease-in-sine";
+            show-animation-duration = 0.2;
+            hide-animation = "ease-out-sine";
+            hide-animation-duration = 0.1;
+            window-skip-taskbar = false;
+          }
+          // (listToAttrs (
+            genList (
+              n:
+              let
+                num = toString (n + 1);
+              in
+              nameValuePair "shortcut-switch-to-tab-${num}" [ "<Control>${num}" ]
+            ) 9
+          ));
         }
         {
           package = pano;
@@ -524,39 +523,38 @@ let
     );
 in
 {
-  dconf.settings =
-    {
-      "org/gnome/shell" =
-        let
-          list =
-            enabled:
-            map (ext: ext.package.extensionUuid) (
-              filter (ext: if enabled then (!(ext.disable or false)) else (ext.disable or false)) extensions
-            );
-        in
-        {
-          disable-user-extensions = false;
-          disable-extension-version-validation = true;
-          disabled-extensions = list false;
-          enabled-extensions = list true;
-        };
-    }
-    // foldr recursiveUpdate { } (
-      map (
-        ext:
-        if (hasAttr "settings" ext) then
-          (
-            if (hasAttr "path" ext) then
-              { "${ext.path}" = ext.settings; }
-            else if (hasAttr "name" ext) then
-              { "org/gnome/shell/extensions/${ext.name}" = ext.settings; }
-            else
-              { "org/gnome/shell/extensions/${ext.package.extensionPortalSlug}" = ext.settings; }
-          )
-        else
-          { }
-      ) extensions
-    );
+  dconf.settings = {
+    "org/gnome/shell" =
+      let
+        list =
+          enabled:
+          map (ext: ext.package.extensionUuid) (
+            filter (ext: if enabled then (!(ext.disable or false)) else (ext.disable or false)) extensions
+          );
+      in
+      {
+        disable-user-extensions = false;
+        disable-extension-version-validation = true;
+        disabled-extensions = list false;
+        enabled-extensions = list true;
+      };
+  }
+  // foldr recursiveUpdate { } (
+    map (
+      ext:
+      if (hasAttr "settings" ext) then
+        (
+          if (hasAttr "path" ext) then
+            { "${ext.path}" = ext.settings; }
+          else if (hasAttr "name" ext) then
+            { "org/gnome/shell/extensions/${ext.name}" = ext.settings; }
+          else
+            { "org/gnome/shell/extensions/${ext.package.extensionPortalSlug}" = ext.settings; }
+        )
+      else
+        { }
+    ) extensions
+  );
 
   home = {
     packages = [ pkgs.dconf2nix ] ++ builtins.map (ext: ext.package) extensions;

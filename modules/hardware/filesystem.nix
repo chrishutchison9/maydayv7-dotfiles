@@ -26,12 +26,13 @@ let
   inherit (config.hardware.fs) scheme;
 in
 {
-  imports =
-    [ inputs.impermanence.nixosModule ]
-    ++ [
-      (mkAliasOptionModule [ "environment" "persist" ] [ "environment" "persistence" files.path.persist ])
-      (mkAliasOptionModule [ "hardware" "fs" "persist" ] [ "environment" "persistence" "/data" ])
-    ];
+  imports = [
+    inputs.impermanence.nixosModule
+  ]
+  ++ [
+    (mkAliasOptionModule [ "environment" "persist" ] [ "environment" "persistence" files.path.persist ])
+    (mkAliasOptionModule [ "hardware" "fs" "persist" ] [ "environment" "persistence" "/data" ])
+  ];
 
   options = with types; {
     hardware.fs.scheme = mkOption {
@@ -117,34 +118,33 @@ in
         '';
       in
       {
-        fileSystems =
-          {
-            # ROOT Partition
-            "/" = {
-              device = "fspool/system/root";
-              fsType = "zfs";
-            };
+        fileSystems = {
+          # ROOT Partition
+          "/" = {
+            device = "fspool/system/root";
+            fsType = "zfs";
+          };
 
-            # NIX Partition
-            "/nix" = {
-              device = "fspool/system/nix";
-              fsType = "zfs";
-            };
+          # NIX Partition
+          "/nix" = {
+            device = "fspool/system/nix";
+            fsType = "zfs";
+          };
 
-            # PERSISTENT Partition
-            "/data" = {
-              device = "fspool/data";
-              fsType = "zfs";
-              neededForBoot = true;
-            };
-          }
-          // filterAttrs (name: _: hasPrefix "/etc" name) (
-            listToAttrs (
-              map (
-                item: nameValuePair item.directory { neededForBoot = true; }
-              ) config.environment.persist.directories
-            )
-          );
+          # PERSISTENT Partition
+          "/data" = {
+            device = "fspool/data";
+            fsType = "zfs";
+            neededForBoot = true;
+          };
+        }
+        // filterAttrs (name: _: hasPrefix "/etc" name) (
+          listToAttrs (
+            map (
+              item: nameValuePair item.directory { neededForBoot = true; }
+            ) config.environment.persist.directories
+          )
+        );
 
         # Boot Settings
         boot = {
@@ -210,7 +210,8 @@ in
                   directory = ".local/share/keyrings";
                   mode = "0700";
                 }
-              ] ++ config.user.persist.directories;
+              ]
+              ++ config.user.persist.directories;
             }) config.user.settings;
           };
         };
