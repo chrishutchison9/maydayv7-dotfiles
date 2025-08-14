@@ -51,7 +51,7 @@ in
             mouse_left_click = "do_action";
             mouse_middle_click = "close_all";
             mouse_right_click = "close_current";
-            offset = "5x5";
+            offset = "10x5";
             padding = 8;
             progress_bar_corner_radius = 10;
             separator_height = 1;
@@ -64,10 +64,6 @@ in
           urgency_low.frame_color = mkForce "#${colors.base0E}";
           urgency_normal.frame_color = mkForce "#${colors.base0D}";
           fullscreen_delay.fullscreen = "delay";
-          screenshot = {
-            appname = "grimblast";
-          }
-          // system;
           utility = {
             appname = "utility";
           }
@@ -75,6 +71,15 @@ in
           upower = {
             appname = "poweralertd";
             new_icon = "/run/current-system/sw/share/icons/${icons.name}/24x24/apps/preferences-system-power.svg";
+          }
+          // system;
+
+          hyprland = {
+            appname = "grimblast";
+          }
+          // system;
+          niri = {
+            appname = "niri";
           }
           // system;
         };

@@ -85,9 +85,6 @@
         # Keybinds Viewer
         kebihelp = readFile ./hyprland/kebihelp.json;
 
-        # PcmanFM File Manager
-        pcmanfm = readFile ./hyprland/pcmanfm.conf;
-
         # Greeter Configuration
         greeter = readFile ./hyprland/greeter.conf;
       }
@@ -126,6 +123,19 @@
       # Nano Text Editor
       nano = readFile ./nanorc;
 
+      # Niri WM
+      niri = {
+        rofi = readFile ./niri/rofi.rasi;
+      }
+      // map.files {
+        directory = ./niri/theme;
+        apply = readFile;
+        extension = ".css";
+      };
+
+      # PcmanFM File Manager
+      pcmanfm = readFile ./pcmanfm.conf;
+
       # Custom Proprietary Files
       proprietary = inputs.proprietary.files;
       inherit (proprietary) wallpapers;
@@ -152,6 +162,9 @@
 
       # My Personal Website
       website = ../site;
+
+      # Logout Menu
+      wlogout = readFile ./wlogout.css;
 
       # YouTube
       youtube = readFile ./ytmusic.json;

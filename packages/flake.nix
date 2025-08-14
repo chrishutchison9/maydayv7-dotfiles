@@ -49,6 +49,7 @@ in
                 // hyprspace.packages."${system}";
             })
             minecraft.overlay
+            niri.overlays.niri
           ];
         };
     }

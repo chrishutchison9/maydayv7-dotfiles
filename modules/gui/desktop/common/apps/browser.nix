@@ -1,4 +1,7 @@
-{ theme, ... }:
+{
+  theme,
+  ...
+}:
 {
   ## Browser Configuration
   apps.list = [ "firefox" ];

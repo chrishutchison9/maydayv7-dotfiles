@@ -108,16 +108,16 @@ in
       # Ignore Locked State
       bindl = [
         # Media Controls
-        ", XF86AudioPlay, exec, hyprutils media toggle"
-        ", XF86AudioPrev, exec, hyprutils media previous"
-        ", XF86AudioNext, exec, hyprutils media next"
+        ", XF86AudioPlay, exec, sysutils media toggle"
+        ", XF86AudioPrev, exec, sysutils media previous"
+        ", XF86AudioNext, exec, sysutils media next"
 
         # Volume
-        ", XF86AudioMute, exec, hyprutils volume mute"
+        ", XF86AudioMute, exec, sysutils volume mute"
 
         # Keyboard Backlight
-        ", XF86KbdBrightnessUp, exec, hyprutils backlight up"
-        ", XF86KbdBrightnessDown, exec, hyprutils backlight down"
+        ", XF86KbdBrightnessUp, exec, sysutils backlight up"
+        ", XF86KbdBrightnessDown, exec, sysutils backlight down"
 
         # Touchpad
         ", XF86TouchpadToggle, exec, hyprutils toggle touchpad"
@@ -126,12 +126,12 @@ in
       # Repeat on Hold
       bindle = [
         # Volume
-        ", XF86AudioRaiseVolume, exec, hyprutils volume up"
-        ", XF86AudioLowerVolume, exec, hyprutils volume down"
+        ", XF86AudioRaiseVolume, exec, sysutils volume up"
+        ", XF86AudioLowerVolume, exec, sysutils volume down"
 
         # Backlight
-        ", XF86MonBrightnessUp, exec, hyprutils brightness up"
-        ", XF86MonBrightnessDown, exec, hyprutils brightness down"
+        ", XF86MonBrightnessUp, exec, sysutils brightness up"
+        ", XF86MonBrightnessDown, exec, sysutils brightness down"
 
         # Magnifier
         "$mod, equal, exec, pypr zoom ++0.5"
@@ -143,10 +143,10 @@ in
     ## Submaps
     extraConfig = ''
       # Inhibit Keybinds
-      bind = $mod SHIFT, Escape, exec, hyprutils toggle service waycorner
+      bind = $mod SHIFT, Escape, exec, sysutils toggle service waycorner
       bind = $mod SHIFT, Escape, submap, Inhibit
       submap = Inhibit
-      bind = $mod SHIFT, Escape, exec, hyprutils toggle service waycorner
+      bind = $mod SHIFT, Escape, exec, sysutils toggle service waycorner
       bind = $mod SHIFT, Escape, submap, reset
       submap = reset
 

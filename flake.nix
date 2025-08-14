@@ -235,6 +235,9 @@
         home-manager.follows = "home";
       };
     };
+
+    ## Niri
+    niri.url = "github:sodiboo/niri-flake";
   };
 
   ## Configuration ##
@@ -293,6 +296,7 @@
       "https://nixpkgs-wayland.cachix.org"
       "https://hyprland.cachix.org"
       "https://hyprshell.cachix.org"
+      "https://niri.cachix.org"
       "https://catppuccin.cachix.org"
     ];
 
@@ -306,6 +310,7 @@
       "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "hyprshell.cachix.org-1:seKSn/sAyobGjsRqe6deRKP/VZcsTorGt5/QqCeQrvU="
+      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
       "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
     ];
   };

@@ -1,5 +1,11 @@
 ## 2025
 
+### August
+
+- Add Configuration for Niri WM
+  - Use `rofi-wayland` as launcher
+  - Share configuration with Hyprland
+
 ### July
 
 - Add Hyprland Shaders

@@ -57,34 +57,6 @@ in
             command = lock pause "--fade-in 0.2 --grace 15 --grace-no-mouse";
           }
         ];
-
-        timeouts =
-          let
-            audio =
-              command:
-              "${pkgs.writeShellScript "audio" ''
-                ${getExe pkgs.playerctl} status | ${getExe pkgs.gnugrep} Playing
-                if [ $? == 1 ]; then ${command}; fi
-              ''}"; # Check if audio is playing
-            shader = getExe pkgs.hyprshade;
-            dpms = "${getExe' config.programs.hyprland.package "hyprctl"} dispatch dpms";
-          in
-          [
-            {
-              timeout = 240; # Dim display
-              command = audio "${shader} on dim";
-              resumeCommand = "${shader} off";
-            }
-            {
-              timeout = 300; # Turn off display
-              command = audio "${dpms} off";
-              resumeCommand = "${dpms} on";
-            }
-            {
-              timeout = 500; # Suspend device
-              command = audio "${dpms} on && ${lock "" ""} && ${getExe' pkgs.systemd "systemctl"} suspend";
-            }
-          ];
       };
 
     # Logout
@@ -92,7 +64,7 @@ in
       enable = true;
       style = util.build.theme {
         inherit (config.lib.stylix) colors;
-        file = files.hyprland.wlogout;
+        file = files.wlogout;
       };
 
       layout = [

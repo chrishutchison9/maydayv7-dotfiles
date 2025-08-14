@@ -122,7 +122,7 @@ in
                 (builtins.toString files.images.transparent)
                 "file-roller"
               ]
-              files.hyprland.pcmanfm;
+              files.pcmanfm;
         };
       };
     };

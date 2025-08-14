@@ -81,7 +81,7 @@ This [repository](https://github.com/maydayv7/dotfiles) contains the configurati
 #### Notable Features
 
 - Supports multiple users and devices
-- Configuration for multiple Desktop Environments
+- Configuration for multiple DEs and Compositors
 - Incorporates PipeWire, Wayland, ...!
 - Automatically builds and deploys my [Website](./site)
 - Credentials management using the [`sops-nix`](https://github.com/Mic92/sops-nix) module and [`gnupg`](https://gnupg.org/) keys
@@ -100,13 +100,14 @@ This [repository](https://github.com/maydayv7/dotfiles) contains the configurati
 
 ## Programs
 
-| Type     |                                                           Programs                                                           |
-| :------- | :--------------------------------------------------------------------------------------------------------------------------: |
-| Editors  | [`nano`](https://www.nano-editor.org/), [`micro`](https://micro-editor.github.io), [VS Code](https://code.visualstudio.com/) |
-| Shells   |                          [`bash`](https://www.gnu.org/software/bash/), [`zsh`](https://www.zsh.org)                          |
-| Terminal |                          [Ghostty](https://ghostty.org/), [Kitty](https://sw.kovidgoyal.net/kitty/)                          |
-| Browser  |                                      [Firefox](https://www.mozilla.org/en-US/firefox/)                                       |
-| Desktops |            [GNOME](https://www.gnome.org), [Hyprland](https://hyprland.org/), [Pantheon](https://elementary.io/)             |
+| Type        |                                                           Programs                                                           |
+| :---------- | :--------------------------------------------------------------------------------------------------------------------------: |
+| Editors     | [`nano`](https://www.nano-editor.org/), [`micro`](https://micro-editor.github.io), [VS Code](https://code.visualstudio.com/) |
+| Shells      |                          [`bash`](https://www.gnu.org/software/bash/), [`zsh`](https://www.zsh.org)                          |
+| Terminal    |                          [Ghostty](https://ghostty.org/), [Kitty](https://sw.kovidgoyal.net/kitty/)                          |
+| Browser     |                                      [Firefox](https://www.mozilla.org/en-US/firefox/)                                       |
+| Desktops    |                              [GNOME](https://www.gnome.org), [Pantheon](https://elementary.io/)                              |
+| Compositors |                            [Hyprland](https://hypr.land/), [Niri](https://github.com/YaLTeR/niri)                            |
 
 ## Structure
 
@@ -120,6 +121,7 @@ $ nix flake show
 github:maydayv7/dotfiles
 ├───apps
 │   └───x86_64-linux
+│       ├───sysutils: app
 │       ├───hyprutils: app
 │       ├───install: app
 │       └───nixos: app

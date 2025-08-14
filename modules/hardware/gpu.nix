@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -24,9 +25,12 @@ in
   config = mkMerge [
     (mkIf (cfg.gpu == "nvidia") {
       services.xserver.videoDrivers = mkForce [ "nvidia" ];
-      environment.variables = {
-        "__GLX_VENDOR_LIBRARY_NAME" = "nvidia";
-        "LIBVA_DRIVER_NAME" = "nvidia";
+      environment = {
+        systemPackages = [ pkgs.btop-cuda ];
+        variables = {
+          "__GLX_VENDOR_LIBRARY_NAME" = "nvidia";
+          "LIBVA_DRIVER_NAME" = "nvidia";
+        };
       };
 
       boot = {

@@ -2,7 +2,6 @@
   config,
   pkgs,
   files,
-  theme,
   ...
 }:
 let
@@ -11,21 +10,21 @@ in
 {
   ## Panel Configuration
   user.homeConfig.programs.waybar = {
-    style = files.hyprland.waybar;
+    style = files.niri.waybar;
 
     # Panel
     settings =
       let
         shared = {
           layer = "top";
-          position = "top";
+          position = "left";
 
-          height = 30;
+          width = 30;
           spacing = 3;
-          margin-top = 2;
-          margin-right = 5;
-          margin-bottom = 1;
-          margin-left = 5;
+          margin-top = 5;
+          margin-right = 0;
+          margin-bottom = 5;
+          margin-left = 3;
 
           "custom/logo" = {
             format = "󱄅";
@@ -34,19 +33,17 @@ in
           };
 
           "group/users" = {
-            orientation = "horizontal";
+            orientation = "vertical";
             modules = [
               "user"
               "custom/power"
             ];
-            drawer.transition-left-to-right = true;
+            drawer.transition-left-to-right = false;
           };
 
           user = {
             format = "{user}";
-            icon = true;
-            height = 30;
-            width = 30;
+            icon = false;
             open-on-click = true;
           };
 
@@ -56,81 +53,33 @@ in
             on-click = "wlogout -p layer-shell";
           };
 
-          "hyprland/workspaces" = {
+          "niri/workspaces" = {
             all-outputs = false;
-            show-special = true;
-            format = "<small>{name}</small>{icon}";
-            on-scroll-up = "hyprctl dispatch workspace m+1";
-            on-scroll-down = "hyprctl dispatch workspace m-1";
-            ignore-workspaces = [
-              "special:scratch_.*"
-              "special:minimized"
-            ];
-            format-icons = {
-              default = "";
-              special = " ";
-              "1" = " ";
-              "2" = " ";
-              "3" = " ";
-              "4" = " ";
-              "5" = " ";
-              "6" = " ";
-              "7" = " ";
-              "8" = " ";
-              "9" = " ";
-            };
+            format = "<small>{value}</small>";
           };
 
-          "hyprland/submap" = {
-            always-on = false;
-            tooltip = false;
-            format = " {}";
-            on-click = "hyprctl dispatch submap reset";
-          };
-
-          "hyprland/window" = {
-            format = "{class}";
-            icon = false;
+          "niri/window" = {
+            format = "";
+            icon = true;
+            icon-size = 24;
             separate-outputs = true;
           };
 
-          "wlr/taskbar" = {
-            format = "{icon}";
-            icon-size = 20;
-            all-outputs = false;
-            active-first = false;
-            icon-theme = theme.icons.name;
-            markup = true;
-            tooltip-format = "Name: <big><b>{name}</b></big> <i>{short_state}</i>\nTitle: <b>{title}</b>";
-            on-click = "activate";
-            on-click-middle = "minimize";
-            on-click-right = "close";
-            ignore-list = [
-              "kitty-clip"
-              "kitty-dropterm"
-            ];
-          };
-
-          "custom/minimized" = {
-            format = "";
-            on-click = "hyprutils toggle minimized";
-          };
-
           "group/menu" = {
-            orientation = "horizontal";
+            orientation = "vertical";
             modules = [
               "custom/hide"
-              "keyboard-state"
               "tray"
+              "keyboard-state"
             ];
             drawer = {
               click-to-reveal = true;
-              transition-left-to-right = true;
+              transition-left-to-right = false;
             };
           };
 
           "custom/hide" = {
-            format = "";
+            format = "";
             tooltip = false;
           };
 
@@ -139,8 +88,8 @@ in
             numlock = true;
             capslock = true;
             format = {
-              numlock = " N {icon}";
-              capslock = "󰪛 {icon}";
+              numlock = " N\n{icon}";
+              capslock = "󰪛\n{icon}";
             };
             format-icons = {
               locked = "";
@@ -182,13 +131,13 @@ in
             };
 
           "group/media" = {
-            orientation = "horizontal";
+            orientation = "vertical";
             modules = [
               "wireplumber"
               "mpris"
             ];
             drawer = {
-              transition-left-to-right = false;
+              transition-left-to-right = true;
               transition-duration = 1000;
             };
           };
@@ -216,22 +165,13 @@ in
               "length"
             ];
             dynamic-separator = " - ";
-            format = " {player}";
-            format-paused = "󰏤 <i>{player}</i>";
+            format = "";
+            format-paused = "󰏤";
             format-stopped = "";
             tooltip-format-stopped = "Not Playing";
             on-click = "sysutils media toggle";
             on-click-right = "sysutils media next";
             on-click-middle = "sysutils media previous";
-          };
-
-          "group/display" = {
-            orientation = "horizontal";
-            modules = [
-              "backlight"
-              "custom/temperature"
-            ];
-            drawer.transition-left-to-right = false;
           };
 
           backlight = {
@@ -250,30 +190,19 @@ in
             ];
             on-scroll-up = "sysutils brightness down";
             on-scroll-down = "sysutils brightness up";
-            on-click = "nwg-displays";
-          };
-
-          "custom/temperature" = {
-            format = "";
-            tooltip = false;
-            on-scroll-up = "hyprutils temperature up";
-            on-scroll-down = "hyprutils temperature down";
-            on-click = "hyprutils temperature reset";
           };
 
           "group/power" = {
-            orientation = "horizontal";
+            orientation = "vertical";
             modules = [
               "battery"
               "power-profiles-daemon"
             ];
-            drawer.transition-left-to-right = false;
+            drawer.transition-left-to-right = true;
           };
 
           battery = {
             interval = 5;
-            align = 0;
-            rotate = 0;
             format = "{icon}";
             tooltip-format = "Battery: {capacity}%";
             format-charging = "";
@@ -284,7 +213,6 @@ in
               ""
               ""
             ];
-            on-click-right = "hyprutils toggle fancy";
             states = {
               good = 80;
               warning = 20;
@@ -305,9 +233,9 @@ in
           };
 
           "custom/weather" = {
-            format = "{}°";
+            format = "{}";
             return-type = "json";
-            exec = "wttrbar --date-format %d/%m --nerd";
+            exec = "wttrbar --date-format %d/%m --nerd --vertical-view";
             tooltip = true;
             interval = 600;
             signal = 7;
@@ -316,8 +244,8 @@ in
 
           clock = {
             interval = 1;
-            format = "󰅐 {:%H:%M:%S} ";
-            format-alt = "󰅐 {:%I:%M    %A, %d %B %Y} ";
+            format = "󰅐\n{:%H\n%M\n%S} ";
+            format-alt = "󰅐\n{:%I\n%M\n\n%d\n%m\n%y} ";
             tooltip-format = "<tt><small>{calendar}</small></tt>";
             calendar = {
               mode = "year";
@@ -343,12 +271,12 @@ in
           };
 
           "group/notify" = {
-            orientation = "horizontal";
+            orientation = "vertical";
             modules = [
               "custom/dunst"
               "idle_inhibitor"
             ];
-            drawer.transition-left-to-right = false;
+            drawer.transition-left-to-right = true;
           };
 
           "custom/dunst" =
@@ -382,7 +310,7 @@ in
                 COUNT=$(dunstctl count waiting)
                 ENABLED=""
                 DISABLED=""
-                if [ "$COUNT" != 0 ]; then DISABLED=" $COUNT"; fi
+                if [ "$COUNT" != 0 ]; then DISABLED="\n$COUNT"; fi
                 if dunstctl is-paused | grep -q "false"; then echo "$ENABLED"; else echo "$DISABLED"; fi
               '';
             };
@@ -398,17 +326,15 @@ in
             };
           };
 
-          modules-left = [
-            "custom/logo"
+          modules-right = [
+            "group/menu"
             "group/users"
-            "hyprland/workspaces"
-            "hyprland/submap"
-            "hyprland/window"
+            "custom/logo"
           ];
 
           modules-center = [
-            "wlr/taskbar"
-            "custom/minimized"
+            "niri/window"
+            "niri/workspaces"
           ];
         };
       in
@@ -417,16 +343,15 @@ in
           shared
           // {
             output = display;
-            modules-right = [
-              "group/menu"
-              "bluetooth"
-              "network"
-              "group/media"
-              "group/display"
-              "group/power"
-              "custom/weather"
-              "clock"
+            modules-left = [
               "group/notify"
+              "clock"
+              "custom/weather"
+              "group/power"
+              "backlight"
+              "group/media"
+              "network"
+              "bluetooth"
             ];
           }
         )
@@ -434,15 +359,13 @@ in
           shared
           // {
             output = "!" + display;
-            modules-right = [
-              "group/menu"
-              "bluetooth"
-              "network"
-              "group/media"
-              "group/power"
-              "custom/weather"
-              "clock"
+            modules-left = [
               "group/notify"
+              "clock"
+              "group/power"
+              "group/media"
+              "network"
+              "bluetooth"
             ];
           }
         )
