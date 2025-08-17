@@ -6,6 +6,21 @@
 }:
 {
   user.homeConfig = {
+    # Portals
+    xdg.portal.config.niri = {
+      default = [
+        "gnome"
+        "gtk"
+      ];
+
+      "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+      "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
+      "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+      "org.freedesktop.impl.portal.Background" = [ "gnome" ];
+      "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
+      "org.freedesktop.impl.portal.RemoteDesktop" = [ "gnome" ];
+    };
+
     # Wallpaper
     stylix.targets.wpaperd.enable = true;
     services = {

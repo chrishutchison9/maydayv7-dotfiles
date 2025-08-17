@@ -1,37 +1,28 @@
 {
   config,
-  pkgs,
+  lib,
   files,
-  theme,
   ...
 }:
 let
+  inherit (lib) mkMerge;
+  inherit (config.shared) panel;
   inherit (config.gui) display;
 in
 {
   ## Panel Configuration
   user.homeConfig.programs.waybar = {
     style = files.hyprland.waybar;
-
-    # Panel
     settings =
       let
         shared = {
-          layer = "top";
           position = "top";
-
           height = 30;
           spacing = 3;
           margin-top = 2;
           margin-right = 5;
           margin-bottom = 1;
           margin-left = 5;
-
-          "custom/logo" = {
-            format = "󱄅";
-            tooltip = false;
-            on-click = "nwg-drawer";
-          };
 
           "group/users" = {
             orientation = "horizontal";
@@ -40,20 +31,6 @@ in
               "custom/power"
             ];
             drawer.transition-left-to-right = true;
-          };
-
-          user = {
-            format = "{user}";
-            icon = true;
-            height = 30;
-            width = 30;
-            open-on-click = true;
-          };
-
-          "custom/power" = {
-            format = "⏻";
-            tooltip = false;
-            on-click = "wlogout -p layer-shell";
           };
 
           "hyprland/workspaces" = {
@@ -99,7 +76,7 @@ in
             icon-size = 20;
             all-outputs = false;
             active-first = false;
-            icon-theme = theme.icons.name;
+            icon-theme = config.shared.theme.icons.name;
             markup = true;
             tooltip-format = "Name: <big><b>{name}</b></big> <i>{short_state}</i>\nTitle: <b>{title}</b>";
             on-click = "activate";
@@ -118,111 +95,12 @@ in
 
           "group/menu" = {
             orientation = "horizontal";
-            modules = [
-              "custom/hide"
-              "keyboard-state"
-              "tray"
-            ];
-            drawer = {
-              click-to-reveal = true;
-              transition-left-to-right = true;
-            };
+            drawer.transition-left-to-right = true;
           };
-
-          "custom/hide" = {
-            format = "";
-            tooltip = false;
-          };
-
-          tray.icon-size = 14;
-          keyboard-state = {
-            numlock = true;
-            capslock = true;
-            format = {
-              numlock = " N {icon}";
-              capslock = "󰪛 {icon}";
-            };
-            format-icons = {
-              locked = "";
-              unlocked = "";
-            };
-          };
-
-          bluetooth = {
-            format = "";
-            format-disabled = "󰂳";
-            format-connected = "󰂱 {num_connections}";
-            tooltip-format = " {status}";
-            tooltip-format-connected = "{device_enumerate}";
-            tooltip-format-enumerate-connected = " {device_alias} 󰂄 {device_battery_percentage}%";
-            on-click = "overskride";
-          };
-
-          network =
-            let
-              tooltip = "Strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>";
-            in
-            {
-              format = "{ifname}";
-              format-disconnected = "󰌙";
-              format-wifi = "{icon}";
-              format-ethernet = "󰌘";
-              format-icons = [
-                "󰤯"
-                "󰤟"
-                "󰤢"
-                "󰤥"
-                "󰤨"
-              ];
-              format-linked = "󰈁 {ifname}";
-              tooltip-format-wifi = "Network: <big><b>{essid}</b></big>\n${tooltip}";
-              tooltip-format-ethernet = "Network: <big><b>Wired</b></big>\n${tooltip}";
-              tooltip-format-disconnected = "󰌙 Disconnected";
-              on-click = "sh -c 'env XDG_CURRENT_DESKTOP=GNOME gnome-control-center wifi'";
-            };
 
           "group/media" = {
             orientation = "horizontal";
-            modules = [
-              "wireplumber"
-              "mpris"
-            ];
-            drawer = {
-              transition-left-to-right = false;
-              transition-duration = 1000;
-            };
-          };
-
-          wireplumber = {
-            max-volume = 150;
-            scroll-step = 1;
-            reverse-scrolling = 1;
-            format = "{icon}";
-            tooltip-format = "Volume: {volume}%\nDevice: {node_name}";
-            format-icons = [
-              "󰕿"
-              "󰖀"
-              "󰕾"
-            ];
-            format-muted = "";
-            on-click = "pavucontrol";
-          };
-
-          mpris = {
-            dynamic-len = 20;
-            dynamic-order = [
-              "title"
-              "artist"
-              "length"
-            ];
-            dynamic-separator = " - ";
-            format = " {player}";
-            format-paused = "󰏤 <i>{player}</i>";
-            format-stopped = "";
-            tooltip-format-stopped = "Not Playing";
-            on-click = "sysutils media toggle";
-            on-click-right = "sysutils media next";
-            on-click-middle = "sysutils media previous";
+            drawer.transition-left-to-right = false;
           };
 
           "group/display" = {
@@ -234,24 +112,7 @@ in
             drawer.transition-left-to-right = false;
           };
 
-          backlight = {
-            format = "{icon}";
-            tooltip-format = "Backlight: {percent}%";
-            format-icons = [
-              ""
-              ""
-              ""
-              ""
-              ""
-              ""
-              ""
-              ""
-              ""
-            ];
-            on-scroll-up = "sysutils brightness down";
-            on-scroll-down = "sysutils brightness up";
-            on-click = "nwg-displays";
-          };
+          backlight.on-click = "nwg-displays";
 
           "custom/temperature" = {
             format = "";
@@ -263,139 +124,17 @@ in
 
           "group/power" = {
             orientation = "horizontal";
-            modules = [
-              "battery"
-              "power-profiles-daemon"
-            ];
             drawer.transition-left-to-right = false;
           };
 
           battery = {
-            interval = 5;
             align = 0;
-            rotate = 0;
-            format = "{icon}";
-            tooltip-format = "Battery: {capacity}%";
-            format-charging = "";
-            format-icons = [
-              ""
-              ""
-              ""
-              ""
-              ""
-            ];
             on-click-right = "hyprutils toggle fancy";
-            states = {
-              good = 80;
-              warning = 20;
-              critical = 10;
-            };
-          };
-
-          power-profiles-daemon = {
-            format = "{icon}";
-            tooltip = true;
-            tooltip-format = "Power Profile: {profile}";
-            format-icons = {
-              default = "";
-              performance = "󱄟";
-              balanced = "";
-              power-saver = "";
-            };
-          };
-
-          "custom/weather" = {
-            format = "{}°";
-            return-type = "json";
-            exec = "wttrbar --date-format %d/%m --nerd";
-            tooltip = true;
-            interval = 600;
-            signal = 7;
-            on-click = "pkill -RTMIN+7 waybar";
-          };
-
-          clock = {
-            interval = 1;
-            format = "󰅐 {:%H:%M:%S} ";
-            format-alt = "󰅐 {:%I:%M    %A, %d %B %Y} ";
-            tooltip-format = "<tt><small>{calendar}</small></tt>";
-            calendar = {
-              mode = "year";
-              mode-mon-col = 3;
-              weeks-pos = "left";
-              on-scroll = 1;
-              format = with config.lib.stylix.colors; {
-                months = "<span color='#${base06}'><b>{}</b></span>";
-                days = "<span color='#${base05}'><b>{}</b></span>";
-                weeks = "<span color='#${base0C}'><b>W{}</b></span>";
-                weekdays = "<span color='#${base0A}'><b>{}</b></span>";
-                today = "<span color='#${base08}'><b><u>{}</u></b></span>";
-              };
-            };
-
-            actions = {
-              on-click-right = "mode";
-              on-click-forward = "tz_up";
-              on-click-backward = "tz_down";
-              on-scroll-up = "shift_down";
-              on-scroll-down = "shift_up";
-            };
           };
 
           "group/notify" = {
             orientation = "horizontal";
-            modules = [
-              "custom/dunst"
-              "idle_inhibitor"
-            ];
             drawer.transition-left-to-right = false;
-          };
-
-          "custom/dunst" =
-            let
-              run =
-                text:
-                "${
-                  pkgs.writeShellApplication {
-                    name = "notify";
-                    inherit text;
-                    runtimeInputs = with pkgs; [
-                      coreutils
-                      dunst
-                    ];
-                  }
-                }/bin/notify";
-            in
-            {
-              tooltip = false;
-              on-click = "dunstctl history-pop";
-              restart-interval = 1;
-              on-click-right = run ''
-                if dunstctl is-paused | grep -q "false"
-                then
-                  dunstctl set-pause-level 50
-                else
-                  dunstctl set-pause-level 0
-                fi
-              '';
-              exec = run ''
-                COUNT=$(dunstctl count waiting)
-                ENABLED=""
-                DISABLED=""
-                if [ "$COUNT" != 0 ]; then DISABLED=" $COUNT"; fi
-                if dunstctl is-paused | grep -q "false"; then echo "$ENABLED"; else echo "$DISABLED"; fi
-              '';
-            };
-
-          idle_inhibitor = {
-            format = "{icon}";
-            on-click = "sysutils toggle service swayidle";
-            tooltip-format-activated = "Idle Inhibitor: On";
-            tooltip-format-deactivated = "Idle Inhibitor: Off";
-            format-icons = {
-              activated = "";
-              deactivated = "";
-            };
           };
 
           modules-left = [
@@ -413,9 +152,10 @@ in
         };
       in
       [
-        (
+        (mkMerge [
+          panel
           shared
-          // {
+          {
             output = display;
             modules-right = [
               "group/menu"
@@ -429,10 +169,11 @@ in
               "group/notify"
             ];
           }
-        )
-        (
+        ])
+        (mkMerge [
+          panel
           shared
-          // {
+          {
             output = "!" + display;
             modules-right = [
               "group/menu"
@@ -445,7 +186,7 @@ in
               "group/notify"
             ];
           }
-        )
+        ])
       ];
   };
 }

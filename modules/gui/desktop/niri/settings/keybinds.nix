@@ -1,4 +1,12 @@
 { config, ... }:
+let
+  inherit (builtins)
+    concatLists
+    genList
+    listToAttrs
+    toString
+    ;
+in
 {
   programs.niri.settings = {
     input.power-key-handling.enable = false;
@@ -33,23 +41,16 @@
         "Super+Shift+Down".action = move-window-down-or-to-workspace-down;
         "Super+Shift+Return".action = move-window-to-monitor-next;
 
-        "Super+1".action = focus-workspace 1;
-        "Super+2".action = focus-workspace 2;
-        "Super+3".action = focus-workspace 3;
-        "Super+4".action = focus-workspace 4;
-        "Super+5".action = focus-workspace 5;
-        "Super+6".action = focus-workspace 6;
-        "Super+7".action = focus-workspace 7;
-        "Super+8".action = focus-workspace 8;
-        "Super+9".action = focus-workspace 9;
-        "Super+0".action = focus-workspace 10;
-
         "Print".action = screenshot;
-        "Shift+Print".action.screenshot-screen = [ ]; # https://github.com/sodiboo/niri-flake/issues/922
+        "Shift+Print".action.screenshot-screen = [ ];
         "Ctrl+Print".action = screenshot-window;
 
         # Controls
-        "Super+L".action = sh "loginctl lock-session";
+        "Super+L" = {
+          action = sh "loginctl lock-session";
+          hotkey-overlay.title = "Lock Screen";
+        };
+
         "XF86AudioPlay".action = sh "sysutils media toggle";
         "XF86AudioPrev".action = sh "sysutils media previous";
         "XF86AudioNext".action = sh "sysutils media next";
@@ -60,6 +61,40 @@
         "XF86MonBrightnessDown".action = sh "sysutils brightness down";
         "XF86KbdBrightnessUp".action = sh "sysutils backlight up";
         "XF86KbdBrightnessDown".action = sh "sysutils backlight down";
-      };
+
+        # Mouse
+        "Super+Shift+MouseRight".action = switch-preset-window-width;
+        "Super+WheelScrollUp" = {
+          action = focus-workspace-up;
+          cooldown-ms = 150;
+        };
+        "Super+WheelScrollDown" = {
+          action = focus-workspace-down;
+          cooldown-ms = 150;
+        };
+      }
+      //
+        # Workspaces
+        listToAttrs (
+          concatLists (
+            genList (
+              n:
+              let
+                num = n + 1;
+                snum = toString (n + 1);
+              in
+              [
+                {
+                  name = "Super+${snum}";
+                  value.action = focus-workspace num;
+                }
+                {
+                  name = "Super+Shift+${snum}";
+                  value.action.move-window-to-workspace = num;
+                }
+              ]
+            ) 9
+          )
+        );
   };
 }

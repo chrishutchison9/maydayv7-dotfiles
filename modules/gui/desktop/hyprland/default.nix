@@ -14,18 +14,14 @@ let
     mkMerge
     replaceStrings
     ;
-
-  inherit (util.map.modules) list;
-  inherit (config.gui) desktop;
 in
 {
   ## Hyprland Configuration ##
-  config = mkIf (desktop == "hyprland") (
+  imports = [ ../shared/_default.nix ];
+  config = mkIf (config.gui.desktop == "hyprland") (
     mkMerge (
       # App Configuration
-      (builtins.map (path: import path (args // { theme = import ../common/theme.nix pkgs; })) (
-        list ../common/apps ++ list ./apps
-      ))
+      (builtins.map (path: import path args) (util.map.modules.list ./apps))
       ++ [
         ## Environment Setup
         rec {
@@ -59,6 +55,7 @@ in
           xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
           # Settings
+          shared.enable = true;
           user = {
             persist.directories = [ ".config/hypr" ];
             homeConfig.imports = [ ./settings ];

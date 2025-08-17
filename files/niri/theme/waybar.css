@@ -19,10 +19,7 @@ tooltip {
   color: #ffffff;
 }
 
-#user * {
-  padding: 0 0.5em;
-}
-#user {
+#custom-user {
   background-color: @base0F;
   color: @base00;
 }
@@ -169,13 +166,13 @@ window#waybar.empty #window {
 #custom-dunst,
 #custom-logo,
 #custom-power,
+#custom-user,
 #custom-weather,
 #idle_inhibitor,
 #keyboard-state,
 #mpris,
 #network,
 #power-profiles-daemon,
-#user,
 #wireplumber {
   padding: 3px;
   margin: 2px;

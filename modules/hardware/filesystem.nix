@@ -26,6 +26,7 @@ let
   inherit (config.hardware.fs) scheme;
 in
 {
+  ## File System Configuration ##
   imports = [
     inputs.impermanence.nixosModule
   ]
@@ -61,7 +62,6 @@ in
     };
   };
 
-  ## File System Configuration ##
   config = mkMerge [
     {
       warnings = optional (scheme == null) (options.hardware.fs.scheme.description + " is unset");
