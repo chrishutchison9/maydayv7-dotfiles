@@ -17,7 +17,7 @@ let
 in
 {
   ## Hyprland Configuration ##
-  imports = [ ../shared/_default.nix ];
+  imports = [ ../_shared ];
   config = mkIf (config.gui.desktop == "hyprland") (
     mkMerge (
       # App Configuration
@@ -55,7 +55,7 @@ in
           xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
           # Settings
-          shared.enable = true;
+          _shared.enable = true;
           user = {
             persist.directories = [ ".config/hypr" ];
             homeConfig.imports = [ ./settings ];

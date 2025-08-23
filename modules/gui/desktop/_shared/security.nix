@@ -7,16 +7,43 @@
   ...
 }:
 let
-  inherit (lib) getExe getExe' mkIf;
+  inherit (lib)
+    getExe
+    getExe'
+    mkIf
+    mkOption
+    types
+    ;
+
   locker = pkgs.swaylock-effects;
 in
 {
   ## Security Configuration
-  config = mkIf config.shared.enable {
+  options._shared.idle = mkOption {
+    description = "INTERNAL: Shared Idle Configuration";
+    type = types.attrs;
+  };
+
+  config = mkIf config._shared.enable rec {
     # User Authentication
     security = {
       soteria.enable = true;
       pam.services.swaylock.text = "auth include login";
+    };
+
+    # Idle Scripts
+    _shared.idle = {
+      lock =
+        pre: flag:
+        "sh -c 'if ! ${getExe' pkgs.procps "pgrep"} -x swaylock; then ${pre} ${getExe locker} -f ${flag}; fi'";
+
+      pause = "${getExe pkgs.playerctl} pause -a;";
+      audio =
+        command:
+        "${pkgs.writeShellScript "audio" ''
+          ${getExe pkgs.playerctl} status | ${getExe pkgs.gnugrep} Playing
+          if [ $? == 1 ]; then ${command}; fi
+        ''}"; # Check if audio is playing
     };
 
     user.homeConfig = {
@@ -38,27 +65,20 @@ in
       };
 
       # Idle Daemon
-      services.swayidle =
-        let
-          pause = "${getExe pkgs.playerctl} pause -a;";
-          lock =
-            pre: flag:
-            "sh -c 'if ! ${getExe' pkgs.procps "pgrep"} -x swaylock; then ${pre} ${getExe locker} -f ${flag}; fi'";
-        in
-        {
-          enable = true;
-          extraArgs = [ "-w" ];
-          events = [
-            {
-              event = "before-sleep";
-              command = lock pause "";
-            }
-            {
-              event = "lock";
-              command = lock pause "--fade-in 0.2 --grace 15 --grace-no-mouse";
-            }
-          ];
-        };
+      services.swayidle = with _shared.idle; {
+        enable = true;
+        extraArgs = [ "-w" ];
+        events = [
+          {
+            event = "before-sleep";
+            command = lock pause "";
+          }
+          {
+            event = "lock";
+            command = lock pause "--fade-in 0.2 --grace 15 --grace-no-mouse";
+          }
+        ];
+      };
 
       # Logout
       programs.wlogout = {

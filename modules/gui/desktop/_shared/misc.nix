@@ -8,7 +8,7 @@
 let
   inherit (lib) mkIf;
   inherit (builtins) concatStringsSep elem map;
-  inherit (config.shared) enable theme;
+  inherit (config._shared) enable theme;
   inherit (theme) name variant accent;
   exists = app: elem app config.apps.list;
 in

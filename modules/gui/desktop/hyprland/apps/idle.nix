@@ -6,22 +6,12 @@
 }:
 let
   inherit (lib) getExe getExe';
-  locker = pkgs.swaylock-effects;
 in
 {
   ## Idle Timeout
   user.homeConfig.services.swayidle.timeouts =
+    with config._shared.idle;
     let
-      lock =
-        pre: flag:
-        "sh -c 'if ! ${getExe' pkgs.procps "pgrep"} -x swaylock; then ${pre} ${getExe locker} -f ${flag}; fi'";
-
-      audio =
-        command:
-        "${pkgs.writeShellScript "audio" ''
-          ${getExe pkgs.playerctl} status | ${getExe pkgs.gnugrep} Playing
-          if [ $? == 1 ]; then ${command}; fi
-        ''}"; # Check if audio is playing
       shader = getExe pkgs.hyprshade;
       dpms = "${getExe' config.programs.hyprland.package "hyprctl"} dispatch dpms";
     in

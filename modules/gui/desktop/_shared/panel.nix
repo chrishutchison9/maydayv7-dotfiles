@@ -13,13 +13,13 @@ let
     ;
 in
 {
-  options.shared.panel = mkOption {
+  ## Panel Configuration
+  options._shared.panel = mkOption {
     description = "INTERNAL: Shared Panel Configuration";
     type = types.attrs;
   };
 
-  ## Panel Configuration
-  config = mkIf config.shared.enable {
+  config = mkIf config._shared.enable {
     user.homeConfig = {
       stylix.targets.waybar = {
         enable = true;
@@ -35,7 +35,7 @@ in
       };
     };
 
-    shared.panel = {
+    _shared.panel = {
       layer = "top";
 
       "custom/logo" = {
@@ -108,7 +108,7 @@ in
           tooltip = "Strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>";
         in
         {
-          format = "{ifname}";
+          format = mkDefault "? {ifname}";
           format-disconnected = "󰌙";
           format-wifi = "{icon}";
           format-ethernet = "󰌘";
@@ -119,7 +119,7 @@ in
             "󰤥"
             "󰤨"
           ];
-          format-linked = "󰈁 {ifname}";
+          format-linked = mkDefault "󰈁 {ifname}";
           tooltip-format-wifi = "Network: <big><b>{essid}</b></big>\n${tooltip}";
           tooltip-format-ethernet = "Network: <big><b>Wired</b></big>\n${tooltip}";
           tooltip-format-disconnected = "󰌙 Disconnected";
@@ -158,7 +158,7 @@ in
         ];
         dynamic-separator = " - ";
         format = mkDefault " {player}";
-        format-paused = "󰏤 <i>{player}</i>";
+        format-paused = mkDefault "󰏤 <i>{player}</i>";
         format-stopped = "";
         tooltip-format-stopped = "Not Playing";
         on-click = "sysutils media toggle";

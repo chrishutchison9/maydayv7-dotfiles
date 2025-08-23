@@ -9,7 +9,7 @@ let
   inherit (config.lib.stylix) colors;
 in
 {
-  config = mkIf config.shared.enable {
+  config = mkIf config._shared.enable {
     environment.systemPackages = with pkgs; [
       # Apps
       clipse

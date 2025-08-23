@@ -6,7 +6,7 @@
 }:
 let
   inherit (lib) mkMerge;
-  inherit (config.shared) panel;
+  inherit (config._shared) panel;
   inherit (config.gui) display;
 in
 {
@@ -55,12 +55,20 @@ in
             capslock = "󰪛\n{icon}";
           };
 
+          network = {
+            format = "?";
+            format-linked = "󰈁";
+          };
+
           "group/media" = {
             orientation = "vertical";
             drawer.transition-left-to-right = true;
           };
 
-          mpris.format = "";
+          mpris = {
+            format = "";
+            format-paused = "󰏤";
+          };
 
           "group/power" = {
             orientation = "vertical";

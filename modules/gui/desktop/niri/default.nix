@@ -8,7 +8,7 @@
 }@args:
 {
   ## Niri Configuration ##
-  imports = [ ../shared/_default.nix ];
+  imports = [ ../_shared ];
   config = lib.mkIf (config.gui.desktop == "niri") (
     lib.mkMerge (
       # App Configuration
@@ -23,7 +23,7 @@
           };
 
           # Settings
-          shared.enable = true;
+          _shared.enable = true;
           user.homeConfig = {
             imports = [
               inputs.niri.homeModules.config

@@ -4,7 +4,7 @@
   ...
 }:
 let
-  inherit (config.shared) enable theme;
+  inherit (config._shared) enable theme;
 in
 {
   ## Browser Configuration

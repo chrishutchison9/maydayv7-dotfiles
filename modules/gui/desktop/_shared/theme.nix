@@ -1,12 +1,12 @@
 { lib, pkgs, ... }:
 {
-  options.shared.theme = lib.mkOption {
+  ## Theming
+  options._shared.theme = lib.mkOption {
     description = "INTERNAL: Shared Theme Configuration";
     type = lib.types.attrs;
   };
 
-  ## Theming
-  config.shared.theme = rec {
+  config._shared.theme = rec {
     name = "catppuccin";
     name-alt = "Catppuccin";
 

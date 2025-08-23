@@ -6,7 +6,7 @@
 }:
 let
   inherit (lib) mkMerge;
-  inherit (config.shared) panel;
+  inherit (config._shared) panel;
   inherit (config.gui) display;
 in
 {

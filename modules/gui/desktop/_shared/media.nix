@@ -7,7 +7,7 @@
 }:
 {
   ## Media Configuration
-  config = lib.mkIf config.shared.enable {
+  config = lib.mkIf config._shared.enable {
     environment.systemPackages = with pkgs; [
       celluloid
       lollypop

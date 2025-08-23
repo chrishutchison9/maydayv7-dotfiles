@@ -6,13 +6,14 @@
 configuration {
 	  modi:                        "drun,filebrowser,window,calc,emoji";
     show-icons:                  true;
+    eh:                          2;
     display-drun:                " Apps";
     display-filebrowser:         " Files";
     display-window:              " Windows";
     display-calc:                " Calc";
     display-emoji:               " Emoji";
-	  drun-display-format:         "{name}";
-	  window-format:               "{w} · {c} · {t}";
+	  drun-display-format:         "{name} [<span weight='light' size='small'>({generic})</span>]\n<i><span weight='light' size='small'>{exec}</span></i>";
+	  window-format:               "{c} · {t}";
     cache-dir:                   "~/.cache/rofi";
 }
 

@@ -21,7 +21,7 @@ let
 in
 {
   ## File Manager Configuration
-  config = mkIf config.shared.enable {
+  config = mkIf config._shared.enable {
     services.dbus.packages = [ nemo ];
     environment.systemPackages = [
       nemo

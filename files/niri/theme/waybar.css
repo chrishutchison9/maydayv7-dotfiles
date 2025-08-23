@@ -75,6 +75,7 @@ window#waybar.empty #window {
   color: @base05;
   opacity: 0.8;
   border: 2px solid @base04;
+  margin-bottom: 10px;
 }
 
 #bluetooth {
