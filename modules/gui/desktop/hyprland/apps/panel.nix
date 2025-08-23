@@ -6,7 +6,7 @@
 }:
 let
   inherit (lib) mkMerge;
-  inherit (config._shared) panel;
+  inherit (config._shared) panel theme;
   inherit (config.gui) display;
 in
 {
@@ -76,7 +76,7 @@ in
             icon-size = 20;
             all-outputs = false;
             active-first = false;
-            icon-theme = config.shared.theme.icons.name;
+            icon-theme = theme.icons.name;
             markup = true;
             tooltip-format = "Name: <big><b>{name}</b></big> <i>{short_state}</i>\nTitle: <b>{title}</b>";
             on-click = "activate";
