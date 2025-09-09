@@ -21,6 +21,7 @@
             enable = true;
             package = pkgs.niri-stable;
           };
+          environment.systemPackages = [ pkgs.xwayland-satellite-stable ];
 
           # Settings
           _shared.enable = true;

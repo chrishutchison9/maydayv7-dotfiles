@@ -50,7 +50,7 @@ in
               copyUserURLs.enable = true;
               crashHandler.enable = true;
               decor.enable = true;
-              emoteCloner.enable = true;
+              expressionCloner.enable = true;
               favoriteEmojiFirst.enable = true;
               favoriteGifSearch.enable = true;
               fixImagesQuality.enable = true;

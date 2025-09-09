@@ -2,8 +2,11 @@
 {
   imports = util.map.modules.list ./.;
   programs.niri.settings = {
-    hotkey-overlay.skip-at-startup = true;
     screenshot-path = "~/Pictures/Screenshots/%Y-%m-%d-%H%M%S.png";
+    hotkey-overlay = {
+      skip-at-startup = true;
+      hide-not-bound = true;
+    };
 
     input = {
       keyboard.numlock = true;

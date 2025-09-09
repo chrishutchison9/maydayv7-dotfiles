@@ -2,7 +2,6 @@
   config,
   lib,
   util,
-  inputs,
   pkgs,
   files,
   ...
@@ -12,15 +11,9 @@ let
 in
 {
   ## Office Environment Configuration ##
-  imports = [ inputs.windows.nixosModules.onlyoffice ];
   config = lib.mkIf enable {
     # Applications
     programs = {
-      onlyoffice = {
-        enable = true;
-        package = pkgs.onlyoffice-bin_latest;
-      };
-
       obs-studio = {
         enable = true;
         enableVirtualCamera = true;
@@ -47,6 +40,7 @@ in
       simple-scan
       gscan2pdf
       libreoffice
+      onlyoffice-desktopeditors
 
       # Graphics
       drawing
