@@ -3,8 +3,9 @@ pkgs: {
   shellHook = ''echo "## JavaScript Development Shell ##"'';
   packages = with pkgs; [
     nodejs
-    eslint
+    typescript
 
+    eslint
     nodemon
     postman
   ];

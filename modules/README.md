@@ -68,7 +68,7 @@ Configuration [Builder](./configuration.nix)
     - `mode`: CPU Frequency Governor Mode - `"ondemand" / "performance" / "powersave"`
   - `gpu`: Discrete GPU Support - `null / "nvidia"`
   - `modules`: List of Hardware Configuration Modules imported from [`inputs.hardware`](https://github.com/nixos/nixos-hardware) - Ex. `[ "common-pc" ]`
-  - `support`: List of Additional Supported Hardware - `[ "laptop" "mobile" "printer" "virtualisation" ]`
+  - `support`: List of Additional Supported Hardware - `[ "laptop" "mobile" "printer" "virtualisation" "blockchain" ]`
   - `vm`: Configure Virtualisation Support -
     - `android`: Enable Android Virtualisation - `true / false`
     - `vfio`: Configure VFIO PCI passthrough - `true / false`

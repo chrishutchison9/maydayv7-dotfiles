@@ -16,7 +16,6 @@ in
       font-manager
       gnome-clocks
       gnome-disk-utility
-      hyprpicker
       nwg-drawer
       overskride
       qalculate-gtk
@@ -26,11 +25,12 @@ in
 
       # Utilities
       custom.sysutils
+      hyprpicker
       pavucontrol
       wev
-      wlclock
       wl-clipboard
       wl-screenrec
+      wlclock
       wlr-randr
 
       # Network Settings
@@ -64,32 +64,30 @@ in
       "video"
     ];
 
-    user = {
-      homeConfig = {
-        systemd.user.services.wlclock =
-          let
-            target = [ "graphical-session.target" ];
-          in
-          {
-            Install.WantedBy = target;
-            Unit = {
-              Description = "Desktop Clock";
-              After = target;
-            };
-            Service.ExecStart =
-              with colors;
-              "${getExe pkgs.wlclock} --layer bottom --exclusive-zone true --position top-right --margin 10 --size 300 --corner-radius 10 --border-size 2 --hand-width 7 --marking-width 3 --background-colour #${base00}4d --clock-colour #${base0D} --border-colour #${base00}";
+    user.homeConfig = {
+      systemd.user.services.wlclock =
+        let
+          target = [ "graphical-session.target" ];
+        in
+        {
+          Install.WantedBy = target;
+          Unit = {
+            Description = "Desktop Clock";
+            After = target;
           };
-
-        # Network Settings
-        xdg.desktopEntries."org.gnome.Settings" = {
-          name = "Network Settings";
-          comment = "Gnome Control Center";
-          icon = "org.gnome.Settings";
-          exec = "env XDG_CURRENT_DESKTOP=gnome gnome-control-center";
-          categories = [ "X-Preferences" ];
-          terminal = false;
+          Service.ExecStart =
+            with colors;
+            "${getExe pkgs.wlclock} --layer bottom --exclusive-zone true --position top-right --margin 10 --size 300 --corner-radius 10 --border-size 2 --hand-width 7 --marking-width 3 --background-colour #${base00}4d --clock-colour #${base0D} --border-colour #${base00}";
         };
+
+      # Network Settings
+      xdg.desktopEntries."org.gnome.Settings" = {
+        name = "Network Settings";
+        comment = "Gnome Control Center";
+        icon = "org.gnome.Settings";
+        exec = "env XDG_CURRENT_DESKTOP=gnome gnome-control-center";
+        categories = [ "X-Preferences" ];
+        terminal = false;
       };
     };
   };

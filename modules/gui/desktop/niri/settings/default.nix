@@ -9,10 +9,7 @@
       keyboard.numlock = true;
       warp-mouse-to-focus.enable = true;
       workspace-auto-back-and-forth = true;
-      focus-follows-mouse = {
-        enable = true;
-        max-scroll-amount = "25%";
-      };
+      focus-follows-mouse.enable = true;
     };
 
     layout = {
@@ -26,6 +23,7 @@
         { proportion = 1.0 / 3.0; }
         { proportion = 0.5; }
         { proportion = 2.0 / 3.0; }
+        { proportion = 0.85; }
       ];
       preset-window-heights = [
         { proportion = 1.0 / 3.0; }

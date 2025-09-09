@@ -8,6 +8,7 @@
 window#waybar {
   background-color: alpha(@base00, 0.9);
   border: 2px solid @base00;
+  border-radius: 0;
 }
 tooltip {
   background: alpha(@base00, 0.9);
@@ -75,7 +76,6 @@ window#waybar.empty #window {
   color: @base05;
   opacity: 0.8;
   border: 2px solid @base04;
-  margin-bottom: 10px;
 }
 
 #bluetooth {
@@ -181,6 +181,10 @@ window#waybar.empty #window {
 
 #clock {
   padding-left: 0.4em;
+}
+
+#keyboard-state {
+  margin-bottom: 10px;
 }
 
 #window {

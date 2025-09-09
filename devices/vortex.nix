@@ -62,7 +62,6 @@
   user = {
     name = "v7";
     description = "V 7";
-    uid = 1000;
     shell = "zsh";
     shells = [ "bash" ];
     groups = [

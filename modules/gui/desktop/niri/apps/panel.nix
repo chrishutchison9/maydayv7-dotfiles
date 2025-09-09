@@ -19,10 +19,7 @@ in
           position = "left";
           width = 40;
           spacing = 3;
-          margin-top = 5;
-          margin-right = 0;
-          margin-bottom = 5;
-          margin-left = 3;
+          margin = "0";
 
           "group/users" = {
             orientation = "vertical";

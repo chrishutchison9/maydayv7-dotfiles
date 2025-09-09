@@ -31,6 +31,7 @@
       "mobile"
       "printer"
       "virtualisation"
+      "blockchain"
     ];
 
     vm = {
