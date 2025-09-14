@@ -14,12 +14,18 @@ in
       pitivi
       pwvucontrol
       qpwgraph
+      stremio
     ];
 
     user = {
       persist = {
         files = [ ".config/rncbc.org/qpwgraph" ];
-        directories = [ ".config/pitivi" ];
+        directories = [
+          ".config/pitivi"
+          ".stremio-server"
+          ".cache/Smart Code ltd"
+          ".local/share/Smart Code ltd"
+        ];
       };
 
       # Audio Effects

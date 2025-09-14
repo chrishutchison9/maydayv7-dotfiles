@@ -12,7 +12,10 @@
       keyboard.numlock = true;
       warp-mouse-to-focus.enable = true;
       workspace-auto-back-and-forth = true;
-      focus-follows-mouse.enable = true;
+      focus-follows-mouse = {
+        enable = true;
+        max-scroll-amount = "90%";
+      };
     };
 
     layout = {

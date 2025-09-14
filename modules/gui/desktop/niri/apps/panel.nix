@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   files,
   ...
 }:
@@ -76,7 +77,25 @@ in
 
           "custom/weather" = {
             format = "{}";
-            exec = "wttrbar --date-format %d/%m --nerd --vertical-view";
+            hide-empty-text = true;
+            exec = "${
+              pkgs.writeShellApplication {
+                name = "weather";
+                runtimeInputs = with pkgs; [
+                  coreutils
+                  wttrbar
+                ];
+                text = ''
+                  WEATHER=$(wttrbar --date-format %d/%m --nerd --vertical-view)
+                  if [[ $WEATHER = *wttr.in* ]]
+                  then
+                    echo "{}"
+                  else
+                    echo "$WEATHER"
+                  fi
+                '';
+              }
+            }/bin/weather";
           };
 
           clock = {
