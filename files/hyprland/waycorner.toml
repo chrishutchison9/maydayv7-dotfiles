@@ -1,5 +1,5 @@
 [overview]
-command = [ "hyprctl", "dispatch", "overview:toggle" ]
+command = [ "hyprctl", "dispatch", "hyprexpo:expo", "on" ]
 locations = [ "top_left" ]
 size = 10
 timeout_ms = 200

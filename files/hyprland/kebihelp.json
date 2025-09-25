@@ -151,8 +151,8 @@
             "label": "Application Launcher and Overview"
           },
           {
-            "value": "$mod [SHIFT] `",
-            "label": "Show workspace overview for monitor[s]"
+            "value": "$mod `",
+            "label": "Show workspace overview"
           },
           {
             "value": "ALT [SHIFT] Tab",

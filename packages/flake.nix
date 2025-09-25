@@ -45,8 +45,7 @@ in
                 hyprland.packages."${system}"
                 // hyprplugins.packages."${system}"
                 // hyprsplit.packages."${system}"
-                // hyprcursors.packages."${system}"
-                // hyprspace.packages."${system}";
+                // hyprcursors.packages."${system}";
             })
             minecraft.overlay
             niri.overlays.niri

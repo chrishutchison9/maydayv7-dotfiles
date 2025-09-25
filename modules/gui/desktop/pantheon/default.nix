@@ -57,7 +57,7 @@ in
       # Panel Indicators
       environment.pathsToLink = [ "/libexec" ];
       services.xserver.desktopManager.pantheon.extraWingpanelIndicators = with pkgs; [
-        # monitor # ! # https://github.com/NixOS/nixpkgs/issues/408811
+        monitor
         wingpanel-indicator-ayatana
       ];
 

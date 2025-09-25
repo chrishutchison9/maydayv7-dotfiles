@@ -10,7 +10,7 @@
     plugins = with pkgs.hyprworld; [
       hyprsplit
       hypr-dynamic-cursors
-      Hyprspace
+      hyprexpo
     ];
 
     settings = {
@@ -32,33 +32,19 @@
           tilt.function = "negative_quadratic";
         };
 
-        # Workspace Overview
-        overview =
-          with sys.lib.stylix.colors;
-          let
-            gaps = builtins.toString config.wayland.windowManager.hyprland.settings.general.gaps_in;
-          in
-          {
-            autoDrag = true;
-            dragAlpha = 0.4;
-            exitOnClick = true;
-            centerAligned = true;
-            hideTopLayers = true;
-            hideOverlayLayers = false;
-            showNewWorkspace = false;
-            showEmptyWorkspace = true;
-            overrideGaps = true;
-            gapsIn = gaps;
-            gapsOut = gaps;
-            panelBorderWidth = 0;
-            panelBorderColor = "rgb(${base0A})";
-            workspaceActiveBorder = "rgb(${base0D})";
-          };
+        # Overview
+        hyprexpo = {
+          columns = 3;
+          workspace_method = "first 1";
+          bg_col = "rgb(${sys.lib.stylix.colors.base00})";
+          gap_size = builtins.toString config.wayland.windowManager.hyprland.settings.general.gaps_in;
+        };
       };
 
-      bind = [
-        "$mod, grave, overview:toggle"
-        "$mod SHIFT, grave, overview:toggle, all"
+      bind = [ "$mod, grave, hyprexpo:expo, toggle" ];
+      hyprexpo-gesture = [
+        "4, up, expo, on"
+        "4, down, expo, off"
       ];
     };
   };

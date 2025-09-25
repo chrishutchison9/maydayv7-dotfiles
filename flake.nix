@@ -218,19 +218,11 @@
       };
     };
 
-    hyprspace = {
-      url = "github:KZDKM/Hyprspace";
-      inputs = {
-        hyprland.follows = "hyprland";
-        systems.follows = "systems";
-      };
-    };
-
     # Launcher
     hyprshell = {
-      url = "github:H3rmt/hyprshell?ref=hyprshell-release";
+      url = "github:H3rmt/hyprshell";
       inputs = {
-        nixpkgs.follows = "nixpkgs";
+        nixpkgs.follows = "unstable";
         flake-parts.follows = "framework";
         home-manager.follows = "home";
       };
