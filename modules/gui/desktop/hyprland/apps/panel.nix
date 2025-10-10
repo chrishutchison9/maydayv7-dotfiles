@@ -17,7 +17,7 @@ in
       let
         shared = {
           position = "top";
-          height = 30;
+          height = 40;
           spacing = 3;
           margin-top = 2;
           margin-right = 5;
@@ -31,6 +31,11 @@ in
               "custom/power"
             ];
             drawer.transition-left-to-right = true;
+          };
+
+          user = {
+            height = 20;
+            width = 20;
           };
 
           "hyprland/workspaces" = {

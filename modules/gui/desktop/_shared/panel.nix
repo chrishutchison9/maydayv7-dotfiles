@@ -47,8 +47,6 @@ in
       user = {
         format = "{user}";
         icon = true;
-        height = 30;
-        width = 30;
         open-on-click = true;
       };
 
@@ -108,7 +106,7 @@ in
           tooltip = "Strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>";
         in
         {
-          format = mkDefault "? {ifname}";
+          format = "?";
           format-disconnected = "󰌙";
           format-wifi = "{icon}";
           format-ethernet = "󰌘";
@@ -119,7 +117,7 @@ in
             "󰤥"
             "󰤨"
           ];
-          format-linked = mkDefault "󰈁 {ifname}";
+          format-linked = "󰈁";
           tooltip-format-wifi = "Network: <big><b>{essid}</b></big>\n${tooltip}";
           tooltip-format-ethernet = "Network: <big><b>Wired</b></big>\n${tooltip}";
           tooltip-format-disconnected = "󰌙 Disconnected";

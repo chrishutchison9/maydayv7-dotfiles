@@ -26,7 +26,7 @@ tooltip {
   padding-right: 5px;
 }
 #users .drawer box {
-  margin-left: 5px;
+  margin-left: 2px;
 }
 #custom-power {
   color: @base08;
@@ -64,6 +64,10 @@ tooltip {
   background-color: transparent;
 }
 
+#taskbar button {
+  padding: 3px 6px;
+  margin: 2px;
+}
 #taskbar button.active {
   background: @base0C;
 }
@@ -107,9 +111,6 @@ tooltip {
   background-color: @base06;
 }
 
-#media .drawer box {
-  margin-right: 3px;
-}
 #wireplumber {
   background-color: @base09;
   color: @base00;
@@ -175,6 +176,7 @@ tooltip {
   background-color: transparent;
 }
 
+/* Area */
 #backlight,
 #battery,
 #bluetooth,
@@ -188,16 +190,38 @@ tooltip {
 #custom-weather,
 #idle_inhibitor,
 #keyboard-state,
-#mpris,
 #network,
 #power-profiles-daemon,
-#submap,
-#taskbar,
-#user,
 #window,
 #wireplumber {
-  padding: 2px 5px;
-  margin: 5px 1px;
+  padding: 0 5px;
+  margin: 4px 2px;
+}
+
+#workspaces {
+  margin: 3px 1px;
+}
+#user,
+#submap {
+  padding: 0 5px;
+  margin: 5px 2px;
+}
+
+#taskbar {
+  margin: 4px 2px;
+}
+
+#mpris {
+  padding: 0;
+  margin: 0;
+}
+#mpris.playing {
+  margin-left: 2px;
+  margin-right: 6px;
+}
+#mpris.paused {
+  margin-left: 2px;
+  margin-right: 6px;
 }
 
 #custom-power {
@@ -206,8 +230,4 @@ tooltip {
 
 #power-profiles-daemon {
   margin-right: 5px;
-}
-
-#workspaces {
-  margin: 4px 1px;
 }

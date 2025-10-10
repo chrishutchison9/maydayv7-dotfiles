@@ -53,11 +53,6 @@ in
             capslock = "󰪛\n{icon}";
           };
 
-          network = {
-            format = "?";
-            format-linked = "󰈁";
-          };
-
           "group/media" = {
             orientation = "vertical";
             drawer.transition-left-to-right = true;

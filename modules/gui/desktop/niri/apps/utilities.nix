@@ -6,8 +6,11 @@
   ...
 }:
 {
-  # File Picker
-  environment.systemPackages = [ pkgs.nautilus ];
+  environment.systemPackages = with pkgs; [
+    nautilus
+    wl-mirror
+    xwayland-satellite-stable
+  ];
 
   user.homeConfig = {
     # Wallpaper

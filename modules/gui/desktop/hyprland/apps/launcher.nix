@@ -8,7 +8,11 @@
 {
   ## Launcher Configuration
   user = {
-    persist.directories = [ ".local/share/hyprshell" ];
+    persist.directories = [
+      ".local/share/hyprshell"
+      ".cache/hyprshell"
+    ];
+
     homeConfig = {
       imports = [ inputs.hyprshell.homeModules.hyprshell ];
       programs.hyprshell = {

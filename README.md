@@ -171,7 +171,6 @@ github:maydayv7/dotfiles
 ├── files
 ├── site
 ├── devices
-│   └── vm
 ├── users
 │   └── passwords
 ├── secrets
@@ -203,7 +202,6 @@ github:maydayv7/dotfiles
 - [`files`](./files/README.md): `dotfiles` and program configuration
 - [`site`](./site/README.md): personal website generated using [`zola`](https://www.getzola.org/)
 - [`devices`](./devices/README.md): system configuration for various devices
-- [`vm`](./devices/vm/README.md): declarative configuration to build multiple virtual machines
 - [`users`](./users/README.md): individual user-specific configuration
 - [`secrets`](./secrets/README.md): authentication credentials management using [`sops-nix`](https://github.com/Mic92/sops-nix)
 - `shells`: sand-boxed shells for development purposes
@@ -409,7 +407,7 @@ It is not recommended to use NixOS if you are a beginner just starting out, with
 
 _May change according to available hardware_
 
-This configuration works well with an Intel CPU + iGPU, and is currently being improved to support AMD APU + Nvidia GPU. Any other setup is untested  
+This configuration works well with an Intel CPU + iGPU, and is currently being improved to support an AMD APU + Nvidia GPU. Any other setup is untested  
 The `hardware.modules` option can be used to load relevant configuration from [`nixos-hardware`](https://github.com/nixos/nixos-hardware)
 
 See [this](./modules/hardware/README.md) for additional information
@@ -494,7 +492,6 @@ _Thanks a lot! ;)_
 
 ### Manual Intervention
 
-- Online accounts have to be manually signed into
 - [Wine](./packages/wine) Applications have to be manually updated
 - Minecraft [Server](./modules/apps/games/mc-server.nix) has to be manually updated
 - Logseq Plugins have to be manually installed
@@ -506,7 +503,7 @@ _Thanks a lot! ;)_
 
 </details>
 
-> Last Updated: **August** 2025
+> Last Updated: **October** 2025
 
 If you like this project, consider leaving a [star](https://github.com/maydayv7/dotfiles)
 
