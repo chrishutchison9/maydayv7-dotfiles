@@ -30,6 +30,10 @@ in
           "djflhoibgkdhkhhcedjiklpkjnoahfmg" # User Agent Switcher
           "lckanjgmijmafbedllaakclkaicjfmnk" # ClearURLs
           "oofgbpoabipfcfjapgnbbjjaenockbdp" # SetupVPN
+          "jghecgabfgfdldnmbfkhmffcabddioke" # Volume Booster
+          "jaioibhbkffompljnnipmpkeafhpicpd" # Tab Auto Refresh
+          "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
+          "clngdbkpkpeebahjckkjfobafhncgmne" # Stylus
         ];
       };
     };
@@ -50,7 +54,7 @@ in
       xournalpp
 
       # Internet
-      google-chrome
+      brave
       linux-wifi-hotspot
       openfortivpn
       teams-for-linux
@@ -87,9 +91,9 @@ in
         ".calibre"
         ".thunderbird"
         ".zoom"
+        ".config/BraveSoftware"
         ".config/calibre"
         ".config/GIMP"
-        ".config/google-chrome"
         ".config/inkscape"
         ".config/libreoffice"
         ".config/obs-studio"
@@ -98,9 +102,9 @@ in
         ".local/share/data"
         ".local/share/onlyoffice"
         ".local/share/whatsapp-for-linux"
+        ".cache/BraveSoftware"
         ".cache/gimp"
         ".cache/thunderbird"
-        ".cache/google-chrome"
         ".cache/whatsapp-for-linux"
         ".cache/zoom"
       ];

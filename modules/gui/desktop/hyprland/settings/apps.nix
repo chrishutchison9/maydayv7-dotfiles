@@ -124,8 +124,8 @@ in
 
         # Media Consumption
         "idleinhibit focus, class:^(mpv|.*celluloid.*|.+exe)$"
-        "idleinhibit focus, class:^(firefox|google-chrome)$, title:^(.*YouTube.*)$"
-        "idleinhibit fullscreen, class:^(firefox|google-chrome)$"
+        "idleinhibit focus, class:^(firefox|brave-browser)$, title:^(.*YouTube.*)$"
+        "idleinhibit fullscreen, class:^(firefox|brave-browser)$"
 
         # Screen Tearing
         "immediate, class:^(.+exe)$"

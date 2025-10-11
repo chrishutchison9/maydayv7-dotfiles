@@ -123,7 +123,7 @@ in
       icon-size = 48;
       launchers = [
         "gala-multitaskingview.desktop"
-        "google-chrome.desktop"
+        "brave-browser.desktop"
         "io.elementary.mail.desktop"
         "io.elementary.terminal.desktop"
         "io.elementary.files.desktop"

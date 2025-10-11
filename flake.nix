@@ -179,7 +179,7 @@
 
     # Catppuccin Theme
     catppuccin = {
-      url = "github:catppuccin/nix";
+      url = "github:catppuccin/nix?ref=release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

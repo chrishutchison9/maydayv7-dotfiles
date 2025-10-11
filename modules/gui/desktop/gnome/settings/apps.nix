@@ -100,7 +100,7 @@ in
     # App Grid
     "org/gnome/shell" = {
       favorite-apps = [
-        "google-chrome.desktop"
+        "brave-browser.desktop"
         "org.gnome.Geary.desktop"
         "org.gnome.Nautilus.desktop"
         "com.mitchellh.ghostty.desktop"
