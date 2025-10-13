@@ -31,7 +31,7 @@ in
       programs.waybar = {
         enable = true;
         systemd.enable = true;
-        package = pkgs.unstable.waybar;
+        package = pkgs.waypkgs.waybar;
       };
     };
 

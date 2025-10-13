@@ -14,6 +14,7 @@ let
     # Usage #
       help                           - Show this information
       temperature [up,down]          - Display Temperature Controls
+      click [button] [address]       - Opens [address] with [button] action
       toggle 
         fancy                        - Toggle Compositor Effects
         float                        - Toggle window floating in current workspace
@@ -116,6 +117,32 @@ recursiveUpdate
             *) fail "Unexpected Option 'temperature $2'" ;;
             esac
           ;;
+          "click")
+            BUTTON="$2"
+            ADDRESS="$3"
+            if [ -z "$BUTTON" ] || [ -z "$ADDRESS" ]
+            then
+              fail "Expected GDK Button event and a window address"
+            fi
+
+            case "$BUTTON" in
+            "1")
+              # Left Click
+              hyprctl keyword cursor:no_warps true
+              hyprctl dispatch focuswindow address:"$ADDRESS"
+              hyprctl dispatch bringactivetotop
+              hyprctl keyword cursor:no_warps false
+            ;;
+            "2")
+              # Middle Click
+              hyprctl dispatch movetoworkspacesilent "special:minimized, address:$ADDRESS"
+            ;;
+            "3")
+              # Right Click
+              hyprctl dispatch closewindow address:"$ADDRESS"
+            ;;
+            esac
+          ;;
           "toggle")
             case "$2" in
             "fancy")
@@ -170,7 +197,7 @@ recursiveUpdate
               hyprshade on "$SHADER" && hyprctl seterror ""
             ;;
             "touchpad")
-              temp touchpad 1
+              temp hyprutils_touchpad 1
               STATUS="$TEMP/status"
               touchpad=$(hyprctl devices | grep touchpad | xargs)
 

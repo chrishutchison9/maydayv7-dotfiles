@@ -161,7 +161,7 @@ recursiveUpdate
           ;;
           "--delta")
             echo "Building Configuration..."
-            temp nixos-build 2
+            temp nixos_build 2
             HOSTNAME=$(cat /etc/hostname)
             if nom build ${path.system}#nixosConfigurations."$HOSTNAME".config.system.build.toplevel --out-link "$TEMP"
             then

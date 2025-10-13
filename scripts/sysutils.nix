@@ -66,7 +66,7 @@ recursiveUpdate
           media_icon="audio-speakers"
           if $show_album_art
           then
-            temp media-icon 1
+            temp sysutils_media-icon 1
             url=$(playerctl -f "{{mpris:artUrl}}" metadata)
             if [[ "$url" == "file://"* ]]
             then

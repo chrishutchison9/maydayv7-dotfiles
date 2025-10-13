@@ -34,33 +34,8 @@ in
           };
 
           user = {
-            height = 20;
-            width = 20;
-          };
-
-          "hyprland/workspaces" = {
-            all-outputs = false;
-            show-special = true;
-            format = "<small>{name}</small>{icon}";
-            on-scroll-up = "hyprctl dispatch workspace m+1";
-            on-scroll-down = "hyprctl dispatch workspace m-1";
-            ignore-workspaces = [
-              "special:scratch_.*"
-              "special:minimized"
-            ];
-            format-icons = {
-              default = "";
-              special = " ";
-              "1" = " ";
-              "2" = " ";
-              "3" = " ";
-              "4" = " ";
-              "5" = " ";
-              "6" = " ";
-              "7" = " ";
-              "8" = " ";
-              "9" = " ";
-            };
+            height = 22;
+            width = 22;
           };
 
           "hyprland/submap" = {
@@ -76,21 +51,28 @@ in
             separate-outputs = true;
           };
 
-          "wlr/taskbar" = {
-            format = "{icon}";
-            icon-size = 20;
+          "hyprland/workspaces" = {
             all-outputs = false;
-            active-first = false;
-            icon-theme = theme.icons.name;
-            markup = true;
-            tooltip-format = "Name: <big><b>{name}</b></big> <i>{short_state}</i>\nTitle: <b>{title}</b>";
-            on-click = "activate";
-            on-click-middle = "minimize";
-            on-click-right = "close";
-            ignore-list = [
-              "kitty-clip"
-              "kitty-dropterm"
+            show-special = true;
+            format = "<small>{name}</small>{windows}";
+            on-scroll-up = "hyprctl dispatch workspace m+1";
+            on-scroll-down = "hyprctl dispatch workspace m-1";
+            ignore-workspaces = [
+              "special:scratch_.*"
+              "special:minimized"
             ];
+
+            workspace-taskbar = {
+              enable = true;
+              format = "{icon}";
+              icon-size = 22;
+              icon-theme = theme.icons.name;
+              on-click-window = "hyprutils click {button} {address}";
+              ignore-list = [
+                "kitty-clip"
+                "kitty-dropterm"
+              ];
+            };
           };
 
           "custom/minimized" = {
@@ -146,13 +128,12 @@ in
             "custom/logo"
             "group/users"
             "hyprland/workspaces"
-            "hyprland/submap"
-            "hyprland/window"
+            "custom/minimized"
           ];
 
           modules-center = [
-            "wlr/taskbar"
-            "custom/minimized"
+            "hyprland/window"
+            "hyprland/submap"
           ];
         };
       in

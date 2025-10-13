@@ -38,11 +38,12 @@ in
               unstable = import unstable { inherit system config; };
 
               gaming = gaming.packages."${system}";
-              waypkgs = waypkgs.packages."${system}";
               code = vscode.extensions."${system}";
               wine = windows.packages."${system}";
-              hyprworld =
-                hyprland.packages."${system}"
+              waypkgs =
+                waybar.packages."${system}"
+                // niri.packages."${system}"
+                // hyprland.packages."${system}"
                 // hyprplugins.packages."${system}"
                 // hyprsplit.packages."${system}"
                 // hyprcursors.packages."${system}";

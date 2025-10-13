@@ -45,18 +45,23 @@ tooltip {
   color: @base07;
   background-color: transparent;
 }
+#workspaces button.empty .workspace-label {
+  padding-left: 4px;
+}
 #workspaces button.hosting-monitor.visible {
   border: 2px solid @base04;
 }
 #workspaces button.special {
   opacity: 0.8;
-  padding-right: 3px;
+  padding-right: 8px;
   margin-left: 5px;
 }
+#workspaces .taskbar-window {
+  padding-left: 4px;
+}
 
-#submap {
-  color: @base00;
-  background-color: @base08;
+#custom-dropdown {
+  color: #ffffff;
 }
 
 #window {
@@ -64,23 +69,11 @@ tooltip {
   background-color: transparent;
 }
 
-#taskbar button {
-  padding: 3px 6px;
-  margin: 2px;
-}
-#taskbar button.active {
-  background: @base0C;
-}
-#taskbar button.minimized {
-  border: 2px solid @base0C;
-}
-#taskbar button.urgent {
-  border: 2px solid @base08;
+#submap {
+  color: @base00;
+  background-color: @base08;
 }
 
-#custom-dropdown {
-  color: #ffffff;
-}
 #tray {
   color: #ffffff;
   margin: 0;
