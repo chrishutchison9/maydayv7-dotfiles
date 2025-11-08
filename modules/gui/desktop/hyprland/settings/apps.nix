@@ -118,7 +118,7 @@ in
         "opacity 0.9 override, title:^(Kebihelp)"
 
         # Browser Windows
-        "float, title:^(Picture-in-Picture)$"
+        "float, title:^(Picture-in-[P|p]icture)$"
         "workspace special silent, title:^(Sharing Indicator)$"
         "workspace special silent, title:^(.*is sharing (your screen|a window)\.)$"
 

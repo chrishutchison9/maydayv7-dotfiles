@@ -9,6 +9,7 @@
 }:
 let
   inherit (builtins)
+    attrValues
     elem
     isInt
     toString
@@ -18,6 +19,7 @@ let
     mkOption
     types
     ;
+  inherit (pkgs) fetchurl linkFarmFromDrvs;
 
   cfg = config.apps.mc-server;
   mem = toString cfg.memory;
@@ -29,16 +31,25 @@ in
   imports = [ inputs.minecraft.nixosModules.minecraft-servers ];
 
   options.apps.mc-server = {
-    memory = mkOption {
-      description = "Memory (GB) allocated to server";
-      type = types.int;
-      default = 12;
+    type = mkOption {
+      description = "Server Type";
+      type = types.enum [
+        "fabric"
+        "skyblock"
+      ];
+      default = "default";
     };
 
     config = mkOption {
       description = "Server Properties";
       type = types.attrs;
       default = { };
+    };
+
+    memory = mkOption {
+      description = "Memory (GB) allocated to Server";
+      type = types.int;
+      default = 12;
     };
 
     vc-port = mkOption {
@@ -51,96 +62,120 @@ in
   config = mkIf (elem "mc-server" config.apps.games) {
     hardware.fs.persist.directories = [ dataDir ];
     networking.firewall.allowedUDPPorts = mkIf vc [ cfg.vc-port ];
-    services.minecraft-servers = {
-      enable = true;
-      inherit dataDir;
-      eula = true;
-      openFirewall = true;
-      managementSystem = {
-        tmux.enable = false;
-        systemd-socket.enable = true;
-      };
-
-      servers.fabric = {
+    services.minecraft-servers =
+      let
+        shared = {
+          autoStart = true;
+          serverProperties = cfg.config;
+          jvmOpts = "-Xms${mem}G -Xmx${mem}G --add-modules=jdk.incubator.vector -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -XX:G1NewSizePercent=40 -XX:G1MaxNewSizePercent=50 -XX:G1HeapRegionSize=16M -XX:G1ReservePercent=15";
+        };
+      in
+      {
         enable = true;
-        package = pkgs.fabricServers.fabric-1_21_6;
-        serverProperties = cfg.config;
-        jvmOpts = "-Xms${mem}G -Xmx${mem}G --add-modules=jdk.incubator.vector -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -XX:G1NewSizePercent=40 -XX:G1MaxNewSizePercent=50 -XX:G1HeapRegionSize=16M -XX:G1ReservePercent=15";
+        inherit dataDir;
+        eula = true;
+        openFirewall = true;
+        managementSystem = {
+          tmux.enable = false;
+          systemd-socket.enable = true;
+        };
 
-        ## Mods
-        symlinks.mods = pkgs.linkFarmFromDrvs "mods" [
-          # Server
-          (pkgs.fetchurl {
-            # Fabric API
-            url = "https://cdn.modrinth.com/data/P7dR8mSH/versions/F5TVHWcE/fabric-api-0.128.2%2B1.21.6.jar";
-            sha512 = "sha512-ttDsCuxABpyx+iFZwSbQJ9f5Xj9iYKPojr6cR/PLcW0RcK+OLk/z1BCM5e6upwACqIlUdXg3TU1t+kV1XplDHg==";
-          })
-          (pkgs.fetchurl {
-            # Lithium
-            url = "https://cdn.modrinth.com/data/gvQqBUqZ/versions/XWGBHYcB/lithium-fabric-0.17.0%2Bmc1.21.6.jar";
-            sha512 = "sha512-qNaotprisQ3Qz4+BSSYNW9vSWDFHRiutAzgAFO3YV4Upcrln2X32lygzPYg2senbiZdxLqJjZd24oFuMhFxlNA==";
-          })
-          (pkgs.fetchurl {
-            # Krypton
-            url = "https://cdn.modrinth.com/data/fQEb0iXm/versions/neW85eWt/krypton-0.2.9.jar";
-            sha512 = "sha512-LiMEsbF+z5V4Ou6S4m5Uyb+tMlx9/NFN7r+YkSZuspM9sA/3eIXKoIP6qW8JxVHrVvk89zs1d4nLMe2tSTn/6w==";
-          })
-          (pkgs.fetchurl {
-            # FerriteCore
-            url = "https://cdn.modrinth.com/data/uXXizFIs/versions/CtMpt7Jr/ferritecore-8.0.0-fabric.jar";
-            sha512 = "sha512-ExuC0dNm8JZkNb/LOMNi1gTWjs8wwQbTGmJhv8hoyjqCQluz+uuqLl6hfY7tXJKEOBDrLfR5Dy+LHmwb3Jt3RQ==";
-          })
-          (pkgs.fetchurl {
-            # ScalableLux
-            url = "https://cdn.modrinth.com/data/Ps1zyz6x/versions/PQLHDg2Q/ScalableLux-0.1.5%2Bfabric.e4acdcb-all.jar";
-            sha512 = "sha512-7I+rw7+ZH7y+Bkwel97T5w8UWofkNgViQcux4UxX6p9Z7zEvJMIFFgzL2kP2k+BdZSt/Gapx9zDK7Du19/eCCg==";
-          })
-          (pkgs.fetchurl {
-            # C2ME
-            url = "https://cdn.modrinth.com/data/VSNURh3q/versions/y6wodInu/c2me-fabric-mc1.21.6-0.3.4%2Balpha.0.42.jar";
-            sha512 = "sha512-PVOx3YSgNrX7kfFaC8U45vKkrCB8R0mrGrh0lyF4vCzCDx/hwvjAjp7vCma09rLeIjFNlNBJirzwJSGd/GnXVg==";
-          })
-          (pkgs.fetchurl {
-            # Player Roles
-            url = "https://cdn.modrinth.com/data/Rt1mrUHm/versions/aX5ZEmN4/player-roles-1.6.15.jar";
-            sha512 = "sha512-MnY/OUxlEfEP1z7YizZJJPQCfIPbxCpbHytzi+gCX06VbEf7lxbB9GnahNKZAEMPoXsLfHXOuF9k8vkUrVR6hg==";
-          })
-          (pkgs.fetchurl {
-            # Skin Restorer
-            url = "https://cdn.modrinth.com/data/ghrZDhGW/versions/fs7VElhv/skinrestorer-2.3.5%2B1.21.6-fabric.jar";
-            sha512 = "sha512-xQq0b3XrbvJ4Af5YpMMn4cVlNYSUtgvMsQxCDSTXn1Qw4L/DCeBvvl1Cde9FKEEoZ9VsRHzJF6deYfNQf0Wp6w==";
-          })
+        servers = {
+          fabric = shared // {
+            enable = cfg.type == "fabric";
+            package = pkgs.fabricServers.fabric-1_21_10;
+            symlinks.mods = linkFarmFromDrvs "mods" (
+              attrValues (
+                {
+                  # Server
+                  FabricAPI = fetchurl {
+                    url = "https://cdn.modrinth.com/data/P7dR8mSH/versions/lxeiLRwe/fabric-api-0.136.0%2B1.21.10.jar";
+                    sha256 = "sha256-ADKAQNMSXhDUF/Fviupkr3JxmH6RFVRLuwvjK7PQV5c=";
+                  };
+                  Lithium = fetchurl {
+                    url = "https://cdn.modrinth.com/data/gvQqBUqZ/versions/oGKQMdyZ/lithium-fabric-0.20.0%2Bmc1.21.10.jar";
+                    sha256 = "sha256-567yN1D2eJgsAMQhjWIFljqZRVRFfCoWvZgY41IQAEs=";
+                  };
+                  Krypton = fetchurl {
+                    url = "https://cdn.modrinth.com/data/fQEb0iXm/versions/O9LmWYR7/krypton-0.2.10.jar";
+                    sha256 = "sha256-lCkdVpCgztf+fafzgP29y+A82sitQiegN4Zrp0Ve/4s=";
+                  };
+                  FerriteCore = fetchurl {
+                    url = "https://cdn.modrinth.com/data/uXXizFIs/versions/CtMpt7Jr/ferritecore-8.0.0-fabric.jar";
+                    sha256 = "sha256-K5C/AMKlgIw8U5cSpVaRGR+HFtW/pu76ujXpxMWijuo=";
+                  };
+                  ScalableLux = fetchurl {
+                    url = "https://cdn.modrinth.com/data/Ps1zyz6x/versions/PV9KcrYQ/ScalableLux-0.1.6%2Bfabric.c25518a-all.jar";
+                    sha256 = "sha256-ekpzcThhg8dVUjtWtVolHXWsLCP0Cvik8PijNbBdT8I=";
+                  };
+                  C2ME = fetchurl {
+                    url = "https://cdn.modrinth.com/data/VSNURh3q/versions/eY3dbqLu/c2me-fabric-mc1.21.10-0.3.5.0.0.jar";
+                    sha256 = "sha256-PZxX7IE3Zc+zsQrMc/LdI1jpUC9l/ov7z334OucWpgA=";
+                  };
 
-          # Client and Server
-          (pkgs.fetchurl {
-            # Jade
-            url = "https://cdn.modrinth.com/data/nvQzSEkH/versions/AMBKaYce/Jade-1.21.6-Fabric-19.0.3.jar";
-            sha512 = "sha512-ILrp41yUsDHpb2hhm1Fhrmm5gzoBaWNOrXRepWYGiZSfK4UDNHcAqfwq2iOcNeLp7xCtVbIc4/JYi43ooYUbhA==";
-          })
-          (
-            if vc then
-              (pkgs.fetchurl {
-                # Simple Voice Chat
-                url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/CG0sCxee/voicechat-fabric-1.21.6-2.5.32.jar";
-                sha512 = "sha512-VFY/4Aa3Pv8zT1Vm/ie8/oC8IhEFlXFHVC/DkWf5Xodt97XBkbYZAkO5tF06zddDWHNUpl0Bu66P89VOHzbh5A==";
-              })
-            else
-              { }
-          )
-        ];
+                  PlayerRoles = fetchurl {
+                    url = "https://cdn.modrinth.com/data/Rt1mrUHm/versions/Qi5eDlej/player-roles-1.7.0.jar";
+                    sha256 = "sha256-+0nk/J2W3hVDdkKlZRHY4dBde3aF8e8Y1SPFOgDWNb0=";
+                  };
+                  SkinRestorer = fetchurl {
+                    url = "https://cdn.modrinth.com/data/ghrZDhGW/versions/MKWfnXfO/skinrestorer-2.4.3%2B1.21.9-fabric.jar";
+                    sha256 = "sha256-ypyDuX94HyUPlUI4CrFc0Pc01lUQXgYPqP/axaCi6Hc=";
+                  };
+                  Silk = fetchurl {
+                    url = "https://cdn.modrinth.com/data/aTaCgKLW/versions/2OisNxPN/silk-all-1.11.4.jar";
+                    sha256 = "sha256-C2VcLfFGweGOO+Xi1mOTkETX3NpoEdSz+9kYmEIDDv0=";
+                  };
+                  FabricKotlin = fetchurl {
+                    url = "https://cdn.modrinth.com/data/Ha28R6CL/versions/LcgnDDmT/fabric-language-kotlin-1.13.7%2Bkotlin.2.2.21.jar";
+                    sha256 = "sha256-d5UZY+3V19N+5PF0431GqHHkW5c0JvO0nWclyBm0uPI=";
+                  };
+                  Veinminer = fetchurl {
+                    url = "https://cdn.modrinth.com/data/OhduvhIc/versions/lCVEKyxE/veinminer-fabric-2.5.0.jar";
+                    sha256 = "sha256-13PbmxgTfM+WkQht7hsHrkEImXgTeBUpeKOcGtE/cOI=";
+                  };
+                  VeinminerEnchant = fetchurl {
+                    url = "https://cdn.modrinth.com/data/4sP0LXxp/versions/h5oKcjvq/veinminer-enchant-2.3.0.jar";
+                    sha256 = "sha256-NvGnsY9nfI+IMy2+Ljr1IahMqim9xOsRgojaFKWk/xQ=";
+                  };
 
-        ## Datapacks
-        files = {
-          "world/datapacks/veinminer.zip" = pkgs.fetchurl {
-            url = "https://cdn.modrinth.com/data/OhduvhIc/versions/gZ4v72II/veinminer-1.3.1.zip";
-            sha512 = "sha512-1BoWu/plQA+QqEGyDIqQm+lTcp/08R2Ztb+3EjuUwS31sgQThsy4cLCDfCx4o5z2Wvh5KC8D5QaJQjQ5Rzw30A==";
+                  # Client and Server
+                  Jade = fetchurl {
+                    url = "https://cdn.modrinth.com/data/nvQzSEkH/versions/qC0qUqL5/Jade-1.21.9-Fabric-20.0.5.jar";
+                    sha256 = "sha256-HZfvnnYeRgbgQROdq6v9U7fnx1MhNaseaedNJPJpNxE=";
+                  };
+                }
+                // (
+                  if vc then
+                    {
+                      SimpleVC = fetchurl {
+                        url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/BjR2lc4k/voicechat-fabric-1.21.10-2.6.6.jar";
+                        sha256 = "sha256-yC5pMBLsi4BnUq4CxTfwe4MGTqoBg04ZaRrsBC3Ds3Y=";
+                      };
+                    }
+                  else
+                    { }
+                )
+              )
+            );
           };
-          "world/datapacks/veinminer-enchant.zip" = pkgs.fetchurl {
-            url = "https://cdn.modrinth.com/data/4sP0LXxp/versions/3D1S0vgH/Veinminer-Enchantment-1.2.3.zip";
-            sha512 = "sha512-zQFNtwr/WDgozXRRHA8ObFRjD/ciJmgiAJNgYkL2oUQmUhRIHbPuzyuEFDdiA4OlFf64lKCdegWmdZwsjJDs4Q==";
-          };
+
+          # Ozone Skyblock Reborn 2
+          skyblock =
+            let
+              inherit (inputs.minecraft.lib) collectFilesAt;
+              modpack = pkgs.fetchzip {
+                url = "https://mediafilez.forgecdn.net/files/7165/375/OSR2%201.1.5%20-%20Server.zip";
+                sha256 = "sha256-5oVl3zcQQ6ad6Yx79+9m7K5wHzFVgK1zlEXE4NAuOfQ=";
+              };
+            in
+            shared
+            // {
+              enable = cfg.type == "skyblock";
+              package = pkgs.neoforgeServers.neoforge-1_21_1;
+              files = (collectFilesAt modpack "config") // (collectFilesAt modpack "kubejs");
+              symlinks = collectFilesAt modpack "mods";
+            };
         };
       };
-    };
   };
 }

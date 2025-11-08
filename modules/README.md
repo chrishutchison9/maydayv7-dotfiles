@@ -22,6 +22,7 @@ Configuration [Builder](./configuration.nix)
   - `ytmusic.style`: YouTube Music CSS
   - `games`: List of installed games - `[ "minecraft" "mc-server" "osu" ]`
   - `mc-server`: Configure Minecraft Server -
+    - `type`: Server Type - `[ "fabric" "skyblock" ]`
     - `memory`: Memory (GB) allocated to server - Ex. `12`
     - `config`: Server Properties (See [here](https://minecraft.fandom.com/wiki/Server.properties))
     - `vc-port`: Port for [Simple Voice Chat](https://modrinth.com/plugin/simple-voice-chat) - Ex. `24454`

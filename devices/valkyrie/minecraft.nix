@@ -6,15 +6,18 @@
     apps = {
       games = [ "mc-server" ];
       mc-server = {
+        type = "fabric";
         memory = 16;
         vc-port = 24454;
         config = {
           motd = "My World";
-          gamemode = "survival";
           difficulty = "normal";
+          gamemode = "survival";
           online-mode = false;
-          server-port = 25565;
           server-ip = "0.0.0.0";
+          server-port = 25565;
+          spawn-protection = 0;
+          allow-flight = true;
         };
       };
     };
