@@ -81,6 +81,7 @@ in
       "/var/lib/bluetooth"
     ];
 
+    systemd.network.wait-online.enable = false;
     networking = {
       networkmanager.enable = true;
       firewall.enable = true;

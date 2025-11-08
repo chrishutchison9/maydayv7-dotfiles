@@ -6,7 +6,7 @@
   timezone = "Asia/Kolkata";
   locale = "IN";
 
-  kernel = "xanmod_stable";
+  kernel = "xanmod";
   kernelModules = [
     "nvme"
     "thunderbolt"

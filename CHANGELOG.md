@@ -1,5 +1,24 @@
 ## 2025
 
+### November
+
+- Update Hyprland to v0.52
+- Add modded skyblock Minecraft Server
+
+### October
+
+- Hyprland Updates
+  - Use Waybar's `workspace-taskbar`
+  - Update to v0.51
+  - Use `hyprexpo` instead of `hyprspace`
+- Use Brave instead of Chrome
+- Add `fabric-ca` package for Hyperledger Fabric
+- Add Stremio
+
+### September
+
+- Support Hyperledger Fabric Blockchain Development
+
 ### August
 
 - Add Configuration for Niri WM
@@ -28,6 +47,7 @@
 
 ### May
 
+- Use `nixcord`
 - Use `ddterm` with GNOME
 - Update to NixOS 25.05 (Warbler)
   - Drop XFCE Desktop

@@ -33,7 +33,7 @@ in
         brave.enable = exists "office";
         thunderbird.enable = exists "office";
         vesktop.enable = exists "discord";
-        vscode.enable = exists "vscode";
+        vscode.profiles.default.enable = exists "vscode";
       };
 
       # Code Editor

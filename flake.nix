@@ -24,13 +24,11 @@
 #     License -> MIT                          #
 #     URL     -> github:maydayv7/dotfiles     #
 #   ---------------------------------------   #
-#           Welcome to Ground Zero!           #
-#       The very heart of my 'dotfiles'       #
 ###############################################
 {
   description = ''
-    My Self-Contained, Purely Reproducible, Hermetic, Declarative, Automated, Extensible
-    Multi-PC NixOS Configuration and 'dotfiles'
+    My declarative, hermetic, reproducible, automated, extensible, multi-PC
+    NixOS Configuration and 'dotfiles'
   '';
 
   ## Repositories ##
@@ -124,10 +122,7 @@
     # VS Code Extensions
     vscode = {
       url = "github:nix-community/nix-vscode-extensions";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "utils";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Discord Module
@@ -177,12 +172,6 @@
     # Catppuccin Theme
     catppuccin = {
       url = "github:catppuccin/nix?ref=release-25.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Tmux Theme
-    tmux = {
-      url = "github:niksingh710/minimal-tmux-status";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

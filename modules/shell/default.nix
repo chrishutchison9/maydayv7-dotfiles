@@ -2,7 +2,6 @@
   config,
   lib,
   util,
-  inputs,
   pkgs,
   files,
   ...
@@ -127,10 +126,10 @@ in
 
           # Terminal Multiplexer
           tmux = with config.lib.stylix.colors; {
-            plugins = with pkgs.tmuxPlugins; [
+            plugins = with pkgs.unstable.tmuxPlugins; [
               open
               yank
-              inputs.tmux.packages."${pkgs.system}".default
+              minimal-tmux-status
             ];
 
             extraConfigBeforePlugins = ''

@@ -6,7 +6,7 @@
     apps = {
       games = [ "mc-server" ];
       mc-server = {
-        type = "fabric";
+        type = "skyblock";
         memory = 16;
         vc-port = 24454;
         config = {
