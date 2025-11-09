@@ -5,21 +5,36 @@
     system.nixos.label = "special.minecraft";
     apps = {
       games = [ "mc-server" ];
-      mc-server = {
-        type = "skyblock";
-        memory = 16;
-        vc-port = 24454;
-        config = {
-          motd = "My World";
-          difficulty = "normal";
-          gamemode = "survival";
-          online-mode = false;
-          server-ip = "0.0.0.0";
-          server-port = 25565;
-          spawn-protection = 0;
-          allow-flight = true;
-        };
-      };
+      mc-servers =
+        let
+          shared = {
+            gamemode = "survival";
+            difficulty = "normal";
+            online-mode = false;
+            server-ip = "0.0.0.0";
+            spawn-protection = 0;
+          };
+        in
+        [
+          {
+            type = "fabric";
+            memory = 16;
+            port = 25565;
+            vc-port = 24454;
+            config = shared // {
+              motd = "My World";
+            };
+          }
+          {
+            type = "skyblock";
+            memory = 10;
+            port = 25567;
+            config = shared // {
+              motd = "Modded Skyblock";
+              allow-flight = true;
+            };
+          }
+        ];
     };
 
     # VPN Tunnel

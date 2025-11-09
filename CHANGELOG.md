@@ -2,6 +2,7 @@
 
 ### November
 
+- Support multiple concurrent Minecraft Servers
 - Update Hyprland to v0.52
 - Add modded skyblock Minecraft Server
 

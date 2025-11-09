@@ -21,10 +21,12 @@ Configuration [Builder](./configuration.nix)
   - `logseq.style`: Path to Logseq Notes CSS
   - `ytmusic.style`: YouTube Music CSS
   - `games`: List of installed games - `[ "minecraft" "mc-server" "osu" ]`
-  - `mc-server`: Configure Minecraft Server -
+  - `mc-servers`: List of Minecraft Servers -
+    - `name`: Unique server name
     - `type`: Server Type - `[ "fabric" "skyblock" ]`
     - `memory`: Memory (GB) allocated to server - Ex. `12`
     - `config`: Server Properties (See [here](https://minecraft.fandom.com/wiki/Server.properties))
+    - `port`: Main server TCP port - Ex. `25565`
     - `vc-port`: Port for [Simple Voice Chat](https://modrinth.com/plugin/simple-voice-chat) - Ex. `24454`
 
 - [`base`](./base): Module that contains the base common/shared configuration -
