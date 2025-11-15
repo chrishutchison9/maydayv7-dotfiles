@@ -18,7 +18,6 @@
       programs.hyprshell = {
         enable = true;
         systemd.enable = true;
-        hyprland = config.programs.hyprland.package;
         styleFile = util.build.theme {
           inherit (config.lib.stylix) colors;
           file = files.hyprland.hyprshell;

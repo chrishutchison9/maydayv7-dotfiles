@@ -217,6 +217,7 @@
         nixpkgs.follows = "unstable";
         flake-parts.follows = "framework";
         home-manager.follows = "home";
+        hyprland.follows = "hyprland";
       };
     };
 

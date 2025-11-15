@@ -31,6 +31,7 @@ in
         flavor = variant;
 
         brave.enable = exists "office";
+        obs.enable = exists "office";
         thunderbird.enable = exists "office";
         vesktop.enable = exists "discord";
         vscode.profiles.default.enable = exists "vscode";
