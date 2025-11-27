@@ -1,9 +1,10 @@
 pkgs: {
   name = "Rust";
-  shellHook = ''echo "## Rust Development Shell ##"'';
   packages = with pkgs; [
     cargo
     rustup
   ];
+
+  shellHook = ''echo "## Rust Development Shell ##"'';
   RUST_BACKTRACE = 1;
 }

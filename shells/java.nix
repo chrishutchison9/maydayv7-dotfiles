@@ -1,6 +1,6 @@
 pkgs: {
   name = "Java";
-  shellHook = ''echo "## Java Development Shell ##"'';
   packages = [ pkgs.jdk ];
+  shellHook = ''echo "## Java Development Shell ##"'';
   JAVA_HOME = pkgs.jdk;
 }

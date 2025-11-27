@@ -4,7 +4,7 @@ let
 in
 {
   name = "SQL";
-  buildInputs = [ pkg ];
+  packages = [ pkg ];
   shellHook = ''
     alias mysql='mysql -u root'
     MYSQL_HOME=$HOME/.mysql

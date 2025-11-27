@@ -200,8 +200,8 @@ in
 
                 # Ozone Skyblock Reborn 2
                 modpack = fetchzip {
-                  url = "https://mediafilez.forgecdn.net/files/7165/375/OSR2%201.1.5%20-%20Server.zip";
-                  sha256 = "sha256-5oVl3zcQQ6ad6Yx79+9m7K5wHzFVgK1zlEXE4NAuOfQ=";
+                  url = "https://mediafilez.forgecdn.net/files/7243/245/OSR2%201.2.1%20-%20Server.zip";
+                  sha256 = "sha256-G7qUQ2ZKKsBUKugTcsv7RppAZVrNgsncrYYWzusTSF0=";
                 };
               in
               {

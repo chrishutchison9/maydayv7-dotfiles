@@ -70,6 +70,7 @@ in
                 eamodio.gitlens
                 github.vscode-pull-request-github
 
+                dart-code.flutter # Flutter
                 divyanshuagrawal.competitive-programming-helper # CP
                 jnoortheen.nix-ide # Nix
                 ms-python.python # Python
@@ -90,6 +91,7 @@ in
               ]
               ++ (with pkgs.code.vscode-marketplace; [
                 kisstkondoros.vscode-gutter-preview # Image Preview
+                fwcd.kotlin # Kotlin
               ]);
           };
         };
