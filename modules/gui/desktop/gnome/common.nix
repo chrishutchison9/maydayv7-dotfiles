@@ -11,12 +11,12 @@ let
     ;
 in
 {
-  # Session
   services = {
-    displayManager.defaultSession = "gnome";
-    xserver = {
-      desktopManager.gnome.enable = true;
-      displayManager.gdm.enable = true;
+    # Session
+    desktopManager.gnome.enable = true;
+    displayManager = {
+      defaultSession = "gnome";
+      gdm.enable = true;
     };
 
     # Initial Setup

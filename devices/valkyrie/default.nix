@@ -48,7 +48,6 @@
     list = [
       "discord"
       "firefox"
-      "flatpak"
       "games"
       "git"
       "media"

@@ -19,9 +19,12 @@ in
   ];
 
   programs.git = {
-    userName = cfg.name;
-    userEmail = cfg.mail;
-    extraConfig.github.user = cfg.name;
+    settings = {
+      user.name = cfg.name;
+      user.email = cfg.mail;
+      github.user = cfg.name;
+    };
+
     signing = {
       signByDefault = lib.mkIf (cfg.key != "") true;
       key = lib.mkIf (cfg.key != "") (builtins.substring 24 30 cfg.key);

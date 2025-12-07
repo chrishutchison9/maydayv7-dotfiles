@@ -35,7 +35,7 @@ in
             plugins = {
               betterFolders = {
                 enable = true;
-                showFolderIcon = "moreThanOne";
+                showFolderIcon = 2;
                 closeAllHomeButton = true;
               };
               betterGifAltText.enable = true;
@@ -44,10 +44,10 @@ in
               betterSessions.enable = true;
               betterSettings.enable = true;
               biggerStreamPreview.enable = true;
-              blurNSFW.enable = true;
+              blurNsfw.enable = true;
               copyEmojiMarkdown.enable = true;
               copyFileContents.enable = true;
-              copyUserURLs.enable = true;
+              copyUserUrLs.enable = true;
               crashHandler.enable = true;
               decor.enable = true;
               expressionCloner.enable = true;
@@ -62,7 +62,6 @@ in
               mentionAvatars.enable = true;
               messageClickActions.enable = true;
               messageLinkEmbeds.enable = true;
-              moreKaomoji.enable = true;
               pinDMs.enable = true;
               platformIndicators.enable = true;
               previewMessage.enable = true;

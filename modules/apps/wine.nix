@@ -66,7 +66,7 @@ in
                 callPackage name {
                   inherit lib pkgs;
                   wine = cfg.package;
-                  build = inputs.windows.lib."${pkgs.system}";
+                  build = inputs.windows.lib."${pkgs.stdenv.system}";
                 }
               )
             )

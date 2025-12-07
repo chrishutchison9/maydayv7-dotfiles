@@ -28,14 +28,7 @@ in
 
       homeConfig = {
         # Mutable Configuration File
-        imports = [
-          (
-            { config, ... }:
-            (import (builtins.fetchurl {
-              inherit (files.mutability.vscode) url sha256;
-            }) { inherit config lib pkgs; })
-          )
-        ];
+        imports = [ ./mutable.nix ];
 
         # Environment
         xdg.mimeApps.defaultApplications = util.build.mime {
@@ -70,6 +63,7 @@ in
                 eamodio.gitlens
                 github.vscode-pull-request-github
 
+                github.copilot # Copilot AI
                 dart-code.flutter # Flutter
                 divyanshuagrawal.competitive-programming-helper # CP
                 jnoortheen.nix-ide # Nix

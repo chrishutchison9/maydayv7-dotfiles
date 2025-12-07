@@ -5,16 +5,13 @@ let
     licenseAccepted = true;
   };
 
-  buildTools = "34.0.0";
+  buildTools = "35.0.0";
   inherit
     (androidEnv.composeAndroidPackages {
       cmdLineToolsVersion = "8.0";
       toolsVersion = "26.1.1";
       platformToolsVersion = "34.0.5";
-      buildToolsVersions = [
-        buildTools
-        "33.0.2"
-      ];
+      buildToolsVersions = [ buildTools ];
       includeEmulator = false;
       platformVersions = [
         "33"

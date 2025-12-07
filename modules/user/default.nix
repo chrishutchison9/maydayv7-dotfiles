@@ -25,6 +25,7 @@ let
     mkOption
     mkOptionType
     optionals
+    remove
     types
     ;
 
@@ -39,7 +40,11 @@ let
 in
 {
   ## USER Configuration ##
-  imports = modules.list ./. ++ [ inputs.home.nixosModules.home-manager ];
+  imports = [
+    inputs.home.nixosModules.home-manager
+    ./home.nix
+    ./security.nix
+  ];
 
   options = {
     # Global Home Manager Configuration
@@ -92,7 +97,7 @@ in
                   };
                   shells = mkOption {
                     description = "List of Additional Supported Shells";
-                    type = listOf (enum (modules.name ../shell));
+                    type = listOf (enum (remove "prompt" (modules.name ../shell)));
                     default = [ "bash" ];
                   };
                   homeConfig = mkOption {

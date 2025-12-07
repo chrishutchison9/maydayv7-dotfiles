@@ -8,17 +8,11 @@
 }:
 let
   inherit (util.map) modules;
-  inherit (builtins) listToAttrs map;
   inherit (lib)
-    getExe'
     mkEnableOption
-    mkBefore
     mkIf
     mkMerge
-    nameValuePair
     ;
-
-  shells = lib.remove "prompt" (modules.name ./.);
 in
 {
   ## SHELL Configuration ##
@@ -89,58 +83,49 @@ in
 
       ## Program Configuration
       services.lorri.enable = true; # Faster 'nix shell'
-      programs =
-        listToAttrs (
-          map (
-            shell:
-            nameValuePair shell {
-              promptInit = mkBefore ''eval $(${getExe' pkgs.thefuck "thefuck"} --alias "fix")'';
-            }
-          ) shells
-        )
-        // {
-          command-not-found.enable = true; # Command Not Found Search
-          yazi.enable = true; # File Browser
+      programs = {
+        command-not-found.enable = true; # Command Not Found Search
+        yazi.enable = true; # File Browser
 
-          # Command Correction Helper
-          thefuck = {
-            enable = true;
-            alias = "fix"; # Use 'fix' to correct previous command
-          };
+        # Command Correction Helper
+        pay-respects = {
+          enable = true;
+          alias = "fix"; # Use 'fix' to correct previous command
+        };
 
-          # DirENV Support
-          direnv = {
-            enable = true; # Load Shell Variables from '.envrc'
-            nix-direnv.enable = true;
-          };
+        # DirENV Support
+        direnv = {
+          enable = true; # Load Shell Variables from '.envrc'
+          nix-direnv.enable = true;
+        };
 
-          # Bat Configuration
-          bat = {
-            enable = true;
-            settings = {
-              style = "full";
-              italic-text = "always";
-              map-syntax = [ ".ignore:Git Ignore" ];
-            };
-          };
-
-          # Terminal Multiplexer
-          tmux = with config.lib.stylix.colors; {
-            plugins = with pkgs.unstable.tmuxPlugins; [
-              open
-              yank
-              minimal-tmux-status
-            ];
-
-            extraConfigBeforePlugins = ''
-              set -g @minimal-tmux-bg "#${base02}"
-              set -g @minimal-tmux-fg "#${base05}"
-              set -g @minimal-tmux-use-arrow true
-              set -g @minimal-tmux-right-arrow ""
-              set -g @minimal-tmux-left-arrow ""
-            '';
+        # Bat Configuration
+        bat = {
+          enable = true;
+          settings = {
+            style = "full";
+            italic-text = "always";
+            map-syntax = [ ".ignore:Git Ignore" ];
           };
         };
+
+        # Terminal Multiplexer
+        tmux = with config.lib.stylix.colors; {
+          plugins = with pkgs.tmuxPlugins; [
+            open
+            yank
+            minimal-tmux-status
+          ];
+
+          extraConfigBeforePlugins = ''
+            set -g @minimal-tmux-bg "#${base02}"
+            set -g @minimal-tmux-fg "#${base05}"
+            set -g @minimal-tmux-use-arrow true
+            set -g @minimal-tmux-right-arrow ""
+            set -g @minimal-tmux-left-arrow ""
+          '';
+        };
+      };
 
       user = {
         persist = {

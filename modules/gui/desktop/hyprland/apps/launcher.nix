@@ -1,7 +1,6 @@
 {
   config,
   util,
-  inputs,
   files,
   ...
 }:
@@ -14,22 +13,19 @@
     ];
 
     homeConfig = {
-      imports = [ inputs.hyprshell.homeModules.hyprshell ];
-      programs.hyprshell = {
+      services.hyprshell = {
         enable = true;
         systemd.enable = true;
-        styleFile = util.build.theme {
+        style = util.build.theme {
           inherit (config.lib.stylix) colors;
           file = files.hyprland.hyprshell;
         };
 
         settings.windows = {
-          enable = true;
           scale = 9.0;
           items_per_row = 3;
 
           overview = {
-            enable = true;
             modifier = "super";
             key = "tab";
 
@@ -62,7 +58,6 @@
           };
 
           switch = {
-            enable = true;
             modifier = "alt";
             filter_by = [ "current_workspace" ];
           };

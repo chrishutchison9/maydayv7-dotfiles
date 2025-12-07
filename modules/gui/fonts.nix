@@ -86,7 +86,7 @@
       roboto-mono
       roboto-slab
       source-code-pro
-      ubuntu_font_family
+      ubuntu-classic
     ];
   };
 }

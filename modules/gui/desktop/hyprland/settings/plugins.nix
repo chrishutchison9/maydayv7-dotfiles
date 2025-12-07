@@ -7,7 +7,7 @@
 {
   ## Plugin Settings
   wayland.windowManager.hyprland = {
-    plugins = with pkgs.waypkgs; [
+    plugins = with pkgs.hyprlandPlugins; [
       hyprsplit
       hypr-dynamic-cursors
       hyprexpo

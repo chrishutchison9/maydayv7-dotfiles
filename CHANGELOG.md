@@ -1,5 +1,9 @@
 ## 2025
 
+### December
+
+- Update to NixOS 25.11 (Xantusia)
+
 ### November
 
 - Add Android development shell

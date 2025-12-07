@@ -15,7 +15,7 @@ in
     environment.persist.directories = [ "/var/lib/regreet" ];
     programs.regreet = {
       enable = true;
-      package = pkgs.greetd.regreet;
+      package = pkgs.regreet;
       settings.commands = {
         reboot = [
           "systemctl"

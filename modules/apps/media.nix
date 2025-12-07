@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  inputs,
   pkgs,
   ...
 }:
@@ -14,7 +15,7 @@ in
       pitivi
       pwvucontrol
       qpwgraph
-      stremio
+      inputs.stremio.packages.${pkgs.stdenv.system}.stremio-linux-shell
     ];
 
     user = {
@@ -23,8 +24,7 @@ in
         directories = [
           ".config/pitivi"
           ".stremio-server"
-          ".cache/Smart Code ltd"
-          ".local/share/Smart Code ltd"
+          ".local/share/stremio"
         ];
       };
 

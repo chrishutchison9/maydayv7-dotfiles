@@ -59,7 +59,7 @@ in
       openfortivpn
       teams-for-linux
       thunderbird
-      whatsapp-for-linux
+      wasistlos
       zoom-us
 
       # Utilities
@@ -98,14 +98,14 @@ in
         ".config/libreoffice"
         ".config/obs-studio"
         ".config/onlyoffice"
-        ".config/whatsapp-for-linux"
+        ".config/wasistlos"
         ".local/share/data"
         ".local/share/onlyoffice"
-        ".local/share/whatsapp-for-linux"
+        ".local/share/wasistlos"
         ".cache/BraveSoftware"
         ".cache/gimp"
         ".cache/thunderbird"
-        ".cache/whatsapp-for-linux"
+        ".cache/wasistlos"
         ".cache/zoom"
       ];
 

@@ -17,7 +17,7 @@ in
     (import ./gnome/common.nix args)
 
     {
-      services.xserver = {
+      services = {
         displayManager.gdm = {
           banner = "Install Media";
           autoSuspend = false;

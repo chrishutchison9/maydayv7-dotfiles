@@ -45,27 +45,16 @@ in
         hyprsunset = {
           enable = true;
           extraArgs = [ "--identity" ];
-          transitions = {
-            sunrise = {
-              calendar = "*-*-* 07:00:00";
-              requests = [
-                [
-                  "temperature"
-                  "6000"
-                ]
-                [ "identity" ]
-              ];
-            };
-            sunset = {
-              calendar = "*-*-* 19:00:00";
-              requests = [
-                [
-                  "temperature"
-                  "4000"
-                ]
-              ];
-            };
-          };
+          settings.profile = [
+            {
+              time = "7:00";
+              temperature = 6000;
+            }
+            {
+              time = "19:00";
+              temperature = 4000;
+            }
+          ];
         };
       };
 

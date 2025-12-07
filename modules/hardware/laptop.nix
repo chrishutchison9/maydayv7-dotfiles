@@ -11,16 +11,16 @@ in
 {
   ## Laptop Configuration ##
   config = lib.mkIf enable {
-    services.logind = {
-      killUserProcesses = true;
+    services.logind.settings.Login = {
+      KillUserProcesses = true;
 
       # Power Button
-      powerKey = "poweroff";
-      powerKeyLongPress = "reboot";
+      HandlePowerKey = "poweroff";
+      HandlePowerKeyLongPress = "reboot";
 
       # Lid
-      lidSwitch = "lock";
-      lidSwitchDocked = "ignore";
+      HandleLidSwitch = "lock";
+      HandleLidSwitchDocked = "ignore";
     };
 
     # Audio

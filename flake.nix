@@ -36,7 +36,7 @@
     ## Package Repositories ##
     # NixOS Packages Repository
     nixpkgs.follows = "stable";
-    stable.url = "github:NixOS/nixpkgs?ref=nixos-25.05";
+    stable.url = "github:NixOS/nixpkgs?ref=nixos-25.11";
 
     # Unstable Packages Repository
     unstable.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
@@ -85,7 +85,7 @@
     ## Feature Modules
     # User Home Manager
     home = {
-      url = "github:nix-community/home-manager?ref=release-25.05";
+      url = "github:nix-community/home-manager?ref=release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -94,7 +94,7 @@
 
     # Secure Boot
     boot = {
-      url = "github:nix-community/lanzaboote/v0.4.2";
+      url = "github:nix-community/lanzaboote/v0.4.3";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "framework";
@@ -134,12 +134,6 @@
       };
     };
 
-    # Windows Apps Wrapper
-    windows = {
-      url = "github:emmanuelrosa/erosanix";
-      inputs.nixpkgs.follows = "unstable";
-    };
-
     # Minecraft Server
     minecraft = {
       url = "github:Infinidoge/nix-minecraft";
@@ -149,10 +143,22 @@
       };
     };
 
+    # Windows Apps Wrapper
+    windows = {
+      url = "github:emmanuelrosa/erosanix";
+      inputs.nixpkgs.follows = "unstable";
+    };
+
+    # Stremio Package
+    stremio = {
+      url = "gitlab:fazzi/nixohess";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     ## Theming
     # Base16 Theming Module
     stylix = {
-      url = "github:nix-community/stylix?ref=release-25.05";
+      url = "github:nix-community/stylix?ref=release-25.11";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
@@ -171,54 +177,8 @@
 
     # Catppuccin Theme
     catppuccin = {
-      url = "github:catppuccin/nix?ref=release-25.05";
+      url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Waybar Panel
-    waybar = {
-      url = "github:Alexays/Waybar";
-      inputs.nixpkgs.follows = "unstable";
-    };
-
-    ## Hyprland
-    # Core
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs = {
-        nixpkgs.follows = "unstable";
-        systems.follows = "systems";
-      };
-    };
-
-    # Plugins
-    hyprplugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    hyprsplit = {
-      url = "github:shezdy/hyprsplit";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    hyprcursors = {
-      url = "github:VirtCode/hypr-dynamic-cursors";
-      inputs = {
-        hyprland.follows = "hyprland";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
-    # Launcher
-    hyprshell = {
-      url = "github:H3rmt/hyprshell";
-      inputs = {
-        nixpkgs.follows = "unstable";
-        flake-parts.follows = "framework";
-        home-manager.follows = "home";
-        hyprland.follows = "hyprland";
-      };
     };
 
     ## Niri
@@ -277,9 +237,10 @@
       "https://cache.nixos.org"
       "https://nixpkgs-unfree.cachix.org"
       "https://nix-community.cachix.org"
+      "https://cache.nixos-cuda.org"
+      "https://cache.flox.dev"
       "https://nix-gaming.cachix.org"
       "https://hyprland.cachix.org"
-      "https://hyprshell.cachix.org"
       "https://niri.cachix.org"
       "https://catppuccin.cachix.org"
     ];
@@ -290,9 +251,10 @@
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+      "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="
       "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      "hyprshell.cachix.org-1:seKSn/sAyobGjsRqe6deRKP/VZcsTorGt5/QqCeQrvU="
       "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
       "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
     ];

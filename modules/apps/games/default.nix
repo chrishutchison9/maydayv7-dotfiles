@@ -16,7 +16,7 @@ let
   inherit (util.map) modules;
   enable = builtins.elem "games" config.apps.list;
   wine = builtins.elem "wine" config.apps.list;
-  wine' = pkgs.gaming.wine-tkg;
+  wine' = pkgs.gaming.wine-ge;
 in
 {
   imports = modules.list ./.;
@@ -62,7 +62,7 @@ in
 
     user = {
       # Runner
-      homeConfig.xdg.dataFile."lutris/runners/wine/wine-tkg".source = wine';
+      homeConfig.xdg.dataFile."lutris/runners/wine/wine-system".source = wine';
 
       # Directories
       persist.directories = [

@@ -20,8 +20,8 @@ in
   config = mkIf (desktop == "pantheon") (mkMerge [
     {
       # Session
-      services.xserver = {
-        enable = true;
+      services = {
+        xserver.enable = true;
         desktopManager.pantheon.enable = true;
       };
 
@@ -56,7 +56,7 @@ in
 
       # Panel Indicators
       environment.pathsToLink = [ "/libexec" ];
-      services.xserver.desktopManager.pantheon.extraWingpanelIndicators = with pkgs; [
+      services.desktopManager.pantheon.extraWingpanelIndicators = with pkgs; [
         monitor
         wingpanel-indicator-ayatana
       ];

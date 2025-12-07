@@ -7,7 +7,7 @@
 }:
 let
   enable = builtins.elem "spotify" config.apps.list;
-  spice = inputs.spotify.legacyPackages.${pkgs.system};
+  spice = inputs.spotify.legacyPackages.${pkgs.stdenv.system};
 in
 {
   ## Spotify Configuration ##

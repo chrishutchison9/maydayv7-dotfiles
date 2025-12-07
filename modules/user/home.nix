@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  files,
-  ...
-}:
+{ config, ... }:
 {
   ## User Home Configuration ##
   config = {
@@ -18,14 +13,7 @@
     user.homeConfig = {
       imports = [
         ../../users
-
-        # Mutable Configuration Files
-        (
-          { config, ... }:
-          (import (builtins.fetchurl {
-            inherit (files.mutability.module) url sha256;
-          }) { inherit config lib; })
-        )
+        ./mutable.nix
       ];
 
       # SystemD User Services

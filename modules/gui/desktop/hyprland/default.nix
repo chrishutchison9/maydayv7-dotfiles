@@ -30,8 +30,8 @@ in
             enable = true;
             withUWSM = true;
             xwayland.enable = true;
-            package = pkgs.waypkgs.hyprland;
-            portalPackage = pkgs.waypkgs.xdg-desktop-portal-hyprland;
+            package = pkgs.hyprland;
+            portalPackage = pkgs.xdg-desktop-portal-hyprland;
           };
 
           services = {

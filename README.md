@@ -498,10 +498,15 @@ _Thanks a lot! ;)_
 ### To Do
 
 - VFIO Support via GPU Hotplug instead of restart
+- Investigate `system` -> `stdenv.hostPlatform.system`
+- Inputs:
+  - Update `minecraft` after [merge](https://github.com/Infinidoge/nix-minecraft/pull/161)
+  - Update `catppuccin` after release branch-off
+  - Remove `stremio` once [issue](https://github.com/nixos/nixpkgs/issues/437992) is fixed
 
 </details>
 
-> Last Updated: **November** 2025
+> Last Updated: **December** 2025
 
 If you like this project, consider leaving a [star](https://github.com/maydayv7/dotfiles)
 

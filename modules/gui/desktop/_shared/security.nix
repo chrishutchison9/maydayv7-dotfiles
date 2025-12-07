@@ -50,7 +50,7 @@ in
       # Locker
       stylix.targets.swaylock = {
         enable = true;
-        useImage = true;
+        useWallpaper = true;
       };
 
       programs.swaylock = {

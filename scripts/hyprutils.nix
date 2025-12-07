@@ -109,8 +109,7 @@ recursiveUpdate
               temperature_notification
             ;;
             "reset")
-              hyprctl hyprsunset temperature 6000
-              hyprctl hyprsunset identity
+              hyprctl hyprsunset reset temperature
               notify temperature -i "display" "🌡 Reset"
             ;;
             "") fail "Expected an Option" ;;

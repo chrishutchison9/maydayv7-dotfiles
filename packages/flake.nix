@@ -40,13 +40,6 @@ in
               gaming = gaming.packages."${system}";
               code = vscode.extensions."${system}";
               wine = windows.packages."${system}";
-              waypkgs =
-                waybar.packages."${system}"
-                // niri.packages."${system}"
-                // hyprland.packages."${system}"
-                // hyprplugins.packages."${system}"
-                // hyprsplit.packages."${system}"
-                // hyprcursors.packages."${system}";
             })
             minecraft.overlay
             niri.overlays.niri
