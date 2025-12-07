@@ -2,6 +2,7 @@
 
 ### December
 
+- Fix `git` GitHub authentication
 - Update to NixOS 25.11 (Xantusia)
 
 ### November
@@ -125,11 +126,11 @@
 - Improve GNOME Configuration
   - Use [`tiling-shell`](https://github.com/domferr/tilingshell) instead of `forge`
   - Support NVIDIA GPUs and PRIME
-- Add `devcontainer` for Github Codespaces
+- Add `devcontainer` for GitHub Codespaces
 - Add configuration for Spotify using [`spicetify-nix`](https://github.com/Gerg-L/spicetify-nix)
 - Make VS Code Configuration mutable using [this](https://gist.github.com/piousdeer/b29c272eaeba398b864da6abf6cb5daa) module
 - Reimplement support for specifying Package Channel for configuration build
-- Refactor Install Media build and upload image as Github artifact to circumvent size limit
+- Refactor Install Media build and upload image as GitHub artifact to circumvent size limit
 
 ### v17
 

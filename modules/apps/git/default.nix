@@ -32,10 +32,11 @@
         # Hooks
         home.file.".git-hooks".source = files.git.hooks;
 
-        # 'gh' Configuration
+        # GitHub CLI
         programs = {
           gh = {
             enable = true;
+            gitCredentialHelper.enable = true;
             settings = {
               prompt = "enabled";
               git_protocol = "https";
@@ -93,7 +94,7 @@
             settings = {
               color.ui = "auto";
               core.hooksPath = "~/.git-hooks";
-              credential.helper = "libsecret";
+              credential.helper = [ "libsecret" ];
               diff.colorMoved = "default";
               init.defaultBranch = "main";
               pull.rebase = "true";

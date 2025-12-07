@@ -105,7 +105,6 @@ in
           settings = {
             style = "full";
             italic-text = "always";
-            map-syntax = [ ".ignore:Git Ignore" ];
           };
         };
 
