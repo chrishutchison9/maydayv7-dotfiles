@@ -12,7 +12,7 @@
     function r(n) {
       if (t[n]) return t[n].exports;
       var o = (t[n] = { i: n, l: !1, exports: {} });
-      return e[n].call(o.exports, o, o.exports, r), (o.l = !0), o.exports;
+      return (e[n].call(o.exports, o, o.exports, r), (o.l = !0), o.exports);
     }
     return (
       (r.m = e),
@@ -21,10 +21,10 @@
         r.o(e, t) || Object.defineProperty(e, t, { enumerable: !0, get: n });
       }),
       (r.r = function (e) {
-        "undefined" != typeof Symbol &&
+        ("undefined" != typeof Symbol &&
           Symbol.toStringTag &&
           Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
-          Object.defineProperty(e, "__esModule", { value: !0 });
+          Object.defineProperty(e, "__esModule", { value: !0 }));
       }),
       (r.t = function (e, t) {
         if ((1 & t && (e = r(e)), 8 & t)) return e;
@@ -54,7 +54,7 @@
             : function () {
                 return e;
               };
-        return r.d(t, "a", t), t;
+        return (r.d(t, "a", t), t);
       }),
       (r.o = function (e, t) {
         return Object.prototype.hasOwnProperty.call(e, t);
@@ -75,7 +75,7 @@
           for (var n = r, o = 0, a = e.length; n < t.length; ) {
             var i = t[n];
             if (o <= 0 && t.slice(n, n + a) === e) return n;
-            "\\" === i ? n++ : "{" === i ? o++ : "}" === i && o--, n++;
+            ("\\" === i ? n++ : "{" === i ? o++ : "}" === i && o--, n++);
           }
           return -1;
         },
@@ -96,16 +96,16 @@
               ) {
                 if (d) {
                   if (-1 === (f = l.indexOf(t, s))) break;
-                  o.push({ type: "text", data: l.slice(s, f) }), (s = f);
+                  (o.push({ type: "text", data: l.slice(s, f) }), (s = f));
                 } else {
                   if (-1 === (f = a(r, l, s + t.length))) break;
-                  o.push({
+                  (o.push({
                     type: "math",
                     data: l.slice(s + t.length, f),
                     rawData: l.slice(s, f + r.length),
                     display: n,
                   }),
-                    (s = f + r.length);
+                    (s = f + r.length));
                 }
                 d = !d;
               }
@@ -138,16 +138,16 @@
                 d = r[a].data;
               t.displayMode = r[a].display;
               try {
-                t.preProcess && (d = t.preProcess(d)), o.a.render(d, l, t);
+                (t.preProcess && (d = t.preProcess(d)), o.a.render(d, l, t));
               } catch (e) {
                 if (!(e instanceof o.a.ParseError)) throw e;
-                t.errorCallback(
+                (t.errorCallback(
                   "KaTeX auto-render: Failed to parse `" +
                     r[a].data +
                     "` with ",
                   e,
                 ),
-                  n.appendChild(document.createTextNode(r[a].rawData));
+                  n.appendChild(document.createTextNode(r[a].rawData)));
                 continue;
               }
               n.appendChild(l);
@@ -158,7 +158,7 @@
         if (!e) throw new Error("No element provided to render");
         var r = {};
         for (var n in t) t.hasOwnProperty(n) && (r[n] = t[n]);
-        (r.delimiters = r.delimiters || [
+        ((r.delimiters = r.delimiters || [
           { left: "$$", right: "$$", display: !0 },
           { left: "\\(", right: "\\)", display: !1 },
           { left: "\\[", right: "\\]", display: !0 },
@@ -192,7 +192,7 @@
                       e(o, r);
                   })();
             }
-          })(e, r);
+          })(e, r));
       };
     },
   ]).default;

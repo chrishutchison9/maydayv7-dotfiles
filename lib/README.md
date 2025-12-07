@@ -5,7 +5,6 @@ The `lib` directory contains custom-made utility functions (exposed as `util`), 
 [`util`](./default.nix) -
 
 - [`build`](./build.nix): Configuration building functions for efficient system management and declaration -
-
   - `device`: Main system configuration building function, used to build the entire configuration for devices (`nixosConfigurations`) as per provided parameters
   - `mime`: Builds and sets `mimetype` values for specified application
   - `script`: Builds script from specified file by removing `shebangs` and exporting as a _string_
@@ -13,7 +12,6 @@ The `lib` directory contains custom-made utility functions (exposed as `util`), 
   - `until`: Returns part of _string_ before specified character, or entire _string_ if character is not present
 
 - [`map`](./map.nix): Mapping functions primarily aimed at shortening code complexity -
-
   - `array`: Maps required parameter to all elements present in `list`
   - `filter`: Filters out unneeded `attrs` and maps required ones to specified function
   - `list`: Lists all toplevel `attrs` of `attrset` and returns a space-separated string
@@ -27,6 +25,5 @@ The `lib` directory contains custom-made utility functions (exposed as `util`), 
   - `secrets`: Maps binary `sops` encrypted secrets stored in a directory
 
 - [`pack`](./pack.nix): Utility packager functions used to conveniently perform package management functions -
-
   - `device`: Pack desired system derivations into individual packages
   - `user`: Pack `self.homeConfigurations` derivations into individual packages

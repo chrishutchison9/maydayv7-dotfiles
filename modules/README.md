@@ -5,7 +5,6 @@ The `modules` directory contains custom-made pure Flakes-compatible configuratio
 Configuration [Builder](./configuration.nix)
 
 - [`apps`](./apps): Module that configures various apps and/or environments -
-
   - `list`: List of enabled applications - `[ "discord" "firefox" "flatpak" "games" "git" "office" "spotify" "wine" ]`
   - `git` -
     - `hosting` -
@@ -30,12 +29,10 @@ Configuration [Builder](./configuration.nix)
     - `vc-port`: Port for [Simple Voice Chat](https://modrinth.com/plugin/simple-voice-chat) - Ex. `24454`
 
 - [`base`](./base): Module that contains the base common/shared configuration -
-
   - `kernel`: Linux Kernel Variant to be used - `"lts" / "variant"`
   - `kernelModules`: Linux Kernel Modules to load
 
 - [`gui`](./gui): Module that configures GUI Desktops/Environments and the like -
-
   - `desktop`: Choice of GUI Desktop - `"hyprland" / "gnome" / "pantheon"`
   - `display`: Main GUI Display - Ex. `"HDMI-A-1"`
   - `wallpaper`: Desktop Wallpaper Choice (taken from `files.wallpapers`)
@@ -61,7 +58,6 @@ Configuration [Builder](./configuration.nix)
       - `package`: QT Theme Package
 
 - [`hardware`](./hardware): Module that configures device and additional hardware -
-
   - `boot`: Supported Boot Firmware - `"mbr" / "efi" / "secure"`
   - `fs`: File System Configuration -
     - `scheme`: Disk Filesystem Scheme - `"simple" / "advanced"`
@@ -78,12 +74,10 @@ Configuration [Builder](./configuration.nix)
     - `passthrough`: PCI Device IDs for VFIO - Ex. `[ "10de:28e0" "10de:22be" ]`
 
 - [`nix`](./nix): Module that configures the Nix Package Manager -
-
   - `index`: Enable Package Indexer - `"true" / "false"`
   - `tools`: Enable Additional Nix Tools - `"true" / "false"`
 
 - [`user`](./user): Module that controls User Creation and Security Settings -
-
   - `groups`: Additional User Groups - Ex. `[ "wheel" ]`
   - `persist`: User Files to Preserve across Reboots (while using `advanced` File System Layout)
   - `homeConfig`: Shared User Home Configuration (Alias for `home-manager.users.${username}`) -

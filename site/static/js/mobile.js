@@ -27,11 +27,11 @@
       menu_more && menu_more.classList.add("hidden");
     },
     toggle_vis = function () {
-      menu_mobile && is_phone() && menu_mobile.classList.add("hidden"),
-        menu_more && !is_phone() && menu_more.classList.add("hidden");
+      (menu_mobile && is_phone() && menu_mobile.classList.add("hidden"),
+        menu_more && !is_phone() && menu_more.classList.add("hidden"));
     };
 
-  toggle_vis(),
+  (toggle_vis(),
     page_form &&
       (page_form.onsubmit = function (event) {
         if (this.page.value == 1) {
@@ -60,24 +60,25 @@
     window.addEventListener("resize", toggle_vis),
     menu_mobile_trigger &&
       (menu_mobile_trigger.addEventListener("click", function (event) {
-        event.stopPropagation(), toggle_mobile_menu();
+        (event.stopPropagation(), toggle_mobile_menu());
       }),
       menu_mobile_trigger.addEventListener("keyup", function (event) {
-        event.stopPropagation(), event.code === "Enter" && toggle_mobile_menu();
+        (event.stopPropagation(),
+          event.code === "Enter" && toggle_mobile_menu());
       })),
     menu_desktop &&
       (menu_desktop.addEventListener("click", function (event) {
-        event.stopPropagation(),
+        (event.stopPropagation(),
           toggle_menu_more(),
           menu_more.getBoundingClientRect().right >
             container.getBoundingClientRect().right &&
-            ((menu_more.style.left = "auto"), (menu_more.style.right = 0));
+            ((menu_more.style.left = "auto"), (menu_more.style.right = 0)));
       }),
       menu_desktop.addEventListener("keyup", function (event) {
-        event.stopPropagation(),
+        (event.stopPropagation(),
           event.code === "Enter" && toggle_menu_more(),
           menu_more.getBoundingClientRect().right >
             container.getBoundingClientRect().right &&
-            ((menu_more.style.left = "auto"), (menu_more.style.right = 0));
-      }));
+            ((menu_more.style.left = "auto"), (menu_more.style.right = 0)));
+      })));
 })();

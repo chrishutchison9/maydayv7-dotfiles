@@ -39,10 +39,10 @@ in
 {
   options =
     let
-      mergeAttrsList = foldl' (recursiveUpdate) { };
+      mergeAttrsList = foldl' recursiveUpdate { };
       fileAttrsType = types.attrsOf (
         types.submodule (
-          { config, ... }:
+          _:
           {
             options.mutable = mkOption {
               type = types.bool;
@@ -72,9 +72,7 @@ in
   config = {
     home.activation.mutableFileGeneration =
       let
-        allFiles = (
-          concatLists (map (attrPath: attrValues (getAttrFromPath attrPath config)) fileOptionAttrPaths)
-        );
+        allFiles = concatLists (map (attrPath: attrValues (getAttrFromPath attrPath config)) fileOptionAttrPaths);
 
         filterMutableFiles = filter (
           file:
@@ -84,8 +82,7 @@ in
 
         mutableFiles = filterMutableFiles allFiles;
 
-        toCommand = (
-          file:
+        toCommand = file:
           let
             source = escapeShellArg file.source;
             target = escapeShellArg file.target;
@@ -93,14 +90,13 @@ in
           ''
             $VERBOSE_ECHO "${source} -> ${target}"
             $DRY_RUN_CMD cp --remove-destination --no-preserve=mode ${source} ${target}
-          ''
-        );
+          '';
 
         command = ''
           echo "Copying mutable home files for $HOME"
         ''
         + concatLines (map toCommand mutableFiles);
       in
-      (hm.dag.entryAfter [ "linkGeneration" ] command);
+      hm.dag.entryAfter [ "linkGeneration" ] command;
   };
 }

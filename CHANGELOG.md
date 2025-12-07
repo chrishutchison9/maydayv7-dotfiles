@@ -269,7 +269,6 @@
 - Use `advanced` Ephemeral Root File System Layout with [ZFS](https://zfsonlinux.org/)
 - Use [`flake-compat`](https://github.com/edolstra/flake-compat), [`nix-gaming`](https://github.com/fufexan/nix-gaming) and [`nix-wayland`](https://github.com/nix-community/nix-wayland)
 - Improve Code Consistency, reduce Complexity and fix Syntactic and Semantic Errors
-
   - Use [`pre-commit-hooks`](https://github.com/cachix/pre-commit-hooks.nix) to improve configuration `checks`
   - Use [`nixfmt`](https://github.com/serokell/nixfmt) for formatting code
   - Use [`nix-linter`](https://github.com/Synthetica9/nix-linter) to check stylistic errors
