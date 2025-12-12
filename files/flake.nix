@@ -59,9 +59,6 @@
         extension = ".conf";
       };
 
-      # X11 Touchpad Gestures
-      gestures = readFile ./touchegg.xml;
-
       # 'git' Version Control
       git.hooks = ./git/hooks;
 

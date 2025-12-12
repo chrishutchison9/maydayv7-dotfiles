@@ -61,7 +61,7 @@ in
 
       apps.list = [ "firefox" ];
       programs = {
-        gnupg.agent.pinentryPackage = mkForce pkgs.pinentry.gnome3;
+        gnupg.agent.pinentryPackage = mkForce pkgs.pinentry-gnome3;
         nautilus-open-any-terminal = {
           enable = true;
           terminal = "ghostty";
@@ -147,8 +147,9 @@ in
         ".cache/gnome-builder"
 
         # Extensions
-        ".config/paperwm"
-        ".local/share/clipboard"
+        ".cache/copyous@boerdereinar.dev"
+        ".config/copyous@boerdereinar.dev"
+        ".local/share/copyous@boerdereinar.dev"
       ];
 
       user.homeConfig = {

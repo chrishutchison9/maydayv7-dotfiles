@@ -267,7 +267,7 @@ in
       play = [ "F4" ];
       screenreader = [ ];
       screensaver = [ "<Super>l" ];
-      terminal = [ "<Super>t" ];
+      terminal = [ ];
       volume-down = [ "AudioLowerVolume" ];
       volume-mute = [ "" ];
       volume-up = [ "AudioRaiseVolume" ];

@@ -59,6 +59,7 @@ in
         hardware.vm.vfio = mkForce "setup";
       };
 
+      hardware.gpu = mkForce null;
       boot = {
         kernelParams = [
           "amd_iommu=pt"
@@ -75,6 +76,13 @@ in
           "vfio_pci"
           "vfio_iommu_type1"
           "vfio_virqfd"
+        ];
+
+        blacklistedKernelModules = [
+          "nvidia"
+          "nvidia_drm"
+          "nvidia_modeset"
+          "nvidia_uvm"
         ];
       };
 

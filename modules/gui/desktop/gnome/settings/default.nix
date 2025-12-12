@@ -92,7 +92,7 @@ in
       screenshot = [ "<Shift>Print" ];
       screenshot-clip = [ ];
       screensaver = [ "<Super>l" ];
-      terminal = [ "<Super>t" ];
+      terminal = [ ];
       volume-down = [ "AudioLowerVolume" ];
       volume-up = [ "AudioRaiseVolume" ];
       window-screenshot = [ "<Primary>Print" ];
@@ -111,7 +111,7 @@ in
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-      binding = "<Super><Shift>t";
+      binding = "<Super>t";
       command = "ghostty";
       name = "Terminal";
     };

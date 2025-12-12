@@ -41,23 +41,20 @@ in
     let
       mergeAttrsList = foldl' recursiveUpdate { };
       fileAttrsType = types.attrsOf (
-        types.submodule (
-          _:
-          {
-            options.mutable = mkOption {
-              type = types.bool;
-              default = false;
-              description = ''
-                Whether to copy the file without the read-only attribute instead of
-                symlinking. If you set this to `true`, you must also set `force` to
-                `true`. Mutable files are not removed when you remove them from your
-                configuration.
-                This option is useful for programs that don't have a very good
-                support for read-only configurations.
-              '';
-            };
-          }
-        )
+        types.submodule (_: {
+          options.mutable = mkOption {
+            type = types.bool;
+            default = false;
+            description = ''
+              Whether to copy the file without the read-only attribute instead of
+              symlinking. If you set this to `true`, you must also set `force` to
+              `true`. Mutable files are not removed when you remove them from your
+              configuration.
+              This option is useful for programs that don't have a very good
+              support for read-only configurations.
+            '';
+          };
+        })
       );
     in
     mergeAttrsList (
@@ -72,7 +69,9 @@ in
   config = {
     home.activation.mutableFileGeneration =
       let
-        allFiles = concatLists (map (attrPath: attrValues (getAttrFromPath attrPath config)) fileOptionAttrPaths);
+        allFiles = concatLists (
+          map (attrPath: attrValues (getAttrFromPath attrPath config)) fileOptionAttrPaths
+        );
 
         filterMutableFiles = filter (
           file:
@@ -82,7 +81,8 @@ in
 
         mutableFiles = filterMutableFiles allFiles;
 
-        toCommand = file:
+        toCommand =
+          file:
           let
             source = escapeShellArg file.source;
             target = escapeShellArg file.target;

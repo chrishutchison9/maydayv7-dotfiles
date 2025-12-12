@@ -35,10 +35,7 @@ in
 
     # VM Packages
     programs.virt-manager.enable = true;
-    environment.systemPackages = with pkgs; [
-      libguestfs
-      virtiofsd
-    ];
+    environment.systemPackages = [ pkgs.libguestfs ];
 
     # VM Utilities
     virtualisation = {
@@ -52,6 +49,7 @@ in
           package = pkgs.qemu_kvm;
           runAsRoot = false;
           swtpm.enable = true;
+          vhostUserPackages = [ pkgs.virtiofsd ];
         };
       };
     };

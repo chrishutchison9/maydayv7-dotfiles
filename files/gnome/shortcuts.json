@@ -92,10 +92,6 @@
         "description": "Show notification tray"
       },
       {
-        "key": "Super + Space",
-        "description": "Switch keyboard layout"
-      },
-      {
         "key": "CTRL + ALT + S",
         "description": "Resize window to pre-defined sizes"
       },
@@ -138,11 +134,11 @@
       },
       {
         "key": "Super + T",
-        "description": "Open Dropdown Terminal"
+        "description": "Open Terminal"
       },
       {
-        "key": "Super + SHIFT + T",
-        "description": "Open Terminal"
+        "key": "Super + Space",
+        "description": "Open Dropdown Terminal"
       },
       {
         "key": "Super + `",
@@ -221,6 +217,10 @@
       {
         "key": "Super + Tab",
         "description": "Focus next monitor"
+      },
+      {
+        "key": "Super + ←/→",
+        "description": "Switch between workspaces"
       },
       {
         "key": "ALT + Tab",

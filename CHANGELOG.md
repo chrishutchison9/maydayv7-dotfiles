@@ -2,6 +2,10 @@
 
 ### December
 
+- GNOME Updates
+  - Change terminal hotkeys
+  - Use [`copyous`](https://github.com/boerdereinar/copyous) instead of `pano` for clipboard
+- Fix VFIO after update
 - Fix `git` GitHub authentication
 - Update to NixOS 25.11 (Xantusia)
 

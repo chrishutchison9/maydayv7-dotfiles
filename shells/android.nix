@@ -10,22 +10,15 @@ let
     (androidEnv.composeAndroidPackages {
       cmdLineToolsVersion = "8.0";
       toolsVersion = "26.1.1";
-      platformToolsVersion = "34.0.5";
+      platformToolsVersion = "35.0.2";
       buildToolsVersions = [ buildTools ];
       includeEmulator = false;
-      platformVersions = [
-        "33"
-        "34"
-        "35"
-      ];
+      platformVersions = [ "35" ];
       includeSystemImages = false;
       includeSources = false;
       cmakeVersions = [ "3.22.1" ];
       includeNDK = true;
-      ndkVersions = [
-        "27.0.12077973"
-        "26.3.11579264"
-      ];
+      ndkVersions = [ "27.0.12077973" ];
       extraLicenses = [
         "android-sdk-license"
         "android-sdk-preview-license"

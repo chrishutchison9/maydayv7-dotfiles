@@ -497,8 +497,8 @@ _Thanks a lot! ;)_
 
 ### To Do
 
-- VFIO Support via GPU Hotplug instead of restart
 - Investigate `system` -> `stdenv.hostPlatform.system`
+- Remove `pkgs.custom.copyous` after [merge](https://github.com/NixOS/nixpkgs/pull/469919)
 - Inputs:
   - Update `minecraft` after [merge](https://github.com/Infinidoge/nix-minecraft/pull/161)
   - Update `catppuccin` after release branch-off

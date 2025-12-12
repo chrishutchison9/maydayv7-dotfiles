@@ -1,6 +1,5 @@
 {
   sys,
-  config,
   lib,
   pkgs,
   files,
@@ -11,7 +10,6 @@ let
     filter
     genList
     hasAttr
-    head
     map
     toString
     ;
@@ -26,8 +24,6 @@ let
     recursiveUpdate
     ;
 
-  homeDir = config.home.homeDirectory;
-  font = head sys.fonts.fontconfig.defaultFonts.sansSerif;
   inherit (sys.lib.stylix) colors;
 
   # Shell Extensions
@@ -51,7 +47,6 @@ let
         { package = screenshot-window-sizer; }
         { package = unmess; }
         { package = window-state-manager; }
-        { package = x11-gestures; }
         {
           package = workspace-indicator;
           disable = true;
@@ -78,7 +73,7 @@ let
               "a11y"
               "aggregateMenu"
               "drive-menu"
-              "pano@elhan.io"
+              "copyous@boerdereinar.dev"
               "vitalsMenu"
               "dwellClick"
               "color-picker@tuberry"
@@ -119,7 +114,7 @@ let
         {
           package = lock-keys;
           name = "lockkeys";
-          settings.style = "show-hide";
+          settings.always-show-icon = false;
         }
         {
           package = power-profile-indicator-2;
@@ -199,6 +194,16 @@ let
           };
         }
         {
+          package = wsp-windows-search-provider;
+          name = "windows-search-provider";
+          settings = {
+            custom-prefixes = "`";
+            results-order = 1;
+            search-commands = false;
+            search-method = 1;
+          };
+        }
+        {
           package = bluetooth-battery-meter;
           name = "Bluetooth-Battery-Meter";
           settings = {
@@ -221,6 +226,26 @@ let
               "startcenter.desktop"
               "virt-manager.desktop"
             ];
+          };
+        }
+        {
+          package = pkgs.custom.copyous;
+          settings = {
+            auto-hide-search = false;
+            clipboard-orientation = "horizontal";
+            clipboard-position-horizontal = "fill";
+            clipboard-position-vertical = "bottom";
+            clipboard-history = "keep-all";
+            clipboard-size = 700;
+            disable-hljs-dialog = false;
+            header-controls-visibility = "visible-on-hover";
+            history-length = 250;
+            open-clipboard-dialog-shortcut = [ "<Super>v" ];
+            show-at-cursor = false;
+            show-at-pointer = false;
+            show-indicator = true;
+            toggle-incognito-mode-shortcut = [ "<Control><Super>v" ];
+            wiggle-indicator = true;
           };
         }
         {
@@ -274,7 +299,7 @@ let
           package = ddterm;
           path = "com/github/amezin/ddterm";
           settings = {
-            dterm-toggle-hotkey = [ "<Super>t" ];
+            ddterm-activate-hotkey = [ "<Super>space" ];
             hide-window-on-esc = true;
             panel-icon-type = "none";
             shortcut-find = [ "<Control>f" ];
@@ -297,28 +322,6 @@ let
           ));
         }
         {
-          package = pano;
-          settings = {
-            database-location = "${homeDir}/.local/share/clipboard";
-            history-length = 250;
-            global-shortcut = [ "<Super>v" ];
-            incognito-shortcut = [ "<Ctrl><Super>v" ];
-            link-previews = true;
-            open-links-in-browser = true;
-            play-audio-on-copy = false;
-            send-notification-on-copy = false;
-            watch-exclusion-list = true;
-            wiggle-indicator = sys.gui.fancy;
-            window-position = mkUint32 2;
-            item-date-font-family = font;
-            item-date-font-size = 11;
-            item-title-font-family = font;
-            item-title-font-size = 20;
-            search-bar-font-family = font;
-            search-bar-font-size = 14;
-          };
-        }
-        {
           package = tiling-shell;
           name = "tilingshell";
           settings = {
@@ -339,16 +342,6 @@ let
             move-window-left = [ "<Shift><Super>a" ];
             move-window-right = [ "<Shift><Super>d" ];
             move-window-up = [ "<Shift><Super>w" ];
-          };
-        }
-        {
-          package = wsp-windows-search-provider;
-          name = "windows-search-provider";
-          settings = {
-            custom-prefixes = "`";
-            results-order = 1;
-            search-commands = false;
-            search-method = 1;
           };
         }
         {
