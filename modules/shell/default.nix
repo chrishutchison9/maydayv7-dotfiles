@@ -84,7 +84,6 @@ in
       ## Program Configuration
       services.lorri.enable = true; # Faster 'nix shell'
       programs = {
-        command-not-found.enable = true; # Command Not Found Search
         yazi.enable = true; # File Browser
 
         # Command Correction Helper

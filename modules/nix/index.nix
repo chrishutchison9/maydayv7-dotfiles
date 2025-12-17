@@ -11,7 +11,10 @@
   config = lib.mkIf config.nix.index {
     user.homeConfig = {
       imports = [ inputs.index.homeModules.nix-index ];
-      programs.nix-index-database.comma.enable = true;
+      programs = {
+        nix-index.enable = true;
+        nix-index-database.comma.enable = true;
+      };
     };
   };
 }

@@ -104,6 +104,13 @@ let
           settings.move-cursor = true;
         }
         {
+          package = fullscreen-avoider;
+          settings = {
+            move-hot-corners = true;
+            move-notifications = true;
+          };
+        }
+        {
           package = gamemode-shell-extension;
           name = "gamemodeshellextension";
           settings.show-icon-only-when-active = true;
@@ -124,93 +131,6 @@ let
           settings.name = mkForce "custom";
         }
         {
-          package = fullscreen-avoider;
-          settings = {
-            move-hot-corners = true;
-            move-notifications = true;
-          };
-        }
-        {
-          package = window-title-is-back;
-          settings = {
-            colored-icon = true;
-            show-icon = false;
-            show-title = false;
-          };
-        }
-        {
-          package = brightness-control-using-ddcutil;
-          settings = {
-            button-location = 1;
-            ddcutil-binary-path = getExe pkgs.ddcutil;
-            hide-system-indicator = true;
-            increase-brightness-shortcut = [ "<Shift>XF86MonBrightnessUp" ];
-            decrease-brightness-shortcut = [ "<Shift>XF86MonBrightnessDown" ];
-          };
-        }
-        {
-          package = emoji-copy;
-          settings = {
-            active-keybind = true;
-            always-show = false;
-            emoji-keybind = [ "<Super><Shift>e" ];
-            paste-on-select = true;
-          };
-        }
-        {
-          package = user-avatar-in-quick-settings;
-          name = "quick-settings-avatar";
-          settings = {
-            avatar-position = 1;
-            avatar-realname = false;
-            avatar-size = 56;
-          };
-        }
-        {
-          package = focus-changer;
-          settings = {
-            focus-down = [ "<Super>s" ];
-            focus-left = [ "<Super>a" ];
-            focus-right = [ "<Super>d" ];
-            focus-up = [ "<Super>w" ];
-          };
-        }
-        {
-          package = vitals;
-          settings = {
-            hot-sensors = [ "_default_icon_" ];
-            show-battery = true;
-            show-storage = false;
-            show-gpu = true;
-            include-static-gpu-info = false;
-          };
-        }
-        {
-          package = workspace-switcher-manager;
-          settings = {
-            active-show-win-title = false;
-            active-show-ws-name = true;
-            inactive-show-ws-name = true;
-            modifiers-hide-popup = true;
-            monitor = 0;
-            popup-mode = 0;
-            popup-opacity = 100;
-            vertical = 5;
-            ws-ignore-last = false;
-            ws-wraparound = true;
-          };
-        }
-        {
-          package = wsp-windows-search-provider;
-          name = "windows-search-provider";
-          settings = {
-            custom-prefixes = "`";
-            results-order = 1;
-            search-commands = false;
-            search-method = 1;
-          };
-        }
-        {
           package = bluetooth-battery-meter;
           name = "Bluetooth-Battery-Meter";
           settings = {
@@ -226,6 +146,16 @@ let
             level-indicator-type = 0;
             popup-in-quick-settings = false;
             swap-icon-text = false;
+          };
+        }
+        {
+          package = brightness-control-using-ddcutil;
+          settings = {
+            button-location = 1;
+            ddcutil-binary-path = getExe pkgs.ddcutil;
+            hide-system-indicator = true;
+            increase-brightness-shortcut = [ "<Shift>XF86MonBrightnessUp" ];
+            decrease-brightness-shortcut = [ "<Shift>XF86MonBrightnessDown" ];
           };
         }
         {
@@ -276,6 +206,34 @@ let
           };
         }
         {
+          package = emoji-copy;
+          settings = {
+            active-keybind = true;
+            always-show = false;
+            emoji-keybind = [ "<Super><Shift>e" ];
+            paste-on-select = true;
+          };
+        }
+        {
+          package = focus-changer;
+          settings = {
+            focus-down = [ "<Super>s" ];
+            focus-left = [ "<Super>a" ];
+            focus-right = [ "<Super>d" ];
+            focus-up = [ "<Super>w" ];
+          };
+        }
+        {
+          package = notification-configurator;
+          settings = {
+            notification-position = "center";
+            block-list = "[]";
+            app-themes = ''
+              {"poweralertd":{"appNameColor":[0.9647058844566345,0.3803921639919281,0.3176470696926117,1],"timeColor":[0.6,0.6,0.607843137,1],"backgroundColor":[0.329411765,0.329411765,0.352941176,1],"titleColor":[0.992156863,0.992156863,0.992156863,1],"bodyColor":[0.992156863,0.992156863,0.992156863,1],"appNameFontSize":18,"timeFontSize":14,"titleFontSize":14,"bodyFontSize":18}}
+            '';
+          };
+        }
+        {
           package = shortcuts;
           settings = {
             maxcolumns = 3;
@@ -285,6 +243,68 @@ let
             use-custom-shortcuts = true;
             use-transparency = true;
             visibility = 55;
+          };
+        }
+        {
+          package = tasks-in-panel;
+          settings = {
+            accent-panel = false;
+            light-style = false;
+            move-date = false;
+            scroll-panel = false;
+            show-active-workspace = true;
+            show-activities = true;
+            show-favorites-menu = false;
+            show-focused-window = true;
+            show-power-profile = false;
+            show-recent-apps-menu = false;
+            show-user-id = false;
+            show-window-icon = false;
+            show-window-title = true;
+            show-workspaces-bar = false;
+            yaru-panel = false;
+          };
+        }
+        {
+          package = tiling-shell;
+          name = "tilingshell";
+          settings = {
+            enable-blur-selected-tilepreview = false;
+            enable-blur-snap-assistant = false;
+            enable-snap-assist = false;
+            enable-tiling-system = true;
+            enable-tiling-system-windows-suggestions = true;
+            enable-window-border = false;
+            override-window-menu = true;
+            restore-window-original-size = true;
+            tiling-system-activation-key = [ "0" ];
+            top-edge-maximize = true;
+            window-border-width = mkUint32 2;
+            inner-gaps = mkUint32 5;
+            outer-gaps = mkUint32 5;
+            move-window-down = [ "<Shift><Super>s" ];
+            move-window-left = [ "<Shift><Super>a" ];
+            move-window-right = [ "<Shift><Super>d" ];
+            move-window-up = [ "<Shift><Super>w" ];
+          };
+        }
+        {
+          package = user-avatar-in-quick-settings;
+          name = "quick-settings-avatar";
+          settings = {
+            avatar-position = 1;
+            avatar-realname = false;
+            avatar-size = 56;
+          };
+        }
+        {
+          package = vitals;
+          settings = {
+            hot-sensors = [ "_default_icon_" ];
+            show-battery = true;
+            show-storage = false;
+            show-gpu = true;
+            include-static-gpu-info = false;
           };
         }
         {
@@ -306,6 +326,31 @@ let
             taphold-move = true;
             three-finger = false;
             use-active-window = true;
+          };
+        }
+        {
+          package = workspace-switcher-manager;
+          settings = {
+            active-show-win-title = false;
+            active-show-ws-name = true;
+            inactive-show-ws-name = true;
+            modifiers-hide-popup = true;
+            monitor = 0;
+            popup-mode = 0;
+            popup-opacity = 100;
+            vertical = 5;
+            ws-ignore-last = false;
+            ws-wraparound = true;
+          };
+        }
+        {
+          package = wsp-windows-search-provider;
+          name = "windows-search-provider";
+          settings = {
+            custom-prefixes = "`";
+            results-order = 1;
+            search-commands = false;
+            search-method = 1;
           };
         }
         {
@@ -333,29 +378,6 @@ let
               nameValuePair "shortcut-switch-to-tab-${num}" [ "<Control>${num}" ]
             ) 9
           ));
-        }
-        {
-          package = tiling-shell;
-          name = "tilingshell";
-          settings = {
-            enable-blur-selected-tilepreview = false;
-            enable-blur-snap-assistant = false;
-            enable-snap-assist = false;
-            enable-tiling-system = true;
-            enable-tiling-system-windows-suggestions = true;
-            enable-window-border = false;
-            override-window-menu = true;
-            restore-window-original-size = true;
-            tiling-system-activation-key = [ "0" ];
-            top-edge-maximize = true;
-            window-border-width = mkUint32 2;
-            inner-gaps = mkUint32 5;
-            outer-gaps = mkUint32 5;
-            move-window-down = [ "<Shift><Super>s" ];
-            move-window-left = [ "<Shift><Super>a" ];
-            move-window-right = [ "<Shift><Super>d" ];
-            move-window-up = [ "<Shift><Super>w" ];
-          };
         }
         {
           package = vertical-workspaces;
