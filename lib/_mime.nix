@@ -1,4 +1,6 @@
 {
+  appimage = [ "application/x-executable" ];
+
   archive = [
     "application/x-7z-compressed"
     "application/x-7z-compressed-tar"
@@ -135,6 +137,8 @@
     "image/x-qoi;image/svg+xml"
     "image/x-tga"
   ];
+
+  latex = [ "text/x-tex" ];
 
   magnet = [ "x-scheme-handler/magnet" ];
 

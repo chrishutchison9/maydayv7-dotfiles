@@ -41,10 +41,12 @@ in
     environment.systemPackages = with pkgs; [
       # Productivity
       calibre
-      simple-scan
+      clapgrep
       gscan2pdf
       libreoffice
       onlyoffice-desktopeditors
+      pdfarranger
+      simple-scan
 
       # Graphics
       drawing
@@ -63,6 +65,7 @@ in
       zoom-us
 
       # Utilities
+      gearlever
       hunspell
       hunspellDicts.en_US-large
       hyphen
@@ -82,38 +85,45 @@ in
 
     user = {
       # Persisted Files
-      persist.files = [
-        ".config/gscan2pdfrc"
-        ".config/zoomus.conf"
-      ];
-
-      persist.directories = [
-        ".calibre"
-        ".thunderbird"
-        ".zoom"
-        ".config/BraveSoftware"
-        ".config/calibre"
-        ".config/GIMP"
-        ".config/inkscape"
-        ".config/libreoffice"
-        ".config/obs-studio"
-        ".config/onlyoffice"
-        ".config/wasistlos"
-        ".local/share/data"
-        ".local/share/onlyoffice"
-        ".local/share/wasistlos"
-        ".cache/BraveSoftware"
-        ".cache/gimp"
-        ".cache/thunderbird"
-        ".cache/wasistlos"
-        ".cache/zoom"
-      ];
+      persist = {
+        files = [
+          ".config/gscan2pdfrc"
+          ".config/zoomus.conf"
+        ];
+        directories = [
+          ".appimages"
+          ".calibre"
+          ".thunderbird"
+          ".zoom"
+          ".config/BraveSoftware"
+          ".config/calibre"
+          ".config/de.leopoldluley.Clapgrep"
+          ".config/GIMP"
+          ".config/inkscape"
+          ".config/libreoffice"
+          ".config/obs-studio"
+          ".config/onlyoffice"
+          ".config/wasistlos"
+          ".local/share/data"
+          ".local/share/onlyoffice"
+          ".local/share/wasistlos"
+          ".cache/BraveSoftware"
+          ".cache/gimp"
+          ".cache/thunderbird"
+          ".cache/wasistlos"
+          ".cache/zoom"
+        ];
+      };
 
       homeConfig = {
         # File Associations
         xdg.mimeApps.defaultApplications = util.build.mime {
+          appimage = [ "it.mijorus.gearlever.desktop" ];
           office = [ "onlyoffice-desktopeditors.desktop" ];
         };
+
+        # AppImage Manager
+        dconf.settings."it/mijorus/gearlever".appimages-default-folder = "~/.appimages";
 
         home.file = {
           # Document Templates

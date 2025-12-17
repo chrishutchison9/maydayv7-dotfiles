@@ -90,7 +90,7 @@ in
       };
     })
 
-    ## SystemD EFI Boot Loader ##
+    ## SYSTEMD EFI Boot Loader ##
     (mkIf (loader == "efi") {
       boot.loader.systemd-boot = {
         enable = mkForce true;

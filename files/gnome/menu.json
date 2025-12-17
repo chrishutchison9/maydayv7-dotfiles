@@ -58,7 +58,7 @@
         {
           "type": "switch",
           "title": "Android",
-          "icon": "goa-account-google-symbolic",
+          "icon": "im-google-symbolic",
           "start": "sh -c 'nohup waydroid session start > /dev/null 2>&1&'",
           "stop": "waydroid session stop",
           "check": "sh -c 'waydroid status | grep RUNNING'",
@@ -67,7 +67,7 @@
         {
           "type": "switch",
           "title": "Windows",
-          "icon": "goa-account-msn-symbolic",
+          "icon": "im-msn-symbolic",
           "start": "virsh -c qemu:///system start Windows",
           "stop": "virsh -c qemu:///system shutdown Windows",
           "check": "sh -c 'virsh -c qemu:///system list | grep Windows'",

@@ -59,13 +59,12 @@ in
         hardware.vm.vfio = mkForce "setup";
       };
 
-      hardware.gpu = mkForce null;
       boot = {
         kernelParams = [
+          "iommu=pt"
           "amd_iommu=pt"
           "intel_iommu=pt"
           "i915.enable_gvt=1"
-          "iommu=pt"
           "kvm.ignore_msrs=1"
           "kvm.report_ignored_msrs=0"
           ("vfio-pci.ids=" + concatStringsSep "," cfg.passthrough)
@@ -78,6 +77,7 @@ in
           "vfio_virqfd"
         ];
 
+        # Disable GPU
         blacklistedKernelModules = [
           "nvidia"
           "nvidia_drm"
@@ -85,6 +85,8 @@ in
           "nvidia_uvm"
         ];
       };
+
+      hardware.gpu = mkForce null;
 
       # Looking Glass
       user.groups = [ "qemu-libvirtd" ];

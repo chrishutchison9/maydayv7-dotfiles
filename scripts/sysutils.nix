@@ -18,7 +18,7 @@ let
       volume [up,down,mute]          - Volume Controls
       media [next,previous,toggle]   - Media Controls
       toggle 
-        service ['name']             - Toggle SystemD Service
+        service ['name']             - Toggle SYSTEMD Service
   '';
 in
 recursiveUpdate

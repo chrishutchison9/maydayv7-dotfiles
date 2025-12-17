@@ -16,7 +16,10 @@
         ./mutable.nix
       ];
 
-      # SystemD User Services
+      # Update News
+      news.display = "show";
+
+      # User Services
       systemd.user = {
         enable = true;
         startServices = true;

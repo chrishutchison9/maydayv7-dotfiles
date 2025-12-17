@@ -5,7 +5,7 @@ The `modules` directory contains custom-made pure Flakes-compatible configuratio
 Configuration [Builder](./configuration.nix)
 
 - [`apps`](./apps): Module that configures various apps and/or environments -
-  - `list`: List of enabled applications - `[ "discord" "firefox" "flatpak" "games" "git" "office" "spotify" "wine" ]`
+  - `list`: List of enabled applications - `[ "discord" "firefox" "flatpak" "games" "git" "latex" "media" "office" "spotify" "vscode" "wine" "youtube" ]`
   - `git` -
     - `hosting` -
       - `enable`: Enable Gitea Code Hosting - `true / false`

@@ -15,6 +15,7 @@ in
       pitivi
       pwvucontrol
       qpwgraph
+      vipsdisp
       inputs.stremio.packages.${pkgs.stdenv.system}.stremio-linux-shell
     ];
 

@@ -83,6 +83,12 @@ in
         '', Print, exec, sh -c "pgrep slurp || grimblast --notify --freeze copysave area"''
         "CTRL, Print, exec, grimblast --notify --cursor copysave active"
         "SHIFT, Print, exec, grimblast --notify --cursor copysave output"
+
+        # Submaps
+        "$mod SHIFT, Escape, exec, sysutils toggle service waycorner"
+        "$mod SHIFT, Escape, submap, Inhibit"
+        "$mod, R, submap, Resize"
+        "$mod, M, submap, Move"
       ]
       ++
         # Workspaces
@@ -141,61 +147,63 @@ in
     };
 
     ## Submaps
-    extraConfig = ''
+    submaps = {
       # Inhibit Keybinds
-      bind = $mod SHIFT, Escape, exec, sysutils toggle service waycorner
-      bind = $mod SHIFT, Escape, submap, Inhibit
-      submap = Inhibit
-      bind = $mod SHIFT, Escape, exec, sysutils toggle service waycorner
-      bind = $mod SHIFT, Escape, submap, reset
-      submap = reset
+      Inhibit.settings.bind = [
+        "$mod SHIFT, Escape, exec, sysutils toggle service waycorner"
+        "$mod SHIFT, Escape, submap, reset"
+      ];
 
       # Window Resize
-      bind = $mod, R, submap, Resize
-      submap = Resize
-      binde = , right, resizeactive, 10 0
-      binde = , left, resizeactive, -10 0
-      binde = , up, resizeactive, 0 -10
-      binde = , down, resizeactive, 0 10
-      bindm = , mouse:272, resizewindow
-      bind = , escape, submap, reset
-      bind = $mod, R, submap, reset
-      submap = reset
+      Resize.settings = {
+        binde = [
+          ", right, resizeactive, 10 0"
+          ", left, resizeactive, -10 0"
+          ", up, resizeactive, 0 -10"
+          ", down, resizeactive, 0 10"
+        ];
+        bindm = [ ", mouse:272, resizewindow" ];
+        bind = [
+          ", escape, submap, reset"
+          "$mod, R, submap, reset"
+        ];
+      };
 
       # Window Movement
-      bind = $mod, M, submap, Move
-      submap = Move
-      bindm = , mouse:272, movewindow
-      bind = , C, centerwindow
-      bind = , P, pin
-      bind = , left, movewindoworgroup, l
-      bind = , right, movewindoworgroup, r
-      bind = , up, movewindoworgroup, u
-      bind = , down, movewindoworgroup, d
-      bind = SHIFT, left, moveactive, -30 0
-      bind = SHIFT, right, moveactive, 30 0
-      bind = SHIFT, up, moveactive, 0 -30
-      bind = SHIFT, down, moveactive, 0 30
-      bind = , comma, split:movetoworkspace, r-1
-      bind = , period, split:movetoworkspace, r+1
-      bind = , escape, submap, reset
-      bind = $mod, M, submap, reset
-      submap = reset
+      Move.settings = {
+        bind = [
+          ", C, centerwindow"
+          ", P, pin"
+          ", left, movewindoworgroup, l"
+          ", right, movewindoworgroup, r"
+          ", up, movewindoworgroup, u"
+          ", down, movewindoworgroup, d"
+          "SHIFT, left, moveactive, -30 0"
+          "SHIFT, right, moveactive, 30 0"
+          "SHIFT, up, moveactive, 0 -30"
+          "SHIFT, down, moveactive, 0 30"
+          ", comma, split:movetoworkspace, r-1"
+          ", period, split:movetoworkspace, r+1"
+          ", escape, submap, reset"
+          "$mod, M, submap, reset"
+        ];
+        bindm = [ ", mouse:272, movewindow" ];
+      };
 
       # Window Minimization
-      submap = Minimized
-      bind = , left, movefocus, l
-      bind = , right, movefocus, r
-      bind = , up, movefocus, u
-      bind = , down, movefocus, d
-      bind = , Q, killactive,
-      bind = , Return, movetoworkspace, +0
-      bind = , Return, submap, reset
-      bind = , mouse:272, movetoworkspace, +0
-      bind = , mouse:272, submap, reset
-      bind = , escape, togglespecialworkspace, minimized
-      bind = , escape, submap, reset
-      submap = reset
-    '';
+      Minimized.settings.bind = [
+        ", left, movefocus, l"
+        ", right, movefocus, r"
+        ", up, movefocus, u"
+        ", down, movefocus, d"
+        ", Q, killactive,"
+        ", Return, movetoworkspace, +0"
+        ", Return, submap, reset"
+        ", mouse:272, movetoworkspace, +0"
+        ", mouse:272, submap, reset"
+        ", escape, togglespecialworkspace, minimized"
+        ", escape, submap, reset"
+      ];
+    };
   };
 }

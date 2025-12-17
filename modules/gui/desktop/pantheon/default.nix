@@ -65,14 +65,11 @@ in
       environment.systemPackages = with pkgs.pantheon // pkgs; [
         appeditor
         pantheon-tweaks
-        torrential
       ];
 
       # Persisted Files
       user.persist.directories = [
         ".config/evolution"
-        ".config/plank"
-        ".config/torrential"
         ".local/share/contractor"
         ".local/share/evolution"
         ".local/share/Emote"

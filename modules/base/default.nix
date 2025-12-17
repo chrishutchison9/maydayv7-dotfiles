@@ -82,6 +82,7 @@ in
       systemPackages = with pkgs; [
         custom.nixos
         cryptsetup
+        file
         inxi
         killall
         man-pages

@@ -16,6 +16,7 @@ let
 
   inherit (lib)
     foldr
+    getExe
     hm
     listToAttrs
     mkForce
@@ -95,10 +96,6 @@ let
           settings.hide-on = 80;
         }
         {
-          package = brightness-control-using-ddcutil;
-          settings.hide-system-indicator = true;
-        }
-        {
           package = color-picker;
           settings.enable-format = true;
         }
@@ -139,6 +136,16 @@ let
             colored-icon = true;
             show-icon = false;
             show-title = false;
+          };
+        }
+        {
+          package = brightness-control-using-ddcutil;
+          settings = {
+            button-location = 1;
+            ddcutil-binary-path = getExe pkgs.ddcutil;
+            hide-system-indicator = true;
+            increase-brightness-shortcut = [ "<Shift>XF86MonBrightnessUp" ];
+            decrease-brightness-shortcut = [ "<Shift>XF86MonBrightnessDown" ];
           };
         }
         {
@@ -207,11 +214,17 @@ let
           package = bluetooth-battery-meter;
           name = "Bluetooth-Battery-Meter";
           settings = {
+            disable-level-in-icon = true;
             enable-battery-indicator-text = false;
-            enable-battery-level-text = true;
+            enable-battery-level-icon = false;
+            enable-battery-level-text = false;
+            enable-multi-indicator-mode = false;
             enable-upower-level-icon = true;
+            hide-bluetooth-indicator = 0;
+            indicator-type = 1;
             level-indicator-color = 0;
             level-indicator-type = 0;
+            popup-in-quick-settings = false;
             swap-icon-text = false;
           };
         }
