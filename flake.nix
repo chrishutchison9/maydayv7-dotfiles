@@ -149,12 +149,6 @@
       inputs.nixpkgs.follows = "unstable";
     };
 
-    # Stremio Package
-    stremio = {
-      url = "gitlab:fazzi/nixohess";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     ## Theming
     # Base16 Theming Module
     stylix = {
@@ -167,7 +161,7 @@
     };
 
     # Spicetify Module
-    spotify = {
+    spicetify = {
       url = "github:Gerg-L/spicetify-nix";
       inputs = {
         nixpkgs.follows = "nixpkgs";

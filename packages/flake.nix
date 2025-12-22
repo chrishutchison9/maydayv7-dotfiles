@@ -38,11 +38,13 @@ in
               unstable = import unstable { inherit system config; };
 
               gaming = gaming.packages."${system}";
-              code = vscode.extensions."${system}";
               wine = windows.packages."${system}";
+              winelib = windows.lib."${system}";
+              spicetify = spotify.legacyPackages."${system}";
             })
             minecraft.overlay
             niri.overlays.niri
+            vscode.overlays.default
           ];
         };
     }
@@ -62,11 +64,23 @@ in
       in
       {
         # Custom Packages
-        apps = map.modules ../scripts (name: inputs.utils.lib.mkApp { drv = call.script name; }) // {
-          default = self'.apps.nixos;
-        };
         packages =
           map.modules ./. call // map.modules ../scripts call.script // inputs'.proprietary.packages;
+        apps =
+          map.modules ../scripts (
+            name:
+            let
+              drv = call.script name;
+            in
+            {
+              type = "app";
+              program = lib.getExe drv;
+              meta = drv.meta or { };
+            }
+          )
+          // {
+            default = self'.apps.nixos;
+          };
       }
     );
 

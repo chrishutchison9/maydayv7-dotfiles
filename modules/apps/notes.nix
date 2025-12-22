@@ -17,13 +17,13 @@ let
   cfg = config.apps.logseq;
 in
 {
+  ## Logseq Configuration ##
   options.apps.logseq.style = mkOption {
     description = "Path to Logseq Notes CSS";
     type = types.str;
     default = "";
   };
 
-  ## Logseq Configuration ##
   config = mkIf enable {
     environment.systemPackages = [ pkgs.logseq ];
 

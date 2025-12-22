@@ -2,7 +2,6 @@
   config,
   lib,
   util,
-  inputs,
   pkgs,
   ...
 }:
@@ -66,7 +65,7 @@ in
                 callPackage name {
                   inherit lib pkgs;
                   wine = cfg.package;
-                  build = inputs.windows.lib."${pkgs.stdenv.system}";
+                  build = winelib;
                 }
               )
             )

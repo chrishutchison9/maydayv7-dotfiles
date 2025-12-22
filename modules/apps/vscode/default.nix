@@ -83,7 +83,7 @@ in
                 dbaeumer.vscode-eslint
                 ritwickdey.liveserver
               ]
-              ++ (with pkgs.code.vscode-marketplace; [
+              ++ (with pkgs.vscode-marketplace; [
                 kisstkondoros.vscode-gutter-preview # Image Preview
                 fwcd.kotlin # Kotlin
               ]);

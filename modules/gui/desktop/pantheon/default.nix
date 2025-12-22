@@ -158,7 +158,7 @@ in
     {
       # Code Editor
       user.homeConfig.programs.vscode.profiles.default = mkIf (exists "vscode") {
-        extensions = [ pkgs.code.vscode-marketplace.sixpounder.elementary-theme ];
+        extensions = [ pkgs.vscode-marketplace.sixpounder.elementary-theme ];
         userSettings = {
           "workbench.colorTheme" = "Elementary Dark";
           "terminal.external.linuxExec" = "io.elementary.terminal";

@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  inputs,
   pkgs,
   ...
 }:
@@ -12,11 +11,14 @@ in
   ## Media Configuration ##
   config = lib.mkIf enable {
     environment.systemPackages = with pkgs; [
+      identity
       pitivi
+      vipsdisp
+
       pwvucontrol
       qpwgraph
-      vipsdisp
-      inputs.stremio.packages.${pkgs.stdenv.system}.stremio-linux-shell
+
+      stremio-linux-shell
     ];
 
     user = {

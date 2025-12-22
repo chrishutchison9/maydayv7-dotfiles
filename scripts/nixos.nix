@@ -1,5 +1,4 @@
 {
-  system ? builtins.currentSystem,
   lib,
   util,
   inputs,
@@ -13,7 +12,7 @@ let
   inherit (util.map) list;
   inherit (lib) licenses recursiveUpdate;
 
-  devShells = list self.devShells."${system}";
+  devShells = list self.devShells."${pkgs.stdenv.system}";
   nixosConfigurations = list self.nixosConfigurations;
 
   # Usage Description
@@ -203,6 +202,7 @@ recursiveUpdate
             SPECIALISATIONS=$(ls -1 /nix/var/nix/profiles/system/specialisation)
             if grep -wq "$2" <<<"$SPECIALISATIONS" &> /dev/null
             then
+              echo "Applying Configuration ($2)..."
               sudo nixos-rebuild switch --specialisation "$2"
             else
               error "Unknown Option '$2'\n${usage.apply}" "# Available Specialisations #\n$SPECIALISATIONS"

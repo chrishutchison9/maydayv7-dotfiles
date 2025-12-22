@@ -7,7 +7,6 @@
 }:
 let
   enable = builtins.elem "spotify" config.apps.list;
-  spice = inputs.spotify.legacyPackages.${pkgs.stdenv.system};
 in
 {
   ## Spotify Configuration ##
@@ -26,18 +25,18 @@ in
       ];
 
       homeConfig = {
-        imports = [ inputs.spotify.homeManagerModules.default ];
+        imports = [ inputs.spicetify.homeManagerModules.default ];
         programs.spicetify = {
           enable = true;
 
           # Player Improvements
-          enabledCustomApps = with spice.apps; [
+          enabledCustomApps = with pkgs.spicetify.apps; [
             betterLibrary
             localFiles
             newReleases
           ];
 
-          enabledExtensions = with spice.extensions; [
+          enabledExtensions = with pkgs.spicetify.extensions; [
             beautifulLyrics
             goToSong
             history

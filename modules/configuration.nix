@@ -73,8 +73,7 @@ in
 ## Device Configuration ##
 assert (user == null) -> (users != null); # User must be defined
 import ((self.patchedPkgs system) + "/nixos/lib/eval-config.nix") {
-  inherit system;
-
+  system = null;
   specialArgs = {
     inherit util inputs files;
     lib = lib // {
@@ -113,7 +112,11 @@ import ((self.patchedPkgs system) + "/nixos/lib/eval-config.nix") {
       environment.variables."LC_ALL" = "en_${locale}.UTF-8";
 
       # Package Configuration
-      nixpkgs = { inherit pkgs; };
+      nixpkgs = {
+        inherit pkgs;
+        hostPlatform = system;
+      };
+
       system = {
         name = "${name}-${replaceStrings [ " " ] [ "_" ] description}";
 

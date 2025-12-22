@@ -8,9 +8,9 @@ let
   enable = builtins.elem "flatpak" config.apps.list;
 in
 {
+  ## Flatpak Configuration ##
   imports = [ inputs.flatpak.nixosModules.nix-flatpak ];
 
-  ## Flatpak Configuration ##
   config = lib.mkIf enable {
     warnings = [
       ''

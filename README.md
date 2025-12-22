@@ -335,7 +335,7 @@ Example `flake.nix`:
 > [!IMPORTANT]
 > These instructions are mainly intended for personal use
 
-To download the Install Media, click on the latest successsful run listed [here](../../actions/workflows/installer.yml) and download the image artifact. Burn it to a USB using a flashing utility such as [Etcher](https://www.balena.io/etcher/)
+To download the Install Media, click on the latest successsful run listed [here](../../actions/workflows/install.yml) and download the image artifact. Burn it to a USB using a flashing utility such as [Etcher](https://www.balena.io/etcher/)
 
 > [!TIP]
 > In order to directly use the configuration, you must first create a clone of this repository and follow steps 2 to 6 from the first section, and preferably create your own install media
@@ -497,12 +497,10 @@ _Thanks a lot! ;)_
 
 ### To Do
 
-- Investigate `system` -> `stdenv.hostPlatform.system`
 - Remove `pkgs.custom.copyous` after [merge](https://github.com/NixOS/nixpkgs/pull/469919)
 - Inputs:
   - Update `minecraft` after [merge](https://github.com/Infinidoge/nix-minecraft/pull/161)
   - Update `catppuccin` after release branch-off
-  - Remove `stremio` once [issue](https://github.com/nixos/nixpkgs/issues/437992) is fixed
 
 </details>
 

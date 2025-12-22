@@ -77,7 +77,7 @@
   gui = {
     desktop = "gnome";
     display = "eDP-1";
-    wallpaper = "Sunrise";
+    wallpaper = "Bluewatch";
     fancy = true;
   };
 
