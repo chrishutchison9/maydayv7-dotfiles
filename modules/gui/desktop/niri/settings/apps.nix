@@ -30,11 +30,6 @@
       in
       {
         # Applications
-        "Alt+Tab" = {
-          action = spawn "rofi" "-show" "window";
-          hotkey-overlay.title = "Window Switcher";
-        };
-
         "Super+space" = {
           action = spawn "rofi" "-show" "drun";
           hotkey-overlay.title = "Launcher";

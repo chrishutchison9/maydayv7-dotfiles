@@ -12,11 +12,11 @@
     homeConfig = {
       programs.rofi = {
         enable = true;
-        package = pkgs.rofi-wayland;
+        package = pkgs.rofi;
         configPath = ".config/rofi/main.rasi";
         plugins = with pkgs; [
           rofi-calc
-          rofi-emoji-wayland
+          rofi-emoji
         ];
       };
 

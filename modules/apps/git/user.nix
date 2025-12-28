@@ -26,6 +26,7 @@ in
     };
 
     signing = {
+      format = "openpgp";
       signByDefault = lib.mkIf (cfg.key != "") true;
       key = lib.mkIf (cfg.key != "") (builtins.substring 24 30 cfg.key);
     };

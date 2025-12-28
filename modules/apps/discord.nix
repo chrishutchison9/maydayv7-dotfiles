@@ -44,10 +44,10 @@ in
               betterSessions.enable = true;
               betterSettings.enable = true;
               biggerStreamPreview.enable = true;
-              blurNsfw.enable = true;
+              BlurNSFW.enable = true;
               copyEmojiMarkdown.enable = true;
               copyFileContents.enable = true;
-              copyUserUrLs.enable = true;
+              CopyUserURLs.enable = true;
               crashHandler.enable = true;
               decor.enable = true;
               expressionCloner.enable = true;
@@ -62,7 +62,7 @@ in
               mentionAvatars.enable = true;
               messageClickActions.enable = true;
               messageLinkEmbeds.enable = true;
-              pinDMs.enable = true;
+              PinDMs.enable = true;
               platformIndicators.enable = true;
               previewMessage.enable = true;
               quickMention.enable = true;

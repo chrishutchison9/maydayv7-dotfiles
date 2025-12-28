@@ -41,9 +41,9 @@ in
         "Super+Shift+Down".action = move-window-down-or-to-workspace-down;
         "Super+Shift+Return".action = move-window-to-monitor-next;
 
-        "Print".action = screenshot;
+        "Print".action.screenshot = [ ];
         "Shift+Print".action.screenshot-screen = [ ];
-        "Ctrl+Print".action = screenshot-window;
+        "Ctrl+Print".action.screenshot-window = [ ];
 
         # Controls
         "Super+L" = {
