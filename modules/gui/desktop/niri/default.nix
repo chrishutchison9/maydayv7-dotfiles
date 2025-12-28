@@ -16,10 +16,24 @@
       ++ [
         ## Environment Setup
         {
-          # WM
-          programs.niri = {
-            enable = true;
-            package = pkgs.niri-stable;
+          programs = {
+            # WM
+            niri = {
+              enable = true;
+              package = pkgs.niri-unstable;
+            };
+
+            # Session
+            uwsm = {
+              enable = true;
+              waylandCompositors = {
+                niri = {
+                  prettyName = "Niri";
+                  comment = "Niri compositor managed by UWSM";
+                  binPath = "/run/current-system/sw/bin/niri";
+                };
+              };
+            };
           };
 
           # Settings

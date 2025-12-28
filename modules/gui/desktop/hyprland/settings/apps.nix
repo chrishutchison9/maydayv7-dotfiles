@@ -32,7 +32,6 @@ in
 
     ## Autostart
     exec-once = [
-      "uwsm finalize"
       "hyprctl setcursor ${cursor} ${toString cursors.size}"
     ]
     ++ (map (app: "uwsm app -t service -u ${util.build.until " " app}.service -- " + app) [
@@ -46,7 +45,8 @@ in
 
       # Desktop Icons
       "pcmanfm-qt --desktop"
-    ]);
+    ])
+    ++ [ "uwsm finalize" ];
 
     ## Shortcuts
     bind =
@@ -69,7 +69,7 @@ in
         "$mod SHIFT, C, exec, ${runOnce "hyprpicker"} -arf hex"
         "$mod SHIFT, B, exec, ${runOnce "overskride"}"
         "$mod, D, exec, ${runOnce "nwg-displays"}"
-        "$mod SHIFT, P, exec, pavucontrol"
+        "$mod SHIFT, P, exec, pwvucontrol"
         "$mod SHIFT, N, exec, sh -c 'env XDG_CURRENT_DESKTOP=GNOME gnome-control-center wifi'"
         "$mod, Escape, exec, ${toggle "wlogout"} -p layer-shell"
 
@@ -154,9 +154,9 @@ in
           "persistentsize, class:^(${class})"
         ])
         [
+          "com.saivert.pwvucontrol"
           "io.github.kaii_lb.Overskride"
           "nwg-displays"
-          "org.pulseaudio.pavucontrol"
           "gnome-control-center"
           "org.gnome.Settings"
         ]

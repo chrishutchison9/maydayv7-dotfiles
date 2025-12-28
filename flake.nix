@@ -176,7 +176,13 @@
     };
 
     ## Niri
-    niri.url = "github:sodiboo/niri-flake";
+    niri = {
+      url = "github:maydayv7/niri-flake";
+      inputs = {
+        nixpkgs.follows = "unstable";
+        nixpkgs-stable.follows = "stable";
+      };
+    };
   };
 
   ## Configuration ##

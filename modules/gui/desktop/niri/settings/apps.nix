@@ -4,20 +4,29 @@
     ## Autostart
     spawn-at-startup =
       let
-        sh = command: [
-          "sh"
-          "-c"
-          command
-        ];
+        exec =
+          app: args:
+          [
+            "uwsm"
+            "app"
+            "-t"
+            "service"
+            "-u"
+            "${app}.service"
+            "--"
+            app
+          ]
+          ++ args;
       in
       [
+        { command = exec "pcmanfm-qt" [ "--desktop" ]; }
+        { command = exec "nwg-drawer" [ "-r" ]; }
         {
           command = [
-            "pcmanfm-qt"
-            "--desktop"
+            "uwsm"
+            "finalize"
           ];
         }
-        { command = sh "nwg-drawer -r"; }
       ];
 
     ## Keybindings
@@ -25,8 +34,8 @@
       with config.lib.niri.actions;
       let
         sh = spawn "sh" "-c";
-        toggle = app: args: sh "pkill ${app} || ${app} ${args}";
-        runOnce = app: args: sh "pgrep ${app} || ${app} ${args}";
+        toggle = app: args: sh "pkill ${app} || uwsm app -u ${app}.scope -- ${app} ${args}";
+        runOnce = app: args: sh "pgrep ${app} || uwsm app -u ${app}.scope -- ${app} ${args}";
       in
       {
         # Applications
@@ -92,7 +101,7 @@
         };
 
         "Super+Shift+P" = {
-          action = spawn "pavucontrol";
+          action = spawn "pwvucontrol";
           hotkey-overlay.title = "Audio Settings";
         };
 
@@ -110,6 +119,8 @@
           { app-id = "qalculate-gtk"; }
         ];
         open-floating = true;
+        default-column-width.proportion = 0.5;
+        default-window-height.proportion = 0.9;
         default-floating-position = {
           relative-to = "right";
           x = 5;

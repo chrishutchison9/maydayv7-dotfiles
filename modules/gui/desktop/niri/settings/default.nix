@@ -1,4 +1,5 @@
-{ util, ... }:
+{ sys, util, ... }:
+with sys.lib.stylix.colors;
 {
   imports = util.map.modules.list ./.;
   programs.niri.settings = {
@@ -39,4 +40,29 @@
       ];
     };
   };
+
+  programs.niri.extraConfig = ''
+    recent-windows {
+      open-delay-ms 150
+
+      binds {
+        Alt+Tab         { next-window; }
+        Alt+Shift+Tab   { previous-window; }
+        Alt+grave       { next-window     filter="app-id"; }
+        Alt+Shift+grave { previous-window filter="app-id"; }
+      }
+
+      highlight {
+        active-color "#${base04}"
+        urgent-color "#${base08}"
+        padding 30
+        corner-radius 7
+      }
+
+      previews {
+        max-height 480
+        max-scale 0.5
+      }
+    }
+  '';
 }

@@ -20,7 +20,7 @@ in
         "Super+slash".action = show-hotkey-overlay;
         "Super+Q".action = close-window;
         "Super+C".action = center-window;
-        "Super+Shift+E".action = fullscreen-window;
+        "Super+Shift+F".action = fullscreen-window;
         "Super+equal".action = switch-preset-column-width;
         "Super+minus".action = switch-preset-window-height;
         "Super+Shift+equal".action = maximize-column;

@@ -26,7 +26,7 @@ in
       # Utilities
       custom.sysutils
       hyprpicker
-      pavucontrol
+      pwvucontrol
       wev
       wl-clipboard
       wl-screenrec

@@ -144,7 +144,7 @@ in
           "󰕾"
         ];
         format-muted = "";
-        on-click = "pavucontrol";
+        on-click = "pwvucontrol";
       };
 
       mpris = {

@@ -2,6 +2,10 @@
 
 ### December
 
+- Niri Updates
+  - Update to v25.11
+  - Use UWSM
+- Use `pwvucontrol` instead of `pavucontrol`
 - Patch `nom` rendering
 - Add an AppImage manager
 - Add a LaTeX Editor
