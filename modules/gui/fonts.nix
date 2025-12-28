@@ -77,6 +77,7 @@
       font-awesome
       nerd-fonts.symbols-only
       noto-fonts
+      symbola
 
       fira
       fira-code

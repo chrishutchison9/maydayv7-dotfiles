@@ -25,12 +25,19 @@
 
     # Settings
     user = {
-      persist.directories = [ ".config/gh" ];
+      persist.directories = [
+        ".git-hooks"
+        ".config/gh"
+      ];
+
       homeConfig = {
         imports = [ ./user.nix ];
 
         # Hooks
-        home.file.".git-hooks".source = files.git.hooks;
+        home.file.".git-hooks" = {
+          source = files.git.hooks;
+          recursive = true;
+        };
 
         # GitHub CLI
         programs = {

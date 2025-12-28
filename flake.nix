@@ -136,7 +136,7 @@
 
     # Minecraft Server
     minecraft = {
-      url = "github:Infinidoge/nix-minecraft";
+      url = "github:maydayv7/nix-minecraft";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-utils.follows = "utils";

@@ -75,9 +75,9 @@
   };
 
   gui = {
-    desktop = "gnome";
+    desktop = "hyprland";
     display = "eDP-1";
-    wallpaper = "Bluewatch";
+    wallpaper = "Quasar";
     fancy = true;
   };
 

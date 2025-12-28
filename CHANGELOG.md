@@ -2,13 +2,16 @@
 
 ### December
 
+- Patch `nom` rendering
 - Add an AppImage manager
 - Add a LaTeX Editor
 - GNOME Updates
   - Change terminal hotkeys
-  - Use [`copyous`](https://github.com/boerdereinar/copyous) instead of `pano` for clipboard
+  - Use [`copyous`](https://github.com/boerdereinar/copyous) instead of `pano`
 - Fix VFIO after update
-- Fix `git` GitHub authentication
+- `git` Fixes
+  - Hooks
+  - GitHub authentication
 - Update to NixOS 25.11 (Xantusia)
 
 ### November
