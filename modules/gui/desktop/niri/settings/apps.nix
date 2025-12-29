@@ -19,14 +19,15 @@
           ++ args;
       in
       [
-        { command = exec "pcmanfm-qt" [ "--desktop" ]; }
-        { command = exec "nwg-drawer" [ "-r" ]; }
         {
           command = [
             "uwsm"
             "finalize"
+            "NIRI_SOCKET"
           ];
         }
+        { command = exec "pcmanfm-qt" [ "--desktop" ]; }
+        { command = exec "nwg-drawer" [ "-r" ]; }
       ];
 
     ## Keybindings

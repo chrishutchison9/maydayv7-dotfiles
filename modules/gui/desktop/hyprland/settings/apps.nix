@@ -32,6 +32,7 @@ in
 
     ## Autostart
     exec-once = [
+      "uwsm finalize"
       "hyprctl setcursor ${cursor} ${toString cursors.size}"
     ]
     ++ (map (app: "uwsm app -t service -u ${util.build.until " " app}.service -- " + app) [
@@ -45,8 +46,7 @@ in
 
       # Desktop Icons
       "pcmanfm-qt --desktop"
-    ])
-    ++ [ "uwsm finalize" ];
+    ]);
 
     ## Shortcuts
     bind =
