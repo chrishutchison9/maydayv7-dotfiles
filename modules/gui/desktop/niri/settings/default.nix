@@ -64,5 +64,12 @@ with sys.lib.stylix.colors;
         max-scale 0.5
       }
     }
+
+    gestures {
+      hot-corners {
+        top-right
+        bottom-right
+      }
+    }
   '';
 }

@@ -258,45 +258,30 @@ in
       };
 
       "group/notify".modules = [
-        "custom/dunst"
+        "custom/notify"
         "idle_inhibitor"
       ];
 
-      "custom/dunst" =
-        let
-          run =
-            text:
-            "${
-              pkgs.writeShellApplication {
-                name = "notify";
-                inherit text;
-                runtimeInputs = with pkgs; [
-                  coreutils
-                  dunst
-                ];
-              }
-            }/bin/notify";
-        in
-        {
-          tooltip = false;
-          on-click = "dunstctl history-pop";
-          restart-interval = 1;
-          on-click-right = run ''
-            if dunstctl is-paused | grep -q "false"
-            then
-              dunstctl set-pause-level 50
-            else
-              dunstctl set-pause-level 0
-            fi
-          '';
-          exec = run ''
-            COUNT=$(dunstctl count waiting)
-            ENABLED=""
-            DISABLED=""
-            if [ "$COUNT" != 0 ]; then DISABLED=" $COUNT"; fi
-            if dunstctl is-paused | grep -q "false"; then echo "$ENABLED"; else echo "$DISABLED"; fi
-          '';
+      "custom/notify" = {
+        exec = "swaync-client -swb";
+        exec-if = "which swaync-client";
+        on-click = "swaync-client -t -sw";
+        on-click-right = "swaync-client -d -sw";
+        return-type = "json";
+        escape = true;
+        tooltip = false;
+        format = "{icon}";
+        format-icons = {
+          none = "";
+          notification = "";
+          dnd-none = "";
+          dnd-notification = "";
+          inhibited-none = "";
+          inhibited-notification = "";
+          dnd-inhibited-none = "";
+          dnd-inhibited-notification = "";
         };
+      };
 
       idle_inhibitor = {
         format = "{icon}";

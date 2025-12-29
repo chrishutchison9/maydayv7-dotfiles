@@ -1,17 +1,16 @@
 {
   config,
   lib,
+  util,
+  files,
   ...
 }:
 let
-  inherit (lib) mkIf mkForce;
-  inherit (config._shared) enable theme;
-  inherit (theme) icons;
-  inherit (config.lib.stylix) colors;
+  inherit (lib) mkDefault mkIf;
 in
 {
   ## Notifications Configuration
-  config = mkIf enable {
+  config = mkIf config._shared.enable {
     # Phone Connect
     user.persist.directories = [ ".config/kdeconnect" ];
     programs.kdeconnect.enable = true;
@@ -22,69 +21,75 @@ in
       };
 
       # Notifications Daemon
-      stylix.targets.dunst.enable = true;
-      services.dunst =
-        let
-          system = {
-            fullscreen = "show";
-            highlight = "#${colors.base07}";
-            history_ignore = "yes";
-            override_pause_level = 70;
-          };
-        in
-        {
-          enable = true;
-          iconTheme = icons;
-          settings = {
-            global = {
-              alignment = "center";
-              corner_radius = 10;
-              follow = "mouse";
-              format = "<b>%s</b>\\n%b";
-              frame_width = 1;
-              horizontal_padding = 8;
-              icon_corner_radius = 10;
-              icon_position = "left";
-              icon_theme = icons.name;
-              indicate_hidden = "yes";
-              markup = "yes";
-              max_icon_size = 64;
-              mouse_left_click = "do_action";
-              mouse_middle_click = "close_all";
-              mouse_right_click = "close_current";
-              offset = "10x5";
-              padding = 8;
-              progress_bar_corner_radius = 10;
-              separator_height = 1;
-              show_indicators = false;
-              shrink = "no";
-              transparency = 10;
-              word_wrap = "yes";
+      stylix.targets.swaync.enable = false;
+      services.swaync = {
+        enable = true;
+        style = util.build.theme {
+          inherit (config.stylix) fonts;
+          inherit (config.lib.stylix) colors;
+          file = files.swaync;
+        };
+
+        settings = {
+          # Notification
+          positionX = mkDefault "right";
+          positionY = mkDefault "top";
+          layer = "overlay";
+          layer-shell = true;
+          cssPriority = "user";
+
+          image-visibility = "when-available";
+          timeout = 10;
+          timeout-critical = 0;
+          timeout-low = 5;
+          notification-2fa-action = true;
+          notification-grouping = true;
+          notification-inline-replies = true;
+
+          # Control Center
+          control-center-layer = "top";
+          fit-to-screen = false;
+          control-center-margin-top = 3;
+          control-center-margin-left = 3;
+          control-center-margin-bottom = 3;
+          control-center-margin-right = 3;
+
+          widgets = [
+            "inhibitors"
+            "title"
+            "dnd"
+            "notifications"
+          ];
+
+          widget-config = {
+            title = {
+              text = "Notifications";
+              clear-all-button = true;
+              button-text = "Clear";
             };
+            dnd.text = "Do Not Disturb";
+          };
 
-            urgency_low.frame_color = mkForce "#${colors.base0E}";
-            urgency_normal.frame_color = mkForce "#${colors.base0D}";
-            fullscreen_delay.fullscreen = "delay";
+          notification-visibility = {
             utility = {
-              appname = "utility";
-            }
-            // system;
+              app-name = "utility";
+              state = "transient";
+            };
             upower = {
-              appname = "poweralertd";
-              new_icon = "/run/current-system/sw/share/icons/${icons.name}/24x24/apps/preferences-system-power.svg";
-            }
-            // system;
-
+              app-name = "poweralertd";
+              state = "transient";
+            };
             hyprland = {
-              appname = "grimblast";
-            }
-            // system;
+              app-name = "grimblast";
+              state = "transient";
+            };
             niri = {
-              appname = "niri";
-            }
-            // system;
+              app-name = "niri";
+              state = "transient";
+            };
           };
         };
+      };
     };
   };
 }

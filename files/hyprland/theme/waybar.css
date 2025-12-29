@@ -160,7 +160,7 @@ tooltip {
   color: @base00;
 }
 
-#custom-dunst {
+#custom-notify {
   color: @base0A;
 }
 
@@ -175,8 +175,8 @@ tooltip {
 #bluetooth,
 #clock,
 #custom-dropdown,
-#custom-dunst,
 #custom-logo,
+#custom-notify,
 #custom-minimized,
 #custom-power,
 #custom-temperature,

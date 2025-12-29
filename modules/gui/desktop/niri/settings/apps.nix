@@ -76,7 +76,7 @@
 
         # Utilities
         "Super+N" = {
-          action = spawn "dunstctl" "history-pop";
+          action = spawn "swaync-client" "-t" "-sw";
           hotkey-overlay.title = "Show Notifications";
         };
 

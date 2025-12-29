@@ -2,6 +2,7 @@
 
 ### December
 
+- Use `swaync` instead of `dunst`
 - Niri Updates
   - Update to v25.11
   - Use UWSM

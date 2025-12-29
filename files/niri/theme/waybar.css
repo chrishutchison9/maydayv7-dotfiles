@@ -150,7 +150,7 @@ window#waybar.empty #window {
   color: @base00;
 }
 
-#custom-dunst {
+#custom-notify {
   color: @base0A;
 }
 
@@ -164,8 +164,8 @@ window#waybar.empty #window {
 #bluetooth,
 #clock,
 #custom-dropdown,
-#custom-dunst,
 #custom-logo,
+#custom-notify,
 #custom-power,
 #custom-user,
 #custom-weather,

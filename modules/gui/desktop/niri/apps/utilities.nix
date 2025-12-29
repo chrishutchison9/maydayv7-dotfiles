@@ -19,7 +19,7 @@
       wpaperd.enable = true;
 
       # Notifications
-      dunst.settings.global.origin = "top-left";
+      swaync.settings.positionX = "left";
     };
 
     # Application Drawer

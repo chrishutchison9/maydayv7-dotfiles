@@ -130,6 +130,9 @@
         extension = ".sh";
       };
 
+      # Notifications Daemon
+      swaync = readFile ./swaync.css;
+
       # Document Templates
       templates = ./templates;
 

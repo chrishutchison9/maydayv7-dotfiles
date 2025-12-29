@@ -61,14 +61,12 @@ recursiveUpdate
         gnugrep
         socat
 
-        dunst
-        zenity
+        custom.hyprshellevents
         hyprland
         hyprshade
         hyprsunset
-        custom.hyprshellevents
-
         libnotify
+        zenity
       ];
 
       text = ''
@@ -76,7 +74,7 @@ recursiveUpdate
         ${files.scripts.commands}
 
         notify() {
-          notify-send -a "utility" -t 1000 -h string:x-dunst-stack-tag:"$1" "''${@:2}"
+          notify-send -a "utility" -t 1000 -h string:x-canonical-private-synchronous:"$1" "''${@:2}"
         }
 
         hyprnotify() {

@@ -42,7 +42,6 @@ recursiveUpdate
         alsa-utils
         brightnessctl
         brillo
-        dunst
         libnotify
         playerctl
         systemd
@@ -55,7 +54,7 @@ recursiveUpdate
         show_music_in_volume_indicator=true
 
         notify() {
-          notify-send -a "utility" -t 1000 -h string:x-dunst-stack-tag:"$1" "''${@:2}"
+          notify-send -a "utility" -t 1000 -h string:x-canonical-private-synchronous:"$1" "''${@:2}"
         }
 
         fail() {

@@ -76,7 +76,7 @@ in
         # Tools
         "$mod SHIFT, A, exec, sysutils toggle service waybar"
         "$mod SHIFT, D, exec, hyprutils toggle monitor ${display}"
-        "$mod, N, exec, dunstctl history-pop"
+        "$mod, N, exec, swaync-client -t -sw"
         "$mod, S, exec, hyprutils toggle shader"
         "$mod SHIFT, T, exec, pypr toggle term"
         "$mod, V, exec, pypr show clip"
@@ -95,13 +95,22 @@ in
       "noanim, ^(hyprpicker)$"
       "blur, ^(hyprshell_overview)$"
       "dimaround, ^(hyprshell_overview)$"
+
       "blur, ^(logout_dialog)$"
       "animation fade, ^(logout_dialog)$"
+
       "blur, ^(nwg-drawer)$"
       "dimaround, ^(nwg-drawer)$"
       "animation fade, ^(nwg-drawer)$"
+
+      "blur, ^(swaync-control-center)$"
+      "ignorealpha, ^(swaync-control-center)$"
+      "blur, ^(swaync-notification-window)$"
+      "ignorealpha, ^(swaync-notification-window)$"
+
       "blur, ^(waybar)$"
       "ignorealpha, ^(waybar)$"
+
       "blur, ^(wlclock)$"
       "ignorealpha, ^(wlclock)$"
     ];
