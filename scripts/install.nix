@@ -74,7 +74,7 @@ let
       mkdir -p /mnt/{nix,data}
       mount -t zfs fspool/system/nix /mnt/nix
       mkdir -p /mnt${persist}
-      mount -t zfs fspool/data /mnt/data
+      mount -t zfs fspool/data /mnt${data}
     }
 
     mount_other() {

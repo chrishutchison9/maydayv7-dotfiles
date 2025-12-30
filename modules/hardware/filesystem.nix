@@ -32,7 +32,7 @@ in
   ]
   ++ [
     (mkAliasOptionModule [ "environment" "persist" ] [ "environment" "persistence" files.path.persist ])
-    (mkAliasOptionModule [ "hardware" "fs" "persist" ] [ "environment" "persistence" "/data" ])
+    (mkAliasOptionModule [ "hardware" "fs" "persist" ] [ "environment" "persistence" files.path.data ])
   ];
 
   options = with types; {
@@ -132,7 +132,7 @@ in
           };
 
           # PERSISTENT Partition
-          "/data" = {
+          "${files.path.data}" = {
             device = "fspool/data";
             fsType = "zfs";
             neededForBoot = true;
@@ -193,7 +193,7 @@ in
             ];
           };
 
-          "/data" = {
+          "${files.path.data}" = {
             hideMounts = true;
             users = mapAttrs (_: _: {
               inherit (config.user.persist) files;
@@ -243,7 +243,7 @@ in
                     runtimeInputs = [ pkgs.coreutils ];
                     text = ''
                       LOCAL="$HOME/.local/share/Trash"
-                      PERSIST="/data/home/$USER/Trash"
+                      PERSIST="${files.path.data}/home/$USER/Trash"
                       mkdir -p "$LOCAL"
                       ${script}
                     '';

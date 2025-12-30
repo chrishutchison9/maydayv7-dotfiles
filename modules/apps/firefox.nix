@@ -7,12 +7,13 @@
 }:
 let
   enable = builtins.elem "firefox" config.apps.list;
+  package = pkgs.firefox;
 in
 {
   ## Firefox Browser Configuration ##
   config = lib.mkIf enable {
     environment = {
-      systemPackages = [ pkgs.firefox ];
+      systemPackages = [ package ];
       sessionVariables.MOZ_USE_XINPUT2 = "1";
     };
 
@@ -31,6 +32,7 @@ in
         # Profile
         programs.firefox = {
           enable = true;
+          inherit package;
           policies = {
             # Policies
             DisableTelemetry = true;
@@ -65,6 +67,7 @@ in
           };
 
           profiles.default = {
+            isDefault = true;
             containersForce = true;
             settings = {
               ## Flags

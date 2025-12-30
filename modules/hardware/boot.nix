@@ -51,7 +51,6 @@ in
           "quiet"
           "splash"
           "boot.shell_on_fail"
-          "i915.fastboot=1"
           "rd.systemd.show_status=false"
           "rd.udev.log_level=3"
           "udev.log_priority=3"

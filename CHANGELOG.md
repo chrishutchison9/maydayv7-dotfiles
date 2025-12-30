@@ -2,11 +2,13 @@
 
 ### December
 
+- Use `stevenblack` blocklist
 - Refactor `hardware.gpu` and add `hardware.cpu.model`
 - Use `swaync` instead of `dunst`
 - Niri Updates
   - Update to v25.11
   - Use UWSM
+  - Use `wlr` instead of `gnome` XDG Portal
 - Use `pwvucontrol` instead of `pavucontrol`
 - Patch `nom` rendering
 - Add an AppImage manager

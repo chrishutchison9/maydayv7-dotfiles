@@ -54,12 +54,21 @@ in
         blacklistedKernelModules = [ "nouveau" ];
         kernelModules = [
           "nvidia"
+          "nvidia_drm"
           "nvidia_modeset"
           "nvidia_uvm"
-          "nvidia_drm.fbdev=1" # Wayland Support
-          "NVreg_UsePageAttributeTable=1" # PAT Support
-          "NVreg_RegistryDwords=RMUseSwI2c=0x01;RMI2cSpeed=100" # DDC/CI Support
         ];
+
+        # Wayland Support
+        kernelParams = [ "nvidia-drm.fbdev=1" ];
+
+        extraModprobeConfig = ''
+          # PAT Support
+          options nvidia NVreg_UsePageAttributeTable=1
+
+          # DDC/CI Support
+          options nvidia NVreg_RegistryDwords=RMUseSwI2c=0x01;RMI2cSpeed=100
+        '';
       };
 
       hardware.nvidia = {

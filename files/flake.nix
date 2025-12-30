@@ -17,6 +17,7 @@
 
         system = "/etc/nixos"; # Configuration Directory
         persist = "/nix/state"; # Persisted Files
+        data = "/data"; # Data Directory
 
         gpg = "/etc/gpg"; # GPG Keys Directory
         sops = ../secrets/secrets.yaml; # Encrypted Secrets
@@ -39,7 +40,7 @@
 
       # Directory Bookmarks
       bookmarks = ''
-        file:///data/files Files
+        file://${path.data}/files Files
         file:/// Computer
       '';
 

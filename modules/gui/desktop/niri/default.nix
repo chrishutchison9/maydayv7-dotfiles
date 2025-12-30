@@ -21,6 +21,7 @@
             niri = {
               enable = true;
               package = pkgs.niri-unstable;
+              useNautilus = false;
             };
 
             # Session
@@ -35,6 +36,12 @@
               };
             };
           };
+
+          # App Environment
+          xdg.portal.config.niri.default = [
+            "gtk"
+            "wlr"
+          ];
 
           # Settings
           _shared.enable = true;

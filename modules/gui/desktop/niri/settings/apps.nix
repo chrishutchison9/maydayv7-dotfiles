@@ -24,6 +24,8 @@
             "uwsm"
             "finalize"
             "NIRI_SOCKET"
+            "XDG_CURRENT_DESKTOP"
+            "XDG_SESSION_TYPE"
           ];
         }
         { command = exec "pcmanfm-qt" [ "--desktop" ]; }

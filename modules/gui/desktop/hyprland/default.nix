@@ -34,11 +34,9 @@ in
             portalPackage = pkgs.xdg-desktop-portal-hyprland;
           };
 
-          services = {
-            xserver.desktopManager.runXdgAutostartIfNone = true;
-
-            # Greeter
-            greetd.settings.default_session.command = mkForce "${getExe programs.hyprland.package} --config ${
+          # Greeter
+          services.greetd.settings.default_session.command =
+            mkForce "${getExe programs.hyprland.package} --config ${
               pkgs.writeText "greeter.conf" (
                 replaceStrings [ "@greeter" ] [ (getExe config.programs.regreet.package) ] (
                   util.build.theme {
@@ -48,7 +46,6 @@ in
                 )
               )
             } &> /dev/null";
-          };
         }
         {
           # App Environment
