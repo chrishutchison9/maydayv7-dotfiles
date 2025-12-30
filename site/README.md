@@ -2,7 +2,7 @@
 
 [![website](../files/images/website.png)](https://maydayv7.site)
 
-Generated using [Zola](https://www.getzola.org/) and Deployed with [Nix](https://nixos.org/), [GitHub Pages](https://pages.github.com/) and [Netlify](https://netlify.com)
+Generated using [Zola](https://www.getzola.org/), Deployed via [Nix](https://nixos.org/), [GitHub Pages](https://pages.github.com/) and [Netlify](https://netlify.com)
 
 Hosted at [maydayv7.site](https://maydayv7.site)
 

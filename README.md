@@ -4,9 +4,14 @@
   <img alt="Logo" src="files/images/logo/dark.png">
 </picture>
 
-![License](https://img.shields.io/github/license/maydayv7/dotfiles?color=dgreen&style=flat-square) ![Size](https://img.shields.io/github/repo-size/maydayv7/dotfiles?color=red&label=size&style=flat-square) [![NixOS](https://img.shields.io/badge/NixOS-25.05-9cf.svg?style=flat-square&logo=NixOS&logoColor=white)](https://nixos.org)
+![License](https://img.shields.io/github/license/maydayv7/dotfiles?color=dgreen&style=flat-square)
+![Size](https://img.shields.io/github/repo-size/maydayv7/dotfiles?color=red&label=size&style=flat-square)
+[![NixOS](https://img.shields.io/badge/NixOS-25.05-9cf.svg?style=flat-square&logo=NixOS&logoColor=white)](https://nixos.org)
 
-This [repository](https://github.com/maydayv7/dotfiles) contains the configuration and `dotfiles` for my continuously evolving multi-PC setup (using [Nix](https://nixos.org/)). All the devices I own, controlled by code. It also builds and deploys my website to [maydayv7.site](https://maydayv7.site). You can follow along with my [NixOS Desktop](https://maydayv7.site/series/nixos-desktop/) Series
+This [repository](https://github.com/maydayv7/dotfiles) contains the configuration and `dotfiles` for my continuously evolving multi-PC setup (using [Nix](https://nixos.org/)).
+All the devices I own, controlled by code.
+It also builds and deploys my website to [maydayv7.site](https://maydayv7.site).
+You can follow along with my [NixOS Desktop](https://maydayv7.site/series/nixos-desktop/) Series
 
 <details>
 <summary><b>Pictures</b></summary>
@@ -88,7 +93,7 @@ This [repository](https://github.com/maydayv7/dotfiles) contains the configurati
 - Comprehensive User Configuration using the [`home-manager`](https://github.com/nix-community/home-manager) module, with [support](./modules/user/default.nix) for setting global conditionals and shared/user-specific configuration
 - Ephemeral, Opt-In filesystem state using the [`impermanence`](https://github.com/nix-community/impermanence) module and [ZFS](https://zfsonlinux.org/)
 - Support for Secure Boot using [`lanzaboote`](https://github.com/nix-community/lanzaboote)
-- Support for multiple development [`shells`](./shells) integrated with [`direnv`](https://direnv.net/) and [`lorri`](https://github.com/nix-community/lorri)
+- Multiple development [`shells`](./shells) integrated with [`direnv`](https://direnv.net/) and [`lorri`](https://github.com/nix-community/lorri)
 - Automatic `packages` updates using [`update.sh`](./packages/update.sh)
 - Syntax [formatting](./modules/nix/format.nix) using [`treefmt`](https://github.com/numtide/treefmt)
 - Support for `source` filters with [`nix-filter`](https://github.com/numtide/nix-filter)
@@ -218,21 +223,24 @@ github:maydayv7/dotfiles
 <details>
 <summary><b>Already Installed</b></summary>
 
-In case you want to use my configuration as-is for a fresh NixOS install, you can try the following steps:
+To use my configuration as-is for a fresh NixOS installation, you can try the following steps:
 
-**_Note:_** You can run `nix develop` in the repository to install all required dependencies
+**_Note:_** Run `nix develop` in the repository to install all required dependencies
 
-1. Prepare `/etc/nixos`: <pre><code>sudo mkdir /etc/nixos
+1. Prepare `/etc/nixos`:
+   <pre><code>sudo mkdir /etc/nixos
    sudo chown $USER /etc/nixos && sudo chmod ugo+rw /etc/nixos
    cd /etc/nixos
    </code></pre>
 
-2. Clone this repository (and preferably initialize it using `git`): <pre><code>nix flake init -t github:maydayv7/dotfiles
+2. Clone this repository (and preferably initialize it using `git`):
+   <pre><code>nix flake init -t github:maydayv7/dotfiles
    git init
    </code></pre>
 
 3. Install `gnupg` and generate a GPG Key for yourself (if you don't already have one), and include it in the [`secrets.yaml`](./secrets/secrets.yaml) file (using `gpg --list-keys`). You can use the following commands to generate the GPG key (Ultimate trust and w/o passphrase is preferred):  
-   _Replace_ **_USER_** _,_ **_EMAIL_** _and_ **_COMMENT_** <pre><code>gpg --full-generate-key
+   _Replace_ **_USER_** _,_ **_EMAIL_** _and_ **_COMMENT_**
+   <pre><code>gpg --full-generate-key
    1
    4096
    0
@@ -244,14 +252,16 @@ In case you want to use my configuration as-is for a fresh NixOS install, you ca
    gpg --output public.pgp --armor --export <b><i>USER</i></b>@<b><i>EMAIL</i></b>
    gpg --output private.pgp --armor --export-secret-key <b><i>USER</i></b>@<b><i>EMAIL</i></b>
    </code></pre>
+
    _Save the keys `public.gpg` and `private.gpg` in a secure location_
 
 4. Import all required GPG Keys into a convenient location (like `/etc/gpg`) using <code>gpg --homedir <i>DIR</i> import</code> and specify it at `config.sops.gnupg.home` (Required for decryption of `secrets` on boot, can also be on an external drive)
 
 5. Make new `secrets` and `passwords` in the desired directories by appending the paths to `secrets.yaml` and then using the following command (The [`nixos`](./scripts/README.md) script can be used to simplify the process):  
-   _Replace_ **_PATH_** _with the path to the `secret`_ <pre><code>sops --config <i>/path/to/<b>secrets.yaml</b></i> -i <b><i>PATH</i></b></code></pre>
+   _Replace_ **_PATH_** _with the path to the `secret`_
+   <pre><code>sops --config <i>/path/to/<b>secrets.yaml</b></i> -i <b><i>PATH</i></b></code></pre>
 
-6. Add device-specific configuration by creating a new file in [`devices`](./devices) (bear in mind that the name of the file must be same as the `HOSTNAME` of your device), and if required, hardware configuration using the `hardware.modules` option. Do keep in mind that the filesystems must be appropriately created and labeled as defined [here](./modules/hardware/filesystem.nix).
+6. Add device-specific configuration by creating a new file in [`devices`](./devices). Do keep in mind that the filesystems must be appropriately created and labeled as defined [here](./modules/hardware/filesystem.nix).
 
 7. Finally, run `nixos-rebuild switch --flake /etc/nixos#HOSTNAME` (as `root`) to switch to the configuration!
 
@@ -362,7 +372,7 @@ _Replace_ **_DEVICE_** _with the name of Device to build_
 
 #### Partition Scheme
 
-_Note that the `install` script automatically creates and labels all the required partitions, so it is recommended that only the partition table on the disk be created and have enough free space_
+_The `install` script handles partition creation and labeling, so it is recommended to create only the partition table and ensure sufficient free space_
 
 | Name           | Label  | Format | Size (minimum) |
 | :------------- | :----: | :----: | :------------: |
@@ -386,7 +396,8 @@ _In case you are using the `advanced` filesystem scheme, you may need to set the
 <details>
 <summary><b>Build It Yourself</b></summary>
 
-If you really want to get dirty with Nix and decide to invest oodles of your time into building your own configuration, this repository can be used as inspiration. You can check out the list of links below to resourceful Nix documentation/tutorials/projects that may be helpful in your endeavour
+If you really want to get dirty with Nix and decide to invest oodles of your time into building your own configuration, this repository can be used as inspiration.
+You can check out the list of links below to resourceful Nix documentation/tutorials/projects that may be helpful in your endeavour.
 
 **Welcome** to the Nix Community! ;)
 
@@ -396,19 +407,20 @@ If you really want to get dirty with Nix and decide to invest oodles of your tim
 
 ### Caution
 
-This repository contains my personal configuration, and may cause undesirable effects on other systems. It may also be subject to rapid undocumented changes, and uses Nix [Flakes](https://wiki.nixos.org/wiki/Flakes), an experimental feature
+This repository contains my personal configuration, and may cause undesirable effects on other systems.
+It may also be subject to rapid undocumented changes, and uses Nix [Flakes](https://wiki.nixos.org/wiki/Flakes), an experimental feature.
 
 > [!NOTE]
 > Required Nix Version >= 2.19
 
-It is not recommended to use NixOS if you are a beginner just starting out, without acquaintance with either the command-line or functional programming languages, since the learning curve is steep, debugging issues is difficult, documentation is shallow, and the effort required/time spent isn't worth the hassle for a novice/casual user
+It is not recommended to use NixOS if you are a beginner just starting out, without acquaintance with either the command-line or functional programming languages, since the learning curve is steep, debugging issues is difficult, documentation is shallow, and the effort required/time spent isn't worth the hassle for a novice/casual user.
 
 ### Platform
 
 _May change according to available hardware_
 
-This configuration works well with an Intel CPU + iGPU, and is currently being improved to support an AMD APU + Nvidia GPU. Any other setup is untested  
-The `hardware.modules` option can be used to load relevant configuration from [`nixos-hardware`](https://github.com/nixos/nixos-hardware)
+This configuration works well with an Intel CPU + iGPU, and is currently being improved to support an AMD APU + Nvidia GPU. Any other setup is untested.  
+The `hardware.modules` option can be used to load relevant configuration from [`nixos-hardware`](https://github.com/nixos/nixos-hardware).
 
 See [this](./modules/hardware/README.md) for additional information
 
@@ -418,16 +430,20 @@ The system build cache is publicly hosted using [Cachix](https://www.cachix.org)
 
 ### Continuous Integration
 
-This repository makes use of [`GitHub Actions`](./checks/github/workflows) in order to automatically check the configuration syntax on every commit and format it (using [`treefmt-nix`](https://github.com/numtide/treefmt-nix)), update the `inputs` and build the Install Media `.iso` every month, and upload the build cache to [Cachix](https://app.cachix.org/cache/maydayv7-dotfiles) (You can also find `GitLab CI/CD` configuration in [`.gitlab`](./checks/gitlab/.gitlab-ci.yml)). A `git` [hook](./.git-hooks) is used to check the commit message to adhere to the [`Conventional Commits`](https://www.conventionalcommits.org) specification
+This repository makes use of [`GitHub Actions`](./checks/github/workflows) in order to automatically check the configuration syntax on every commit and format it (using [`treefmt-nix`](https://github.com/numtide/treefmt-nix)), update the `inputs` and build the Install Media `.iso` every month, and upload the build cache to [Cachix](https://app.cachix.org/cache/maydayv7-dotfiles) (You can also find `GitLab CI/CD` configuration [here](./checks/gitlab/.gitlab-ci.yml)).
+A `git` [hook](./files/git/hooks) is used to check the commit message to adhere to the [`Conventional Commits`](https://www.conventionalcommits.org) specification
 
 ##### Variables
 
-- [`ACCESS_TOKEN`](./secrets/github-token.secret): Personal Access Token (To create one - [GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token), [GitLab](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html))
+- [`ACCESS_TOKEN`](./secrets/github-token.secret): Personal Access Token
+  (To create one - [GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token), [GitLab](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html))
 - [`CACHIX_TOKEN`](./secrets/cachix-token.secret): Cachix Authentication Token
 
 ### Home Manager
 
-The [`home-manager`](https://github.com/nix-community/home-manager) module is used in tandem with the system configuration in order to define user-specific configuration. The `config.user.homeConfig` option, from which the final user configuration is built, has been declared in [`modules/user/default.nix`](./modules/user/default.nix) in order to effortlessly configure shared configuration for all users of the system. The system `config` can be accessed using the `sys` parameter in `home-manager` modules
+The [`home-manager`](https://github.com/nix-community/home-manager) module is used in tandem with the system configuration in order to define user-specific configuration.
+The `config.user.homeConfig` option, from which the final user configuration is built, has been declared in [`modules/user/default.nix`](./modules/user/default.nix) in order to effortlessly configure shared configuration for all users of the system.
+The system `config` can be accessed using the `sys` parameter in `home-manager` modules
 
 ## Links
 
@@ -508,6 +524,3 @@ _Thanks a lot! ;)_
 > Last Updated: **December** 2025
 
 If you like this project, consider leaving a [star](https://github.com/maydayv7/dotfiles)
-
-**V 7**  
-<maydayv7@gmail.com>

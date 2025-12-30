@@ -1,6 +1,7 @@
 ### Custom Configuration Modules
 
-The `modules` directory contains custom-made pure Flakes-compatible configuration modules, which form the very core of my configuration for multiple PCs and various use-cases. The following is a summary of all the present configuration options exposed by the particular module:
+The `modules` directory contains custom-made pure Flakes-compatible configuration modules, which form the very core of my configuration for multiple PCs and various use-cases.
+The following is a summary of all the present configuration options exposed by the particular module:
 
 Configuration [Builder](./configuration.nix)
 
@@ -15,7 +16,7 @@ Configuration [Builder](./configuration.nix)
       - `support`: Enable Support for `git` Runners - `"github" / "gitlab"`
       - `secret`: Path to Secret for `git` Runner
   - `wine` -
-    - `enable`: Install Utility Windows apps - `true / false`
+    - `utilities`: Install Utility Windows apps - `true / false`
     - `package`: Package to use for `wine` - Ex. `pkgs.winePackages.staging`
   - `logseq.style`: Path to Logseq Notes CSS
   - `ytmusic.style`: YouTube Music CSS
@@ -73,7 +74,7 @@ Configuration [Builder](./configuration.nix)
   - `support`: List of Additional Supported Hardware - `[ "laptop" "mobile" "printer" "virtualisation" "blockchain" ]`
   - `vm`: Configure Virtualisation Support -
     - `android`: Enable Android Virtualisation - `true / false`
-    - `vfio`: Configure VFIO PCI passthrough - `true / false`
+    - `vfio`: Configure VFIO PCI passthrough - `"on" / "setup" / "off"`
     - `passthrough`: PCI Device IDs for VFIO - Ex. `[ "10de:28e0" "10de:22be" ]`
 
 - [`nix`](./nix): Module that configures the Nix Package Manager -
@@ -93,8 +94,8 @@ Configuration [Builder](./configuration.nix)
     - `autologin`: Enable Automatic User Login - `"true" / "false"`
     - `minimal`: Enable Minimal User Configuration - `"true" / "false"`
     - `homeConfig`: User Specific Home Configuration
+    - `shells`: List of Additional Supported Shells - Ex. `[ "zsh" ]`
 
 - [`shell`](./shell): Module that contains User Shell Environment Configuration -
   - `utilities`: Enable Additional Shell Utilities - `true / false`
   - `prompt`: Enable Fancy Shell Prompt - `true / false`
-  - `support`: List of Additional Supported Shells - Ex. `[ "bash" ]`

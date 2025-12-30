@@ -13,7 +13,9 @@
   margin: 6px 12px;
   border-radius: 7px;
   border: solid 0.5px #@base05;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.8), inset 0 0 0 1px #@base03;
+  box-shadow:
+    0 0 8px rgba(0, 0, 0, 0.8),
+    inset 0 0 0 1px #@base03;
   padding: 0;
 }
 
@@ -111,7 +113,9 @@
   color: #@base05;
   padding: 14px;
   border-radius: 7px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.8), inset 0 0 0 1px #@base02;
+  box-shadow:
+    0 0 8px rgba(0, 0, 0, 0.8),
+    inset 0 0 0 1px #@base02;
 }
 
 /* Title */
@@ -222,7 +226,9 @@ trough slider {
 }
 
 trough slider:hover {
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.8), 0 0 8px #@base0D;
+  box-shadow:
+    0 0 2px rgba(0, 0, 0, 0.8),
+    0 0 8px #@base0D;
 }
 
 /* Scrollbar */
