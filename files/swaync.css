@@ -6,55 +6,20 @@
   font-weight: 500;
 }
 
-/* Sliders */
-scale {
-  margin: 0 7px;
-}
-
-scale trough {
-  margin: 0rem 1rem;
-  min-height: 10px;
-  min-width: 70px;
-  border-radius: 12px;
-}
-
-trough {
-  background-color: #@base02;
-}
-
-trough highlight {
-  background: #@base0D;
-}
-
-trough slider {
-  margin: -10px;
-  border-radius: 12px;
-  background-color: #@base0D;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
-}
-
-trough slider:hover {
-  box-shadow:
-    0 0 2px rgba(0, 0, 0, 0.8),
-    0 0 8px #@base0D;
-}
-
 /* Notification */
 .notification-background {
   background: alpha(#@base01, 0.95);
   color: #@base05;
   margin: 6px 12px;
-  border-radius: 12px;
+  border-radius: 7px;
   border: solid 0.5px #@base05;
-  box-shadow:
-    0 0 8px rgba(0, 0, 0, 0.8),
-    inset 0 0 0 1px #@base03;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.8), inset 0 0 0 1px #@base03;
   padding: 0;
 }
 
 .notification {
   padding: 7px;
-  border-radius: 12px;
+  border-radius: 7px;
 }
 
 .notification.critical {
@@ -77,6 +42,11 @@ trough slider:hover {
   margin-right: 6px;
 }
 
+.notification .app-icon {
+  -gtk-icon-size: 24px;
+  -gtk-icon-shadow: 0 1px 4px black;
+}
+
 /* Text */
 .notification-content .summary {
   color: #@base05;
@@ -96,7 +66,7 @@ trough slider:hover {
 .close-button {
   margin: 7px;
   padding: 4px;
-  border-radius: 6px;
+  border-radius: 7px;
   background: #@base08;
   color: #@base00;
 }
@@ -122,7 +92,7 @@ trough slider:hover {
 .notification progress,
 .notification trough,
 .notification progressbar {
-  border-radius: 12px;
+  border-radius: 7px;
   padding: 3px 0;
 }
 
@@ -140,10 +110,8 @@ trough slider:hover {
   background: alpha(#@base00, 0.95);
   color: #@base05;
   padding: 14px;
-  border-radius: 12px;
-  box-shadow:
-    0 0 8px rgba(0, 0, 0, 0.8),
-    inset 0 0 0 1px #@base02;
+  border-radius: 7px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.8), inset 0 0 0 1px #@base02;
 }
 
 /* Title */
@@ -209,7 +177,7 @@ trough slider:hover {
 }
 
 .notification-group-buttons {
-  margin-right: 12px;
+  margin-right: 7px;
 }
 
 /* Volume/Backlight */
@@ -226,26 +194,55 @@ trough slider:hover {
   background: #@base0A;
 }
 
+/* Sliders */
+scale {
+  margin: 0 7px;
+}
+
+scale trough {
+  margin: 0rem 1rem;
+  min-height: 10px;
+  min-width: 70px;
+  border-radius: 7px;
+}
+
+trough {
+  background-color: #@base02;
+}
+
+trough highlight {
+  background: #@base0D;
+}
+
+trough slider {
+  margin: -10px;
+  border-radius: 7px;
+  background-color: #@base0D;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+}
+
+trough slider:hover {
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.8), 0 0 8px #@base0D;
+}
+
 /* Scrollbar */
 scrollbar {
   background-color: transparent;
 }
 
 scrollbar slider {
-  min-width: 4px;
-  margin: 0 5px;
+  min-width: 2px;
+  margin: 0 1px;
   border-radius: 99px;
   background-color: #@base03;
   opacity: 0.3;
-  box-shadow: none !important;
-  border: none !important;
-  transition: all 0.3s ease;
+  box-shadow: none;
+  border: none;
 }
 
 scrollbar:hover slider {
-  min-width: 8px;
-  margin: 0 3px;
+  min-width: 4px;
   opacity: 0.8;
   background-color: #@base04;
-  box-shadow: none !important;
+  box-shadow: none;
 }
