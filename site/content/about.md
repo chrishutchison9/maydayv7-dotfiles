@@ -7,7 +7,7 @@ skip-meta = true
 
 # Who am I?
 
-I am **Vishrut Gurrala** (19M), studying Computer Science at IIT Guwahati
+I am **Vishrut Gurrala** (20M), studying Computer Science at IIT Guwahati
 
 Tech enthusiast (_read:_ fanatic) and avid reader
 

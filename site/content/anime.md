@@ -1,6 +1,7 @@
 +++
 title = "My Anime List"
 description = "A list of anime that have interested me"
+updated = 2024-01-01
 
 [extra]
 ToC = true

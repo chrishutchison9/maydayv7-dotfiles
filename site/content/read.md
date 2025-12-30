@@ -1,6 +1,7 @@
 +++
 title = "My Read List"
 description = "A list of literary items that I have read"
+updated = 2024-01-01
 
 [extra]
 ToC = true

@@ -15,7 +15,7 @@ comments = true
 
 # Under Construction!
 
-This Page is still under heavy development and may remain unfinished or subjected to major changes over time
+This Page is still under development and may remain unfinished or subjected to major changes over time
 
 # Caution
 

@@ -1,15 +1,15 @@
-# The Site URL
+# Site URL
 base_url = "/"
 title = "maydayv7"
 description = "My Personal Website"
 
-# The Default Language used in Feeds
+# Default Language used in Feeds
 default_language = "en"
 
-# Automatically Compile all '.scss' files in './sass'
+# Compile all '.scss' files in './sass'
 compile_sass = true
 
-# Build Search Index to be used later by a JS Library
+# Build search index to be used later by JS Library
 build_search_index = true
 
 # RSS Feed
@@ -24,7 +24,7 @@ taxonomies = [
 ]
 
 [markdown]
-# Perform Syntax Highlighting
+# Syntax Highlighting
 highlight_code = true
 highlight_theme = "css"
 
@@ -53,8 +53,8 @@ color_schemes = ["black", "blue", "red"]
 # Use 'math=true' in [extra] on individual pages
 math_katex = true
 
-# Generate Table of Contents for all Articles
-# Use 'ToC = true' in [extra] for individual pages
+# Generate Table of Contents for all articles
+# Use 'ToC = true' in [extra] on individual pages
 table_of_contents = false 
 
 # Logo
@@ -63,7 +63,7 @@ logo_text = "maydayv7"
 center = true
 
 # Allow Editing Articles
-# Use 'edit = false' in [extra] to disable for individual pages
+# Use 'edit = true' in [extra] on individual pages
 edit_page = true
 repo_url = "https://github.com/maydayv7/dotfiles/blob/stable/site"
 
@@ -73,7 +73,7 @@ copyright = "V7"
 google_analytics_tracking_id = "G-26PNXDYZNZ"
 
 # Page Comments
-# Use 'comments = true' in [extra] for individual pages
+# Use 'comments = true' in [extra] on individual pages
 disqus = { enabled = false, short_name = "maydayv7" }
 giscus = { enabled = true, repo = "maydayv7/dotfiles", repo_id = "R_kgDOGuzdUw", category = "Blog", category_id = "DIC_kwDOGuzdU84CODRX" }
 
@@ -86,7 +86,7 @@ main_menu_items = [
 
 # Socials Bar
 email = "mailto:maydayv7@gmail.com"
-feed_path = "rss.xml"
+feed_path = "/rss.xml"
 reddit_profile = "https://reddit.com/u/maydayv7"
 github_profile = "https://github.com/maydayv7"
 discord_profile = "https://discordlookup.com/user/519513852648357929"
