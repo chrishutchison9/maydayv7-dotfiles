@@ -2,6 +2,7 @@
 
 ### December
 
+- Refactor `hardware.gpu` and add `hardware.cpu.model`
 - Use `swaync` instead of `dunst`
 - Niri Updates
   - Update to v25.11

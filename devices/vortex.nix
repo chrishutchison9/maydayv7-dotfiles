@@ -17,7 +17,11 @@
     boot = "secure";
     fs.scheme = "advanced";
     modules = [ "dell-inspiron-5509" ];
-    cpu.cores = 8;
+    cpu = {
+      model = "intel";
+      cores = 8;
+    };
+
     support = [
       "laptop"
       "mobile"

@@ -13,7 +13,7 @@
   ];
 
   imports = [
-    ./drivers.nix
+    ./settings
     ./minecraft.nix
   ];
 
@@ -21,11 +21,17 @@
     boot = "secure";
     fs.scheme = "advanced";
     modules = [ "asus-zephyrus-ga402x-nvidia" ];
-    gpu = "nvidia";
     cpu = {
+      model = "amd";
       cores = 8;
       mode = "performance";
     };
+
+    gpu = {
+      enable = true;
+      model = "nvidia";
+    };
+
     support = [
       "laptop"
       "mobile"

@@ -1,5 +1,6 @@
 {
   config,
+  options,
   lib,
   ...
 }:
@@ -12,7 +13,7 @@ let
     ;
 
   inherit (config.apps.git.hosting) enable domain secret;
-  opt = config.apps.git.hosting;
+  opt = options.apps.git.hosting;
 in
 {
   options.apps.git.hosting = {

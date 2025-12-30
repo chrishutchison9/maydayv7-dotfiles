@@ -30,8 +30,8 @@ in
   services.asusd = {
     enable = true;
     enableUserService = true;
-    asusdConfig.text = builtins.readFile ./settings/asusd.ron;
-    auraConfigs."19b6".text = builtins.readFile ./settings/aura.ron;
+    asusdConfig.text = builtins.readFile ./asusd.ron;
+    auraConfigs."19b6".text = builtins.readFile ./aura.ron;
   };
 
   user = {

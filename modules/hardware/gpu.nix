@@ -1,5 +1,6 @@
 {
   config,
+  options,
   lib,
   pkgs,
   ...
@@ -8,22 +9,38 @@ let
   inherit (lib)
     mkForce
     mkIf
+    mkEnableOption
     mkMerge
     mkOption
     types
     ;
 
-  cfg = config.hardware;
+  cfg = config.hardware.gpu;
+  opt = options.hardware.gpu;
+  mode = config.hardware.cpu.mode == "performance";
 in
 {
-  options.hardware.gpu = mkOption {
-    description = "Discrete GPU Support";
-    type = with types; nullOr (enum [ "nvidia" ]);
-    default = null;
+  ## GPU Configuration ##
+  options.hardware.gpu = {
+    enable = mkEnableOption "Discrete GPU Support";
+    model = mkOption {
+      description = "Discrete GPU Model";
+      type = with types; nullOr (enum [ "nvidia" ]);
+      default = null;
+    };
   };
 
   config = mkMerge [
-    (mkIf (cfg.gpu == "nvidia") {
+    (mkIf cfg.enable {
+      assertions = [
+        {
+          assertion = cfg.model != null;
+          message = opt.model.description + " must be set";
+        }
+      ];
+    })
+
+    (mkIf (cfg.enable && cfg.model == "nvidia") {
       services.xserver.videoDrivers = mkForce [ "nvidia" ];
       environment = {
         systemPackages = [ pkgs.btop-cuda ];
@@ -45,27 +62,31 @@ in
         ];
       };
 
-      hardware.nvidia =
-        let
-          enable = cfg.vm.vfio != "on";
-          mode = cfg.cpu.mode == "performance";
-        in
-        {
-          modesetting.enable = mkForce true;
-          nvidiaSettings = mkForce true;
-          dynamicBoost = { inherit enable; };
-          powerManagement = { inherit enable; };
-          prime =
-            with cfg.nvidia.prime;
-            mkIf (amdgpuBusId != "" || intelBusId != "") {
-              sync.enable = mkForce false;
-              reverseSync.enable = mkForce mode;
-              offload = {
-                enable = mkForce (!mode);
-                enableOffloadCmd = mkForce (!mode);
-              };
+      hardware.nvidia = {
+        modesetting.enable = mkForce true;
+        nvidiaSettings = mkForce true;
+        dynamicBoost.enable = true;
+        powerManagement.enable = true;
+        prime =
+          with config.hardware.nvidia.prime;
+          mkIf (amdgpuBusId != "" || intelBusId != "") {
+            sync.enable = mkForce false;
+            reverseSync.enable = mkForce mode;
+            offload = {
+              enable = mkForce (!mode);
+              enableOffloadCmd = mkForce (!mode);
             };
-        };
+          };
+      };
+    })
+
+    (mkIf (!cfg.enable && cfg.model == "nvidia") {
+      boot.blacklistedKernelModules = [
+        "nvidia"
+        "nvidia_drm"
+        "nvidia_modeset"
+        "nvidia_uvm"
+      ];
     })
   ];
 }

@@ -15,8 +15,9 @@ let
     types
     ;
 
-  enable = elem "virtualisation" config.hardware.support;
   cfg = config.hardware.vm;
+  inherit (config.hardware.cpu) model;
+  enable = elem "virtualisation" config.hardware.support;
 in
 {
   options.hardware.vm = {
@@ -59,34 +60,24 @@ in
         hardware.vm.vfio = mkForce "setup";
       };
 
+      # Disable GPU
+      hardware.gpu.enable = mkForce false;
+
       boot = {
         kernelParams = [
           "iommu=pt"
-          "amd_iommu=pt"
-          "intel_iommu=pt"
-          "i915.enable_gvt=1"
+          "${model}_iommu=on"
           "kvm.ignore_msrs=1"
           "kvm.report_ignored_msrs=0"
           ("vfio-pci.ids=" + concatStringsSep "," cfg.passthrough)
         ];
 
-        kernelModules = [
+        initrd.kernelModules = [
           "vfio"
           "vfio_pci"
           "vfio_iommu_type1"
-          "vfio_virqfd"
-        ];
-
-        # Disable GPU
-        blacklistedKernelModules = [
-          "nvidia"
-          "nvidia_drm"
-          "nvidia_modeset"
-          "nvidia_uvm"
         ];
       };
-
-      hardware.gpu = mkForce null;
 
       # Looking Glass
       user.groups = [ "qemu-libvirtd" ];

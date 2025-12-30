@@ -10,8 +10,12 @@
   kernel = "lts";
   hardware = {
     boot = "efi";
-    cpu.cores = 4;
     fs.scheme = "simple";
+    cpu = {
+      model = "intel";
+      cores = 4;
+    };
+
     support = [ "laptop" ];
     modules = [
       "common-pc"

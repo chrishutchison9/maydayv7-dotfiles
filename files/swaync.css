@@ -45,6 +45,7 @@ trough slider:hover {
   color: #@base05;
   margin: 6px 12px;
   border-radius: 12px;
+  border: solid 0.5px #@base05;
   box-shadow:
     0 0 8px rgba(0, 0, 0, 0.8),
     inset 0 0 0 1px #@base03;
@@ -193,6 +194,10 @@ trough slider:hover {
 /* Notification Group */
 .control-center .notification-group {
   margin-top: 12px;
+}
+
+.notification-group-headers {
+  margin-bottom: 5px;
 }
 
 .notification-group-icon {

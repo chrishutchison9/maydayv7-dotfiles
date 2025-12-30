@@ -63,9 +63,12 @@ Configuration [Builder](./configuration.nix)
     - `scheme`: Disk Filesystem Scheme - `"simple" / "advanced"`
     - `persist`: System Files to Preserve across Reboots (while using `advanced` File System Layout)
   - `cpu` -
+    - `model`: CPU Model - `"amd" / "intel"`
     - `cores`: Number of CPU Cores - Ex. `4`
     - `mode`: CPU Frequency Governor Mode - `"ondemand" / "performance" / "powersave"`
-  - `gpu`: Discrete GPU Support - `null / "nvidia"`
+  - `gpu` -
+    - `enable`: Discrete GPU Support - `"true" / "false"`
+    - `model`: Discrete GPU Model - `null / "nvidia"`
   - `modules`: List of Hardware Configuration Modules imported from [`inputs.hardware`](https://github.com/nixos/nixos-hardware) - Ex. `[ "common-pc" ]`
   - `support`: List of Additional Supported Hardware - `[ "laptop" "mobile" "printer" "virtualisation" "blockchain" ]`
   - `vm`: Configure Virtualisation Support -

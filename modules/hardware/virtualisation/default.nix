@@ -7,6 +7,7 @@
   ...
 }:
 let
+  inherit (config.hardware.cpu) model;
   enable = builtins.elem "virtualisation" config.hardware.support;
 in
 {
@@ -26,11 +27,8 @@ in
     environment.persist.directories = [ "/var/lib/libvirt" ];
     security.virtualisation.flushL1DataCache = "cond";
     boot = {
-      kernelModules = [
-        "kvm-amd"
-        "kvm-intel"
-      ];
-      extraModprobeConfig = "options kvm_intel nested=1";
+      kernelModules = [ "kvm-${model}" ];
+      extraModprobeConfig = "options kvm_${model} nested=1";
     };
 
     # VM Packages
