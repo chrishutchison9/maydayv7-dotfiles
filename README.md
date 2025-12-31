@@ -10,8 +10,8 @@
 
 This [repository](https://github.com/maydayv7/dotfiles) contains the configuration and `dotfiles` for my continuously evolving multi-PC setup (using [Nix](https://nixos.org/)).
 All the devices I own, controlled by code.
-It also builds and deploys my website to [maydayv7.site](https://maydayv7.site).
-You can follow along with my [NixOS Desktop](https://maydayv7.site/series/nixos-desktop/) Series
+It also builds and deploys my website to [maydayv7.cc](https://maydayv7.cc).
+You can follow along with my [NixOS Desktop](https://maydayv7.cc/series/nixos-desktop/) Series
 
 <details>
 <summary><b>Pictures</b></summary>
