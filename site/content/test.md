@@ -106,8 +106,6 @@ Here's a sample video played using **_YouTube_** ©
 
 # Headers
 
-# I
-
 ## II
 
 ### III

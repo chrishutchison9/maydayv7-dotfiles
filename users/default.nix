@@ -14,7 +14,7 @@ let
     types
     ;
 
-  cfg = config.credentials.key;
+  cfg = config.credentials;
   dir = config.home.homeDirectory;
 in
 {
