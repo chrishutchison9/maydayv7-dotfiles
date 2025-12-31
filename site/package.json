@@ -1,0 +1,7 @@
+{
+  "name": "maydayv7-site",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "asdf plugin add zola https://github.com/salasrod/asdf-zola && asdf install zola latest && asdf global zola latest && zola build"
+  }
+}

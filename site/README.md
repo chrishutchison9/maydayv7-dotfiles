@@ -2,7 +2,7 @@
 
 [![website](../files/images/website.png)](https://maydayv7.cc)
 
-Generated using [Zola](https://www.getzola.org/), Deployed via [Nix](https://nixos.org/), [GitHub Pages](https://pages.github.com/) and [Netlify](https://netlify.com)
+Generated using [Zola](https://www.getzola.org/), Deployed via [Nix](https://nixos.org/) and [Cloudflare](https://www.cloudflare.com/)
 
 Hosted at [maydayv7.cc](https://maydayv7.cc)
 
@@ -19,11 +19,8 @@ zola -r site serve
 
 Then click [here](http://localhost:1111)
 
-To build the site, run `nix build`. In order to override the Base URL, <code>nix-build -E "with import ../packages; callPackage ./site { site = <b><i>URL</i></b>; }"</code> can be used
-
-#### Continuous Integration
-
-[`GitHub Actions`](../checks/github/workflows/website.yml) is used in order to automatically build the site and publish it to the main domain using GitHub Pages. [Netlify](https://netlify.com) automatically deploys to [maydayv7.netlify.app](https://maydayv7.netlify.app) on every commit and allows for PR previews
+To build the site, run `nix build`.
+To override the URL, run <code>nix build --impure --expr "with import ../packages; callPackage ./site { site = <b><i>URL</i></b>; }"</code>
 
 ### Features
 
