@@ -2,6 +2,8 @@
 
 ### December
 
+- Deploy `site` to Cloudflare
+  - Drop GitHub Pages and Netlify
 - Use `stevenblack` blocklist
 - Refactor `hardware.gpu` and add `hardware.cpu.model`
 - Use `swaync` instead of `dunst`

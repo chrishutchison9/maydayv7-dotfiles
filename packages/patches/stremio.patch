@@ -1,11 +1,7 @@
-https://github.com/NixOS/nixpkgs/pull/468728
----
-diff --git a/pkgs/by-name/st/stremio-linux-shell/package.nix b/pkgs/by-name/st/stremio-linux-shell/package.nix
-new file mode 100644
-index 0000000000000..fcfbf9460f107
+# https://github.com/NixOS/nixpkgs/pull/468728
 --- /dev/null
 +++ b/pkgs/by-name/st/stremio-linux-shell/package.nix
-@@ -0,0 +1,129 @@
+@@ -0,0 +1,130 @@
 +{
 +  lib,
 +  symlinkJoin,
@@ -29,6 +25,7 @@ index 0000000000000..fcfbf9460f107
 +
 +  # Wrapper
 +  libGL,
++  libxkbcommon,
 +  nodejs,
 +}:
 +
@@ -109,7 +106,7 @@ index 0000000000000..fcfbf9460f107
 +  preFixup = ''
 +    gappsWrapperArgs+=(
 +      --prefix LD_LIBRARY_PATH : "/run/opengl-driver/lib" \
-+      --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [ libGL ]}" \
++      --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [ libGL libxkbcommon ]}" \
 +      --prefix PATH : "${lib.makeBinPath [ nodejs ]}"
 +    )
 +  '';

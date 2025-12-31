@@ -1,0 +1,42 @@
+name: "ci: Build and Deploy Site"
+on:
+  push:
+    branches:
+      - stable
+    paths:
+      - "site/**"
+  pull_request:
+    paths:
+      - "site/**"
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repo
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+            accept-flake-config = true
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+      - name: Build Zola Site
+        run: nix build .#website
+      - name: Prepare for Deployment
+        run: |
+          rm -rf site/public
+          mkdir -p site/public
+          cp -rL result/* site/public/
+      - name: Deploy to Cloudflare
+        uses: cloudflare/wrangler-action@v3
+        with:
+          workingDirectory: "site"
+          wranglerVersion: "latest"
+          command: deploy ${{ github.ref == 'refs/heads/stable' && '--env production' || '' }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
