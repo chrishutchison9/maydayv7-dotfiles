@@ -9,12 +9,11 @@ on:
       - "**.lock"
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - "**.lock"
+      - "**.nix"
     paths-ignore:
-      - "**.md"
-      - "**.yml"
-      - "docs/**"
-      - "files/**"
-      - "shells/**"
+      - "site/**"
 env:
   NIX_SHOW_STATS: 1
 jobs:

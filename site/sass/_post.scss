@@ -4,7 +4,7 @@ blockquote {
   border-left: 4px solid var(--accent-alpha-70);
   color: var(--color);
   font-style: italic;
-  padding: 1em 10px 5px 50px;
+  padding: 1em 10px 1px 50px;
   position: relative;
 
   &:after {
@@ -130,6 +130,13 @@ blockquote {
     h5:before,
     h6:before {
       content: "#### ";
+    }
+
+    p {
+      strong,
+      b {
+        font-weight: 900;
+      }
     }
 
     ul {

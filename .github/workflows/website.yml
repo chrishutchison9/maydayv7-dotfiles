@@ -32,6 +32,7 @@ jobs:
           mkdir -p site/public
           cp -rL result/* site/public/
       - name: Deploy to Cloudflare
+        id: deploy
         uses: cloudflare/wrangler-action@v3
         with:
           workingDirectory: "site"
@@ -40,3 +41,6 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Print Deployment URL
+        run: |
+          echo "Site deployed to: ${{ steps.deploy.outputs.deployment-url }}"

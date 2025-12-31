@@ -2,12 +2,9 @@ name: "ci: Check Syntax"
 on:
   workflow_dispatch:
   push:
-    paths-ignore:
-      - "**.md"
-      - "**.yml"
-      - "docs/**"
-      - "files/**"
-      - "shells/**"
+    paths:
+      - "**.lock"
+      - "**.nix"
 env:
   NIX_SHOW_STATS: 1
 jobs:

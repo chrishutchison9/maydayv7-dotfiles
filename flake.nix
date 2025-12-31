@@ -127,7 +127,7 @@
 
     # Discord Module
     nixcord = {
-      url = "github:kaylorben/nixcord";
+      url = "github:FlameFlag/nixcord";
       inputs = {
         nixpkgs.follows = "unstable";
         flake-parts.follows = "framework";

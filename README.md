@@ -11,7 +11,6 @@
 This [repository](https://github.com/maydayv7/dotfiles) contains the configuration and `dotfiles` for my continuously evolving multi-PC setup (using [Nix](https://nixos.org/)).
 All the devices I own, controlled by code.
 It also builds and deploys my website to [maydayv7.cc](https://maydayv7.cc).
-You can follow along with my [NixOS Desktop](https://maydayv7.cc/series/nixos-desktop/) Series
 
 <details>
 <summary><b>Pictures</b></summary>
@@ -396,8 +395,8 @@ _In case you are using the `advanced` filesystem scheme, you may need to set the
 <details>
 <summary><b>Build It Yourself</b></summary>
 
-If you really want to get dirty with Nix and decide to invest oodles of your time into building your own configuration, this repository can be used as inspiration.
-You can check out the list of links below to resourceful Nix documentation/tutorials/projects that may be helpful in your endeavour.
+If you really want to get dirty with Nix and decide to invest oodles of your time into building your own configuration, this repository can be used as inspiration.  
+Follow along with my [NixOS Desktop](https://maydayv7.cc/series/nixos-desktop/) Series
 
 **Welcome** to the Nix Community! ;)
 
@@ -444,58 +443,6 @@ A `git` [hook](./files/git/hooks) is used to check the commit message to adhere 
 The [`home-manager`](https://github.com/nix-community/home-manager) module is used in tandem with the system configuration in order to define user-specific configuration.
 The `config.user.homeConfig` option, from which the final user configuration is built, has been declared in [`modules/user/default.nix`](./modules/user/default.nix) in order to effortlessly configure shared configuration for all users of the system.
 The system `config` can be accessed using the `sys` parameter in `home-manager` modules
-
-## Links
-
-**See:** A [Curated List](https://github.com/nix-community/awesome-nix) of the Best Resources in the Nix Community  
-**Also:** [This](https://nixos-and-flakes.thiscute.world/) website for beginners starting out with NixOS and Flakes
-
-- Official [Documentation](https://nixos.org/learn.html)
-- NixOS [Manual](https://nixos.org/manual/nixpkgs/stable)
-- Nix [Pills](https://nixos.org/guides/nix-pills/)
-- NixOS [Discourse](https://discourse.nixos.org/)
-- NixOS [Package Search](https://search.nixos.org/)
-- [`nixpkgs`](https://github.com/NixOS/nixpkgs) Package Repository
-- [NUR](https://github.com/nix-community/NUR) Nix User Repository
-- NixOS [Hardware Modules](https://github.com/nixos/hardware)
-- Home Manager [Options](https://nix-community.github.io/home-manager/options.html)
-
-### Other Sources
-
-- Tweag [Article](https://www.tweag.io/blog/2020-05-25-flakes/) introducing Flakes
-- Serokell's [Blog](https://serokell.io/blog/practical-nix-flakes) on Flakes
-- Jordan Isaac's [Blog](https://jdisaacs.com/series/nixos-desktop/) for porting configuration to Flakes
-- Jon Ringer's [Videos](https://www.youtube.com/channel/UC-cY3DcYladGdFQWIKL90SQ) on General NixOS Tooling and Hackery
-- Justin's [Notes](https://github.com/justinwoo/nix-shorts) on using Nix
-- Lan Tian's Series of [Blog Posts](https://lantian.pub/en/article/modify-website/nixos-initial-config-flake-deploy.lantian/) on NixOS
-- Christine's [Blog Posts](https://christine.website/blog/series/nixos) addressing NixOS Security
-- [Graham's](https://grahamc.com/blog/erase-your-darlings) and [Elis'](https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/) Blog Posts on Ephemeral Partition Schemes
-
-### Other Configurations
-
-Here are some repositories that I may have shamelessly rummaged through for building my `dotfiles`:  
-_Thanks a lot! ;)_
-
-- [4JX](https://github.com/4JX/nixos-config)
-- [balsoft](https://code.balsoft.ru/balsoft/nixos-config)
-- [bbigras](https://github.com/bbigras/nix-config)
-- [cole-h](https://github.com/cole-h/nixos-config/)
-- [colemickens](https://github.com/cole-mickens/nixcfg)
-- [davidtwco](https://github.com/davidtwco/veritas)
-- [fufexan](https://github.com/fufexan/dotfiles)
-- [gvolpe](https://github.com/gvolpe/nix-config)
-- [hlissner](https://github.com/hlissner/dotfiles)
-- [jordanisaacs](https://github.com/jordanisaacs/dotfiles)
-- [kclejeune](https://github.com/kclejeune/system)
-- [lovesegfault](https://github.com/lovesegfault/nix-config)
-- [lucasew](https://github.com/lucasew/nixcfg)
-- [nobbz](https://github.com/NobbZ/nixos-config)
-- [rasendubi](https://github.com/rasendubi/dotfiles)
-- [sioodmy](https://github.com/sioodmy/dotfiles)
-- [tejing1](https://github.com/tejing1/nixos-config)
-- [vlaci](https://github.com/vlaci/nixos-config)
-- [wiltaylor](https://github.com/wiltaylor/dotfiles)
-- [wimpysworld](https://github.com/wimpysworld/nix-config)
 
 ---
 

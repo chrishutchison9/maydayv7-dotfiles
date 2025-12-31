@@ -6,7 +6,8 @@
   </span>
   {% else %}
   <span class="post-readtime"> <span class="post-icon"></span> <i>{{ page.reading_time }}</i> min </span>
-  {% endif %} :: <span class="post-wordcount"> <span class="post-icon"></span> <i>{{ page.word_count }}</i> words </span> {{ posts::taxonomies(taxonomy=page.taxonomies) }}
+  :: <span class="post-wordcount"> <span class="post-icon"></span> <i>{{ page.word_count }}</i> words </span>
+  {% endif %} {{ posts::taxonomies(taxonomy=page.taxonomies) }}
 </div>
 {% endmacro meta %} {% macro date(date, updated) %}
 <span class="post-date">
