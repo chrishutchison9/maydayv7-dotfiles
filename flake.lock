@@ -648,6 +648,7 @@
         "sops": "sops",
         "spicetify": "spicetify",
         "stable": "stable",
+        "stagit": "stagit",
         "stylix": "stylix",
         "systems": "systems_2",
         "unstable": "unstable",
@@ -733,6 +734,29 @@
         "owner": "NixOS",
         "ref": "nixos-25.11",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "stagit": {
+      "inputs": {
+        "nixpkgs": [
+          "stable"
+        ],
+        "utils": [
+          "utils"
+        ]
+      },
+      "locked": {
+        "lastModified": 1767300315,
+        "narHash": "sha256-KZHyOaFrwh/IBn8wTc3tImVHwpeRi/RJtaD9kt1iNNg=",
+        "owner": "maydayv7",
+        "repo": "stagit",
+        "rev": "6aa8a5443cec322bf8e7a09a1ff03c34f71d96af",
+        "type": "github"
+      },
+      "original": {
+        "owner": "maydayv7",
+        "repo": "stagit",
         "type": "github"
       }
     },

@@ -1,0 +1,292 @@
+/* Fonts */
+@font-face {
+  font-family: "JetBrainsMono Nerd Font";
+  src: url("/fonts/JetBrainsMono-Nerd-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "JetBrainsMono Nerd Font";
+  src: url("/fonts/JetBrainsMono-Nerd-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "JetBrainsMono Nerd Font";
+  src: url("/fonts/JetBrainsMono-Nerd-Italic.woff2") format("woff2");
+  font-weight: normal;
+  font-style: italic;
+}
+
+:root {
+  --font-main: "JetBrainsMono Nerd Font", monospace;
+}
+
+body {
+  font-family: var(--font-main);
+  color: var(--fg);
+  background-color: var(--bg);
+  padding: 1rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+  color: var(--fg);
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Header */
+#header {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+tbody td:first-child {
+  width: 1px;
+  white-space: nowrap;
+  padding-right: 10px;
+}
+
+img {
+  height: 32px;
+  width: auto;
+  border-radius: 3px;
+  vertical-align: middle;
+}
+
+h1 {
+  margin: 0;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 0.25em 0.5em;
+  text-align: left;
+  border: 1px solid var(--bg);
+  white-space: nowrap;
+}
+
+td:empty {
+  border: none;
+  background: transparent !important;
+}
+
+#content tr:hover td {
+  background-color: var(--bg-hover);
+}
+
+th {
+  font-weight: bold;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Code Blocks */
+pre {
+  font-family: var(--font-main);
+  padding: 0.8em;
+  overflow: auto;
+  background-color: var(--bg-code);
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+}
+
+/* Diff (File View) */
+.i {
+  color: var(--diff-add);
+}
+.d {
+  color: var(--diff-del);
+}
+.h {
+  color: var(--diff-mod);
+}
+
+pre span.i,
+pre span.d,
+pre span.h {
+  font-weight: bold;
+}
+
+/* Status (Log View) */
+.A {
+  color: var(--diff-add);
+  font-weight: bold;
+}
+.D {
+  color: var(--diff-del);
+  font-weight: bold;
+}
+.M {
+  color: var(--diff-mod);
+  font-weight: bold;
+}
+.R {
+  font-weight: bold;
+}
+
+/* Blob View */
+#blob a {
+  color: var(--fg-dim);
+  &:hover {
+    color: var(--fg);
+    text-decoration: none;
+  }
+}
+
+/* Metadata */
+.desc {
+  color: var(--fg-dim);
+  display: block;
+  margin-top: 0.2rem;
+}
+
+/* Syntax Highlighting */
+
+/* Container Table */
+table#blob.chroma {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-main);
+  background-color: var(--bg-code);
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+  margin-top: 0;
+  display: table;
+  table-layout: fixed;
+}
+
+/* Cells */
+#blob.chroma td {
+  padding: 0 0.5em;
+  vertical-align: top;
+  line-height: 1.5;
+  border: none;
+}
+
+/* Line Numbers */
+#blob.chroma td.num {
+  width: 1%;
+  min-width: 2.5em;
+  text-align: right;
+  border-right: 1px solid var(--border-subtle);
+  background-color: var(--code-bg-line-num);
+  color: var(--fg-dim);
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* Code Content Column */
+#blob.chroma td.code {
+  width: 100%;
+  white-space: pre-wrap;
+  word-break: break-all;
+  padding-left: 1em;
+}
+
+#blob.chroma td.num a {
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    color: var(--fg);
+  }
+}
+
+/* Syntax Colors */
+
+/* Comments */
+.chroma .c,
+.chroma .c1,
+.chroma .cs,
+.chroma .cm {
+  color: var(--fg-dim);
+  font-style: italic;
+}
+
+/* Keywords */
+.chroma .k,
+.chroma .kd,
+.chroma .kn,
+.chroma .kp,
+.chroma .kr {
+  color: var(--accent-alpha-70);
+  font-weight: bold;
+}
+
+/* Strings */
+.chroma .s,
+.chroma .sa,
+.chroma .sb,
+.chroma .sc,
+.chroma .dl,
+.chroma .sd,
+.chroma .s2,
+.chroma .se,
+.chroma .sh,
+.chroma .si,
+.chroma .sx,
+.chroma .sr,
+.chroma .s1,
+.chroma .ss {
+  color: var(--fg);
+}
+
+/* Numbers */
+.chroma .m,
+.chroma .mb,
+.chroma .mf,
+.chroma .mh,
+.chroma .mi,
+.chroma .il,
+.chroma .mo {
+  color: var(--accent-alpha-70);
+}
+
+/* Types/Classes */
+.chroma .kt,
+.chroma .nc,
+.chroma .no,
+.chroma .nd {
+  color: var(--secondary);
+  font-weight: bold;
+}
+
+/* Variables */
+.chroma .nv,
+.chroma .vc,
+.chroma .vg,
+.chroma .vi {
+  color: var(--secondary);
+  font-weight: bold;
+}
+
+/* Functions */
+.chroma .nf,
+.chroma .fm {
+  color: var(--secondary-alpha-70);
+}
+
+/* Tags */
+.chroma .nt {
+  color: var(--accent-alpha-70);
+}
+
+/* Attributes */
+.chroma .na {
+  color: var(--secondary);
+}
+
+/* Operators */
+.chroma .o,
+.chroma .ow {
+  color: var(--accent-alpha-70);
+}

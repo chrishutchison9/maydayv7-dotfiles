@@ -5,7 +5,7 @@
 - Website Changes
   - Start blogging!
   - Fix comments
-  - Host Gitea
+  - Host `stagit` generated site
 
 ## 2025
 

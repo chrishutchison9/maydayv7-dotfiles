@@ -35,6 +35,7 @@ in
           overlays = (attrValues self.overlays or { }) ++ [
             (_: _: {
               custom = self.packages."${system}";
+              stagit-fork = stagit.packages."${system}".default;
               unstable = import unstable { inherit system config; };
 
               gaming = gaming.packages."${system}";

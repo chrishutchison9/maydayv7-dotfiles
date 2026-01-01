@@ -164,5 +164,7 @@ _Thanks a lot! ;)_
 ---
 
 [^1]: [Meaning](http://gateway-drug.urbanup.com/2175521) ig
+
 [^2]: [Arch Wiki](https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF)
+
 [^3]: T&C Apply ;)

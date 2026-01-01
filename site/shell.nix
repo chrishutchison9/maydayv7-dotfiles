@@ -7,7 +7,7 @@ pkgs.mkShell {
   packages = with pkgs; [
     git
     zola
-    lorri
+    wrangler
   ];
   shellHook = ''echo "## Website Builder Shell ##"'';
 }

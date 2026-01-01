@@ -1,10 +1,13 @@
 _: {
   ## Website Configuration ##
   perSystem =
-    { pkgs, ... }:
+    { lib, pkgs, ... }:
     {
-      # Package
       packages.website = pkgs.callPackage ./. { inherit pkgs; };
+      apps.build-stagit = {
+        type = "app";
+        program = "${pkgs.callPackage ./git { inherit lib pkgs; }}/bin/build-stagit";
+      };
 
       # Development Shell
       devShells.website = import ./shell.nix { inherit pkgs; };

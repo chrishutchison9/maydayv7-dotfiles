@@ -1,0 +1,47 @@
+name: "ci: Build and Deploy Git Site"
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - stable
+    paths:
+      - "site/git/**"
+  pull_request:
+    paths:
+      - "site/git/**"
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repo
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+            accept-flake-config = true
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+      - name: Build Stagit Site
+        run: nix run .#build-stagit
+      - name: Prepare for Deployment
+        run: |
+          rm -rf site/git/public
+          mkdir -p site/git/public
+          cp -rL public/* site/git/public/
+      - name: Deploy to Cloudflare
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          workingDirectory: "site/git"
+          wranglerVersion: "latest"
+          command: deploy ${{ github.ref == 'refs/heads/stable' && '--env production' || '' }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Print Deployment URL
+        run: |
+          echo "Site deployed to: ${{ steps.deploy.outputs.deployment-url }}"

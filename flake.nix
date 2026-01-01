@@ -53,6 +53,21 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Peronal Stagit Fork
+    stagit = {
+      url = "github:maydayv7/stagit";
+      inputs = {
+        nixpkgs.follows = "stable";
+        utils.follows = "utils";
+      };
+    };
+
+    # VS Code Extensions
+    vscode = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     ## Configuration Modules ##
     ## Language Addendum
     # Supported Architectures
@@ -83,14 +98,14 @@
     };
 
     ## Feature Modules
+    # Hardware Support
+    hardware.url = "github:NixOS/nixos-hardware";
+
     # User Home Manager
     home = {
       url = "github:nix-community/home-manager?ref=release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Hardware Support
-    hardware.url = "github:NixOS/nixos-hardware";
 
     # Secure Boot
     boot = {
@@ -118,12 +133,6 @@
 
     # Declarative Flatpak Wrapper
     flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
-
-    # VS Code Extensions
-    vscode = {
-      url = "github:nix-community/nix-vscode-extensions";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # Discord Module
     nixcord = {
