@@ -12,8 +12,6 @@ on:
     paths:
       - "**.lock"
       - "**.nix"
-    paths-ignore:
-      - "site/**"
 env:
   NIX_SHOW_STATS: 1
 jobs:

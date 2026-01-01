@@ -63,6 +63,13 @@
       # 'git' Version Control
       git.hooks = ./git/hooks;
 
+      # Gitea Code Hosting
+      gitea = map.files {
+        directory = ./gitea;
+        apply = readFile;
+        extension = ".css";
+      };
+
       # GNOME Desktop
       gnome = map.files {
         directory = ./gnome;

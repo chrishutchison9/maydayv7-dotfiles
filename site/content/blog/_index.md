@@ -1,6 +1,6 @@
 +++
 title = "The Blog"
-sort_by = "date"
+sort_by = "update_date"
 paginate_by = 5
 insert_anchor_links = "right"
 generate_feeds = true

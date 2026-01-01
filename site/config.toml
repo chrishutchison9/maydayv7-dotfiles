@@ -75,13 +75,14 @@ google_analytics_tracking_id = "G-26PNXDYZNZ"
 # Page Comments
 # Use 'comments = true' in [extra] on individual pages
 disqus = { enabled = false, short_name = "maydayv7" }
-giscus = { enabled = true, repo = "maydayv7/dotfiles", repo_id = "R_kgDOGuzdUw", category = "Blog", category_id = "DIC_kwDOGuzdU84CODRX" }
+giscus = { enabled = true, repo = "maydayv7/dotfiles", repo_id = "R_kgDOHEEEUA", category = "Site", category_id = "DIC_kwDOHEEEUM4C0c1O" }
 
 # Main Menu
 main_menu_items = [
   { url = "/blog/", name="Blog" },
   { url = "/projects/", name="Projects" },
   { url = "/about/", name="About" },
+  { url = "https://git.maydayv7.cc", name="Git", external = true },
 ]
 
 # Socials Bar

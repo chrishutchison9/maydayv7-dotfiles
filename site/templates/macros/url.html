@@ -1,9 +1,9 @@
 {% macro internal(path, text, newtab=false, trailing_slash=true) -%}
 <a
-  href="{{ get_url(path=path, railing_slash=trailing_slash) }}"
+  href="{{ get_url(path=path, trailing_slash=trailing_slash) }}"
   {%-
   if
-  item.newtab
+  newtab
   %}
   target="_blank"
   {%-

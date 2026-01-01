@@ -98,7 +98,7 @@ in
       enable = true;
 
       # Security
-      clientMaxBodySize = "128k";
+      clientMaxBodySize = "1g";
       commonHttpConfig = ''
         client_body_buffer_size 4k;
         large_client_header_buffers 2 4k;

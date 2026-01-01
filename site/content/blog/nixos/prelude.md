@@ -1,7 +1,7 @@
 +++
-title = "My NixOS Configuration"
-description = "Prelude"
-date = 2026-01-01
+title = "Prelude"
+description = "My NixOS Configuration"
+date = 2026-01-02
 
 [taxonomies]
 series = ["NixOS Desktop"]
@@ -12,10 +12,6 @@ ToC = true
 edit = true
 comments = true
 +++
-
-# Under Construction!
-
-This Page is still under development and may remain unfinished or subjected to major changes over time
 
 # I don't know Linux
 
@@ -72,7 +68,7 @@ Every little thing is specified in code. Like when I open [VS Code](https://code
 
 Please.
 
-I needed to know that my system was _spiritually_ pure. So I formatted my drive with [ZFS](https://github.com/openzfs/zfs) (it's own merits aside) and implemented [**Impermanence**](https://github.com/nix-community/impermanence).
+I needed to know that my system was _spiritually_ pure. So I formatted my drive with [ZFS](https://github.com/openzfs/zfs) (it's own [merits](https://itsfoss.com/what-is-zfs/) aside) and implemented [**Impermanence**](https://github.com/nix-community/impermanence).
 Every time I reboot, my root filesystem is nuked. Wiped. Gone. My OS is resurrected from a blank slate every boot, preserving only what I explicitly whitelist on a separate dataset.
 To manage secrets without them dying in the purge, I use [**sops-nix**](https://github.com/Mic92/sops-nix) to encrypt passwords and API keys using GPG, directly into my publicly hosted `git` repo, without leaking any sensitive data.
 
@@ -82,9 +78,9 @@ Well I didn't.
 
 I still wanted to play games and run Android apps. A normal person would dual-boot or use an emulator. I chose violence.
 
-I run [Waydroid](https://github.com/waydroid/waydroid) to virtualize Android directly on the Linux kernel. Then, for the pièce de résistance, I set up [VFIO](https://docs.kernel.org/driver-api/vfio.html) GPU Passthrough [^2]. I pass that GPU directly into a Windows Virtual Machine and use [Looking Glass](https://looking-glass.io/) to stream the video output back to my PC screen with negligible latency.
+I run [Waydroid](https://github.com/waydroid/waydroid) to virtualize Android directly on the Linux kernel. Then, for the _pièce de résistance_, I set up [VFIO](https://docs.kernel.org/driver-api/vfio.html) GPU Passthrough [^2]. I pass that GPU directly into a Windows Virtual Machine and use [Looking Glass](https://looking-glass.io/) to stream the video output back to my PC screen with negligible latency.
 
-I've also declaratively configured [**Minecraft Servers**](https://github.com/Infinidoge/nix-minecraft) (that 2 week period lasted for months actually, don't judge) and [Wine](https://www.winehq.org/) applications (huge shoutout to [Erosanix](https://github.com/emmanuelrosa/erosanix)).
+I've also declaratively configured [**Minecraft Servers**](https://github.com/Infinidoge/nix-minecraft) (that 2 week period lasted for months actually, don't judge) and [Wine](https://www.winehq.org/) applications (shoutout to [Erosanix](https://github.com/emmanuelrosa/erosanix)).
 
 **The result of all this?**
 
@@ -102,7 +98,7 @@ Before you rush off to install this magical operating system, we need to have a 
 
 **NixOS is hard.**
 
-I don't mean "Linux is hard" kind of hard. I mean "I have to relearn how computers work" kind of hard.
+And I don't mean "Linux is hard" kind of hard. Its more "I have to relearn how computers work" kind of hard.
 
 - **It is not standard Linux**: Most tutorials you find on the internet simply will not work here. You can't just `apt install` your problems away.
 - **The Documentation is... sparse**: Sometimes you will be reading a manual, and sometimes you will be reading 5-year-old Reddit threads praying for an answer.
@@ -115,7 +111,7 @@ You can check out the list of links below to resourceful Nix documentation/tutor
 
 ## Links
 
-**See:** A [Curated List](https://github.com/nix-community/awesome-nix) of the Best Resources in the Nix Community  
+**See:** A [Curated List](https://github.com/nix-community/awesome-nix) of the best resources in the Nix Community  
 **Also:** [This](https://nixos-and-flakes.thiscute.world/) website for beginners starting out with NixOS and Flakes
 
 - Official [Documentation](https://nixos.org/learn.html)
@@ -168,7 +164,5 @@ _Thanks a lot! ;)_
 ---
 
 [^1]: [Meaning](http://gateway-drug.urbanup.com/2175521) ig
-
 [^2]: [Arch Wiki](https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF)
-
 [^3]: T&C Apply ;)

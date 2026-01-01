@@ -1,3 +1,12 @@
+## 2026
+
+### January
+
+- Website Changes
+  - Start blogging!
+  - Fix comments
+  - Host Gitea
+
 ## 2025
 
 ### December

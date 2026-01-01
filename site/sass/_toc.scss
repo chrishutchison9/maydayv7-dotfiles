@@ -8,4 +8,19 @@
     font-weight: bold;
     padding-left: 7px;
   }
+
+  a {
+    background: none;
+    text-decoration: none;
+    transition: all 0.2s;
+
+    &:hover {
+      color: var(--accent-secondary);
+      font-weight: bold;
+    }
+
+    &:active {
+      color: var(--accent);
+    }
+  }
 }
