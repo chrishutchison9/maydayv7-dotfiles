@@ -28,7 +28,6 @@ jobs:
         run: nix build .#website
       - name: Prepare for Deployment
         run: |
-          rm -rf site/public
           mkdir -p site/public
           cp -rL result/* site/public/
       - name: Deploy to Cloudflare

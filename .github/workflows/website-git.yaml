@@ -28,10 +28,7 @@ jobs:
       - name: Build Stagit Site
         run: nix run .#build-stagit
       - name: Prepare for Deployment
-        run: |
-          rm -rf site/git/public
-          mkdir -p site/git/public
-          cp -rL public/* site/git/public/
+        run: mv public site/git/public
       - name: Deploy to Cloudflare
         id: deploy
         uses: cloudflare/wrangler-action@v3

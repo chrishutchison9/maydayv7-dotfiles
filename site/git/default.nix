@@ -2,12 +2,13 @@
   lib,
   pkgs,
   site ? "https://git.maydayv7.cc",
+  sitename ? "maydayv7",
   repos ? import ./repos.nix,
 }:
 let
   theme = import ./theme.nix pkgs;
   buildCommands = lib.concatMapStrings (repo: ''
-    build_repo "${repo.name}" "${repo.description}" "${repo.owner}" "${repo.url}" "${repo.logo or ""}"
+    build_repo "${repo.name}" "${repo.description}" "${repo.owner}" "${repo.url}"
   '') repos;
 in
 pkgs.writeShellApplication {
@@ -16,7 +17,6 @@ pkgs.writeShellApplication {
     coreutils
     git
     stagit-fork
-    xhtml1
   ];
 
   text = ''
@@ -44,11 +44,10 @@ pkgs.writeShellApplication {
     fi
 
     # Theme
-    ls $OUTPUT_DIR
-    cp "${theme.red}" "$OUTPUT_DIR/style.css"
     cp "${theme.red}" "$OUTPUT_DIR/style-red.css"
     cp "${theme.blue}" "$OUTPUT_DIR/style-blue.css"
     cp "${theme.black}" "$OUTPUT_DIR/style-black.css"
+    ln -sf style-red.css "$OUTPUT_DIR/style.css"
 
     # Favicon
     if [ -f "$FAVICON_SRC" ]
@@ -66,7 +65,6 @@ pkgs.writeShellApplication {
         DESC=$2
         OWNER=$3
         URL=$4
-        LOGO=$5
 
         echo "---------------------------------------"
         echo "Processing $NAME..."
@@ -78,14 +76,9 @@ pkgs.writeShellApplication {
         echo "$OWNER" > "$REPO_DIR/owner"
         echo "$URL" > "$REPO_DIR/url"
 
-        mkdir -p "$OUTPUT_DIR/$NAME"
-        if [ -n "$LOGO" ] && [ -f "$LOGO" ]
-        then
-          cp "$LOGO" "$OUTPUT_DIR/$NAME/logo.png"
-        fi
-
         # Run Stagit
-        (cd "$OUTPUT_DIR/$NAME" && stagit -l 50 -u "$BASE_URL/$NAME" "$REPO_DIR")
+        mkdir -p "$OUTPUT_DIR/$NAME"
+        (cd "$OUTPUT_DIR/$NAME" && stagit -l 50 -n ${sitename} -u "$BASE_URL/$NAME" "$REPO_DIR")
 
         # Link Global Assets
         ln -sf ../style.css "$OUTPUT_DIR/$NAME/style.css"
@@ -98,7 +91,7 @@ pkgs.writeShellApplication {
 
     # 4. Generate Index
     echo "Generating Index..."
-    stagit-index "$BUILD_ROOT"/*.git > "$OUTPUT_DIR/index.html"
+    stagit-index -n ${sitename} "$BUILD_ROOT"/*.git > "$OUTPUT_DIR/index.html"
 
     echo "Successfully built to $OUTPUT_DIR!"
   '';

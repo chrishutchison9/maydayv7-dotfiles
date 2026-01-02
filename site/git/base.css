@@ -33,33 +33,90 @@ body {
 
 a {
   text-decoration: none;
-  color: var(--fg);
+  color: var(--accent);
   &:hover {
     text-decoration: underline;
+    color: var(--secondary);
   }
 }
 
 /* Header */
-#header {
-  margin-bottom: 1.5rem;
-  text-align: left;
+.header {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 2rem;
+  width: 100%;
 }
 
-tbody td:first-child {
-  width: 1px;
-  white-space: nowrap;
-  padding-right: 10px;
+.header-inner {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
-img {
-  height: 32px;
-  width: auto;
+/* Bars */
+.header-logo {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+
+.header-logo::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin-left: 15px;
+  background: linear-gradient(
+    90deg,
+    var(--accent) 0% 12%,
+    transparent 12% 50%,
+    var(--secondary) 50% 62%,
+    transparent 62%
+  );
+  background-position: left center;
+  background-repeat: repeat-x;
+  background-size: 40px 100%;
+}
+
+/* Button */
+.header-logo a {
+  flex: 0 0 auto;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: var(--bg);
+  background-color: var(--accent);
+  padding: 5px 10px;
   border-radius: 3px;
-  vertical-align: middle;
+  border: 1px solid var(--border-subtle);
+
+  &:hover {
+    color: var(--secondary);
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: dotted 2px var(--fg);
+  }
 }
 
-h1 {
-  margin: 0;
+/* Repo Header */
+#repo-header {
+  margin-bottom: 1rem;
+  text-align: left;
+
+  h1 {
+    margin: 0;
+    font-size: 1.5em;
+  }
+}
+
+/* Navigation Row */
+#nav {
+  margin-bottom: 1rem;
 }
 
 /* Tables */
@@ -110,7 +167,6 @@ pre {
 .h {
   color: var(--diff-mod);
 }
-
 pre span.i,
 pre span.d,
 pre span.h {
@@ -152,7 +208,6 @@ pre span.h {
 
 /* Syntax Highlighting */
 
-/* Container Table */
 table#blob.chroma {
   width: 100%;
   border-collapse: collapse;
@@ -165,7 +220,6 @@ table#blob.chroma {
   table-layout: fixed;
 }
 
-/* Cells */
 #blob.chroma td {
   padding: 0 0.5em;
   vertical-align: top;
@@ -173,7 +227,6 @@ table#blob.chroma {
   border: none;
 }
 
-/* Line Numbers */
 #blob.chroma td.num {
   width: 1%;
   min-width: 2.5em;
@@ -185,7 +238,6 @@ table#blob.chroma {
   white-space: nowrap;
 }
 
-/* Code Content Column */
 #blob.chroma td.code {
   width: 100%;
   white-space: pre-wrap;
@@ -196,14 +248,12 @@ table#blob.chroma {
 #blob.chroma td.num a {
   text-decoration: none;
   color: inherit;
-  &:hover {
-    color: var(--fg);
-  }
+}
+#blob.chroma td.num a:hover {
+  color: var(--fg);
 }
 
 /* Syntax Colors */
-
-/* Comments */
 .chroma .c,
 .chroma .c1,
 .chroma .cs,

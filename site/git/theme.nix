@@ -36,11 +36,6 @@ let
         --diff-del: ${diffDel};
         --diff-mod: ${diffMod};
       }
-
-      /* Overrides */
-      body { background-color: var(--bg); color: var(--fg); }
-      a { color: var(--accent); }
-      a:hover { color: var(--secondary); }
     '';
 in
 {

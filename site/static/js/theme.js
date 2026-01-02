@@ -1,6 +1,23 @@
 (function (switch_theme) {
-  const THEME_KEY = "theme_color";
-  const THEME = localStorage.getItem(THEME_KEY);
+  const COOKIE_NAME = "theme_color";
+  function getCookie(name) {
+    const v = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
+    return v ? v[2] : null;
+  }
+
+  function setCookie(name, value) {
+    document.cookie = `${name}=${value}; path=/; max-age=31536000; SameSite=Lax`;
+  }
+
+  function saveTheme(themeName) {
+    setCookie(COOKIE_NAME, themeName);
+  }
+
+  function clearTheme() {
+    document.cookie = `${COOKIE_NAME}=; path=/; max-age=0; SameSite=Lax`;
+  }
+
+  const THEME = getCookie(COOKIE_NAME);
   const STOP_BLINK_CSS_ID = "stop-blink";
   const STYLESHEET_CLASSNAME = "stylesheet";
   let previousLink = null;
@@ -26,10 +43,8 @@
     if (previousLink) {
       document.getElementsByTagName("head")[0].appendChild(previousLink);
     }
-    updateThemeSelect(
-      document.querySelectorAll(`.${STYLESHEET_CLASSNAME}`)[0].id,
-      true,
-    );
+    let sheets = document.querySelectorAll(`.${STYLESHEET_CLASSNAME}`);
+    if (sheets.length > 0) updateThemeSelect(sheets[0].id, true);
     showBody();
   };
 
@@ -47,8 +62,8 @@
     link.addEventListener("error", onLinkError);
 
     if (firstLoad) {
-      previousLink = document.querySelectorAll(`.${STYLESHEET_CLASSNAME}`)[0];
-      removeStylesheets();
+      let sheets = document.querySelectorAll(`.${STYLESHEET_CLASSNAME}`);
+      if (sheets.length > 0) previousLink = sheets[0];
     }
 
     saveTheme(themeName);
@@ -56,16 +71,8 @@
 
   function removeStylesheets() {
     document.querySelectorAll(`.${STYLESHEET_CLASSNAME}`).forEach((el) => {
-      el.remove();
+      if (el !== previousLink) el.remove();
     });
-  }
-
-  function saveTheme(themeName) {
-    localStorage.setItem(THEME_KEY, themeName);
-  }
-
-  function clearTheme() {
-    localStorage.removeItem(THEME_KEY);
   }
 
   function hideBody() {
@@ -110,15 +117,22 @@
 
   switch_theme.init = function (url) {
     baseUrl = url;
-    if (THEME && !document.getElementById(THEME)) {
-      hideBody();
-      changeTheme(THEME, true);
-      updateThemeSelect(THEME, true);
+    if (THEME) {
+      setCookie(COOKIE_NAME, THEME);
+      if (!document.getElementById(THEME)) {
+        hideBody();
+        changeTheme(THEME, true);
+        updateThemeSelect(THEME, true);
+      }
     }
+
     window.addEventListener("load", () => {
-      document.getElementById("theme-select").onchange = function () {
-        changeTheme(this.value);
-      };
+      let selector = document.getElementById("theme-select");
+      if (selector) {
+        selector.onchange = function () {
+          changeTheme(this.value);
+        };
+      }
     });
   };
-})((switch_theme = window.switch_theme || {}));
+})((window.switch_theme = window.switch_theme || {}));
