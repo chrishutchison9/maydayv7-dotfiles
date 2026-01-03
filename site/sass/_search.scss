@@ -3,9 +3,9 @@
 .search {
   &-container {
     display: inline-block;
-    left: 660px;
+    left: 670px;
     position: relative;
-    top: -31px;
+    top: -32px;
     transition: all 0.5s ease-out;
     width: 160px;
     margin-bottom: -20px;
@@ -19,15 +19,16 @@
       }
     }
 
+    @media (max-width: $tablet-max-width) {
+      left: 300px;
+      width: 300px;
+    }
+
     @media (max-width: $phone-max-width) {
       left: 0 !important;
       margin-bottom: 20px;
       top: 20px;
       width: 100%;
-    }
-
-    @media (max-width: $tablet-max-width) {
-      left: 225px;
     }
   }
 
@@ -45,12 +46,13 @@
     right: 0;
     width: 300%;
 
-    @media (max-width: $phone-max-width) {
-      width: 100%;
-    }
-
     @media (max-width: $tablet-max-width) {
       left: 0;
+      width: 300px;
+    }
+
+    @media (max-width: $phone-max-width) {
+      width: 100%;
     }
 
     &__number {

@@ -3,13 +3,17 @@
   pkgs,
   site ? "https://git.maydayv7.cc",
   sitename ? "maydayv7",
-  repos ? import ./repos.nix,
+  test ? false,
 }:
 let
   theme = import ./theme.nix pkgs;
-  buildCommands = lib.concatMapStrings (repo: ''
-    build_repo "${repo.name}" "${repo.description}" "${repo.owner}" "${repo.url}"
-  '') repos;
+  buildCommands =
+    if test then
+      ''build_repo test "A long description just for testing" Me "$(pwd)"''
+    else
+      lib.concatMapStrings (repo: ''
+        build_repo "${repo.name}" "${repo.description}" "${repo.owner}" "${repo.url}"
+      '') (import ./repos.nix);
 in
 pkgs.writeShellApplication {
   name = "build-stagit";
@@ -28,7 +32,6 @@ pkgs.writeShellApplication {
     FONTS_SRC="./site/static/fonts"
     FAVICON_SRC="./site/static/desktop.ico"
 
-    rm -rf "$OUTPUT_DIR"
     mkdir -p "$OUTPUT_DIR"
     mkdir -p "$OUTPUT_DIR/fonts"
 
@@ -69,20 +72,17 @@ pkgs.writeShellApplication {
         echo "---------------------------------------"
         echo "Processing $NAME..."
         REPO_DIR="$BUILD_ROOT/$NAME.git"
-        git clone --bare "$URL" "$REPO_DIR"
+        git clone --bare --filter=blob:limit=2m "$URL" "$REPO_DIR"
 
         # Metadata
         echo "$DESC" > "$REPO_DIR/description"
         echo "$OWNER" > "$REPO_DIR/owner"
         echo "$URL" > "$REPO_DIR/url"
+        mkdir -p "$OUTPUT_DIR/$NAME"
+        ln -sf ../favicon.png "$OUTPUT_DIR/$NAME/favicon.png"
 
         # Run Stagit
-        mkdir -p "$OUTPUT_DIR/$NAME"
         (cd "$OUTPUT_DIR/$NAME" && stagit -l 50 -n ${sitename} -u "$BASE_URL/$NAME" "$REPO_DIR")
-
-        # Link Global Assets
-        ln -sf ../style.css "$OUTPUT_DIR/$NAME/style.css"
-        ln -sf ../favicon.png "$OUTPUT_DIR/$NAME/favicon.png"
         echo "---------------------------------------"
     }
 

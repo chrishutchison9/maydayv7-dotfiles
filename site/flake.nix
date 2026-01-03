@@ -3,7 +3,10 @@ _: {
   perSystem =
     { lib, pkgs, ... }:
     {
+      # Website
       packages.website = pkgs.callPackage ./. { inherit pkgs; };
+
+      # 'git' Frontend
       apps.build-stagit = {
         type = "app";
         program = "${pkgs.callPackage ./git { inherit lib pkgs; }}/bin/build-stagit";

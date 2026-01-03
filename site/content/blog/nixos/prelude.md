@@ -34,7 +34,7 @@ The fear that if you delete the wrong file, mess with the wrong package, or even
 > That's \*\*\*\*\*\*\* it I'm switching back to Windows forever
 >
 > --> **Me**  
-> (right after the 69420th distro-hop that caused my system to crash and burn)
+> ~~(right after the 69420th distro-hop that caused my system to crash and burn)~~
 
 **NixOS is different.**
 

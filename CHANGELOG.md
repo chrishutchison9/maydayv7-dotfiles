@@ -5,7 +5,7 @@
 - Website Changes
   - Start blogging!
   - Fix comments
-  - Host `stagit` generated site
+  - `git` frontend using `stagit`
 
 ## 2025
 
