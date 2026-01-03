@@ -24,7 +24,7 @@ To override the URL, run: <pre><code>nix build --impure --expr "with import ../p
 
 #### Continuous Integration
 
-[`GitHub Actions`](../checks/github/workflows/website.yml) is used in order to automatically build the site and deploy it to Cloudflare
+[`GitHub Actions`](../checks/github/workflows/website.yml) is used to automatically build the site and deploy it to Cloudflare
 
 ### Features
 
@@ -50,4 +50,5 @@ To override the URL, run: <pre><code>nix build --impure --expr "with import ../p
 
 The [`git`](./git) directory contains the configuration for my static `git` frontend, hosted at [git.maydayv7.cc](https://maydayv7.cc)  
 It is built using my `stagit` [fork](https://github.com/maydayv7/stagit) to generate static HTML pages for my repositories  
-To build it, run `nix run .#build-stagit`
+To build it, run `nix run .#build-stagit`  
+[`GitHub Actions`](../checks/github/workflows/website-git.yml) is used to automatically build the site and deploy it to Cloudflare every week
