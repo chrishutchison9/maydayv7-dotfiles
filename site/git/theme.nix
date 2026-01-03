@@ -1,6 +1,6 @@
 pkgs:
 let
-  baseCss = builtins.readFile ./base.css;
+  style = builtins.readFile ./style.css;
   mkTheme =
     name:
     {
@@ -17,7 +17,7 @@ let
       diffMod,
     }:
     pkgs.writeText "style-${name}.css" ''
-      ${baseCss}
+      ${style}
       :root {
         --bg: ${bg};
         --fg: ${fg};

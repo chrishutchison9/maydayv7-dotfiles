@@ -1,12 +1,11 @@
 name: "ci: Build and Deploy Git Site"
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 0"
   push:
     branches:
       - stable
-    paths:
-      - "site/git/**"
-  pull_request:
     paths:
       - "site/git/**"
 jobs:
@@ -35,7 +34,7 @@ jobs:
         with:
           workingDirectory: "site/git"
           wranglerVersion: "latest"
-          command: deploy ${{ github.ref == 'refs/heads/stable' && '--env production' || '' }}
+          command: deploy --env production
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}

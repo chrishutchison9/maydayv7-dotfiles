@@ -46,7 +46,7 @@ To override the URL, run: <pre><code>nix build --impure --expr "with import ../p
   - [x] GitHub : Star Count - <code>{{ github(repo="<b>USER</b>/<b>NAME</b>") }}</code>
   - [x] YouTube : Embed Video - <code>{{ youtube(id="<b>ID</b>") }}</code>
 
-## Git frontend
+## `git` frontend
 
 The [`git`](./git) directory contains the configuration for my static `git` frontend, hosted at [git.maydayv7.cc](https://maydayv7.cc)  
 It is built using my `stagit` [fork](https://github.com/maydayv7/stagit) to generate static HTML pages for my repositories  

@@ -19,21 +19,37 @@
 }
 
 :root {
-  --font-main: "JetBrainsMono Nerd Font", monospace;
+  --font-main: "JetBrainsMono Nerd Font", Menlo, DejaVu Sans Mono, monospace;
+}
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: inherit;
 }
 
 body {
   font-family: var(--font-main);
   color: var(--fg);
   background-color: var(--bg);
-  padding: 0;
+  font-size: 1rem;
+  line-height: 1.54;
   margin: 0;
-  line-height: 1.5;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
 }
 
 a {
   text-decoration: none;
   color: var(--accent);
+  transition: color 0.2s;
   &:hover {
     text-decoration: underline;
     color: var(--secondary);
@@ -41,25 +57,36 @@ a {
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
   max-width: 900px;
   margin: 0 auto;
   padding: 30px;
-  border-left: 1px solid var(--border-subtle);
-  border-right: 1px solid var(--border-subtle);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+}
+
+@media (max-width: 900px) {
+  .container {
+    border: none;
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 684px) {
   .container {
     padding: 20px;
   }
+
+  body {
+    font-size: 1rem;
+  }
 }
 
 /* Navigation Styling */
-.menu-desktop {
-  margin-top: 10px;
+.menu {
+  margin-top: 15px;
 }
 
 .menu-inner {
@@ -117,7 +144,7 @@ a {
   display: block;
   width: 100%;
   height: 40px;
-  margin-left: 15px;
+  margin: 0px 0px 0px 10px;
   background: linear-gradient(
     90deg,
     var(--accent) 0% 12%,
@@ -140,7 +167,6 @@ a {
   background-color: var(--accent);
   padding: 5px 10px;
   border-radius: 3px;
-  border: 1px solid var(--border-subtle);
 
   &:hover {
     color: var(--secondary);
@@ -149,6 +175,34 @@ a {
 
   &:focus {
     outline: dotted 2px var(--fg);
+  }
+}
+
+@media (max-width: 684px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-logo {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .header-logo::after {
+    margin: 0px 15px 0px 10px;
+  }
+
+  .menu-inner {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .menu-inner li {
+    margin-right: 0;
+    margin-bottom: 10px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--bg-hover);
   }
 }
 
@@ -180,7 +234,7 @@ a {
   font-family: var(--font-main);
   background-color: var(--bg-code);
   padding: 0.5em 0.8em;
-  border-radius: 4px;
+  border-radius: 3px;
   font-size: 0.9em;
   white-space: nowrap;
   border: 1px solid var(--border-subtle);
@@ -192,6 +246,15 @@ table {
   border-collapse: collapse;
   table-layout: fixed;
   min-width: 800px;
+}
+
+@media (max-width: 684px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+    min-width: 0;
+  }
 }
 
 td,
@@ -216,7 +279,10 @@ td:empty {
 th {
   font-weight: bold;
   border-bottom: 1px solid var(--border);
+  color: var(--accent);
 }
+
+/* --- Page-specific sizing --- */
 
 /* Index Page */
 #index td:nth-child(1) {
@@ -235,13 +301,13 @@ th {
 }
 #index td:nth-child(4) {
   /* Last Commit */
-  width: 10em;
+  width: 11em;
 }
 
 /* Log Page */
 #log td:nth-child(1) {
   /* Date */
-  width: 10em;
+  width: 11em;
 }
 #log td:nth-child(2) {
   /* Message */
@@ -253,18 +319,15 @@ th {
 }
 #log td:nth-child(4) {
   /* Files */
+  width: 5em;
+  text-align: right;
+}
+#log td:nth-child(5),
+#log td:nth-child(6) {
+  /* +/- */
   width: 4em;
   text-align: right;
-}
-#log td:nth-child(5) {
-  /* + */
-  width: 3em;
-  text-align: right;
-}
-#log td:nth-child(6) {
-  /* - */
-  width: 3em;
-  text-align: right;
+  text-overflow: clip;
 }
 
 /* Files Page */
@@ -291,7 +354,7 @@ th {
 #branches td:nth-child(2),
 #tags td:nth-child(2) {
   /* Date */
-  width: 10em;
+  width: 11em;
 }
 #branches td:nth-child(3),
 #tags td:nth-child(3) {
@@ -405,7 +468,7 @@ pre span.h {
   border-top: 1px solid var(--border-subtle);
 }
 
-/* Syntax Highlighting */
+/* --- Syntax Highlighting --- */
 
 table#blob.chroma {
   width: 100%;
@@ -419,6 +482,13 @@ table#blob.chroma {
   table-layout: fixed;
 }
 
+@media (max-width: 684px) {
+  table#blob.chroma {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
 #blob.chroma td {
   padding: 0 0.5em;
   vertical-align: top;
@@ -426,11 +496,12 @@ table#blob.chroma {
   border: none;
 }
 
+/* Line Numbers */
 #blob.chroma td.num {
-  width: 3em;
+  width: 4em;
   text-align: right;
   border-right: 1px solid var(--border-subtle);
-  background-color: var(--code-bg-line-num);
+  background-color: var(--bg-hover);
   color: var(--fg-dim);
   user-select: none;
   white-space: nowrap;
@@ -453,7 +524,8 @@ table#blob.chroma {
   color: var(--fg);
 }
 
-/* Syntax Colors */
+/* --- Syntax Colors --- */
+
 .chroma .c,
 .chroma .c1,
 .chroma .cs,
