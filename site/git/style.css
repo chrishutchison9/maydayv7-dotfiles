@@ -110,10 +110,9 @@ a {
   color: var(--fg);
   text-decoration: underline;
   text-underline-offset: 4px;
-}
-
-.menu-inner li a:hover {
-  color: var(--secondary);
+  &:hover {
+    color: var(--secondary);
+  }
 }
 
 /* Header */
@@ -278,7 +277,7 @@ td:empty {
   background: transparent !important;
 }
 
-#content tr:hover td {
+tbody:not(#blob tbody) tr:hover td {
   background-color: var(--bg-hover);
 }
 
@@ -476,7 +475,7 @@ pre span.h {
 
 /* --- Syntax Highlighting --- */
 
-table#blob.chroma {
+#blob table {
   width: 100%;
   border-collapse: collapse;
   font-family: var(--font-main);
@@ -489,13 +488,13 @@ table#blob.chroma {
 }
 
 @media (max-width: 684px) {
-  table#blob.chroma {
+  #blob table {
     display: block;
     overflow-x: auto;
   }
 }
 
-#blob.chroma td {
+#blob td {
   padding: 0 0.5em;
   vertical-align: top;
   line-height: 1.5;
@@ -503,7 +502,7 @@ table#blob.chroma {
 }
 
 /* Line Numbers */
-#blob.chroma td.num {
+#blob td.linenos {
   width: 4em;
   text-align: right;
   border-right: 1px solid var(--border-subtle);
@@ -511,110 +510,144 @@ table#blob.chroma {
   color: var(--fg-dim);
   user-select: none;
   white-space: nowrap;
-  overflow: visible;
-  text-overflow: clip;
 }
 
-#blob.chroma td.code {
+#blob .highlight span[id^="line-"] {
+  display: block;
+  width: 100%;
+  &:hover {
+    background-color: var(--bg-hover);
+  }
+}
+
+/* Code Content */
+#blob td.code {
   width: 100%;
   white-space: pre-wrap;
   word-break: break-all;
   padding-left: 1em;
 }
 
-#blob.chroma td.num a {
-  text-decoration: none;
-  color: inherit;
-}
-#blob.chroma td.num a:hover {
-  color: var(--fg);
+#blob td.linenos pre,
+#blob td.code pre {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  overflow: visible;
+  font-family: inherit;
 }
 
 /* --- Syntax Colors --- */
+.highlight {
+  color: var(--fg);
+}
 
-.chroma .c,
-.chroma .c1,
-.chroma .cs,
-.chroma .cm {
+/* Comments */
+.highlight .c,
+.highlight .ch,
+.highlight .cm,
+.highlight .cp,
+.highlight .cpf,
+.highlight .c1,
+.highlight .cs {
   color: var(--fg-dim);
   font-style: italic;
 }
 
 /* Keywords */
-.chroma .k,
-.chroma .kd,
-.chroma .kn,
-.chroma .kp,
-.chroma .kr {
+.highlight .k,
+.highlight .kd,
+.highlight .kn,
+.highlight .kp,
+.highlight .kr,
+.highlight .kt {
   color: var(--accent-alpha-70);
   font-weight: bold;
 }
 
 /* Strings */
-.chroma .s,
-.chroma .sa,
-.chroma .sb,
-.chroma .sc,
-.chroma .dl,
-.chroma .sd,
-.chroma .s2,
-.chroma .se,
-.chroma .sh,
-.chroma .si,
-.chroma .sx,
-.chroma .sr,
-.chroma .s1,
-.chroma .ss {
+.highlight .s,
+.highlight .sa,
+.highlight .sb,
+.highlight .sc,
+.highlight .dl,
+.highlight .sd,
+.highlight .s2,
+.highlight .se,
+.highlight .sh,
+.highlight .si,
+.highlight .sx,
+.highlight .sr,
+.highlight .s1,
+.highlight .ss {
   color: var(--fg);
 }
 
 /* Numbers */
-.chroma .m,
-.chroma .mb,
-.chroma .mf,
-.chroma .mh,
-.chroma .mi,
-.chroma .il,
-.chroma .mo {
+.highlight .m,
+.highlight .mb,
+.highlight .mf,
+.highlight .mh,
+.highlight .mi,
+.highlight .il,
+.highlight .mo {
   color: var(--accent-alpha-70);
 }
 
-/* Types/Classes */
-.chroma .kt,
-.chroma .nc,
-.chroma .no,
-.chroma .nd {
+/* Types / Classes / Namespaces */
+.highlight .nc,
+.highlight .no,
+.highlight .nd,
+.highlight .ne,
+.highlight .nl {
   color: var(--secondary);
   font-weight: bold;
 }
 
 /* Variables */
-.chroma .nv,
-.chroma .vc,
-.chroma .vg,
-.chroma .vi {
+.highlight .nv,
+.highlight .vc,
+.highlight .vg,
+.highlight .vi {
   color: var(--secondary);
-  font-weight: bold;
 }
 
 /* Functions */
-.chroma .nf,
-.chroma .fm {
-  color: var(--secondary-alpha-70);
+.highlight .nf,
+.highlight .fm {
+  color: var(--secondary);
 }
 
 /* Tags */
-.chroma .nt {
+.highlight .nt {
   color: var(--accent-alpha-70);
 }
 
 /* Attributes */
-.chroma .na {
+.highlight .na {
   color: var(--secondary);
 }
 
 /* Operators */
-.chroma .o,
-.chroma .ow {
+.highlight .o,
+.highlight .ow {
   color: var(--accent-alpha-70);
+}
+
+/* Diffs */
+.highlight .gd {
+  color: var(--diff-del);
+}
+.highlight .gi {
+  color: var(--diff-add);
+}
+
+/* Markdown render */
+#content h3 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.2em;
+  font-style: oblique;
 }
