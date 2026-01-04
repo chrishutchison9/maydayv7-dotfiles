@@ -747,11 +747,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1767467845,
-        "narHash": "sha256-d1Q32zc3Lgclaipa7JcmaESQLEgjJnPzN0M/wS/fJ1U=",
+        "lastModified": 1767557231,
+        "narHash": "sha256-cXLrl1XCf3Mhz9UhCQxt0eZNcAOtejReiMAi/fTWn6s=",
         "owner": "maydayv7",
         "repo": "stagit",
-        "rev": "1a1d986a920a2ddd56e8db4c0ed039a50e8277b5",
+        "rev": "62010429c33b33ef1239638b202a745ea29e43a1",
         "type": "github"
       },
       "original": {

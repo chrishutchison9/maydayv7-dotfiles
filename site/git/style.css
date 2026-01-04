@@ -643,11 +643,62 @@ pre span.h {
   color: var(--diff-add);
 }
 
-/* Markdown render */
+/* -- Markdown render -- */
 #content h3 {
   margin-top: 1em;
   margin-bottom: 0.5em;
   border-bottom: 1px solid var(--border-subtle);
   padding-bottom: 0.2em;
   font-style: oblique;
+}
+
+/* GFM Alerts*/
+.admonition {
+  margin: 1.5em 0;
+  padding: 12px;
+  border-left: 3px solid var(--secondary);
+  background-color: var(--secondary-alpha-20);
+  border-radius: 0 3px 3px 0;
+  page-break-inside: avoid;
+  font-family: var(--font-main);
+}
+
+.admonition .admonition-title {
+  margin: 0 0 8px 0;
+  color: var(--accent);
+  align-items: center;
+  display: flex;
+  font-size: 0.95em;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.admonition > p:last-child {
+  margin-bottom: 0;
+}
+
+.admonition .admonition-title::before {
+  margin-right: 8px;
+  font-size: 1.2em;
+}
+
+.admonition.note .admonition-title::before {
+  content: "ℹ";
+}
+
+.admonition.tip .admonition-title::before {
+  content: "";
+}
+
+.admonition.important .admonition-title::before {
+  content: "!";
+}
+
+.admonition.warning .admonition-title::before {
+  content: "";
+}
+
+.admonition.danger .admonition-title::before {
+  content: "";
 }
