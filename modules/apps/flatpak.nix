@@ -2,10 +2,12 @@
   config,
   lib,
   inputs,
+  pkgs,
   ...
 }:
 let
   enable = builtins.elem "flatpak" config.apps.list;
+  theme = config.gui.gtk.theme.name;
 in
 {
   ## Flatpak Configuration ##
@@ -14,12 +16,15 @@ in
   config = lib.mkIf enable {
     warnings = [
       ''
-        Flatpak app install isn't Generational
-        - Changes in package declaration will result in downloading them anew
+        Flatpak support is enabled
+        - App install isn't generational (Changes in configuration will result in downloading them anew)
+        - Updates must be managed manually
       ''
     ];
 
     xdg.portal.enable = true;
+    system.activationScripts.updateDesktopDatabase.text = "${pkgs.desktop-file-utils}/bin/update-desktop-database /var/lib/flatpak/exports/share/applications";
+
     environment.persist.directories = [ "/var/lib/flatpak" ];
     user.persist.directories = [
       ".cache/flatpak"
@@ -44,7 +49,7 @@ in
       ];
 
       # Package List
-      # Use `flatpak remote-info --log` to find commit revisions
+      # Use 'flatpak remote-info --log' to find commit revisions
       packages = [
         /*
           {
@@ -58,7 +63,11 @@ in
       # Platform Integration
       overrides.global = {
         Context = {
-          filesystems = [ "~/.config/dconf:ro" ];
+          filesystems = [
+            "~/.config/dconf:ro"
+            "/run/current-system/sw/share/themes:ro"
+          ];
+
           sockets = [
             "wayland"
             "!x11"
@@ -67,8 +76,8 @@ in
         };
 
         Environment = {
-          DCONF_USER_CONFIG_DIR = ".config/dconf";
-          XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
+          "DCONF_USER_CONFIG_DIR" = ".config/dconf";
+          "GTK_THEME" = theme;
         };
       };
 

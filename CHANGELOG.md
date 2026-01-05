@@ -2,7 +2,11 @@
 
 ### January
 
-- Website Changes
+- Fix `flatpak` Configuration
+- Fix NVIDIA PRIME
+- Refine `apps.games`
+  - Add support for Roblox
+- `site` Changes
   - Start blogging!
   - Fix comments
   - `git` frontend using `stagit`

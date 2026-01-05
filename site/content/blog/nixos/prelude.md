@@ -1,7 +1,7 @@
 +++
 title = "Prelude"
 description = "My NixOS Configuration"
-date = 2026-01-02
+date = 2026-01-05
 
 [taxonomies]
 series = ["NixOS Desktop"]
@@ -38,9 +38,12 @@ The fear that if you delete the wrong file, mess with the wrong package, or even
 
 **NixOS is different.**
 
-Basically, you define a **blueprint** - a single configuration file that describes exactly how you want your computer to function. You want Firefox? You write `firefox` in the file. You wanna set your wallpaper? Just chuck it into the file.
+Basically, you define a **blueprint** - a single configuration file that describes exactly how you want your computer to function.
+You want Firefox? You write `firefox` in the file. You wanna set your wallpaper? Just chuck it into the file.
 
-After you're done, [Nix](https://github.com/NixOS/nix) looks at it, nods, and builds your entire operating system from scratch to match exactly what you wrote. If you mess up, you just undo the text in the file, and your computer goes back to being perfect.
+After you're done, [Nix](https://github.com/NixOS/nix) looks at it, nods, and builds your entire operating system from scratch to match exactly what you wrote.
+If you mess up, you just undo the text in the file, and your computer goes back to being perfect.
+And oh, lest I forget to mention, you’d never have to deal with the godforsaken dependency hell [^1].
 
 ---
 
@@ -50,19 +53,25 @@ _Now that the theatrics are out of the way, let's proceed to see more of it_
 
 It started innocently enough. I just wanted a system that was **reproducible**.
 
-I began with **Nix Flakes**, the "Gateway Drug" [^1] of the ecosystem. Instead of vaguely gesturing at a repository and hoping for the best, `flake.nix` locks every input dependency of my system to a specific commit hash. It is the ultimate insurance policy: if I compile this system today, or in about 10 years in the midst of an imminent meteor strike that may or may not wipe out all life, I will get the exact same binary output.
+I began with **Nix Flakes**, the "Gateway Drug" [^2] of the ecosystem.
+Instead of vaguely gesturing at a repository and hoping for the best, `flake.nix` locks every input dependency of my system to a specific commit hash.
+It is the ultimate insurance policy: if I compile this system today, or in about 10 years in the midst of an imminent meteor strike, I will get the exact same binary output.
 
 But having a reproducible system wasn't enough. It had to be **obedient**.
 
-I pulled in [**Home Manager**](https://github.com/nix-community/home-manager) because configuring the OS wasn't enough; I needed to micromanage my user config files too. Then came [**Stylix**](https://github.com/nix-community/stylix). I declare a single image and a color scheme, and Stylix brutally enforces this theme across everything. It forces CSS into [Waybar](https://github.com/Alexays/Waybar), recompiles all my app themes, and even bullies my terminal into submission. But why stop there? I grabbed [**Spicetify**](https://github.com/Gerg-L/spicetify-nix) to force Spotify to match my aesthetic, and [**Nixcord**](https://github.com/FlameFlag/nixcord) for Discord cuz the default grey was offending my eyes.
+I pulled in [**Home Manager**](https://github.com/nix-community/home-manager) because configuring the OS wasn't enough; I needed to micromanage my user config files too.
+Then came [**Stylix**](https://github.com/nix-community/stylix). I declare a single image and a color scheme, and Stylix brutally enforces this theme across everything. It forces CSS into [Waybar](https://github.com/Alexays/Waybar), recompiles all my app themes, and even bullies my terminal into submission.
+But why stop there? I grabbed [**Spicetify**](https://github.com/Gerg-L/spicetify-nix) to force Spotify to match my aesthetic, and [**Nixcord**](https://github.com/FlameFlag/nixcord) for Discord cuz the default grey was offending my eyes.
 
 **"Okay, it's pretty," you say. "But is it useful?"**
 
 You have no idea.
 
-I don't "install" development tools. I have a [directory](https://github.com/maydayv7/dotfiles/tree/main/shells) that defines isolated environments for C++, Python, JavaScript and so on. When I `cd` into a project, [Direnv](https://direnv.net/) and [**Lorri**](https://github.com/nix-community/lorri) kick in, and the compiler, linter, LSP and whatnot just _appear_ in my shell. When I leave, they vanish.
+I don't "install" development tools. I have a [directory](https://github.com/maydayv7/dotfiles/tree/main/shells) that defines isolated environments for C++, Python, JavaScript and so on.
+When I `cd` into a project, [Direnv](https://direnv.net/) and [**Lorri**](https://github.com/nix-community/lorri) kick in, and the compiler, linter, LSP and whatnot along with all of their configuration just _appear_ in my shell. When I leave, they vanish.
 
-Every little thing is specified in code. Like when I open [VS Code](https://code.visualstudio.com/), my settings and extensions are already present, and automatically updated. Heck even my **_Printer_** configuration is defined in a Nix file. Yes, really.
+Every little thing is specified in code, from backups to network settings and even complex editor workflows (Thank you for your concern, but I very likey my trusty [VS Code](https://code.visualstudio.com/)).
+Heck, even my **_Printer_** configuration is defined in a Nix file.
 
 **Oh, you thought that would be enough to satiate me?**
 
@@ -78,7 +87,8 @@ Well I didn't.
 
 I still wanted to play games and run Android apps. A normal person would dual-boot or use an emulator. I chose violence.
 
-I run [Waydroid](https://github.com/waydroid/waydroid) to virtualize Android directly on the Linux kernel. Then, for the _pièce de résistance_, I set up [VFIO](https://docs.kernel.org/driver-api/vfio.html) GPU Passthrough [^2]. I pass that GPU directly into a Windows Virtual Machine and use [Looking Glass](https://looking-glass.io/) to stream the video output back to my PC screen with negligible latency.
+I run [Waydroid](https://github.com/waydroid/waydroid) to virtualize Android directly on the Linux kernel.
+Then, for the _pièce de résistance_, I set up [VFIO](https://docs.kernel.org/driver-api/vfio.html) GPU Passthrough [^3]. I pass that GPU directly into a Windows Virtual Machine and use [Looking Glass](https://looking-glass.io/) to stream the video output back to my PC screen with negligible latency.
 
 I've also declaratively configured [**Minecraft Servers**](https://github.com/Infinidoge/nix-minecraft) (that 2 week period lasted for months actually, don't judge) and [Wine](https://www.winehq.org/) applications (shoutout to [Erosanix](https://github.com/emmanuelrosa/erosanix)).
 
@@ -88,7 +98,7 @@ If I buy a new computer today, I don't spend a week installing drivers and recov
 
 I clone my repository. I run one single command.
 
-And I go get a coffee. Soon as I return [^3], I spin up a AAA Windows game, inside a VM, displayed on a tiling Linux WM (heck even choose between [Hyprland](https://hypr.land/) and [Niri](https://github.com/YaLTeR/niri)), on a system that deletes and rebuilds itself on every boot.
+And I go get a coffee. Soon as I return [^4], I spin up a AAA Windows game, displayed on a tiling Linux WM (heck even choose between [Hyprland](https://hypr.land/) and [Niri](https://github.com/YaLTeR/niri)), on a system that deletes and rebuilds itself on every boot.
 
 God, I love NixOS.
 
@@ -102,7 +112,7 @@ And I don't mean "Linux is hard" kind of hard. Its more "I have to relearn how c
 
 - **It is not standard Linux**: Most tutorials you find on the internet simply will not work here. You can't just `apt install` your problems away.
 - **The Documentation is... sparse**: Sometimes you will be reading a manual, and sometimes you will be reading 5-year-old Reddit threads praying for an answer.
-- **Patience is key** (_or severe OCD tbh_): If you are not acquainted with the command line, programming languages, random crash logs, or want a computer that "just works" to play games or browse the web, consider yourself warned. Cuz this setup costs time, sanity, and the ability to casually refactor the codebase 2 minutes before a presentation.
+- **Patience is key** (_or severe OCD tbh_): If you are not acquainted with the command line, programming languages, random crash logs, or want a computer that "just works" to play games or browse the web, consider yourself warned. Cuz this setup costs time, sanity, and a concerning amount of self-restraint to avoid mutilating your PC.
 
 # Still Reading?
 
@@ -163,8 +173,10 @@ _Thanks a lot! ;)_
 
 ---
 
-[^1]: [Meaning](http://gateway-drug.urbanup.com/2175521) ig
+[^1]: [Wiki](https://en.wikipedia.org/wiki/Dependency_hell) for life
 
-[^2]: [Arch Wiki](https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF)
+[^2]: [Meaning](http://gateway-drug.urbanup.com/2175521) ig
 
-[^3]: T&C Apply ;)
+[^3]: [Arch Wiki](https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF) _my love_
+
+[^4]: T&C Apply ;)

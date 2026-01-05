@@ -16,7 +16,6 @@ let
   inherit (util.map) modules;
   enable = builtins.elem "games" config.apps.list;
   wine = builtins.elem "wine" config.apps.list;
-  wine' = pkgs.gaming.wine-ge;
 in
 {
   imports = modules.list ./.;
@@ -29,47 +28,38 @@ in
 
   ## Games Configuration ##
   config = mkIf enable {
-    assertions = [
-      {
-        assertion = wine;
-        message = ''
-          Wine support is required
-          - Add 'wine to 'apps.list'
-        '';
-      }
-    ];
-
     # Packages
     environment.systemPackages = with pkgs; [
       bottles
       lutris
-      wine'
     ];
 
     # Steam
     programs.steam = {
       enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
+      protontricks.enable = true;
       localNetworkGameTransfers.openFirewall = true;
     };
 
     # Game Mode
-    # See https://github.com/FeralInteractive/gamemode
     hardware.cpu.mode = mkOverride 51 "performance";
     gui.fancy = mkOverride 999 false;
-    programs.gamemode.enable = true;
+    programs.gamemode.enable = true; # Use 'gamemoderun %command%'
 
     user = {
       # Runner
-      homeConfig.xdg.dataFile."lutris/runners/wine/wine-system".source = wine';
+      homeConfig.xdg.dataFile."lutris/runners/wine/wine-system" = mkIf wine {
+        source = config.apps.wine.package;
+      };
 
       # Directories
       persist.directories = [
         "Games"
+        ".local/share/bottles"
+
+        # Lutris
         ".cache/lutris"
         ".config/lutris"
-        ".local/share/bottles"
         ".local/share/lutris"
 
         # Steam

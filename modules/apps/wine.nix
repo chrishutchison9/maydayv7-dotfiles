@@ -24,8 +24,8 @@ in
     package = mkOption {
       description = "Package to use for 'wine'";
       type = types.package;
-      default = pkgs.winePackages.stable;
-      example = pkgs.gaming.wine-tkg;
+      default = pkgs.wineWowPackages.stagingFull;
+      example = pkgs.gaming.wine-ge;
     };
   };
 

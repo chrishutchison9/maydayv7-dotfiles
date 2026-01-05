@@ -17,7 +17,8 @@ let
 
   cfg = config.hardware.gpu;
   opt = options.hardware.gpu;
-  mode = config.hardware.cpu.mode == "performance";
+  mode = config.hardware.cpu.mode != "powersave";
+  gamemode = config.programs.gamemode.enable;
 in
 {
   ## GPU Configuration ##
@@ -40,54 +41,62 @@ in
       ];
     })
 
-    (mkIf (cfg.enable && cfg.model == "nvidia") {
-      services.xserver.videoDrivers = mkForce [ "nvidia" ];
-      environment = {
-        systemPackages = [ pkgs.btop-cuda ];
-        variables = {
-          "__GLX_VENDOR_LIBRARY_NAME" = "nvidia";
-          "LIBVA_DRIVER_NAME" = "nvidia";
+    (mkIf (cfg.enable && cfg.model == "nvidia") (
+      let
+        hybrid = with config.hardware.nvidia.prime; (amdgpuBusId != "" || intelBusId != "");
+      in
+      {
+        services.xserver.videoDrivers = mkForce [ "nvidia" ];
+        environment = {
+          systemPackages = [ pkgs.btop-cuda ];
+          variables = {
+            "__GLX_VENDOR_LIBRARY_NAME" = "nvidia";
+            "LIBVA_DRIVER_NAME" = "nvidia";
+            "GAMEMODERUNEXEC" =
+              mkIf (hybrid && gamemode)
+                "env __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia __VK_LAYER_NV_optimus=NVIDIA_only";
+          };
         };
-      };
 
-      boot = {
-        blacklistedKernelModules = [ "nouveau" ];
-        kernelModules = [
-          "nvidia"
-          "nvidia_drm"
-          "nvidia_modeset"
-          "nvidia_uvm"
-        ];
+        boot = {
+          blacklistedKernelModules = [ "nouveau" ];
+          kernelModules = [
+            "nvidia"
+            "nvidia_drm"
+            "nvidia_modeset"
+            "nvidia_uvm"
+          ];
 
-        # Wayland Support
-        kernelParams = [ "nvidia-drm.fbdev=1" ];
+          kernelParams = [
+            # Wayland Support
+            "nvidia-drm.fbdev=1"
+          ];
 
-        extraModprobeConfig = ''
-          # PAT Support
-          options nvidia NVreg_UsePageAttributeTable=1
+          extraModprobeConfig = ''
+            # PAT Support
+            options nvidia NVreg_UsePageAttributeTable=1
 
-          # DDC/CI Support
-          options nvidia NVreg_RegistryDwords=RMUseSwI2c=0x01;RMI2cSpeed=100
-        '';
-      };
+            # DDC/CI Support
+            options nvidia NVreg_RegistryDwords=RMUseSwI2c=0x01;RMI2cSpeed=100
+          '';
+        };
 
-      hardware.nvidia = {
-        modesetting.enable = mkForce true;
-        nvidiaSettings = mkForce true;
-        dynamicBoost.enable = true;
-        powerManagement.enable = true;
-        prime =
-          with config.hardware.nvidia.prime;
-          mkIf (amdgpuBusId != "" || intelBusId != "") {
+        hardware.nvidia = {
+          modesetting.enable = mkForce true;
+          nvidiaSettings = mkForce true;
+          dynamicBoost.enable = true;
+          powerManagement.enable = true;
+          prime = mkIf hybrid {
             sync.enable = mkForce false;
             reverseSync.enable = mkForce mode;
             offload = {
-              enable = mkForce (!mode);
-              enableOffloadCmd = mkForce (!mode);
+              enable = mkForce mode;
+              enableOffloadCmd = mkForce mode;
             };
           };
-      };
-    })
+        };
+      }
+    ))
 
     (mkIf (!cfg.enable && cfg.model == "nvidia") {
       boot.blacklistedKernelModules = [

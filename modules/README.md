@@ -17,10 +17,10 @@ Configuration [Builder](./configuration.nix)
       - `secret`: Path to Secret for `git` Runner
   - `wine` -
     - `utilities`: Install Utility Windows apps - `true / false`
-    - `package`: Package to use for `wine` - Ex. `pkgs.winePackages.staging`
+    - `package`: Package to use for `wine` - Ex. `pkgs.wineWowPackages.stable`
   - `logseq.style`: Path to Logseq Notes CSS
   - `ytmusic.style`: YouTube Music CSS
-  - `games`: List of installed games - `[ "minecraft" "mc-server" "osu" ]`
+  - `games`: List of installed games - `[ "minecraft" "mc-server" "osu" "roblox" ]`
   - `mc-servers`: List of Minecraft Servers -
     - `name`: Unique server name
     - `type`: Server Type - `[ "fabric" "skyblock" ]`

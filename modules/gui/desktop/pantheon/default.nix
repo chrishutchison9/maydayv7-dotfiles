@@ -166,7 +166,7 @@ in
       };
 
       # Flatpak
-      warnings = [ "Flatpak app support is enabled by default while using Pantheon Desktop" ];
+      warnings = [ "Flatpak support is enabled by default for Pantheon Desktop" ];
       apps.list = [ "flatpak" ];
       services.flatpak = {
         remotes = [

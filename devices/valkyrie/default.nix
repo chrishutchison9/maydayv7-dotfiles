@@ -54,6 +54,7 @@
     list = [
       "discord"
       "firefox"
+      "flatpak"
       "games"
       "git"
       "latex"
@@ -61,12 +62,12 @@
       "notes"
       "office"
       "vscode"
-      "wine"
       "youtube"
     ];
     games = [
       "minecraft"
       "osu"
+      "roblox"
     ];
   };
 
@@ -81,7 +82,7 @@
   };
 
   gui = {
-    desktop = "niri";
+    desktop = "hyprland";
     display = "eDP-1";
     wallpaper = "Quasar";
     fancy = true;
