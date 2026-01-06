@@ -49,6 +49,7 @@ in
           # Control Center
           control-center-layer = "top";
           fit-to-screen = false;
+          control-center-height = -1;
           control-center-margin-top = 3;
           control-center-margin-left = 3;
           control-center-margin-bottom = 3;

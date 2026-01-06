@@ -23,9 +23,6 @@ in
     '';
 
     settings = {
-      # GPU Support
-      env = [ "AQ_DRM_DEVICES, /dev/dri/card1:/dev/dri/card0" ];
-
       # Display
       monitor = ", preferred, auto, 1";
       xwayland = {
@@ -162,7 +159,7 @@ in
         };
       };
 
-      animation = {
+      animation = mkIf fancy {
         bezier = [
           "accelerate, 0.3, 0, 0.8, 0.15"
           "decelerate, 0.05, 0.7, 0.1, 1"

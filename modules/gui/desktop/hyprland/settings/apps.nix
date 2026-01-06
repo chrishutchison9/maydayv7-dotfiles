@@ -93,7 +93,6 @@ in
     ## Layer Rules
     layerrule = [
       "noanim, ^(hyprpicker)$"
-      "blur, ^(hyprshell_overview)$"
       "dimaround, ^(hyprshell_overview)$"
 
       "blur, ^(logout_dialog)$"
@@ -101,12 +100,14 @@ in
 
       "blur, ^(nwg-drawer)$"
       "dimaround, ^(nwg-drawer)$"
-      "animation fade, ^(nwg-drawer)$"
+      "animation popin, ^(nwg-drawer)$"
 
       "blur, ^(swaync-control-center)$"
       "ignorealpha, ^(swaync-control-center)$"
+      "animation slide right, ^(swaync-control-center)$"
       "blur, ^(swaync-notification-window)$"
       "ignorealpha, ^(swaync-notification-window)$"
+      "animation slide right, ^(swaync-notification-window)$"
 
       "blur, ^(waybar)$"
       "ignorealpha, ^(waybar)$"

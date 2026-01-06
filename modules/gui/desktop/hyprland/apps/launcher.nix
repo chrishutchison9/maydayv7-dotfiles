@@ -42,6 +42,9 @@
                 show_execs = true;
                 show_actions_submenu = true;
               };
+              calc = { };
+              path = { };
+              terminal = { };
               websearch.engines = [
                 {
                   url = "https://www.google.com/search?q={}";

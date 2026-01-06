@@ -49,12 +49,12 @@ in
         services.xserver.videoDrivers = mkForce [ "nvidia" ];
         environment = {
           systemPackages = [ pkgs.btop-cuda ];
-          variables = {
+          variables = mkIf mode {
             "__GLX_VENDOR_LIBRARY_NAME" = "nvidia";
             "LIBVA_DRIVER_NAME" = "nvidia";
-            "GAMEMODERUNEXEC" =
-              mkIf (hybrid && gamemode)
-                "env __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia __VK_LAYER_NV_optimus=NVIDIA_only";
+          };
+          sessionVariables = {
+            "GAMEMODERUNEXEC" = mkIf (hybrid && gamemode && !mode) "nvidia-offload";
           };
         };
 
@@ -87,11 +87,10 @@ in
           dynamicBoost.enable = true;
           powerManagement.enable = true;
           prime = mkIf hybrid {
-            sync.enable = mkForce false;
-            reverseSync.enable = mkForce mode;
+            sync.enable = mkForce mode;
             offload = {
-              enable = mkForce mode;
-              enableOffloadCmd = mkForce mode;
+              enable = mkForce (!mode);
+              enableOffloadCmd = mkForce (!mode);
             };
           };
         };

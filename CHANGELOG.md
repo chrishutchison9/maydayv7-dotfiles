@@ -2,8 +2,8 @@
 
 ### January
 
-- Fix `flatpak` Configuration
 - Fix NVIDIA PRIME
+- Fix `flatpak` Configuration
 - Refine `apps.games`
   - Add support for Roblox
 - `site` Changes
