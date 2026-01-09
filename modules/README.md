@@ -6,7 +6,7 @@ The following is a summary of all the present configuration options exposed by t
 Configuration [Builder](./configuration.nix)
 
 - [`apps`](./apps): Module that configures various apps and/or environments -
-  - `list`: List of enabled applications - `[ "discord" "firefox" "flatpak" "games" "git" "latex" "media" "office" "spotify" "vscode" "wine" "youtube" ]`
+  - `list`: List of enabled applications - `[ "discord" "firefox" "flatpak" "games" "git" "internet" "latex" "notes" "office" "spotify" "stream" "tools" "vscode" "wine" "youtube" ]`
   - `git` -
     - `hosting` -
       - `enable`: Enable Gitea Code Hosting - `true / false`

@@ -32,6 +32,7 @@ in
 
         # Environment
         xdg.mimeApps.defaultApplications = util.build.mime {
+          code = [ "code.desktop" ];
           markdown = [ "code.desktop" ];
           text = [ "code.desktop" ];
         };

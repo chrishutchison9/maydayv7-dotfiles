@@ -12,118 +12,63 @@ in
 {
   ## Office Environment Configuration ##
   config = lib.mkIf enable {
-    # Applications
-    programs = {
-      obs-studio = {
-        enable = true;
-        enableVirtualCamera = true;
-        plugins = with pkgs.obs-studio-plugins; [
-          obs-mute-filter
-          obs-source-switcher
-        ];
-      };
-
-      chromium = {
-        enable = true;
-        extensions = [
-          "cjpalhdlnbpafiamejdnhcphjbkeiagm" # UBlock Origin
-          "djflhoibgkdhkhhcedjiklpkjnoahfmg" # User Agent Switcher
-          "lckanjgmijmafbedllaakclkaicjfmnk" # ClearURLs
-          "oofgbpoabipfcfjapgnbbjjaenockbdp" # SetupVPN
-          "jghecgabfgfdldnmbfkhmffcabddioke" # Volume Booster
-          "jaioibhbkffompljnnipmpkeafhpicpd" # Tab Auto Refresh
-          "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
-          "clngdbkpkpeebahjckkjfobafhncgmne" # Stylus
-        ];
-      };
-    };
-
-    environment.systemPackages = with pkgs; [
-      # Productivity
-      calibre
-      clapgrep
-      gscan2pdf
-      libreoffice
-      onlyoffice-desktopeditors
-      pdfarranger
-      simple-scan
-
-      # Graphics
-      drawing
-      gimp3
-      handbrake
-      inkscape
-      xournalpp
-
-      # Internet
-      brave
-      linux-wifi-hotspot
-      openfortivpn
-      teams-for-linux
-      thunderbird
-      wasistlos
-      zoom-us
-
-      # Utilities
-      gearlever
-      hunspell
-      hunspellDicts.en_US-large
-      hyphen
-      popsicle
-    ];
-
-    # Dictionaries
     environment = {
+      systemPackages = with pkgs; [
+        # Productivity
+        calibre
+        gscan2pdf
+        keepassxc
+        libreoffice
+        onlyoffice-desktopeditors
+        pdfarranger
+        simple-scan
+
+        # Graphics
+        gimp3
+        handbrake
+        inkscape
+        xournalpp
+
+        # Dictionary
+        hunspell
+        hunspellDicts.en_US-large
+        hyphen
+      ];
+
+      variables."DICPATH" = "/run/current-system/sw/share/hunspell:/run/current-system/sw/share/hyphen";
       pathsToLink = [
         "/share/hunspell"
         "/share/myspell"
         "/share/hyphen"
       ];
-
-      variables."DICPATH" = "/run/current-system/sw/share/hunspell:/run/current-system/sw/share/hyphen";
     };
 
     user = {
-      # Persisted Files
       persist = {
-        files = [
-          ".config/gscan2pdfrc"
-          ".config/zoomus.conf"
-        ];
+        files = [ ".config/gscan2pdfrc" ];
         directories = [
-          ".appimages"
           ".calibre"
-          ".thunderbird"
-          ".zoom"
-          ".config/BraveSoftware"
           ".config/calibre"
-          ".config/de.leopoldluley.Clapgrep"
           ".config/GIMP"
-          ".config/inkscape"
-          ".config/libreoffice"
-          ".config/obs-studio"
-          ".config/onlyoffice"
-          ".config/wasistlos"
-          ".local/share/data"
-          ".local/share/onlyoffice"
-          ".local/share/wasistlos"
-          ".cache/BraveSoftware"
           ".cache/gimp"
-          ".cache/thunderbird"
-          ".cache/wasistlos"
-          ".cache/zoom"
+          ".config/inkscape"
+          ".config/keepassxc"
+          ".cache/keepassxc"
+          ".config/libreoffice"
+          ".config/onlyoffice"
+          ".local/share/onlyoffice"
+          ".local/share/data"
         ];
       };
 
       homeConfig = {
-        # File Associations
         xdg.mimeApps.defaultApplications = util.build.mime {
-          appimage = [ "it.mijorus.gearlever.desktop" ];
           office = [ "onlyoffice-desktopeditors.desktop" ];
+          password = [ "org.keepassxc.KeePassXC.desktop" ];
         };
 
-        # AppImage Manager
-        dconf.settings."it/mijorus/gearlever".appimages-default-folder = "~/.appimages";
+        # Password Manager
+        programs.keepassxc.enable = true;
 
         home.file = {
           # Document Templates

@@ -19,6 +19,7 @@ let
   enable = elem "wine" config.apps.list;
 in
 {
+  ## Wine Configuration ##
   options.apps.wine = {
     utilities = mkEnableOption "Install Utility Windows apps";
     package = mkOption {
@@ -29,7 +30,6 @@ in
     };
   };
 
-  ## Wine Configuration ##
   config = mkIf enable {
     # Firmware
     services.samba.enable = true;

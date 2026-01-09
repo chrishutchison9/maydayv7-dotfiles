@@ -5,7 +5,6 @@
   ...
 }:
 let
-  # Path logic from nix-community/home-manager/modules/programs/vscode.nix
   configDir =
     {
       "vscode" = "Code";

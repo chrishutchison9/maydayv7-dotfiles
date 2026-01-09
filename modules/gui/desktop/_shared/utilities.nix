@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  util,
   pkgs,
   ...
 }:
@@ -65,6 +66,10 @@ in
     ];
 
     user.homeConfig = {
+      xdg.mimeApps.defaultApplications = util.build.mime {
+        font = [ "com.github.FontManager.FontViewer.desktop" ];
+      };
+
       systemd.user.services.wlclock =
         let
           target = [ "graphical-session.target" ];

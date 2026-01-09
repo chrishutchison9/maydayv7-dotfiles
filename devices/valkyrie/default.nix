@@ -57,10 +57,12 @@
       "flatpak"
       "games"
       "git"
+      "internet"
       "latex"
-      "media"
       "notes"
       "office"
+      "stream"
+      "tools"
       "vscode"
       "youtube"
     ];
@@ -82,7 +84,7 @@
   };
 
   gui = {
-    desktop = "hyprland";
+    desktop = "niri";
     display = "eDP-1";
     wallpaper = "Quasar";
     fancy = true;

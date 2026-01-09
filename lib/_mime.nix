@@ -78,6 +78,29 @@
     "x-scheme-handler/webcal"
   ];
 
+  code = [
+    "application/json"
+    "application/toml"
+    "application/x-shellscript"
+    "application/x-yaml"
+    "text/x-c"
+    "text/x-c++"
+    "text/x-c++src"
+    "text/x-chdr"
+    "text/x-cmake"
+    "text/x-java"
+    "text/x-lua"
+    "text/x-makefile"
+    "text/x-markdown"
+    "text/x-nix"
+    "text/x-python"
+    "text/x-rust"
+    "text/x-scala"
+    "text/x-shellscript"
+    "text/x-toml"
+    "text/x-yaml"
+  ];
+
   directory = [ "inode/directory" ];
 
   document = [
@@ -111,6 +134,15 @@
     "image/x-gzeps"
   ];
 
+  font = [
+    "application/vnd.ms-opentype"
+    "application/x-font-ttf"
+    "font/otf"
+    "font/ttf"
+    "font/woff"
+    "font/woff2"
+  ];
+
   image = [
     "image/avif"
     "image/bmp"
@@ -126,10 +158,12 @@
     "image/tiff"
     "image/vnd-ms.dds"
     "image/vnd.microsoft.icon"
+    "image/vnd.microsoft.icon"
     "image/vnd.radiance"
     "image/webp"
     "image/x-dds"
     "image/x-exr"
+    "image/x-icon"
     "image/x-portable-anymap"
     "image/x-portable-bitmap"
     "image/x-portable-graymap"
@@ -157,6 +191,11 @@
     "application/msword"
     "application/vnd.ms-excel"
     "application/vnd.ms-powerpoint"
+  ];
+
+  password = [
+    "application/x-keepass2"
+    "application/x-keepass"
   ];
 
   pdf = [ "application/pdf" ];
@@ -246,5 +285,12 @@
     "x-scheme-handler/pnm"
     "x-scheme-handler/rtmp"
     "x-scheme-handler/uvox"
+  ];
+
+  virtualization = [
+    "application/x-cd-image"
+    "application/x-qemu-disk"
+    "application/x-virtualbox-hdd"
+    "application/x-virtualbox-vbox"
   ];
 }

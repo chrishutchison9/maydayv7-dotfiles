@@ -6,7 +6,6 @@
   ...
 }:
 let
-  inherit (builtins) concatLists map;
   inherit (pkgs) copyDesktopItems fetchurl makeDesktopItem;
   inherit (build) copyDesktopIcons makeDesktopIcon mkWindowsApp;
 in
@@ -43,10 +42,18 @@ mkWindowsApp rec {
     runHook postInstall
   '';
 
-  desktopItems =
-    let
-      textTypes = map (n: "text/" + n) [ ];
-      appTypes = map (n: "application/" + n) [
+  desktopItems = [
+    (makeDesktopItem {
+      name = pname;
+      exec = pname;
+      icon = pname;
+      desktopName = "7-Zip";
+      genericName = "Archive Manager";
+      categories = [
+        "Office"
+        "Utility"
+      ];
+      mimeTypes = builtins.map (n: "application/" + n) [
         "epub+zip"
         "x-zip-compressed-fb2"
         "x-cbt"
@@ -56,26 +63,8 @@ mkWindowsApp rec {
         "x-tar"
         "zip"
       ];
-
-      mimeTypes = concatLists [
-        textTypes
-        appTypes
-      ];
-    in
-    [
-      (makeDesktopItem {
-        inherit mimeTypes;
-        name = pname;
-        exec = pname;
-        icon = pname;
-        desktopName = "7-Zip";
-        genericName = "Archive Manager";
-        categories = [
-          "Office"
-          "Utility"
-        ];
-      })
-    ];
+    })
+  ];
 
   desktopIcon = makeDesktopIcon {
     name = "7zip";

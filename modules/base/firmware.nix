@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) getExe' mkForce;
+  inherit (lib) mkForce;
 in
 {
   imports = [ inputs.gaming.nixosModules.pipewireLowLatency ];
@@ -13,12 +13,14 @@ in
   ## Device Firmware ##
   config = {
     # Drivers
+    security.rtkit.enable = true;
     hardware = {
       graphics.enable = true;
       enableRedistributableFirmware = true;
     };
 
     # Audio
+    environment.systemPackages = [ pkgs.alsa-utils ];
     services.pulseaudio.enable = mkForce false;
     services.pipewire = {
       enable = true;
@@ -32,55 +34,8 @@ in
       };
     };
 
-    security.rtkit.enable = true;
-    environment.systemPackages = [ pkgs.alsa-utils ];
-    hardware.alsa.enablePersistence = true;
-    services.actkbd =
-      let
-        step = "1%";
-        mixer = getExe' pkgs.alsa-utils "amixer";
-      in
-      {
-        enable = true;
-        bindings = [
-          {
-            keys = [ 113 ]; # "Mute" Key
-            events = [ "key" ];
-            command = "${mixer} -q set Master toggle";
-          }
-          {
-            keys = [ 114 ]; # "Lower Volume" Key
-            events = [
-              "key"
-              "rep"
-            ];
-            command = "${mixer} -q set Master ${step}- unmute";
-          }
-          {
-            keys = [ 115 ]; # "Raise Volume" Key
-            events = [
-              "key"
-              "rep"
-            ];
-            command = "${mixer} -q set Master ${step}+ unmute";
-          }
-          {
-            keys = [ 190 ]; # "Mic Mute" Key
-            events = [ "key" ];
-            command = "${mixer} -q set Capture toggle";
-          }
-        ];
-      };
-
     # Network Settings
     user.groups = [ "networkmanager" ];
-    environment.persist.directories = [
-      "/var/lib/alsa"
-      "/etc/NetworkManager/system-connections"
-      "/etc/ssh"
-      "/var/lib/bluetooth"
-    ];
-
     networking = {
       networkmanager.enable = true;
       firewall.enable = true;
@@ -108,13 +63,6 @@ in
       enableSSHSupport = true;
     };
 
-    user.persist.directories = [
-      {
-        directory = ".gnupg";
-        mode = "0700";
-      }
-    ];
-
     # SSH
     services.openssh = {
       enable = true;
@@ -132,5 +80,20 @@ in
         }
       ];
     };
+
+    # Persisted Files
+    user.persist.directories = [
+      {
+        directory = ".gnupg";
+        mode = "0700";
+      }
+    ];
+
+    environment.persist.directories = [
+      "/etc/NetworkManager"
+      "/etc/ssh"
+      "/var/lib/alsa"
+      "/var/lib/bluetooth"
+    ];
   };
 }

@@ -36,6 +36,7 @@
       "discord"
       "firefox"
       "git"
+      "internet"
       "office"
       "vscode"
       "wine"

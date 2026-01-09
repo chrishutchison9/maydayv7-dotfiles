@@ -171,9 +171,11 @@ in
           magnet = [ "de.haeckerfelix.Fragments.desktop" ];
           mail = [ "org.gnome.Geary.desktop" ];
           markdown = [ "org.gnome.gitlab.somas.Apostrophe.desktop" ];
+          password = [ "org.gnome.World.Secrets.desktop" ];
           pdf = [ "org.gnome.Papers.desktop" ];
           text = [ "org.gnome.TextEditor.desktop" ];
           video = [ "io.github.celluloid_player.Celluloid.desktop" ];
+          virtualization = [ "org.gnome.Boxes.desktop" ];
         };
 
         ## Terminal

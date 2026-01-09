@@ -24,12 +24,10 @@ in
       ];
 
       homeConfig = {
-        # File Associations
         xdg.mimeApps.defaultApplications = util.build.mime {
           browser = [ "firefox.desktop" ];
         };
 
-        # Profile
         programs.firefox = {
           enable = true;
           inherit package;

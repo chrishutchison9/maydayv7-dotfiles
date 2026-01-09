@@ -17,13 +17,13 @@ let
   enable = elem "youtube" config.apps.list;
 in
 {
+  ## YT Configuration ##
   options.apps.ytmusic.style = mkOption {
     description = "YouTube Music CSS";
     type = types.str;
     default = "";
   };
 
-  ## YT Configuration ##
   config = mkIf enable {
     environment.systemPackages = with pkgs; [
       youtube-music

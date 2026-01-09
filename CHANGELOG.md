@@ -2,6 +2,11 @@
 
 ### January
 
+- Update mimetypes
+- Refactor `apps`
+  - Add `internet`, `tools`, `stream`
+  - Remove `media`
+  - Install KeePassXC
 - Fix NVIDIA PRIME
 - Fix `flatpak` Configuration
 - Refine `apps.games`

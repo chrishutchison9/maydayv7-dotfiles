@@ -6,7 +6,6 @@
   ...
 }:
 let
-  inherit (builtins) concatLists map;
   inherit (pkgs) copyDesktopItems fetchurl makeDesktopItem;
   inherit (build) copyDesktopIcons makeDesktopIcon mkWindowsAppNoCC;
 in
@@ -49,59 +48,20 @@ mkWindowsAppNoCC rec {
     runHook postInstall
   '';
 
-  desktopItems =
-    let
-      textTypes = map (s: "text/" + s) [
-        "plain"
-        "html"
-        "rust"
-        "vbscript"
-        "x-cmake"
-        "x-changelog"
-        "x-cobol"
-        "x-common-lisp"
-        "x-csharp"
-        "x-c++src"
-        "x-csrc"
-        "x-erlang"
-        "x-fortran"
-        "x-haskell"
-        "x-java"
-        "x-log"
-        "x-makefile"
-        "x-objcsrc"
-        "x-python"
-        "x-readme"
-        "x-scheme"
-        "x-install"
+  desktopItems = [
+    (makeDesktopItem {
+      name = "Notepad++";
+      exec = pname;
+      icon = pname;
+      desktopName = "Notepad++";
+      genericName = "Text Editor";
+      mimeTypes = [ "text/plain" ];
+      categories = [
+        "Utility"
+        "TextEditor"
       ];
-
-      appTypes = map (s: "application/" + s) [
-        "json"
-        "x-msi"
-        "xml"
-        "x-perl"
-      ];
-
-      mimeTypes = concatLists [
-        textTypes
-        appTypes
-      ];
-    in
-    [
-      (makeDesktopItem {
-        inherit mimeTypes;
-        name = "Notepad++";
-        exec = pname;
-        icon = pname;
-        desktopName = "Notepad++";
-        genericName = "Text Editor";
-        categories = [
-          "Utility"
-          "TextEditor"
-        ];
-      })
-    ];
+    })
+  ];
 
   desktopIcon = makeDesktopIcon {
     name = pname;
