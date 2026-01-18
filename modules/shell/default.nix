@@ -134,42 +134,40 @@ in
           ];
         };
 
-        homeConfig = {
-          programs = {
-            btop.enable = true; # Resource Monitor
-            hstr.enable = true; # Command History Browser
+        homeConfig.programs = {
+          btop.enable = true; # Resource Monitor
+          hstr.enable = true; # Command History Browser
 
-            # Eza Configuration
-            eza = {
-              enable = true;
-              colors = "auto";
-              icons = "auto";
-              git = true;
-              extraOptions = [ "--group-directories-first" ];
-            };
+          # File Lister
+          eza = {
+            enable = true;
+            colors = "auto";
+            icons = "auto";
+            git = true;
+            extraOptions = [ "--group-directories-first" ];
+          };
 
-            # Micro Configuration
-            micro = {
-              enable = true;
-              settings = {
-                autoindent = true;
-                backup = true;
-                clipboard = "external";
-                cursorline = true;
-                eofnewline = false;
-                helpsplit = "vsplit";
-                hltrailingws = true;
-                infobar = true;
-                matchbrace = true;
-                keymenu = true;
-                mouse = true;
-                reload = "prompt";
-                ruler = true;
-                saveundo = true;
-                smartpaste = true;
-                statusline = true;
-                syntax = true;
-              };
+          # Text Editor
+          micro = {
+            enable = true;
+            settings = {
+              autoindent = true;
+              backup = true;
+              clipboard = "external";
+              cursorline = true;
+              eofnewline = false;
+              helpsplit = "vsplit";
+              hltrailingws = true;
+              infobar = true;
+              matchbrace = true;
+              keymenu = true;
+              mouse = true;
+              reload = "prompt";
+              ruler = true;
+              saveundo = true;
+              smartpaste = true;
+              statusline = true;
+              syntax = true;
             };
           };
         };

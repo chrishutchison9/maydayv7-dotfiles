@@ -2,6 +2,7 @@
 
 ### January
 
+- Update Hyprland to v0.53
 - Update mimetypes
 - Refactor `apps`
   - Add `internet`, `tools`, `stream`

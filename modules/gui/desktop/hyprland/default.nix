@@ -9,6 +9,7 @@
 let
   inherit (lib)
     getExe
+    getExe'
     mkForce
     mkIf
     mkMerge
@@ -30,13 +31,13 @@ in
             enable = true;
             withUWSM = true;
             xwayland.enable = true;
-            package = pkgs.hyprland;
-            portalPackage = pkgs.xdg-desktop-portal-hyprland;
+            package = pkgs.hyprworld.hyprland;
+            portalPackage = pkgs.hyprworld.xdg-desktop-portal-hyprland;
           };
 
           # Greeter
           services.greetd.settings.default_session.command =
-            mkForce "${getExe programs.hyprland.package} --config ${
+            mkForce "${getExe' programs.hyprland.package "start-hyprland"} -- --config ${
               pkgs.writeText "greeter.conf" (
                 replaceStrings [ "@greeter" ] [ (getExe config.programs.regreet.package) ] (
                   util.build.theme {

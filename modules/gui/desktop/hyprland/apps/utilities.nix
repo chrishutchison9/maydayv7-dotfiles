@@ -52,7 +52,7 @@ in
             }
             {
               time = "19:00";
-              temperature = 4000;
+              temperature = 4500;
             }
           ];
         };

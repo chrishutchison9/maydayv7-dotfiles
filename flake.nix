@@ -180,7 +180,7 @@
 
     # Catppuccin Theme
     catppuccin = {
-      url = "github:catppuccin/nix";
+      url = "github:catppuccin/nix?ref=release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -190,6 +190,46 @@
       inputs = {
         nixpkgs.follows = "unstable";
         nixpkgs-stable.follows = "stable";
+      };
+    };
+
+    ## Hyprland
+    # Core
+    hyprland = {
+      url = "github:hyprwm/Hyprland?ref=v0.53.1";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+    };
+
+    # Plugins
+    hyprplugins = {
+      url = "github:hyprwm/hyprland-plugins?ref=v0.53.0";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    hyprsplit = {
+      url = "github:maydayv7/hyprsplit";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    hyprcursors = {
+      url = "github:VirtCode/hypr-dynamic-cursors";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        hyprland.follows = "hyprland";
+      };
+    };
+
+    # Launcher
+    hyprshell = {
+      url = "github:H3rmt/hyprshell";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        hyprland.follows = "hyprland";
+        home-manager.follows = "home";
+        flake-parts.follows = "framework";
       };
     };
   };

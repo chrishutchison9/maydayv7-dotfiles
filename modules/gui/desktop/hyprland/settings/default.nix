@@ -62,7 +62,7 @@ in
       # Touchpad Gestures
       gestures = {
         workspace_swipe_use_r = false;
-        workspace_swipe_create_new = false;
+        workspace_swipe_create_new = true;
       };
 
       # Cursor Settings
@@ -86,10 +86,8 @@ in
         "f[1]s[false], gapsout:0, gapsin:0"
       ];
       windowrule = [
-        "bordersize 0, floating:0, onworkspace:w[tv1]s[false]"
-        "rounding 0, floating:0, onworkspace:w[tv1]s[false]"
-        "bordersize 0, floating:0, onworkspace:f[1]s[false]"
-        "rounding 0, floating:0, onworkspace:f[1]s[false]"
+        "border_size 0, rounding 0, match:float 0, match:workspace w[tv1]s[false]"
+        "border_size 0, rounding 0, match:float 0, match:workspace f[1]s[false]"
       ];
 
       misc = {
@@ -99,7 +97,7 @@ in
         focus_on_activate = true;
         initial_workspace_tracking = 1;
         middle_click_paste = false;
-        new_window_takes_over_fullscreen = 2;
+        on_focus_under_fullscreen = 2;
 
         # Interfere with wallpaper daemons
         force_default_wallpaper = 0;
@@ -146,6 +144,7 @@ in
           enabled = true;
           scrolling = true;
           gradients = true;
+          blur = true;
           height = 15;
           render_titles = true;
           font_size = 10;

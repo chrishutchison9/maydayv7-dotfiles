@@ -13,7 +13,7 @@ let
 in
 {
   ## GNOME Configuration ##
-  config = mkIf (config.gui.desktop == "iso") (mkMerge [
+  config = mkIf (config.gui.desktop == "install") (mkMerge [
     (import ./gnome/common.nix args)
 
     {

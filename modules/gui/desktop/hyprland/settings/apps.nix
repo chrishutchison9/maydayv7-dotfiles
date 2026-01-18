@@ -92,100 +92,68 @@ in
 
     ## Layer Rules
     layerrule = [
-      "noanim, ^(hyprpicker)$"
-      "dimaround, ^(hyprshell_overview)$"
+      "no_anim on, match:namespace ^(hyprpicker)$"
+      "dim_around on, match:namespace ^(hyprshell_overview)$"
 
-      "blur, ^(logout_dialog)$"
-      "animation fade, ^(logout_dialog)$"
+      "blur on, animation fade, match:namespace ^(logout_dialog)$"
+      "blur on, dim_around on, animation popin, match:namespace ^(nwg-drawer)$"
 
-      "blur, ^(nwg-drawer)$"
-      "dimaround, ^(nwg-drawer)$"
-      "animation popin, ^(nwg-drawer)$"
+      "blur on, ignore_alpha 0, animation slide right, match:namespace ^(swaync-control-center)$"
+      "blur on, ignore_alpha 0, animation slide right, match:namespace ^(swaync-notification-window)$"
 
-      "blur, ^(swaync-control-center)$"
-      "ignorealpha, ^(swaync-control-center)$"
-      "animation slide right, ^(swaync-control-center)$"
-      "blur, ^(swaync-notification-window)$"
-      "ignorealpha, ^(swaync-notification-window)$"
-      "animation slide right, ^(swaync-notification-window)$"
-
-      "blur, ^(waybar)$"
-      "ignorealpha, ^(waybar)$"
-
-      "blur, ^(wlclock)$"
-      "ignorealpha, ^(wlclock)$"
+      "blur on, ignore_alpha 0, match:namespace ^(waybar)$"
+      "blur on, ignore_alpha 0, match:namespace ^(wlclock)$"
     ];
 
     ## Window Rules
-    windowrulev2 = flatten (
+    windowrule = flatten (
       [
         # Settings
-        "stayfocused, class:^(gnome-control-center)$"
+        "stay_focused on, match:class ^(gnome-control-center)$"
 
         # Keybinds Viewer
-        "pin, title:^(Kebihelp)$"
-        "stayfocused, title:^(Kebihelp)$"
-        "opacity 0.9 override, title:^(Kebihelp)"
+        "pin on, stay_focused on, opacity 0.9 override, match:title ^(Kebihelp)$"
 
         # Browser Windows
-        "float, title:^(Picture-in-[P|p]icture)$"
-        "workspace special silent, title:^(Sharing Indicator)$"
-        "workspace special silent, title:^(.*is sharing (your screen|a window)\.)$"
+        "float on, match:title ^(Picture-in-[P|p]icture)$"
+        "workspace special silent, match:title ^(Sharing Indicator)$"
+        "workspace special silent, match:title ^(.*is sharing (your screen|a window).)$"
 
         # Media Consumption
-        "idleinhibit focus, class:^(mpv|.*celluloid.*|.+exe)$"
-        "idleinhibit focus, class:^(firefox|brave-browser)$, title:^(.*YouTube.*)$"
-        "idleinhibit fullscreen, class:^(firefox|brave-browser)$"
+        "idle_inhibit focus, match:class ^(mpv|.*celluloid.*|.+exe)$"
+        "idle_inhibit focus, match:class ^(firefox|brave-browser)$, match:title ^(.*YouTube.*)$"
+        "idle_inhibit fullscreen, match:class ^(firefox|brave-browser)$"
 
         # Screen Tearing
-        "immediate, class:^(.+exe)$"
+        "immediate on, match:class ^(.+exe)$"
 
         # Prompt Windows
-        "float, class:^(xdg-desktop-portal-gtk)"
-        "dimaround, class:^(xdg-desktop-portal-gtk)"
+        "float on, dim_around on, match:class ^(xdg-desktop-portal-gtk)$"
       ]
-      ++ (map
-        (class: [
-          "pin, class:^(${class})"
-          "dimaround, class:^(${class})"
-          "stayfocused, class:^(${class})"
-        ])
-        [
-          "pinentry-"
-          "gay.vaskel.Soteria"
-          "gcr-prompter"
-        ]
-      )
-      ++ (map
-        (class: [
-          # Utilities
-          "float, class:^(${class})"
-          "pin, class:^(${class})"
-          "persistentsize, class:^(${class})"
-        ])
-        [
-          "com.saivert.pwvucontrol"
-          "io.github.kaii_lb.Overskride"
-          "nwg-displays"
-          "gnome-control-center"
-          "org.gnome.Settings"
-        ]
-      )
-      ++ (map
-        (title: [
-          # Dialogs
-          "float, title:^(${title})(.*)$"
-        ])
-        [
-          "Library"
-          "Open File"
-          "Open Folder"
-          "Save As"
-          "Save File"
-          "Select a File"
-          ".*Properties"
-        ]
-      )
+      ++ (map (class: [ "pin on, dim_around on, stay_focused on, match:class ^(${class})$" ]) [
+        # Authentication
+        "pinentry-"
+        "gay.vaskel.Soteria"
+        "gcr-prompter"
+      ])
+      ++ (map (class: [ "float on, pin on, persistent_size on, match:class ^(${class})$" ]) [
+        # Utilities
+        "com.saivert.pwvucontrol"
+        "io.github.kaii_lb.Overskride"
+        "nwg-displays"
+        "gnome-control-center"
+        "org.gnome.Settings"
+      ])
+      ++ (map (title: [ "float on, match:title ^(${title})(.*)$" ]) [
+        # Dialogs
+        "Library"
+        "Open File"
+        "Open Folder"
+        "Save As"
+        "Save File"
+        "Select a File"
+        ".*Properties"
+      ])
     );
   };
 }

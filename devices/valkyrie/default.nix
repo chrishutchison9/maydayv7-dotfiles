@@ -84,7 +84,7 @@
   };
 
   gui = {
-    desktop = "niri";
+    desktop = "hyprland";
     display = "eDP-1";
     wallpaper = "Quasar";
     fancy = true;

@@ -107,7 +107,7 @@ recursiveUpdate
               temperature_notification
             ;;
             "reset")
-              hyprctl hyprsunset reset temperature
+              hyprctl hyprsunset identity
               notify temperature -i "display" "🌡 Reset"
             ;;
             "") fail "Expected an Option" ;;
@@ -154,7 +154,8 @@ recursiveUpdate
                   keyword general:gaps_in 0;\
                   keyword general:gaps_out 0;\
                   keyword general:border_size 1;\
-                  keyword decoration:rounding 0"
+                  keyword decoration:rounding 0;\
+                  keyword plugin:dynamic-cursors:enabled 0"
                 exit
               fi
               hyprnotify 1 "Compositor Effects Enabled"

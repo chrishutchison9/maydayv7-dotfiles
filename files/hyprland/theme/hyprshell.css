@@ -1,6 +1,7 @@
 :root {
   --text-color: #@white;
   --bg-color: alpha(#@base00, 0.5);
+  --bg-window-color: alpha(#@base00, 0.7);
   --bg-color-active: rgba(255, 255, 255, 0.2);
   --bg-color-hover: rgba(255, 255, 255, 0.4);
   --border-radius: 10px;

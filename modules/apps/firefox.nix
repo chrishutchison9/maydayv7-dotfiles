@@ -14,7 +14,7 @@ in
   config = lib.mkIf enable {
     environment = {
       systemPackages = [ package ];
-      sessionVariables.MOZ_USE_XINPUT2 = "1";
+      sessionVariables."MOZ_USE_XINPUT2" = "1";
     };
 
     user = {

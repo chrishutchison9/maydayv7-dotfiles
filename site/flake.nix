@@ -4,12 +4,12 @@ _: {
     { lib, pkgs, ... }:
     {
       # Website
-      packages.website = pkgs.callPackage ./. { inherit pkgs; };
+      packages.website = pkgs.callPackage ./. { inherit lib pkgs; };
 
       # 'git' Frontend
       apps.build-stagit = {
         type = "app";
-        program = "${pkgs.callPackage ./git { inherit lib pkgs; }}/bin/build-stagit";
+        program = lib.getExe (pkgs.callPackage ./git { inherit lib pkgs; });
       };
 
       # Development Shell
