@@ -109,11 +109,8 @@
 
     # Secure Boot
     boot = {
-      url = "github:nix-community/lanzaboote/v0.4.3";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "framework";
-      };
+      url = "github:nix-community/lanzaboote/v1.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Authentication Credentials Manager
@@ -123,7 +120,7 @@
     };
 
     # Filesystem State Handler
-    impermanence.url = "github:nix-community/impermanence";
+    impermanence.url = "github:nix-community/impermanence?ref=home-manager-v1";
 
     # Nix Index Database
     index = {
@@ -196,7 +193,7 @@
     ## Hyprland
     # Core
     hyprland = {
-      url = "github:hyprwm/Hyprland?ref=v0.53.1";
+      url = "github:hyprwm/hyprnix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";
@@ -204,11 +201,6 @@
     };
 
     # Plugins
-    hyprplugins = {
-      url = "github:hyprwm/hyprland-plugins?ref=v0.53.0";
-      inputs.hyprland.follows = "hyprland";
-    };
-
     hyprsplit = {
       url = "github:maydayv7/hyprsplit";
       inputs.hyprland.follows = "hyprland";

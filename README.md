@@ -463,6 +463,7 @@ The system `config` can be accessed using the `sys` parameter in `home-manager` 
 - Remove `pkgs.custom.copyous` after [merge](https://github.com/NixOS/nixpkgs/pull/469919)
 - Update Niri Configuration after [merge](https://github.com/sodiboo/niri-flake/pull/1548)
 - Update `minecraft` after [merge](https://github.com/Infinidoge/nix-minecraft/pull/161)
+- Update `impermanence` after [upstream](https://github.com/nix-community/impermanence) stabilizes
 
 </details>
 

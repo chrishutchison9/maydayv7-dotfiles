@@ -6,9 +6,9 @@ To access recovery settings, open the boot menu and select the `recovery` Specia
 
 #### Secure Boot
 
-To configure Secure Boot, first install the system by using the `efi` loader, then follow [these](https://github.com/nix-community/lanzaboote/blob/v0.3.0/docs/QUICK_START.md) instructions and set `hardware.boot.loader` to `secure`
+Set `hardware.boot.loader` to `secure` to enable [Secure Boot](https://en.wikipedia.org/wiki/UEFI#Secure_Boot)
 
-_If the `advanced` filesystem scheme is used, the keys need to be created after `/etc/secureboot` is persisted_
+The setup should occur automatically on first boot, consult the [docs](https://nix-community.github.io/lanzaboote/) in case of any issue
 
 > [!NOTE]
 > Secure Boot is only supported in EFI Mode

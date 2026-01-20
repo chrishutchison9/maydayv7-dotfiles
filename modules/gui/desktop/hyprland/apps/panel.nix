@@ -58,7 +58,7 @@ in
             on-scroll-up = "hyprctl dispatch workspace m+1";
             on-scroll-down = "hyprctl dispatch workspace m-1";
             ignore-workspaces = [
-              "special:scratch_.*"
+              "special:S-.*"
               "special:minimized"
             ];
 

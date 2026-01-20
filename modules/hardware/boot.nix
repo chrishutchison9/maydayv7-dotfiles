@@ -102,8 +102,13 @@ in
     (mkIf (loader == "secure") rec {
       boot.lanzaboote = {
         enable = true;
-        pkiBundle = "/etc/secureboot";
         configurationLimit = 15;
+        pkiBundle = "/etc/secureboot";
+        autoGenerateKeys.enable = true;
+        autoEnrollKeys = {
+          enable = true;
+          autoReboot = true;
+        };
       };
 
       environment = {

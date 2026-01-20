@@ -43,10 +43,7 @@ in
               winelib = windows.lib."${system}";
               spicetify = spotify.legacyPackages."${system}";
               hyprworld =
-                hyprland.packages."${system}"
-                // hyprplugins.packages."${system}"
-                // hyprsplit.packages."${system}"
-                // hyprcursors.packages."${system}";
+                hyprland.packages."${system}" // hyprsplit.packages."${system}" // hyprcursors.packages."${system}";
             })
             minecraft.overlay
             niri.overlays.niri
