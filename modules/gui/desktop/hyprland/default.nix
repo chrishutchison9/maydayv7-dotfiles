@@ -54,9 +54,9 @@ in
 
           # Settings
           _shared.enable = true;
-          user = {
-            persist.directories = [ ".config/hypr" ];
-            homeConfig.imports = [ ./settings ];
+          user.homeConfig = {
+            imports = [ ./settings ];
+            home.persist.directories = [ ".config/hypr" ];
           };
         }
       ]

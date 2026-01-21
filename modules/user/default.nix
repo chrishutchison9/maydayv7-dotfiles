@@ -25,7 +25,6 @@ let
     mkOption
     mkOptionType
     optionals
-    remove
     types
     ;
 
@@ -97,7 +96,7 @@ in
                   };
                   shells = mkOption {
                     description = "List of Additional Supported Shells";
-                    type = listOf (enum (remove "prompt" (modules.name ../shell)));
+                    type = listOf (enum (modules.name ../shell/list));
                     default = [ "bash" ];
                   };
                   homeConfig = mkOption {

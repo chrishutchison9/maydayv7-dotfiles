@@ -8,6 +8,6 @@
   ## Minecraft ##
   config = lib.mkIf (builtins.elem "minecraft" config.apps.games) {
     environment.systemPackages = [ pkgs.prismlauncher ];
-    user.persist.directories = [ ".local/share/PrismLauncher" ];
+    user.homeConfig.home.persist.directories = [ ".local/share/PrismLauncher" ];
   };
 }

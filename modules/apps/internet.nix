@@ -34,7 +34,7 @@ in
       zoom-us
     ];
 
-    user.persist = {
+    user.homeConfig.home.persist = {
       files = [ ".config/zoomus.conf" ];
       directories = [
         ".config/BraveSoftware"

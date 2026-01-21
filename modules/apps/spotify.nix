@@ -17,37 +17,35 @@ in
       spicetify-cli
     ];
 
-    user = {
-      persist.directories = [
+    user.homeConfig = {
+      imports = [ inputs.spicetify.homeManagerModules.default ];
+      home.persist.directories = [
         ".config/spotify"
         ".cache/spotify"
         ".cache/spot"
       ];
 
-      homeConfig = {
-        imports = [ inputs.spicetify.homeManagerModules.default ];
-        programs.spicetify = {
-          enable = true;
+      programs.spicetify = {
+        enable = true;
 
-          # Player Improvements
-          enabledCustomApps = with pkgs.spicetify.apps; [
-            betterLibrary
-            localFiles
-            newReleases
-          ];
+        # Player Improvements
+        enabledCustomApps = with pkgs.spicetify.apps; [
+          betterLibrary
+          localFiles
+          newReleases
+        ];
 
-          enabledExtensions = with pkgs.spicetify.extensions; [
-            beautifulLyrics
-            goToSong
-            history
-            loopyLoop
-            playNext
-            popupLyrics
-            seekSong
-            showQueueDuration
-            volumePercentage
-          ];
-        };
+        enabledExtensions = with pkgs.spicetify.extensions; [
+          beautifulLyrics
+          goToSong
+          history
+          loopyLoop
+          playNext
+          popupLyrics
+          seekSong
+          showQueueDuration
+          volumePercentage
+        ];
       };
     };
   };

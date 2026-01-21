@@ -83,7 +83,6 @@ Configuration [Builder](./configuration.nix)
 
 - [`user`](./user): Module that controls User Creation and Security Settings -
   - `groups`: Additional User Groups - Ex. `[ "wheel" ]`
-  - `persist`: User Files to Preserve across Reboots (while using `advanced` File System Layout)
   - `homeConfig`: Shared User Home Configuration (Alias for `home-manager.users.${username}`) -
     - `credentials`: Individual User Credentials -
       - `name`: Alternative (Work) User Name

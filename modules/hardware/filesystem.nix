@@ -8,13 +8,13 @@
   ...
 }:
 let
-  inherit (builtins) listToAttrs mapAttrs;
+  inherit (builtins) listToAttrs map;
   inherit (lib)
     filterAttrs
+    getExe
     hasPrefix
-    mkAfter
     mkAliasOptionModule
-    mkForce
+    mkDefault
     mkIf
     mkMerge
     mkOption
@@ -35,31 +35,15 @@ in
     (mkAliasOptionModule [ "hardware" "fs" "persist" ] [ "environment" "persistence" files.path.data ])
   ];
 
-  options = with types; {
-    hardware.fs.scheme = mkOption {
-      description = "Disk Filesystem Scheme";
-      type = nullOr (enum [
+  options.hardware.fs.scheme = mkOption {
+    description = "Disk Filesystem Scheme";
+    type =
+      with types;
+      nullOr (enum [
         "simple"
         "advanced"
       ]);
-      default = null;
-    };
-
-    user.persist = {
-      files = mkOption {
-        description = "Additional User Files to Preserve";
-        type = listOf str;
-        default = [ ];
-        example = [ ".bash_history" ];
-      };
-
-      directories = mkOption {
-        description = "Additional User Directories to Preserve";
-        type = listOf (either str attrs);
-        default = [ ];
-        example = [ "Downloads" ];
-      };
-    };
+    default = null;
   };
 
   config = mkMerge [
@@ -111,6 +95,14 @@ in
     })
 
     ## Advanced File System Configuration using ZFS ##
+    {
+      environment.persist.enable = mkDefault false;
+      hardware.fs.persist.enable = mkDefault false;
+      user.homeConfig.imports = [
+        (mkAliasOptionModule [ "home" "persist" ] [ "home" "persistence" files.path.data ])
+        (_: { home.persist.enable = mkDefault false; })
+      ];
+    }
     (mkIf (scheme == "advanced") (
       let
         rollback = ''
@@ -138,10 +130,17 @@ in
             neededForBoot = true;
           };
         }
+        # Early Boot Requirements
         // filterAttrs (name: _: hasPrefix "/etc" name) (
           listToAttrs (
             map (
-              item: nameValuePair item.directory { neededForBoot = true; }
+              item:
+              nameValuePair item.directory {
+                device = "${files.path.persist}${item.directory}";
+                fsType = "none";
+                options = [ "bind" ];
+                neededForBoot = true;
+              }
             ) config.environment.persist.directories
           )
         );
@@ -172,50 +171,6 @@ in
           };
         };
 
-        # Debug
-        specialisation.recovery.configuration = {
-          boot.initrd = {
-            systemd.enable = mkForce false;
-            postResumeCommands = mkAfter rollback;
-          };
-        };
-
-        # Persisted Files
-        environment.persistence = {
-          "${files.path.persist}" = {
-            files = [ "/etc/machine-id" ];
-            directories = [
-              files.path.system
-              "/var/log"
-              "/var/lib/AccountsService"
-              "/var/lib/nixos"
-              "/var/lib/systemd/coredump"
-            ];
-          };
-
-          "${files.path.data}" = {
-            hideMounts = true;
-            users = mapAttrs (_: _: {
-              inherit (config.user.persist) files;
-              directories = [
-                "Desktop"
-                "Documents"
-                "Downloads"
-                "Music"
-                "Pictures"
-                "Projects"
-                "Public"
-                "Videos"
-                {
-                  directory = ".local/share/keyrings";
-                  mode = "0700";
-                }
-              ]
-              ++ config.user.persist.directories;
-            }) config.user.settings;
-          };
-        };
-
         # Maintainence
         services.zfs = {
           trim.enable = true;
@@ -229,43 +184,77 @@ in
           };
         };
 
-        systemd.user.services.persist-trash = {
-          description = "Persist Trash Folder";
-          wantedBy = [ "default.target" ];
-          path = [ pkgs.coreutils ];
-          serviceConfig =
-            let
-              run =
-                script:
-                "${
-                  pkgs.writeShellApplication {
-                    name = "script";
-                    runtimeInputs = [ pkgs.coreutils ];
-                    text = ''
-                      LOCAL="$HOME/.local/share/Trash"
-                      PERSIST="${files.path.data}/home/$USER/Trash"
-                      mkdir -p "$LOCAL"
-                      ${script}
-                    '';
-                  }
-                }/bin/script";
-            in
-            {
-              Type = "oneshot";
-              RemainAfterExit = true;
-              StandardOutput = "journal";
-              ExecStart = run ''
-                if [ -d "$PERSIST" ]
-                then
-                  cp -r "$PERSIST"/. "$LOCAL"
-                  rm -rf "$PERSIST"
-                fi
-              '';
-              ExecStop = run ''
-                mkdir -p "$PERSIST"
-                cp -r "$LOCAL"/. "$PERSIST"
-              '';
-            };
+        # Persisted Files
+        hardware.fs.persist.enable = true;
+        environment.persistence."${files.path.persist}" = {
+          enable = true;
+          files = [ "/etc/machine-id" ];
+          directories = [
+            files.path.system
+            "/var/log"
+            "/var/lib/AccountsService"
+            "/var/lib/nixos"
+            "/var/lib/systemd/coredump"
+          ];
+        };
+
+        user.homeConfig = {
+          home.persistence."${files.path.data}" = {
+            enable = true;
+            allowTrash = true;
+            hideMounts = true;
+            directories = [
+              "Desktop"
+              "Documents"
+              "Downloads"
+              "Music"
+              "Pictures"
+              "Public"
+              "Videos"
+              {
+                directory = ".local/share/keyrings";
+                mode = "0700";
+              }
+            ];
+          };
+
+          systemd.user.services.persist-trash = {
+            Unit.Description = "Persist Trash Folder";
+            Install.WantedBy = [ "default.target" ];
+            Service =
+              let
+                run =
+                  script:
+                  getExe (
+                    pkgs.writeShellApplication {
+                      name = "script";
+                      runtimeInputs = [ pkgs.coreutils ];
+                      text = ''
+                        LOCAL="$HOME/.local/share/Trash"
+                        PERSIST="${files.path.data}/home/$USER/Trash"
+                        mkdir -p "$LOCAL"
+                        ${script}
+                      '';
+                    }
+                  );
+              in
+              {
+                Type = "oneshot";
+                RemainAfterExit = true;
+                StandardOutput = "journal";
+                ExecStart = run ''
+                  if [ -d "$PERSIST" ]
+                  then
+                    cp -r "$PERSIST"/. "$LOCAL"
+                    rm -rf "$PERSIST"
+                  fi
+                '';
+                ExecStop = run ''
+                  mkdir -p "$PERSIST"
+                  cp -r "$LOCAL"/. "$PERSIST"
+                '';
+              };
+          };
         };
       }
     ))

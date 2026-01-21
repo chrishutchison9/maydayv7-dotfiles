@@ -17,9 +17,19 @@
       transmission_4-gtk
     ];
 
-    user = {
+    user.homeConfig = {
+      # Default Applications
+      xdg.mimeApps.defaultApplications = util.build.mime {
+        audio = [ "org.gnome.Lollypop.desktop" ];
+        document = [ "org.gnome.Papers.desktop" ];
+        image = [ "org.gnome.Shotwell-Viewer.desktop" ];
+        magnet = [ "transmission-gtk.desktop" ];
+        pdf = [ "org.gnome.Papers.desktop" ];
+        video = [ "io.github.celluloid_player.Celluloid.desktop" ];
+      };
+
       # Persisted Files
-      persist.directories = [
+      home.persist.directories = [
         ".config/mpv"
         ".config/shotwell"
         ".local/share/lollypop"
@@ -27,24 +37,12 @@
         ".cache/shotwell"
       ];
 
-      homeConfig = {
-        # Default Applications
-        xdg.mimeApps.defaultApplications = util.build.mime {
-          audio = [ "org.gnome.Lollypop.desktop" ];
-          document = [ "org.gnome.Papers.desktop" ];
-          image = [ "org.gnome.Shotwell-Viewer.desktop" ];
-          magnet = [ "transmission-gtk.desktop" ];
-          pdf = [ "org.gnome.Papers.desktop" ];
-          video = [ "io.github.celluloid_player.Celluloid.desktop" ];
-        };
-
-        # Media Player
-        services.playerctld.enable = true;
-        programs.mpv = {
-          enable = true;
-          defaultProfiles = [ "gpu-hq" ];
-          scripts = [ pkgs.mpvScripts.mpris ];
-        };
+      # Media Player
+      services.playerctld.enable = true;
+      programs.mpv = {
+        enable = true;
+        defaultProfiles = [ "gpu-hq" ];
+        scripts = [ pkgs.mpvScripts.mpris ];
       };
     };
   };

@@ -587,5 +587,13 @@ in
   home = {
     packages = [ pkgs.dconf2nix ] ++ builtins.map (ext: ext.package) extensions;
     file.".config/guillotine.json".source = files.gnome.menu; # Action Menu
+    persist.directories = [
+      ".local/share/gnome-shell/extensions"
+
+      # Clipboard
+      ".cache/copyous@boerdereinar.dev"
+      ".config/copyous@boerdereinar.dev"
+      ".local/share/copyous@boerdereinar.dev"
+    ];
   };
 }

@@ -31,7 +31,7 @@ in
 
     user = {
       groups = [ "android" ];
-      persist.directories = [ ".local/share/waydroid" ];
+      homeConfig.home.persist.directories = [ ".local/share/waydroid" ];
     };
 
     environment.persist.directories = [

@@ -11,7 +11,7 @@ in
   ## Streaming Configuration ##
   config = lib.mkIf enable {
     environment.systemPackages = [ pkgs.stremio-linux-shell ];
-    user.persist.directories = [
+    user.homeConfig.home.persist.directories = [
       ".stremio-server"
       ".local/share/stremio"
     ];

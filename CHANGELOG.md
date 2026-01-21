@@ -2,6 +2,7 @@
 
 ### January
 
+- Update `impermanence` setup (`user.persist` -> `home.persist`)
 - Update Hyprland to v0.53
 - Update mimetypes
 - Refactor `apps`

@@ -50,7 +50,7 @@ in
     };
 
     system.userActivationScripts.zshrc = "touch .zshrc";
-    user.persist = {
+    user.homeConfig.home.persist = {
       files = [ ".zsh_history" ];
       directories = [ ".cache/zsh" ];
     };

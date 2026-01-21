@@ -43,34 +43,34 @@ in
       ];
     };
 
-    user = {
-      persist = {
-        files = [ ".config/gscan2pdfrc" ];
-        directories = [
-          ".calibre"
-          ".config/calibre"
-          ".config/GIMP"
-          ".cache/gimp"
-          ".config/inkscape"
-          ".config/keepassxc"
-          ".cache/keepassxc"
-          ".config/libreoffice"
-          ".config/onlyoffice"
-          ".local/share/onlyoffice"
-          ".local/share/data"
-        ];
+    user.homeConfig = {
+      xdg.mimeApps.defaultApplications = util.build.mime {
+        office = [ "onlyoffice-desktopeditors.desktop" ];
+        password = [ "org.keepassxc.KeePassXC.desktop" ];
       };
 
-      homeConfig = {
-        xdg.mimeApps.defaultApplications = util.build.mime {
-          office = [ "onlyoffice-desktopeditors.desktop" ];
-          password = [ "org.keepassxc.KeePassXC.desktop" ];
+      # Password Manager
+      programs.keepassxc.enable = true;
+
+      home = {
+        persist = {
+          files = [ ".config/gscan2pdfrc" ];
+          directories = [
+            ".calibre"
+            ".config/calibre"
+            ".config/GIMP"
+            ".cache/gimp"
+            ".config/inkscape"
+            ".config/keepassxc"
+            ".cache/keepassxc"
+            ".config/libreoffice"
+            ".config/onlyoffice"
+            ".local/share/onlyoffice"
+            ".local/share/data"
+          ];
         };
 
-        # Password Manager
-        programs.keepassxc.enable = true;
-
-        home.file = {
+        file = {
           # Document Templates
           "Templates" = rec {
             source = files.templates;

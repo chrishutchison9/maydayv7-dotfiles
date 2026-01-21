@@ -19,7 +19,8 @@ The system may be set up using either a `simple` or `advanced` filesystem scheme
 
 #### Data Storage
 
-All important, persisted user files are stored at `/data`, while persisted system files are stored at `/nix/state`. Personal files and media are stored at `/data/files`
+All important persisted files are stored at `/data` (declared using either `hardware.fs.persist`, or `home.persist` for user files), while persisted system files are stored at `/nix/state` (declared using `environment.persist`).
+Personal files and media are stored at `/data/files`
 
 ### Virtualisation
 

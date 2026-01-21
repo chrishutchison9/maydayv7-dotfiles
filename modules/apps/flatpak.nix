@@ -26,7 +26,7 @@ in
     system.activationScripts.updateDesktopDatabase.text = "${pkgs.desktop-file-utils}/bin/update-desktop-database /var/lib/flatpak/exports/share/applications";
 
     environment.persist.directories = [ "/var/lib/flatpak" ];
-    user.persist.directories = [
+    user.homeConfig.home.persist.directories = [
       ".cache/flatpak"
       ".local/share/flatpak"
       ".var/app"

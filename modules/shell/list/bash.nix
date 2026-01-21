@@ -13,7 +13,7 @@ in
   config = lib.mkIf enable {
     # Shell Environment
     environment.shells = [ pkgs.bashInteractive ];
-    user.persist = {
+    user.homeConfig.home.persist = {
       files = [ ".bash_history" ];
       directories = [ ".local/share/bash" ];
     };

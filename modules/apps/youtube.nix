@@ -31,14 +31,14 @@ in
       yt-dlp
     ];
 
-    user = {
+    user.homeConfig.home = {
       persist.directories = [
         ".config/YouTube Music"
         ".config/youtube-tui"
         ".local/share/youtube-tui"
       ];
 
-      homeConfig.home.file.".config/YouTube Music/config.json" = {
+      file.".config/YouTube Music/config.json" = {
         text =
           replaceStrings
             [ "@theme" ]

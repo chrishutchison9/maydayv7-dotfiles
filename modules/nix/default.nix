@@ -9,7 +9,7 @@
 
   config = {
     # Settings
-    user.persist.directories = [ ".cache/nix" ];
+    user.homeConfig.home.persist.directories = [ ".cache/nix" ];
     nix = {
       # Version
       package = pkgs.nixFlakes;

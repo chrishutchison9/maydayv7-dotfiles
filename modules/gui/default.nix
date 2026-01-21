@@ -54,13 +54,13 @@ in
         seahorse.enable = true;
       };
 
-      user = {
-        persist.directories = [
+      user.homeConfig = {
+        home.persist.directories = [
           ".config/autostart"
           ".local/share/gvfs-metadata"
         ];
 
-        homeConfig.services = {
+        services = {
           poweralertd.enable = true; # Power alerts
           mpris-proxy.enable = true; # Audio devices
         };

@@ -28,50 +28,50 @@ in
     waycorner
   ];
 
-  user = {
-    persist.directories = [ ".config/nwg-displays" ];
-    homeConfig = {
-      services = {
-        # Wallpaper Daemon
-        hyprpaper = {
-          enable = true;
-          settings = {
-            ipc = false;
-            splash = true;
-          };
-        };
-
-        # Display Temperature
-        hyprsunset = {
-          enable = true;
-          extraArgs = [ "--identity" ];
-          settings.profile = [
-            {
-              time = "7:00";
-              temperature = 6000;
-            }
-            {
-              time = "19:00";
-              temperature = 4500;
-            }
-          ];
+  user.homeConfig = {
+    services = {
+      # Wallpaper Daemon
+      hyprpaper = {
+        enable = true;
+        settings = {
+          ipc = false;
+          splash = true;
         };
       };
 
-      systemd.user.services.waycorner =
-        let
-          target = [ "graphical-session.target" ];
-        in
-        {
-          Install.WantedBy = target;
-          Unit = {
-            Description = "Hot Corners";
-            After = target;
-          };
-          Service.ExecStart = getExe pkgs.waycorner;
-        };
+      # Display Temperature
+      hyprsunset = {
+        enable = true;
+        extraArgs = [ "--identity" ];
+        settings.profile = [
+          {
+            time = "7:00";
+            temperature = 6000;
+          }
+          {
+            time = "19:00";
+            temperature = 4500;
+          }
+        ];
+      };
+    };
 
-      home.file = with files.hyprland; {
+    systemd.user.services.waycorner =
+      let
+        target = [ "graphical-session.target" ];
+      in
+      {
+        Install.WantedBy = target;
+        Unit = {
+          Description = "Hot Corners";
+          After = target;
+        };
+        Service.ExecStart = getExe pkgs.waycorner;
+      };
+
+    home = {
+      persist.directories = [ ".config/nwg-displays" ];
+      file = with files.hyprland; {
         # Application Drawer
         ".config/nwg-drawer/drawer.css".text = drawer;
 

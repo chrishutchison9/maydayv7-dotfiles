@@ -44,36 +44,36 @@ in
     # Desktop Integration
     programs.gnupg.agent.pinentryPackage = pkgs.pinentry-gtk2;
 
-    user = {
-      # Configuration
-      persist.directories = [
-        ".config/dconf"
-        ".config/gtk-3.0"
-        ".config/gtk-4.0"
-      ];
+    user.homeConfig = {
+      home = {
+        # Configuration
+        persist.directories = [
+          ".config/dconf"
+          ".config/gtk-3.0"
+          ".config/gtk-4.0"
+        ];
 
-      homeConfig = {
         # Bookmarks
-        home.file.".config/gtk-3.0/bookmarks" = {
+        file.".config/gtk-3.0/bookmarks" = {
           text = files.bookmarks;
           force = true;
         };
+      };
 
-        # Theming
-        stylix.targets.gtk.enable = false;
-        dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
-        gtk = {
-          enable = true;
-          inherit (cfg) theme;
-          cursorTheme = config.gui.cursors;
-          font = with config.stylix.fonts; {
-            inherit (sansSerif) package name;
-            size = sizes.applications;
-          };
-
-          gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
-          gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
+      # Theming
+      stylix.targets.gtk.enable = false;
+      dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+      gtk = {
+        enable = true;
+        inherit (cfg) theme;
+        cursorTheme = config.gui.cursors;
+        font = with config.stylix.fonts; {
+          inherit (sansSerif) package name;
+          size = sizes.applications;
         };
+
+        gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
+        gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
       };
     };
   };

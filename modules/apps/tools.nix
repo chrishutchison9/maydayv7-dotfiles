@@ -38,8 +38,17 @@ in
       ];
     };
 
-    user = {
-      persist = {
+    user.homeConfig = {
+      # AppImage Manager
+      dconf.settings."it/mijorus/gearlever".appimages-default-folder = "~/.appimages";
+      xdg.mimeApps.defaultApplications = util.build.mime {
+        appimage = [ "it.mijorus.gearlever.desktop" ];
+      };
+
+      # Audio Effects
+      services.easyeffects.enable = true;
+
+      home.persist = {
         files = [ ".config/rncbc.org/qpwgraph" ];
         directories = [
           ".appimages"
@@ -47,17 +56,6 @@ in
           ".config/obs-studio"
           ".config/pitivi"
         ];
-      };
-
-      homeConfig = {
-        # AppImage Manager
-        dconf.settings."it/mijorus/gearlever".appimages-default-folder = "~/.appimages";
-        xdg.mimeApps.defaultApplications = util.build.mime {
-          appimage = [ "it.mijorus.gearlever.desktop" ];
-        };
-
-        # Audio Effects
-        services.easyeffects.enable = true;
       };
     };
   };

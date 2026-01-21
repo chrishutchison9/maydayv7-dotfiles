@@ -37,7 +37,7 @@ in
     hardware.graphics.enable32Bit = true;
 
     # Utilities
-    user.persist.directories = [
+    user.homeConfig.home.persist.directories = [
       ".wine"
       ".cache/wine"
       ".cache/winetricks"

@@ -16,7 +16,7 @@ let
 in
 {
   ## SHELL Configuration ##
-  imports = modules.list ./.;
+  imports = modules.list ./. ++ modules.list ./list;
 
   options.shell.utilities = mkEnableOption "Enable Additional Shell Utilities";
 
@@ -125,8 +125,8 @@ in
         };
       };
 
-      user = {
-        persist = {
+      user.homeConfig = {
+        home.persist = {
           files = [ ".hstr_favorites" ];
           directories = [
             ".config/micro"
@@ -134,7 +134,7 @@ in
           ];
         };
 
-        homeConfig.programs = {
+        programs = {
           btop.enable = true; # Resource Monitor
           hstr.enable = true; # Command History Browser
 

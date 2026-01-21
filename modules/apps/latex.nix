@@ -16,9 +16,9 @@ in
       setzer
     ];
 
-    user = {
-      persist.directories = [ ".config/setzer" ];
-      homeConfig.xdg.mimeApps.defaultApplications = util.build.mime {
+    user.homeConfig = {
+      home.persist.directories = [ ".config/setzer" ];
+      xdg.mimeApps.defaultApplications = util.build.mime {
         latex = [ "org.cvfosammmm.Setzer.desktop" ];
       };
     };

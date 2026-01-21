@@ -12,9 +12,9 @@ in
   ## Notifications Configuration
   config = mkIf config._shared.enable {
     # Phone Connect
-    user.persist.directories = [ ".config/kdeconnect" ];
     programs.kdeconnect.enable = true;
     user.homeConfig = {
+      home.persist.directories = [ ".config/kdeconnect" ];
       services.kdeconnect = {
         enable = true;
         indicator = true;

@@ -120,7 +120,13 @@
     };
 
     # Filesystem State Handler
-    impermanence.url = "github:nix-community/impermanence?ref=home-manager-v1";
+    impermanence = {
+      url = "github:nix-community/impermanence";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home";
+      };
+    };
 
     # Nix Index Database
     index = {

@@ -67,18 +67,6 @@ in
         pantheon-tweaks
       ];
 
-      # Persisted Files
-      user.persist.directories = [
-        ".config/evolution"
-        ".local/share/contractor"
-        ".local/share/evolution"
-        ".local/share/Emote"
-        ".local/share/io.elementary.code"
-        ".local/share/io.elementary.photos"
-        ".cache/evolution"
-        ".cache/io.elementary.appcenter"
-      ];
-
       user.homeConfig = {
         ## Desktop Settings
         imports = [ ./settings.nix ];
@@ -118,6 +106,18 @@ in
         };
 
         home = {
+          # Persisted Files
+          persist.directories = [
+            ".config/evolution"
+            ".local/share/contractor"
+            ".local/share/evolution"
+            ".local/share/Emote"
+            ".local/share/io.elementary.code"
+            ".local/share/io.elementary.photos"
+            ".cache/evolution"
+            ".cache/io.elementary.appcenter"
+          ];
+
           file = {
             # Firefox Elementary Theme
             ".mozilla/firefox/default/chrome/userChrome.css".source =

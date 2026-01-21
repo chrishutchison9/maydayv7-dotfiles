@@ -46,14 +46,14 @@ in
     gui.fancy = mkOverride 999 false;
     programs.gamemode.enable = true; # Use 'gamemoderun %command%'
 
-    user = {
+    user.homeConfig = {
       # Runner
-      homeConfig.xdg.dataFile."lutris/runners/wine/wine-system" = mkIf wine {
+      xdg.dataFile."lutris/runners/wine/wine-system" = mkIf wine {
         source = config.apps.wine.package;
       };
 
       # Directories
-      persist.directories = [
+      home.persist.directories = [
         "Games"
         ".local/share/bottles"
 

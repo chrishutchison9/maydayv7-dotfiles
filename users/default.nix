@@ -107,12 +107,7 @@ in
         publicShare = "$HOME/Public";
         templates = "$HOME/Templates";
         videos = "$HOME/Videos";
-
-        # Custom Directories
-        extraConfig = {
-          "XDG_PROJECTS_DIR" = "$HOME/Projects";
-          "XDG_SCREENSHOTS_DIR" = "$HOME/Pictures/Screenshots";
-        };
+        extraConfig."XDG_SCREENSHOTS_DIR" = "$HOME/Pictures/Screenshots";
       };
     };
   };

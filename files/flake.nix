@@ -100,9 +100,9 @@
       };
 
       # Pictures
-      images = {
-        profile = ./images/Profile.png;
-        transparent = ./images/transparent.png;
+      images = map.files {
+        directory = ./images;
+        extension = ".png";
       };
 
       # Logseq Notes

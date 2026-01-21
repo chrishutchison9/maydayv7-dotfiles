@@ -82,7 +82,7 @@ in
     };
 
     # Persisted Files
-    user.persist.directories = [
+    user.homeConfig.home.persist.directories = [
       {
         directory = ".gnupg";
         mode = "0700";

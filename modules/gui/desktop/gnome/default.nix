@@ -125,33 +125,6 @@ in
         gnuchess
       ];
 
-      ## Persisted Files
-      user.persist.directories = [
-        # Apps
-        ".config/evolution"
-        ".config/ghostty"
-        ".config/gnome-boxes"
-        ".config/gnome-builder"
-        ".local/share/epiphany"
-        ".local/share/evolution"
-        ".local/share/geary"
-        ".local/share/gnome-boxes"
-        ".local/share/gnome-builder"
-        ".local/share/lollypop"
-        ".local/share/nautilus"
-        ".local/share/sounds"
-        ".local/share/telepathy"
-        ".local/share/webkitgtk"
-        ".cache/evolution"
-        ".cache/fractal"
-        ".cache/gnome-builder"
-
-        # Extensions
-        ".cache/copyous@boerdereinar.dev"
-        ".config/copyous@boerdereinar.dev"
-        ".local/share/copyous@boerdereinar.dev"
-      ];
-
       user.homeConfig = {
         ## Desktop Settings
         imports = [ ./settings ];
@@ -177,6 +150,27 @@ in
           video = [ "io.github.celluloid_player.Celluloid.desktop" ];
           virtualization = [ "org.gnome.Boxes.desktop" ];
         };
+
+        # Persisted Files
+        home.persist.directories = [
+          ".config/evolution"
+          ".config/ghostty"
+          ".config/gnome-boxes"
+          ".config/gnome-builder"
+          ".local/share/epiphany"
+          ".local/share/evolution"
+          ".local/share/geary"
+          ".local/share/gnome-boxes"
+          ".local/share/gnome-builder"
+          ".local/share/lollypop"
+          ".local/share/nautilus"
+          ".local/share/sounds"
+          ".local/share/telepathy"
+          ".local/share/webkitgtk"
+          ".cache/evolution"
+          ".cache/fractal"
+          ".cache/gnome-builder"
+        ];
 
         ## Terminal
         programs.ghostty = {

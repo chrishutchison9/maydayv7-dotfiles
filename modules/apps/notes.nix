@@ -27,13 +27,13 @@ in
   config = mkIf enable {
     environment.systemPackages = [ pkgs.logseq ];
 
-    user = {
+    user.homeConfig.home = {
       persist.directories = [
         ".logseq"
         ".config/Logseq"
       ];
 
-      homeConfig.home.file =
+      file =
         with files.logseq;
         {
           ".config/logseq/configs.edn".text = ''{:window/native-titlebar? true}'';

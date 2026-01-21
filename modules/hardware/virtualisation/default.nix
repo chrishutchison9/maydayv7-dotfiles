@@ -16,15 +16,18 @@ in
   ## Virtualisation Settings ##
   config = lib.mkIf enable {
     # Environment Setup
-    user.groups = [
-      "kvm"
-      "libvirtd"
-    ];
-    user.persist.directories = [
-      ".config/libvirt"
-      ".local/share/libvirt"
-    ];
     environment.persist.directories = [ "/var/lib/libvirt" ];
+    user = {
+      groups = [
+        "kvm"
+        "libvirtd"
+      ];
+      homeConfig.home.persist.directories = [
+        ".config/libvirt"
+        ".local/share/libvirt"
+      ];
+    };
+
     security.virtualisation.flushL1DataCache = "cond";
     boot = {
       kernelModules = [ "kvm-${model}" ];

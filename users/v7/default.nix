@@ -5,6 +5,9 @@
   files,
   ...
 }:
+let
+  homeDir = config.home.homeDirectory;
+in
 {
   # Personal Credentials
   credentials = {
@@ -17,21 +20,26 @@
   # Home Configuration
   home = {
     packages = [ pkgs.home-manager ];
+    persist.directories = [
+      "TBD"
+      "Projects"
+    ];
 
     # Directory Symlinks
-    file = with files; {
+    file = {
       # Profile Picture
-      ".face".source = images.profile;
+      ".face".source = ./profile.png;
 
       # Online Accounts
       ".config/goa-1.0/accounts.conf".text = builtins.readFile ./accounts.conf;
 
       # Dotfiles
-      "Projects/dotfiles".source = config.lib.file.mkOutOfStoreSymlink path.system;
+      "Projects/dotfiles".source = config.lib.file.mkOutOfStoreSymlink files.path.system;
 
       # GTK+ Bookmarks
       ".config/gtk-3.0/bookmarks".text = lib.mkBefore ''
-        file://${config.home.homeDirectory}/Projects Projects
+        file://${homeDir}/TBD TBD
+        file://${homeDir}/Projects Projects
       '';
     };
   };

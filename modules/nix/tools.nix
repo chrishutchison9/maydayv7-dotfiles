@@ -9,7 +9,7 @@
 
   ## Nix Tools ##
   config = lib.mkIf config.nix.tools {
-    user.persist.directories = [ ".cache/manix" ];
+    user.homeConfig.home.persist.directories = [ ".cache/manix" ];
     nix.settings.system-features = [
       "kvm"
       "big-parallel"
