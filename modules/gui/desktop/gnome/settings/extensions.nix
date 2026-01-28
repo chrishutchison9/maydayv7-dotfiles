@@ -524,7 +524,7 @@ let
                 (mkDouble base0D-dec-b)
                 1.0
               ];
-            global-rounded-corner-settings = ''{'padding': <{'left': 1, 'right': 1, 'top': 1, 'bottom': 1}>, 'keepRoundedCorners': <{'maximized': true, 'fullscreen': false}>, 'borderRadius': <uint32 12>, 'smoothing': <0.0>, 'enabled': <true>}'';
+            global-rounded-corner-settings = "{'padding': <{'left': 1, 'right': 1, 'top': 1, 'bottom': 1}>, 'keepRoundedCorners': <{'maximized': true, 'fullscreen': false}>, 'borderRadius': <uint32 12>, 'smoothing': <0.0>, 'enabled': <true>}";
             blacklist = [
               "com.desktop.ding"
               "com.github.amezin.ddterm"

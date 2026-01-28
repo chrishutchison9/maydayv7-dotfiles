@@ -101,8 +101,8 @@ recursiveUpdate
         nixFlakes
         cachix
         manix
+        dix
         nix-output-monitor
-        nvd
       ];
 
       text = ''
@@ -165,7 +165,7 @@ recursiveUpdate
             if nom build ${path.system}#nixosConfigurations."$HOSTNAME".config.system.build.toplevel --out-link "$TEMP"
             then
               echo "Processing Delta..."
-              nvd diff /run/current-system "$TEMP"
+              dix /run/current-system "$TEMP"
               read -rp "Do you want to apply the configuration? (Y/*): " choice
               case $choice in
                 [Yy]*)

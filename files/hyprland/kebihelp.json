@@ -59,8 +59,7 @@
     "default": "Desktop",
     "kitty": "Terminal",
     "code": "Code",
-    "firefox": "Firefox",
-    "spotify": "Spotify"
+    "firefox": "Firefox"
   },
   "Keybindings": {
     "Desktop": {
@@ -311,7 +310,7 @@
           },
           {
             "value": "$mod N",
-            "label": "Show received notifications in order"
+            "label": "Show notification panel"
           },
           {
             "value": "$mod SHIFT Esc",
@@ -1633,107 +1632,6 @@
           {
             "value": "End",
             "label": "Seek to the end"
-          }
-        ]
-      }
-    },
-    "Spotify": {
-      "_hidden": false,
-      "General": {
-        "_hidden": false,
-        "keybindings": [
-          {
-            "value": "CTRL + N",
-            "label": "Create new playlist"
-          },
-          {
-            "value": "CTRL + X",
-            "label": "Cut"
-          },
-          {
-            "value": "CTRL + C",
-            "label": "Copy"
-          },
-          {
-            "value": "CTRL + V",
-            "label": "Paste"
-          },
-          {
-            "value": "Del",
-            "label": "Delete"
-          },
-          {
-            "value": "CTRL + A",
-            "label": "Select all"
-          },
-          {
-            "value": "CTRL + F",
-            "label": "Filter (in Songs and Playlists)"
-          },
-          {
-            "value": "CTRL + L",
-            "label": "Give focus to search field"
-          },
-          {
-            "value": "ALT + Left",
-            "label": "Go back"
-          },
-          {
-            "value": "ALT + Right",
-            "label": "Go forward"
-          },
-          {
-            "value": "F1",
-            "label": "Show help"
-          },
-          {
-            "value": "CTRL + P",
-            "label": "Preferences"
-          },
-          {
-            "value": "CTRL + SHIFT + W",
-            "label": "Logout active user"
-          },
-          {
-            "value": "ALT + F4",
-            "label": "Quit"
-          }
-        ]
-      },
-      "Player": {
-        "_hidden": false,
-        "keybindings": [
-          {
-            "value": "Space",
-            "label": "Play/pause"
-          },
-          {
-            "value": "CTRL + Right",
-            "label": "Next track"
-          },
-          {
-            "value": "CTRL + Left",
-            "label": "Previous track"
-          },
-          {
-            "value": "CTRL + Up",
-            "label": "Volume up"
-          },
-          {
-            "value": "CTRL + Down",
-            "label": "Volume down"
-          },
-          {
-            "value": "CTRL + SHIFT + Down",
-            "label": "Mute"
-          },
-          {
-            "value": "CTRL + SHIFT + Up",
-            "label": "Max volume"
-          },
-          {
-            "value": "Enter",
-            "label": "Play selected row"
           }
         ]
       }

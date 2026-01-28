@@ -36,7 +36,7 @@ in
       file =
         with files.logseq;
         {
-          ".config/logseq/configs.edn".text = ''{:window/native-titlebar? true}'';
+          ".config/logseq/configs.edn".text = "{:window/native-titlebar? true}";
           ".logseq/preferences.json" = {
             text = prefs;
           }
