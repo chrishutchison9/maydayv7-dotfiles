@@ -46,6 +46,9 @@ in
 
       # Desktop Icons
       "pcmanfm-qt --desktop"
+
+      # Display Temperature
+      "sunsetr -b"
     ]);
 
     ## Shortcuts

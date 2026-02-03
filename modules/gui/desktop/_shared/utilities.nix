@@ -3,6 +3,7 @@
   lib,
   util,
   pkgs,
+  files,
   ...
 }:
 let
@@ -28,6 +29,7 @@ in
       custom.sysutils
       hyprpicker
       pwvucontrol
+      sunsetr
       wev
       wl-clipboard
       wl-screenrec
@@ -70,6 +72,10 @@ in
         font = [ "com.github.FontManager.FontViewer.desktop" ];
       };
 
+      # Display Temperature
+      home.file.".config/sunsetr".source = files.sunsetr;
+
+      # Desktop Clock
       systemd.user.services.wlclock =
         let
           target = [ "graphical-session.target" ];

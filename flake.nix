@@ -148,10 +148,10 @@
 
     # Minecraft Server
     minecraft = {
-      url = "github:maydayv7/nix-minecraft";
+      url = "github:Infinidoge/nix-minecraft";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "utils";
+        systems.follows = "systems";
       };
     };
 
@@ -208,7 +208,7 @@
 
     # Plugins
     hyprsplit = {
-      url = "github:maydayv7/hyprsplit";
+      url = "github:shezdy/hyprsplit";
       inputs.hyprland.follows = "hyprland";
     };
 

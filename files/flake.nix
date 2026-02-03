@@ -138,6 +138,9 @@
         extension = ".sh";
       };
 
+      # Display Temperature Control
+      sunsetr = ./sunsetr;
+
       # Notifications Daemon
       swaync = readFile ./swaync.css;
 

@@ -13,7 +13,6 @@ let
 
     # Usage #
       help                           - Show this information
-      temperature [up,down]          - Display Temperature Controls
       click [button] [address]       - Opens [address] with [button] action
       toggle 
         fancy                        - Toggle Compositor Effects
@@ -64,7 +63,6 @@ recursiveUpdate
         custom.hyprshellevents
         hyprland
         hyprshade
-        hyprsunset
         libnotify
         zenity
       ];
@@ -91,28 +89,6 @@ recursiveUpdate
           "daemon")
             info "Monitoring Hyprland Socket..."
             socat -u UNIX-CONNECT:"$XDG_RUNTIME_DIR"/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock EXEC:"shellevents ${daemon}",nofork
-          ;;
-          "temperature")
-            temperature_notification() {
-              temperature=$(hyprctl hyprsunset temperature)
-              notify temperature -i "display" "🌡 $temperature K"
-            }
-            case "$2" in
-            "up")
-              hyprctl hyprsunset temperature +200
-              temperature_notification
-            ;;
-            "down")
-              hyprctl hyprsunset temperature -200
-              temperature_notification
-            ;;
-            "reset")
-              hyprctl hyprsunset identity
-              notify temperature -i "display" "🌡 Reset"
-            ;;
-            "") fail "Expected an Option" ;;
-            *) fail "Unexpected Option 'temperature $2'" ;;
-            esac
           ;;
           "click")
             BUTTON="$2"

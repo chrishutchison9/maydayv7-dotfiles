@@ -1136,15 +1136,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1769028688,
-        "narHash": "sha256-Kq4AZmUNotVFKEHOTzjbGDsHr6mUh6u3ccyNMUIwyzE=",
-        "owner": "maydayv7",
+        "lastModified": 1769928064,
+        "narHash": "sha256-nx0no9qP8D0kxflY1BrSP+VGT3Ae80phWv3qsb13vhQ=",
+        "owner": "shezdy",
         "repo": "hyprsplit",
-        "rev": "21afca882244bc9df4d17f7d33bcc3a8f6379fd2",
+        "rev": "64348624e6a8d0d3aeb28400c5549a09fce8f1f6",
         "type": "github"
       },
       "original": {
-        "owner": "maydayv7",
+        "owner": "shezdy",
         "repo": "hyprsplit",
         "type": "github"
       }
@@ -1365,23 +1365,23 @@
     "minecraft": {
       "inputs": {
         "flake-compat": "flake-compat_3",
-        "flake-utils": [
-          "utils"
-        ],
         "nixpkgs": [
           "nixpkgs"
+        ],
+        "systems": [
+          "systems"
         ]
       },
       "locked": {
-        "lastModified": 1762542291,
-        "narHash": "sha256-KgRa2LpZ8TSHEJUld6oTpfZdAIBRc1TWuRUJxXTsc4Q=",
-        "owner": "maydayv7",
+        "lastModified": 1770000653,
+        "narHash": "sha256-QO/twGynxjOSUDtxbqJLshc/Q5/wImLH5O6KV2p9eoE=",
+        "owner": "Infinidoge",
         "repo": "nix-minecraft",
-        "rev": "3db421e8fefd6470c57bd1c59c26fb65310b010f",
+        "rev": "6a2ddb643aaf7949caa6158e718c5efc3dda7dc1",
         "type": "github"
       },
       "original": {
-        "owner": "maydayv7",
+        "owner": "Infinidoge",
         "repo": "nix-minecraft",
         "type": "github"
       }

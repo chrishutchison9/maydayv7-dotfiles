@@ -68,6 +68,11 @@ in
             drawer.transition-left-to-right = true;
           };
 
+          "group/display" = {
+            orientation = "vertical";
+            drawer.transition-left-to-right = true;
+          };
+
           "custom/hide".format = "";
 
           "custom/weather" = {
@@ -126,7 +131,7 @@ in
               "clock"
               "custom/weather"
               "group/power"
-              "backlight"
+              "group/display"
               "group/media"
               "network"
               "bluetooth"

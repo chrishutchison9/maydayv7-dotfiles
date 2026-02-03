@@ -1,4 +1,3 @@
-# https://github.com/NixOS/nixpkgs/pull/468728
 --- /dev/null
 +++ b/pkgs/by-name/st/stremio-linux-shell/package.nix
 @@ -0,0 +1,135 @@

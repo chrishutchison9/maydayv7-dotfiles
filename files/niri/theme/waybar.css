@@ -112,6 +112,9 @@ window#waybar.empty #window {
   background-color: @base0E;
   color: @base00;
 }
+#custom-temperature {
+  color: @base07;
+}
 
 #battery {
   background-color: @base0A;
@@ -167,6 +170,7 @@ window#waybar.empty #window {
 #custom-logo,
 #custom-notify,
 #custom-power,
+#custom-temperature,
 #custom-user,
 #custom-weather,
 #idle_inhibitor,

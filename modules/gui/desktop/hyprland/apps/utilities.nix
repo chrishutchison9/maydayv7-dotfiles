@@ -22,40 +22,22 @@ in
     grimblast
     hyprkeys
     hyprshade
-    hyprsunset
     unstable.pyprland
     slurp
     waycorner
   ];
 
   user.homeConfig = {
-    services = {
-      # Wallpaper Daemon
-      hyprpaper = {
-        enable = true;
-        settings = {
-          ipc = false;
-          splash = true;
-        };
-      };
-
-      # Display Temperature
-      hyprsunset = {
-        enable = true;
-        extraArgs = [ "--identity" ];
-        settings.profile = [
-          {
-            time = "7:00";
-            temperature = 6000;
-          }
-          {
-            time = "19:00";
-            temperature = 4500;
-          }
-        ];
+    # Wallpaper Daemon
+    services.hyprpaper = {
+      enable = true;
+      settings = {
+        ipc = false;
+        splash = true;
       };
     };
 
+    # Hot Corners
     systemd.user.services.waycorner =
       let
         target = [ "graphical-session.target" ];

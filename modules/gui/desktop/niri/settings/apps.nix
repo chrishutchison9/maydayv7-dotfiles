@@ -28,6 +28,7 @@
         }
         { command = exec "pcmanfm-qt" [ "--desktop" ]; }
         { command = exec "nwg-drawer" [ "-r" ]; }
+        { command = exec "sunsetr" [ "-b" ]; }
       ];
 
     ## Keybindings

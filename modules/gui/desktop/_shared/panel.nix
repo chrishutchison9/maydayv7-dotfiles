@@ -164,6 +164,11 @@ in
         on-click-middle = "sysutils media previous";
       };
 
+      "group/display".modules = [
+        "backlight"
+        "custom/temperature"
+      ];
+
       backlight = {
         format = "{icon}";
         tooltip-format = "Backlight: {percent}%";
@@ -180,6 +185,12 @@ in
         ];
         on-scroll-up = "sysutils brightness down";
         on-scroll-down = "sysutils brightness up";
+      };
+
+      "custom/temperature" = {
+        format = "";
+        tooltip = false;
+        on-click = "sysutils temperature";
       };
 
       "group/power".modules = [

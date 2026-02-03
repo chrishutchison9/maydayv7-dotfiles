@@ -92,22 +92,10 @@ in
 
           "group/display" = {
             orientation = "horizontal";
-            modules = [
-              "backlight"
-              "custom/temperature"
-            ];
             drawer.transition-left-to-right = false;
           };
 
           backlight.on-click = "nwg-displays";
-
-          "custom/temperature" = {
-            format = "";
-            tooltip = false;
-            on-scroll-up = "hyprutils temperature up";
-            on-scroll-down = "hyprutils temperature down";
-            on-click = "hyprutils temperature reset";
-          };
 
           "group/power" = {
             orientation = "horizontal";

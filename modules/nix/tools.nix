@@ -18,9 +18,10 @@
 
     environment.systemPackages = with pkgs; [
       cachix
+      dix
       manix
       nix-output-monitor
-      nixfmt-rfc-style
+      nixfmt-tree
       nodePackages.prettier
       shellcheck
       statix

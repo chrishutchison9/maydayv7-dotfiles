@@ -1,5 +1,9 @@
 ## 2026
 
+### February
+
+- Use `sunsetr` for Display Temperature Control
+
 ### January
 
 - Update `impermanence` setup (`user.persist` -> `home.persist`)

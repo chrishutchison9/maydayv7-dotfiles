@@ -15,6 +15,7 @@ let
       help                           - Show this information
       brightness [up,down]           - Screen Brightness Controls
       backlight [up,down]            - Keyboard Backlight Controls
+      temperature                    - Display Temperature Control
       volume [up,down,mute]          - Volume Controls
       media [next,previous,toggle]   - Media Controls
       toggle 
@@ -44,6 +45,7 @@ recursiveUpdate
         brillo
         libnotify
         playerctl
+        sunsetr
         systemd
       ];
 
@@ -120,6 +122,30 @@ recursiveUpdate
             "") fail "Expected an Option" ;;
             *) fail "Unexpected Option 'brightness $2'" ;;
             esac
+          ;;
+          "temperature")
+            readarray -t presets < <(sunsetr preset list)
+            active_preset=$(sunsetr preset active)
+            cur_ind=-1
+            for i in "''${!presets[@]}"
+            do
+                if [ "''${presets[$i]}" = "$active_preset" ]
+                then
+                  cur_ind=$i
+                  break
+                fi
+            done
+
+            if [ "$cur_ind" -eq -1 ]
+            then
+              next_ind=0
+            else
+              next_ind=$(( (cur_ind + 1) % ''${#presets[@]} ))
+            fi
+
+            next_preset="''${presets[$next_ind]}"
+            sunsetr preset "$next_preset"
+            notify temperature -i "display" "🌡 Preset: $next_preset"
           ;;
           "volume")
             volume_notification() {
