@@ -94,7 +94,9 @@ in
       };
     };
 
+    home-manager.sharedModules = optionals (!enable) [ config.stylix.homeManagerIntegration.module ];
     user.homeConfig.stylix = {
+      inherit enable;
       icons = {
         enable = true;
         inherit (cfg.icons) package;

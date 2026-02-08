@@ -49,6 +49,7 @@ in
         gvfs.enable = true;
         gnome.gnome-keyring.enable = true;
       };
+
       programs = {
         xwayland.enable = true;
         seahorse.enable = true;

@@ -20,8 +20,8 @@
       cachix
       dix
       manix
+      nixfmt
       nix-output-monitor
-      nixfmt-tree
       nodePackages.prettier
       shellcheck
       statix

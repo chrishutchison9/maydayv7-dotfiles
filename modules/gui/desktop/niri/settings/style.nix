@@ -1,18 +1,13 @@
 { sys, ... }:
-with sys.lib.stylix.colors;
+with sys.lib.stylix.colors.withHashtag;
 {
   programs.niri.settings = {
     prefer-no-csd = true;
-    cursor = with sys.stylix.cursor; {
-      inherit size;
-      theme = name;
-    };
-
-    overview.backdrop-color = "#" + base00;
+    overview.backdrop-color = base00;
     layout = {
       gaps = 7;
-      background-color = "#" + base00;
-      insert-hint.display.color = "#" + base05;
+      background-color = base00;
+      insert-hint.display.color = base05;
 
       shadow = {
         enable = true;
@@ -24,15 +19,11 @@ with sys.lib.stylix.colors;
         };
       };
 
+      border.width = 1;
       focus-ring = {
-        width = 2;
-        active.color = "#" + base0D;
-      };
-
-      border = {
-        width = 2;
-        active.color = "#" + base0D;
-        inactive.color = "#" + base03;
+        enable = true;
+        width = 1;
+        active.color = base0D;
       };
 
       tab-indicator = {

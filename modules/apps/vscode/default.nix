@@ -17,8 +17,11 @@ in
   config = lib.mkIf enable {
     environment.systemPackages = [
       package
-      pkgs.nil
-    ];
+    ]
+    ++ (with pkgs; [
+      nil
+      nixfmt
+    ]);
 
     user.homeConfig = {
       # Mutable Configuration File

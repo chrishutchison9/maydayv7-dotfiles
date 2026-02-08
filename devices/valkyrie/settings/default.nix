@@ -3,12 +3,13 @@
   lib,
   ...
 }:
-let
-  inherit (lib) hasPrefix mkIf;
-in
 {
+  imports = [ ./network.nix ];
+
   # ! # https://gitlab.freedesktop.org/drm/amd/-/issues/3388
-  boot.kernelParams = mkIf (config.hardware.cpu.mode == "performance") [ "amdgpu.dcdebugmask=0x10" ];
+  boot.kernelParams = lib.mkIf (config.hardware.cpu.mode == "performance") [
+    "amdgpu.dcdebugmask=0x10"
+  ];
 
   services = {
     fwupd.enable = true;
@@ -20,47 +21,12 @@ in
     '';
   };
 
-  # Development
-  networking.firewall = {
-    allowedUDPPorts = [ 7777 ];
-    allowedTCPPorts = [ 7777 ];
-  };
-
   # ASUS Software
+  user.homeConfig.imports = [ ./home.nix ];
   services.asusd = {
     enable = true;
     enableUserService = true;
     asusdConfig.text = builtins.readFile ./asusd.ron;
     auraConfigs."19b6".text = builtins.readFile ./aura.ron;
-  };
-
-  user.homeConfig = {
-    home.persist.directories = [ ".config/rog" ];
-
-    wayland.windowManager.hyprland.settings.bindl = mkIf (hasPrefix "hyprland" config.gui.desktop) [
-      ", XF86Launch3, exec, asusctl led-mode -n"
-      ", XF86Launch4, exec, asusctl profile -n"
-    ];
-
-    dconf.settings = mkIf (hasPrefix "gnome" config.gui.desktop) {
-      "org/gnome/settings-daemon/plugins/media-keys" = {
-        custom-keybindings = [
-          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/"
-          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/"
-        ];
-      };
-
-      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" = {
-        binding = "Launch3";
-        command = "asusctl led-mode -n";
-        name = "Keyboard Mode";
-      };
-
-      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4" = {
-        binding = "Launch4";
-        command = "asusctl profile -n";
-        name = "Fan Control";
-      };
-    };
   };
 }

@@ -8,7 +8,11 @@
 }@args:
 {
   ## Niri Configuration ##
-  imports = [ ../_shared ];
+  imports = [
+    ../_shared
+    inputs.niri.nixosModules.niri
+  ];
+
   config = lib.mkIf (config.gui.desktop == "niri") (
     lib.mkMerge (
       # App Configuration
@@ -21,7 +25,6 @@
             niri = {
               enable = true;
               package = pkgs.niri-unstable;
-              useNautilus = false;
             };
 
             # Session
@@ -37,20 +40,11 @@
             };
           };
 
-          # App Environment
-          xdg.portal.config.niri.default = [
-            "gtk"
-            "wlr"
-          ];
-
           # Settings
           _shared.enable = true;
+          systemd.user.services.niri-flake-polkit.enable = false;
           user.homeConfig = {
-            imports = [
-              inputs.niri.homeModules.config
-              ./settings
-            ];
-
+            imports = [ ./settings ];
             programs.niri = { inherit (config.programs.niri) package; };
           };
         }
