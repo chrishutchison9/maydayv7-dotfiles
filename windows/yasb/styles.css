@@ -1,0 +1,2061 @@
+/* ---- YASB Panel Style ---- */
+:root {
+  /* Fonts */
+  --font-primary: "Segoe UI", system-ui;
+  --font-text: "Segoe UI Variable Text", "Segoe UI", system-ui;
+  --font-mono: "MesloLGS NF";
+  --font-icon: "Segoe Fluent Icons", "MesloLGS NF";
+  --font-icon-2: "MesloLGS NF", "Segoe UI";
+
+  /* Typography */
+  --font-size-caption: 10px;
+  --font-size-body: 12px;
+  --font-size-body-strong: 14px;
+  --font-size-subtitle: 16px;
+  --font-size-title: 20px;
+  --font-size-icon-large: 32px;
+  --font-size-display: 48px;
+
+  --font-weight-regular: 400;
+  --font-weight-semibold: 500;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+
+  /* Dimensions */
+  --width-menu-sm: 160px;
+  --width-menu-md: 280px;
+  --width-menu-lg: 380px;
+  --size-icon-btn: 28px;
+  --size-app-icon: 32px;
+  --height-item-md: 36px;
+  --height-item-lg: 80px;
+
+  /* Border Radius  */
+  --radius-none: 0;
+  --radius-small: 4px;
+  --radius-medium: 6px;
+  --radius-large: 8px;
+  --radius-circle: 32px;
+
+  /* -- Light Theme -- */
+  --color-background-base: rgba(243, 243, 243, 0.9);
+  --color-background-layer: rgba(249, 249, 249, 0.8);
+  --color-background-elevated: rgba(252, 252, 252, 0.9);
+  --color-background-elevated-x2: rgba(255, 255, 255, 0.95);
+
+  --color-taskbar: rgba(243, 243, 243, 0.85);
+  --color-widget-container: rgba(212, 212, 212, 0.7);
+
+  /* Surface Colors */
+  --color-surface-default: rgba(0, 0, 0, 0.0373);
+  --color-surface-secondary: rgba(0, 0, 0, 0.0241);
+  --color-surface-tertiary: rgba(0, 0, 0, 0.0186);
+  --color-surface-disabled: rgba(0, 0, 0, 0.0241);
+
+  /* Text Colors */
+  --color-text-primary: rgba(0, 0, 0, 0.9);
+  --color-text-secondary: rgba(0, 0, 0, 0.6063);
+  --color-text-tertiary: rgba(0, 0, 0, 0.4458);
+  --color-text-disabled: rgba(0, 0, 0, 0.3614);
+
+  /* Accent Colors */
+  --color-accent-default: #0078d4;
+  --color-accent-secondary: #005a9e;
+  --color-accent-tertiary: rgba(0, 120, 212, 0.4);
+  --color-accent-disabled: rgba(0, 0, 0, 0.2);
+
+  /* Semantic Colors */
+  --color-success: #107c10;
+  --color-warning: #ffe600c0;
+  --color-error: #c42b1c;
+  --color-info: #0078d4;
+
+  /* Component Colors */
+  --color-traffic-download: #1a7c0d;
+  --color-traffic-upload: #c41022;
+  --color-success-bg: rgba(16, 124, 16, 0.15);
+  --color-error-bg: rgba(196, 43, 28, 0.15);
+
+  /* Interactive States */
+  --color-subtle-fill-rest: rgba(0, 0, 0, 0.0373);
+  --color-subtle-fill-hover: rgba(0, 0, 0, 0.0578);
+  --color-subtle-fill-pressed: rgba(0, 0, 0, 0.0241);
+  --color-subtle-fill-disabled: transparent;
+
+  /* Stroke/Border Colors */
+  --color-stroke-surface: rgba(0, 0, 0, 0.0578);
+  --color-stroke-control-default: rgba(0, 0, 0, 0.0578);
+  --color-stroke-divider: rgba(0, 0, 0, 0.0578);
+  --color-stroke-focus: rgba(0, 0, 0, 0.0893);
+
+  /* -- Dark Theme -- */
+  --color-dark-background-base: rgba(8, 8, 8, 0.6);
+  --color-dark-background-layer: rgba(44, 44, 44, 0.5);
+  --color-dark-background-elevated: rgba(22, 22, 22, 0.25);
+  --color-dark-background-elevated-x2: rgba(22, 22, 22, 0.8);
+
+  --color-dark-taskbar: rgba(43, 44, 45, 0.85);
+  --color-dark-widget-container: rgba(60, 60, 60, 0.7);
+
+  /* Surface Colors */
+  --color-dark-surface-default: rgba(255, 255, 255, 0.0605);
+  --color-dark-surface-secondary: rgba(255, 255, 255, 0.0419);
+  --color-dark-surface-tertiary: rgba(255, 255, 255, 0.0326);
+  --color-dark-surface-disabled: rgba(255, 255, 255, 0.0419);
+
+  /* Text Colors */
+  --color-dark-text-primary: rgba(255, 255, 255, 1);
+  --color-dark-text-secondary: rgba(255, 255, 255, 0.786);
+  --color-dark-text-tertiary: rgba(255, 255, 255, 0.544);
+  --color-dark-text-disabled: rgba(255, 255, 255, 0.362);
+
+  /* Accent Colors */
+  --color-dark-accent-default: #60cdff;
+  --color-dark-accent-secondary: #0078d4;
+  --color-dark-accent-tertiary: rgba(96, 205, 255, 0.5);
+  --color-dark-accent-disabled: rgba(255, 255, 255, 0.1581);
+
+  /* Semantic Colors */
+  --color-dark-success: #6ccb5f;
+  --color-dark-warning: #fce100;
+  --color-dark-error: #ff99a4;
+  --color-dark-info: #60cdff;
+
+  /* Component Colors */
+  --color-dark-traffic-download: var(--color-dark-success);
+  --color-dark-traffic-upload: var(--color-dark-error);
+  --color-dark-success-bg: rgba(108, 203, 95, 0.2);
+  --color-dark-error-bg: rgba(255, 153, 164, 0.2);
+
+  /* Interactive States */
+  --color-dark-subtle-fill-rest: rgba(255, 255, 255, 0.0605);
+  --color-dark-subtle-fill-hover: rgba(255, 255, 255, 0.0837);
+  --color-dark-subtle-fill-pressed: rgba(255, 255, 255, 0.0512);
+  --color-dark-subtle-fill-disabled: transparent;
+
+  /* Stroke/Border Colors */
+  --color-dark-stroke-surface: rgba(255, 255, 255, 0.0698);
+  --color-dark-stroke-control-default: rgba(255, 255, 255, 0.0838);
+  --color-dark-stroke-divider: rgba(255, 255, 255, 0.0838);
+  --color-dark-stroke-focus: rgba(255, 255, 255, 0.1047);
+}
+
+/* ----------------------------------------------------------------------------
+   Global Reset
+   ---------------------------------------------------------------------------- */
+* {
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-regular);
+  font-family: var(--font-primary);
+  margin: 0;
+  padding: 0;
+}
+
+.dark * {
+  color: var(--color-dark-text-primary);
+}
+
+/* ----------------------------------------------------------------------------
+   Layout
+   ---------------------------------------------------------------------------- */
+.yasb-panel {
+  padding: 0 var(--space-4);
+  margin: 0;
+  background-color: var(--color-background-base);
+  border-bottom: 1px solid var(--color-stroke-control-default);
+}
+
+.yasb-panel.dark {
+  background-color: var(--color-dark-background-base);
+  border-bottom: 1px solid var(--color-dark-stroke-control-default);
+}
+
+/* Label */
+.widget {
+  padding: 0 var(--space-2);
+  margin: 0;
+}
+
+.widget .label {
+  padding: 0 var(--space-4);
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+}
+
+*.dark .widget .label {
+  color: var(--color-dark-text-secondary);
+}
+
+.widget .label.alt {
+  padding: 0 var(--space-4);
+}
+
+.widget .label:hover {
+  color: var(--color-text-primary);
+}
+
+*.dark .widget .label:hover {
+  color: var(--color-dark-text-primary);
+}
+
+/* Icon */
+.widget .icon {
+  padding-top: 1px;
+  font-family: var(--font-icon);
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  margin-right: var(--space-4);
+}
+
+*.dark .widget .icon {
+  color: var(--color-dark-text-secondary);
+}
+
+.widget:hover .icon {
+  color: var(--color-text-primary);
+}
+
+*.dark .widget:hover .icon {
+  color: var(--color-dark-text-primary);
+}
+
+/* Tooltip */
+.tooltip {
+  background-color: var(--color-background-elevated-x2);
+  border: 1px solid var(--color-stroke-surface);
+  border-radius: var(--radius-medium);
+  padding: var(--space-8) var(--space-12);
+  margin-top: var(--space-12);
+  font-size: var(--font-size-body);
+  font-family: var(--font-primary);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-regular);
+}
+
+*.dark .tooltip {
+  background-color: var(--color-dark-background-elevated-x2);
+  border: 1px solid var(--color-dark-stroke-surface);
+  color: var(--color-dark-text-primary);
+}
+
+/* ----------------------------------------------------------------------------
+   Context Menu
+   ---------------------------------------------------------------------------- */
+.context-menu,
+.context-menu .menu-checkbox {
+  background-color: var(--color-dark-background-elevated);
+  border: 1px solid var(--color-dark-stroke-surface);
+  border-radius: var(--radius-medium);
+  padding: var(--space-4) 0;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-body);
+  color: var(--color-dark-text-primary);
+}
+
+.context-menu::right-arrow {
+  width: var(--space-8);
+  height: var(--space-8);
+  padding-right: var(--space-24);
+}
+
+.context-menu::item,
+.context-menu .menu-checkbox {
+  background-color: transparent;
+  padding: var(--space-4) var(--space-8);
+  margin: var(--space-2) var(--space-4);
+  border-radius: var(--radius-small);
+  border: 0;
+  min-width: var(--width-menu-sm);
+}
+
+.context-menu::item:selected,
+.context-menu .menu-checkbox:hover {
+  background-color: var(--color-dark-subtle-fill-hover) !important;
+  color: var(--color-dark-text-primary) !important;
+}
+
+.context-menu::separator {
+  height: 1px;
+  background-color: var(--color-dark-stroke-divider) !important;
+  margin: var(--space-4) var(--space-8);
+}
+
+.context-menu::item:disabled {
+  color: var(--color-dark-text-disabled) !important;
+  background-color: transparent;
+}
+
+.context-menu .menu-checkbox .checkbox {
+  border: none;
+  padding: var(--space-4) var(--space-12);
+  font-size: var(--font-size-body);
+  margin: 0;
+  color: var(--color-dark-text-primary) !important;
+  font-family: var(--font-primary);
+}
+
+.context-menu .submenu::item:disabled {
+  margin: 0;
+  padding-left: var(--space-16);
+}
+
+.context-menu .menu-checkbox .checkbox:unchecked {
+  color: var(--color-dark-text-tertiary) !important;
+}
+
+.context-menu .menu-checkbox .checkbox::indicator {
+  width: var(--space-12);
+  height: var(--space-12);
+  margin-left: 0;
+  margin-right: var(--space-8);
+}
+
+.context-menu .menu-checkbox .checkbox::indicator:unchecked {
+  background-color: var(--color-dark-surface-secondary) !important;
+  border-radius: var(--radius-small);
+}
+
+.context-menu .menu-checkbox .checkbox::indicator:checked {
+  background-color: var(--color-dark-accent-secondary) !important;
+  border-radius: var(--radius-small);
+}
+
+.context-menu .menu-checkbox .checkbox:focus {
+  outline: none;
+}
+
+/* ----------------------------------------------------------------------------
+   Common Widget Container
+   ---------------------------------------------------------------------------- */
+.widget-container {
+  padding: 1px var(--space-4);
+  margin: var(--space-2) 0;
+  background-color: var(--color-background-elevated);
+  border-radius: var(--radius-medium);
+  border: 1px solid var(--color-stroke-control-default);
+}
+
+*.dark .widget-container {
+  background-color: var(--color-dark-background-elevated);
+  border: 1px solid var(--color-dark-stroke-control-default);
+}
+
+.widget-container:hover {
+  background-color: var(--color-widget-container);
+  border-color: var(--color-stroke-focus);
+}
+
+*.dark .widget-container:hover {
+  background-color: var(--color-dark-widget-container);
+  border-color: var(--color-dark-stroke-focus);
+}
+
+/* ----------------------------------------------------------------------------
+   Task View Widget
+   ---------------------------------------------------------------------------- */
+.task-view-widget .widget-container {
+  background-color: transparent;
+  border: 0;
+}
+
+.task-view-widget .widget-container:hover {
+  background-color: transparent;
+}
+
+.task-view-widget .icon {
+  font-family: var(--font-icon-2);
+  font-size: var(--font-size-subtitle);
+  color: var(--color-text-secondary);
+}
+
+*.dark .task-view-widget .icon {
+  font-family: var(--font-icon-2);
+  font-size: var(--font-size-subtitle);
+  color: var(--color-dark-text-secondary);
+}
+
+.task-view-widget .icon:hover {
+  color: var(--color-accent-default);
+}
+
+*.dark .task-view-widget .icon:hover {
+  color: var(--color-dark-accent-default);
+}
+
+/* ----------------------------------------------------------------------------
+   Home Widget
+   ---------------------------------------------------------------------------- */
+.home-widget .widget-container {
+  background-color: transparent;
+  border: 0;
+}
+
+.home-widget .widget-container:hover {
+  background-color: transparent;
+}
+
+.home-widget .icon {
+  font-family: var(--font-icon-2);
+  font-size: var(--font-size-subtitle);
+  color: var(--color-text-secondary);
+}
+
+*.dark .home-widget .icon {
+  color: var(--color-dark-text-secondary);
+}
+
+.home-widget .icon:hover {
+  color: var(--color-accent-default);
+}
+
+*.dark .home-widget .icon:hover {
+  color: var(--color-dark-accent-default);
+}
+
+.home-menu {
+  background-color: var(--color-background-elevated);
+  border: 1px solid var(--color-stroke-surface);
+  border-radius: var(--radius-medium);
+  padding: var(--space-8) 0;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+}
+
+*.dark .home-menu {
+  background-color: var(--color-dark-background-elevated);
+  border: 1px solid var(--color-dark-stroke-surface);
+  color: var(--color-dark-text-primary);
+}
+
+.home-menu .menu-item {
+  background-color: transparent;
+  padding: var(--space-8) var(--space-12);
+  margin: var(--space-2) var(--space-8);
+  border-radius: var(--radius-small);
+  font-family: var(--font-icon-2);
+  border: 0;
+  min-width: 180px;
+}
+
+.home-menu .menu-item:hover {
+  background-color: var(--color-subtle-fill-hover);
+  color: var(--color-text-primary);
+}
+
+*.dark .home-menu .menu-item:hover {
+  background-color: var(--color-dark-subtle-fill-hover);
+  color: var(--color-dark-text-primary);
+}
+
+.home-menu .separator {
+  height: 1px;
+  min-height: 1px;
+  max-height: 1px;
+  background-color: var(--color-stroke-divider);
+  margin: var(--space-4) var(--space-8);
+}
+
+*.dark .home-menu .separator {
+  background-color: var(--color-dark-stroke-divider);
+}
+
+/* ----------------------------------------------------------------------------
+   Windows Desktops
+   ---------------------------------------------------------------------------- */
+.windows-desktops .ws-btn {
+  color: var(--color-text-tertiary);
+  background-color: transparent;
+  border: none;
+  font-size: var(--font-size-body-strong);
+  padding-left: unset;
+  padding: 1px 3px;
+  margin: -1px 0 0 0;
+  border-radius: var(--radius-small);
+  min-width: var(--space-16);
+}
+
+.windows-desktops .ws-btn.button-1 {
+  padding-left: -2px;
+}
+
+*.dark .windows-desktops .ws-btn {
+  color: var(--color-dark-text-tertiary);
+}
+
+.windows-desktops .ws-btn:hover {
+  color: var(--color-text-secondary);
+}
+
+*.dark .windows-desktops .ws-btn:hover {
+  color: var(--color-dark-text-secondary);
+}
+
+.windows-desktops .ws-btn.active {
+  color: var(--color-accent-default);
+  font-weight: var(--font-weight-semibold);
+}
+
+*.dark .windows-desktops .ws-btn.active {
+  color: var(--color-dark-accent-default);
+}
+
+.windows-desktops .context-menu {
+  background-color: var(--color-background-elevated);
+  border: 1px solid var(--color-stroke-surface);
+  border-radius: var(--radius-medium);
+  padding: var(--space-4);
+}
+
+*.dark .windows-desktops .context-menu {
+  background-color: var(--color-dark-background-elevated);
+  border: 1px solid var(--color-dark-stroke-surface);
+}
+
+.windows-desktops .context-menu .menu-item {
+  padding: var(--space-8) var(--space-16);
+  border-radius: var(--radius-small);
+  color: var(--color-text-secondary);
+}
+
+*.dark .windows-desktops .context-menu .menu-item {
+  color: var(--color-dark-text-secondary);
+}
+
+.windows-desktops .context-menu .menu-item:hover {
+  background-color: var(--color-subtle-fill-hover);
+  color: var(--color-text-primary);
+}
+
+*.dark .windows-desktops .context-menu .menu-item:hover {
+  background-color: var(--color-dark-subtle-fill-hover);
+  color: var(--color-dark-text-primary);
+}
+
+.windows-desktops .context-menu .separator {
+  height: 1px;
+  background-color: var(--color-stroke-divider);
+  margin: var(--space-4) 0;
+}
+
+*.dark .windows-desktops .context-menu .separator {
+  background-color: var(--color-dark-stroke-divider);
+}
+
+/* Qt-specific Dialog Styles */
+.windows-desktops .rename-dialog {
+  border: 1px solid var(--color-stroke-surface);
+  border-radius: var(--radius-large);
+}
+
+*.dark .windows-desktops .rename-dialog {
+  border: 1px solid var(--color-stroke-surface);
+}
+
+.windows-desktops .rename-dialog QPushButton {
+  background-color: var(--color-accent-default);
+  color: var(--color-background-base);
+  border: none;
+  padding: var(--space-8) var(--space-16);
+  border-radius: var(--radius-small);
+  font-weight: var(--font-weight-semibold);
+}
+
+*.dark .windows-desktops .rename-dialog QPushButton {
+  background-color: var(--color-dark-accent-default);
+  color: var(--color-dark-background-base);
+}
+
+.windows-desktops .rename-dialog QPushButton:hover {
+  background-color: var(--color-accent-secondary);
+}
+
+*.dark .windows-desktops .rename-dialog QPushButton:hover {
+  background-color: var(--color-dark-accent-secondary);
+}
+
+.windows-desktops .rename-dialog QLabel {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-body);
+}
+
+*.dark .windows-desktops .rename-dialog QLabel {
+  color: var(--color-dark-text-primary);
+}
+
+.windows-desktops .rename-dialog QLineEdit {
+  background-color: var(--color-surface-secondary);
+  border: 1px solid var(--color-stroke-control-default);
+  border-radius: var(--radius-small);
+  padding: var(--space-8);
+  color: var(--color-text-primary);
+  font-family: var(--font-text);
+}
+
+*.dark .windows-desktops .rename-dialog QLineEdit {
+  background-color: var(--color-dark-surface-secondary);
+  border: 1px solid var(--color-dark-stroke-control-default);
+  color: var(--color-dark-text-primary);
+}
+
+.windows-desktops .rename-dialog QLineEdit:focus {
+  border-color: var(--color-accent-default);
+  outline: none;
+}
+
+*.dark .windows-desktops .rename-dialog QLineEdit:focus {
+  border-color: var(--color-dark-accent-default);
+}
+
+/* ----------------------------------------------------------------------------
+   Active Window Widget
+   ---------------------------------------------------------------------------- */
+.active-window-widget .widget-container .icon {
+  font-family: var(--font-icon);
+  font-size: var(--font-size-body);
+  padding-left: var(--space-6);
+}
+
+.active-window-widget .icon {
+  padding: 0;
+}
+
+.active-window-widget .widget-container .label {
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-semibold);
+}
+
+*.dark .active-window-widget .widget-container .label {
+  color: var(--color-dark-text-secondary);
+}
+
+/* ----------------------------------------------------------------------------
+   Taskbar Widget
+   ---------------------------------------------------------------------------- */
+.taskbar-widget .app-container {
+  padding: 0 var(--space-4);
+  margin: 0 var(--space-2);
+  border-radius: var(--radius-small);
+}
+
+.taskbar-widget .app-container:hover {
+  background-color: var(--color-subtle-fill-hover);
+}
+
+*.dark .taskbar-widget .app-container:hover {
+  background-color: var(--color-dark-subtle-fill-hover);
+}
+
+.taskbar-widget .app-container.foreground {
+  background-color: var(--color-subtle-fill-rest);
+  border-left: 2px solid var(--color-accent-default);
+}
+
+*.dark .taskbar-widget .app-container.foreground {
+  background-color: var(--color-dark-subtle-fill-rest);
+  border-left: 2px solid var(--color-dark-accent-default);
+}
+
+.taskbar-widget .app-container .app-title {
+  padding-left: var(--space-4);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-body);
+}
+
+*.dark .taskbar-widget .app-container .app-title {
+  color: var(--color-dark-text-secondary);
+}
+
+.taskbar-widget .app-container.foreground .app-title {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+*.dark .taskbar-widget .app-container.foreground .app-title {
+  color: var(--color-dark-text-primary);
+}
+
+.taskbar-preview {
+  background-color: var(--color-taskbar);
+  border: 1px solid var(--color-stroke-surface);
+  border-radius: var(--radius-medium);
+  padding: var(--space-8);
+}
+
+*.dark .taskbar-preview {
+  background-color: var(--color-dark-taskbar);
+  border: 1px solid var(--color-dark-stroke-surface);
+}
+
+.taskbar-preview .header {
+  padding-bottom: var(--space-8);
+  padding-top: var(--space-8);
+}
+
+.taskbar-preview .header .title {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-body);
+}
+
+*.dark .taskbar-preview .header .title {
+  color: var(--color-dark-text-primary);
+}
+
+/* ----------------------------------------------------------------------------
+   Apps Widget
+   ---------------------------------------------------------------------------- */
+.apps-widget .widget-container {
+  padding: 0 var(--space-4);
+}
+
+.apps-widget .label {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+}
+
+*.dark .apps-widget .label {
+  color: var(--color-dark-text-secondary);
+}
+
+.apps-widget .label:hover {
+  color: var(--color-accent-default);
+}
+
+*.dark .apps-widget .label:hover {
+  color: var(--color-dark-accent-default);
+}
+
+/* ----------------------------------------------------------------------------
+   Media Widget
+   ---------------------------------------------------------------------------- */
+.media-widget .btn {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  padding: var(--space-2) var(--space-4);
+  margin: 0 var(--space-2);
+  background-color: transparent;
+  border: none;
+  border-radius: var(--radius-small);
+}
+
+*.dark .media-widget .btn {
+  color: var(--color-dark-text-secondary);
+}
+
+.media-widget .btn:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-subtle-fill-hover);
+}
+
+*.dark .media-widget .btn:hover {
+  color: var(--color-dark-text-primary);
+  background-color: var(--color-dark-subtle-fill-hover);
+}
+
+.media-widget .btn:active {
+  background-color: var(--color-subtle-fill-pressed);
+}
+
+*.dark .media-widget .btn:active {
+  background-color: var(--color-dark-subtle-fill-pressed);
+}
+
+.media-menu {
+  min-width: var(--width-menu-lg);
+  max-width: var(--width-menu-lg);
+  border-radius: var(--radius-medium);
+  padding: var(--space-12);
+  background-color: var(--color-background-elevated);
+}
+
+*.dark .media-menu {
+  background-color: var(--color-dark-background-elevated);
+}
+
+.media-menu .title,
+.media-menu .artist,
+.media-menu .source {
+  font-family: var(--font-text);
+  margin-left: var(--space-12);
+}
+
+.media-menu .title {
+  font-size: var(--font-size-body-strong);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+*.dark .media-menu .title {
+  color: var(--color-dark-text-primary);
+}
+
+.media-menu .artist {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+*.dark .media-menu .artist {
+  color: var(--color-dark-text-secondary);
+}
+
+.media-menu .source {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-tertiary);
+}
+
+*.dark .media-menu .source {
+  color: var(--color-dark-text-tertiary);
+}
+
+.media-menu .btn {
+  font-family: var(--font-icon);
+  font-size: var(--font-size-subtitle);
+  margin: var(--space-12) var(--space-8) 0;
+  min-width: var(--size-icon-btn);
+  max-width: var(--size-icon-btn);
+  min-height: var(--size-icon-btn);
+  max-height: var(--size-icon-btn);
+  border-radius: var(--radius-large);
+  color: var(--color-text-secondary);
+  background-color: var(--color-subtle-fill-rest);
+  border: 1px solid var(--color-stroke-control-default);
+}
+
+*.dark .media-menu .btn {
+  color: var(--color-dark-text-secondary);
+  background-color: var(--color-dark-subtle-fill-rest);
+  border: 1px solid var(--color-dark-stroke-control-default);
+}
+
+.media-menu .btn:hover {
+  background-color: var(--color-subtle-fill-hover);
+  color: var(--color-text-primary);
+}
+
+*.dark .media-menu .btn:hover {
+  background-color: var(--color-dark-subtle-fill-hover);
+  color: var(--color-dark-text-primary);
+}
+
+.media-menu .btn.prev {
+  margin-left: var(--space-16);
+}
+
+.media-menu .btn.play {
+  background-color: var(--color-accent-default);
+  color: var(--color-background-base);
+  border-color: transparent;
+}
+
+*.dark .media-menu .btn.play {
+  background-color: var(--color-dark-accent-default);
+  color: var(--color-dark-background-base);
+}
+
+.media-menu .btn.play:hover {
+  background-color: var(--color-accent-secondary);
+}
+
+*.dark .media-menu .btn.play:hover {
+  background-color: var(--color-dark-accent-secondary);
+}
+
+.media-menu .btn.disabled,
+.media-menu .btn.disabled:hover {
+  color: var(--color-text-disabled);
+  background-color: var(--color-surface-disabled);
+  cursor: not-allowed;
+}
+
+*.dark .media-menu .btn.disabled,
+*.dark .media-menu .btn.disabled:hover {
+  color: var(--color-dark-text-disabled);
+  background-color: var(--color-dark-surface-disabled);
+}
+
+.media-menu .playback-time {
+  font-size: var(--font-size-caption);
+  font-family: var(--font-mono);
+  color: var(--color-text-tertiary);
+  margin-top: var(--space-16);
+  min-width: 100px;
+}
+
+*.dark .media-menu .playback-time {
+  color: var(--color-dark-text-tertiary);
+}
+
+.media-menu .progress-slider {
+  height: var(--space-16);
+  margin: var(--space-4);
+  border-radius: var(--radius-small);
+}
+
+.media-menu .progress-slider::groove {
+  background-color: var(--color-surface-tertiary);
+  height: var(--space-4);
+  border-radius: var(--radius-small);
+}
+
+*.dark .media-menu .progress-slider::groove {
+  background-color: var(--color-dark-surface-tertiary);
+}
+
+.media-menu .progress-slider::groove:hover {
+  height: var(--space-6);
+  background-color: var(--color-surface-secondary);
+}
+
+*.dark .media-menu .progress-slider::groove:hover {
+  background-color: var(--color-dark-surface-secondary);
+}
+
+.media-menu .progress-slider::sub-page {
+  background-color: var(--color-accent-default);
+  border-radius: var(--radius-small);
+  height: var(--space-4);
+}
+
+*.dark .media-menu .progress-slider::sub-page {
+  background-color: var(--color-dark-accent-default);
+}
+
+/* ----------------------------------------------------------------------------
+   CPU Widget
+   ---------------------------------------------------------------------------- */
+.cpu-widget {
+  cursor: crosshair;
+}
+
+.cpu-widget .widget-container .icon {
+  padding-right: var(--space-4);
+}
+
+.cpu-widget .widget-container .label {
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-semibold);
+}
+
+*.dark .cpu-widget .widget-container .label {
+  color: var(--color-dark-text-secondary);
+}
+
+/* ----------------------------------------------------------------------------
+   GPU Widget
+   ---------------------------------------------------------------------------- */
+.gpu-widget .widget-container .icon {
+  padding-right: var(--space-4);
+}
+
+.gpu-widget .widget-container .label {
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-semibold);
+}
+
+*.dark .gpu-widget .widget-container .label {
+  color: var(--color-dark-text-secondary);
+}
+
+/* ----------------------------------------------------------------------------
+   Memory Widget
+   ---------------------------------------------------------------------------- */
+.memory-widget .widget-container .icon {
+  padding-right: var(--space-4);
+}
+
+.memory-widget .widget-container .label {
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-semibold);
+}
+
+*.dark .memory-widget .widget-container .label {
+  color: var(--color-dark-text-secondary);
+}
+
+.memory-widget .widget-container .label.status-low {
+  color: var(--color-success);
+}
+*.dark .memory-widget .widget-container .label.status-low {
+  color: var(--color-dark-success);
+}
+
+.memory-widget .widget-container .label.status-medium {
+  color: var(--color-warning);
+}
+*.dark .memory-widget .widget-container .label.status-medium {
+  color: var(--color-dark-warning);
+}
+
+.memory-widget .widget-container .label.status-high {
+  color: var(--color-accent-default);
+}
+*.dark .memory-widget .widget-container .label.status-high {
+  color: var(--color-dark-accent-default);
+}
+
+.memory-widget .widget-container .label.status-critical {
+  color: var(--color-error);
+}
+*.dark .memory-widget .widget-container .label.status-critical {
+  color: var(--color-dark-error);
+}
+
+.memory-widget .progress-circle {
+  margin-right: var(--space-8);
+}
+
+/* ----------------------------------------------------------------------------
+   Traffic Widget
+   ---------------------------------------------------------------------------- */
+.traffic-widget {
+  width: 200px;
+  min-width: 200px;
+  max-width: 200px;
+}
+
+.traffic-widget .download {
+  color: var(--color-traffic-download);
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-semibold);
+}
+
+*.dark .traffic-widget .download {
+  color: var(--color-dark-traffic-download);
+}
+
+.traffic-widget .upload {
+  color: var(--color-traffic-upload);
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-semibold);
+}
+
+*.dark .traffic-widget .upload {
+  color: var(--color-dark-traffic-upload);
+}
+
+.traffic-menu {
+  background-color: var(--color-background-elevated);
+  border: 1px solid var(--color-stroke-surface);
+  border-radius: var(--radius-medium);
+  min-width: var(--width-menu-md);
+  padding: var(--space-12);
+}
+
+*.dark .traffic-menu {
+  background-color: var(--color-dark-background-elevated);
+  border: 1px solid var(--color-dark-stroke-surface);
+}
+
+.traffic-menu .header .title {
+  padding: var(--space-12);
+  font-size: var(--font-size-subtitle);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+*.dark .traffic-menu .header .title {
+  color: var(--color-dark-text-primary);
+}
+
+.traffic-menu .header .reset-button {
+  font-size: var(--font-size-caption);
+  padding: var(--space-4) var(--space-8);
+  margin-right: var(--space-12);
+  border-radius: var(--radius-medium);
+  font-weight: var(--font-weight-semibold);
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: var(--color-text-secondary);
+}
+
+*.dark .traffic-menu .header .reset-button {
+  color: var(--color-dark-text-secondary);
+}
+
+.traffic-menu .reset-button:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-subtle-fill-hover);
+  border: 1px solid var(--color-stroke-control-default);
+}
+
+*.dark .traffic-menu .reset-button:hover {
+  color: var(--color-dark-text-primary);
+  background-color: var(--color-dark-subtle-fill-hover);
+  border: 1px solid var(--color-dark-stroke-control-default);
+}
+
+/* Speed column styles */
+.traffic-menu .download-speed,
+.traffic-menu .upload-speed {
+  background-color: transparent;
+  padding: var(--space-8);
+  margin: var(--space-12) var(--space-8) 0;
+}
+
+.traffic-menu .speed-separator {
+  max-width: 1px;
+  background-color: var(--color-stroke-divider);
+  margin: var(--space-24) 0 var(--space-12) 0;
+}
+
+*.dark .traffic-menu .speed-separator {
+  background-color: var(--color-dark-stroke-divider);
+}
+
+.traffic-menu .upload-speed-value,
+.traffic-menu .download-speed-value {
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+*.dark .traffic-menu .upload-speed-value,
+*.dark .traffic-menu .download-speed-value {
+  color: var(--color-dark-text-primary);
+}
+
+.traffic-menu .upload-speed-unit,
+.traffic-menu .download-speed-unit {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-semibold);
+  padding-top: var(--space-4);
+  color: var(--color-text-secondary);
+}
+
+*.dark .traffic-menu .upload-speed-unit,
+*.dark .traffic-menu .download-speed-unit {
+  color: var(--color-dark-text-secondary);
+}
+
+.traffic-menu .upload-speed-placeholder,
+.traffic-menu .download-speed-placeholder {
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size-caption);
+  padding-bottom: var(--space-12);
+}
+
+*.dark .traffic-menu .upload-speed-placeholder,
+*.dark .traffic-menu .download-speed-placeholder {
+  color: var(--color-dark-text-tertiary);
+}
+
+/* Section and data styles */
+.traffic-menu .section-title {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+*.dark .traffic-menu .section-title {
+  color: var(--color-dark-text-primary);
+}
+
+.traffic-menu .session-section,
+.traffic-menu .today-section,
+.traffic-menu .alltime-section {
+  margin: var(--space-8);
+  padding: 0 var(--space-8) var(--space-8);
+  background-color: transparent;
+}
+
+.traffic-menu .data-text {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  padding: var(--space-2);
+}
+
+*.dark .traffic-menu .data-text {
+  color: var(--color-dark-text-secondary);
+}
+
+.traffic-menu .data-value {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-body);
+  padding: var(--space-2);
+  color: var(--color-text-primary);
+}
+
+*.dark .traffic-menu .data-value {
+  color: var(--color-dark-text-primary);
+}
+
+/* Interface and Internet info styles */
+.traffic-menu .interface-info {
+  margin-top: var(--space-8);
+  border-top: 1px solid var(--color-stroke-divider);
+  padding: var(--space-4) 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-text-secondary);
+  font-family: var(--font-text);
+}
+
+*.dark .traffic-menu .interface-info {
+  border-top: 1px solid var(--color-dark-stroke-divider);
+  color: var(--color-dark-text-secondary);
+}
+
+.traffic-menu .internet-info {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-secondary);
+  padding: var(--space-4) 0;
+  font-family: var(--font-text);
+}
+
+*.dark .traffic-menu .internet-info {
+  color: var(--color-dark-text-secondary);
+}
+
+.traffic-menu .internet-info.connected {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-small);
+}
+
+*.dark .traffic-menu .internet-info.connected {
+  background-color: var(--color-dark-success-bg);
+  color: var(--color-dark-success);
+}
+
+.traffic-menu .internet-info.disconnected {
+  background-color: var(--color-error-bg);
+  color: var(--color-error);
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-small);
+}
+
+*.dark .traffic-menu .internet-info.disconnected {
+  background-color: var(--color-dark-error-bg);
+  color: var(--color-dark-error);
+}
+
+/* ----------------------------------------------------------------------------
+   Disk Widget
+   ---------------------------------------------------------------------------- */
+.disk-widget .widget-container .icon {
+  font-family: var(--font-icon-2);
+  font-size: var(--font-size-body);
+}
+
+.disk-widget .widget-container .label {
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-semibold);
+}
+
+*.dark .disk-widget .widget-container .label {
+  color: var(--color-dark-text-secondary);
+}
+
+.disk-group {
+  background-color: var(--color-background-elevated);
+  border: 1px solid var(--color-stroke-surface);
+  border-radius: var(--radius-medium);
+  padding: var(--space-8);
+}
+
+*.dark .disk-group {
+  background-color: var(--color-dark-background-elevated);
+  border: 1px solid var(--color-dark-stroke-surface);
+}
+
+.disk-group-row {
+  min-width: 250px;
+  max-width: 300px;
+  min-height: var(--height-item-md);
+  max-height: var(--height-item-md);
+  margin: 0;
+  padding: var(--space-12);
+  border-radius: var(--radius-medium);
+  border: 1px solid transparent;
+}
+
+.disk-group-row:hover {
+  background-color: var(--color-subtle-fill-hover);
+  border: 1px solid var(--color-stroke-control-default);
+}
+
+*.dark .disk-group-row:hover {
+  background-color: var(--color-dark-subtle-fill-hover);
+  border: 1px solid var(--color-dark-stroke-control-default);
+}
+
+.disk-group-label-bar {
+  margin-bottom: var(--space-8);
+  max-height: var(--space-6);
+  border: 0px solid transparent;
+  background-color: var(--color-surface-secondary);
+  border-radius: var(--radius-small);
+}
+
+*.dark .disk-group-label-bar {
+  background-color: var(--color-dark-surface-secondary);
+}
+
+.disk-group-label-bar::chunk {
+  background-color: var(--color-success);
+  border-radius: var(--radius-small);
+}
+
+*.dark .disk-group-label-bar::chunk {
+  background-color: var(--color-dark-success);
+}
+
+.disk-group-label {
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+}
+
+*.dark .disk-group-label {
+  color: var(--color-dark-text-primary);
+}
+
+.disk-group-label-size {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+}
+
+*.dark .disk-group-label-size {
+  color: var(--color-dark-text-secondary);
+}
+
+/* ----------------------------------------------------------------------------
+   Microphone Widget
+   ---------------------------------------------------------------------------- */
+.microphone-widget .icon {
+  font-family: var(--font-icon);
+  font-size: var(--font-size-body);
+  padding-left: var(--space-4);
+}
+
+.microphone-widget .widget-container .label {
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-semibold);
+}
+
+*.dark .microphone-widget .widget-container .label {
+  color: var(--color-dark-text-secondary);
+}
+
+.microphone-menu {
+  background-color: var(--color-background-elevated);
+  border: 1px solid var(--color-stroke-surface);
+  border-radius: var(--radius-medium);
+  min-width: var(--width-menu-md);
+  padding: var(--space-8);
+}
+
+*.dark .microphone-menu {
+  background-color: var(--color-dark-background-elevated);
+  border: 1px solid var(--color-dark-stroke-surface);
+}
+
+.microphone-menu .system-volume-container .volume-slider {
+  border: none;
+}
+
+.microphone-menu .microphone-container .device {
+  background-color: transparent;
+  border: none;
+  padding: var(--space-4) var(--space-8);
+  margin: var(--space-2) 0;
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-small);
+}
+
+*.dark .microphone-menu .microphone-container .device {
+  color: var(--color-dark-text-secondary);
+}
+
+.microphone-menu .microphone-container .device:hover {
+  background-color: var(--color-subtle-fill-hover);
+  color: var(--color-text-primary);
+}
+
+*.dark .microphone-menu .microphone-container .device:hover {
+  background-color: var(--color-dark-subtle-fill-hover);
+  color: var(--color-dark-text-primary);
+}
+
+.microphone-menu .microphone-container .device.selected {
+  background-color: var(--color-subtle-fill-rest);
+  color: var(--color-text-primary);
+}
+
+*.dark .microphone-menu .microphone-container .device.selected {
+  background-color: var(--color-dark-subtle-fill-rest);
+  color: var(--color-dark-text-primary);
+}
+
+/* ----------------------------------------------------------------------------
+   Volume Widget
+   ---------------------------------------------------------------------------- */
+.volume-widget .icon {
+  font-family: var(--font-icon);
+  font-size: var(--font-size-body);
+  padding-left: var(--space-4);
+}
+
+.volume-widget .widget-container .label {
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-semibold);
+}
+
+*.dark .volume-widget .widget-container .label {
+  color: var(--color-dark-text-secondary);
+}
+
+.audio-menu {
+  background-color: var(--color-background-elevated);
+  border: 1px solid var(--color-stroke-surface);
+  border-radius: var(--radius-medium);
+  min-width: var(--width-menu-md);
+  padding: var(--space-8);
+}
+
+*.dark .audio-menu {
+  background-color: var(--color-dark-background-elevated);
+  border: 1px solid var(--color-dark-stroke-surface);
+}
+
+.audio-menu .system-volume-container .volume-slider {
+  border: none;
+}
+
+.audio-menu .audio-container .device {
+  background-color: transparent;
+  border: none;
+  padding: var(--space-4) var(--space-8);
+  margin: var(--space-2) 0;
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-small);
+}
+
+*.dark .audio-menu .audio-container .device {
+  color: var(--color-dark-text-secondary);
+}
+
+.audio-menu .audio-container .device:hover {
+  background-color: var(--color-subtle-fill-hover);
+  color: var(--color-text-primary);
+}
+
+*.dark .audio-menu .audio-container .device:hover {
+  background-color: var(--color-dark-subtle-fill-hover);
+  color: var(--color-dark-text-primary);
+}
+
+.audio-menu .audio-container .device.selected {
+  background-color: var(--color-subtle-fill-rest);
+  color: var(--color-text-primary);
+}
+
+*.dark .audio-menu .audio-container .device.selected {
+  background-color: var(--color-dark-subtle-fill-rest);
+  color: var(--color-dark-text-primary);
+}
+
+.audio-menu .toggle-apps {
+  background-color: transparent;
+  border: none;
+  padding: var(--space-4);
+  margin: 0;
+  min-height: var(--size-icon-btn);
+  min-width: var(--size-icon-btn);
+  border-radius: var(--radius-small);
+}
+
+.audio-menu .toggle-apps:hover {
+  background-color: var(--color-subtle-fill-hover);
+}
+
+*.dark .audio-menu .toggle-apps:hover {
+  background-color: var(--color-dark-subtle-fill-hover);
+}
+
+.audio-menu .toggle-apps.expanded {
+  background-color: var(--color-subtle-fill-rest);
+}
+
+*.dark .audio-menu .toggle-apps.expanded {
+  background-color: var(--color-dark-subtle-fill-rest);
+}
+
+.audio-menu .apps-container {
+  padding: var(--space-8);
+  margin-top: var(--space-12);
+  border-radius: var(--radius-medium);
+  background-color: var(--color-surface-secondary);
+  border: 1px solid var(--color-stroke-divider);
+}
+
+*.dark .audio-menu .apps-container {
+  background-color: var(--color-dark-surface-secondary);
+  border: 1px solid var(--color-dark-stroke-divider);
+}
+
+.audio-menu .apps-container .app-volume .app-icon-container {
+  min-width: var(--size-app-icon);
+  min-height: var(--size-app-icon);
+  max-width: var(--size-app-icon);
+  max-height: var(--size-app-icon);
+  border-radius: var(--radius-small);
+  margin-right: var(--space-8);
+}
+
+.audio-menu .apps-container .app-volume .app-icon-container:hover {
+  background-color: var(--color-subtle-fill-hover);
+}
+
+*.dark .audio-menu .apps-container .app-volume .app-icon-container:hover {
+  background-color: var(--color-dark-subtle-fill-hover);
+}
+
+/* ----------------------------------------------------------------------------
+   Brightness Widget
+   ---------------------------------------------------------------------------- */
+.brightness-widget .widget-container .icon {
+  font-family: var(--font-icon);
+  padding-left: var(--space-4);
+}
+
+.Brightness-widget .widget-container .label {
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-semibold);
+}
+
+*.dark .brightness-widget .widget-container .label {
+  color: var(--color-dark-text-secondary);
+}
+
+.brightness-menu {
+  background-color: var(--color-background-elevated);
+  border: 1px solid var(--color-stroke-surface);
+  border-radius: var(--radius-medium);
+  min-width: var(--width-menu-md);
+  padding: var(--space-8);
+}
+
+*.dark .brightness-menu {
+  background-color: var(--color-dark-background-elevated);
+  border: 1px solid var(--color-dark-stroke-surface);
+}
+
+.brightness-menu .slider-container {
+  padding: var(--space-4);
+}
+
+/* ----------------------------------------------------------------------------
+   WiFi Widget
+   ---------------------------------------------------------------------------- */
+.wifi-widget .widget-container .icon {
+  font-family: var(--font-icon);
+  padding-left: var(--space-4);
+}
+
+.wifi-widget .widget-container .label {
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-semibold);
+}
+
+*.dark .wifi-widget .widget-container .label {
+  color: var(--color-dark-text-secondary);
+}
+
+/* Menu Container */
+.wifi-menu {
+  font-family: var(--font-primary);
+  background-color: var(--color-background-elevated);
+  border: 1px solid var(--color-stroke-surface);
+  border-radius: var(--radius-medium);
+  min-height: 400px;
+  max-height: 450px;
+  min-width: var(--width-menu-lg);
+  padding: var(--space-8);
+}
+
+*.dark .wifi-menu {
+  background-color: var(--color-dark-background-elevated);
+  border: 1px solid var(--color-dark-stroke-surface);
+}
+
+/* Header */
+.wifi-menu .header {
+  font-size: var(--font-size-subtitle);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-8);
+  padding: var(--space-8);
+  background-color: transparent;
+  color: var(--color-text-primary);
+  border-bottom: 1px solid var(--color-stroke-divider);
+}
+
+*.dark .wifi-menu .header {
+  color: var(--color-dark-text-primary);
+  border-bottom: 1px solid var(--color-dark-stroke-divider);
+}
+
+/* WiFi List */
+.wifi-menu .wifi-list {
+  background-color: transparent;
+  margin: var(--space-2);
+}
+
+/* WiFi Item */
+.wifi-menu .wifi-item {
+  min-height: var(--height-item-md);
+  padding: var(--space-4) var(--space-12);
+  margin: var(--space-2) 0;
+  border-radius: var(--radius-small);
+  border: 1px solid transparent;
+}
+
+.wifi-menu .wifi-item:hover {
+  background-color: var(--color-subtle-fill-hover);
+  border-color: var(--color-stroke-control-default);
+}
+
+*.dark .wifi-menu .wifi-item:hover {
+  background-color: var(--color-dark-subtle-fill-hover);
+  border-color: var(--color-dark-stroke-control-default);
+}
+
+.wifi-menu .wifi-item[active="true"] {
+  background-color: var(--color-subtle-fill-rest);
+  border: 1px solid var(--color-accent-default);
+  min-height: var(--height-item-lg);
+}
+
+*.dark .wifi-menu .wifi-item[active="true"] {
+  background-color: var(--color-dark-subtle-fill-rest);
+  border: 1px solid var(--color-dark-accent-default);
+}
+
+/* Item Text & Icons */
+.wifi-menu .wifi-item .icon {
+  font-family: var(--font-icon);
+  font-size: var(--font-size-title);
+  margin-right: var(--space-12);
+  color: var(--color-text-secondary);
+}
+
+*.dark .wifi-menu .wifi-item .icon {
+  color: var(--color-dark-text-secondary);
+}
+
+.wifi-menu .wifi-item .name {
+  font-size: var(--font-size-body-strong);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+*.dark .wifi-menu .wifi-item .name {
+  color: var(--color-dark-text-primary);
+}
+
+.wifi-menu .wifi-item .status {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-tertiary);
+}
+
+*.dark .wifi-menu .wifi-item .status {
+  color: var(--color-dark-text-tertiary);
+}
+
+/* Connect Button */
+.wifi-menu .wifi-item .connect {
+  background-color: var(--color-accent-default);
+  color: white;
+  padding: var(--space-4) var(--space-16);
+  border-radius: var(--radius-small);
+  border: none;
+  font-weight: var(--font-weight-semibold);
+  margin-top: var(--space-8);
+}
+
+*.dark .wifi-menu .wifi-item .connect {
+  background-color: var(--color-dark-accent-default);
+  color: black;
+}
+
+.wifi-menu .wifi-item .connect:hover {
+  background-color: var(--color-accent-secondary);
+}
+
+/* Footer */
+.wifi-menu .footer {
+  font-size: var(--font-size-caption);
+  padding: var(--space-8);
+  margin-top: var(--space-8);
+  color: var(--color-text-tertiary);
+  background-color: transparent;
+  border-top: 1px solid var(--color-stroke-divider);
+  display: flex;
+  justify-content: space-between;
+}
+
+*.dark .wifi-menu .footer {
+  color: var(--color-dark-text-tertiary);
+  border-top: 1px solid var(--color-dark-stroke-divider);
+}
+
+.wifi-menu .footer .refresh-icon {
+  font-family: var(--font-icon);
+  background-color: transparent;
+  border: none;
+  font-size: var(--font-size-subtitle);
+  color: var(--color-text-primary);
+}
+
+*.dark .wifi-menu .footer .refresh-icon {
+  color: var(--color-dark-text-primary);
+}
+
+.wifi-menu .footer .refresh-icon:hover {
+  color: var(--color-accent-default);
+}
+
+/* ----------------------------------------------------------------------------
+   Bluetooth Widget
+   ---------------------------------------------------------------------------- */
+.bluetooth-widget .widget-container .icon {
+  font-family: var(--font-icon);
+  font-size: var(--font-size-body);
+  padding-left: var(--space-4);
+}
+
+.bluetooth-widget .widget-container .label {
+  color: var(--color-text-secondary);
+  font-family: var(--font-text);
+  font-weight: var(--font-weight-semibold);
+}
+
+*.dark .bluetooth-widget .widget-container .label {
+  color: var(--color-dark-text-secondary);
+}
+
+/* --- Bluetooth States --- */
+
+/* OFF */
+.bluetooth-widget.bluetooth-off .widget-container .icon {
+  color: var(--color-text-disabled);
+}
+*.dark .bluetooth-widget.bluetooth-off .widget-container .icon {
+  color: var(--color-dark-text-disabled);
+}
+
+/* ON */
+.bluetooth-widget.bluetooth-on .widget-container .icon {
+  color: var(--color-accent-default);
+}
+*.dark .bluetooth-widget.bluetooth-on .widget-container .icon {
+  color: var(--color-dark-accent-default);
+}
+
+/* CONNECTED */
+.bluetooth-widget.bluetooth-connected .widget-container .icon {
+  color: var(--color-accent-default);
+}
+.bluetooth-widget.bluetooth-connected .widget-container .label {
+  color: var(--color-text-primary);
+}
+
+*.dark .bluetooth-widget.bluetooth-connected .widget-container .icon {
+  color: var(--color-dark-accent-default);
+}
+*.dark .bluetooth-widget.bluetooth-connected .widget-container .label {
+  color: var(--color-dark-text-primary);
+}
+
+/* ----------------------------------------------------------------------------
+   Battery Widget
+   ---------------------------------------------------------------------------- */
+.battery-widget .widget-container .icon {
+  font-family: var(--font-icon);
+  font-size: var(--font-size-body);
+  padding-left: var(--space-4);
+}
+
+.battery-widget .widget-container .label {
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-semibold);
+}
+
+*.dark .battery-widget .widget-container .label {
+  color: var(--color-dark-text-secondary);
+}
+
+/* --- Battery States --- */
+
+/* Critical (Red) */
+.battery-widget .widget-container .icon.status-critical {
+  color: var(--color-error);
+}
+*.dark .battery-widget .widget-container .icon.status-critical {
+  color: var(--color-dark-error);
+}
+
+/* Low (Orange/Warning) */
+.battery-widget .widget-container .icon.status-low {
+  color: var(--color-warning);
+}
+*.dark .battery-widget .widget-container .icon.status-low {
+  color: var(--color-dark-warning);
+}
+
+/* Medium (Standard Text Color) */
+.battery-widget .widget-container .icon.status-medium {
+  color: var(--color-text-secondary);
+}
+*.dark .battery-widget .widget-container .icon.status-medium {
+  color: var(--color-dark-text-secondary);
+}
+
+/* High/Full (Green) */
+.battery-widget .widget-container .icon.status-high,
+.battery-widget .widget-container .icon.status-full {
+  color: var(--color-success);
+}
+*.dark .battery-widget .widget-container .icon.status-high,
+*.dark .battery-widget .widget-container .icon.status-full {
+  color: var(--color-dark-success);
+}
+
+/* Charging (Accent Blue) */
+.battery-widget .widget-container .icon.status-charging {
+  color: var(--color-accent-default);
+}
+*.dark .battery-widget .widget-container .icon.status-charging {
+  color: var(--color-dark-accent-default);
+}
+
+/* Charging Animation */
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.battery-widget .widget-container .icon.status-charging.blink {
+  animation: blink 2s infinite ease-in-out;
+}
+
+/* ----------------------------------------------------------------------------
+   Clock Widget
+   ---------------------------------------------------------------------------- */
+.clock-widget .widget-container {
+  background-color: transparent;
+  border: transparent;
+}
+
+.clock-widget .widget-container .icon {
+  margin-right: var(--space-8);
+  padding-left: var(--space-4);
+}
+
+.clock-widget .label {
+  font-family: var(--font-text);
+  font-size: var(--font-size-body-strong);
+  font-weight: var(--font-weight-regular);
+}
+
+/* ----------------------------------------------------------------------------
+   Calendar Flyout
+   ---------------------------------------------------------------------------- */
+.calendar {
+  padding: var(--space-12);
+  border: 1px solid var(--color-stroke-surface);
+  border-radius: var(--radius-medium);
+  background-color: var(--color-background-elevated);
+}
+
+*.dark .calendar {
+  border: 1px solid var(--color-dark-stroke-surface);
+  background-color: var(--color-dark-background-elevated);
+}
+
+.calendar .calendar-table::item:selected {
+  background-color: var(--color-accent-default);
+  color: var(--color-background-base);
+  border-radius: var(--radius-small);
+}
+
+*.dark .calendar .calendar-table::item:selected {
+  background-color: var(--color-dark-accent-default);
+  color: var(--color-dark-background-base);
+}
+
+.calendar .day-label,
+.calendar .month-label,
+.calendar .date-label {
+  font-family: var(--font-primary);
+  color: var(--color-text-primary);
+  min-width: var(--width-menu-sm);
+  max-width: var(--width-menu-sm);
+}
+
+*.dark .calendar .day-label,
+*.dark .calendar .month-label,
+*.dark .calendar .date-label {
+  color: var(--color-dark-text-primary);
+}
+
+.calendar .month-label {
+  font-size: var(--font-size-body-strong);
+  font-weight: var(--font-weight-semibold);
+  margin-top: var(--space-16);
+}
+
+.calendar .day-label {
+  font-size: var(--font-size-subtitle);
+  font-weight: var(--font-weight-semibold);
+  margin-top: var(--space-8);
+}
+
+.calendar .date-label {
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight-bold);
+  margin-top: -var(--space-8);
+}
+
+/* ----------------------------------------------------------------------------
+   Weather Widget
+   ---------------------------------------------------------------------------- */
+.weather-widget .widget-container {
+  background-color: transparent;
+  border: transparent;
+}
+
+.weather-widget .widget-container .icon {
+  margin-right: var(--space-8);
+  padding-left: var(--space-4);
+}
+
+.weather-widget .label {
+  font-family: var(--font-text);
+  font-size: var(--font-size-body-strong);
+  font-weight: var(--font-weight-regular);
+}
+
+/* ----------------------------------------------------------------------------
+   Power Menu Widget
+   ---------------------------------------------------------------------------- */
+.power-menu-widget .widget-container {
+  background-color: transparent;
+  border: 0;
+}
+
+.power-menu-widget .widget-container:hover {
+  background-color: transparent;
+}
+
+.power-menu-widget .label {
+  font-family: var(--font-icon);
+  font-size: var(--font-size-body);
+  color: var(--color-dark-error);
+  font-weight: var(--font-weight-semibold);
+}
+
+*.dark .power-menu-widget .label {
+  color: var(--color-dark-error);
+}
+
+.power-menu-widget .label:hover {
+  color: var(--color-accent-default);
+}
+
+*.dark .power-menu-widget .label:hover {
+  color: var(--color-dark-accent-default);
+}
+
+.power-menu-popup {
+  border-radius: var(--radius-large);
+  border: 1px solid var(--color-dark-stroke-surface);
+  padding: var(--space-12);
+}
+
+.power-menu-popup .button {
+  width: var(--width-menu-sm);
+  height: var(--height-item-lg);
+  padding: var(--space-12);
+  margin: var(--space-4);
+
+  background-color: var(--color-dark-subtle-fill-rest);
+  border: 1px solid var(--color-dark-stroke-control-default);
+  border-radius: var(--radius-medium);
+
+  color: var(--color-dark-text-primary);
+  font-family: var(--font-primary);
+
+  cursor: pointer;
+}
+
+.power-menu-popup .button:hover,
+.power-menu-popup .button.hover {
+  background-color: var(--color-dark-subtle-fill-hover);
+  border-color: var(--color-dark-stroke-focus);
+}
+
+.power-menu-popup .button:active {
+  background-color: var(--color-dark-subtle-fill-pressed);
+}
+
+.power-menu-popup .button .label {
+  font-size: var(--font-size-body-strong);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-dark-text-primary);
+  margin-bottom: var(--space-4);
+}
+.power-menu-popup .button .icon {
+  font-size: var(--font-size-icon-large);
+  color: var(--color-dark-text-tertiary);
+  margin-top: var(--space-12);
+}
+
+.power-menu-popup .button.shutdown .icon {
+  font-family: var(--font-icon);
+  color: var(--color-dark-accent-default);
+}
+
+.power-menu-popup .button.cancel .icon {
+  color: var(--color-dark-error);
+}
+
+.uptime {
+  font-size: var(--font-size-subtitle);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-dark-text-primary);
+  margin-bottom: var(--space-8);
+}

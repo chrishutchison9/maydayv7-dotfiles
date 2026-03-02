@@ -1,0 +1,49 @@
+:root {
+  --text-color: #@white;
+  --bg-color: alpha(#@base00, 0.5);
+  --bg-window-color: alpha(#@base00, 0.7);
+  --bg-color-active: rgba(255, 255, 255, 0.2);
+  --bg-color-hover: rgba(255, 255, 255, 0.4);
+  --border-radius: 10px;
+  --border-size: 2px;
+  --border-color: #@base04;
+  --border-color-active: #@base05;
+  --border-style: solid;
+  --border-style-secondary: dashed;
+  --window-padding: 2px;
+}
+
+.workspace.active {
+  border-color: var(--border-color-active);
+}
+
+.workspace.special {
+  box-shadow: inset 0 0 9px #@base0D;
+}
+
+.client.active {
+  background: var(--bg-color-active);
+  border-color: var(--border-color-active);
+}
+
+.launch {
+  animation: pulse 0.7s normal infinite;
+}
+
+@keyframes pulse {
+  0% {
+    background: var(--bg-color);
+  }
+  5% {
+    background: alpha(var(--border-color-active), 0.4);
+  }
+  15% {
+    background: alpha(var(--border-color-active), 0.6);
+  }
+  60% {
+    background: alpha(var(--border-color-active), 0.9);
+  }
+  100% {
+    background: var(--bg-color);
+  }
+}

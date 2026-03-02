@@ -1,5 +1,12 @@
 ## 2026
 
+### March
+
+- Move to Windows
+  - Add YASB Configuration
+  - Update Rainmeter Skin
+- Refactor directory Structure
+
 ### February
 
 - Use `sunsetr` for Display Temperature Control

@@ -1,0 +1,28 @@
+[
+  {
+    "key": "ctrl+/",
+    "command": "workbench.action.showCommands"
+  },
+  {
+    "key": "ctrl+d",
+    "command": "editor.action.deleteLines"
+  },
+  {
+    "key": "alt+t",
+    "command": "workbench.action.terminal.focus"
+  },
+  {
+    "key": "ctrl+shift+t",
+    "command": "workbench.action.createTerminalEditor"
+  },
+  {
+    "key": "ctrl+'",
+    "command": "editor.action.addCommentLine",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+shift+'",
+    "command": "editor.action.removeCommentLine",
+    "when": "editorTextFocus && !editorReadonly"
+  }
+]

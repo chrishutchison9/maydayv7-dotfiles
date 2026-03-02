@@ -1,0 +1,102 @@
+{
+  "settings": {
+    "icon": "open-menu-symbolic",
+    "loglevel": "warning"
+  },
+  "menu": [
+    {
+      "type": "submenu",
+      "title": "Audio",
+      "icon": "audio-headset-symbolic",
+      "items": [
+        {
+          "type": "command",
+          "title": "Test Sound",
+          "command": "find /run/current-system/sw/share/sounds/alsa/ -name '*_*' -exec aplay {} \\;",
+          "instancing": "singleInstance",
+          "icon": "sound-symbolic",
+          "killOnDisable": false
+        },
+        {
+          "type": "command",
+          "title": "Microphone Boost",
+          "command": "sh -c \"CARD=$(arecord -l | grep card | awk '{print $3}'); VALUE=$(zenity --scale --text='Select Microphone Boost value' --value=0 --min-value=0 --max-value=100 --step=5); amixer -c $CARD sset 'Mic Boost' $VALUE\"",
+          "instancing": "singleInstance",
+          "icon": "microphone-symbolic",
+          "killOnDisable": false
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "title": "Phone",
+      "icon": "smartphone-symbolic",
+      "items": [
+        {
+          "type": "command",
+          "title": "iPhone File Transfer",
+          "command": "systemctl restart usbmuxd.service",
+          "instancing": "singleInstance",
+          "icon": "fileopen",
+          "killOnDisable": false
+        },
+        {
+          "type": "command",
+          "title": "ADB Screen Mirror",
+          "command": "scrcpy --video-codec=h265 --keyboard=uhid --stay-awake --turn-screen-off --power-off-on-close --shortcut-mod=rctrl",
+          "instancing": "singleInstance",
+          "icon": "display-projector-symbolic",
+          "killOnDisable": false
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "title": "Virtualisation",
+      "icon": "computer-symbolic",
+      "items": [
+        {
+          "type": "switch",
+          "title": "Android",
+          "icon": "im-google-symbolic",
+          "start": "sh -c 'nohup waydroid session start > /dev/null 2>&1&'",
+          "stop": "waydroid session stop",
+          "check": "sh -c 'waydroid status | grep RUNNING'",
+          "interval_s": 10
+        },
+        {
+          "type": "switch",
+          "title": "Windows",
+          "icon": "im-msn-symbolic",
+          "start": "virsh -c qemu:///system start Windows",
+          "stop": "virsh -c qemu:///system shutdown Windows",
+          "check": "sh -c 'virsh -c qemu:///system list | grep Windows'",
+          "interval_s": 10
+        }
+      ]
+    },
+    {
+      "type": "submenu",
+      "title": "Settings",
+      "icon": "application-menu-symbolic",
+      "items": [
+        {
+          "type": "command",
+          "title": "Configuration",
+          "command": "xdg-open .config/guillotine.json",
+          "instancing": "singleInstance",
+          "icon": "preferences-other-symbolic",
+          "killOnDisable": true
+        },
+        {
+          "type": "command",
+          "title": "Log Desktop",
+          "command": "kgx -e 'sudo journalctl /run/current-system/sw/bin/gnome-shell -f -o cat'",
+          "instancing": "singleInstance",
+          "icon": "emblem-documents-symbolic",
+          "killOnDisable": false
+        }
+      ]
+    }
+  ]
+}
