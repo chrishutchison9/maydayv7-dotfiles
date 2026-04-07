@@ -13,7 +13,7 @@ in
   credentials = {
     name = "maydayv7";
     fullname = "V7";
-    mail = "maydayv7@gmail.com";
+    mail = "73811274+maydayv7@users.noreply.github.com";
     key = "8C240C0C11293EE56260601CCF616EB19C2765E4";
   };
 

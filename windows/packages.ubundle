@@ -1,0 +1,1869 @@
+{
+  "export_version": 3,
+  "packages": [
+    {
+      "Id": "7zip.7zip",
+      "Name": "7-Zip",
+      "Version": "26.00",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "@google/gemini-cli",
+      "Name": "Gemini Cli",
+      "Version": "0.36.0",
+      "Source": "npm",
+      "ManagerName": "Npm"
+    },
+    {
+      "Id": "Alacritty.Alacritty",
+      "Name": "Alacritty",
+      "Version": "0.17.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "AmN.YASBGUI",
+      "Name": "YASB GUI",
+      "Version": "0.0.6.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "AmN.yasb",
+      "Name": "yasb",
+      "Version": "1.9.1",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Anthropic.Claude",
+      "Name": "Claude",
+      "Version": "1.569.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "AntibodySoftware.WizTree",
+      "Name": "WizTree",
+      "Version": "4.31",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "AutoHotkey.AutoHotkey",
+      "Name": "AutoHotkey",
+      "Version": "2.0.23",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Bitwarden.Bitwarden",
+      "Name": "Bitwarden",
+      "Version": "2026.3.1",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "BlenderFoundation.Blender",
+      "Name": "blender",
+      "Version": "5.1.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "BlueStack.BlueStacks",
+      "Name": "BlueStacks",
+      "Version": "5.22.166.1003",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Brave.Brave",
+      "Name": "Brave",
+      "Version": "146.1.88.138",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Cloudflare.Warp",
+      "Name": "Cloudflare WARP",
+      "Version": "26.3.846.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "CodeSector.TeraCopy",
+      "Name": "TeraCopy",
+      "Version": "3.17",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "CodecGuide.K-LiteCodecPack.Full",
+      "Name": "K-Lite Codec Pack Full",
+      "Version": "19.6.6",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "DevToys-app.DevToys",
+      "Name": "DevToys",
+      "Version": "2.0-preview.9",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Docker.DockerDesktop",
+      "Name": "Docker Desktop",
+      "Version": "4.67.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "DominikReichl.KeePass",
+      "Name": "KeePass",
+      "Version": "2.61",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Element.Element",
+      "Name": "Element",
+      "Version": "1.12.13",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "EpicGames.EpicGamesLauncher",
+      "Name": "Epic Games Launcher",
+      "Version": "19.1.7.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Figma.Figma",
+      "Name": "Figma",
+      "Version": "126.2.10",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Foxit.PhantomPDF.Subscription.MSI",
+      "Name": "Foxit PDF Editor (MSI)",
+      "Version": "2025.3.0.35737",
+      "Source": "winget",
+      "ManagerName": "Winget",
+      "Updates": {
+        "UpdatesIgnored": true,
+        "IgnoredVersion": "*"
+      }
+    },
+    {
+      "Id": "FreeTube.FreeTube",
+      "Name": "FreeTube",
+      "Version": "0.24.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "GIMP.GIMP.3",
+      "Name": "GIMP",
+      "Version": "3.2.2.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "GitHub.GitHubDesktop",
+      "Name": "GitHub Desktop",
+      "Version": "3.5.7",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "GnuPG.GnuPG",
+      "Name": "GNU Privacy Guard",
+      "Version": "2.5.18",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "GnuWin32.Grep",
+      "Name": "GnuWin32: Grep",
+      "Version": "2.5.4",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Google.Antigravity",
+      "Name": "Antigravity",
+      "Version": "1.21.9",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Google.QuickShare",
+      "Name": "Quick Share from Google",
+      "Version": "1.0.2527.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "HandBrake.HandBrake",
+      "Name": "HandBrake",
+      "Version": "1.11.1",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "IDRIX.VeraCrypt",
+      "Name": "VeraCrypt",
+      "Version": "1.26.24",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "IrfanSkiljan.IrfanView",
+      "Name": "IrfanView",
+      "Version": "4.73",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "JiriPolasek.ColorsforCommandPalette",
+      "Name": "Colors for Command Palette",
+      "Version": "0.10.0.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "JohnMacFarlane.Pandoc",
+      "Name": "Pandoc",
+      "Version": "3.9.0.2",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "KeePassXCTeam.KeePassXC",
+      "Name": "KeePassXC",
+      "Version": "2.7.12",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Logseq.Logseq",
+      "Name": "Logseq",
+      "Version": "0.10.15",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "M2Team.NanaZip",
+      "Name": "NanaZip",
+      "Version": "6.0.1650.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Meltytech.Shotcut",
+      "Name": "Shotcut",
+      "Version": "26.2.26",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.AppInstaller",
+      "Name": "App Installer",
+      "Version": "1.28.220.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.CLRTypesSQLServer.2019",
+      "Name": "Microsoft System CLR Types for SQL Server 2019",
+      "Version": "15.0.2000.5",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.DirectX",
+      "Name": "DirectX End-User Runtime Installer",
+      "Version": "9.29.1974.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.DotNet.DesktopRuntime.6",
+      "Name": "Microsoft .NET Windows Desktop Runtime 6.0",
+      "Version": "6.0.36",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.DotNet.DesktopRuntime.8.x64",
+      "Name": "Microsoft Windows Desktop Runtime - 8.0.25 (x64)",
+      "Version": "8.0.25",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.DotNet.DesktopRuntime.9",
+      "Name": "Microsoft .NET Windows Desktop Runtime 9.0",
+      "Version": "9.0.14",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.Edge",
+      "Name": "Microsoft Edge",
+      "Version": "146.0.3856.97",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.GameInput",
+      "Name": "Microsoft GameInput",
+      "Version": "3.3.163.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.Office",
+      "Name": "Microsoft 365 Apps for enterprise",
+      "Version": "16.0.19822.20142",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.OpenJDK.21",
+      "Name": "Microsoft Build of OpenJDK with Hotspot 21",
+      "Version": "21.0.10.7",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.PowerShell",
+      "Name": "PowerShell",
+      "Version": "7.6.0.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.PowerToys",
+      "Name": "PowerToys",
+      "Version": "0.98.1",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.Teams",
+      "Name": "Microsoft Teams",
+      "Version": "26058.713.4529.5861",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.UI.Xaml.2.8",
+      "Name": "Microsoft.UI.Xaml",
+      "Version": "8.2501.31001.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.VCLibs.14",
+      "Name": "Microsoft Visual C\u002B\u002B 2015 UWP Runtime Package",
+      "Version": "14.0.33519.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.VCLibs.Desktop.14",
+      "Name": "Microsoft Visual C\u002B\u002B 2015 UWP Desktop Runtime Package",
+      "Version": "14.0.33728.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.VCRedist.2005.x86",
+      "Name": "Microsoft Visual C\u002B\u002B 2005 Redistributable (x86)",
+      "Version": "8.0.61187",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.VCRedist.2008.x64",
+      "Name": "Microsoft Visual C\u002B\u002B 2008 Redistributable - x64",
+      "Version": "9.0.30729.7523",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.VCRedist.2008.x86",
+      "Name": "Microsoft Visual C\u002B\u002B 2008 Redistributable - x86",
+      "Version": "9.0.30729.7523",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.VCRedist.2010.x64",
+      "Name": "Microsoft Visual C\u002B\u002B 2010 x64 Redistributable",
+      "Version": "10.0.40219",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.VCRedist.2010.x86",
+      "Name": "Microsoft Visual C\u002B\u002B 2010 x86 Redistributable",
+      "Version": "10.0.40219",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.VCRedist.2015\u002B.x64",
+      "Name": "Microsoft Visual C\u002B\u002B v14 Redistributable (x64)",
+      "Version": "14.44.35211.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.VCRedist.2015\u002B.x86",
+      "Name": "Microsoft Visual C\u002B\u002B v14 Redistributable (x86)",
+      "Version": "14.44.35211.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.VSTOR",
+      "Name": "Microsoft Visual Studio 2010 Tools for Office Runtime",
+      "Version": "10.0.60922",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.VisualStudio.Community",
+      "Name": "Visual Studio Community 2026",
+      "Version": "18.4.3",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.VisualStudioCode",
+      "Name": "Microsoft Visual Studio Code",
+      "Version": "1.114.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.WSL",
+      "Name": "Windows Subsystem for Linux",
+      "Version": "2.6.3.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.WebDeploy",
+      "Name": "Microsoft Web Deploy",
+      "Version": "10.0.9419",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.WinGet.Client",
+      "Name": "Microsoft.WinGet.Client",
+      "Version": "1.12.440",
+      "Source": "PSGallery",
+      "ManagerName": "PowerShell7"
+    },
+    {
+      "Id": "Microsoft.WinGet.Client",
+      "Name": "Microsoft.WinGet.Client",
+      "Version": "1.12.440",
+      "Source": "PSGallery",
+      "ManagerName": "PowerShell"
+    },
+    {
+      "Id": "Microsoft.WinGet.CommandNotFound",
+      "Name": "Microsoft.WinGet.CommandNotFound",
+      "Version": "1.0.6.0",
+      "Source": "PSGallery",
+      "ManagerName": "PowerShell7"
+    },
+    {
+      "Id": "Microsoft.WinGet.CommandNotFound",
+      "Name": "Microsoft.WinGet.CommandNotFound",
+      "Version": "1.0.6.0",
+      "Source": "PSGallery",
+      "ManagerName": "PowerShell"
+    },
+    {
+      "Id": "Microsoft.WindowsAppRuntime.1.8",
+      "Name": "Windows App Runtime 1.8",
+      "Version": "1.8.6",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.WindowsSDK.10.0.26100",
+      "Name": "Windows Software Development Kit - Windows 10.0.26100.4188",
+      "Version": "10.0.26100.7705",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.WindowsTerminal",
+      "Name": "Windows Terminal",
+      "Version": "1.24.10921.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.XNARedist",
+      "Name": "Microsoft XNA Framework Redistributable Refresh",
+      "Version": "4.0.30901.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Microsoft.msodbcsql.17",
+      "Name": "Microsoft ODBC Driver 17 for SQL Server",
+      "Version": "17.10.6.1",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "MiniTool.PartitionWizard.Free",
+      "Name": "MiniTool Partition Wizard Free",
+      "Version": "13.6",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "MongoDB.Compass.Full",
+      "Name": "MongoDB Compass",
+      "Version": "1.49.4",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Mozilla.Thunderbird",
+      "Name": "Mozilla Thunderbird (en-US)",
+      "Version": "149.0.1",
+      "Source": "winget",
+      "ManagerName": "Winget",
+      "Updates": {
+        "IgnoredVersion": "147.0.2"
+      }
+    },
+    {
+      "Id": "Notepad\u002B\u002B.Notepad\u002B\u002B",
+      "Name": "Notepad\u002B\u002B",
+      "Version": "8.9.3",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Nvidia.PhysX",
+      "Name": "NVIDIA PhysX System Software",
+      "Version": "9.23.1019",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "OBSProject.OBSStudio",
+      "Name": "OBS Studio",
+      "Version": "32.1.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "PSReadLine",
+      "Name": "PSReadLine",
+      "Version": "2.4.5",
+      "Source": "PSGallery",
+      "ManagerName": "PowerShell"
+    },
+    {
+      "Id": "Pidgin.Pidgin",
+      "Name": "Pidgin",
+      "Version": "2.14.14",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "PrismLauncher.PrismLauncher",
+      "Name": "Prism Launcher",
+      "Version": "10.0.5",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Python.PythonInstallManager",
+      "Name": "Python Install Manager",
+      "Version": "26.1.240.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "QL-Win.QuickLook",
+      "Name": "QuickLook",
+      "Version": "4.4.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "REALiX.HWiNFO",
+      "Name": "HWiNFO\u00AE",
+      "Version": "8.44",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Rainmeter.Rainmeter",
+      "Name": "Rainmeter",
+      "Version": "4.5.23",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "RamenSoftware.Windhawk",
+      "Name": "Windhawk",
+      "Version": "1.7.3",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Roblox.Roblox",
+      "Name": "Roblox Player",
+      "Version": "0.702.2.7020633",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Rustlang.Rustup",
+      "Name": "Rustup: the Rust toolchain installer",
+      "Version": "1.29.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Spotify.Spotify",
+      "Name": "Spotify",
+      "Version": "1.2.86.502.g8cd7fb22",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Starship.Starship",
+      "Name": "starship",
+      "Version": "1.24.2",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "SumatraPDF.SumatraPDF",
+      "Name": "SumatraPDF",
+      "Version": "3.6",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Tailscale.Tailscale",
+      "Name": "Tailscale",
+      "Version": "1.96.3",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Terminal-Icons",
+      "Name": "Terminal Icons",
+      "Version": "0.11.0",
+      "Source": "PSGallery",
+      "ManagerName": "PowerShell"
+    },
+    {
+      "Id": "Terminal-Icons",
+      "Name": "Terminal Icons",
+      "Version": "0.11.0",
+      "Source": "PSGallery",
+      "ManagerName": "PowerShell7"
+    },
+    {
+      "Id": "Transmission.Transmission",
+      "Name": "Transmission",
+      "Version": "4.1.1",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Valve.Steam",
+      "Name": "Steam",
+      "Version": "2.10.91.91",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Vencord.Vesktop",
+      "Name": "Vesktop",
+      "Version": "1.6.5",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "ViRb3.wgcf",
+      "Name": "wgcf",
+      "Version": "2.2.30",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "VideoLAN.VLC",
+      "Name": "VLC media player",
+      "Version": "3.0.23",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "VoodooSoft.DefenderUI",
+      "Name": "DefenderUI",
+      "Version": "1.46",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "WinSCP.WinSCP",
+      "Name": "WinSCP",
+      "Version": "6.5.6",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "WireGuard.WireGuard",
+      "Name": "WireGuard",
+      "Version": "0.5.3",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "XP8K0J757HHRDW",
+      "Name": "Audacity",
+      "Version": "3.7.6",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "XPFNZKSKLBP7RJ",
+      "Name": "PuTTY",
+      "Version": "0.83.0.0",
+      "Source": "msstore",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "XnSoft.XnView.Classic",
+      "Name": "XnView",
+      "Version": "2.52.5",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "ZedIndustries.Zed",
+      "Name": "Zed",
+      "Version": "0.226.5",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "Zoom.Zoom",
+      "Name": "Zoom Workplace",
+      "Version": "7.0.34412",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "arndawg.zellij-windows",
+      "Name": "zellij-windows",
+      "Version": "0.43.1-win32.5",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "calibre.calibre",
+      "Name": "calibre",
+      "Version": "9.6.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "chrisant996.Clink",
+      "Name": "Clink",
+      "Version": "1.9.17",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "dorssel.usbipd-win",
+      "Name": "usbipd-win",
+      "Version": "5.3.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "npm",
+      "Name": "Npm",
+      "Version": "11.12.1",
+      "Source": "npm",
+      "ManagerName": "Npm"
+    },
+    {
+      "Id": "opencode-ai",
+      "Name": "Opencode Ai",
+      "Version": "1.3.17",
+      "Source": "npm",
+      "ManagerName": "Npm"
+    },
+    {
+      "Id": "pip",
+      "Name": "Pip",
+      "Version": "26.0.1",
+      "Source": "pip",
+      "ManagerName": "Pip"
+    },
+    {
+      "Id": "pm2",
+      "Name": "Pm2",
+      "Version": "6.0.14",
+      "Source": "npm",
+      "ManagerName": "Npm"
+    },
+    {
+      "Id": "repomix",
+      "Name": "Repomix",
+      "Version": "1.13.1",
+      "Source": "npm",
+      "ManagerName": "Npm"
+    },
+    {
+      "Id": "th-ch.YouTubeMusic",
+      "Name": "YouTube Music",
+      "Version": "3.11.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "voidtools.Everything.Alpha",
+      "Name": "Everything (Alpha)",
+      "Version": "1.5.0.1405",
+      "Source": "winget",
+      "ManagerName": "Winget",
+      "Updates": {
+        "IgnoredVersion": "1.5.0.1404"
+      }
+    },
+    {
+      "Id": "winfetch",
+      "Name": "Winfetch",
+      "Version": "2.5.1",
+      "Source": "PSGallery",
+      "ManagerName": "PowerShell7"
+    },
+    {
+      "Id": "xpm",
+      "Name": "Xpm",
+      "Version": "0.21.4",
+      "Source": "npm",
+      "ManagerName": "Npm"
+    }
+  ],
+  "incompatible_packages_info": "Incompatible packages cannot be installed from UniGetUI, either because they came from a local source (for example Local PC) or because the package manager was unavailable. Nevertheless, they have been listed here for logging purposes.",
+  "incompatible_packages": [
+    {
+      "Id": "ARP\\Machine\\X64\\Android Studio",
+      "Name": "Android Studio",
+      "Version": "2025.3",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\FairlightAudioAccelerator_is1",
+      "Name": "Fairlight Audio Accelerator Utility",
+      "Version": "1.0.15",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\Gpg4win",
+      "Name": "Gpg4win (5.0.1)",
+      "Version": "5.0.1",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\Mozilla Firefox",
+      "Name": "Mozilla Firefox (x64 en-US)",
+      "Version": "149.0",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\MozillaMaintenanceService",
+      "Name": "Mozilla Maintenance Service",
+      "Version": "149.0.1",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\NAPS2 - Not Another PDF Scanner_is1",
+      "Name": "NAPS2",
+      "Version": "8.2.1",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\Riot Vanguard",
+      "Name": "Riot Vanguard",
+      "Version": "125.0.3.4086",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\RustDesk",
+      "Name": "RustDesk",
+      "Version": "1.4.6.29544831",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\Steam App 291550",
+      "Name": "Brawlhalla",
+      "Version": "1.0.0.0",
+      "Source": "Steam"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\Steam App 322170",
+      "Name": "Geometry Dash",
+      "Version": "Unknown",
+      "Source": "Steam"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\Steam App 431960",
+      "Name": "Wallpaper Engine",
+      "Version": "Unknown",
+      "Source": "Steam"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\Steam App 714010",
+      "Name": "Aimlabs",
+      "Version": "Unknown",
+      "Source": "Steam"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\Steam App 730",
+      "Name": "Counter-Strike 2",
+      "Version": "Unknown",
+      "Source": "Steam"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\WinMerge_is1",
+      "Name": "WinMerge x64",
+      "Version": "2.16.54.0",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\Xilinx_DocNav_2025.2#0",
+      "Name": "Xilinx DocNav (C:\\AMDDesignTools)",
+      "Version": "2025.2",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\Xilinx_FPGAs \u0026 Adaptive SoCs Software _2025.2#0",
+      "Name": "AMD Adaptive SoC and FPGA Tools FPGAs \u0026 Adaptive SoCs Software  2025.2 (C:\\AMDDesignTools)",
+      "Version": "2025.2",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\Xilinx_Xilinx Information Center_2025.2#0",
+      "Name": "Xilinx Information Center (C:\\AMDDesignTools)",
+      "Version": "2025.2",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\mpv",
+      "Name": "mpv media player",
+      "Version": "2.0.0.0",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{010792BA-551A-3AC0-A7EF-0FAB4156C382}",
+      "Name": "Microsoft Visual C\u002B\u002B 2013 x64 Additional Runtime - 12.0.40664",
+      "Version": "12.0.40664",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{0F4F67F8-21E1-422D-B31C-B3800F4D6E36}",
+      "Name": "IIS 10.0 Express",
+      "Version": "10.0.10007",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{15C7B361-A0B2-4E79-93E0-868B5000BA3F}",
+      "Name": "FortiClient VPN",
+      "Version": "7.4.3.8758",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{27BBC149-2D6A-4C05-9BED-9A3791A5C1DE}",
+      "Name": "DaVinci Resolve",
+      "Version": "20.3.20009",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{37B8F9C7-03FB-3253-8781-2517C99D7C00}",
+      "Name": "Microsoft Visual C\u002B\u002B 2012 x64 Additional Runtime - 11.0.61135",
+      "Version": "11.0.61135",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{53CF6934-A98D-3D84-9146-FC4EDF3D5641}",
+      "Name": "Microsoft Visual C\u002B\u002B 2013 x64 Minimum Runtime - 12.0.40664",
+      "Version": "12.0.40664",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{547DD641-59E6-4B8A-8C53-4C28C54B7658}",
+      "Name": "Node.js",
+      "Version": "24.13.1",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{552ED017-461C-4DE5-8739-E04466E938FB}",
+      "Name": "RustDesk",
+      "Version": "1.4.6.29544831",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{568A72D3-8666-4F65-ABB5-D55BD975ADA7}",
+      "Name": "Microsoft SQL Server 2025 LocalDB ",
+      "Version": "17.0.1000.7",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{572A0073-40AE-4866-8138-AE60C3D90EF3}",
+      "Name": "VMware Workstation",
+      "Version": "25.0.1",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{61B44572-8722-4DAF-8ACF-8E742D30BCC5}",
+      "Name": "Microsoft Visual C\u002B\u002B 2022 X64 Minimum Runtime - 14.50.35719",
+      "Version": "14.50.35719",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{6DF13AB8-1697-46A2-8017-F68D860FC201}",
+      "Name": "DaVinci Resolve Control Panels",
+      "Version": "2.3.4.0",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{6F320B93-EE3C-4826-85E0-ADF79F8D4C61}",
+      "Name": "Microsoft Visual Studio Installer",
+      "Version": "4.4.38.63497",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{9095192A-1114-447B-BBC2-64695C950751}",
+      "Name": "JetBrains ETW Host Service (x64)",
+      "Version": "16.44.0",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{A7AB73A3-CB10-4AA5-9D38-6AEFFBDE4C91}",
+      "Name": "Microsoft Teams Meeting Add-in for Microsoft Office",
+      "Version": "1.25.28902",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{AECD4ED0-8A3B-41E9-92D1-6BEE0374CCAF}",
+      "Name": "Microsoft Visual C\u002B\u002B 2022 X64 Additional Runtime - 14.50.35719",
+      "Version": "14.50.35719",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{B2FE1952-0186-46C3-BAEC-A80AA35AC5B8}_Display.Driver",
+      "Name": "NVIDIA Graphics Driver 595.79",
+      "Version": "595.79",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{B2FE1952-0186-46C3-BAEC-A80AA35AC5B8}_Display.NvApp",
+      "Name": "NVIDIA App 11.0.6.383",
+      "Version": "11.0.6.383",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{B2FE1952-0186-46C3-BAEC-A80AA35AC5B8}_FrameViewSdk",
+      "Name": "NVIDIA FrameView SDK 1.5.11821.36727370",
+      "Version": "1.5.11821.36727370",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{B2FE1952-0186-46C3-BAEC-A80AA35AC5B8}_HDAudio.Driver",
+      "Name": "NVIDIA HD Audio Driver 1.4.5.7",
+      "Version": "1.4.5.7",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{BD499139-B54C-422A-8B66-1B27FF616F4B}",
+      "Name": "Microsoft .NET SDK 10.0.201 (x64) from Visual Studio",
+      "Version": "40.10.60062",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{CF2BEA3C-26EA-32F8-AA9B-331F7E34BA97}",
+      "Name": "Microsoft Visual C\u002B\u002B 2012 x64 Minimum Runtime - 11.0.61135",
+      "Version": "11.0.61135",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{FCDBA071-A602-43E6-BFD4-4A6AC43D3556}",
+      "Name": "Blackmagic RAW Common Components",
+      "Version": "5.1",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{ad8a2fa1-06e7-4b0d-927d-6e54b3d31028}",
+      "Name": "Microsoft Visual C\u002B\u002B 2005 Redistributable (x64)",
+      "Version": "8.0.61186",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X86\\Call of Duty: Black Ops 2_is1",
+      "Name": "Call of Duty: Black Ops 2",
+      "Version": "Unknown",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X86\\Call of Duty: Black Ops 3_is1",
+      "Name": "Call of Duty: Black Ops 3",
+      "Version": "Unknown",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X86\\Digilent Software",
+      "Name": "Digilent Software",
+      "Version": "1.5.8",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X86\\FreeFileSync_is1",
+      "Name": "FreeFileSync",
+      "Version": "14.8",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X86\\Software_Xilinx_Xilinx ECM driver_DriverSetup",
+      "Name": "Xilinx ECM driver v2.51.0.0",
+      "Version": "2.51.0.0",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X86\\VB:Voicemeeter {17359A74-1236-5467}",
+      "Name": "Voicemeeter, The Virtual Mixing Console",
+      "Version": "Unknown",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X86\\WinPcapInst",
+      "Name": "WinPcap 4.1.3",
+      "Version": "4.1.3",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X86\\qBittorrent",
+      "Name": "qBittorrent",
+      "Version": "5.1.4",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X86\\{13D2A7A2-1B42-4C03-8F0F-697991259AEE}",
+      "Name": "Windows SDK AddOn",
+      "Version": "10.1.0.0",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X86\\{1851460E-0E63-4117-B5BA-25A2F045801B}",
+      "Name": "vs_CoreEditorFonts",
+      "Version": "17.7.40001",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X86\\{5A0DFA55-3851-45BC-8B20-95EA4BF5812D}",
+      "Name": "Microsoft Visual C\u002B\u002B 2022 X86 Minimum Runtime - 14.50.35719",
+      "Version": "14.50.35719",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X86\\{6730F587-C259-4C4C-A527-F7FF31D970F8}",
+      "Name": "Epic Online Services",
+      "Version": "4.2.1",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X86\\{773AD50D-AAE6-4BA1-AD01-B5A38874C840}",
+      "Name": "Microsoft Visual C\u002B\u002B 2022 X86 Additional Runtime - 14.50.35719",
+      "Version": "14.50.35719",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X86\\{8122DAB1-ED4D-3676-BB0A-CA368196543E}",
+      "Name": "Microsoft Visual C\u002B\u002B 2013 x86 Minimum Runtime - 12.0.40664",
+      "Version": "12.0.40664",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X86\\{889610CC-4337-4BDB-AC3B-4F21806C0BDE}_is1",
+      "Name": "UniGetUI",
+      "Version": "3.3.7",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X86\\{B175520C-86A2-35A7-8619-86DC379688B9}",
+      "Name": "Microsoft Visual C\u002B\u002B 2012 x86 Additional Runtime - 11.0.61135",
+      "Version": "11.0.61135",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X86\\{BD95A8CD-1D9F-35AD-981A-3E7925026EBB}",
+      "Name": "Microsoft Visual C\u002B\u002B 2012 x86 Minimum Runtime - 11.0.61135",
+      "Version": "11.0.61135",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X86\\{C5E3A69D-D391-45A6-A8FB-00B01E2B010D}",
+      "Name": "Microsoft Visual Basic/C\u002B\u002B Runtime (x86)",
+      "Version": "1.1.0",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X86\\{D401961D-3A20-3AC7-943B-6139D5BD490A}",
+      "Name": "Microsoft Visual C\u002B\u002B 2013 x86 Additional Runtime - 12.0.40664",
+      "Version": "12.0.40664",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\User\\X64\\BlueStacksServices",
+      "Name": "BlueStacks Services",
+      "Version": "3.0.9",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\User\\X64\\Postman",
+      "Name": "Postman x64 11.89.0",
+      "Version": "11.89.0",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\User\\X64\\Riot Game Riot_Client.",
+      "Name": "Riot Client ",
+      "Version": "Unknown",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\User\\X64\\Riot Game valorant.live",
+      "Name": "VALORANT",
+      "Version": "5.3.2.0",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\User\\X64\\pymanager-pythoncore-3.14-64",
+      "Name": "Python 3.14.3",
+      "Version": "3.14-64",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\User\\X64\\{DD3870DA-AF3C-4C73-B010-72944AB610C6}_is1",
+      "Name": "Stremio version 5.0.16",
+      "Version": "5.0.16",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\User\\X64\\{a03aa9a7-61f9-4dc6-a157-f84a5acafaa1}",
+      "Name": "MSYS2",
+      "Version": "1.5",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\User\\X64\\{d7119f72-c9f4-5917-aae1-685427c324a7}",
+      "Name": "JetBrains ReSharper in Visual Studio Community 2026",
+      "Version": "2025.3.3",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "MSIX\\5319275A.WhatsAppDesktop_2.2611.102.0_x64__cv1g1gvanyjgm",
+      "Name": "WhatsApp",
+      "Version": "2.2611.102.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\AdvancedMicroDevicesInc-2.AMDRadeonSoftware_10.22.40043.0_x64__0a9344xs7nr4m",
+      "Name": "AMD Radeon Software",
+      "Version": "10.22.40043.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Clipchamp.Clipchamp_4.5.10420.0_x64__yxz26nhyzhsrt",
+      "Name": "Microsoft Clipchamp",
+      "Version": "4.5.10420.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\DolbyLaboratories.DolbyAccess_3.27.8090.0_x64__rz1tebttyb220",
+      "Name": "Dolby Access",
+      "Version": "3.27.8090.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\DolbyLaboratories.DolbyDigitalPlusDecoderOEM_1.2.588.0_x64__rz1tebttyb220",
+      "Name": "Dolby Digital Plus decoder for PC OEMs",
+      "Version": "1.2.588.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\MICROSOFT.MINECRAFTUWP_1.26.1202.0_x64__8wekyb3d8bbwe",
+      "Name": "Minecraft for Windows",
+      "Version": "1.26.1202.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.4297127D64EC6_2.5.2.0_x64__8wekyb3d8bbwe",
+      "Name": "Minecraft Launcher",
+      "Version": "2.5.2.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.AV1VideoExtension_2.0.7.0_x64__8wekyb3d8bbwe",
+      "Name": "AV1 Video Extension",
+      "Version": "2.0.7.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.AVCEncoderVideoExtension_1.1.23.0_x64__8wekyb3d8bbwe",
+      "Name": "AVC Encoder Video Extension",
+      "Version": "1.1.23.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.ApplicationCompatibilityEnhancements_1.2511.9.0_x64__8wekyb3d8bbwe",
+      "Name": "Windows Application Compatibility Enhancements",
+      "Version": "1.2511.9.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.BingSearch_1.1.40.0_x64__8wekyb3d8bbwe",
+      "Name": "Microsoft Bing",
+      "Version": "1.1.40.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.BingWeather_4.54.63029.0_x64__8wekyb3d8bbwe",
+      "Name": "MSN Weather",
+      "Version": "4.54.63029.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.CommandPalette_0.9.10852.0_x64__8wekyb3d8bbwe",
+      "Name": "Command Palette",
+      "Version": "0.9.10852.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.GamingApp_2603.1001.18.0_x64__8wekyb3d8bbwe",
+      "Name": "Xbox",
+      "Version": "2603.1001.18.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.GamingServices_34.111.20001.0_x64__8wekyb3d8bbwe",
+      "Name": "Gaming Services",
+      "Version": "34.111.20001.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.GetHelp_10.2409.33293.0_x64__8wekyb3d8bbwe",
+      "Name": "Get Help",
+      "Version": "10.2409.33293.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.HEIFImageExtension_1.2.30.0_x64__8wekyb3d8bbwe",
+      "Name": "HEIF Image Extension",
+      "Version": "1.2.30.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.HEVCVideoExtension_2.4.43.0_x64__8wekyb3d8bbwe",
+      "Name": "HEVC Video Extensions from Device Manufacturer",
+      "Version": "2.4.43.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.Ink.Handwriting.Main.en-US.1.0.1_0.1121.1848.0_x64__8wekyb3d8bbwe",
+      "Name": "Ink.Handwriting.Main.en-US.1.0",
+      "Version": "0.1121.1848.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.Ink.Handwriting.en-US.1.0_0.1121.1848.0_x64__8wekyb3d8bbwe",
+      "Name": "Ink.Handwriting.en-US.1.0",
+      "Version": "0.1121.1848.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.Ink.Handwriting.en-US.1.0_0.1121.1848.0_x86__8wekyb3d8bbwe",
+      "Name": "Ink.Handwriting.en-US.1.0",
+      "Version": "0.1121.1848.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.LanguageExperiencePacken-GB_26100.124.233.0_neutral__8wekyb3d8bbwe",
+      "Name": "English (United Kingdom) Local Experience Pack",
+      "Version": "26100.124.233.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.MPEG2VideoExtension_1.2.13.0_x64__8wekyb3d8bbwe",
+      "Name": "MPEG-2 Video Extension",
+      "Version": "1.2.13.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.MicrosoftEdge.Stable_144.0.3719.115_neutral__8wekyb3d8bbwe",
+      "Name": "Microsoft Edge",
+      "Version": "144.0.3719.115",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.MinecraftJavaEdition_1.0.5.0_x64__8wekyb3d8bbwe",
+      "Name": "Minecraft: Java Edition",
+      "Version": "1.0.5.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.NET.Native.Framework.2.2_2.2.29512.0_x64__8wekyb3d8bbwe",
+      "Name": "Microsoft .Net Native Framework Package 2.2",
+      "Version": "2.2.29512.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.NET.Native.Framework.2.2_2.2.29512.0_x86__8wekyb3d8bbwe",
+      "Name": "Microsoft .Net Native Framework Package 2.2",
+      "Version": "2.2.29512.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.NET.Native.Runtime.2.2_2.2.28604.0_x64__8wekyb3d8bbwe",
+      "Name": "Microsoft .Net Native Runtime Package 2.2",
+      "Version": "2.2.28604.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.NET.Native.Runtime.2.2_2.2.28604.0_x86__8wekyb3d8bbwe",
+      "Name": "Microsoft .Net Native Runtime Package 2.2",
+      "Version": "2.2.28604.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.Office.ActionsServer_16.0.19822.20142_neutral__8wekyb3d8bbwe",
+      "Name": "Microsoft.Office.ActionsServer",
+      "Version": "16.0.19822.20142",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.Office.OneNoteVirtualPrinter_1.0.0.0_x64__8wekyb3d8bbwe",
+      "Name": "OneNote Virtual Printer",
+      "Version": "1.0.0.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.OfficePushNotificationUtility_16.0.19822.20142_neutral__8wekyb3d8bbwe",
+      "Name": "OfficePushNotificationsUtility",
+      "Version": "16.0.19822.20142",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.Paint_11.2601.401.0_x64__8wekyb3d8bbwe",
+      "Name": "Paint",
+      "Version": "11.2601.401.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.PowerAutomateDesktop_11.2603.154.0_x64__8wekyb3d8bbwe",
+      "Name": "Power Automate",
+      "Version": "11.2603.154.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.PowerToys.FileLocksmithContextMenu_0.98.1.0_neutral__8wekyb3d8bbwe",
+      "Name": "PowerToys FileLocksmith Context Menu",
+      "Version": "0.98.1.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.PowerToys.ImageResizerContextMenu_0.98.1.0_neutral__8wekyb3d8bbwe",
+      "Name": "PowerToys ImageResizer Context Menu",
+      "Version": "0.98.1.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.PowerToys.PowerRenameContextMenu_0.98.1.0_neutral__8wekyb3d8bbwe",
+      "Name": "PowerToys PowerRename Context Menu",
+      "Version": "0.98.1.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.PowerToys.SparseApp_0.98.1.0_neutral__8wekyb3d8bbwe",
+      "Name": "PowerToys.SparseApp",
+      "Version": "0.98.1.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.RawImageExtension_2.5.7.0_x64__8wekyb3d8bbwe",
+      "Name": "Raw Image Extension",
+      "Version": "2.5.7.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.ScreenSketch_11.2601.2.0_x64__8wekyb3d8bbwe",
+      "Name": "Snipping Tool",
+      "Version": "11.2601.2.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.SecHealthUI_1000.29510.1001.0_x64__8wekyb3d8bbwe",
+      "Name": "Windows Security",
+      "Version": "1000.29510.1001.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.Services.Store.Engagement_10.0.23012.0_x64__8wekyb3d8bbwe",
+      "Name": "Microsoft Engagement Framework",
+      "Version": "10.0.23012.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.Services.Store.Engagement_10.0.23012.0_x86__8wekyb3d8bbwe",
+      "Name": "Microsoft Engagement Framework",
+      "Version": "10.0.23012.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.StartExperiencesApp_1.248.3.0_x64__8wekyb3d8bbwe",
+      "Name": "Start Experiences App",
+      "Version": "1.248.3.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.StorePurchaseApp_22601.1401.7.0_x64__8wekyb3d8bbwe",
+      "Name": "Store Experience Host",
+      "Version": "22601.1401.7.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.Todos_0.175.6901.0_x64__8wekyb3d8bbwe",
+      "Name": "Microsoft To Do",
+      "Version": "0.175.6901.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.VCLibs.110.00.UWPDesktop_11.0.61135.0_x64__8wekyb3d8bbwe",
+      "Name": "Microsoft Visual C\u002B\u002B 2012 UWP Desktop Runtime Package",
+      "Version": "11.0.61135.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.VCLibs.110.00.UWPDesktop_11.0.61135.0_x86__8wekyb3d8bbwe",
+      "Name": "Microsoft Visual C\u002B\u002B 2012 UWP Desktop Runtime Package",
+      "Version": "11.0.61135.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.VCLibs.120.00.UWPDesktop_12.0.40653.0_x64__8wekyb3d8bbwe",
+      "Name": "Microsoft Visual C\u002B\u002B 2013 UWP Desktop Runtime Package",
+      "Version": "12.0.40653.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.VCLibs.120.00.UWPDesktop_12.0.40653.0_x86__8wekyb3d8bbwe",
+      "Name": "Microsoft Visual C\u002B\u002B 2013 UWP Desktop Runtime Package",
+      "Version": "12.0.40653.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.VP9VideoExtensions_1.2.12.0_x64__8wekyb3d8bbwe",
+      "Name": "VP9 Video Extensions",
+      "Version": "1.2.12.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.VisualStudioCode_1.0.114.0_neutral__8wekyb3d8bbwe",
+      "Name": "Visual Studio Code",
+      "Version": "1.0.114.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.WebMediaExtensions_2.1.26.0_x64__8wekyb3d8bbwe",
+      "Name": "Web Media Extensions",
+      "Version": "2.1.26.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.WebpImageExtension_1.2.14.0_x64__8wekyb3d8bbwe",
+      "Name": "WebP Image Extension",
+      "Version": "1.2.14.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.WidgetsPlatformRuntime_1.6.14.0_x64__8wekyb3d8bbwe",
+      "Name": "Widgets Platform Runtime",
+      "Version": "1.6.14.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.WinAppRuntime.DDLM.8000.770.947.0-x6_8000.770.947.0_x64__8wekyb3d8bbwe",
+      "Name": "Windows App Runtime DDLM 8000.770.947.0-x6",
+      "Version": "8000.770.947.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.WinAppRuntime.DDLM.8000.770.947.0-x8_8000.770.947.0_x86__8wekyb3d8bbwe",
+      "Name": "Windows App Runtime DDLM 8000.770.947.0-x8",
+      "Version": "8000.770.947.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.Windows.DevHome_0.2101.858.0_x64__8wekyb3d8bbwe",
+      "Name": "Windows Advanced Settings",
+      "Version": "0.2101.858.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.Windows.Photos_2026.11020.20001.0_x64__8wekyb3d8bbwe",
+      "Name": "Microsoft Photos",
+      "Version": "2026.11020.20001.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.WindowsAlarms_11.2512.0.0_x64__8wekyb3d8bbwe",
+      "Name": "Windows Clock",
+      "Version": "11.2512.0.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.WindowsAppRuntime.1.5_5001.373.1736.0_x64__8wekyb3d8bbwe",
+      "Name": "WindowsAppRuntime.1.5",
+      "Version": "5001.373.1736.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.WindowsAppRuntime.1.5_5001.373.1736.0_x86__8wekyb3d8bbwe",
+      "Name": "WindowsAppRuntime.1.5",
+      "Version": "5001.373.1736.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.WindowsAppRuntime.1.6_6000.519.329.0_x64__8wekyb3d8bbwe",
+      "Name": "WindowsAppRuntime.1.6",
+      "Version": "6000.519.329.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.WindowsAppRuntime.1.6_6000.519.329.0_x86__8wekyb3d8bbwe",
+      "Name": "WindowsAppRuntime.1.6",
+      "Version": "6000.519.329.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.WindowsAppRuntime.1.7_7000.785.2325.0_x64__8wekyb3d8bbwe",
+      "Name": "WindowsAppRuntime.1.7",
+      "Version": "7000.785.2325.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.WindowsAppRuntime.1.7_7000.785.2325.0_x86__8wekyb3d8bbwe",
+      "Name": "WindowsAppRuntime.1.7",
+      "Version": "7000.785.2325.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.WindowsCalculator_11.2508.4.0_x64__8wekyb3d8bbwe",
+      "Name": "Windows Calculator",
+      "Version": "11.2508.4.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.WindowsCamera_2025.2510.2.0_x64__8wekyb3d8bbwe",
+      "Name": "Windows Camera",
+      "Version": "2025.2510.2.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.WindowsNotepad_11.2512.26.0_x64__8wekyb3d8bbwe",
+      "Name": "Windows Notepad",
+      "Version": "11.2512.26.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.WindowsSoundRecorder_11.2512.0.0_x64__8wekyb3d8bbwe",
+      "Name": "Windows Sound Recorder",
+      "Version": "11.2512.0.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.WindowsStore_22602.1401.4.0_x64__8wekyb3d8bbwe",
+      "Name": "Microsoft Store",
+      "Version": "22602.1401.4.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.Winget.Fonts.Source_2025.1016.311.49_neutral__8wekyb3d8bbwe",
+      "Name": "Windows Package Manager Source (winget-font) V2",
+      "Version": "2025.1016.311.49",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.Winget.Source_2026.407.555.37_neutral__8wekyb3d8bbwe",
+      "Name": "Windows Package Manager Source (winget) V2",
+      "Version": "2026.407.555.37",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.Xbox.TCUI_1.24.10001.0_x64__8wekyb3d8bbwe",
+      "Name": "Xbox TCUI",
+      "Version": "1.24.10001.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.XboxGamingOverlay_7.326.2102.0_x64__8wekyb3d8bbwe",
+      "Name": "Game Bar",
+      "Version": "7.326.2102.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.XboxIdentityProvider_12.130.16001.0_x64__8wekyb3d8bbwe",
+      "Name": "Xbox Identity Provider",
+      "Version": "12.130.16001.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.XboxSpeechToTextOverlay_1.117.15001.0_x64__8wekyb3d8bbwe",
+      "Name": "Game Speech Window",
+      "Version": "1.117.15001.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.YourPhone_1.26022.64.0_x64__8wekyb3d8bbwe",
+      "Name": "Phone Link",
+      "Version": "1.26022.64.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\Microsoft.ZuneMusic_11.2601.11.0_x64__8wekyb3d8bbwe",
+      "Name": "Windows Media Player",
+      "Version": "11.2601.11.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\MicrosoftCorporationII.QuickAssist_2.0.35.0_x64__8wekyb3d8bbwe",
+      "Name": "Quick Assist",
+      "Version": "2.0.35.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\MicrosoftCorporationII.WinAppRuntime.Main.1.8_8000.806.2252.0_x64__8wekyb3d8bbwe",
+      "Name": "WinAppRuntime.Main.1.8",
+      "Version": "8000.806.2252.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\MicrosoftCorporationII.WinAppRuntime.Singleton_8000.806.2252.0_x64__8wekyb3d8bbwe",
+      "Name": "WinAppRuntime.Singleton",
+      "Version": "8000.806.2252.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\MicrosoftWindows.Client.WebExperience_526.7600.30.0_x64__cw5n1h2txyewy",
+      "Name": "Windows Web Experience Pack",
+      "Version": "526.7600.30.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\MicrosoftWindows.CrossDevice_1.26022.46.0_x64__cw5n1h2txyewy",
+      "Name": "Cross Device Experience Host",
+      "Version": "1.26022.46.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\MicrosoftWindows.Speech.en-IN.1_1.0.15.0_x64__cw5n1h2txyewy",
+      "Name": "Speech Pack - English (India)",
+      "Version": "1.0.15.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\MicrosoftWindows.Voice.en-IN.Prabhat.1_1.0.3.0_x64__cw5n1h2txyewy",
+      "Name": "Microsoft Prabhat (Natural) - English (India)",
+      "Version": "1.0.3.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\NVIDIACorp.NVIDIAControlPanel_8.1.969.0_x64__56jybvy8sckqj",
+      "Name": "NVIDIA Control Panel",
+      "Version": "8.1.969.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\NearbyShare_1.0.2527.0_x64__21hpf16v5xp10",
+      "Name": "Quick Share",
+      "Version": "1.0.2527.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\NotepadPlusPlus_1.0.0.0_neutral__2247w0b46hfww",
+      "Name": "Notepad\u002B\u002B",
+      "Version": "1.0.0.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\OpenAI.ChatGPT-Desktop_1.2026.43.0_x64__2p2nqsd0c76g0",
+      "Name": "ChatGPT",
+      "Version": "1.2026.43.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\RealtekSemiconductorCorp.RealtekAudioControl_1.1.137.0_x64__dt26b99r8h8gj",
+      "Name": "Realtek Audio Control",
+      "Version": "1.1.137.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\WinMerge_1.0.8.0_neutral__f62ztx9ss5ed4",
+      "Name": "WinMerge",
+      "Version": "1.0.8.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\ZedIndustries.Zed_1.0.0.0_neutral__japxn1gcva8rg",
+      "Name": "Zed",
+      "Version": "1.0.0.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\aimgr_0.20.44.0_x64__8wekyb3d8bbwe",
+      "Name": "Local AI Manager for Microsoft 365",
+      "Version": "0.20.44.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\gemini.google.com-537D494_1.0.0.0_neutral__vn3jms8s81tkg",
+      "Name": "Gemini",
+      "Version": "1.0.0.0",
+      "Source": "Microsoft Store"
+    },
+    {
+      "Id": "MSIX\\redditTV.Reddit_1.0.1.0_neutral__99kbdge22ed1a",
+      "Name": "Reddit",
+      "Version": "1.0.1.0",
+      "Source": "Microsoft Store"
+    }
+  ]
+}

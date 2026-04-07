@@ -1,0 +1,128 @@
+add_newline = true
+continuation_prompt = "⮞ "
+format = "[╭](fg:base04)$os$directory$git_branch$git_status$fill$c$python$java$nodejs$dotnet$status$cmd_duration$shell$username$hostname$time$line_break$character"
+palette = "campbell"
+
+[palettes.campbell]
+black = "#0C0C0C"
+red = "#C50F1F"
+green = "#13A10E"
+yellow = "#C19C00"
+blue = "#0037DA"
+purple = "#881798"
+cyan = "#3A96DD"
+white = "#CCCCCC"
+bright-black = "#767676"
+bright-red = "#E74856"
+bright-green = "#16C60C"
+bright-yellow = "#F9F1A5"
+bright-blue = "#3B78FF"
+bright-purple = "#B4009E"
+bright-cyan = "#61D6D6"
+bright-white = "#F2F2F2"
+
+base01 = "#0C0C0C"
+base03 = "#363636"
+base04 = "#767676"
+orange = "#C19C00"
+
+[character]
+format = "[╰─$symbol](fg:base04) "
+success_symbol = "[⮞](fg:bold white)"
+error_symbol = "[⮞](fg:bold red)"
+
+[os]
+disabled = false
+format = "(fg:base04)[](fg:white)[$symbol](fg:base01 bg:white)[](fg:white)"
+
+[os.symbols]
+Android = ""
+Arch = ""
+Fedora = ""
+Linux = ""
+Macos = ""
+NixOS = ""
+Ubuntu = ""
+Windows = ""
+Unknown = ""
+
+[directory]
+disabled = false
+format = "[─](fg:base04)[](fg:blue)[󰉋](fg:base01 bg:blue)[](fg:blue bg:base03)[ $read_only$truncation_symbol$path](fg:white bg:base03)[](fg:base03)"
+home_symbol = "~"
+truncation_symbol = "…/"
+truncation_length = 4
+truncate_to_repo = false
+read_only = " "
+
+[git_branch]
+disabled = false
+format = "[─](fg:base04)[](fg:green)[](fg:base01 bg:green)[](fg:green bg:base03)[ $branch](fg:white bg:base03)"
+
+[git_status]
+disabled = false
+format = "[$ahead_behind$all_status](fg:green bg:base03)[](fg:base03)"
+ahead = " ⇡${count}"
+behind = " ⇣${count}"
+diverged = " ⇡${ahead_count} ⇣${behind_count}"
+conflicted = " =${count}"
+deleted = " ×${count}"
+modified = " !${count}"
+renamed = " »${count}"
+staged = " +${count}"
+stashed = " *${count}"
+untracked = " ?${count}"
+up_to_date = ""
+
+[c]
+format = "[─](fg:base04)[](fg:bright-white)[ C](fg:base01 bg:bright-white)[](fg:bright-white bg:base03)[ $version](fg:white bg:base03)[](fg:base03)"
+
+[python]
+format = "[─](fg:base04)[](fg:bright-white)[ Python](fg:base01 bg:bright-white)[](fg:bright-white bg:base03)[ $version( \\($virtualenv\\))](fg:white bg:base03)[](fg:base03)"
+
+[java]
+format = "[─](fg:base04)[](fg:bright-white)[ Java](fg:base01 bg:bright-white)[](fg:bright-white bg:base03)[ $version](fg:white bg:base03)[](fg:base03)"
+
+[nodejs]
+format = "[─](fg:base04)[](fg:bright-white)[󰎙 Node.js](fg:base01 bg:bright-white)[](fg:bright-white bg:base03)[ $version](fg:white bg:base03)[](fg:base03)"
+
+[dotnet]
+format = "[─](fg:base04)[](fg:bright-white)[󰪮 .NET](fg:base01 bg:bright-white)[](fg:bright-white bg:base03)[ $version](fg:white bg:base03)[](fg:base03)"
+
+[fill]
+symbol = "─"
+style = "fg:base04"
+
+[status]
+disabled = false
+format = "[─](fg:base04)[](fg:red)[](fg:base01 bg:red)[](fg:red bg:base03)[ $status](fg:white bg:base03)[](fg:base03)"
+
+[cmd_duration]
+min_time = 500
+format = "[─](fg:base04)[](fg:orange)[󰦖](fg:base01 bg:orange)[](fg:orange bg:base03)[ $duration](fg:white bg:base03)[](fg:base03)"
+
+[shell]
+disabled = false
+format = "[─](fg:base04)[](fg:purple)[](fg:base01 bg:purple)[](fg:purple bg:base03)[ $indicator](fg:white bg:base03)[](fg:base03)"
+bash_indicator = "bash"
+fish_indicator = "fish"
+zsh_indicator = "zsh"
+powershell_indicator = "pwsh"
+cmd_indicator = "cmd"
+unknown_indicator = "shell"
+
+[username]
+show_always = true
+style_user = "fg:white"
+style_root = "bold fg:red"
+format = "[─](fg:base04)[](fg:yellow)[](fg:base01 bg:yellow)[](fg:yellow bg:base03)[ $user]($style bg:base03)[](fg:base03)"
+
+[hostname]
+disabled = false
+format = "[─](fg:base04)[](fg:cyan)[](fg:base01 bg:cyan)[](fg:cyan bg:base03)[ $hostname](fg:white bg:base03)[](fg:base03)"
+ssh_only = false
+
+[time]
+disabled = false
+format = "[─](fg:base04)[](fg:blue)[](fg:base01 bg:blue)[](fg:blue bg:base03)[ $time](fg:white bg:base03)[](fg:base03)"
+time_format = "%H:%M"
