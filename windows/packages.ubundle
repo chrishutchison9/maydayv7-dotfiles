@@ -2,30 +2,30 @@
   "export_version": 3,
   "packages": [
     {
-      "Id": "9MVS1J51GMK6",
-      "Name": "ngrok",
-      "Version": "3.36.1.0",
-      "Source": "msstore",
+      "Id": "@google/gemini-cli",
+      "Name": "Gemini Cli",
+      "Version": "0.39.1",
+      "Source": "npm",
+      "ManagerName": "Npm"
+    },
+    {
+      "Id": "AdrienAllard.FileConverter",
+      "Name": "File Converter",
+      "Version": "2.2.0",
+      "Source": "winget",
       "ManagerName": "Winget"
-    },
-    {
-      "Id": "@google/gemini-cli",
-      "Name": "Gemini Cli",
-      "Version": "0.38.0",
-      "Source": "npm",
-      "ManagerName": "Npm"
-    },
-    {
-      "Id": "@google/gemini-cli",
-      "Name": "Gemini Cli",
-      "Version": "0.37.2",
-      "Source": "npm",
-      "ManagerName": "Npm"
     },
     {
       "Id": "Alacritty.Alacritty",
       "Name": "Alacritty",
       "Version": "0.17.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "AltSnap.AltSnap",
+      "Name": "AltSnap",
+      "Version": "1.67",
       "Source": "winget",
       "ManagerName": "Winget"
     },
@@ -46,7 +46,7 @@
     {
       "Id": "Anthropic.Claude",
       "Name": "Claude",
-      "Version": "1.2581.0",
+      "Version": "1.4758.0",
       "Source": "winget",
       "ManagerName": "Winget",
       "Updates": {
@@ -61,23 +61,30 @@
       "ManagerName": "Winget"
     },
     {
+      "Id": "Audacity.Audacity",
+      "Name": "Audacity",
+      "Version": "3.7.7",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
       "Id": "AutoHotkey.AutoHotkey",
       "Name": "AutoHotkey",
-      "Version": "2.0.23",
+      "Version": "2.0.24",
       "Source": "winget",
       "ManagerName": "Winget"
     },
     {
       "Id": "BlenderFoundation.Blender",
       "Name": "blender",
-      "Version": "5.1.0",
+      "Version": "5.1.1",
       "Source": "winget",
       "ManagerName": "Winget"
     },
     {
-      "Id": "Brave.Brave",
-      "Name": "Brave",
-      "Version": "147.1.89.132",
+      "Id": "BurntSushi.ripgrep.MSVC",
+      "Name": "RipGrep MSVC",
+      "Version": "15.1.0",
       "Source": "winget",
       "ManagerName": "Winget"
     },
@@ -98,21 +105,14 @@
     {
       "Id": "CodecGuide.K-LiteCodecPack.Full",
       "Name": "K-Lite Codec Pack Full",
-      "Version": "19.6.6",
-      "Source": "winget",
-      "ManagerName": "Winget"
-    },
-    {
-      "Id": "DevToys-app.DevToys",
-      "Name": "DevToys",
-      "Version": "2.0-preview.9",
+      "Version": "19.6.8",
       "Source": "winget",
       "ManagerName": "Winget"
     },
     {
       "Id": "Docker.DockerDesktop",
       "Name": "Docker Desktop",
-      "Version": "4.68.0",
+      "Version": "4.70.0",
       "Source": "winget",
       "ManagerName": "Winget"
     },
@@ -140,7 +140,7 @@
     {
       "Id": "Figma.Figma",
       "Name": "Figma",
-      "Version": "126.2.10",
+      "Version": "126.3.12",
       "Source": "winget",
       "ManagerName": "Winget"
     },
@@ -172,7 +172,14 @@
     {
       "Id": "GIMP.GIMP.3",
       "Name": "GIMP",
-      "Version": "3.2.2.0",
+      "Version": "3.2.4.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "GPSoftware.DirectoryOpus",
+      "Name": "Directory Opus",
+      "Version": "13.22",
       "Source": "winget",
       "ManagerName": "Winget"
     },
@@ -186,28 +193,14 @@
     {
       "Id": "GitHub.GitHubDesktop",
       "Name": "GitHub Desktop",
-      "Version": "3.5.7",
-      "Source": "winget",
-      "ManagerName": "Winget"
-    },
-    {
-      "Id": "GnuPG.GnuPG",
-      "Name": "GNU Privacy Guard",
-      "Version": "2.5.18",
-      "Source": "winget",
-      "ManagerName": "Winget"
-    },
-    {
-      "Id": "GnuWin32.Grep",
-      "Name": "GnuWin32: Grep",
-      "Version": "2.5.4",
+      "Version": "3.5.8",
       "Source": "winget",
       "ManagerName": "Winget"
     },
     {
       "Id": "Google.Antigravity",
       "Name": "Antigravity",
-      "Version": "1.22.2",
+      "Version": "1.23.2",
       "Source": "winget",
       "ManagerName": "Winget"
     },
@@ -268,6 +261,20 @@
       "ManagerName": "Winget"
     },
     {
+      "Id": "Kitware.CMake",
+      "Name": "CMake",
+      "Version": "4.3.2",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "LargeModGames.spotatui",
+      "Name": "spotatui",
+      "Version": "0.38.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
       "Id": "Logseq.Logseq",
       "Name": "Logseq",
       "Version": "0.10.15",
@@ -277,14 +284,14 @@
     {
       "Id": "M2Team.NanaZip",
       "Name": "NanaZip",
-      "Version": "6.0.1650.0",
+      "Version": "6.0.1691.0",
       "Source": "winget",
       "ManagerName": "Winget"
     },
     {
       "Id": "Mega.MEGASync",
       "Name": "MEGAsync",
-      "Version": "6.2.1",
+      "Version": "6.2.2",
       "Source": "winget",
       "ManagerName": "Winget"
     },
@@ -296,9 +303,16 @@
       "ManagerName": "Winget"
     },
     {
+      "Id": "MiKTeX.MiKTeX",
+      "Name": "MiKTeX",
+      "Version": "25.12",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
       "Id": "Microsoft.AppInstaller",
       "Name": "App Installer",
-      "Version": "1.28.220.0",
+      "Version": "1.28.240.0",
       "Source": "winget",
       "ManagerName": "Winget"
     },
@@ -324,39 +338,43 @@
       "ManagerName": "Winget"
     },
     {
-      "Id": "Microsoft.DotNet.DesktopRuntime.8.x64",
-      "Name": "Microsoft Windows Desktop Runtime - 8.0.25 (x64)",
-      "Version": "8.0.25",
+      "Id": "Microsoft.DotNet.DesktopRuntime.8",
+      "Name": "Microsoft .NET Windows Desktop Runtime 8.0",
+      "Version": "8.0.26",
       "Source": "winget",
       "ManagerName": "Winget"
     },
     {
       "Id": "Microsoft.DotNet.DesktopRuntime.9",
       "Name": "Microsoft .NET Windows Desktop Runtime 9.0",
-      "Version": "9.0.14",
+      "Version": "9.0.15",
       "Source": "winget",
       "ManagerName": "Winget"
     },
     {
       "Id": "Microsoft.Edge",
       "Name": "Microsoft Edge",
-      "Version": "147.0.3912.60",
+      "Version": "147.0.3912.72",
       "Source": "winget",
       "ManagerName": "Winget"
     },
     {
       "Id": "Microsoft.GameInput",
       "Name": "Microsoft GameInput",
-      "Version": "3.3.163.0",
+      "Version": "3.3.195.0",
       "Source": "winget",
       "ManagerName": "Winget"
     },
     {
       "Id": "Microsoft.Office",
       "Name": "Microsoft 365 Apps for enterprise",
-      "Version": "16.0.19822.20168",
+      "Version": "16.0.19929.20090",
       "Source": "winget",
-      "ManagerName": "Winget"
+      "ManagerName": "Winget",
+      "Updates": {
+        "UpdatesIgnored": true,
+        "IgnoredVersion": "*"
+      }
     },
     {
       "Id": "Microsoft.OpenJDK.21",
@@ -368,7 +386,7 @@
     {
       "Id": "Microsoft.PowerShell",
       "Name": "PowerShell",
-      "Version": "7.6.0.0",
+      "Version": "7.6.1.0",
       "Source": "winget",
       "ManagerName": "Winget"
     },
@@ -382,7 +400,7 @@
     {
       "Id": "Microsoft.Teams",
       "Name": "Microsoft Teams",
-      "Version": "26072.519.4556.7438",
+      "Version": "26072.521.4595.7966",
       "Source": "winget",
       "ManagerName": "Winget"
     },
@@ -466,14 +484,14 @@
     {
       "Id": "Microsoft.VisualStudio.Community",
       "Name": "Visual Studio Community 2026",
-      "Version": "18.4.3",
+      "Version": "18.5.1",
       "Source": "winget",
       "ManagerName": "Winget"
     },
     {
       "Id": "Microsoft.VisualStudioCode",
       "Name": "Microsoft Visual Studio Code",
-      "Version": "1.115.0",
+      "Version": "1.117.0",
       "Source": "winget",
       "ManagerName": "Winget"
     },
@@ -543,7 +561,7 @@
     {
       "Id": "Microsoft.WindowsAppRuntime.1.8",
       "Name": "Windows App Runtime 1.8",
-      "Version": "1.8.6",
+      "Version": "\u003E 1.8.6",
       "Source": "winget",
       "ManagerName": "Winget"
     },
@@ -578,26 +596,26 @@
     {
       "Id": "MongoDB.Compass.Full",
       "Name": "MongoDB Compass",
-      "Version": "1.49.4",
-      "Source": "winget",
-      "ManagerName": "Winget"
-    },
-    {
-      "Id": "Mozilla.MaintenanceService",
-      "Name": "Mozilla Maintenance Service (Standalone)",
-      "Version": "149.0.2",
+      "Version": "1.49.5",
       "Source": "winget",
       "ManagerName": "Winget"
     },
     {
       "Id": "Mozilla.Thunderbird",
       "Name": "Mozilla Thunderbird (en-US)",
-      "Version": "149.0.2",
+      "Version": "150.0",
       "Source": "winget",
       "ManagerName": "Winget",
       "Updates": {
         "IgnoredVersion": "147.0.2"
       }
+    },
+    {
+      "Id": "Ninja-build.Ninja",
+      "Name": "ninja",
+      "Version": "1.13.2",
+      "Source": "winget",
+      "ManagerName": "Winget"
     },
     {
       "Id": "Notepad\u002B\u002B.Notepad\u002B\u002B",
@@ -616,7 +634,7 @@
     {
       "Id": "OBSProject.OBSStudio",
       "Name": "OBS Studio",
-      "Version": "32.1.1",
+      "Version": "32.1.2",
       "Source": "winget",
       "ManagerName": "Winget"
     },
@@ -642,6 +660,13 @@
       "ManagerName": "Winget"
     },
     {
+      "Id": "PuTTY.PuTTY",
+      "Name": "PuTTY",
+      "Version": "0.83.0.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
       "Id": "Python.PythonInstallManager",
       "Name": "Python Install Manager",
       "Version": "26.1.240.0",
@@ -658,7 +683,7 @@
     {
       "Id": "REALiX.HWiNFO",
       "Name": "HWiNFO\u00AE",
-      "Version": "8.44",
+      "Version": "8.46",
       "Source": "winget",
       "ManagerName": "Winget"
     },
@@ -677,6 +702,13 @@
       "ManagerName": "Winget"
     },
     {
+      "Id": "RevoUninstaller.RevoUninstallerPro",
+      "Name": "Revo Uninstaller Pro",
+      "Version": "5.4.7",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
       "Id": "Roblox.Roblox",
       "Name": "Roblox Player",
       "Version": "0.702.2.7020633",
@@ -691,16 +723,30 @@
       "ManagerName": "Winget"
     },
     {
+      "Id": "ShareX.ShareX",
+      "Name": "ShareX",
+      "Version": "19.0.2",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
       "Id": "Spotify.Spotify",
       "Name": "Spotify",
-      "Version": "1.2.86.502.g8cd7fb22",
+      "Version": "1.2.87.415.g88652836",
       "Source": "winget",
       "ManagerName": "Winget"
     },
     {
       "Id": "Starship.Starship",
       "Name": "starship",
-      "Version": "1.24.2",
+      "Version": "1.25.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "StrawberryPerl.StrawberryPerl",
+      "Name": "Strawberry Perl",
+      "Version": "5.42.2.1",
       "Source": "winget",
       "ManagerName": "Winget"
     },
@@ -723,14 +769,21 @@
       "Name": "Terminal Icons",
       "Version": "0.11.0",
       "Source": "PSGallery",
-      "ManagerName": "PowerShell"
+      "ManagerName": "PowerShell7"
     },
     {
       "Id": "Terminal-Icons",
       "Name": "Terminal Icons",
       "Version": "0.11.0",
       "Source": "PSGallery",
-      "ManagerName": "PowerShell7"
+      "ManagerName": "PowerShell"
+    },
+    {
+      "Id": "Tonec.InternetDownloadManager",
+      "Name": "Internet Download Manager",
+      "Version": "6.42.63",
+      "Source": "winget",
+      "ManagerName": "Winget"
     },
     {
       "Id": "Transmission.Transmission",
@@ -770,36 +823,15 @@
     {
       "Id": "VoodooSoft.DefenderUI",
       "Name": "DefenderUI",
-      "Version": "1.46",
-      "Source": "winget",
-      "ManagerName": "Winget"
-    },
-    {
-      "Id": "WinSCP.WinSCP",
-      "Name": "WinSCP",
-      "Version": "6.5.6",
+      "Version": "2.05",
       "Source": "winget",
       "ManagerName": "Winget"
     },
     {
       "Id": "WireGuard.WireGuard",
       "Name": "WireGuard",
-      "Version": "0.6.1",
+      "Version": "1.0.1",
       "Source": "winget",
-      "ManagerName": "Winget"
-    },
-    {
-      "Id": "XP8K0J757HHRDW",
-      "Name": "Audacity",
-      "Version": "3.7.6",
-      "Source": "winget",
-      "ManagerName": "Winget"
-    },
-    {
-      "Id": "XPFNZKSKLBP7RJ",
-      "Name": "PuTTY",
-      "Version": "0.83.0.0",
-      "Source": "msstore",
       "ManagerName": "Winget"
     },
     {
@@ -831,9 +863,30 @@
       "ManagerName": "Winget"
     },
     {
+      "Id": "cargo-binstall",
+      "Name": "Cargo Binstall",
+      "Version": "1.18.1",
+      "Source": "crates.io",
+      "ManagerName": "Cargo"
+    },
+    {
+      "Id": "cargo-update",
+      "Name": "Cargo Update",
+      "Version": "20.0.0",
+      "Source": "crates.io",
+      "ManagerName": "Cargo"
+    },
+    {
       "Id": "chrisant996.Clink",
       "Name": "Clink",
-      "Version": "1.9.18",
+      "Version": "1.9.20",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "dandavison.delta",
+      "Name": "delta",
+      "Version": "0.19.2",
       "Source": "winget",
       "ManagerName": "Winget"
     },
@@ -845,37 +898,30 @@
       "ManagerName": "Winget"
     },
     {
+      "Id": "lin-ycv.EverythingCmdPal",
+      "Name": "EverythingCmdPal",
+      "Version": "0.5.25082.0",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
       "Id": "npm",
       "Name": "Npm",
-      "Version": "11.12.1",
+      "Version": "11.13.0",
       "Source": "npm",
       "ManagerName": "Npm"
     },
     {
       "Id": "npm-check-updates",
       "Name": "Npm Check Updates",
-      "Version": "21.0.0",
-      "Source": "npm",
-      "ManagerName": "Npm"
-    },
-    {
-      "Id": "npm-check-updates",
-      "Name": "Npm Check Updates",
-      "Version": "20.0.2",
+      "Version": "21.0.3",
       "Source": "npm",
       "ManagerName": "Npm"
     },
     {
       "Id": "opencode-ai",
       "Name": "Opencode Ai",
-      "Version": "1.4.5",
-      "Source": "npm",
-      "ManagerName": "Npm"
-    },
-    {
-      "Id": "opencode-ai",
-      "Name": "Opencode Ai",
-      "Version": "1.4.3",
+      "Version": "1.14.24",
       "Source": "npm",
       "ManagerName": "Npm"
     },
@@ -901,9 +947,23 @@
       "ManagerName": "Npm"
     },
     {
+      "Id": "sharkdp.fd",
+      "Name": "fd",
+      "Version": "10.4.2",
+      "Source": "winget",
+      "ManagerName": "Winget"
+    },
+    {
+      "Id": "tree-sitter-cli",
+      "Name": "Tree Sitter Cli",
+      "Version": "0.26.8",
+      "Source": "npm",
+      "ManagerName": "Npm"
+    },
+    {
       "Id": "voidtools.Everything.Alpha",
       "Name": "Everything (Alpha)",
-      "Version": "1.5.0.1404",
+      "Version": "1.5.0.1408",
       "Source": "winget",
       "ManagerName": "Winget",
       "Updates": {
@@ -934,14 +994,32 @@
       "Source": "Local PC"
     },
     {
-      "Id": "ARP\\Machine\\X64\\Gpg4win",
-      "Name": "Gpg4win (5.0.1)",
-      "Version": "5.0.1",
+      "Id": "ARP\\Machine\\X64\\BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe",
+      "Name": "WinLibs (POSIX threads, UCRT runtime)",
+      "Version": "15.2.0-14.0.0-r7",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\Git_is1",
+      "Name": "Git",
+      "Version": "2.54.0",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe",
+      "Name": "FFmpeg",
+      "Version": "8.1",
       "Source": "Local PC"
     },
     {
       "Id": "ARP\\Machine\\X64\\Mozilla Firefox",
       "Name": "Mozilla Firefox (x64 en-US)",
+      "Version": "150.0",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\MozillaMaintenanceService",
+      "Name": "Mozilla Maintenance Service",
       "Version": "149.0.2",
       "Source": "Local PC"
     },
@@ -1030,21 +1108,27 @@
       "Source": "Local PC"
     },
     {
-      "Id": "ARP\\Machine\\X64\\{0F4F67F8-21E1-422D-B31C-B3800F4D6E36}",
-      "Name": "IIS 10.0 Express",
-      "Version": "10.0.10007",
-      "Source": "Local PC"
-    },
-    {
       "Id": "ARP\\Machine\\X64\\{15C7B361-A0B2-4E79-93E0-868B5000BA3F}",
       "Name": "FortiClient VPN",
       "Version": "7.4.3.8758",
       "Source": "Local PC"
     },
     {
+      "Id": "ARP\\Machine\\X64\\{32C27576-BBE9-4BEA-82CE-B0EE4CDE3658}",
+      "Name": "Neovim",
+      "Version": "0.12.1",
+      "Source": "Local PC"
+    },
+    {
       "Id": "ARP\\Machine\\X64\\{37B8F9C7-03FB-3253-8781-2517C99D7C00}",
       "Name": "Microsoft Visual C\u002B\u002B 2012 x64 Additional Runtime - 11.0.61135",
       "Version": "11.0.61135",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{49D3B636-E8F0-468D-97DA-DE48B32BBF57}",
+      "Name": "IIS 10.0 Express",
+      "Version": "10.0.11211",
       "Source": "Local PC"
     },
     {
@@ -1109,14 +1193,14 @@
     },
     {
       "Id": "ARP\\Machine\\X64\\{B2FE1952-0186-46C3-BAEC-A80AA35AC5B8}_Display.NvApp",
-      "Name": "NVIDIA App 11.0.6.383",
-      "Version": "11.0.6.383",
+      "Name": "NVIDIA App 11.0.7.237",
+      "Version": "11.0.7.237",
       "Source": "Local PC"
     },
     {
       "Id": "ARP\\Machine\\X64\\{B2FE1952-0186-46C3-BAEC-A80AA35AC5B8}_FrameViewSdk",
-      "Name": "NVIDIA FrameView SDK 1.5.11821.36727370",
-      "Version": "1.5.11821.36727370",
+      "Name": "NVIDIA FrameView SDK 1.7.12227.37421622",
+      "Version": "1.7.12227.37421622",
       "Source": "Local PC"
     },
     {
@@ -1126,15 +1210,21 @@
       "Source": "Local PC"
     },
     {
-      "Id": "ARP\\Machine\\X64\\{BD499139-B54C-422A-8B66-1B27FF616F4B}",
-      "Name": "Microsoft .NET SDK 10.0.201 (x64) from Visual Studio",
-      "Version": "40.10.60062",
+      "Id": "ARP\\Machine\\X64\\{C2F4F289-EED5-4AF0-98F0-D2D22FE3C890}",
+      "Name": "Microsoft .NET SDK 10.0.202 (x64) from Visual Studio",
+      "Version": "40.10.62758",
       "Source": "Local PC"
     },
     {
       "Id": "ARP\\Machine\\X64\\{CF2BEA3C-26EA-32F8-AA9B-331F7E34BA97}",
       "Name": "Microsoft Visual C\u002B\u002B 2012 x64 Minimum Runtime - 11.0.61135",
       "Version": "11.0.61135",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X64\\{DC021E0D-1809-4102-8888-506D3121F1E9}",
+      "Name": "GoAwayEdge",
+      "Version": "2.0.3.264",
       "Source": "Local PC"
     },
     {
@@ -1186,6 +1276,12 @@
       "Source": "Local PC"
     },
     {
+      "Id": "ARP\\Machine\\X86\\Vivaldi",
+      "Name": "Vivaldi",
+      "Version": "7.9.3970.59",
+      "Source": "Local PC"
+    },
+    {
       "Id": "ARP\\Machine\\X86\\WinPcapInst",
       "Name": "WinPcap 4.1.3",
       "Version": "4.1.3",
@@ -1195,6 +1291,12 @@
       "Id": "ARP\\Machine\\X86\\qBittorrent",
       "Name": "qBittorrent",
       "Version": "5.1.4",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\Machine\\X86\\winscp3_is1",
+      "Name": "WinSCP 6.5.6",
+      "Version": "6.5.6",
       "Source": "Local PC"
     },
     {
@@ -1236,7 +1338,7 @@
     {
       "Id": "ARP\\Machine\\X86\\{889610CC-4337-4BDB-AC3B-4F21806C0BDE}_is1",
       "Name": "UniGetUI",
-      "Version": "3.3.7",
+      "Version": "2026.1.6",
       "Source": "Local PC"
     },
     {
@@ -1264,6 +1366,18 @@
       "Source": "Local PC"
     },
     {
+      "Id": "ARP\\User\\X64\\5a829402788eba0ad98c6cf39b7989b4",
+      "Name": "Reddit",
+      "Version": "1.0",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\User\\X64\\DevToys Preview_is1",
+      "Name": "DevToys Preview version 2.0-preview.9",
+      "Version": "2.0-preview.9",
+      "Source": "Local PC"
+    },
+    {
       "Id": "ARP\\User\\X64\\Riot Game Riot_Client.",
       "Name": "Riot Client ",
       "Version": "Unknown",
@@ -1273,6 +1387,24 @@
       "Id": "ARP\\User\\X64\\Riot Game valorant.live",
       "Name": "VALORANT",
       "Version": "Unknown",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\User\\X64\\Thorium",
+      "Name": "Thorium",
+      "Version": "138.0.7204.303",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\User\\X64\\a5b071890959238079255605ed9ca87b",
+      "Name": "Gemini",
+      "Version": "1.0",
+      "Source": "Local PC"
+    },
+    {
+      "Id": "ARP\\User\\X64\\pymanager-pythoncore-3.11-64",
+      "Name": "Python 3.11.9",
+      "Version": "3.11-64",
       "Source": "Local PC"
     },
     {
@@ -1294,15 +1426,9 @@
       "Source": "Local PC"
     },
     {
-      "Id": "ARP\\User\\X64\\{a03aa9a7-61f9-4dc6-a157-f84a5acafaa1}",
-      "Name": "MSYS2",
-      "Version": "1.5",
-      "Source": "Local PC"
-    },
-    {
-      "Id": "MSIX\\5319275A.WhatsAppDesktop_2.2611.102.0_x64__cv1g1gvanyjgm",
+      "Id": "MSIX\\5319275A.WhatsAppDesktop_2.2613.101.0_x64__cv1g1gvanyjgm",
       "Name": "WhatsApp",
-      "Version": "2.2611.102.0",
+      "Version": "2.2613.101.0",
       "Source": "Microsoft Store"
     },
     {
@@ -1330,9 +1456,9 @@
       "Source": "Microsoft Store"
     },
     {
-      "Id": "MSIX\\MEGASyncShellSparse_6.2.1.0_x64__8hw2nvev9rf4t",
+      "Id": "MSIX\\MEGASyncShellSparse_6.2.2.0_x64__8hw2nvev9rf4t",
       "Name": "MEGAsync",
-      "Version": "6.2.1.0",
+      "Version": "6.2.2.0",
       "Source": "Microsoft Store"
     },
     {
@@ -1390,9 +1516,9 @@
       "Source": "Microsoft Store"
     },
     {
-      "Id": "MSIX\\Microsoft.GetHelp_10.2409.33293.0_x64__8wekyb3d8bbwe",
+      "Id": "MSIX\\Microsoft.GetHelp_10.2409.40781.0_x64__8wekyb3d8bbwe",
       "Name": "Get Help",
-      "Version": "10.2409.33293.0",
+      "Version": "10.2409.40781.0",
       "Source": "Microsoft Store"
     },
     {
@@ -1468,9 +1594,9 @@
       "Source": "Microsoft Store"
     },
     {
-      "Id": "MSIX\\Microsoft.Office.ActionsServer_16.0.19822.20168_neutral__8wekyb3d8bbwe",
+      "Id": "MSIX\\Microsoft.Office.ActionsServer_16.0.19929.20090_neutral__8wekyb3d8bbwe",
       "Name": "Microsoft.Office.ActionsServer",
-      "Version": "16.0.19822.20168",
+      "Version": "16.0.19929.20090",
       "Source": "Microsoft Store"
     },
     {
@@ -1480,9 +1606,9 @@
       "Source": "Microsoft Store"
     },
     {
-      "Id": "MSIX\\Microsoft.OfficePushNotificationUtility_16.0.19822.20168_neutral__8wekyb3d8bbwe",
+      "Id": "MSIX\\Microsoft.OfficePushNotificationUtility_16.0.19929.20090_neutral__8wekyb3d8bbwe",
       "Name": "OfficePushNotificationsUtility",
-      "Version": "16.0.19822.20168",
+      "Version": "16.0.19929.20090",
       "Source": "Microsoft Store"
     },
     {
@@ -1492,9 +1618,9 @@
       "Source": "Microsoft Store"
     },
     {
-      "Id": "MSIX\\Microsoft.PowerAutomateDesktop_11.2603.154.0_x64__8wekyb3d8bbwe",
+      "Id": "MSIX\\Microsoft.PowerAutomateDesktop_11.2604.143.0_x64__8wekyb3d8bbwe",
       "Name": "Power Automate",
-      "Version": "11.2603.154.0",
+      "Version": "11.2604.143.0",
       "Source": "Microsoft Store"
     },
     {
@@ -1528,9 +1654,9 @@
       "Source": "Microsoft Store"
     },
     {
-      "Id": "MSIX\\Microsoft.ScreenSketch_11.2601.2.0_x64__8wekyb3d8bbwe",
+      "Id": "MSIX\\Microsoft.ScreenSketch_11.2601.12.0_x64__8wekyb3d8bbwe",
       "Name": "Snipping Tool",
-      "Version": "11.2601.2.0",
+      "Version": "11.2601.12.0",
       "Source": "Microsoft Store"
     },
     {
@@ -1600,9 +1726,9 @@
       "Source": "Microsoft Store"
     },
     {
-      "Id": "MSIX\\Microsoft.VisualStudioCode_1.0.115.0_neutral__8wekyb3d8bbwe",
+      "Id": "MSIX\\Microsoft.VisualStudioCode_1.0.117.0_neutral__8wekyb3d8bbwe",
       "Name": "Visual Studio Code",
-      "Version": "1.0.115.0",
+      "Version": "1.0.117.0",
       "Source": "Microsoft Store"
     },
     {
@@ -1678,9 +1804,9 @@
       "Source": "Microsoft Store"
     },
     {
-      "Id": "MSIX\\Microsoft.WindowsStore_22602.1401.4.0_x64__8wekyb3d8bbwe",
+      "Id": "MSIX\\Microsoft.WindowsStore_22603.1401.7.0_x64__8wekyb3d8bbwe",
       "Name": "Microsoft Store",
-      "Version": "22602.1401.4.0",
+      "Version": "22603.1401.7.0",
       "Source": "Microsoft Store"
     },
     {
@@ -1690,9 +1816,9 @@
       "Source": "Microsoft Store"
     },
     {
-      "Id": "MSIX\\Microsoft.Winget.Source_2026.414.2305.37_neutral__8wekyb3d8bbwe",
+      "Id": "MSIX\\Microsoft.Winget.Source_2026.425.1635.4_neutral__8wekyb3d8bbwe",
       "Name": "Windows Package Manager Source (winget) V2",
-      "Version": "2026.414.2305.37",
+      "Version": "2026.425.1635.4",
       "Source": "Microsoft Store"
     },
     {
@@ -1738,15 +1864,15 @@
       "Source": "Microsoft Store"
     },
     {
-      "Id": "MSIX\\MicrosoftCorporationII.WinAppRuntime.Main.1.8_8000.806.2252.0_x64__8wekyb3d8bbwe",
+      "Id": "MSIX\\MicrosoftCorporationII.WinAppRuntime.Main.1.8_8000.836.2153.0_x64__8wekyb3d8bbwe",
       "Name": "WinAppRuntime.Main.1.8",
-      "Version": "8000.806.2252.0",
+      "Version": "8000.836.2153.0",
       "Source": "Microsoft Store"
     },
     {
-      "Id": "MSIX\\MicrosoftCorporationII.WinAppRuntime.Singleton_8000.806.2252.0_x64__8wekyb3d8bbwe",
+      "Id": "MSIX\\MicrosoftCorporationII.WinAppRuntime.Singleton_8000.836.2153.0_x64__8wekyb3d8bbwe",
       "Name": "WinAppRuntime.Singleton",
-      "Version": "8000.806.2252.0",
+      "Version": "8000.836.2153.0",
       "Source": "Microsoft Store"
     },
     {
@@ -1810,21 +1936,15 @@
       "Source": "Microsoft Store"
     },
     {
-      "Id": "MSIX\\aimgr_0.20.44.0_x64__8wekyb3d8bbwe",
+      "Id": "MSIX\\aimgr_0.20.47.0_x64__8wekyb3d8bbwe",
       "Name": "Local AI Manager for Microsoft 365",
-      "Version": "0.20.44.0",
+      "Version": "0.20.47.0",
       "Source": "Microsoft Store"
     },
     {
-      "Id": "MSIX\\gemini.google.com-537D494_1.0.0.0_neutral__vn3jms8s81tkg",
-      "Name": "Gemini",
-      "Version": "1.0.0.0",
-      "Source": "Microsoft Store"
-    },
-    {
-      "Id": "MSIX\\redditTV.Reddit_1.0.1.0_neutral__99kbdge22ed1a",
-      "Name": "Reddit",
-      "Version": "1.0.1.0",
+      "Id": "MSIX\\ngrok.ngrok_3.36.1.0_x64__1g87z0zv29zzc",
+      "Name": "ngrok",
+      "Version": "3.36.1.0",
       "Source": "Microsoft Store"
     }
   ]
