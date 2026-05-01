@@ -18,7 +18,14 @@ alias whome="cd /mnt/c/Users"
 
 # Editor
 npp() {
-    "/mnt/c/Program Files/Notepad++/notepad++.exe" "$@" > /dev/null 2>&1 &!
+    local npp_exe="/mnt/c/Program Files/Notepad++/notepad++.exe"
+    if [ $# -eq 0 ]; then
+        "$npp_exe" > /dev/null 2>&1 &!
+        return
+    fi
+
+    local win_path="$(wslpath -w "$1")"
+    "$npp_exe" "$win_path" > /dev/null 2>&1 &!
 }
 
 # Command History

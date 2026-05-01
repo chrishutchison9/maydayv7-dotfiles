@@ -51,7 +51,7 @@
   --color-background-base: rgba(243, 243, 243, 0.9);
   --color-background-layer: rgba(249, 249, 249, 0.8);
   --color-background-elevated: rgba(252, 252, 252, 0.9);
-  --color-background-elevated-x2: rgba(255, 255, 255, 0.95);
+  --color-background-elevated-x2: rgba(255, 255, 255, 0.7);
 
   --color-taskbar: rgba(243, 243, 243, 0.85);
   --color-widget-container: rgba(212, 212, 212, 0.7);
@@ -99,7 +99,7 @@
   --color-stroke-focus: rgba(0, 0, 0, 0.0893);
 
   /* -- Dark Theme -- */
-  --color-dark-background-base: rgba(8, 8, 8, 0.6);
+  --color-dark-background-base: rgba(30, 30, 30, 0.7);
   --color-dark-background-layer: rgba(44, 44, 44, 0.5);
   --color-dark-background-elevated: rgba(22, 22, 22, 0.25);
   --color-dark-background-elevated-x2: rgba(22, 22, 22, 0.8);
@@ -197,6 +197,24 @@
   color: var(--color-dark-text-secondary);
 }
 
+.active-window-widget .widget-container .label,
+.clock-widget .label,
+.media-widget .label,
+.cpu-widget .widget-container .label,
+.gpu-widget .widget-container .label,
+.memory-widget .widget-container .label,
+.disk-widget .widget-container .label,
+.traffic-widget .download,
+.traffic-widget .upload,
+.microphone-widget .widget-container .label,
+.volume-widget .widget-container .label,
+.brightness-widget .widget-container .label,
+.wifi-widget .widget-container .label,
+.bluetooth-widget .widget-container .label,
+.battery-widget .widget-container .label {
+  text-shadow: 0px 0px 1px black;
+}
+
 .widget .label.alt {
   padding: 0 var(--space-4);
 }
@@ -243,7 +261,8 @@
   font-weight: var(--font-weight-regular);
 }
 
-*.dark .tooltip {
+*.dark .tooltip,
+.tooltip.dark {
   background-color: var(--color-dark-background-elevated-x2);
   border: 1px solid var(--color-dark-stroke-surface);
   color: var(--color-dark-text-primary);
@@ -484,10 +503,7 @@
   margin: -1px 0 0 0;
   border-radius: var(--radius-small);
   min-width: var(--space-16);
-}
-
-.windows-desktops .ws-btn.button-1 {
-  padding-left: -2px;
+  box-shadow: 0px 0px 1px black;
 }
 
 *.dark .windows-desktops .ws-btn {
@@ -940,6 +956,10 @@
    ---------------------------------------------------------------------------- */
 .cpu-widget {
   cursor: crosshair;
+}
+
+.cpu-widget .widget-container {
+  padding: 0;
 }
 
 .cpu-widget .widget-container .icon {
@@ -1542,7 +1562,7 @@
   padding-left: var(--space-4);
 }
 
-.Brightness-widget .widget-container .label {
+.brightness-widget .widget-container .label {
   color: var(--color-text-secondary);
   font-family: var(--font-mono);
   font-weight: var(--font-weight-semibold);

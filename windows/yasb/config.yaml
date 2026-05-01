@@ -10,7 +10,7 @@ bars:
     class_name: "yasb-panel"
     alignment:
       position: "top"
-      center: true
+      align: "center"
     window_flags:
       always_on_top: true
       windows_app_bar: true
@@ -28,7 +28,6 @@ bars:
       duration: 400
     blur_effect:
       enabled: true
-      acrylic: true
       dark_mode: true
       round_corners: false
       border_color: None
@@ -117,22 +116,12 @@ widgets:
         on_left: "do_nothing"
         on_middle: "do_nothing"
         on_right: "toggle_label"
-      label_shadow:
-        enabled: true
-        color: "black"
-        radius: 1
-        offset: [0, 0]
 
   windows_workspaces:
     type: "yasb.windows_desktops.WorkspaceWidget"
     options:
-      label_workspace_btn: "\udb81\udc3d"
+      label_workspace_btn: "\u25cb"
       label_workspace_active_btn: "\udb81\udc3e"
-      btn_shadow:
-        enabled: true
-        color: "black"
-        radius: 1
-        offset: [0, 0]
 
   clock:
     type: "yasb.clock.ClockWidget"
@@ -150,11 +139,6 @@ widgets:
         show_holidays: true
         show_week_numbers: true
         holiday_color: "#FF6464"
-      label_shadow:
-        enabled: true
-        color: "black"
-        radius: 1
-        offset: [0, 0]
 
   apps:
     type: "yasb.applications.ApplicationsWidget"
@@ -173,11 +157,6 @@ widgets:
             launch: "C:/Program Files (x86)/Steam/Steam.exe",
             name: "Steam",
           }
-      container_padding:
-        top: 0
-        left: 8
-        bottom: 0
-        right: 8
 
   taskbar:
     type: "yasb.taskbar.TaskbarWidget"
@@ -235,11 +214,6 @@ widgets:
         pause: "\ue769"
         prev_track: "\ue892"
         next_track: "\ue893"
-      label_shadow:
-        enabled: true
-        color: "black"
-        radius: 1
-        offset: [0, 0]
 
   weather:
     type: "yasb.weather.WeatherWidget"
@@ -273,7 +247,7 @@ widgets:
         border_color: "System"
         alignment: "right"
         direction: "down"
-        distance: 6
+        offset_top: 6
         icon_size: 64
 
   cpu:
@@ -297,16 +271,6 @@ widgets:
         on_left: "do_nothing"
         on_middle: "exec cmd /c Taskmgr"
         on_right: "toggle_label"
-      container_padding:
-        top: 0
-        left: 0
-        bottom: 0
-        right: 0
-      label_shadow:
-        enabled: true
-        color: "black"
-        radius: 1
-        offset: [0, 0]
 
   gpu:
     type: "yasb.gpu.GpuWidget"
@@ -333,11 +297,6 @@ widgets:
         on_left: "do_nothing"
         on_middle: "exec cmd /c Taskmgr"
         on_right: "toggle_label"
-      label_shadow:
-        enabled: true
-        color: "black"
-        radius: 1
-        offset: [0, 0]
 
   memory:
     type: "yasb.memory.MemoryWidget"
@@ -363,11 +322,6 @@ widgets:
         - "\u2586" # 60%
         - "\u2587" # 70%
         - "\u2588" # 80%+
-      label_shadow:
-        enabled: true
-        color: "black"
-        radius: 1
-        offset: [0, 0]
 
   disk:
     type: "yasb.disk.DiskWidget"
@@ -420,11 +374,6 @@ widgets:
         low: 25
         medium: 50
         high: 90
-      label_shadow:
-        enabled: true
-        color: "black"
-        radius: 1
-        offset: [0, 0]
 
   traffic:
     type: "yasb.traffic.TrafficWidget"
@@ -446,11 +395,6 @@ widgets:
         on_left: "toggle_menu"
         on_middle: "exec cmd.exe /c start ms-settings:network-status"
         on_right: "do_nothing"
-      label_shadow:
-        enabled: true
-        color: "black"
-        radius: 1
-        offset: [0, 0]
 
   microphone:
     type: "yasb.microphone.MicrophoneWidget"
@@ -472,11 +416,6 @@ widgets:
         on_left: "toggle_mic_menu"
         on_middle: "exec cmd.exe /c start ms-settings:sound"
         on_right: "toggle_mute"
-      label_shadow:
-        enabled: true
-        color: "black"
-        radius: 1
-        offset: [0, 0]
 
   volume:
     type: "yasb.volume.VolumeWidget"
@@ -501,18 +440,12 @@ widgets:
         border_color: "system"
         alignment: "center"
         direction: "down"
-      label_shadow:
-        enabled: true
-        color: "black"
-        radius: 1
-        offset: [0, 0]
 
   brightness:
     type: "yasb.brightness.BrightnessWidget"
     options:
       label: "<span>{icon}</span> {percent}%"
       label_alt: "<span>{icon}</span> {percent}%"
-      hide_unsupported: true
       brightness_menu:
         blur: true
         round_corners: true
@@ -525,11 +458,6 @@ widgets:
         on_middle: "exec cmd /c start ms-settings:display"
         on_right: "do_nothing"
       brightness_icons: ["\ue706", "\ue706", "\ue706", "\ue706"]
-      label_shadow:
-        enabled: true
-        color: "black"
-        radius: 1
-        offset: [0, 0]
 
   wifi:
     type: "yasb.wifi.WifiWidget"
@@ -546,11 +474,6 @@ widgets:
         on_left: "toggle_menu"
         on_middle: "exec cmd.exe /c start ms-settings:network"
         on_right: "toggle_label"
-      label_shadow:
-        enabled: true
-        color: "black"
-        radius: 1
-        offset: [0, 0]
       menu_config:
         blur: true
         round_corners: true
@@ -578,11 +501,6 @@ widgets:
         on_left: "exec cmd.exe /c start ms-settings:bluetooth"
         on_middle: "do_nothing"
         on_right: "toggle_label"
-      label_shadow:
-        enabled: true
-        color: "black"
-        radius: 1
-        offset: [0, 0]
 
   battery:
     type: "yasb.battery.BatteryWidget"
@@ -612,11 +530,6 @@ widgets:
         on_left: "exec cmd /c start ms-settings:powersleep"
         on_middle: "do_nothing"
         on_right: "toggle_label"
-      label_shadow:
-        enabled: true
-        color: "black"
-        radius: 1
-        offset: [0, 0]
 
   power_menu:
     type: "yasb.power_menu.PowerMenuWidget"
