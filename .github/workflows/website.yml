@@ -35,7 +35,6 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           workingDirectory: "site"
-          wranglerVersion: "latest"
           command: deploy ${{ github.ref == 'refs/heads/stable' && '--env production' || '' }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}

@@ -175,8 +175,8 @@ widgets:
   media:
     type: "yasb.media.MediaWidget"
     options:
-      label: "<span>\udb80\udf87</span> {title}"
-      label_alt: "<span>\udb80\udf87</span> {artist}"
+      label: "<span>\u266a</span> {title}"
+      label_alt: "<span>\u266a</span> {artist}"
       hide_empty: true
       callbacks:
         on_left: "toggle_media_menu"
