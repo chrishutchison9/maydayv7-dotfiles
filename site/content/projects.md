@@ -21,6 +21,16 @@ Built with **Flutter**, **Kotlin**, **Python**
 
 {{ github(repo="maydayv7/creek") }}
 
+# [Demeter ](https://github.com/maydayv7/demeter)
+
+Demeter is a fully autonomous, multi-agent AI system for precision hydroponic farm management.
+It combines computer vision, reinforcement learning, LLM-based reasoning, and a physics-based digital
+twin to monitor, analyze, and act on crop environments 24/7 without human intervention.
+
+Built with **LangGraph**, **Azure OpenAI**, **PyTorch**, **FastAPI**, **React**, **Qdrant**
+
+{{ github(repo="maydayv7/demeter") }}
+
 # [Matiru ](https://github.com/maydayv7/matiru)
 
 Matiru is a blockchain-powered agriculture supply chain platform that records every stage of the produce lifecycle - from the farmer to the consumer.
@@ -29,3 +39,13 @@ It ensures transparency in pricing, quality, and origin, empowering all stakehol
 Built with: **React Native**, **NodeJS**, **Hyperledger Fabric**
 
 {{ github(repo="maydayv7/matiru") }}
+
+# [XIIRegexBuilder ](https://github.com/maydayv7/xiiregexbuilder)
+
+XIIRegexBuilder is an FPGA-accelerated regular expression matching engine that compiles regex patterns into parallel, one-hot encoded hardware FSMs to parse streaming text
+at line-rate.
+It features a custom 32-bit soft-processor core designed specifically for NFA traversal, enabling dynamic runtime regex updates without requiring FPGA re-synthesis.
+
+Built with **Verilog**, **C++**, **Python**
+
+{{ github(repo="maydayv7/xiiregexbuilder") }}

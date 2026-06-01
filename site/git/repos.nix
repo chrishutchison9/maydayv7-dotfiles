@@ -23,4 +23,16 @@
     description = "Blockchain-Based Supply Chain Transparency for Agricultural Produce";
     owner = "V7";
   }
+  {
+    name = "demeter";
+    url = "https://github.com/maydayv7/demeter";
+    description = "Autonomous Hydroponic Intelligence";
+    owner = "V7";
+  }
+  {
+    name = "xiiregexbuilder";
+    url = "https://github.com/maydayv7/xiiregexbuilder";
+    description = "FPGA-Accelerated Regular Expression Matching Engine";
+    owner = "V7";
+  }
 ]
