@@ -18,10 +18,11 @@ comments = true
 Go away already.  
 If you’re looking for a beginner’s guide, this is not it. This is a postmortem of a bad idea that worked.
 
-I sadly do not possess much patience, and quite frankly, most of the rest of this page/series will go over your head.  
+I sadly do not possess much time, and quite frankly, most of the rest of this page/series will go over your head.  
 However, if your tastes are sufficiently messed up - or if you enjoy watching someone over-engineer their computer to the point of absurdity - this might hopefully be a fun read.
 
-My entire life has been a contradiction of sorts, notwithstanding the OS I currently use. I chose arguably the most difficult distro to learn to use specifically so I would never have to learn how to fix it again.
+My entire life has been a contradiction of sorts, notwithstanding the OS I currently use.
+I chose arguably the most difficult distro to learn to use specifically so I would never have to learn how to fix it again.
 
 # What is this "NixOS" thing?
 
@@ -108,7 +109,7 @@ Before you rush off to install this magical operating system, we need to have a 
 
 **NixOS is hard.**
 
-And I don't mean "Linux is hard" kind of hard. Its more "I have to relearn how computers work" kind of hard.
+And I don't mean "Linux is hard" kind of hard. Its more "I have to relearn how my computer works" kind of hard.
 
 - **It is not standard Linux**: Most tutorials you find on the internet simply will not work here. You can't just `apt install` your problems away.
 - **The Documentation is... sparse**: Sometimes you will be reading a manual, and sometimes you will be reading 5-year-old Reddit threads praying for an answer.
