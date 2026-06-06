@@ -11,6 +11,8 @@ squiggle -%} {% import "macros/edit.html" as edit -%} {% import
 <!doctype html>
 <html lang="en">
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     {%- block title -%}
     <title>{{ config.title }}</title>
     {%- endblock title -%} {%- block general_meta -%} {{ head::general_meta() }}
@@ -19,10 +21,6 @@ squiggle -%} {% import "macros/edit.html" as edit -%} {% import
     head::font(config=config) }} {%- endblock font -%} {%- block rss -%} {%-
     endblock rss -%} {%- block favicon -%} {{ head::favicon(config=config) }}
     {%- endblock favicon -%} {%- block math -%} {%- endblock math -%}
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta charset="utf-8" />
-    <title>My Blog</title>
   </head>
 
   {% block analytics -%} {{ analytics::google_analytics(config=config) }} {%-

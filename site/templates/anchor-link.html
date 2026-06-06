@@ -1,3 +1,7 @@
-<a class="zola-anchor" href="#{{ id }}" aria-label="Anchor link for: {{ id }}"
+<a
+  class="zola-anchor"
+  href="#{{ id }}"
+  aria-label="Anchor link for: {{ id }}"
+  onclick="navigator.clipboard.writeText(window.location.origin + window.location.pathname + '#{{ id }}'); this.style.color='var(--accent-secondary)'; setTimeout(() => this.style.color='', 1000); return false;"
   >§</a
 >

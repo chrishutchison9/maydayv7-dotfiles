@@ -77,7 +77,6 @@
       }
 
       @media (max-width: $phone-max-width) {
-        dislay: block;
         @include menu;
         position: absolute;
         padding-top: 15px;

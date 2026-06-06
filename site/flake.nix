@@ -2,7 +2,7 @@
   description = "My Personal Website";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
     systems = {
       url = "github:maydayv7/dotfiles?ref=systems";
       flake = false;

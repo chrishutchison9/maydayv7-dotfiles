@@ -23,7 +23,7 @@
     toggle_menu_more = function () {
       menu_more && menu_more.classList.toggle("hidden");
     },
-    toggle_menu_more = function () {
+    hide_menu_more = function () {
       menu_more && menu_more.classList.add("hidden");
     },
     toggle_vis = function () {
@@ -34,6 +34,7 @@
   (toggle_vis(),
     page_form &&
       (page_form.onsubmit = function (event) {
+        var loc;
         if (this.page.value == 1) {
           loc = this.action.slice(0, -5);
         } else {

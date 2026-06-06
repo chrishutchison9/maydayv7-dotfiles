@@ -22,7 +22,7 @@
           value="{{ paginator.current_index }}"
           min="1"
           max="{{ paginator.number_pagers }}"
-          oninput="this.style.width = (this.value.length + 3) + 'ch';"
+          oninput="this.style.width = this.value.length + 3 + 'ch'"
           required />/ {{ paginator.number_pagers }}
         <button>Go</button>
       </form>

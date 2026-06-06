@@ -24,18 +24,22 @@ taxonomies = [
 ]
 
 [markdown]
-# Syntax Highlighting
-highlight_code = true
-highlight_theme = "css"
-
 # Parser Settings
 render_emoji = true
 smart_punctuation = false
+lazy_async_image = true
+github_alerts = true
+insert_anchor_links = "right"
 
 # External Link Settings
 external_links_target_blank = true
 external_links_no_follow = true
 external_links_no_referrer = true
+
+[markdown.highlighting]
+# Syntax Highlighting
+style = "class"
+theme = "github-dark"
 
 [search]
 # Site Search Settings
@@ -43,6 +47,7 @@ include_title = true
 include_description = false
 include_path = false
 include_content = true
+index_format = "fuse_javascript"
 
 [extra]
 # Site Theme
@@ -58,7 +63,7 @@ math_katex = true
 table_of_contents = false 
 
 # Logo
-favicon = "desktop.ico"
+favicon = "website.ico"
 logo_text = "maydayv7"
 center = true
 

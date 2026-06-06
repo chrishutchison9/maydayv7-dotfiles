@@ -36,13 +36,14 @@ recursiveUpdate
       ];
 
       text = ''
+
         set -e
         echo "Building Site..."
 
         BASE_URL=${site}
         OUTPUT_DIR="./public"
         FONTS_SRC="./site/static/fonts"
-        FAVICON_SRC="./site/static/desktop.ico"
+        FAVICON_SRC="./site/static/website.ico"
 
         mkdir -p "$OUTPUT_DIR"
         mkdir -p "$OUTPUT_DIR/fonts"

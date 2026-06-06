@@ -1,23 +1,87 @@
 @import "variables";
 
 blockquote {
-  border-left: 4px solid var(--accent-alpha-70);
   color: var(--color);
   font-style: italic;
-  padding: 1em 10px 1px 50px;
+  margin-left: 0.5em;
+  padding: 1em 10px 1px 20px;
   position: relative;
-
-  &:after {
-    content: "";
-  }
 
   &:before {
     color: var(--accent-alpha-70);
     content: "\201C";
     font-size: 3em;
-    left: 10px;
     position: absolute;
     top: -10px;
+    left: 0;
+  }
+
+  &:after {
+    content: "";
+  }
+
+  // GitHub Alerts
+  &[class*="markdown-alert"] {
+    border-left: 4px solid;
+    font-style: normal;
+    padding: 0.25em 1em 0.25em 2em;
+    position: relative;
+
+    &:before {
+      position: absolute;
+      left: 0.4em;
+      font-size: 1.5em;
+    }
+
+    p {
+      margin: 0.25em 0;
+    }
+  }
+
+  &.markdown-alert-note {
+    border-left-color: var(--accent-secondary);
+
+    &:before {
+      content: "ℹ";
+      color: var(--accent-secondary);
+    }
+  }
+
+  &.markdown-alert-tip {
+    border-left-color: var(--accent-secondary-alpha-70);
+
+    &:before {
+      content: "✦";
+      color: var(--accent-secondary-alpha-70);
+    }
+  }
+
+  &.markdown-alert-important {
+    border-left-color: var(--accent);
+
+    &:before {
+      content: "‼";
+      color: var(--accent);
+    }
+  }
+
+  &.markdown-alert-warning {
+    border-left-color: var(--accent-alpha-70);
+
+    &:before {
+      content: "⚠";
+      color: var(--accent-alpha-70);
+    }
+  }
+
+  &.markdown-alert-caution {
+    border-left-color: var(--accent);
+    background-color: var(--accent-alpha-20);
+
+    &:before {
+      content: "◆";
+      color: var(--accent);
+    }
   }
 }
 

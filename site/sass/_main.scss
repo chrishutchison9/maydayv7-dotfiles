@@ -95,7 +95,7 @@ h5,
 h6 {
   line-height: 1.2;
 
-  &:not(first-child) {
+  &:not(:first-child) {
     margin-top: 40px;
   }
 

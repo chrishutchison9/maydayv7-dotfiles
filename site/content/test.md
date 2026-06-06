@@ -57,15 +57,19 @@ fn foo(arg: String) -> Result<u32, Io::Error> {
 | 3    |   C    |     # |
 | 4    |   D    |     $ |
 
+## Alerts
+
+> [!WARNING]
+> Do not fall in love with people like me.
+> I will take you to museums, and parks, and monuments, and kiss you in every beautiful place, so that you can never go back to them without tasting me like blood in your mouth.
+> I will destroy you in the most beautiful way possible.
+> And when I leave you will finally understand, why storms are named after people.  
+> --> **Caitlyn Siehl**
+
 ## Block Quote
 
-> Do not fall in love with people like me. I will take you to museums, and parks, and monuments, and kiss you in every beautiful place, so that you can never go back to them without tasting me like blood in your mouth. I will destroy you in the most beautiful way possible. And when I leave you will finally understand, why storms are named after people.
->
-> --> **Caitlyn Siehl**
->
-> > Heroes get remembered, but legends never die
-> >
-> > --> **Babe Ruth**
+> Heroes get remembered, but legends never die.  
+> --> **Babe Ruth**
 
 ## Math
 

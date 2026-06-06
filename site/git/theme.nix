@@ -5,26 +5,27 @@ let
     name: colors:
     with colors;
     pkgs.writeText "style-${name}.css" ''
-      ${style}
-      :root {
-        --bg: ${bg};
-        --fg: ${fg};
-        --fg-dim: ${fgDim};
-        --border: ${border};
-        --border-subtle: rgba(255, 255, 255, 0.05);
-
-        /* Theme Colors */
-        --accent: ${accent};
-        --accent-alpha-70: ${accentAlpha70};
-        --secondary: ${secondary};
-        --secondary-alpha-20: ${secondaryAlpha20};
-        --secondary-alpha-70: ${secondaryAlpha70};
-        --bg-hover: rgba(255, 255, 255, 0.03);
-        --bg-code: rgba(0, 0, 0, 0.2);
-        --diff-add: ${diffAdd};
-        --diff-del: ${diffDel};
-        --diff-mod: ${diffMod};
-      }
+      
+            ${style}
+            :root {
+              --bg: ${bg};
+              --fg: ${fg};
+              --fg-dim: ${fgDim};
+              --border: ${border};
+              --border-subtle: rgba(255, 255, 255, 0.05);
+      
+              /* Theme Colors */
+              --accent: ${accent};
+              --accent-alpha-70: ${accentAlpha70};
+              --secondary: ${secondary};
+              --secondary-alpha-20: ${secondaryAlpha20};
+              --secondary-alpha-70: ${secondaryAlpha70};
+              --bg-hover: rgba(255, 255, 255, 0.03);
+              --bg-code: rgba(0, 0, 0, 0.2);
+              --diff-add: ${diffAdd};
+              --diff-del: ${diffDel};
+              --diff-mod: ${diffMod};
+            }
     '';
 in
 {

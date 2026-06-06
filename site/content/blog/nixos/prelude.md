@@ -32,10 +32,8 @@ But you also know the **fear**.
 
 The fear that if you delete the wrong file, mess with the wrong package, or even upgrade to a new release, your computer might implode, and you'll have no idea how to get back to the way things were.
 
-> That's \*\*\*\*\*\*\* it I'm switching back to Windows forever
->
-> --> **Me**  
-> ~~(right after the 69420th distro-hop that caused my system to crash and burn)~~
+> That's \*\*\*\*\*\*\* it I'm switching back to Windows forever  
+> --> **Me** ~~(right after the 69420th distro-hop that caused my system to crash and burn)~~
 
 **NixOS is different.**
 

@@ -65,6 +65,7 @@
       margin-bottom: 1rem;
 
       .title {
+        margin-top: -3px;
         margin-bottom: -3px;
       }
 
@@ -72,6 +73,10 @@
         display: inline-block;
         font-size: $font-size;
         margin-bottom: 0.5rem;
+      }
+
+      b {
+        color: var(--accent);
       }
     }
 
