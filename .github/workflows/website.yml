@@ -1,5 +1,6 @@
 name: "ci: Build and Deploy Site"
 on:
+  workflow_dispatch:
   push:
     branches:
       - stable
