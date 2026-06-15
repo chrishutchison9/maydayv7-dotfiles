@@ -59,7 +59,7 @@
         {
           label = "lock";
           action = "loginctl lock-session";
-          text = "";
+          text = "";
           keybind = "l";
         }
         {
@@ -83,13 +83,13 @@
         {
           label = "suspend";
           action = "systemctl suspend";
-          text = "";
+          text = "";
           keybind = "u";
         }
         {
           label = "hibernate";
           action = "systemctl hibernate";
-          text = "";
+          text = "";
           keybind = "h";
         }
       ];

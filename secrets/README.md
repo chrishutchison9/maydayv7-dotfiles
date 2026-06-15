@@ -8,3 +8,13 @@ The `keys` directory contains the _public_ User GPG Keys which are automatically
 
 To create a secret, use the `nixos secret create` command, and append the directory along with requisite access permissions to the `secrets.yaml` file.
 Device-specific secrets are automatically imported, if a directory (with the same name as the device `HOSTNAME`) containing them is present in this directory
+
+> [!NOTE]
+> Any update to a `creation_rule` in [`secrets.yaml`](./secrets.yaml) must be accompanied by a `nixos secret update` to re-encrypt for the new key set
+
+#### Per-User Secrets
+
+Secrets scoped to a single user (decrypted at login using their _personal_ GPG Key) are stored under [`user`](./user) in a directory named after their `username`.
+
+> [!IMPORTANT]
+> Do not forget to import the `homeManager.secrets` module in the user configuration

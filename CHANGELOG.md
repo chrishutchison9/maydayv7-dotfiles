@@ -2,6 +2,8 @@
 
 ### June
 
+- Per-user secrets
+- Use `zellij` instead of `tmux`
 - Add `auth`, `syncthing`, `mouse`
 - Use Thunderbird for mail
 - Upgrade to NixOS 26.05

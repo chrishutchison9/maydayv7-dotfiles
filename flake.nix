@@ -193,7 +193,7 @@
     ## Hyprland
     # Core
     hyprland = {
-      url = "github:hyprwm/hyprnix";
+      url = "github:hyprwm/hyprnix/92cabda9b41bdf13c488f9cd8b646f2b352b6b1a";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         systems.follows = "systems";

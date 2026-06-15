@@ -14,20 +14,6 @@ in {
             nanorc = files.nano;
           };
 
-          # Terminal Multiplexer
-          tmux = {
-            enable = true;
-            keyMode = "emacs";
-            shortcut = "Space";
-            aggressiveResize = true;
-            baseIndex = 1;
-            clock24 = true;
-            escapeTime = 0;
-            historyLimit = 50000;
-            terminal = "tmux-256color";
-            extraConfig = files.tmux;
-          };
-
           # Bourne Shell
           bash = {
             vteIntegration = true;

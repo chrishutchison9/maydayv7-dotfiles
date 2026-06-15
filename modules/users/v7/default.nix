@@ -1,5 +1,6 @@
 {config, ...}: let
   inherit (config.flake) files;
+  name = "maydayv7";
 in {
   flake.modules.homeManager.v7 = {
     config,
@@ -10,7 +11,7 @@ in {
     homeDir = config.home.homeDirectory;
   in {
     credentials = {
-      name = "maydayv7";
+      inherit name;
       fullname = "V7";
       mail = "maydayv7@gmail.com";
       key = "8C240C0C11293EE56260601CCF616EB19C2765E4";
@@ -32,6 +33,19 @@ in {
           file://${homeDir}/Projects Projects
         '';
       };
+    };
+
+    sops.templates."gh-hosts.yml" = {
+      path = "${homeDir}/.config/gh/hosts.yml";
+      content = ''
+        github.com:
+            git_protocol: https
+            user: ${name}
+            oauth_token: ${config.sops.placeholder."github-token.secret"}
+            users:
+                ${name}:
+                    oauth_token: ${config.sops.placeholder."github-token.secret"}
+      '';
     };
   };
 }

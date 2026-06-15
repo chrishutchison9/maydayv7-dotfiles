@@ -24,6 +24,7 @@ lib: let
     mapAttrs'
     mapAttrsToList
     nameValuePair
+    optionalAttrs
     removeSuffix
     replaceStrings
     ;
@@ -130,11 +131,11 @@ in rec {
       name: type:
         if type == "regular" && hasSuffix ".secret" name
         then
-          nameValuePair name {
-            sopsFile = directory + "/${name}";
-            format = "binary";
-            inherit neededForUsers;
-          }
+          nameValuePair name ({
+              sopsFile = directory + "/${name}";
+              format = "binary";
+            }
+            // optionalAttrs neededForUsers {inherit neededForUsers;})
         else nameValuePair "" null
     ) (readDir directory);
 }

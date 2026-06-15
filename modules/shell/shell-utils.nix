@@ -22,6 +22,7 @@ in {
             micro
             tree
             yazi
+            zellij
           ];
 
           # Fetch
@@ -67,22 +68,6 @@ in {
               italic-text = "always";
             };
           };
-
-          # Terminal Multiplexer
-          tmux = with config.lib.stylix.colors; {
-            plugins = with pkgs.tmuxPlugins; [
-              open
-              yank
-              minimal-tmux-status
-            ];
-            extraConfigBeforePlugins = ''
-              set -g @minimal-tmux-bg "#${base02}"
-              set -g @minimal-tmux-fg "#${base05}"
-              set -g @minimal-tmux-use-arrow true
-              set -g @minimal-tmux-right-arrow ""
-              set -g @minimal-tmux-left-arrow ""
-            '';
-          };
         };
       };
     };
@@ -99,6 +84,7 @@ in {
       programs = {
         btop.enable = true; # Resource Monitor
         hstr.enable = true; # Command History Manager
+        zellij.enable = true; # Terminal Multiplexer
 
         # File Lister
         eza = {

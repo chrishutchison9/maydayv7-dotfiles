@@ -20,6 +20,7 @@
   ];
 
   hmModules = [
+    "secrets"
     "auth"
     "discord"
     "firefox"

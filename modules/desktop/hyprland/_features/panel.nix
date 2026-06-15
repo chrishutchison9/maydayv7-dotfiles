@@ -72,7 +72,7 @@
           "hyprland/submap" = {
             always-on = false;
             tooltip = false;
-            format = " {}";
+            format = " {}";
             on-click = "hyprctl dispatch submap reset";
           };
 
@@ -107,7 +107,7 @@
           };
 
           "custom/minimized" = {
-            format = "";
+            format = "";
             on-click = "hyprutils toggle minimized";
           };
 
@@ -125,7 +125,7 @@
           };
 
           "custom/hide" = {
-            format = mkDefault "";
+            format = mkDefault "";
             tooltip = false;
           };
 
@@ -137,18 +137,18 @@
               capslock = mkDefault "󰪛 {icon}";
             };
             format-icons = {
-              locked = "";
-              unlocked = "";
+              locked = "";
+              unlocked = "";
             };
           };
 
           bluetooth = {
-            format = "";
+            format = "";
             format-disabled = "󰂳";
             format-connected = "󰂱 {num_connections}";
-            tooltip-format = " {status}";
+            tooltip-format = " {status}";
             tooltip-format-connected = "{device_enumerate}";
-            tooltip-format-enumerate-connected = " {device_alias} 󰂄 {device_battery_percentage}%";
+            tooltip-format-enumerate-connected = " {device_alias} 󰂄 {device_battery_percentage}%";
             on-click = "overskride";
           };
 
@@ -197,7 +197,7 @@
               "󰖀"
               "󰕾"
             ];
-            format-muted = "";
+            format-muted = "";
             on-click = "pwvucontrol";
           };
 
@@ -209,9 +209,9 @@
               "length"
             ];
             dynamic-separator = " - ";
-            format = mkDefault " {player}";
+            format = mkDefault " {player}";
             format-paused = mkDefault "󰏤 <i>{player}</i>";
-            format-stopped = "";
+            format-stopped = "";
             tooltip-format-stopped = "Not Playing";
             on-click = "sysutils media toggle";
             on-click-right = "sysutils media next";
@@ -231,15 +231,15 @@
             format = "{icon}";
             tooltip-format = "Backlight: {percent}%";
             format-icons = [
-              ""
-              ""
-              ""
-              ""
-              ""
-              ""
-              ""
-              ""
-              ""
+              ""
+              ""
+              ""
+              ""
+              ""
+              ""
+              ""
+              ""
+              ""
             ];
             on-scroll-up = "sysutils brightness down";
             on-scroll-down = "sysutils brightness up";
@@ -247,7 +247,7 @@
           };
 
           "custom/temperature" = {
-            format = "";
+            format = "";
             tooltip = false;
             on-click = "sysutils temperature";
           };
@@ -268,13 +268,13 @@
             format = "{icon}";
             on-click-right = "hyprutils toggle fancy";
             tooltip-format = "Battery: {capacity}%";
-            format-charging = "";
+            format-charging = "";
             format-icons = [
-              ""
-              ""
-              ""
-              ""
-              ""
+              ""
+              ""
+              ""
+              ""
+              ""
             ];
             states = {
               good = 80;
@@ -288,10 +288,10 @@
             tooltip = true;
             tooltip-format = "Power Profile: {profile}";
             format-icons = {
-              default = "";
+              default = "";
               performance = "󱄟";
-              balanced = "";
-              power-saver = "";
+              balanced = "";
+              power-saver = "";
             };
           };
 
@@ -352,14 +352,14 @@
             tooltip = false;
             format = "{icon}";
             format-icons = {
-              none = "";
-              notification = "";
-              dnd-none = "";
-              dnd-notification = "";
-              inhibited-none = "";
-              inhibited-notification = "";
-              dnd-inhibited-none = "";
-              dnd-inhibited-notification = "";
+              none = "";
+              notification = "";
+              dnd-none = "";
+              dnd-notification = "";
+              inhibited-none = "";
+              inhibited-notification = "";
+              dnd-inhibited-none = "";
+              dnd-inhibited-notification = "";
             };
           };
 
@@ -369,8 +369,8 @@
             tooltip-format-activated = "Idle Inhibitor: On";
             tooltip-format-deactivated = "Idle Inhibitor: Off";
             format-icons = {
-              activated = "";
-              deactivated = "";
+              activated = "";
+              deactivated = "";
             };
           };
 

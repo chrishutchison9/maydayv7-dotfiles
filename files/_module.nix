@@ -126,9 +126,6 @@ in {
     # Document Templates
     templates = ./templates;
 
-    # Terminal Multiplexer
-    tmux = readFile ./tmuxrc.tmux;
-
     # Visual Studio Code Editor
     vscode = map.files {
       directory = ./vscode;

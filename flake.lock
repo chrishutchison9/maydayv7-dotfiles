@@ -830,16 +830,17 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1781201916,
-        "narHash": "sha256-AyhlQwC42O1bQWJxuM4L+sWXEt/Y9322jp3ync5wtmw=",
+        "lastModified": 1781405715,
+        "narHash": "sha256-jk4rGqjtjVVLphdf0o12ZyrSvrQVM3HVItijNfP+FWM=",
         "owner": "hyprwm",
         "repo": "hyprnix",
-        "rev": "f1de130218102f3b1bd252a6a115fdf350c00a0a",
+        "rev": "92cabda9b41bdf13c488f9cd8b646f2b352b6b1a",
         "type": "github"
       },
       "original": {
         "owner": "hyprwm",
         "repo": "hyprnix",
+        "rev": "92cabda9b41bdf13c488f9cd8b646f2b352b6b1a",
         "type": "github"
       }
     },
