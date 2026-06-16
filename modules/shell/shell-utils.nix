@@ -3,11 +3,7 @@
   inherit (config.flake) files;
 in {
   flake.modules = {
-    nixos.shell-utils = {
-      config,
-      pkgs,
-      ...
-    }: {
+    nixos.shell-utils = {pkgs, ...}: {
       config = {
         environment = {
           # Utilities

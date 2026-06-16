@@ -89,7 +89,6 @@ in {
             ritwickdey.liveserver
           ]
           ++ (with pkgs.vscode-marketplace; [
-            kdl-org.kdl # KDL
             kisstkondoros.vscode-gutter-preview # Image Preview
           ])
           ++ lib.optionals isGnome [pkgs.vscode-extensions.piousdeer.adwaita-theme]

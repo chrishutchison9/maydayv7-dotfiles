@@ -4,9 +4,13 @@
   <img alt="Banner" src="./files/images/banner-dark.png">
 </picture>
 
-[![NixOS](https://img.shields.io/badge/NixOS-26.05-9cf.svg?style=flat-square&logo=NixOS&logoColor=white)](https://nixos.org)
-![License](https://img.shields.io/github/license/maydayv7/dotfiles?color=dgreen&style=flat-square)
-![Size](https://img.shields.io/github/repo-size/maydayv7/dotfiles?color=red&label=size&style=flat-square)
+[![NixOS](https://shieldcn.dev/badge/NixOS-26.05-99ccff.svg?logo=nixos&logoColor=white)](https://nixos.org)
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/github/license/maydayv7/dotfiles.svg?variant=ghost&size=sm&mode=dark&font=jetbrains-mono">
+<img alt="License" src="https://www.shieldcn.dev/github/license/maydayv7/dotfiles.svg?variant=ghost&size=sm&mode=light&font=jetbrains-mono">
+</picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://www.shieldcn.dev/github/last-commit/maydayv7/dotfiles.svg?variant=secondary&size=sm&mode=dark&font=jetbrains-mono">
+<img alt="Last commit" src="https://www.shieldcn.dev/github/last-commit/maydayv7/dotfiles.svg?variant=secondary&size=sm&mode=light&font=jetbrains-mono">
+</picture>
 
 This directory contains the configuration and `dotfiles` for my continuously evolving multi-PC setup (using [Nix](https://nixos.org/)).
 All the devices I own, controlled by code.
@@ -390,7 +394,5 @@ A `git` [hook](./files/git/hooks) is used to check the commit message to adhere 
 - Cannot automatically hibernate on NVIDIA due to upstream [issue](https://forums.developer.nvidia.com/t/systemds-suspend-then-hibernate-not-working-in-nvidia-optimus-laptop/213690)
 
 </details>
-
-> Last Updated: **June** 2026
 
 If you like this project, consider leaving a [star](https://github.com/maydayv7/dotfiles)

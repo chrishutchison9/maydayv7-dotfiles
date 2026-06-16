@@ -74,19 +74,13 @@ in {
     };
 
     # Hyprland WM
-    hyprland =
-      {
-        shaders = ./hyprland/shaders;
-        pypr = readFile ./hyprland/pypr.toml;
-        waycorner = readFile ./hyprland/waycorner.toml;
-        kebihelp = readFile ./hyprland/kebihelp.json;
-        greeter = readFile ./hyprland/greeter.conf;
-      }
-      // map.files {
-        directory = ./hyprland/theme;
-        apply = readFile;
-        extension = ".css";
-      };
+    hyprland = {
+      shaders = ./hyprland/shaders;
+      pypr = readFile ./hyprland/pypr.toml;
+      waycorner = readFile ./hyprland/waycorner.toml;
+      kebihelp = readFile ./hyprland/kebihelp.json;
+      greeter = readFile ./hyprland/greeter.conf;
+    };
 
     # Pictures
     images = map.files {
@@ -117,12 +111,6 @@ in {
       extension = ".sh";
     };
 
-    # Display Temperature Control
-    sunsetr = ./sunsetr;
-
-    # Notifications Daemon
-    swaync = readFile ./swaync.css;
-
     # Document Templates
     templates = ./templates;
 
@@ -135,9 +123,6 @@ in {
 
     # My Personal Website
     website = ../site;
-
-    # Logout Menu
-    wlogout = readFile ./wlogout.css;
 
     # YouTube
     youtube = readFile ./ytmusic.json;

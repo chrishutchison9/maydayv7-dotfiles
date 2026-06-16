@@ -46,11 +46,10 @@ in {
         gnupg.home = "${config.home.homeDirectory}/.gnupg";
         secrets = let
           directory = ./user + "/${config.home.username}";
-        in (
+        in
           if (builtins.pathExists directory)
           then util.map.secrets {inherit directory;}
-          else {}
-        );
+          else {};
       };
     };
   };

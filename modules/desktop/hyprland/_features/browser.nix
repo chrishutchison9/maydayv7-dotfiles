@@ -1,3 +1,4 @@
+# Web Browser
 _: {
   home = _: {
     home.file.".config/mozilla/firefox/default/chrome/userChrome.css".text = ''

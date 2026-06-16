@@ -46,7 +46,7 @@
     "latex"
     #"wine"
     "games"
-    "gnome"
+    "hyprland"
   ];
 
   hmImports =
@@ -112,7 +112,7 @@ in {
       # GUI
       gui = {
         display = "eDP-1";
-        wallpaper = "Bluewatch";
+        wallpaper = "Quasar";
         fancy = true;
       };
 

@@ -1,3 +1,4 @@
+# Terminal Emulator
 _: {
   home = {pkgs, ...}: {
     programs.kitty = {

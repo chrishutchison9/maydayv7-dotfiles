@@ -147,11 +147,7 @@
         "keybindings": [
           {
             "value": "$mod Tab",
-            "label": "Application Launcher and Overview"
-          },
-          {
-            "value": "$mod `",
-            "label": "Show workspace overview"
+            "label": "Window Switcher / Overview"
           },
           {
             "value": "ALT [SHIFT] Tab",
@@ -236,6 +232,10 @@
             "label": "Toggle Compositor Shader"
           },
           {
+            "value": "$mod G",
+            "label": "Toggle Game Mode"
+          },
+          {
             "value": "$mod SHIFT S",
             "label": "Toggle window swallowing"
           },
@@ -254,11 +254,11 @@
           },
           {
             "value": "$mod A",
-            "label": "Application Drawer"
+            "label": "Application Launcher"
           },
           {
             "value": "$mod SHIFT A",
-            "label": "Toggle top Panel"
+            "label": "Shell Settings"
           },
           {
             "value": "$mod SHIFT C",

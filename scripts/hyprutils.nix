@@ -12,14 +12,14 @@
 
     # Usage #
       help                           - Show this information
-      click [button] [address]       - Opens [address] with [button] action
+      backlight [up,down]            - Keyboard Backlight Controls
       toggle 
-        fancy                        - Toggle Compositor Effects
         float                        - Toggle window floating in current workspace
         minimized                    - Show minimized windows
         monitor 'name'               - Toggle specified Monitor
         shader                       - Toggle Compositor Shader
         touchpad                     - Toggle touchpad
+        service 'name'               - Toggle SYSTEMD Service
   '';
 
   daemon = builtins.toFile "daemon.sh" ''
@@ -59,20 +59,17 @@ in
         gnugrep
         socat
 
+        brightnessctl
         custom.hyprshellevents
         hyprland
         hyprshade
-        libnotify
+        systemd
         zenity
       ];
 
       text = ''
         set +eu
         ${files.scripts.commands}
-
-        notify() {
-          notify-send -a "utility" -t 1000 -h string:x-canonical-private-synchronous:"$1" "''${@:2}"
-        }
 
         hyprnotify() {
           hyprctl notify "$1" 1500 0 "  $2  "
@@ -89,53 +86,16 @@ in
             info "Monitoring Hyprland Socket..."
             socat -u UNIX-CONNECT:"$XDG_RUNTIME_DIR"/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock EXEC:"shellevents ${daemon}",nofork
           ;;
-          "click")
-            BUTTON="$2"
-            ADDRESS="$3"
-            if [ -z "$BUTTON" ] || [ -z "$ADDRESS" ]
-            then
-              fail "Expected GDK Button event and a window address"
-            fi
-
-            case "$BUTTON" in
-            "1")
-              # Left Click
-              hyprctl keyword cursor:no_warps true
-              hyprctl dispatch focuswindow address:"$ADDRESS"
-              hyprctl dispatch bringactivetotop
-              hyprctl keyword cursor:no_warps false
-            ;;
-            "2")
-              # Middle Click
-              hyprctl dispatch movetoworkspacesilent "special:minimized, address:$ADDRESS"
-            ;;
-            "3")
-              # Right Click
-              hyprctl dispatch closewindow address:"$ADDRESS"
-            ;;
+          "backlight")
+            case "$2" in
+            "up") brightnessctl -d "*::kbd_backlight" set 33%+ ;;
+            "down") brightnessctl -d "*::kbd_backlight" set 33%- ;;
+            "") fail "Expected an Option" ;;
+            *) fail "Unexpected Option 'backlight $2'" ;;
             esac
           ;;
           "toggle")
             case "$2" in
-            "fancy")
-              FANCY=$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
-              if [ "$FANCY" = 1 ]
-              then
-                hyprnotify 1 "Compositor Effects Disabled"
-                hyprctl --batch "\
-                  keyword animations:enabled 0;\
-                  keyword decoration:shadow:enabled 0;\
-                  keyword decoration:blur:enabled 0;\
-                  keyword general:gaps_in 0;\
-                  keyword general:gaps_out 0;\
-                  keyword general:border_size 1;\
-                  keyword decoration:rounding 0;\
-                  keyword plugin:dynamic-cursors:enabled 0"
-                exit
-              fi
-              hyprnotify 1 "Compositor Effects Enabled"
-              hyprctl reload
-            ;;
             "float")
               WORKSPACE=$(hyprctl activeworkspace | grep "workspace ID" | awk '{print $3}')
               hyprnotify 1 "Toggled window floating on Workspace $WORKSPACE"
@@ -177,13 +137,13 @@ in
               enable() {
                 hyprctl keyword "device[$touchpad]:enabled" true
                 printf "true" >"$STATUS"
-                notify touchpad -i "touchpad" "Touchpad Enabled"
+                hyprnotify 1 "Touchpad Enabled"
               }
 
               disable() {
                 hyprctl keyword "device[$touchpad]:enabled" false
                 printf "false" >"$STATUS"
-                notify touchpad -i "touchpad" "Touchpad Disabled"
+                hyprnotify 1 "Touchpad Disabled"
               }
 
               if ! [ -f "$STATUS" ]
@@ -197,6 +157,21 @@ in
                 then
                   enable
                 fi
+              fi
+            ;;
+            "service")
+              if [ -z "$3" ]
+              then
+                fail "Expected service name"
+              fi
+
+              if systemctl --user is-active "$3"
+              then
+                systemctl --user stop "$3"
+                hyprnotify 1 "Stopped $3"
+              else
+                systemctl --user start "$3"
+                hyprnotify 1 "Started $3"
               fi
             ;;
             "") fail "Expected an Option" ;;

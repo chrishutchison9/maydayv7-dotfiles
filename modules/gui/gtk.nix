@@ -71,7 +71,15 @@ in {
           gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
           gtk4 = {
             inherit (osConfig.gui.gtk) theme;
-            extraConfig.gtk-application-prefer-dark-theme = 1;
+            extraConfig = {
+              gtk-application-prefer-dark-theme = 1;
+
+              # Font Render
+              gtk-hint-font-metrics = 1;
+              gtk-xft-hinting = 1;
+              gtk-xft-hintstyle = "hintslight";
+              gtk-xft-rgba = "rgb";
+            };
           };
         };
       };

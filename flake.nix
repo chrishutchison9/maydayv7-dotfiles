@@ -217,21 +217,16 @@
       };
     };
 
-    # Launcher
-    hyprshell = {
-      url = "github:H3rmt/hyprshell";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
-        flake-parts.follows = "flake-parts";
-      };
+    # Desktop Shell
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   ## Configuration ##
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake {inherit inputs;}
-    # Auto-import all flake-parts modules from ./modules
     {
       imports = [
         (inputs.import-tree ./modules)

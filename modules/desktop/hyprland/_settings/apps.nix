@@ -26,9 +26,6 @@ lib.mkIf (osConfig != null) (
 
         # QT Apps
         "QT_WAYLAND_DISABLE_WINDOWDECORATION, 1"
-
-        # Screenshot
-        "SLURP_ARGS, -dc ${osConfig.lib.stylix.colors.base0D}"
       ];
 
       # Window Swallowing
@@ -46,14 +43,8 @@ lib.mkIf (osConfig != null) (
           # Pyprland
           "pypr"
 
-          # Application Drawer
-          "nwg-drawer -r"
-
           # Desktop Icons
           "pcmanfm-qt --desktop"
-
-          # Display Temperature
-          "sunsetr -b"
         ]);
 
       ## Shortcuts
@@ -70,22 +61,26 @@ lib.mkIf (osConfig != null) (
         ", XF86Calculator, exec, qalculate-gtk"
 
         # Utilities
-        "$mod, A, exec, nwg-drawer"
+        "$mod, A, exec, noctalia msg panel-toggle launcher"
         "$mod, slash, exec, ${toggle "kebihelp"} show -a"
         "$mod SHIFT, C, exec, ${runOnce "hyprpicker"} -arf hex"
         "$mod SHIFT, B, exec, ${runOnce "overskride"}"
         "$mod, D, exec, ${runOnce "nwg-displays"}"
         "$mod SHIFT, P, exec, pwvucontrol"
         "$mod SHIFT, N, exec, sh -c 'env XDG_CURRENT_DESKTOP=GNOME gnome-control-center wifi'"
-        "$mod, Escape, exec, ${toggle "wlogout"} -p layer-shell"
+        "$mod, Escape, exec, noctalia msg panel-toggle session"
+
+        # Shell
+        "$mod SHIFT, A, exec, noctalia msg settings-toggle"
+        "$mod, Tab, exec, noctalia msg window-switcher"
+        "$mod, N, exec, noctalia msg panel-toggle notifications"
+        "$mod, V, exec, noctalia msg panel-toggle clipboard"
 
         # Tools
-        "$mod SHIFT, A, exec, sysutils toggle service waybar"
+        "$mod, G, exec, pypr gamemode"
         "$mod SHIFT, D, exec, hyprutils toggle monitor ${display}"
-        "$mod, N, exec, swaync-client -t -sw"
         "$mod, S, exec, hyprutils toggle shader"
         "$mod SHIFT, T, exec, pypr toggle term"
-        "$mod, V, exec, pypr show clip"
         "$mod, backslash, exec, pypr toggle emoji"
       ];
 
@@ -99,16 +94,7 @@ lib.mkIf (osConfig != null) (
       ## Layer Rules
       layerrule = [
         "no_anim on, match:namespace ^(hyprpicker)$"
-        "dim_around on, match:namespace ^(hyprshell_overview)$"
-
-        "blur on, animation fade, match:namespace ^(logout_dialog)$"
-        "blur on, dim_around on, animation popin, match:namespace ^(nwg-drawer)$"
-
-        "blur on, ignore_alpha 0, animation slide right, match:namespace ^(swaync-control-center)$"
-        "blur on, ignore_alpha 0, animation slide right, match:namespace ^(swaync-notification-window)$"
-
-        "blur on, ignore_alpha 0, match:namespace ^(waybar)$"
-        "blur on, ignore_alpha 0, match:namespace ^(wlclock)$"
+        "blur on, ignore_alpha 0.6, match:namespace ^(noctalia-.*)$"
       ];
 
       ## Window Rules
@@ -139,7 +125,6 @@ lib.mkIf (osConfig != null) (
         ++ (map (class: ["pin on, dim_around on, stay_focused on, match:class ^(${class})$"]) [
           # Authentication
           "pinentry-"
-          "gay.vaskel.Soteria"
           "gcr-prompter"
         ])
         ++ (map (class: ["float on, pin on, persistent_size on, match:class ^(${class})$"]) [

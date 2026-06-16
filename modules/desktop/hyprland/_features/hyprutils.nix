@@ -1,3 +1,4 @@
+# Hyprland Utilities
 {
   util ? null,
   files ? null,
@@ -16,7 +17,6 @@
       hyprkeys
       hyprshade
       unstable.pyprland
-      slurp
       waycorner
     ];
   };
@@ -26,18 +26,9 @@
     pkgs,
     ...
   }: let
-    inherit (pkgs.lib) getExe mkForce;
+    inherit (pkgs.lib) getExe;
     inherit (config.lib.stylix) colors;
   in {
-    # Wallpaper Daemon
-    services.hyprpaper = {
-      enable = true;
-      settings = {
-        ipc = false;
-        splash = mkForce true;
-      };
-    };
-
     # Hot Corners
     systemd.user.services.waycorner = let
       target = ["graphical-session.target"];
@@ -53,11 +44,8 @@
     home = {
       persist.directories = [".config/nwg-displays"];
       file = with files.hyprland; {
-        # Application Drawer
-        ".config/nwg-drawer/drawer.css".text = drawer;
-
         # Pyprland
-        ".config/hypr/pyprland.toml".text = pypr;
+        ".config/pypr/config.toml".text = pypr;
 
         # Hot Corners
         ".config/waycorner/config.toml".text = waycorner;

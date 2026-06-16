@@ -116,10 +116,20 @@ _: {
         ];
     };
 
-    homeManager.qt = {config, ...}: let
+    homeManager.qt = {
+      config,
+      lib,
+      osConfig ? {},
+      ...
+    }: let
       inherit (builtins) concatStringsSep map;
+      qt = osConfig.gui.qt or {};
     in {
       stylix.targets.qt.enable = false;
+      xdg.configFile."Kvantum" = lib.mkIf ((qt.style or null) == "kvantum") {
+        source = "${qt.theme.package}/share/Kvantum";
+        recursive = true;
+      };
 
       # KDE Apps
       home.file.".config/kdeglobals".text = with config.lib.stylix.colors;

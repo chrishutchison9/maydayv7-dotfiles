@@ -9,6 +9,7 @@
 
   hmModules =
     util.map.array [
+      "secrets"
       "shell-utils"
       "filesystem"
       "laptop"

@@ -1,9 +1,17 @@
 [pyprland]
 plugins = [
+  "gamemode",
   "magnify",
   "scratchpads",
   "toggle_special"
 ]
+
+[gamemode]
+auto = true
+# Refine via: hyprctl clients -j | jq '.[].class'
+patterns = ["steam_app_*", "gamescope*", "*.exe"]
+border_size = 2
+hysteresis = 2.0
 
 [scratchpads.top]
 animation = "fromTop"
@@ -27,11 +35,6 @@ command = "kitty --class kitty-dropterm"
 class = "kitty-dropterm"
 use = "top"
 unfocus = "hide"
-
-[scratchpads.clip]
-use = "bottom"
-command = "kitty --class kitty-clip 'clipse'"
-class = "kitty-clip"
 
 [scratchpads.emoji]
 use = "bottom"

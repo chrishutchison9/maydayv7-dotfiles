@@ -72,19 +72,19 @@ in {
           "$mod SHIFT ALT, period, movewindow, mon:+1"
 
           # Screen Lock
-          "$mod, L, exec, loginctl lock-session"
+          "$mod, L, exec, noctalia msg session lock"
 
           # Window Minimization
           "ALT, Q, movetoworkspacesilent, special:minimized"
           "ALT SHIFT, Q, exec, hyprutils toggle minimized"
 
           # Screenshot
-          '', Print, exec, sh -c "pgrep slurp || grimblast --notify --freeze copysave area"''
+          ", Print, exec, noctalia msg screenshot-region"
+          "SHIFT, Print, exec, noctalia msg screenshot-fullscreen pick"
           "CTRL, Print, exec, grimblast --notify --cursor copysave active"
-          "SHIFT, Print, exec, grimblast --notify --cursor copysave output"
 
           # Submaps
-          "$mod SHIFT, Escape, exec, sysutils toggle service waycorner"
+          "$mod SHIFT, Escape, exec, hyprutils toggle service waycorner"
           "$mod SHIFT, Escape, submap, Inhibit"
           "$mod, R, submap, Resize"
           "$mod, M, submap, Move"
@@ -112,30 +112,33 @@ in {
       # Ignore Locked State
       bindl = [
         # Media Controls
-        ", XF86AudioPlay, exec, sysutils media toggle"
-        ", XF86AudioPrev, exec, sysutils media previous"
-        ", XF86AudioNext, exec, sysutils media next"
+        ", XF86AudioPlay, exec, noctalia msg media toggle"
+        ", XF86AudioPrev, exec, noctalia msg media previous"
+        ", XF86AudioNext, exec, noctalia msg media next"
 
         # Volume
-        ", XF86AudioMute, exec, sysutils volume mute"
+        ", XF86AudioMute, exec, noctalia msg volume-mute"
 
         # Keyboard Backlight
-        ", XF86KbdBrightnessUp, exec, sysutils backlight up"
-        ", XF86KbdBrightnessDown, exec, sysutils backlight down"
+        ", XF86KbdBrightnessUp, exec, hyprutils backlight up"
+        ", XF86KbdBrightnessDown, exec, hyprutils backlight down"
 
         # Touchpad
         ", XF86TouchpadToggle, exec, hyprutils toggle touchpad"
+
+        # Laptop Lid
+        ", switch:on:Lid Switch, exec, noctalia msg session lock"
       ];
 
       # Repeat on Hold
       bindle = [
         # Volume
-        ", XF86AudioRaiseVolume, exec, sysutils volume up"
-        ", XF86AudioLowerVolume, exec, sysutils volume down"
+        ", XF86AudioRaiseVolume, exec, noctalia msg volume-up"
+        ", XF86AudioLowerVolume, exec, noctalia msg volume-down"
 
         # Backlight
-        ", XF86MonBrightnessUp, exec, sysutils brightness up"
-        ", XF86MonBrightnessDown, exec, sysutils brightness down"
+        ", XF86MonBrightnessUp, exec, noctalia msg brightness-up"
+        ", XF86MonBrightnessDown, exec, noctalia msg brightness-down"
 
         # Magnifier
         "$mod, equal, exec, pypr zoom ++0.5"
@@ -148,7 +151,7 @@ in {
     submaps = {
       # Inhibit Keybinds
       Inhibit.settings.bind = [
-        "$mod SHIFT, Escape, exec, sysutils toggle service waycorner"
+        "$mod SHIFT, Escape, exec, hyprutils toggle service waycorner"
         "$mod SHIFT, Escape, submap, reset"
       ];
 

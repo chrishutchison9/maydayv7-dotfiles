@@ -228,21 +228,6 @@
         "type": "github"
       }
     },
-    "crane_2": {
-      "locked": {
-        "lastModified": 1780099841,
-        "narHash": "sha256-EVZd2RsbpreRUDSi9rBwPY+ZxoyMaiEBbZxxhljbaS4=",
-        "owner": "ipetkov",
-        "repo": "crane",
-        "rev": "0532eb17955225173906d671fb36306bdeb1e2dc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ipetkov",
-        "repo": "crane",
-        "type": "github"
-      }
-    },
     "filters": {
       "locked": {
         "lastModified": 1757882181,
@@ -1297,33 +1282,6 @@
         "type": "github"
       }
     },
-    "hyprshell": {
-      "inputs": {
-        "crane": "crane_2",
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "home-manager": [
-          "home-manager"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1781132855,
-        "narHash": "sha256-GXegc0W2xiRuSCjMpVc5mmKP5YFCYn87M/POTalISCA=",
-        "owner": "H3rmt",
-        "repo": "hyprshell",
-        "rev": "61ddaa30563c1f091ca5fbe5d7203c19f42b519c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "H3rmt",
-        "repo": "hyprshell",
-        "type": "github"
-      }
-    },
     "hyprshutdown": {
       "inputs": {
         "aquamarine": "aquamarine_3",
@@ -1764,6 +1722,26 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       }
     },
+    "noctalia": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1781625454,
+        "narHash": "sha256-5mGBvcA/BRdWpxOxqmtDvnQgr6Z3AiNiic1CaTDNTVM=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia",
+        "rev": "2066693c9d7ef183557e2ba4a3ec586d6cff8bc4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia",
+        "type": "github"
+      }
+    },
     "nur": {
       "inputs": {
         "flake-parts": [
@@ -1870,7 +1848,6 @@
         "home-manager": "home-manager",
         "hyprcursors": "hyprcursors",
         "hyprland": "hyprland",
-        "hyprshell": "hyprshell",
         "hyprsplit": "hyprsplit",
         "impermanence": "impermanence",
         "import-tree": "import-tree",
@@ -1880,6 +1857,7 @@
         "nixpkgs": [
           "stable"
         ],
+        "noctalia": "noctalia",
         "proprietary": "proprietary",
         "sops": "sops",
         "spicetify": "spicetify",
