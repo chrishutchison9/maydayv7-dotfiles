@@ -79,7 +79,6 @@ in {
       pypr = readFile ./hyprland/pypr.toml;
       waycorner = readFile ./hyprland/waycorner.toml;
       kebihelp = readFile ./hyprland/kebihelp.json;
-      greeter = readFile ./hyprland/greeter.conf;
     };
 
     # Pictures

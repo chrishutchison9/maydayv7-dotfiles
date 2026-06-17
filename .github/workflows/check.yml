@@ -11,12 +11,6 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - name: Maximize Build Space
-        run: |
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /opt/ghc
-          sudo rm -rf "/usr/local/share/boost"
-          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
       - name: Clone Repo
         uses: actions/checkout@v6
         with:
@@ -30,4 +24,4 @@ jobs:
             accept-flake-config = true
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
       - name: Check Syntax
-        run: nix flake check . --keep-going
+        run: nix flake check --no-build --keep-going

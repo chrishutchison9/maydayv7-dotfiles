@@ -73,7 +73,7 @@ _: {
               systemPackages = [package];
               etc."xdg/Kvantum/kvantum.kvconfig".text = ''
                 [General]
-                Theme=${name}
+                theme=${name}
               '';
             };
           })

@@ -2,7 +2,7 @@
 
 ### June
 
-- Use Noctalia Shell (v5) with Hyprland
+- Use Noctalia Shell & Greeter (v5) with Hyprland
 - Per-user secrets
 - Use `zellij` instead of `tmux`
 - Add `auth`, `syncthing`, `mouse`

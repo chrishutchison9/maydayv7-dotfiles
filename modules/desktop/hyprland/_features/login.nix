@@ -1,36 +1,18 @@
 # Login Greeter
-_: {
+{inputs ? null, ...}: {
   nixos = {
     config,
-    lib,
     pkgs,
     ...
-  }: let
-    inherit (lib) mkForce;
-  in {
-    stylix.targets.regreet.enable = true;
-    environment.persist.directories = ["/var/lib/regreet"];
-    programs.regreet = {
+  }: {
+    imports = [inputs.noctalia-greeter.nixosModules.default];
+    environment.persist.directories = ["/var/lib/noctalia-greeter"];
+    programs.noctalia-greeter = {
       enable = true;
-      package = pkgs.regreet;
-      settings.commands = {
-        reboot = [
-          "systemctl"
-          "reboot"
-        ];
-        poweroff = [
-          "systemctl"
-          "poweroff"
-        ];
+      settings.cursor = {
+        theme = config.stylix.cursor.name;
+        inherit (config.stylix.cursor) size package;
       };
-
-      extraCss = mkForce "";
-      theme = mkForce config.gui.gtk.theme;
-      iconTheme = with config.stylix.icons;
-        mkForce {
-          name = dark;
-          inherit package;
-        };
     };
   };
 }
