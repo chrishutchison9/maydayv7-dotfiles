@@ -84,7 +84,6 @@ in {
           "CTRL, Print, exec, grimblast --notify --cursor copysave active"
 
           # Submaps
-          "$mod SHIFT, Escape, exec, hyprutils toggle service waycorner"
           "$mod SHIFT, Escape, submap, Inhibit"
           "$mod, R, submap, Resize"
           "$mod, M, submap, Move"
@@ -150,10 +149,7 @@ in {
     ## Submaps
     submaps = {
       # Inhibit Keybinds
-      Inhibit.settings.bind = [
-        "$mod SHIFT, Escape, exec, hyprutils toggle service waycorner"
-        "$mod SHIFT, Escape, submap, reset"
-      ];
+      Inhibit.settings.bind = ["$mod SHIFT, Escape, submap, reset"];
 
       # Window Resize
       Resize.settings = {

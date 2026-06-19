@@ -103,6 +103,7 @@
               enable = true;
               autoReboot = true;
             };
+            settings.console-mode = "max";
           };
 
           environment = {

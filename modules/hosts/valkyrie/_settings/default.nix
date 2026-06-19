@@ -41,6 +41,14 @@ _: {
         cloudflared
         gcc
         github-copilot-cli
+        (mongodb-compass.overrideAttrs (oldAttrs: {
+          postFixup =
+            (oldAttrs.postFixup or "")
+            + ''
+              wrapProgram $out/bin/mongodb-compass \
+                --add-flags "--password-store=gnome-libsecret --ignore-additional-command-line-flags"
+            '';
+        }))
 
         # Node
         nodejs
@@ -58,8 +66,10 @@ _: {
   home = _: {
     home.persist.directories = [
       ".copilot"
+      ".mongodb"
       ".npm"
       ".config/rog"
+      ".config/MongoDB Compass"
       ".local/share/cloudflare-warp-gui"
     ];
 

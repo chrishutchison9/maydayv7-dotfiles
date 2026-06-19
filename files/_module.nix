@@ -76,8 +76,8 @@ in {
     # Hyprland WM
     hyprland = {
       shaders = ./hyprland/shaders;
+      noctalia = ./hyprland/noctalia;
       pypr = readFile ./hyprland/pypr.toml;
-      waycorner = readFile ./hyprland/waycorner.toml;
       kebihelp = readFile ./hyprland/kebihelp.json;
     };
 

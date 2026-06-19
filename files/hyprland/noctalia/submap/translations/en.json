@@ -1,0 +1,17 @@
+{
+  "title": "Hyprland Submap",
+  "active": "Submap: ",
+  "settings": {
+    "glyph": {
+      "label": "Glyph",
+      "description": "Glyph shown before the submap name."
+    },
+    "show_glyph": {
+      "label": "Show glyph"
+    },
+    "command": {
+      "label": "Stream command",
+      "description": "Shell command emitting Hyprland `submap>>NAME` event lines."
+    }
+  }
+}

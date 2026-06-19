@@ -1,18 +1,22 @@
 # Noctalia Shell
-{inputs ? null, ...}: {
+{
+  inputs ? null,
+  files ? null,
+  ...
+}: {
   home = {
     config,
     osConfig ? null,
+    lib,
+    pkgs,
     ...
   }: let
-    inherit (config.lib.stylix.colors) withHashtag;
-    inherit (config.stylix.fonts) sansSerif;
+    output = osConfig.gui.display;
   in {
     imports = [inputs.noctalia.homeModules.default];
     stylix.targets.noctalia-shell.enable = false;
     home.persist.directories = [
       ".cache/noctalia"
-      ".local/share/noctalia"
       ".local/state/noctalia"
     ];
 
@@ -21,26 +25,40 @@
       systemd.enable = true;
       settings = {
         shell = {
-          font_family = sansSerif.name;
+          font_family = config.stylix.fonts.sansSerif.name;
+          avatar_path = "~/.face";
           clipboard_enabled = true;
           clipboard_history_max_entries = 150;
           polkit_agent = true;
+          launch_apps_as_systemd_services = true;
+          settings_show_advanced = true;
+          panel.launcher_session_search = true;
+          screen_corners = {
+            enabled = true;
+            size = 30;
+          };
+          shadow.direction = "center";
         };
 
         theme = {
           source = "custom";
           custom_palette = "stylix";
           mode = "dark";
+          builtin = "Catppuccin";
+          templates = {
+            builtin_ids = ["qt"];
+            enable_builtin_templates = false;
+            enable_community_templates = false;
+          };
         };
 
         # Bar
         bar.main = {
           position = "top";
-          start = ["session" "control-center" "workspaces"];
-          center = ["launcher" "clock" "media"];
+          start = ["session" "workspaces" "minimize" "media" "maydayv7/hyprland-submap:indicator"];
+          center = ["control-center" "clock" "launcher"];
           end = [
             "tray"
-            "system_monitor"
             "clipboard"
             "bluetooth"
             "network"
@@ -49,33 +67,131 @@
             "battery"
             "notifications"
           ];
+          background_opacity = 0.75;
+          margin_edge = 0;
+          margin_ends = 0;
+          padding = 15;
+          radius = 0;
+          scale = 1.1;
+          thickness = 30;
+          widget_spacing = 14;
+        };
+
+        # Audio
+        audio = {
+          enable_overdrive = true;
+          enable_sounds = true;
+          sound_volume = 0.3;
+        };
+
+        # Widgets
+        widget = {
+          clock.anchor = true;
+          control-center.glyph = "menu";
+          workspaces.display = "name";
+          network.show_label = false;
+          media = {
+            hide_when_no_media = true;
+            title_scroll = "on_hover";
+          };
+
+          # Minimize Button
+          minimize = {
+            type = "custom_button";
+            glyph = "arrow-bar-to-down";
+            tooltip = "Minimize window";
+            command = "hyprctl dispatch movetoworkspacesilent special:minimized";
+            right_command = "hyprutils toggle minimized";
+          };
+        };
+        system.monitor.enabled = true;
+
+        # Calendar
+        calendar = {
+          enabled = true;
+          account.personal_google.type = "google";
         };
 
         # Notifications
-        notification.enable_daemon = true;
-        osd.kinds = {
-          volume = true;
-          brightness = true;
-          wifi = true;
-          bluetooth = true;
-          power_profile = true;
-          caffeine = true;
-          dnd = true;
-          keyboard_layout = true;
+        notification = {
+          enable_daemon = true;
+          layer = "overlay";
+          filter.power = {
+            enabled = true;
+            match = "poweralertd";
+            play_sound = true;
+            save_history = false;
+            show_toast = true;
+          };
+        };
+        osd = {
+          background_opacity = 0.75;
+          kinds = {
+            volume = true;
+            brightness = true;
+            wifi = true;
+            bluetooth = true;
+            power_profile = true;
+            caffeine = true;
+            dnd = true;
+            keyboard_layout = true;
+          };
+        };
+
+        # Screenshots
+        shell.screenshot = {
+          save_to_file = true;
+          copy_to_clipboard = true;
+          freeze_screen = true;
+          directory = "~/Pictures/Screenshots";
         };
 
         # Wallpaper
         wallpaper = {
-          enabled = true;
-          fill_mode = "crop";
+          enabled = false;
           default.path = "${osConfig.stylix.image}";
         };
 
-        # Lock Screen
-        lockscreen = {
-          enabled = true;
-          blurred_desktop = true;
-          blur_intensity = 0.5;
+        # Desktop Widgets
+        desktop_widgets = {
+          schema_version = 2;
+          widget_order = ["desktop-widget-0000000000000001" "desktop-widget-0000000000000002"];
+          grid = {
+            cell_size = 16;
+            major_interval = 4;
+            visible = true;
+          };
+          widget = {
+            "desktop-widget-0000000000000001" = {
+              inherit output;
+              box_height = 352.0;
+              box_width = 368.0;
+              cx = 1328.0;
+              cy = 240.0;
+              rotation = 0.0;
+              type = "clock";
+              settings = {
+                background = false;
+                center_text = true;
+                clock_style = "analog";
+                format = "{:%H:%M:%S}";
+                shadow = true;
+              };
+            };
+            "desktop-widget-0000000000000002" = {
+              inherit output;
+              box_height = 112.0;
+              box_width = 240.0;
+              cx = 1392.0;
+              cy = 856.0;
+              rotation = 0.0;
+              type = "weather";
+              settings = {
+                background = false;
+                show_forecast = false;
+              };
+            };
+          };
         };
 
         # Screen Idle
@@ -93,12 +209,68 @@
           };
         };
 
-        # Screenshots
-        shell.screenshot = {
-          save_to_file = true;
-          copy_to_clipboard = true;
-          freeze_screen = true;
-          directory = "~/Pictures/Screenshots";
+        # Lock Screen
+        lockscreen = {
+          enabled = true;
+          blurred_desktop = false;
+          blur_intensity = 0.0;
+          tint_intensity = 0.25;
+          fingerprint = false;
+        };
+
+        # Lockscreen Widgets
+        lockscreen_widgets = {
+          enabled = true;
+          schema_version = 2;
+          widget_order = [
+            "lockscreen-login-box@eDP-1"
+            "lockscreen-widget-0000000000000001"
+            "lockscreen-widget-0000000000000003"
+          ];
+          grid = {
+            cell_size = 16;
+            major_interval = 4;
+            visible = true;
+          };
+          widget = {
+            "lockscreen-login-box@${output}" = {
+              inherit output;
+              box_height = 70.0;
+              box_width = 400.0;
+              cx = 1280.0;
+              cy = 1477.0;
+              rotation = 0.0;
+              type = "login_box";
+              settings = {
+                background_color = "surface_variant";
+                background_opacity = 0.88;
+                background_radius = 12.0;
+                input_opacity = 1.0;
+                input_radius = 6.0;
+                show_login_button = true;
+              };
+            };
+            "lockscreen-widget-0000000000000001" = {
+              inherit output;
+              box_height = 256.0;
+              box_width = 736.0;
+              cx = 768.0;
+              cy = 352.0;
+              rotation = 0.0;
+              type = "clock";
+              settings.format = "{:%H:%M:%S}";
+            };
+            "lockscreen-widget-0000000000000003" = {
+              inherit output;
+              box_height = 192.0;
+              box_width = 368.0;
+              cx = 768.0;
+              cy = 640.0;
+              rotation = 0.0;
+              type = "media_player";
+              settings.hide_when_no_media = true;
+            };
+          };
         };
 
         # Night Light
@@ -108,19 +280,47 @@
           temperature_night = 4000;
         };
 
+        # Weather
+        weather.enabled = true;
         location = {
           auto_locate = true;
           sunset = "19:00";
           sunrise = "06:00";
         };
 
-        brightness.enable_ddcutil = false;
-        system.monitor.enabled = true;
-        weather.enabled = true;
+        # Plugins
+        plugins = {
+          source = [
+            {
+              name = "official";
+              kind = "git";
+              location = "https://github.com/noctalia-dev/official-plugins";
+            }
+            {
+              name = "community";
+              kind = "git";
+              location = "https://github.com/noctalia-dev/community-plugins";
+            }
+            {
+              name = "local";
+              kind = "path";
+              location = "${files.hyprland.noctalia}";
+            }
+          ];
+          enabled = [
+            "noctalia/screen_recorder"
+            "noctalia/timer"
+            "maydayv7/hyprland-submap"
+          ];
+        };
+        plugin_settings = {
+          "noctalia/screen_recorder".copy_to_clipboard = true;
+          "maydayv7/hyprland-submap".command = "${lib.getExe pkgs.socat} -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock -";
+        };
       };
 
       # Color Palette
-      customPalettes.stylix.dark = with withHashtag; {
+      customPalettes.stylix.dark = with config.lib.stylix.colors.withHashtag; {
         primary = base0D;
         onPrimary = base00;
         secondary = base0E;
@@ -137,7 +337,7 @@
         shadow = base00;
         hover = base0C;
         onHover = base00;
-        terminal = with withHashtag; {
+        terminal = {
           normal = {
             black = base00;
             red = base08;

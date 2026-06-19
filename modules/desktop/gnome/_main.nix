@@ -40,21 +40,9 @@
 
     programs = {
       gnupg.agent.pinentryPackage = pkgs.lib.mkForce pkgs.pinentry-gnome3;
-
       kdeconnect = {
         enable = true;
         package = pkgs.gnomeExtensions.gsconnect;
-      };
-
-      firefox = {
-        nativeMessagingHosts.packages = [pkgs.gnomeExtensions.gsconnect];
-        policies.ExtensionSettings = {
-          name = "gnome-shell-integration";
-          value = {
-            installation_mode = "normal_installed";
-            install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/chrome-gnome-shell@gnome.org/latest.xpi";
-          };
-        };
       };
     };
 
@@ -100,11 +88,6 @@
 
   home = _: {
     config = {
-      stylix.targets = {
-        gnome.enable = true;
-        ghostty.enable = true;
-      };
-
       # Default Applications
       xdg.mimeApps.defaultApplications = util.build.mime {
         archive = ["org.gnome.FileRoller.desktop"];
@@ -142,43 +125,57 @@
         ".cache/gnome-builder"
       ];
 
-      ## Terminal
-      programs.ghostty = {
-        enable = true;
-        settings = {
-          # Features
-          clipboard-paste-protection = true;
-          clipboard-trim-trailing-spaces = true;
-          copy-on-select = false;
-          mouse-hide-while-typing = true;
-          quit-after-last-window-closed = true;
-          scrollback-limit = 4200;
-          shell-integration-features = true;
-          window-vsync = true;
+      programs = {
+        # Terminal
+        ghostty = {
+          enable = true;
+          settings = {
+            clipboard-paste-protection = true;
+            clipboard-trim-trailing-spaces = true;
+            copy-on-select = false;
+            mouse-hide-while-typing = true;
+            quit-after-last-window-closed = true;
+            scrollback-limit = 4200;
+            shell-integration-features = true;
+            window-vsync = true;
+            keybind = [
+              "ctrl+h=goto_split:left"
+              "ctrl+j=goto_split:bottom"
+              "ctrl+k=goto_split:top"
+              "ctrl+l=goto_split:right"
+              "ctrl+shift+h=new_split:left"
+              "ctrl+shift+j=new_split:down"
+              "ctrl+shift+k=new_split:up"
+              "ctrl+shift+l=new_split:right"
+              "ctrl+shift+enter=new_split:auto"
+              "ctrl+shift+i=inspector:toggle"
+              "ctrl+shift+r=reload_config"
+              "ctrl+t=new_tab"
+            ];
+          };
+        };
 
-          # Keybindings
-          keybind = [
-            "ctrl+h=goto_split:left"
-            "ctrl+j=goto_split:bottom"
-            "ctrl+k=goto_split:top"
-            "ctrl+l=goto_split:right"
-            "ctrl+shift+h=new_split:left"
-            "ctrl+shift+j=new_split:down"
-            "ctrl+shift+k=new_split:up"
-            "ctrl+shift+l=new_split:right"
-            "ctrl+shift+enter=new_split:auto"
-            "ctrl+shift+i=inspector:toggle"
-            "ctrl+shift+r=reload_config"
-            "ctrl+t=new_tab"
-          ];
+        # Browser
+        firefox = {
+          enableGnomeExtensions = true;
+          policies.ExtensionSettings = {
+            name = "gnome-shell-integration";
+            value = {
+              installation_mode = "normal_installed";
+              install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/chrome-gnome-shell@gnome.org/latest.xpi";
+            };
+          };
         };
       };
 
-      # Firefox GNOME Theme
-      stylix.targets.firefox = {
-        enable = true;
-        profileNames = ["default"];
-        firefoxGnomeTheme.enable = true;
+      stylix.targets = {
+        gnome.enable = true;
+        ghostty.enable = true;
+        firefox = {
+          enable = true;
+          profileNames = ["default"];
+          firefoxGnomeTheme.enable = true;
+        };
       };
     };
   };

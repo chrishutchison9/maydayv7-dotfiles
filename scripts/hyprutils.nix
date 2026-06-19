@@ -19,7 +19,6 @@
         monitor 'name'               - Toggle specified Monitor
         shader                       - Toggle Compositor Shader
         touchpad                     - Toggle touchpad
-        service 'name'               - Toggle SYSTEMD Service
   '';
 
   daemon = builtins.toFile "daemon.sh" ''
@@ -63,7 +62,6 @@ in
         custom.hyprshellevents
         hyprland
         hyprshade
-        systemd
         zenity
       ];
 
@@ -157,21 +155,6 @@ in
                 then
                   enable
                 fi
-              fi
-            ;;
-            "service")
-              if [ -z "$3" ]
-              then
-                fail "Expected service name"
-              fi
-
-              if systemctl --user is-active "$3"
-              then
-                systemctl --user stop "$3"
-                hyprnotify 1 "Stopped $3"
-              else
-                systemctl --user start "$3"
-                hyprnotify 1 "Started $3"
               fi
             ;;
             "") fail "Expected an Option" ;;

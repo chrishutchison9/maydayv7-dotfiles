@@ -46,7 +46,7 @@
     "latex"
     #"wine"
     "games"
-    "gnome"
+    "hyprland"
   ];
 
   hmImports =
@@ -83,10 +83,11 @@ in {
         fs.scheme = "advanced";
 
         # Kernel
-        kernel = "xanmod";
+        kernel = "zen";
         kernelModules = [
           "nvme"
           "thunderbolt"
+          "asus-armoury"
         ];
 
         # Nix Tools
@@ -112,7 +113,7 @@ in {
       # GUI
       gui = {
         display = "eDP-1";
-        wallpaper = "Bluewatch";
+        wallpaper = "Quasar";
         fancy = true;
       };
 

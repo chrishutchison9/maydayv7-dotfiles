@@ -35,7 +35,7 @@
     };
   };
 
-  home = {config, ...}: {
+  home = _: {
     imports = [inputs.catppuccin.homeModules.catppuccin];
 
     config = {
@@ -44,17 +44,20 @@
         accent = "blue";
         flavor = "macchiato";
 
-        brave.enable = config.programs.brave.enable or false;
-        thunderbird.enable = config.programs.thunderbird.enable or false;
-        obs.enable = config.programs.obs-studio.enable or false;
-        vesktop.enable = config.programs.nixcord.vesktop.enable or false;
-        vscode.profiles.default.enable = config.programs.vscode.enable or false;
+        brave.enable = true;
+        thunderbird.enable = true;
+        obs.enable = true;
+        vesktop.enable = true;
+        vscode.profiles.default.enable = true;
       };
 
-      # GTK Apps
-      dconf.settings."org/gnome/desktop/wm/preferences" = {
-        action-double-click-titlebar = "none";
-        button-layout = "appmenu";
+      # Browser
+      programs.firefox.policies.ExtensionSettings = {
+        name = "catppuccin-macchiato-blue";
+        value = {
+          installation_mode = "normal_installed";
+          install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/{d49033ac-8969-488c-afb0-5cdb73957f41}/latest.xpi";
+        };
       };
     };
   };

@@ -1,0 +1,33 @@
+# Hyprland Submap Indicator
+id = "maydayv7/hyprland-submap"
+name = "Hyprland Submap"
+version = "1.0.0"
+min_noctalia = "5.0.0"
+author = "maydayv7"
+license = "GPL-3.0-only"
+tags = ["hyprland", "submap"]
+icon = "keyboard"
+description = "Shows the currently active Hyprland submap on the bar."
+
+[[setting]]
+key = "command"
+type = "string"
+label_key = "settings.command.label"
+description_key = "settings.command.description"
+default = "socat -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock -"
+
+[[widget]]
+id = "indicator"
+entry = "submap.luau"
+
+  [[widget.setting]]
+  key = "glyph"
+  type = "glyph"
+  label_key = "settings.glyph.label"
+  default = "keyboard"
+
+  [[widget.setting]]
+  key = "show_glyph"
+  type = "bool"
+  label_key = "settings.show_glyph.label"
+  default = true

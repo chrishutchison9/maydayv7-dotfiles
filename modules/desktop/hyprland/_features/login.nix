@@ -1,10 +1,6 @@
 # Login Greeter
 {inputs ? null, ...}: {
-  nixos = {
-    config,
-    pkgs,
-    ...
-  }: {
+  nixos = {config, ...}: {
     imports = [inputs.noctalia-greeter.nixosModules.default];
     environment.persist.directories = ["/var/lib/noctalia-greeter"];
     programs.noctalia-greeter = {
