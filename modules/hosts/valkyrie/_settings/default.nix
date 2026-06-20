@@ -5,11 +5,15 @@ _: {
     pkgs,
     ...
   }: {
-    # ! # https://gitlab.freedesktop.org/drm/amd/-/issues/3388
-    boot.kernelParams = lib.mkIf (config.hardware.cpu.mode == "performance") [
-      "amdgpu.dcdebugmask=0x10"
-      "usbcore.autosuspend=-1"
-    ];
+    boot = {
+      plymouth.extraConfig = "DeviceScale=2";
+
+      # ! # https://gitlab.freedesktop.org/drm/amd/-/issues/3388
+      kernelParams = lib.mkIf (config.hardware.cpu.mode == "performance") [
+        "amdgpu.dcdebugmask=0x10"
+        "usbcore.autosuspend=-1"
+      ];
+    };
 
     services = {
       fwupd.enable = true;
@@ -63,7 +67,7 @@ _: {
     };
   };
 
-  home = _: {
+  home = {lib, ...}: {
     home.persist.directories = [
       ".copilot"
       ".mongodb"
@@ -74,9 +78,12 @@ _: {
     ];
 
     # Keybinds
-    wayland.windowManager.hyprland.settings.bindl = [
-      ", XF86Launch3, exec, asusctl aura -n"
-      ", XF86Launch4, exec, asusctl profile -n"
+    wayland.windowManager.hyprland.settings.bind = let
+      inline = lib.generators.mkLuaInline;
+      locked = {locked = true;};
+    in [
+      {_args = ["XF86Launch3" (inline ''hl.dsp.exec_cmd("asusctl aura -n")'') locked];}
+      {_args = ["XF86Launch4" (inline ''hl.dsp.exec_cmd("asusctl profile -n")'') locked];}
     ];
 
     # Development

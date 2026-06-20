@@ -36,7 +36,6 @@ in {
                   config = nixpkgsConfig;
                 };
 
-                gaming = gaming.packages."${system}";
                 wine = windows.packages."${system}";
                 winelib = windows.lib."${system}";
                 spicetify = spicetify.legacyPackages."${system}";

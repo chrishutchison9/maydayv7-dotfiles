@@ -20,25 +20,6 @@
         shader                       - Toggle Compositor Shader
         touchpad                     - Toggle touchpad
   '';
-
-  daemon = builtins.toFile "daemon.sh" ''
-    event_activespecial() {
-      case "$WORKSPACENAME" in
-      special:minimized*)
-        hyprctl dispatch submap reset
-        hyprctl dispatch submap Minimized
-      ;;
-      esac
-    }
-
-    event_minimized() {
-      WINDOW="address:0x$WINDOWADDRESS"
-      case "$MINIMIZED" in
-      0) hyprctl dispatch movetoworkspace "+0, $WINDOW" ;;
-      1) hyprctl dispatch movetoworkspacesilent "special:minimized, $WINDOW" ;;
-      esac
-    }
-  '';
 in
   recursiveUpdate
   {
@@ -56,10 +37,8 @@ in
       runtimeInputs = with pkgs; [
         coreutils
         gnugrep
-        socat
 
         brightnessctl
-        custom.hyprshellevents
         hyprland
         hyprshade
         zenity
@@ -80,10 +59,6 @@ in
         case "$1" in
           "") error "Expected an Option" "${help}";;
           "help") echo -e "## Hyprland Utility Script ##\n${help}";;
-          "daemon")
-            info "Monitoring Hyprland Socket..."
-            socat -u UNIX-CONNECT:"$XDG_RUNTIME_DIR"/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock EXEC:"shellevents ${daemon}",nofork
-          ;;
           "backlight")
             case "$2" in
             "up") brightnessctl -d "*::kbd_backlight" set 33%+ ;;
@@ -97,12 +72,13 @@ in
             "float")
               WORKSPACE=$(hyprctl activeworkspace | grep "workspace ID" | awk '{print $3}')
               hyprnotify 1 "Toggled window floating on Workspace $WORKSPACE"
-              hyprctl dispatch workspaceopt allfloat
+              hyprctl eval 'local ws = hl.get_active_workspace(); if ws then for _, w in ipairs(hl.get_workspace_windows(ws)) do hl.dispatch(hl.dsp.window.float({ action = "toggle", window = w })) end end'
             ;;
             "minimized")
-              if hyprctl workspaces | grep "special:minimize"
+              if hyprctl workspaces | grep "special:minimized"
               then
-                hyprctl dispatch workspace special:minimized
+                hyprctl dispatch 'hl.dsp.focus({ workspace = "special:minimized" })'
+                hyprctl dispatch 'hl.dsp.submap("Minimized")'
               else
                 hyprnotify 1 "No minimized windows present"
               fi
@@ -115,11 +91,10 @@ in
 
               if hyprctl monitors | grep "Monitor $3"
               then
-                hyprctl keyword monitor "$3, disable"
+                hyprctl eval 'hl.monitor({ output = "'"$3"'", disabled = true })'
               else
-                hyprctl keyword monitor "$3, preferred, auto, 1"
+                hyprctl eval 'hl.monitor({ output = "'"$3"'", mode = "preferred", position = "auto", scale = 1 })'
               fi
-              hyprctl reload
             ;;
             "shader")
               hyprshade off
@@ -133,13 +108,13 @@ in
               touchpad=$(hyprctl devices | grep touchpad | xargs)
 
               enable() {
-                hyprctl keyword "device[$touchpad]:enabled" true
+                hyprctl eval 'hl.device({ name = "'"$touchpad"'", enabled = true })'
                 printf "true" >"$STATUS"
                 hyprnotify 1 "Touchpad Enabled"
               }
 
               disable() {
-                hyprctl keyword "device[$touchpad]:enabled" false
+                hyprctl eval 'hl.device({ name = "'"$touchpad"'", enabled = false })'
                 printf "false" >"$STATUS"
                 hyprnotify 1 "Touchpad Disabled"
               }

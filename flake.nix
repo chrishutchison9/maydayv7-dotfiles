@@ -41,12 +41,6 @@
     # Unstable Packages Repository
     unstable.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
 
-    # Packaged Games
-    gaming = {
-      url = "github:fufexan/nix-gaming";
-      inputs.flake-parts.follows = "flake-parts";
-    };
-
     # Proprietary Software
     proprietary = {
       url = "github:maydayv7/proprietary";
@@ -202,10 +196,10 @@
 
     # Plugins
     hyprsplit = {
-      url = "github:zjeffer/split-monitor-workspaces/v0.55.4";
+      url = "github:shezdy/hyprsplit/6b00b677d8905fb38779c91e12d6294e0e586a44";
       inputs = {
         hyprland.follows = "hyprland";
-        nix-filter.follows = "filters";
+        nixpkgs.follows = "nixpkgs";
       };
     };
 
@@ -245,20 +239,20 @@
     };
 
   ## Nix Configuration ##
-  nixConfig = {
+  nixConfig = rec {
     commit-lockfile-summary = "chore(flake): Update `inputs`";
 
     # Binary Caches
-    trusted-substituters = [
+    substituters = [
       "https://maydayv7-dotfiles.cachix.org"
       "https://cache.nixos.org"
       "https://nixpkgs-unfree.cachix.org"
       "https://nix-community.cachix.org"
       "https://cache.flox.dev"
-      "https://nix-gaming.cachix.org"
       "https://hyprland.cachix.org"
       "https://catppuccin.cachix.org"
     ];
+    trusted-substituters = substituters;
 
     # Public Keys
     trusted-public-keys = [
@@ -267,7 +261,6 @@
       "nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="
-      "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
     ];

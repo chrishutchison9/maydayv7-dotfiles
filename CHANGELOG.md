@@ -2,6 +2,7 @@
 
 ### June
 
+- Migrate Hyprland config to Lua
 - Use Noctalia Shell & Greeter (v5) with Hyprland
 - Per-user secrets
 - Use `zellij` instead of `tmux`

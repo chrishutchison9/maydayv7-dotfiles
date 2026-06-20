@@ -8,144 +8,209 @@ _: {
 lib.mkIf (osConfig != null) (
   let
     inherit (builtins) map toString;
-    inherit (lib) flatten getExe head splitString;
+    inherit (lib) concatStringsSep getExe head splitString;
+
+    lua = import ./_lib.nix lib;
+    inherit (lua) combo bind exec env on permission;
 
     inherit (osConfig.gui) display;
     inherit (config.stylix) cursor;
     hyprcursor = "${cursor.name}-Hyprcursor";
 
+    mod = "SUPER";
+
     unit = command: head (splitString " " command);
+    toggle = app: "pkill ${app} || uwsm app -u ${app}.scope -- ${app}";
+    runOnce = app: "pgrep ${app} || uwsm app -u ${app}.scope -- ${app}";
   in {
     ## App Environment
     # Cursor
     xdg.dataFile."icons/${hyprcursor}".source = "${cursor.package}/share/icons/${hyprcursor}";
     wayland.windowManager.hyprland.settings = {
       env = [
-        "HYPRCURSOR_THEME, ${hyprcursor}"
-        "HYPRCURSOR_SIZE, ${toString cursor.size}"
+        (env "HYPRCURSOR_THEME" hyprcursor)
+        (env "HYPRCURSOR_SIZE" (toString cursor.size))
 
         # QT Apps
-        "QT_WAYLAND_DISABLE_WINDOWDECORATION, 1"
+        (env "QT_WAYLAND_DISABLE_WINDOWDECORATION" "1")
       ];
 
-      # Window Swallowing
-      misc.swallow_regex = "^(kitty)$";
-
       ## Autostart
-      exec-once =
-        [
-          "uwsm finalize"
-          "hyprctl setcursor ${hyprcursor} ${toString cursor.size}"
-        ]
-        ++ (map (app: "uwsm app -t service -u ${unit app}.service -- " + app) [
-          "hyprutils daemon"
+      on = [
+        (on "hyprland.start" ("function() "
+          + concatStringsSep " " (map (c: ''hl.exec_cmd("${c}");'') ([
+              "uwsm finalize"
+              "hyprctl setcursor ${hyprcursor} ${toString cursor.size}"
+            ]
+            ++ (map (app: "uwsm app -t service -u ${unit app}.service -- ${app}") [
+              # Pyprland
+              "pypr"
 
-          # Pyprland
-          "pypr"
-
-          # Desktop Icons
-          "pcmanfm-qt --desktop"
-        ]);
+              # Desktop Icons
+              "pcmanfm-qt --desktop"
+            ])))
+          + " end"))
+      ];
 
       ## Shortcuts
-      bind = let
-        toggle = app: "pkill ${app} || uwsm app -u ${app}.scope -- ${app}";
-        runOnce = app: "pgrep ${app} || uwsm app -u ${app}.scope -- ${app}";
-      in [
+      bind = [
         # Applications
-        "$mod, F, exec, nemo"
-        "$mod, T, exec, kitty"
-        "$mod, W, exec, firefox"
-        "$mod, Return, exec, ${runOnce "resources"}"
-        "$mod SHIFT, equal, exec, pypr toggle calc"
-        ", XF86Calculator, exec, qalculate-gtk"
+        (bind (combo [mod] "F") (exec "nemo"))
+        (bind (combo [mod] "T") (exec "kitty"))
+        (bind (combo [mod] "W") (exec "firefox"))
+        (bind (combo [mod] "Return") (exec (runOnce "resources")))
+        (bind (combo [mod "SHIFT"] "equal") (exec "pypr toggle calc"))
+        (bind (combo [] "XF86Calculator") (exec "qalculate-gtk"))
 
         # Utilities
-        "$mod, A, exec, noctalia msg panel-toggle launcher"
-        "$mod, slash, exec, ${toggle "kebihelp"} show -a"
-        "$mod SHIFT, C, exec, ${runOnce "hyprpicker"} -arf hex"
-        "$mod SHIFT, B, exec, ${runOnce "overskride"}"
-        "$mod, D, exec, ${runOnce "nwg-displays"}"
-        "$mod SHIFT, P, exec, pwvucontrol"
-        "$mod SHIFT, N, exec, sh -c 'env XDG_CURRENT_DESKTOP=GNOME gnome-control-center wifi'"
-        "$mod, Escape, exec, noctalia msg panel-toggle session"
+        (bind (combo [mod] "A") (exec "noctalia msg panel-toggle launcher"))
+        (bind (combo [mod] "slash") (exec "${toggle "kebihelp"} show -a"))
+        (bind (combo [mod "SHIFT"] "C") (exec "${runOnce "hyprpicker"} -arf hex"))
+        (bind (combo [mod "SHIFT"] "B") (exec (runOnce "overskride")))
+        (bind (combo [mod] "D") (exec (runOnce "nwg-displays")))
+        (bind (combo [mod "SHIFT"] "P") (exec "pwvucontrol"))
+        (bind (combo [mod "SHIFT"] "N") (exec "sh -c 'env XDG_CURRENT_DESKTOP=GNOME gnome-control-center wifi'"))
+        (bind (combo [mod] "Escape") (exec "noctalia msg panel-toggle session"))
 
         # Shell
-        "$mod SHIFT, A, exec, noctalia msg settings-toggle"
-        "$mod, Tab, exec, noctalia msg window-switcher"
-        "$mod, N, exec, noctalia msg panel-toggle notifications"
-        "$mod, V, exec, noctalia msg panel-toggle clipboard"
+        (bind (combo [mod "SHIFT"] "A") (exec "noctalia msg settings-toggle"))
+        (bind (combo [mod] "Tab") (exec "noctalia msg window-switcher"))
+        (bind (combo [mod] "N") (exec "noctalia msg panel-toggle notifications"))
+        (bind (combo [mod] "V") (exec "noctalia msg panel-toggle clipboard"))
 
         # Tools
-        "$mod, G, exec, pypr gamemode"
-        "$mod SHIFT, D, exec, hyprutils toggle monitor ${display}"
-        "$mod, S, exec, hyprutils toggle shader"
-        "$mod SHIFT, T, exec, pypr toggle term"
-        "$mod, backslash, exec, pypr toggle emoji"
+        (bind (combo [mod] "G") (exec "pypr gamemode"))
+        (bind (combo [mod "SHIFT"] "D") (exec "hyprutils toggle monitor ${display}"))
+        (bind (combo [mod] "S") (exec "hyprutils toggle shader"))
+        (bind (combo [mod "SHIFT"] "T") (exec "pypr toggle term"))
+        (bind (combo [mod] "backslash") (exec "pypr toggle emoji"))
       ];
 
       ## Permissions
       permission = [
-        "${osConfig.programs.hyprland.portalPackage}/libexec/.xdg-desktop-portal-hyprland-wrapped, screencopy, allow"
-        "${getExe pkgs.grim}, screencopy, allow"
-        "${getExe pkgs.wl-screenrec}, screencopy, allow"
+        (permission "${osConfig.programs.hyprland.portalPackage}/libexec/.xdg-desktop-portal-hyprland-wrapped" "screencopy" "allow")
+        (permission (getExe pkgs.grim) "screencopy" "allow")
+        (permission (getExe pkgs.wl-screenrec) "screencopy" "allow")
       ];
 
       ## Layer Rules
-      layerrule = [
-        "no_anim on, match:namespace ^(hyprpicker)$"
-        "blur on, ignore_alpha 0.6, match:namespace ^(noctalia-.*)$"
+      layer_rule = [
+        {
+          match.namespace = "^(hyprpicker)$";
+          no_anim = true;
+        }
+        {
+          match.namespace = "^(noctalia-.*)$";
+          blur = true;
+          ignore_alpha = 0.6;
+        }
+        {
+          match.namespace = "^(noctalia-wallpaper)$";
+          order = 1;
+        }
+        {
+          match.namespace = "^(desktop)$";
+          order = 0;
+        }
       ];
 
       ## Window Rules
-      windowrule = flatten (
+      window_rule =
         [
           # Settings
-          "stay_focused on, match:class ^(gnome-control-center)$"
+          {
+            match.class = "^(gnome-control-center)$";
+            stay_focused = true;
+          }
 
           # Keybinds Viewer
-          "pin on, stay_focused on, opacity 0.9 override, match:title ^(Kebihelp)$"
+          {
+            match.title = "^(Kebihelp)$";
+            pin = true;
+            stay_focused = true;
+            opacity = "0.9 override";
+          }
 
           # Browser Windows
-          "float on, match:title ^(Picture-in-[P|p]icture)$"
-          "workspace special silent, match:title ^(Sharing Indicator)$"
-          "workspace special silent, match:title ^(.*is sharing (your screen|a window).)$"
+          {
+            match.title = "^(Picture-in-[P|p]icture)$";
+            float = true;
+          }
+          {
+            match.title = "^(Sharing Indicator)$";
+            workspace = "special silent";
+          }
+          {
+            match.title = "^(.*is sharing (your screen|a window).)$";
+            workspace = "special silent";
+          }
 
           # Media Consumption
-          "idle_inhibit focus, match:class ^(mpv|.*celluloid.*|.+exe)$"
-          "idle_inhibit focus, match:class ^(firefox|brave-browser)$, match:title ^(.*YouTube.*)$"
-          "idle_inhibit fullscreen, match:class ^(firefox|brave-browser)$"
+          {
+            match.class = "^(mpv|.*celluloid.*|.+exe)$";
+            idle_inhibit = "focus";
+          }
+          {
+            match = {
+              class = "^(firefox|brave-browser)$";
+              title = "^(.*YouTube.*)$";
+            };
+            idle_inhibit = "focus";
+          }
+          {
+            match.class = "^(firefox|brave-browser)$";
+            idle_inhibit = "fullscreen";
+          }
 
           # Screen Tearing
-          "immediate on, match:class ^(.+exe)$"
+          {
+            match.class = "^(.+exe)$";
+            immediate = true;
+          }
 
           # Prompt Windows
-          "float on, dim_around on, match:class ^(xdg-desktop-portal-gtk)$"
+          {
+            match.class = "^(xdg-desktop-portal-gtk)$";
+            float = true;
+            dim_around = true;
+          }
         ]
-        ++ (map (class: ["pin on, dim_around on, stay_focused on, match:class ^(${class})$"]) [
-          # Authentication
-          "pinentry-"
-          "gcr-prompter"
-        ])
-        ++ (map (class: ["float on, pin on, persistent_size on, match:class ^(${class})$"]) [
-          # Utilities
-          "com.saivert.pwvucontrol"
-          "io.github.kaii_lb.Overskride"
-          "nwg-displays"
-          "gnome-control-center"
-          "org.gnome.Settings"
-        ])
-        ++ (map (title: ["float on, match:title ^(${title})(.*)$"]) [
-          # Dialogs
-          "Library"
-          "Open File"
-          "Open Folder"
-          "Save As"
-          "Save File"
-          "Select a File"
-          ".*Properties"
-        ])
-      );
+        ++ (map (class: {
+            # Authentication
+            match.class = "^(${class})$";
+            pin = true;
+            dim_around = true;
+            stay_focused = true;
+          }) [
+            "pinentry-"
+            "gcr-prompter"
+          ])
+        ++ (map (class: {
+            # Utilities
+            match.class = "^(${class})$";
+            float = true;
+            pin = true;
+            persistent_size = true;
+          }) [
+            "com.saivert.pwvucontrol"
+            "io.github.kaii_lb.Overskride"
+            "nwg-displays"
+            "gnome-control-center"
+            "org.gnome.Settings"
+          ])
+        ++ (map (title: {
+            # Dialogs
+            match.title = "^(${title})(.*)$";
+            float = true;
+          }) [
+            "Library"
+            "Open File"
+            "Open Folder"
+            "Save As"
+            "Save File"
+            "Select a File"
+            ".*Properties"
+          ]);
     };
   }
 )

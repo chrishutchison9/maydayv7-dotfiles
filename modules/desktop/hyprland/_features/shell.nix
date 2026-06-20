@@ -100,7 +100,7 @@
             type = "custom_button";
             glyph = "arrow-bar-to-down";
             tooltip = "Minimize window";
-            command = "hyprctl dispatch movetoworkspacesilent special:minimized";
+            command = ''hyprctl dispatch 'hl.dsp.window.move({ workspace = "special:minimized", follow = false })' '';
             right_command = "hyprutils toggle minimized";
           };
         };
@@ -148,8 +148,9 @@
 
         # Wallpaper
         wallpaper = {
-          enabled = false;
-          default.path = "${osConfig.stylix.image}";
+          enabled = true;
+          fill_mode = "crop";
+          default.path = osConfig.stylix.image;
         };
 
         # Desktop Widgets
@@ -304,7 +305,7 @@
             {
               name = "local";
               kind = "path";
-              location = "${files.hyprland.noctalia}";
+              location = files.hyprland.noctalia;
             }
           ];
           enabled = [

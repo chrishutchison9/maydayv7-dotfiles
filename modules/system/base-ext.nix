@@ -1,9 +1,7 @@
 ## Extended Base Configuration ##
-{inputs, ...}: {
+_: {
   flake.modules = {
     nixos.base-ext = _: {
-      imports = [inputs.gaming.nixosModules.pipewireLowLatency];
-
       config = {
         # AppImage Support
         programs.appimage = {
@@ -15,13 +13,6 @@
         documentation = {
           dev.enable = true;
           man.enable = true;
-        };
-
-        # Low Latency Audio
-        services.pipewire.lowLatency = {
-          enable = true;
-          quantum = 64;
-          rate = 48000;
         };
       };
     };

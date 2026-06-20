@@ -1,205 +1,235 @@
 ## Compositor Binds
-_: _: let
+_: {lib, ...}: let
   inherit (builtins) concatLists genList toString;
+  inherit (lib) concatStringsSep;
+
+  lua = import ./_lib.nix lib;
+  inherit (lua) combo bind bindOpts exec;
+
+  mod = "SUPER";
+
+  # Bind flags
+  mouse = {mouse = true;};
+  locked = {locked = true;};
+  repeat = {repeating = true;};
+  lockedRepeat = {
+    locked = true;
+    repeating = true;
+  };
+
+  # Directions
+  dir = d:
+    {
+      l = "left";
+      r = "right";
+      u = "up";
+      d = "down";
+    }.${
+      d
+    };
+
+  # Dispatchers
+  focusDir = d: ''hl.dsp.focus({ direction = "${dir d}" })'';
+  swapDir = d: ''hl.dsp.window.swap({ direction = "${dir d}" })'';
+  intoGroup = d: ''hl.dsp.window.move({ into_group = "${dir d}" })'';
+  moveOrGroup = d: ''hl.dsp.window.move({ direction = "${dir d}", group_aware = true })'';
+  moveActive = x: y: ''hl.dsp.window.move({ x = ${toString x}, y = ${toString y}, relative = true })'';
+  resizeActive = x: y: ''hl.dsp.window.resize({ x = ${toString x}, y = ${toString y}, relative = true })'';
+
+  multi = disps: "function() " + concatStringsSep " " (map (d: "hl.dispatch(${d});") disps) + " end";
 in {
   wayland.windowManager.hyprland = {
     ## Keybindings
-    settings = {
-      "$mod" = "SUPER";
-      bind =
-        [
-          # Compositor Commands
-          "ALT, F4, killactive,"
-          "$mod, Q, killactive,"
-          "$mod SHIFT, Q, forcekillactive,"
-          "$mod SHIFT, E, fullscreen,"
-          "$mod, C, centerwindow"
-          "$mod, C, movecursortocorner, 2"
-          "$mod, E, fullscreen, 1"
-          "$mod, P, pin"
-          "$mod, Space, layoutmsg, togglesplit"
-          "$mod SHIFT, S, toggleswallow"
+    settings.bind =
+      [
+        # Compositor Commands
+        (bind (combo ["ALT"] "F4") "hl.dsp.window.close()")
+        (bind (combo [mod] "Q") "hl.dsp.window.close()")
+        (bind (combo [mod "SHIFT"] "Q") "hl.dsp.window.kill()")
+        (bind (combo [mod "SHIFT"] "E") "hl.dsp.window.fullscreen()")
+        (bind (combo [mod] "C") (multi [
+          "hl.dsp.window.center()"
+          "hl.dsp.cursor.move_to_corner({ corner = 2 })"
+        ]))
+        (bind (combo [mod] "E") ''hl.dsp.window.fullscreen({ mode = "maximized" })'')
+        (bind (combo [mod] "P") "hl.dsp.window.pin()")
+        (bind (combo [mod] "Space") ''hl.dsp.layout("togglesplit")'')
+        (bind (combo [mod "SHIFT"] "S") "hl.dsp.window.toggle_swallow()")
 
-          # Window Focus
-          "$mod, left, movefocus, l"
-          "$mod, right, movefocus, r"
-          "$mod, up, movefocus, u"
-          "$mod, down, movefocus, d"
-          "ALT, A, focusurgentorlast"
-          "ALT, A, alterzorder, top"
+        # Window Focus
+        (bind (combo [mod] "left") (focusDir "l"))
+        (bind (combo [mod] "right") (focusDir "r"))
+        (bind (combo [mod] "up") (focusDir "u"))
+        (bind (combo [mod] "down") (focusDir "d"))
+        (bind (combo ["ALT"] "A") (multi [
+          "hl.dsp.focus({ urgent_or_last = true })"
+          ''hl.dsp.window.alter_zorder({ mode = "top" })''
+        ]))
 
-          # Window Swap
-          "$mod SHIFT, left, swapwindow, l"
-          "$mod SHIFT, right, swapwindow, r"
-          "$mod SHIFT, up, swapwindow, u"
-          "$mod SHIFT, down, swapwindow, d"
+        # Window Swap
+        (bind (combo [mod "SHIFT"] "left") (swapDir "l"))
+        (bind (combo [mod "SHIFT"] "right") (swapDir "r"))
+        (bind (combo [mod "SHIFT"] "up") (swapDir "u"))
+        (bind (combo [mod "SHIFT"] "down") (swapDir "d"))
 
-          # Window Groups
-          "$mod SHIFT, space, togglegroup"
-          "ALT, grave, changegroupactive, f"
-          "ALT SHIFT, grave, changegroupactive, b"
-          "$mod CTRL, left, moveintogroup, l"
-          "$mod CTRL, right, moveintogroup, r"
-          "$mod CTRL, up, moveintogroup, u"
-          "$mod CTRL, down, moveintogroup, d"
+        # Window Groups
+        (bind (combo [mod "SHIFT"] "space") "hl.dsp.group.toggle()")
+        (bind (combo ["ALT"] "grave") "hl.dsp.group.next()")
+        (bind (combo ["ALT" "SHIFT"] "grave") "hl.dsp.group.prev()")
+        (bind (combo [mod "CTRL"] "left") (intoGroup "l"))
+        (bind (combo [mod "CTRL"] "right") (intoGroup "r"))
+        (bind (combo [mod "CTRL"] "up") (intoGroup "u"))
+        (bind (combo [mod "CTRL"] "down") (intoGroup "d"))
 
-          # Floating Mode
-          "$mod, semicolon, togglefloating,"
-          "$mod, apostrophe, exec, hyprutils toggle float"
+        # Floating Mode
+        (bind (combo [mod] "semicolon") ''hl.dsp.window.float({ action = "toggle" })'')
+        (bind (combo [mod] "apostrophe") (exec "hyprutils toggle float"))
 
-          # Cycle Workspaces
-          "$mod, comma, split-cycleworkspaces, prev"
-          "$mod, period, split-cycleworkspaces, next"
-          "$mod CTRL, comma, split-cycleworkspaces, prev"
-          "$mod CTRL, period, split-cycleworkspaces, next"
-          "$mod, mouse_up, split-cycleworkspaces, prev"
-          "$mod, mouse_down, split-cycleworkspaces, next"
+        # Cycle Workspaces
+        (bind (combo [mod] "comma") ''hs.dsp.focus({ workspace = "m-1" })'')
+        (bind (combo [mod] "period") ''hs.dsp.focus({ workspace = "m+1" })'')
+        (bind (combo [mod "CTRL"] "comma") ''hs.dsp.focus({ workspace = "r-1" })'')
+        (bind (combo [mod "CTRL"] "period") ''hs.dsp.focus({ workspace = "r+1" })'')
+        (bind (combo [mod] "mouse_up") ''hs.dsp.focus({ workspace = "r-1" })'')
+        (bind (combo [mod] "mouse_down") ''hs.dsp.focus({ workspace = "r+1" })'')
 
-          # Special Workspace
-          "$mod, 0, togglespecialworkspace, Stash"
-          "$mod SHIFT, 0, exec, pypr toggle_special Stash"
+        # Special Workspace
+        (bind (combo [mod] "0") ''hl.dsp.workspace.toggle_special("Stash")'')
+        (bind (combo [mod "SHIFT"] "0") (exec "pypr toggle_special Stash"))
 
-          # Move Window to Workspace
-          "$mod SHIFT, comma, split-movetoworkspace, -1"
-          "$mod SHIFT, period, split-movetoworkspace, +1"
+        # Move Window to Workspace
+        (bind (combo [mod "SHIFT"] "comma") ''hs.dsp.window.move({ workspace = "-1", follow = false })'')
+        (bind (combo [mod "SHIFT"] "period") ''hs.dsp.window.move({ workspace = "+1", follow = false })'')
 
-          # Cycle Monitors
-          "$mod ALT, comma, focusmonitor, l"
-          "$mod ALT, period, focusmonitor, r"
+        # Cycle Monitors
+        (bind (combo [mod "ALT"] "comma") ''hl.dsp.focus({ monitor = "l" })'')
+        (bind (combo [mod "ALT"] "period") ''hl.dsp.focus({ monitor = "r" })'')
 
-          # Move Window to Monitor
-          "$mod SHIFT ALT, comma, movewindow, mon:-1"
-          "$mod SHIFT ALT, period, movewindow, mon:+1"
+        # Move Window to Monitor
+        (bind (combo [mod "SHIFT" "ALT"] "comma") ''hl.dsp.window.move({ monitor = "-1" })'')
+        (bind (combo [mod "SHIFT" "ALT"] "period") ''hl.dsp.window.move({ monitor = "+1" })'')
 
-          # Screen Lock
-          "$mod, L, exec, noctalia msg session lock"
+        # Screen Lock
+        (bind (combo [mod] "L") (exec "noctalia msg session lock"))
 
-          # Window Minimization
-          "ALT, Q, movetoworkspacesilent, special:minimized"
-          "ALT SHIFT, Q, exec, hyprutils toggle minimized"
+        # Window Minimization
+        (bind (combo ["ALT"] "Q") ''hl.dsp.window.move({ workspace = "special:minimized", follow = false })'')
+        (bind (combo ["ALT" "SHIFT"] "Q") (exec "hyprutils toggle minimized"))
 
-          # Screenshot
-          ", Print, exec, noctalia msg screenshot-region"
-          "SHIFT, Print, exec, noctalia msg screenshot-fullscreen pick"
-          "CTRL, Print, exec, grimblast --notify --cursor copysave active"
+        # Screenshot
+        (bind (combo [] "Print") (exec "noctalia msg screenshot-region"))
+        (bind (combo ["SHIFT"] "Print") (exec "noctalia msg screenshot-fullscreen pick"))
+        (bind (combo ["CTRL"] "Print") (exec "grimblast --notify --cursor copysave active"))
 
-          # Submaps
-          "$mod SHIFT, Escape, submap, Inhibit"
-          "$mod, R, submap, Resize"
-          "$mod, M, submap, Move"
-        ]
-        ++
-        # Workspaces
-        (concatLists (
-          genList (
-            n: let
-              num = toString (n + 1);
-            in [
-              "$mod, ${num}, split-workspace, ${num}"
-              "$mod SHIFT, ${num}, split-movetoworkspace, ${num}"
-            ]
-          )
-          9
-        ));
+        # Submaps
+        (bind (combo [mod "SHIFT"] "Escape") ''hl.dsp.submap("Inhibit")'')
+        (bind (combo [mod] "R") ''hl.dsp.submap("Resize")'')
+        (bind (combo [mod] "M") ''hl.dsp.submap("Move")'')
+      ]
+      ++
+      # Workspaces
+      (concatLists (
+        genList (
+          n: let
+            i = toString (n + 1);
+          in [
+            (bind (combo [mod] i) "hs.dsp.focus({ workspace = ${i} })")
+            (bind (combo [mod "SHIFT"] i) "hs.dsp.window.move({ workspace = ${i}, follow = false })")
+          ]
+        )
+        9
+      ))
+      ++ [
+        # Mouse
+        (bindOpts (combo [mod] "mouse:272") "hl.dsp.window.drag()" mouse)
+        (bindOpts (combo [mod] "mouse:273") "hl.dsp.window.resize()" mouse)
 
-      # Mouse
-      bindm = [
-        "$mod, mouse:272, movewindow"
-        "$mod, mouse:273, resizewindow"
-      ];
-
-      # Ignore Locked State
-      bindl = [
         # Media Controls
-        ", XF86AudioPlay, exec, noctalia msg media toggle"
-        ", XF86AudioPrev, exec, noctalia msg media previous"
-        ", XF86AudioNext, exec, noctalia msg media next"
+        (bindOpts (combo [] "XF86AudioPlay") (exec "noctalia msg media toggle") locked)
+        (bindOpts (combo [] "XF86AudioPrev") (exec "noctalia msg media previous") locked)
+        (bindOpts (combo [] "XF86AudioNext") (exec "noctalia msg media next") locked)
 
         # Volume
-        ", XF86AudioMute, exec, noctalia msg volume-mute"
+        (bindOpts (combo [] "XF86AudioMute") (exec "noctalia msg volume-mute") locked)
 
         # Keyboard Backlight
-        ", XF86KbdBrightnessUp, exec, hyprutils backlight up"
-        ", XF86KbdBrightnessDown, exec, hyprutils backlight down"
+        (bindOpts (combo [] "XF86KbdBrightnessUp") (exec "hyprutils backlight up") locked)
+        (bindOpts (combo [] "XF86KbdBrightnessDown") (exec "hyprutils backlight down") locked)
 
         # Touchpad
-        ", XF86TouchpadToggle, exec, hyprutils toggle touchpad"
+        (bindOpts (combo [] "XF86TouchpadToggle") (exec "hyprutils toggle touchpad") locked)
 
         # Laptop Lid
-        ", switch:on:Lid Switch, exec, noctalia msg session lock"
-      ];
+        (bindOpts (combo [] "switch:on:Lid Switch") (exec "noctalia msg session lock") locked)
 
-      # Repeat on Hold
-      bindle = [
         # Volume
-        ", XF86AudioRaiseVolume, exec, noctalia msg volume-up"
-        ", XF86AudioLowerVolume, exec, noctalia msg volume-down"
+        (bindOpts (combo [] "XF86AudioRaiseVolume") (exec "noctalia msg volume-up") lockedRepeat)
+        (bindOpts (combo [] "XF86AudioLowerVolume") (exec "noctalia msg volume-down") lockedRepeat)
 
         # Backlight
-        ", XF86MonBrightnessUp, exec, noctalia msg brightness-up"
-        ", XF86MonBrightnessDown, exec, noctalia msg brightness-down"
+        (bindOpts (combo [] "XF86MonBrightnessUp") (exec "noctalia msg brightness-up") lockedRepeat)
+        (bindOpts (combo [] "XF86MonBrightnessDown") (exec "noctalia msg brightness-down") lockedRepeat)
 
         # Magnifier
-        "$mod, equal, exec, pypr zoom ++0.5"
-        "$mod, minus, exec, pypr zoom --0.5"
-        "$mod SHIFT, minus, exec, pypr zoom"
+        (bindOpts (combo [mod] "equal") (exec "pypr zoom ++0.5") lockedRepeat)
+        (bindOpts (combo [mod] "minus") (exec "pypr zoom --0.5") lockedRepeat)
+        (bindOpts (combo [mod "SHIFT"] "minus") (exec "pypr zoom") lockedRepeat)
       ];
-    };
 
     ## Submaps
     submaps = {
       # Inhibit Keybinds
-      Inhibit.settings.bind = ["$mod SHIFT, Escape, submap, reset"];
+      Inhibit.settings.bind = [(bind (combo [mod "SHIFT"] "Escape") ''hl.dsp.submap("reset")'')];
 
       # Window Resize
-      Resize.settings = {
-        binde = [
-          ", right, resizeactive, 10 0"
-          ", left, resizeactive, -10 0"
-          ", up, resizeactive, 0 -10"
-          ", down, resizeactive, 0 10"
-        ];
-        bindm = [", mouse:272, resizewindow"];
-        bind = [
-          ", escape, submap, reset"
-          "$mod, R, submap, reset"
-        ];
-      };
+      Resize.settings.bind = [
+        (bindOpts (combo [] "right") (resizeActive 10 0) repeat)
+        (bindOpts (combo [] "left") (resizeActive (-10) 0) repeat)
+        (bindOpts (combo [] "up") (resizeActive 0 (-10)) repeat)
+        (bindOpts (combo [] "down") (resizeActive 0 10) repeat)
+        (bindOpts (combo [] "mouse:272") "hl.dsp.window.resize()" mouse)
+        (bind (combo [] "escape") ''hl.dsp.submap("reset")'')
+        (bind (combo [mod] "R") ''hl.dsp.submap("reset")'')
+      ];
 
       # Window Movement
-      Move.settings = {
-        bind = [
-          ", C, centerwindow"
-          ", P, pin"
-          ", left, movewindoworgroup, l"
-          ", right, movewindoworgroup, r"
-          ", up, movewindoworgroup, u"
-          ", down, movewindoworgroup, d"
-          "SHIFT, left, moveactive, -30 0"
-          "SHIFT, right, moveactive, 30 0"
-          "SHIFT, up, moveactive, 0 -30"
-          "SHIFT, down, moveactive, 0 30"
-          ", comma, split-movetoworkspace, -1"
-          ", period, split-movetoworkspace, +1"
-          ", escape, submap, reset"
-          "$mod, M, submap, reset"
-        ];
-        bindm = [", mouse:272, movewindow"];
-      };
+      Move.settings.bind = [
+        (bind (combo [] "C") "hl.dsp.window.center()")
+        (bind (combo [] "P") "hl.dsp.window.pin()")
+        (bind (combo [] "left") (moveOrGroup "l"))
+        (bind (combo [] "right") (moveOrGroup "r"))
+        (bind (combo [] "up") (moveOrGroup "u"))
+        (bind (combo [] "down") (moveOrGroup "d"))
+        (bind (combo ["SHIFT"] "left") (moveActive (-30) 0))
+        (bind (combo ["SHIFT"] "right") (moveActive 30 0))
+        (bind (combo ["SHIFT"] "up") (moveActive 0 (-30)))
+        (bind (combo ["SHIFT"] "down") (moveActive 0 30))
+        (bind (combo [] "comma") ''hs.dsp.window.move({ workspace = "-1", follow = false })'')
+        (bind (combo [] "period") ''hs.dsp.window.move({ workspace = "+1", follow = false })'')
+        (bindOpts (combo [] "mouse:272") "hl.dsp.window.drag()" mouse)
+        (bind (combo [] "escape") ''hl.dsp.submap("reset")'')
+        (bind (combo [mod] "M") ''hl.dsp.submap("reset")'')
+      ];
 
       # Window Minimization
       Minimized.settings.bind = [
-        ", left, movefocus, l"
-        ", right, movefocus, r"
-        ", up, movefocus, u"
-        ", down, movefocus, d"
-        ", Q, killactive,"
-        ", Return, movetoworkspace, +0"
-        ", Return, submap, reset"
-        ", mouse:272, movetoworkspace, +0"
-        ", mouse:272, submap, reset"
-        ", escape, togglespecialworkspace, minimized"
-        ", escape, submap, reset"
+        (bind (combo [] "left") (focusDir "l"))
+        (bind (combo [] "right") (focusDir "r"))
+        (bind (combo [] "up") (focusDir "u"))
+        (bind (combo [] "down") (focusDir "d"))
+        (bind (combo [] "Q") "hl.dsp.window.close()")
+        (bind (combo [] "Return") (multi [
+          ''hl.dsp.window.move({ workspace = "+0" })''
+          ''hl.dsp.submap("reset")''
+        ]))
+        (bind (combo [] "mouse:272") (multi [
+          ''hl.dsp.window.move({ workspace = "+0" })''
+          ''hl.dsp.submap("reset")''
+        ]))
+        (bind (combo [] "escape") (multi [
+          ''hl.dsp.workspace.toggle_special("minimized")''
+          ''hl.dsp.submap("reset")''
+        ]))
       ];
     };
   };

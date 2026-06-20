@@ -34,7 +34,12 @@
             ];
 
             # Binary Cache
-            inherit ((import ../../flake.nix).nixConfig) trusted-substituters trusted-public-keys;
+            inherit
+              ((import ../../flake.nix).nixConfig)
+              substituters
+              trusted-substituters
+              trusted-public-keys
+              ;
           };
 
           # Garbage Collection
