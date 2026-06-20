@@ -1,5 +1,9 @@
 # Utilities
-{util ? null, ...}: {
+{
+  util ? null,
+  files ? null,
+  ...
+}: {
   nixos = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       # Apps
@@ -11,9 +15,14 @@
       remmina
       resources
       smile
+      custom.kebihelp
+      nwg-displays
 
       # Utilities
+      custom.hyprutils
+      unstable.pyprland
       hyprpicker
+      hyprshade
       pwvucontrol
       wev
       wl-clipboard
@@ -62,13 +71,32 @@
       persist.directories = [
         ".config/kdeconnect"
         ".config/gpu-screen-recorder"
+        ".config/nwg-displays"
         ".local/share/gpu-screen-recorder"
       ];
 
-      file.".config/kwalletrc".text = ''
-        [Wallet]
-        Enabled=false
-      '';
+      file = with files.hyprland; {
+        ".config/kwalletrc".text = ''
+          [Wallet]
+          Enabled=false
+        '';
+
+        # Pyprland
+        ".config/pypr/config.toml".text = pypr;
+
+        # Keybinds Viewer
+        ".config/kebihelp.json".text = util.build.theme {
+          inherit (config.stylix) fonts;
+          inherit (config.lib.stylix) colors;
+          file = kebihelp;
+        };
+
+        # Shaders
+        ".config/hypr/shaders" = {
+          source = shaders;
+          recursive = true;
+        };
+      };
     };
 
     # Phone Connect

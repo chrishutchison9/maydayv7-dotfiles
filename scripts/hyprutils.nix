@@ -73,6 +73,7 @@ in
               WORKSPACE=$(hyprctl activeworkspace | grep "workspace ID" | awk '{print $3}')
               hyprnotify 1 "Toggled window floating on Workspace $WORKSPACE"
               hyprctl eval 'local ws = hl.get_active_workspace(); if ws then for _, w in ipairs(hl.get_workspace_windows(ws)) do hl.dispatch(hl.dsp.window.float({ action = "toggle", window = w })) end end'
+              hyprctl dispatch 'hl.dsp.event("floatcheck")'
             ;;
             "minimized")
               if hyprctl workspaces | grep "special:minimized"

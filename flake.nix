@@ -211,6 +211,11 @@
       };
     };
 
+    hyprspace = {
+      url = "github:0xl30/Hyprspace/74213c87be6064ce14f9b1560121c270462f33af";
+      flake = false;
+    };
+
     # Desktop Shell
     noctalia = {
       url = "github:noctalia-dev/noctalia";

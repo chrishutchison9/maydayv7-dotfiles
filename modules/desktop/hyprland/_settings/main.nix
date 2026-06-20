@@ -41,6 +41,12 @@ lib.mkIf (osConfig != null) (
           {
             fingers = 3;
             direction = "horizontal";
+            action = "scroll_move";
+            scale = 3;
+          }
+          {
+            fingers = 4;
+            direction = "horizontal";
             action = "workspace";
           }
         ];
@@ -196,7 +202,6 @@ lib.mkIf (osConfig != null) (
                 tap_and_drag = true;
                 natural_scroll = true;
                 disable_while_typing = false;
-                drag_3fg = 1; # 3-finger window drag
               };
             };
 
@@ -223,6 +228,13 @@ lib.mkIf (osConfig != null) (
             };
 
             # Tiling Layout
+            general.layout = "scrolling";
+            scrolling = {
+              column_width = 0.5;
+              explicit_column_widths = "0.333, 0.5, 0.667, 1.0";
+              follow_focus = true;
+              fullscreen_on_one_column = true;
+            };
             dwindle = {
               preserve_split = true;
               smart_split = true;

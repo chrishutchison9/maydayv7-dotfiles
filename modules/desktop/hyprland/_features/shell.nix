@@ -55,10 +55,10 @@
         # Bar
         bar.main = {
           position = "top";
-          start = ["session" "workspaces" "minimize" "media" "maydayv7/hyprland-submap:indicator"];
-          center = ["control-center" "clock" "launcher"];
+          start = ["session" "workspaces" "group:g1"];
+          center = ["media" "clock" "control-center"];
           end = [
-            "tray"
+            "group:g2"
             "clipboard"
             "bluetooth"
             "network"
@@ -75,6 +75,21 @@
           scale = 1.1;
           thickness = 30;
           widget_spacing = 14;
+          capsule_group = [
+            {
+              id = "g1";
+              members = [
+                "launcher"
+                "minimize"
+                "maydayv7/hyprland-layout:indicator"
+                "maydayv7/hyprland-submap:indicator"
+              ];
+            }
+            {
+              id = "g2";
+              members = ["tray"];
+            }
+          ];
         };
 
         # Audio
@@ -312,11 +327,21 @@
             "noctalia/screen_recorder"
             "noctalia/timer"
             "maydayv7/hyprland-submap"
+            "maydayv7/hyprland-layout"
           ];
         };
-        plugin_settings = {
+        plugin_settings = let
+          hyprctl = "${osConfig.programs.hyprland.package}/bin/hyprctl";
+          jq = lib.getExe pkgs.jq;
+          socket2 = "${lib.getExe pkgs.socat} -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock -";
+        in {
           "noctalia/screen_recorder".copy_to_clipboard = true;
-          "maydayv7/hyprland-submap".command = "${lib.getExe pkgs.socat} -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock -";
+          "maydayv7/hyprland-submap".command = socket2;
+          "maydayv7/hyprland-layout" = {
+            command = socket2;
+            layout_command = "${hyprctl} getoption -j general:layout";
+            float_command = "${hyprctl} -j clients | ${jq} --argjson ws \"$(${hyprctl} -j activeworkspace | ${jq} .id)\" '[.[] | select(.workspace.id == $ws and .mapped)] as $w | (($w | length) > 0) and ($w | map(.floating) | all)'";
+          };
         };
       };
 

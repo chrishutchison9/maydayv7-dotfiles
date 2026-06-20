@@ -70,7 +70,6 @@ in {
             github.vscode-pull-request-github # GitHub
             github.copilot # Copilot AI
             dart-code.flutter # Flutter
-            divyanshuagrawal.competitive-programming-helper # CP
             jnoortheen.nix-ide # Nix
             ms-python.python # Python
             ms-vscode.cpptools # C/C++
@@ -89,6 +88,7 @@ in {
             ritwickdey.liveserver
           ]
           ++ (with pkgs.vscode-marketplace; [
+            langningchen.cph-ng # CP
             kisstkondoros.vscode-gutter-preview # Image Preview
           ])
           ++ lib.optionals isGnome [pkgs.vscode-extensions.piousdeer.adwaita-theme]

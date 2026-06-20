@@ -1,0 +1,29 @@
+{
+  "title": "Hyprland Layout",
+  "scrolling": "Layout: Scrolling",
+  "dwindle": "Layout: Dwindle",
+  "float": "All windows floating",
+  "settings": {
+    "command": {
+      "label": "Stream command",
+      "description": "Shell command emitting Hyprland socket2 event lines."
+    },
+    "layout_command": {
+      "label": "Layout query command",
+      "description": "Command whose output reveals the active tiling layout."
+    },
+    "float_command": {
+      "label": "All-float query command",
+      "description": "Command printing `true` when every window on the active workspace is floating."
+    },
+    "scroll_glyph": {
+      "label": "Scrolling glyph"
+    },
+    "dwindle_glyph": {
+      "label": "Dwindle glyph"
+    },
+    "float_glyph": {
+      "label": "Floating glyph"
+    }
+  }
+}

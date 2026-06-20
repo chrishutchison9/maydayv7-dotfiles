@@ -1,0 +1,53 @@
+# Hyprland Layout Indicator
+id = "maydayv7/hyprland-layout"
+name = "Hyprland Layout"
+version = "1.0.0"
+min_noctalia = "5.0.0"
+author = "maydayv7"
+license = "GPL-3.0-only"
+tags = ["hyprland", "layout"]
+icon = "layout-columns"
+description = "Shows the active Hyprland tiling layout (or all-floating) as a dynamic bar icon."
+
+[[setting]]
+key = "command"
+type = "string"
+label_key = "settings.command.label"
+description_key = "settings.command.description"
+default = "socat -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock -"
+
+[[setting]]
+key = "layout_command"
+type = "string"
+label_key = "settings.layout_command.label"
+description_key = "settings.layout_command.description"
+default = "hyprctl getoption -j general:layout"
+
+[[setting]]
+key = "float_command"
+type = "string"
+label_key = "settings.float_command.label"
+description_key = "settings.float_command.description"
+default = ""
+
+[[widget]]
+id = "indicator"
+entry = "layout.luau"
+
+  [[widget.setting]]
+  key = "scroll_glyph"
+  type = "glyph"
+  label_key = "settings.scroll_glyph.label"
+  default = "layout-columns"
+
+  [[widget.setting]]
+  key = "dwindle_glyph"
+  type = "glyph"
+  label_key = "settings.dwindle_glyph.label"
+  default = "binary-tree"
+
+  [[widget.setting]]
+  key = "float_glyph"
+  type = "glyph"
+  label_key = "settings.float_glyph.label"
+  default = "app-window"

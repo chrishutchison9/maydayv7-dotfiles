@@ -2,6 +2,7 @@
 
 ### June
 
+- Use Hyprland's Scrolling layout
 - Migrate Hyprland config to Lua
 - Use Noctalia Shell & Greeter (v5) with Hyprland
 - Per-user secrets

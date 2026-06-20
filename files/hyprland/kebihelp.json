@@ -113,12 +113,28 @@
             "label": "Switch focus to window in desired direction"
           },
           {
-            "value": "$mod SHIFT <ARROW>",
-            "label": "Swap windows in desired direction"
+            "value": "$mod SHIFT ← / →",
+            "label": "Scrolling: move window across | Dwindle: swap windows"
+          },
+          {
+            "value": "$mod SHIFT ↑ / ↓",
+            "label": "Scrolling: stack in/out of column | Dwindle: swap windows"
           },
           {
             "value": "$mod Space",
-            "label": "Change window split direction"
+            "label": "Scrolling: toggle window stacking | Dwindle: split direction"
+          },
+          {
+            "value": "$mod Backspace",
+            "label": "Toggle tiling layout"
+          },
+          {
+            "value": "$mod [ or ]",
+            "label": "Scrolling: shrink/grow column width"
+          },
+          {
+            "value": "$mod SHIFT [ or ]",
+            "label": "Scrolling: center column / fit all columns on screen"
           },
           {
             "value": "$mod SHIFT Space",
@@ -130,7 +146,7 @@
           },
           {
             "value": "$mod ; or :",
-            "label": "Toggle window float for one/all window(s)"
+            "label": "Toggle window float for one / all window(s)"
           },
           {
             "value": "$mod C",
@@ -147,7 +163,11 @@
         "keybindings": [
           {
             "value": "$mod Tab",
-            "label": "Window Switcher / Overview"
+            "label": "Window Switcher"
+          },
+          {
+            "value": "$mod `",
+            "label": "Toggle workspace overview"
           },
           {
             "value": "ALT [SHIFT] Tab",
@@ -171,7 +191,7 @@
             "label": "Move window to workspace 'NUM' {1 to 9}"
           },
           {
-            "value": "$mod , or . (3F Swipe Left/Right)",
+            "value": "$mod , or . (4F Swipe Left/Right)",
             "label": "Move across non-empty workspaces"
           },
           {
@@ -206,10 +226,6 @@
           {
             "value": "Print",
             "label": "Take Screenshot of area"
-          },
-          {
-            "value": "CTRL Print",
-            "label": "Take Screenshot of window"
           },
           {
             "value": "SHIFT Print",
@@ -338,12 +354,28 @@
             "label": ""
           },
           {
-            "value": "R' (in overview)",
-            "label": "Move windows across workspaces"
+            "value": "3F Swipe (horizontal)",
+            "label": "Scrolling: switch apps / columns"
+          },
+          {
+            "value": "4F Swipe (horizontal)",
+            "label": "Switch across workspaces"
+          },
+          {
+            "value": "4F Swipe (vertical)",
+            "label": "Toggle workspace overview"
+          },
+          {
+            "value": "",
+            "label": ""
           },
           {
             "value": "L' (in overview)",
-            "label": "Switch workspaces"
+            "label": "Change workspace"
+          },
+          {
+            "value": "L' drag (in overview)",
+            "label": "Move window across workspaces"
           }
         ]
       },

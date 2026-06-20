@@ -35,8 +35,12 @@ _: {lib, ...}: let
   moveOrGroup = d: ''hl.dsp.window.move({ direction = "${dir d}", group_aware = true })'';
   moveActive = x: y: ''hl.dsp.window.move({ x = ${toString x}, y = ${toString y}, relative = true })'';
   resizeActive = x: y: ''hl.dsp.window.resize({ x = ${toString x}, y = ${toString y}, relative = true })'';
-
   multi = disps: "function() " + concatStringsSep " " (map (d: "hl.dispatch(${d});") disps) + " end";
+
+  # Layout-specific binds
+  layout = msg: ''hl.dsp.layout("${msg}")'';
+  layoutAware = scroll: fallback: ''function() if hl.get_config("general.layout") == "scrolling" then hl.dispatch(${scroll}) else hl.dispatch(${fallback}) end end'';
+  toggleLayout = ''function() if hl.get_config("general.layout") == "scrolling" then hl.config({ general = { layout = "dwindle" } }); hl.dispatch(hl.dsp.event("layout:dwindle")) else hl.config({ general = { layout = "scrolling" } }); hl.dispatch(hl.dsp.event("layout:scrolling")) end end'';
 in {
   wayland.windowManager.hyprland = {
     ## Keybindings
@@ -53,7 +57,8 @@ in {
         ]))
         (bind (combo [mod] "E") ''hl.dsp.window.fullscreen({ mode = "maximized" })'')
         (bind (combo [mod] "P") "hl.dsp.window.pin()")
-        (bind (combo [mod] "Space") ''hl.dsp.layout("togglesplit")'')
+        (bind (combo [mod] "Space") (layoutAware (layout "consume_or_expel next") ''hl.dsp.layout("togglesplit")''))
+        (bind (combo [mod] "BackSpace") toggleLayout)
         (bind (combo [mod "SHIFT"] "S") "hl.dsp.window.toggle_swallow()")
 
         # Window Focus
@@ -61,16 +66,24 @@ in {
         (bind (combo [mod] "right") (focusDir "r"))
         (bind (combo [mod] "up") (focusDir "u"))
         (bind (combo [mod] "down") (focusDir "d"))
+        (bind (combo ["ALT"] "Tab") "hl.dsp.window.cycle_next({ next = true })")
+        (bind (combo ["ALT" "SHIFT"] "Tab") "hl.dsp.window.cycle_next({ next = false })")
         (bind (combo ["ALT"] "A") (multi [
           "hl.dsp.focus({ urgent_or_last = true })"
           ''hl.dsp.window.alter_zorder({ mode = "top" })''
         ]))
 
-        # Window Swap
-        (bind (combo [mod "SHIFT"] "left") (swapDir "l"))
-        (bind (combo [mod "SHIFT"] "right") (swapDir "r"))
-        (bind (combo [mod "SHIFT"] "up") (swapDir "u"))
-        (bind (combo [mod "SHIFT"] "down") (swapDir "d"))
+        # Window Movement
+        (bind (combo [mod "SHIFT"] "left") (layoutAware (layout "swapcol l") (swapDir "l")))
+        (bind (combo [mod "SHIFT"] "right") (layoutAware (layout "swapcol r") (swapDir "r")))
+        (bind (combo [mod "SHIFT"] "up") (layoutAware (layout "consume") (swapDir "u")))
+        (bind (combo [mod "SHIFT"] "down") (layoutAware (layout "expel") (swapDir "d")))
+
+        # Scrolling
+        (bind (combo [mod] "bracketright") (layout "colresize +conf"))
+        (bind (combo [mod] "bracketleft") (layout "colresize -conf"))
+        (bind (combo [mod "SHIFT"] "bracketright") (layout "fit all"))
+        (bind (combo [mod "SHIFT"] "bracketleft") (layout "center"))
 
         # Window Groups
         (bind (combo [mod "SHIFT"] "space") "hl.dsp.group.toggle()")
@@ -101,6 +114,9 @@ in {
         (bind (combo [mod "SHIFT"] "comma") ''hs.dsp.window.move({ workspace = "-1", follow = false })'')
         (bind (combo [mod "SHIFT"] "period") ''hs.dsp.window.move({ workspace = "+1", follow = false })'')
 
+        # Workspace Overview
+        (bind (combo [mod] "grave") ''function() if hl.plugin.Hyprspace then hl.plugin.Hyprspace.overview("toggle") end end'')
+
         # Cycle Monitors
         (bind (combo [mod "ALT"] "comma") ''hl.dsp.focus({ monitor = "l" })'')
         (bind (combo [mod "ALT"] "period") ''hl.dsp.focus({ monitor = "r" })'')
@@ -119,7 +135,6 @@ in {
         # Screenshot
         (bind (combo [] "Print") (exec "noctalia msg screenshot-region"))
         (bind (combo ["SHIFT"] "Print") (exec "noctalia msg screenshot-fullscreen pick"))
-        (bind (combo ["CTRL"] "Print") (exec "grimblast --notify --cursor copysave active"))
 
         # Submaps
         (bind (combo [mod "SHIFT"] "Escape") ''hl.dsp.submap("Inhibit")'')

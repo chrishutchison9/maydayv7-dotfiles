@@ -1235,6 +1235,23 @@
         "type": "github"
       }
     },
+    "hyprspace": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1781077726,
+        "narHash": "sha256-0OOtLXQ/WEJ5nlR98WFvGBCTp1X/DstsOb75jZunVI0=",
+        "owner": "0xl30",
+        "repo": "Hyprspace",
+        "rev": "74213c87be6064ce14f9b1560121c270462f33af",
+        "type": "github"
+      },
+      "original": {
+        "owner": "0xl30",
+        "repo": "Hyprspace",
+        "rev": "74213c87be6064ce14f9b1560121c270462f33af",
+        "type": "github"
+      }
+    },
     "hyprsplit": {
       "inputs": {
         "hyprland": [
@@ -1768,6 +1785,7 @@
         "home-manager": "home-manager",
         "hyprcursors": "hyprcursors",
         "hyprland": "hyprland",
+        "hyprspace": "hyprspace",
         "hyprsplit": "hyprsplit",
         "impermanence": "impermanence",
         "import-tree": "import-tree",
