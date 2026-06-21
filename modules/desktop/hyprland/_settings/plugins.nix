@@ -13,7 +13,7 @@ lib.mkIf (osConfig != null) (
     inherit (lua) inline;
 
     inherit (osConfig.gui) fancy;
-    inherit (osConfig.lib.stylix.colors) base03 base0D;
+    inherit (osConfig.lib.stylix.colors) base00 base0D;
 
     cursorMode =
       if fancy
@@ -53,7 +53,7 @@ lib.mkIf (osConfig != null) (
             show_empty_workspace = true,
             panel_border_width = 0,
             workspace_margin = 10,
-            panel_color = "rgb(${base03})",
+            panel_color = "rgb(${base00})",
             workspace_active_border = "rgb(${base0D})",
             swipe_fingers = 4,
           } } })

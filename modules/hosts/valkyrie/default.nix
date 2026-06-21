@@ -15,8 +15,8 @@
     "mobile"
     "printer"
     "docker"
-    #"mc-server"
-    #"roblox"
+    "mc-server"
+    "roblox"
   ];
 
   hmModules = [
@@ -42,7 +42,7 @@
     "git"
     "office"
     "tools"
-    #"flatpak"
+    "flatpak"
     "latex"
     #"wine"
     "games"
@@ -53,7 +53,8 @@
     util.map.array hmModules homeManager
     ++ util.map.array mixedModules homeManager;
 
-  settings = import ./_settings {};
+  asus = import ./_asus {};
+  dev = import ./_dev.nix {};
 in {
   configurations.nixos.valkyrie = {
     system = "x86_64-linux";
@@ -65,10 +66,7 @@ in {
       imports =
         util.map.array nixosModules nixos
         ++ util.map.array mixedModules nixos
-        ++ [
-          (settings.nixos or {})
-          # ./_minecraft.nix
-        ]
+        ++ [(asus.nixos or {}) (dev.nixos or {})]
         ++ util.map.array ["asus-zephyrus-ga402x-nvidia"] inputs.hardware.nixosModules;
 
       networking.hostId = builtins.substring 0 8 (builtins.hashString "md5" "valkyrie");
@@ -129,6 +127,24 @@ in {
       # Wine utilities
       # apps.wine.utilities = true;
 
+      # Minecraft Server
+      games.mc-servers = [
+        {
+          type = "fabric";
+          memory = 16;
+          port = 25565;
+          vc-port = 24454;
+          config = {
+            gamemode = "survival";
+            difficulty = "normal";
+            online-mode = false;
+            server-ip = "0.0.0.0";
+            spawn-protection = 0;
+            motd = "My World";
+          };
+        }
+      ];
+
       # User V7
       users.users.v7 = {
         isNormalUser = true;
@@ -159,7 +175,8 @@ in {
         hmImports
         ++ [
           homeManager.v7
-          (settings.home or {})
+          (asus.home or {})
+          (dev.home or {})
         ];
     };
   };

@@ -35,30 +35,38 @@
     };
   };
 
-  home = _: {
+  home = {
+    config,
+    lib,
+    options,
+    ...
+  }: let
+    inherit (lib) attrNames elem filter genAttrs hasPrefix;
+
+    # Use Catppuccin over Stylix
+    alias = {
+      qt = "kvantum";
+      discord = "vesktop";
+      zed = "zed-editor";
+    };
+    except = ["kitty"];
+    targets = filter (n: !hasPrefix "_" n) (attrNames options.stylix.targets);
+    derived = filter (t: elem (alias.${t} or t) (attrNames config.catppuccin) && !elem t except) targets;
+  in {
     imports = [inputs.catppuccin.homeModules.catppuccin];
-
     config = {
-      # Theme
-      catppuccin = {
-        accent = "blue";
-        flavor = "macchiato";
-
-        brave.enable = true;
-        thunderbird.enable = true;
-        obs.enable = true;
-        vesktop.enable = true;
-        vscode.profiles.default.enable = true;
-      };
-
-      # Browser
-      programs.firefox.policies.ExtensionSettings = {
-        name = "catppuccin-macchiato-blue";
-        value = {
-          installation_mode = "normal_installed";
-          install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/{d49033ac-8969-488c-afb0-5cdb73957f41}/latest.xpi";
-        };
-      };
+      gui._unmanaged = derived ++ ["spicetify"];
+      catppuccin =
+        {
+          enable = true;
+          accent = "blue";
+          flavor = "macchiato";
+          hyprland.enable = false;
+          gtk.icon.enable = false;
+          firefox.force = true;
+          kvantum.enable = false;
+        }
+        // genAttrs except (_: {enable = false;});
     };
   };
 }

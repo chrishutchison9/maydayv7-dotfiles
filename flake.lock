@@ -1262,17 +1262,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1781205112,
-        "narHash": "sha256-PaoUtmk+qIP/ESdxkxnY7mUMpMHjix88qu22R5GLQqE=",
-        "owner": "shezdy",
+        "lastModified": 1781975914,
+        "narHash": "sha256-1LhZmN4FGWymJl6MvHxRLQfBuNHSbt2180lcVZQPwRk=",
+        "owner": "maydayv7",
         "repo": "hyprsplit",
-        "rev": "6b00b677d8905fb38779c91e12d6294e0e586a44",
+        "rev": "1ca7624c7552c87d31f84768fe608e71e1b25107",
         "type": "github"
       },
       "original": {
-        "owner": "shezdy",
+        "owner": "maydayv7",
         "repo": "hyprsplit",
-        "rev": "6b00b677d8905fb38779c91e12d6294e0e586a44",
         "type": "github"
       }
     },
@@ -1647,11 +1646,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781935716,
-        "narHash": "sha256-mlj1OYbT2vMzVYSz8BL+GA7OHbMYmD5yPfjBEjszjKA=",
+        "lastModified": 1781974776,
+        "narHash": "sha256-u9F6J9eim/rwgPqNLVOV32kTHFRXNhO1XTM4lriKLqs=",
         "owner": "noctalia-dev",
         "repo": "noctalia",
-        "rev": "fd19cec65c33f8da303c02c66445c996721ee205",
+        "rev": "77e2a32edfbea9c23484d5608b6b8ecc657c2270",
         "type": "github"
       },
       "original": {

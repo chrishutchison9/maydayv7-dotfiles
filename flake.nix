@@ -21,13 +21,13 @@
 #          ▝▀▀▀    ▀▀▀▀▘       ▀▀▀▘           #
 #   ---------------------------------------   #
 #     Author  -> V 7 <mail@maydayv7.cc>       #
-#     License -> MIT                          #
+#     License -> GPL-3.0                      #
 #     URL     -> github:maydayv7/dotfiles     #
 #   ---------------------------------------   #
 ###############################################
 {
   description = ''
-    My declarative, hermetic, reproducible, automated, extensible, multi-PC
+    My declarative, hermetic, reproducible, automated, extensible, multi-host
     NixOS Configuration and 'dotfiles'
   '';
 
@@ -196,7 +196,8 @@
 
     # Plugins
     hyprsplit = {
-      url = "github:shezdy/hyprsplit/6b00b677d8905fb38779c91e12d6294e0e586a44";
+      url = "github:maydayv7/hyprsplit";
+      # url = "github:shezdy/hyprsplit";
       inputs = {
         hyprland.follows = "hyprland";
         nixpkgs.follows = "nixpkgs";
@@ -256,6 +257,7 @@
       "https://cache.flox.dev"
       "https://hyprland.cachix.org"
       "https://catppuccin.cachix.org"
+      "https://noctalia.cachix.org"
     ];
     trusted-substituters = substituters;
 
@@ -268,6 +270,7 @@
       "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
     ];
   };
 }

@@ -2,6 +2,8 @@
 
 ### June
 
+- Auto-import Catppuccin targets for Hyprland (`gui._unmanaged`)
+- Add `valkyrie` Dev config
 - Use Hyprland's Scrolling layout
 - Migrate Hyprland config to Lua
 - Use Noctalia Shell & Greeter (v5) with Hyprland

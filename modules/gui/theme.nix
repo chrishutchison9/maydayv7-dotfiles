@@ -85,15 +85,27 @@ in {
       };
     };
 
-    homeManager.theme = {lib, ...}: {
+    homeManager.theme = {
+      config,
+      lib,
+      ...
+    }: {
+      options.gui._unmanaged = lib.mkOption {
+        description = "Stylix targets handled manually";
+        type = lib.types.listOf lib.types.str;
+        default = [];
+      };
+
       config.stylix = {
         enable = lib.mkDefault true;
-        targets = {
-          firefox.enable = lib.mkDefault false;
-          gnome.enable = lib.mkDefault false;
-          spicetify.enable = false;
-          vscode.enable = false;
-        };
+        targets = lib.mkMerge [
+          {
+            firefox.enable = lib.mkDefault false;
+            gnome.enable = lib.mkDefault false;
+            vscode.enable = lib.mkDefault false;
+          }
+          (lib.genAttrs (lib.unique config.gui._unmanaged) (_: {enable = false;}))
+        ];
       };
     };
   };

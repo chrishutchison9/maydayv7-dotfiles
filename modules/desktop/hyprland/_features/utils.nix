@@ -66,7 +66,7 @@
     };
   };
 
-  home = _: {
+  home = {config, ...}: {
     home = {
       persist.directories = [
         ".config/kdeconnect"

@@ -1,32 +1,44 @@
 ## Spotify Configuration ##
 {inputs, ...}: {
-  flake.modules.homeManager.spotify = {pkgs, ...}: {
+  flake.modules.homeManager.spotify = {
+    lib,
+    pkgs,
+    osConfig ? {},
+    ...
+  }: let
+    isHyprland = osConfig.programs.hyprland.enable or false;
+  in {
     imports = [inputs.spicetify.homeManagerModules.default];
     home.persist.directories = [
       ".config/spotify"
       ".cache/spotify"
     ];
 
-    programs.spicetify = {
-      enable = true;
+    programs.spicetify =
+      {
+        enable = true;
 
-      # Player Improvements
-      enabledCustomApps = with pkgs.spicetify.apps; [
-        betterLibrary
-        localFiles
-        newReleases
-      ];
+        # Player Improvements
+        enabledCustomApps = with pkgs.spicetify.apps; [
+          betterLibrary
+          localFiles
+          newReleases
+        ];
 
-      enabledExtensions = with pkgs.spicetify.extensions; [
-        goToSong
-        history
-        loopyLoop
-        playNext
-        popupLyrics
-        seekSong
-        showQueueDuration
-        volumePercentage
-      ];
-    };
+        enabledExtensions = with pkgs.spicetify.extensions; [
+          goToSong
+          history
+          loopyLoop
+          playNext
+          popupLyrics
+          seekSong
+          showQueueDuration
+          volumePercentage
+        ];
+      }
+      // lib.optionalAttrs isHyprland {
+        theme = pkgs.spicetify.themes.catppuccin;
+        colorScheme = "macchiato";
+      };
   };
 }

@@ -57,7 +57,7 @@ in {
         };
 
         # Theming
-        stylix.targets.gtk.enable = false;
+        gui._unmanaged = ["gtk"];
         dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
         gtk = {
           enable = true;

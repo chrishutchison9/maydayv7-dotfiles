@@ -1,9 +1,13 @@
 # Terminal Emulator
 _: {
-  home = {pkgs, ...}: {
+  home = {
+    pkgs,
+    lib,
+    ...
+  }: {
     programs.kitty = {
       enable = true;
-      themeFile = "Catppuccin-Macchiato";
+      themeFile = lib.mkDefault "Catppuccin-Macchiato";
       keybindings = {
         "ctrl+c" = "copy_or_interrupt";
         "kitty_mod+f" = "launch --allow-remote-control kitty +kitten search/search.py @active-kitty-window-id";
@@ -27,9 +31,5 @@ _: {
     };
 
     home.file.".config/kitty/search".source = pkgs.custom.kitty-search;
-    stylix.targets.kitty = {
-      enable = true;
-      variant256Colors = true;
-    };
   };
 }

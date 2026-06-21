@@ -44,6 +44,8 @@ in {
           builtins.listToAttrs [
             (extension "clearurls" "{74145f27-f039-47ce-a470-a662b129930a}")
             (extension "darkreader" "addon@darkreader.org")
+            (extension "firefox-color" "FirefoxColor@mozilla.com")
+            (extension "keepassxc-browser" "keepassxc-browser@keepassxc.org")
             (extension "setupvpn" "@setupvpncom")
             (extension "stylus" "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}")
             (extension "tabliss" "extension@tabliss.io")

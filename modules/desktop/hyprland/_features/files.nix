@@ -5,20 +5,15 @@
   inputs ? null,
   ...
 }: {
-  nixos = {pkgs, ...}: let
-    nemo = pkgs.nemo-with-extensions;
-  in {
-    services.dbus.packages = [nemo];
-    environment.systemPackages =
-      [
-        nemo
-      ]
-      ++ (with pkgs; [
-        cinnamon-desktop
-        bulky
-        file-roller
-        lxqt.pcmanfm-qt
-      ]);
+  nixos = {pkgs, ...}: {
+    services.dbus.packages = [pkgs.nemo-with-extensions];
+    environment.systemPackages = with pkgs; [
+      nemo-with-extensions
+      cinnamon-desktop
+      bulky
+      file-roller
+      lxqt.pcmanfm-qt
+    ];
   };
 
   home = {

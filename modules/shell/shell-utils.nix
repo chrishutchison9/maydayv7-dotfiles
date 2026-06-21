@@ -39,11 +39,7 @@ in {
 
         ## Program Configuration
         services.lorri.enable = true;
-
-        # Programs
         programs = {
-          yazi.enable = true; # File Manager
-
           # Command Correction Helper
           pay-respects = {
             enable = true;
@@ -54,15 +50,6 @@ in {
           direnv = {
             enable = true;
             nix-direnv.enable = true;
-          };
-
-          # Bat Configuration
-          bat = {
-            enable = true;
-            settings = {
-              style = "full";
-              italic-text = "always";
-            };
           };
         };
       };
@@ -80,7 +67,17 @@ in {
       programs = {
         btop.enable = true; # Resource Monitor
         hstr.enable = true; # Command History Manager
+        yazi.enable = true; # File Manager
         zellij.enable = true; # Terminal Multiplexer
+
+        # Pager
+        bat = {
+          enable = true;
+          config = {
+            style = "full";
+            italic-text = "always";
+          };
+        };
 
         # File Lister
         eza = {

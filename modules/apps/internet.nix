@@ -8,7 +8,6 @@ in {
       brave = {
         enable = true;
         extensions = [
-          "cjpalhdlnbpafiamejdnhcphjbkeiagm" # UBlock Origin
           "djflhoibgkdhkhhcedjiklpkjnoahfmg" # User Agent Switcher
           "lckanjgmijmafbedllaakclkaicjfmnk" # ClearURLs
           "oofgbpoabipfcfjapgnbbjjaenockbdp" # SetupVPN
@@ -16,6 +15,7 @@ in {
           "jaioibhbkffompljnnipmpkeafhpicpd" # Tab Auto Refresh
           "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
           "clngdbkpkpeebahjckkjfobafhncgmne" # Stylus
+          "oboonakemofpalcgghocfoadofidjkkk" # KeePassXC
         ];
       };
 

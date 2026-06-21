@@ -52,7 +52,6 @@ in {
             "terminal.external.linuxExec" = "ghostty";
           })
           (lib.mkIf isHyprland {
-            "workbench.iconTheme" = "catppuccin-${config.catppuccin.flavor or "mocha"}";
             "terminal.external.linuxExec" = "kitty";
           })
         ];
@@ -91,8 +90,7 @@ in {
             langningchen.cph-ng # CP
             kisstkondoros.vscode-gutter-preview # Image Preview
           ])
-          ++ lib.optionals isGnome [pkgs.vscode-extensions.piousdeer.adwaita-theme]
-          ++ lib.optionals isHyprland [pkgs.vscode-extensions.catppuccin.catppuccin-vsc-icons];
+          ++ lib.optionals isGnome [pkgs.vscode-extensions.piousdeer.adwaita-theme];
       };
     };
   };

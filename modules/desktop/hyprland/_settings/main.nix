@@ -17,7 +17,7 @@ lib.mkIf (osConfig != null) (
       angle = 90;
     };
   in {
-    stylix.targets.hyprland.enable = false;
+    gui._unmanaged = ["hyprland"];
     wayland.windowManager.hyprland = {
       inherit (osConfig.programs.hyprland) enable package portalPackage;
 
@@ -42,7 +42,7 @@ lib.mkIf (osConfig != null) (
             fingers = 3;
             direction = "horizontal";
             action = "scroll_move";
-            scale = 3;
+            scale = 2;
           }
           {
             fingers = 4;

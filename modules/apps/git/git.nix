@@ -81,7 +81,7 @@ in {
           enableGitIntegration = true;
           options = {
             line-numbers = true;
-            theme = "Monokai Extended";
+            theme = lib.mkDefault "Monokai Extended";
             conflictstyle = "diff3";
           };
         };

@@ -125,7 +125,7 @@ _: {
       inherit (builtins) concatStringsSep map;
       qt = osConfig.gui.qt or {};
     in {
-      stylix.targets.qt.enable = false;
+      gui._unmanaged = ["qt"];
       xdg.configFile."Kvantum" = lib.mkIf ((qt.style or null) == "kvantum") {
         source = "${qt.theme.package}/share/Kvantum";
         recursive = true;

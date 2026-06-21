@@ -22,10 +22,13 @@ in {
         gearlever
         popsicle
 
+        # Media
+        pitivi
+        xnviewmp
+
         # Graphics
         drawing
         identity
-        pitivi
         vipsdisp
 
         # Audio
@@ -50,6 +53,7 @@ in {
           ".config/easyeffects"
           ".config/obs-studio"
           ".config/pitivi"
+          ".config/xnviewmp"
           ".local/share/easyeffects"
         ];
       };

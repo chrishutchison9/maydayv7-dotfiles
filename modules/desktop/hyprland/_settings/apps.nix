@@ -38,7 +38,8 @@ lib.mkIf (osConfig != null) (
       ## Autostart
       on = [
         (on "hyprland.start" ("function() "
-          + concatStringsSep " " (map (c: ''hl.exec_cmd("${c}");'') ([
+          + concatStringsSep " " (map (c: ''hl.exec_cmd("${c}");'') (
+            [
               "uwsm finalize"
               "hyprctl setcursor ${hyprcursor} ${toString cursor.size}"
             ]
@@ -48,7 +49,8 @@ lib.mkIf (osConfig != null) (
 
               # Desktop Icons
               "pcmanfm-qt --desktop"
-            ])))
+            ])
+          ))
           + " end"))
       ];
 
@@ -89,7 +91,7 @@ lib.mkIf (osConfig != null) (
       ## Permissions
       permission = [
         (permission "${osConfig.programs.hyprland.portalPackage}/libexec/.xdg-desktop-portal-hyprland-wrapped" "screencopy" "allow")
-        (permission (getExe pkgs.grim) "screencopy" "allow")
+        (permission (getExe pkgs.gpu-screen-recorder) "screencopy" "allow")
         (permission (getExe pkgs.wl-screenrec) "screencopy" "allow")
       ];
 

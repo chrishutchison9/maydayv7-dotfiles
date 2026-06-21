@@ -1,7 +1,7 @@
 ## Minecraft ##
 _: {
   flake.modules.homeManager.minecraft = {pkgs, ...}: {
-    home.packages = [pkgs.prismlauncher];
+    programs.prismlauncher.enable = true;
     home.persist.directories = [".local/share/PrismLauncher"];
   };
 }

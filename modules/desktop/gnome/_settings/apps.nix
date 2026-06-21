@@ -5,7 +5,6 @@ _: {
 }:
 lib.mkIf (osConfig != null) (
   with lib.hm.gvariant; let
-    inherit (builtins) head;
     fonts = osConfig.fonts.fontconfig.defaultFonts;
   in {
     dconf.settings = {
@@ -79,7 +78,7 @@ lib.mkIf (osConfig != null) (
       "com/github/hugolabe/Wike" = {
         custom-font = true;
         dark-mode = true;
-        font-family = head fonts.sansSerif;
+        font-family = builtins.head fonts.sansSerif;
       };
 
       # App Grid

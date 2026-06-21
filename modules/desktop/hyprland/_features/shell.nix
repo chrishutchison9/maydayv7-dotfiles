@@ -6,15 +6,15 @@
 }: {
   home = {
     config,
-    osConfig ? null,
+    osConfig ? {},
     lib,
     pkgs,
     ...
   }: let
-    output = osConfig.gui.display;
+    output = osConfig.gui.display or "eDP-1";
   in {
     imports = [inputs.noctalia.homeModules.default];
-    stylix.targets.noctalia-shell.enable = false;
+    gui._unmanaged = ["noctalia-shell"];
     home.persist.directories = [
       ".cache/noctalia"
       ".local/state/noctalia"
@@ -165,7 +165,7 @@
         wallpaper = {
           enabled = true;
           fill_mode = "crop";
-          default.path = osConfig.stylix.image;
+          default.path = osConfig.stylix.image or "";
         };
 
         # Desktop Widgets
@@ -331,7 +331,7 @@
           ];
         };
         plugin_settings = let
-          hyprctl = "${osConfig.programs.hyprland.package}/bin/hyprctl";
+          hyprctl = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl";
           jq = lib.getExe pkgs.jq;
           socket2 = "${lib.getExe pkgs.socat} -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock -";
         in {
