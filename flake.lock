@@ -321,22 +321,6 @@
         "url": "https://flakehub.com/f/edolstra/flake-compat/1.tar.gz"
       }
     },
-    "flake-compat_5": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1777728799,
-        "narHash": "sha256-z7jjYQqhkFKab92VQ3duB7QVO7f7Y62qTFrJYXO/lyo=",
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "rev": "4b2287113c2f9a2331c04899b2e2e5ab92dea9c5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edolstra",
-        "repo": "flake-compat",
-        "type": "github"
-      }
-    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -1787,8 +1771,7 @@
         "systems": "systems_2",
         "unstable": "unstable",
         "utils": "utils_2",
-        "vscode": "vscode",
-        "windows": "windows"
+        "vscode": "vscode"
       }
     },
     "rust-overlay": {
@@ -2099,27 +2082,6 @@
       "original": {
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "type": "github"
-      }
-    },
-    "windows": {
-      "inputs": {
-        "flake-compat": "flake-compat_5",
-        "nixpkgs": [
-          "unstable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1780842632,
-        "narHash": "sha256-/k7fIVU+pDqVlr+31XF62iQRcrv8IF7x7jeo+3kOcI4=",
-        "owner": "emmanuelrosa",
-        "repo": "erosanix",
-        "rev": "b74371ca0e945bc772d98c75111aa42d16666645",
-        "type": "github"
-      },
-      "original": {
-        "owner": "emmanuelrosa",
-        "repo": "erosanix",
         "type": "github"
       }
     },

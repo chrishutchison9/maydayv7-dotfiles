@@ -96,7 +96,6 @@ in
         tree
         gnupg
         sops
-        wine.mkwindowsapp-tools
 
         nixFlakes
         cachix
@@ -242,7 +241,6 @@ in
         ;;
         "clean")
           echo "Running Garbage Collection..."
-          mkwindows-tools-gc
           nix-collect-garbage -d
           rm -rf /nix/var/nix/profiles/per-user/"$USER"/profile
           if [ "$EUID" -ne 0 ] && [ "$2" != "--all" ]

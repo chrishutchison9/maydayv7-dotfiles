@@ -35,7 +35,7 @@ in {
     };
 
     home.packages = with pkgs; [
-      karere
+      unstable.karere
       linux-wifi-hotspot
       openfortivpn
       teams-for-linux

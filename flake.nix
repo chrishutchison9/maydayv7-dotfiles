@@ -152,12 +152,6 @@
       };
     };
 
-    # Windows Apps Wrapper
-    windows = {
-      url = "github:emmanuelrosa/erosanix";
-      inputs.nixpkgs.follows = "unstable";
-    };
-
     ## Theming
     # Base16 Theming Module
     stylix = {

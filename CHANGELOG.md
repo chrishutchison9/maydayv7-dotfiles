@@ -2,6 +2,9 @@
 
 ### June
 
+- Script to update Minecraft mods
+- Drop manually-packaged `wine` applications
+- Robust GitHub Actions CI
 - Auto-import Catppuccin targets for Hyprland (`gui._unmanaged`)
 - Add `valkyrie` Dev config
 - Use Hyprland's Scrolling layout

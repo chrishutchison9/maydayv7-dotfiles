@@ -107,7 +107,6 @@ It also builds and deploys my website to [maydayv7.cc](https://maydayv7.cc).
 - Support for `source` filters with [`nix-filter`](https://github.com/numtide/nix-filter)
 - Support for Base16 color theming using [`stylix`](https://github.com/danth/stylix)
 - Support for declaratively installing [Flatpak](./modules/apps/flatpak.nix) applications using [`nix-flatpak`](https://github.com/gmodena/nix-flatpak)
-- Wrapped `wine` [Applications](./packages/wine) using Emmanuel's [Wrapper](https://github.com/emmanuelrosa/erosanix/tree/0dabea58d483e13d2de141517cb4ff1cb230b2aa/pkgs/mkwindowsapp)
 - Support for Android Virtualisation using [Waydroid](https://waydro.id/)
 - Support for VFIO PCI Device Passthrough along with [Looking Glass](https://looking-glass.io/) for high-performance VMs
 
@@ -386,12 +385,7 @@ A `git` [hook](./files/git/hooks) is used to check the commit message to adhere 
 <details>
 <summary><b>Known Limitations</b></summary>
 
-### Manual Intervention
-
-- [Wine](./packages/wine) Applications have to be manually updated
-- Minecraft [Server](./modules/apps/games/mc-server.nix) has to be manually updated
-- Logseq Plugins have to be manually installed
-- Cannot automatically hibernate on NVIDIA due to upstream [issue](https://forums.developer.nvidia.com/t/systemds-suspend-then-hibernate-not-working-in-nvidia-optimus-laptop/213690)
+- [Logseq](./modules/apps/notes.nix) Plugins have to be manually installed
 
 </details>
 

@@ -36,8 +36,6 @@ in {
                   config = nixpkgsConfig;
                 };
 
-                wine = windows.packages."${system}";
-                winelib = windows.lib."${system}";
                 spicetify = spicetify.legacyPackages."${system}";
                 hyprworld = hyprland.packages."${system}" // hyprsplit.packages."${system}" // hyprcursors.packages."${system}";
               })

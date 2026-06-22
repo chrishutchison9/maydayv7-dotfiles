@@ -22,7 +22,8 @@ _: {
       };
 
       # Game Mode
-      hardware.cpu.mode = lib.mkOverride 51 "performance"; # Use 'gamemoderun %command%'
+      # ? # Use 'gamemoderun <command>'
+      hardware.cpu.mode = lib.mkOverride 51 "performance";
       programs.gamemode.enable = true;
       hardware.steam-hardware.enable = true;
     };
@@ -34,9 +35,9 @@ _: {
     }: {
       # Runner
       xdg.dataFile."lutris/runners/wine/wine-system" =
-        lib.mkIf (config.apps.wine.package or null != null)
+        lib.mkIf (config.apps.wine or null != null)
         {
-          source = config.apps.wine.package;
+          source = config.apps.wine;
         };
 
       # Directories

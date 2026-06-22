@@ -125,9 +125,7 @@ The following are the custom configuration options exposed by the modules above:
     - `runner` -
       - `support`: Enable Support for `git` Runners - `null / "github" / "gitlab"`
       - `secret`: Path to Secret for `git` Runner
-  - `wine` -
-    - `utilities`: Install Utility Windows apps - `true / false`
-    - `package`: Package to use for `wine` - Ex. `pkgs.wineWow64Packages.stagingFull`
+  - `wine` - Package to use for `wine` - Ex. `pkgs.wineWow64Packages.stagingFull`
 
 - [`games`](./games) -
   - `mc-servers`: List of Minecraft Servers -

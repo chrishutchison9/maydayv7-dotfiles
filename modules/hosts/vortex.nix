@@ -82,8 +82,6 @@ in {
         fancy = true;
       };
 
-      apps.wine.utilities = true;
-
       users.users.v7 = {
         isNormalUser = true;
         description = "V 7";

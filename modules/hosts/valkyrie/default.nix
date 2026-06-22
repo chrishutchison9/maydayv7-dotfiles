@@ -44,8 +44,9 @@
     "tools"
     "flatpak"
     "latex"
-    #"wine"
+    "wine"
     "games"
+    #"libvirt"
     "hyprland"
   ];
 
@@ -123,9 +124,6 @@ in {
       #     "10de:22be" # Audio
       #   ];
       # };
-
-      # Wine utilities
-      # apps.wine.utilities = true;
 
       # Minecraft Server
       games.mc-servers = [

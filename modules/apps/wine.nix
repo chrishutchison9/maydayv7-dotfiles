@@ -1,7 +1,5 @@
 ## Wine Configuration ##
-{config, ...}: let
-  inherit (config) util;
-in {
+_: {
   flake.modules = {
     nixos.wine = {
       config,
@@ -9,23 +7,12 @@ in {
       pkgs,
       ...
     }: let
-      inherit (builtins) attrValues map;
-      inherit
-        (lib)
-        mkEnableOption
-        mkOption
-        optionals
-        types
-        ;
-      cfg = config.apps.wine;
+      pkg = config.apps.wine;
     in {
-      options.apps.wine = {
-        utilities = mkEnableOption "Install Utility Windows apps";
-        package = mkOption {
-          description = "Package to use for 'wine'";
-          type = types.package;
-          default = pkgs.wineWow64Packages.stagingFull;
-        };
+      options.apps.wine = lib.mkOption {
+        description = "Package to use for 'wine'";
+        type = lib.types.package;
+        default = pkgs.wineWow64Packages.stagingFull;
       };
 
       config = {
@@ -34,50 +21,28 @@ in {
         hardware.graphics.enable32Bit = true;
 
         environment.systemPackages = with pkgs.wine // pkgs; (
-          map
+          builtins.map
           (
             name:
               if (name.override.__functionArgs ? wine)
-              then name.override {wine = cfg.package;}
+              then name.override {wine = pkg;}
               else name
           )
-          (
-            [
-              cfg.package
-              winetricks
-              mkwindowsapp-tools
-              playonlinux
-            ]
-            # Wrapped Packages
-            ++ optionals cfg.utilities (
-              attrValues (
-                util.map.modules ../../packages/wine (
-                  name:
-                    callPackage name {
-                      inherit lib pkgs;
-                      wine = cfg.package;
-                      build = winelib;
-                    }
-                )
-              )
-            )
-          )
+          [
+            pkg
+            winetricks
+            playonlinux
+          ]
         );
       };
     };
 
-    homeManager.wine = {
-      config,
-      lib,
-      ...
-    }: {
-      home.persist.directories =
-        [
-          ".wine"
-          ".cache/wine"
-          ".cache/winetricks"
-        ]
-        ++ lib.optionals (config.apps.wine.utilities or false) [".config/notepad++"];
+    homeManager.wine = _: {
+      home.persist.directories = [
+        ".wine"
+        ".cache/wine"
+        ".cache/winetricks"
+      ];
     };
   };
 }

@@ -34,7 +34,8 @@ _: {
             (oldAttrs.buildCommand or "")
             + ''
               wrapProgram $out/bin/mongodb-compass \
-                --add-flags "--ignore-additional-command-line-flags --password-store=gnome-libsecret"
+                --add-flags "--ignore-additional-command-line-flags" \
+                --add-flags "--password-store=gnome-libsecret"
             '';
         }))
 
