@@ -10,7 +10,7 @@ in {
     osConfig ? {},
     ...
   }: let
-    font = builtins.head config.fonts.fontconfig.defaultFonts.monospace;
+    font = config.stylix.fonts.monospace.name;
     isGnome = osConfig.services.desktopManager.gnome.enable or false;
     isHyprland = osConfig.programs.hyprland.enable or false;
   in {

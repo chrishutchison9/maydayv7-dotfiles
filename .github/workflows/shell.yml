@@ -8,9 +8,6 @@ env:
 jobs:
   shell:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        shell: [android, cc, java, js, lua, python, rust, sql, video, website]
     steps:
       - name: Clone Repo
         uses: actions/checkout@v6
@@ -30,4 +27,15 @@ jobs:
           name: maydayv7-dotfiles
           authToken: "${{ secrets.CACHIX_TOKEN }}"
       - name: Check Shells
-        run: nix develop .#${{ matrix.shell }}
+        run: |
+          shells="$(nix eval --raw '.#devShells.x86_64-linux' \
+            --apply 's: builtins.concatStringsSep " " (builtins.attrNames s)')"
+
+          status=0
+          for shell in ${shells}
+          do
+            echo "::group::Checking '${shell}'"
+            nix develop ".#${shell}" --command true || status=1
+            echo "::endgroup::"
+          done
+          exit "${status}"

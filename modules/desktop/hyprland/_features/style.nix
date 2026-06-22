@@ -1,3 +1,4 @@
+## Catppuccin Style
 {
   inputs,
   files ? null,

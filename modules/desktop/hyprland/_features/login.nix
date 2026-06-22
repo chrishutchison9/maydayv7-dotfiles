@@ -1,4 +1,4 @@
-# Login Greeter
+## Login Greeter
 {inputs ? null, ...}: {
   nixos = {config, ...}: {
     imports = [inputs.noctalia-greeter.nixosModules.default];

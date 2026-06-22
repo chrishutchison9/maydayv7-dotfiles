@@ -19,7 +19,7 @@ _: {
         enable = true;
         hwRender = false;
         extraConfig = ''
-          font-name=${builtins.head config.fonts.fontconfig.defaultFonts.monospace}
+          font-name=${config.stylix.fonts.monospace.name}
           font-size=14
         '';
       };

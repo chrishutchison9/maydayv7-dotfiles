@@ -18,11 +18,6 @@ jobs:
   build:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 1
-      fail-fast: false
-      matrix:
-        device: [valkyrie, vortex, futura]
     steps:
       - name: Maximize Build Space
         run: |
@@ -47,8 +42,20 @@ jobs:
         with:
           name: maydayv7-dotfiles
           authToken: "${{ secrets.CACHIX_TOKEN }}"
-      - name: Build Configuration
+      - name: Build Configurations
         run: |
           export LC_ALL=C.UTF-8
           ulimit -n 2048
-          nix build .#nixosConfigurations.${{ matrix.device }}.config.system.build.toplevel -L --show-trace
+
+          hosts="$(nix eval --raw '.#nixosConfigurations' \
+            --apply 'c: builtins.concatStringsSep " " (builtins.filter (h: h != "install") (builtins.attrNames c))')"
+
+          status=0
+          for host in ${hosts}
+          do
+            echo "::group::Building '${host}'"
+            nix build ".#nixosConfigurations.${host}.config.system.build.toplevel" \
+              -L --show-trace || status=1
+            echo "::endgroup::"
+          done
+          exit "${status}"

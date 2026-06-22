@@ -39,22 +39,7 @@ in {
                 wine = windows.packages."${system}";
                 winelib = windows.lib."${system}";
                 spicetify = spicetify.legacyPackages."${system}";
-                hyprworld = let
-                  hyprlandPkg = hyprland.packages."${system}".hyprland;
-                  Hyprspace = final.gcc14Stdenv.mkDerivation {
-                    pname = "Hyprspace";
-                    src = hyprspace;
-                    inherit (hyprlandPkg) version nativeBuildInputs;
-                    buildInputs = [hyprlandPkg] ++ hyprlandPkg.buildInputs;
-                    dontUseCmakeConfigure = true;
-                    installFlags = ["PREFIX=$(out)"];
-                    postInstall = "mv $out/lib/Hyprspace.so $out/lib/libHyprspace.so";
-                  };
-                in
-                  hyprland.packages."${system}"
-                  // hyprsplit.packages."${system}"
-                  // hyprcursors.packages."${system}"
-                  // {inherit Hyprspace;};
+                hyprworld = hyprland.packages."${system}" // hyprsplit.packages."${system}" // hyprcursors.packages."${system}";
               })
               minecraft.overlay
               vscode.overlays.default

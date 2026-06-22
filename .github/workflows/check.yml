@@ -24,4 +24,27 @@ jobs:
             accept-flake-config = true
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
       - name: Check Syntax
-        run: nix flake check --no-build --keep-going
+        run: |
+          set -euo pipefail
+          system="$(nix eval --raw --impure --expr builtins.currentSystem)"
+
+          for host in $(nix eval --raw '.#nixosConfigurations' \
+            --apply 'c: builtins.concatStringsSep " " (builtins.attrNames c)')
+          do
+            echo "::group::Evaluating configuration '${host}'"
+            nix eval --raw --show-trace \
+              ".#nixosConfigurations.${host}.config.system.build.toplevel.drvPath" > /dev/null
+            echo "::endgroup::"
+          done
+
+          for output in packages devShells
+          do
+            echo "::group::Evaluating '${output}'"
+            nix eval --show-trace ".#${output}.${system}" \
+              --apply 'builtins.mapAttrs (_: v: v.drvPath)' > /dev/null
+            echo "::endgroup::"
+          done
+
+          echo "::group::Evaluating 'formatter'"
+          nix eval --raw --show-trace ".#formatter.${system}.drvPath" > /dev/null
+          echo "::endgroup::"

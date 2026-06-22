@@ -1,4 +1,4 @@
-# Terminal Emulator
+## Terminal Emulator
 _: {
   home = {
     pkgs,

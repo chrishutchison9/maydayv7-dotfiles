@@ -1,12 +1,11 @@
 _: {
+  config,
   lib,
   osConfig ? null,
   ...
 }:
 lib.mkIf (osConfig != null) (
-  with lib.hm.gvariant; let
-    fonts = osConfig.fonts.fontconfig.defaultFonts;
-  in {
+  with lib.hm.gvariant; {
     ## Dconf Keys ##
     # Generated via nix-community/dconf2nix
     # Use 'dconf watch /' to record changes
@@ -115,7 +114,7 @@ lib.mkIf (osConfig != null) (
       "org/gnome/desktop/wm/preferences" = {
         button-layout = "appmenu:minimize,maximize,close";
         focus-mode = "click";
-        titlebar-font = "${builtins.head fonts.sansSerif} Bold 11";
+        titlebar-font = "${config.stylix.fonts.sansSerif.name} Bold 11";
         visual-bell = false;
       };
 

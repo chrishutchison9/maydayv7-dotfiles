@@ -1,4 +1,4 @@
-# Noctalia Shell
+## Noctalia Shell
 {
   inputs ? null,
   files ? null,
@@ -55,8 +55,8 @@
         # Bar
         bar.main = {
           position = "top";
-          start = ["session" "workspaces" "group:g1"];
-          center = ["media" "clock" "control-center"];
+          start = ["session" "taskbar" "group:g1" "media"];
+          center = ["launcher" "clock" "control-center"];
           end = [
             "group:g2"
             "clipboard"
@@ -79,7 +79,6 @@
             {
               id = "g1";
               members = [
-                "launcher"
                 "minimize"
                 "maydayv7/hyprland-layout:indicator"
                 "maydayv7/hyprland-submap:indicator"
@@ -103,11 +102,17 @@
         widget = {
           clock.anchor = true;
           control-center.glyph = "menu";
-          workspaces.display = "name";
           network.show_label = false;
           media = {
             hide_when_no_media = true;
             title_scroll = "on_hover";
+          };
+          taskbar = {
+            group_by_workspace = true;
+            inactive_opacity = 0.85;
+            scale = 1.1;
+            show_active_indicator = false;
+            workspace_label_placement = "inside";
           };
 
           # Minimize Button
@@ -165,6 +170,7 @@
         wallpaper = {
           enabled = true;
           fill_mode = "crop";
+          transition_on_startup = true;
           default.path = osConfig.stylix.image or "";
         };
 
@@ -217,11 +223,17 @@
             timeout = 300;
             command = "noctalia:session lock";
           };
-          "screen-off" = {
+          screen-off = {
             enabled = true;
             timeout = 360;
             command = "noctalia:dpms-off";
             resume_command = "noctalia:dpms-on";
+          };
+          suspend = {
+            enabled = true;
+            timeout = 600;
+            action = "suspend";
+            lock_before_suspend = true;
           };
         };
 

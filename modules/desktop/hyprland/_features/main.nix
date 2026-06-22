@@ -1,4 +1,4 @@
-# Compositor
+## Compositor
 _: {
   nixos = {pkgs, ...}: {
     # WM

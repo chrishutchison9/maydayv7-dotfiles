@@ -1,4 +1,4 @@
-# Web Browser
+## Miscellaneous
 _: {
   home = _: {
     # GTK Apps

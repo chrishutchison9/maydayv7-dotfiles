@@ -166,10 +166,6 @@
             "label": "Window Switcher"
           },
           {
-            "value": "$mod `",
-            "label": "Toggle workspace overview"
-          },
-          {
             "value": "ALT [SHIFT] Tab",
             "label": "Cycle [backwards] through open windows on current workspace"
           },
@@ -191,7 +187,7 @@
             "label": "Move window to workspace 'NUM' {1 to 9}"
           },
           {
-            "value": "$mod , or . (4F Swipe Left/Right)",
+            "value": "$mod , or .",
             "label": "Move across non-empty workspaces"
           },
           {
@@ -354,16 +350,12 @@
             "label": ""
           },
           {
-            "value": "3F Swipe (horizontal)",
+            "value": "3F Swipe",
             "label": "Scrolling: switch apps / columns"
           },
           {
-            "value": "4F Swipe (horizontal)",
+            "value": "4F Swipe",
             "label": "Switch across workspaces"
-          },
-          {
-            "value": "4F Swipe (vertical)",
-            "label": "Toggle workspace overview"
           },
           {
             "value": "",

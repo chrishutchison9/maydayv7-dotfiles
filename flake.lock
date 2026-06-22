@@ -1235,23 +1235,6 @@
         "type": "github"
       }
     },
-    "hyprspace": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1781077726,
-        "narHash": "sha256-0OOtLXQ/WEJ5nlR98WFvGBCTp1X/DstsOb75jZunVI0=",
-        "owner": "0xl30",
-        "repo": "Hyprspace",
-        "rev": "74213c87be6064ce14f9b1560121c270462f33af",
-        "type": "github"
-      },
-      "original": {
-        "owner": "0xl30",
-        "repo": "Hyprspace",
-        "rev": "74213c87be6064ce14f9b1560121c270462f33af",
-        "type": "github"
-      }
-    },
     "hyprsplit": {
       "inputs": {
         "hyprland": [
@@ -1646,11 +1629,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781974776,
-        "narHash": "sha256-u9F6J9eim/rwgPqNLVOV32kTHFRXNhO1XTM4lriKLqs=",
+        "lastModified": 1782135344,
+        "narHash": "sha256-JGxXmcTsHWSXvnveDLMT8xX3E9ldd+jumgtJUdGoR0M=",
         "owner": "noctalia-dev",
         "repo": "noctalia",
-        "rev": "77e2a32edfbea9c23484d5608b6b8ecc657c2270",
+        "rev": "c8d24dfa450f8b4eca21abcab397b3555e5bb890",
         "type": "github"
       },
       "original": {
@@ -1784,7 +1767,6 @@
         "home-manager": "home-manager",
         "hyprcursors": "hyprcursors",
         "hyprland": "hyprland",
-        "hyprspace": "hyprspace",
         "hyprsplit": "hyprsplit",
         "impermanence": "impermanence",
         "import-tree": "import-tree",

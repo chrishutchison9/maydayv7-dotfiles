@@ -1,12 +1,11 @@
 _: {
+  config,
   lib,
   osConfig ? null,
   ...
 }:
 lib.mkIf (osConfig != null) (
-  with lib.hm.gvariant; let
-    fonts = osConfig.fonts.fontconfig.defaultFonts;
-  in {
+  with lib.hm.gvariant; {
     dconf.settings = {
       # GTK+ Apps
       "org/gnome/desktop/calendar".show-weekdate = true;
@@ -78,7 +77,7 @@ lib.mkIf (osConfig != null) (
       "com/github/hugolabe/Wike" = {
         custom-font = true;
         dark-mode = true;
-        font-family = builtins.head fonts.sansSerif;
+        font-family = config.stylix.fonts.sansSerif.name;
       };
 
       # App Grid

@@ -114,9 +114,6 @@ in {
         (bind (combo [mod "SHIFT"] "comma") ''hs.dsp.window.move({ workspace = "-1", follow = false })'')
         (bind (combo [mod "SHIFT"] "period") ''hs.dsp.window.move({ workspace = "+1", follow = false })'')
 
-        # Workspace Overview
-        (bind (combo [mod] "grave") ''function() if hl.plugin.Hyprspace then hl.plugin.Hyprspace.overview("toggle") end end'')
-
         # Cycle Monitors
         (bind (combo [mod "ALT"] "comma") ''hl.dsp.focus({ monitor = "l" })'')
         (bind (combo [mod "ALT"] "period") ''hl.dsp.focus({ monitor = "r" })'')
