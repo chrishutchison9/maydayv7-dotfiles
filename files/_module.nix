@@ -87,6 +87,9 @@ in {
       extension = ".png";
     };
 
+    # Password Manager
+    keepassxc = readFile ./keepassxc.ini;
+
     # Logseq Notes
     logseq = {
       settings = ./logseq/settings;

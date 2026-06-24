@@ -2,6 +2,7 @@
 
 ### June
 
+- Use Discord instead of Vesktop
 - Script to update Minecraft mods
 - Drop manually-packaged `wine` applications
 - Robust GitHub Actions CI

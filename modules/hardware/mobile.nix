@@ -5,8 +5,10 @@ _: {
     services.usbmuxd.enable = true;
     environment.systemPackages = with pkgs; [
       android-tools
-      libimobiledevice
       scrcpy
+
+      ifuse
+      libimobiledevice
     ];
   };
 }

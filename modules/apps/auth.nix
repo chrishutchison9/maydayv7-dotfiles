@@ -1,6 +1,7 @@
 ## Auth Credential Programs ##
 {config, ...}: let
   inherit (config) util;
+  inherit (config.flake) files;
 in {
   flake.modules.homeManager.auth = {pkgs, ...}: {
     home.packages = [pkgs.ente-auth];
@@ -13,10 +14,17 @@ in {
       password = ["org.keepassxc.KeePassXC.desktop"];
     };
 
-    home.persist.directories = [
-      ".config/keepassxc"
-      ".cache/keepassxc"
-      ".local/share/io.ente.auth"
-    ];
+    home = {
+      persist.directories = [
+        ".cache/keepassxc"
+        ".local/share/io.ente.auth"
+      ];
+
+      file.".config/keepassxc/keepassxc.ini" = {
+        mutable = true;
+        force = true;
+        text = files.keepassxc;
+      };
+    };
   };
 }

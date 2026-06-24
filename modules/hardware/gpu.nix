@@ -45,13 +45,8 @@ _: {
           services.xserver.videoDrivers = mkForce ["nvidia"];
           environment = {
             systemPackages = [pkgs.btop-cuda];
-            variables = mkIf mode {
-              "__GLX_VENDOR_LIBRARY_NAME" = "nvidia";
-              "LIBVA_DRIVER_NAME" = "nvidia";
-            };
-            sessionVariables = {
-              "GAMEMODERUNEXEC" = mkIf (hybrid && gamemode && !mode) "nvidia-offload";
-            };
+            variables."__GLX_VENDOR_LIBRARY_NAME" = mkIf mode "nvidia";
+            sessionVariables."GAMEMODERUNEXEC" = mkIf (hybrid && gamemode && !mode) "nvidia-offload";
           };
 
           boot = {

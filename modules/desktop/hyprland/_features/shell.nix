@@ -59,6 +59,7 @@
           center = ["launcher" "clock" "control-center"];
           end = [
             "group:g2"
+            "recorder"
             "clipboard"
             "bluetooth"
             "network"
@@ -103,6 +104,7 @@
           clock.anchor = true;
           control-center.glyph = "menu";
           network.show_label = false;
+          recorder.type = "noctalia/screen_recorder:recorder";
           media = {
             hide_when_no_media = true;
             title_scroll = "on_hover";
@@ -347,7 +349,10 @@
           jq = lib.getExe pkgs.jq;
           socket2 = "${lib.getExe pkgs.socat} -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock -";
         in {
-          "noctalia/screen_recorder".copy_to_clipboard = true;
+          "noctalia/screen_recorder" = {
+            copy_to_clipboard = true;
+            video_source = "focused";
+          };
           "maydayv7/hyprland-submap".command = socket2;
           "maydayv7/hyprland-layout" = {
             command = socket2;

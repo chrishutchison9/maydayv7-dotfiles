@@ -2,21 +2,42 @@
 {config, ...}: let
   inherit (config) util;
 in {
-  flake.modules.homeManager.internet = {pkgs, ...}: {
+  flake.modules.homeManager.internet = {
+    config,
+    lib,
+    pkgs,
+    ...
+  }: {
     programs = {
       # Browser
       brave = {
         enable = true;
-        extensions = [
-          "djflhoibgkdhkhhcedjiklpkjnoahfmg" # User Agent Switcher
-          "lckanjgmijmafbedllaakclkaicjfmnk" # ClearURLs
-          "oofgbpoabipfcfjapgnbbjjaenockbdp" # SetupVPN
-          "jghecgabfgfdldnmbfkhmffcabddioke" # Volume Booster
-          "jaioibhbkffompljnnipmpkeafhpicpd" # Tab Auto Refresh
-          "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
-          "clngdbkpkpeebahjckkjfobafhncgmne" # Stylus
-          "oboonakemofpalcgghocfoadofidjkkk" # KeePassXC
-        ];
+        extensions =
+          [
+            "djflhoibgkdhkhhcedjiklpkjnoahfmg" # User Agent Switcher
+            "lckanjgmijmafbedllaakclkaicjfmnk" # ClearURLs
+            "oofgbpoabipfcfjapgnbbjjaenockbdp" # SetupVPN
+            "jghecgabfgfdldnmbfkhmffcabddioke" # Volume Booster
+            "jaioibhbkffompljnnipmpkeafhpicpd" # Tab Auto Refresh
+            "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
+            "clngdbkpkpeebahjckkjfobafhncgmne" # Stylus
+          ]
+          # KeePassXC
+          ++ lib.optional config.programs.keepassxc.enable "oboonakemofpalcgghocfoadofidjkkk";
+        nativeMessagingHosts =
+          lib.optional config.programs.keepassxc.enable
+          (pkgs.writeTextDir
+            "etc/chromium/native-messaging-hosts/org.keepassxc.keepassxc_browser.json"
+            (builtins.toJSON {
+              name = "org.keepassxc.keepassxc_browser";
+              description = "KeePassXC integration with native messaging support";
+              path = "${pkgs.keepassxc}/bin/keepassxc-proxy";
+              type = "stdio";
+              allowed_origins = [
+                "chrome-extension://oboonakemofpalcgghocfoadofidjkkk/"
+                "chrome-extension://pdffhmdngciaglkoonimfcmckehcpafo/"
+              ];
+            }));
       };
 
       # Mail Client
@@ -35,10 +56,10 @@ in {
     };
 
     home.packages = with pkgs; [
-      unstable.karere
       linux-wifi-hotspot
       openfortivpn
       teams-for-linux
+      zapzap
       zoom-us
     ];
 
@@ -49,9 +70,8 @@ in {
         ".cache/BraveSoftware"
         ".thunderbird"
         ".cache/thunderbird"
-        ".config/karere"
-        ".local/share/karere"
-        ".cache/karere"
+        ".local/share/ZapZap"
+        ".cache/ZapZap"
         ".zoom"
         ".cache/zoom"
       ];

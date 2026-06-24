@@ -130,10 +130,10 @@ lib.mkIf (osConfig != null) (
         name = "Social";
         apps = [
           "Zoom.desktop"
-          "io.github.tobagin.karere.desktop"
+          "com.rtosta.zapzap.desktop"
           "teams-for-linux.desktop"
           "org.gnome.Fractal.desktop"
-          "vesktop.desktop"
+          "discord.desktop"
         ];
       };
 

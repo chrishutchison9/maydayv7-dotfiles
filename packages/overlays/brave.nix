@@ -1,13 +1,13 @@
 final: prev: {
   # Brave Browser Flags
   brave = prev.brave.overrideAttrs (old: {
-    installPhase =
-      old.installPhase
+    postFixup =
+      (old.postFixup or "")
       + ''
-        exe="$out/bin/brave"
-        fix=" --enable-features=TouchpadOverscrollHistoryNavigation --gtk-version=4"
-        substituteInPlace $out/share/applications/{brave-browser,com.brave.Browser}.desktop \
-          --replace-fail $exe "$exe$fix"
+        flags="--enable-features="
+        fix="--gtk-version=4 --enable-features=TouchpadOverscrollHistoryNavigation,"
+        substituteInPlace $out/bin/brave \
+          --replace-fail "$flags" "$fix"
       '';
   });
 }

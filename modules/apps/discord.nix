@@ -1,7 +1,6 @@
 ## Discord Configuration ##
 {inputs, ...}: {
   flake.modules.homeManager.discord = {
-    pkgs,
     lib,
     osConfig ? {},
     ...
@@ -9,13 +8,12 @@
     isGnome = osConfig.services.desktopManager.gnome.enable or false;
   in {
     imports = [inputs.nixcord.homeModules.nixcord];
-    home.persist.directories = [".config/vesktop"];
+    home.persist.directories = [".config/discord"];
     programs.nixcord = {
       enable = true;
-      discord.enable = false;
-      vesktop = {
+      discord = {
         enable = true;
-        package = pkgs.vesktop;
+        vencord.enable = true;
       };
 
       # Theming
