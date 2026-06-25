@@ -29,10 +29,6 @@ It also builds and deploys my website to [maydayv7.cc](https://maydayv7.cc).
 | :------------------------------------------------: |
 |                  _GNOME Desktop_                   |
 
-| ![Pantheon Desktop](./files/images/desktop/pantheon.jpg) |
-| :------------------------------------------------------: |
-|                    _Pantheon Desktop_                    |
-
 |                    Windows                     |
 | :--------------------------------------------: |
 | ![Windows](./files/images/desktop/windows.png) |
@@ -60,6 +56,10 @@ It also builds and deploys my website to [maydayv7.cc](https://maydayv7.cc).
 
 <details>
 <summary><i>Older...</i></summary>
+
+| ![Pantheon Desktop](./files/images/desktop/pantheon.jpg) |
+| :------------------------------------------------------: |
+|                    _Pantheon Desktop_                    |
 
 | [![XFCE Desktop](./files/images/desktop/xfce.jpg)](https://www.reddit.com/r/unixporn/comments/19efxry/xfce_functional_and_beautiful/) |
 | :-----------------------------------------------------------------------------------------------------------------------------------: |

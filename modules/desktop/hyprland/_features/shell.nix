@@ -1,412 +1,76 @@
-## Noctalia Shell
-{
-  inputs ? null,
-  files ? null,
-  ...
-}: {
+## Shell Integration
+{files ? null, ...}: {
   home = {
     config,
-    osConfig ? {},
     lib,
     pkgs,
     ...
-  }: let
-    output = osConfig.gui.display or "eDP-1";
-  in {
-    imports = [inputs.noctalia.homeModules.default];
-    gui._unmanaged = ["noctalia-shell"];
-    home.persist.directories = [
-      ".cache/noctalia"
-      ".local/state/noctalia"
-    ];
-
-    programs.noctalia = {
-      enable = true;
-      systemd.enable = true;
-      settings = {
-        shell = {
-          font_family = config.stylix.fonts.sansSerif.name;
-          avatar_path = "~/.face";
-          clipboard_enabled = true;
-          clipboard_history_max_entries = 150;
-          polkit_agent = true;
-          launch_apps_as_systemd_services = true;
-          settings_show_advanced = true;
-          panel.launcher_session_search = true;
-          screen_corners = {
-            enabled = true;
-            size = 30;
-          };
-          shadow.direction = "center";
-        };
-
-        theme = {
-          source = "custom";
-          custom_palette = "stylix";
-          mode = "dark";
-          builtin = "Catppuccin";
-          templates = {
-            builtin_ids = ["qt"];
-            enable_builtin_templates = false;
-            enable_community_templates = false;
-          };
-        };
-
-        # Bar
-        bar.main = {
-          position = "top";
-          start = ["session" "taskbar" "group:g1" "media"];
-          center = ["launcher" "clock" "control-center"];
-          end = [
-            "group:g2"
-            "recorder"
-            "clipboard"
-            "bluetooth"
-            "network"
-            "volume"
-            "brightness"
-            "battery"
-            "notifications"
-          ];
-          background_opacity = 0.75;
-          margin_edge = 0;
-          margin_ends = 0;
-          padding = 15;
-          radius = 0;
-          scale = 1.1;
-          thickness = 30;
-          widget_spacing = 14;
-          capsule_group = [
-            {
-              id = "g1";
-              members = [
-                "minimize"
-                "maydayv7/hyprland-layout:indicator"
-                "maydayv7/hyprland-submap:indicator"
-              ];
-            }
-            {
-              id = "g2";
-              members = ["tray"];
-            }
-          ];
-        };
-
-        # Audio
-        audio = {
-          enable_overdrive = true;
-          enable_sounds = true;
-          sound_volume = 0.3;
-        };
-
-        # Widgets
-        widget = {
-          clock.anchor = true;
-          control-center.glyph = "menu";
-          network.show_label = false;
-          recorder.type = "noctalia/screen_recorder:recorder";
-          media = {
-            hide_when_no_media = true;
-            title_scroll = "on_hover";
-          };
-          taskbar = {
-            group_by_workspace = true;
-            inactive_opacity = 0.85;
-            scale = 1.1;
-            show_active_indicator = false;
-            workspace_label_placement = "inside";
-          };
-
-          # Minimize Button
-          minimize = {
-            type = "custom_button";
-            glyph = "arrow-bar-to-down";
-            tooltip = "Minimize window";
-            command = ''hyprctl dispatch 'hl.dsp.window.move({ workspace = "special:minimized", follow = false })' '';
-            right_command = "hyprutils toggle minimized";
-          };
-        };
-        system.monitor.enabled = true;
-
-        # Calendar
-        calendar = {
-          enabled = true;
-          account.personal_google.type = "google";
-        };
-
-        # Notifications
-        notification = {
-          enable_daemon = true;
-          layer = "overlay";
-          filter.power = {
-            enabled = true;
-            match = "poweralertd";
-            play_sound = true;
-            save_history = false;
-            show_toast = true;
-          };
-        };
-        osd = {
-          background_opacity = 0.75;
-          kinds = {
-            volume = true;
-            brightness = true;
-            wifi = true;
-            bluetooth = true;
-            power_profile = true;
-            caffeine = true;
-            dnd = true;
-            keyboard_layout = true;
-          };
-        };
-
-        # Screenshots
-        shell.screenshot = {
-          save_to_file = true;
-          copy_to_clipboard = true;
-          freeze_screen = true;
-          directory = "~/Pictures/Screenshots";
-        };
-
-        # Wallpaper
-        wallpaper = {
-          enabled = true;
-          fill_mode = "crop";
-          transition_on_startup = true;
-          default.path = osConfig.stylix.image or "";
-        };
-
-        # Desktop Widgets
-        desktop_widgets = {
-          schema_version = 2;
-          widget_order = ["desktop-widget-0000000000000001" "desktop-widget-0000000000000002"];
-          grid = {
-            cell_size = 16;
-            major_interval = 4;
-            visible = true;
-          };
-          widget = {
-            "desktop-widget-0000000000000001" = {
-              inherit output;
-              box_height = 352.0;
-              box_width = 368.0;
-              cx = 1328.0;
-              cy = 240.0;
-              rotation = 0.0;
-              type = "clock";
-              settings = {
-                background = false;
-                center_text = true;
-                clock_style = "analog";
-                format = "{:%H:%M:%S}";
-                shadow = true;
-              };
-            };
-            "desktop-widget-0000000000000002" = {
-              inherit output;
-              box_height = 112.0;
-              box_width = 240.0;
-              cx = 1392.0;
-              cy = 856.0;
-              rotation = 0.0;
-              type = "weather";
-              settings = {
-                background = false;
-                show_forecast = false;
-              };
-            };
-          };
-        };
-
-        # Screen Idle
-        idle.behavior = {
-          lock = {
-            enabled = true;
-            timeout = 300;
-            command = "noctalia:session lock";
-          };
-          screen-off = {
-            enabled = true;
-            timeout = 360;
-            command = "noctalia:dpms-off";
-            resume_command = "noctalia:dpms-on";
-          };
-          suspend = {
-            enabled = true;
-            timeout = 600;
-            action = "suspend";
-            lock_before_suspend = true;
-          };
-        };
-
-        # Lock Screen
-        lockscreen = {
-          enabled = true;
-          blurred_desktop = false;
-          blur_intensity = 0.0;
-          tint_intensity = 0.25;
-          fingerprint = false;
-        };
-
-        # Lockscreen Widgets
-        lockscreen_widgets = {
-          enabled = true;
-          schema_version = 2;
-          widget_order = [
-            "lockscreen-login-box@eDP-1"
-            "lockscreen-widget-0000000000000001"
-            "lockscreen-widget-0000000000000003"
-          ];
-          grid = {
-            cell_size = 16;
-            major_interval = 4;
-            visible = true;
-          };
-          widget = {
-            "lockscreen-login-box@${output}" = {
-              inherit output;
-              box_height = 70.0;
-              box_width = 400.0;
-              cx = 1280.0;
-              cy = 1477.0;
-              rotation = 0.0;
-              type = "login_box";
-              settings = {
-                background_color = "surface_variant";
-                background_opacity = 0.88;
-                background_radius = 12.0;
-                input_opacity = 1.0;
-                input_radius = 6.0;
-                show_login_button = true;
-              };
-            };
-            "lockscreen-widget-0000000000000001" = {
-              inherit output;
-              box_height = 256.0;
-              box_width = 736.0;
-              cx = 768.0;
-              cy = 352.0;
-              rotation = 0.0;
-              type = "clock";
-              settings.format = "{:%H:%M:%S}";
-            };
-            "lockscreen-widget-0000000000000003" = {
-              inherit output;
-              box_height = 192.0;
-              box_width = 368.0;
-              cx = 768.0;
-              cy = 640.0;
-              rotation = 0.0;
-              type = "media_player";
-              settings.hide_when_no_media = true;
-            };
-          };
-        };
-
-        # Night Light
-        nightlight = {
-          enabled = true;
-          temperature_day = 6500;
-          temperature_night = 4000;
-        };
-
-        # Weather
-        weather.enabled = true;
-        location = {
-          auto_locate = true;
-          sunset = "19:00";
-          sunrise = "06:00";
-        };
-
-        # Plugins
-        plugins = {
-          source = [
-            {
-              name = "official";
-              kind = "git";
-              location = "https://github.com/noctalia-dev/official-plugins";
-            }
-            {
-              name = "community";
-              kind = "git";
-              location = "https://github.com/noctalia-dev/community-plugins";
-            }
-            {
-              name = "local";
-              kind = "path";
-              location = files.hyprland.noctalia;
-            }
-          ];
-          enabled = [
-            "noctalia/screen_recorder"
-            "noctalia/timer"
-            "maydayv7/hyprland-submap"
-            "maydayv7/hyprland-layout"
-          ];
-        };
-        plugin_settings = let
-          hyprctl = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl";
-          jq = lib.getExe pkgs.jq;
-          socket2 = "${lib.getExe pkgs.socat} -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock -";
-        in {
-          "noctalia/screen_recorder" = {
-            copy_to_clipboard = true;
-            video_source = "focused";
-          };
-          "maydayv7/hyprland-submap".command = socket2;
-          "maydayv7/hyprland-layout" = {
-            command = socket2;
-            layout_command = "${hyprctl} getoption -j general:layout";
-            float_command = "${hyprctl} -j clients | ${jq} --argjson ws \"$(${hyprctl} -j activeworkspace | ${jq} .id)\" '[.[] | select(.workspace.id == $ws and .mapped)] as $w | (($w | length) > 0) and ($w | map(.floating) | all)'";
-          };
-        };
+  }: {
+    programs.noctalia.settings = {
+      # Bar
+      bar.main = {
+        start = ["session" "taskbar" "group:g1" "media"];
+        capsule_group = [
+          {
+            id = "g1";
+            members = [
+              "minimize"
+              "maydayv7/hyprland-layout:indicator"
+              "maydayv7/hyprland-submap:indicator"
+            ];
+          }
+          {
+            id = "g2";
+            members = ["tray"];
+          }
+        ];
       };
 
-      # Color Palette
-      customPalettes.stylix.dark = with config.lib.stylix.colors.withHashtag; {
-        primary = base0D;
-        onPrimary = base00;
-        secondary = base0E;
-        onSecondary = base00;
-        tertiary = base0C;
-        onTertiary = base00;
-        error = base08;
-        onError = base00;
-        surface = base00;
-        onSurface = base05;
-        surfaceVariant = base01;
-        onSurfaceVariant = base04;
-        outline = base03;
-        shadow = base00;
-        hover = base0C;
-        onHover = base00;
-        terminal = {
-          normal = {
-            black = base00;
-            red = base08;
-            green = base0B;
-            yellow = base0A;
-            blue = base0D;
-            magenta = base0E;
-            cyan = base0C;
-            white = base05;
-          };
-          bright = {
-            black = base03;
-            red = base08;
-            green = base0B;
-            yellow = base0A;
-            blue = base0D;
-            magenta = base0E;
-            cyan = base0C;
-            white = base07;
-          };
-          foreground = base05;
-          background = base00;
-          cursor = base05;
-          cursorText = base00;
-          selectionFg = base05;
-          selectionBg = base02;
+      # Minimize Button
+      widget.minimize = {
+        type = "custom_button";
+        glyph = "arrow-bar-to-down";
+        tooltip = "Minimize window";
+        command = ''hyprctl dispatch 'hl.dsp.window.move({ workspace = "special:minimized", follow = false })' '';
+        right_command = "hyprutils toggle minimized";
+      };
+
+      # Plugins
+      plugins = {
+        source = [
+          {
+            name = "official";
+            kind = "git";
+            location = "https://github.com/noctalia-dev/official-plugins";
+          }
+          {
+            name = "community";
+            kind = "git";
+            location = "https://github.com/noctalia-dev/community-plugins";
+          }
+          {
+            name = "local";
+            kind = "path";
+            location = files.hyprland.noctalia;
+          }
+        ];
+        enabled = [
+          "noctalia/screen_recorder"
+          "noctalia/timer"
+          "maydayv7/hyprland-submap"
+          "maydayv7/hyprland-layout"
+        ];
+      };
+      plugin_settings = let
+        hyprctl = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl";
+        jq = lib.getExe pkgs.jq;
+        socket2 = "${lib.getExe pkgs.socat} -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock -";
+      in {
+        "maydayv7/hyprland-submap".command = socket2;
+        "maydayv7/hyprland-layout" = {
+          command = socket2;
+          layout_command = "${hyprctl} getoption -j general:layout";
+          float_command = "${hyprctl} -j clients | ${jq} --argjson ws \"$(${hyprctl} -j activeworkspace | ${jq} .id)\" '[.[] | select(.workspace.id == $ws and .mapped)] as $w | (($w | length) > 0) and ($w | map(.floating) | all)'";
         };
       };
     };

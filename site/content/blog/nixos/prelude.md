@@ -1,7 +1,7 @@
 +++
 title = "Prelude"
 description = "My NixOS Configuration"
-date = 2026-01-05
+date = 2025-12-15
 
 [taxonomies]
 series = ["NixOS Desktop"]
@@ -15,7 +15,7 @@ comments = true
 
 # I don't know Linux
 
-Go away already.  
+Go away.  
 If you’re looking for a beginner’s guide, this is not it. This is a postmortem of a bad idea that worked.
 
 I sadly do not possess much time, and quite frankly, most of the rest of this page/series will go over your head.  
@@ -32,7 +32,7 @@ But you also know the **fear**.
 
 The fear that if you delete the wrong file, mess with the wrong package, or even upgrade to a new release, your computer might implode, and you'll have no idea how to get back to the way things were.
 
-> That's \*\*\*\*\*\*\* it I'm switching back to Windows forever  
+> That's it I'm _\<redacted\>_ switching back to Windows forever  
 > --> **Me** ~~(right after the 69420th distro-hop that caused my system to crash and burn)~~
 
 **NixOS is different.**
@@ -40,66 +40,64 @@ The fear that if you delete the wrong file, mess with the wrong package, or even
 Basically, you define a **blueprint** - a single configuration file that describes exactly how you want your computer to function.
 You want Firefox? You write `firefox` in the file. You wanna set your wallpaper? Just chuck it into the file.
 
-After you're done, [Nix](https://github.com/NixOS/nix) looks at it, nods, and builds your entire operating system from scratch to match exactly what you wrote.
+After you're done, [Nix](https://github.com/NixOS/nix) reads it, and builds your entire operating system to match exactly what you wrote.
 If you mess up, you just undo the text in the file, and your computer goes back to being perfect.
 And oh, lest I forget to mention, you’d never have to deal with the godforsaken dependency hell [^1].
 
 ---
 
-_Now that the theatrics are out of the way, let's proceed to see more of it_
+_And now for the theatrics..._
 
 # The Descent into Madness
 
 It started innocently enough. I just wanted a system that was **reproducible**.
 
 I began with **Nix Flakes**, the "Gateway Drug" [^2] of the ecosystem.
-Instead of vaguely gesturing at a repository and hoping for the best, `flake.nix` locks every input dependency of my system to a specific commit hash.
-It is the ultimate insurance policy: if I compile this system today, or in about 10 years in the midst of an imminent meteor strike, I will get the exact same binary output.
+Instead of vaguely gesturing at a repository and hoping for the best, `flake.nix` declares every input my system depends on, and `flake.lock` pins each one to an exact revision.
+It is the ultimate insurance policy: if I build this system today, or in about 10 years in the midst of an imminent meteor strike, I will get the exact same system [^4].
 
 But having a reproducible system wasn't enough. It had to be **obedient**.
 
 I pulled in [**Home Manager**](https://github.com/nix-community/home-manager) because configuring the OS wasn't enough; I needed to micromanage my user config files too.
-Then came [**Stylix**](https://github.com/nix-community/stylix). I declare a single image and a color scheme, and Stylix brutally enforces this theme across everything. It forces CSS into [Waybar](https://github.com/Alexays/Waybar), recompiles all my app themes, and even bullies my terminal into submission.
-But why stop there? I grabbed [**Spicetify**](https://github.com/Gerg-L/spicetify-nix) to force Spotify to match my aesthetic, and [**Nixcord**](https://github.com/FlameFlag/nixcord) for Discord cuz the default grey was offending my eyes.
+Then came [**Stylix**](https://github.com/nix-community/stylix). I declare a single image and a color scheme, and Stylix enforces this theme across everything. It generates CSS for [Waybar](https://github.com/Alexays/Waybar), restyles all my apps, and even bullies my terminal into submission.
+But why stop there? I grabbed [**Spicetify**](https://github.com/Gerg-L/spicetify-nix) to force Spotify to match my aesthetic, and [**Nixcord**](https://github.com/FlameFlag/nixcord) for Discord cuz why the heck not.
 
 **"Okay, it's pretty," you say. "But is it useful?"**
 
-You have no idea.
+You have no idea [^4].
 
 I don't "install" development tools. I have a [directory](https://github.com/maydayv7/dotfiles/tree/main/shells) that defines isolated environments for C++, Python, JavaScript and so on.
 When I `cd` into a project, [Direnv](https://direnv.net/) and [**Lorri**](https://github.com/nix-community/lorri) kick in, and the compiler, linter, LSP and whatnot along with all of their configuration just _appear_ in my shell. When I leave, they vanish.
 
-Every little thing is specified in code, from backups to network settings and even complex editor workflows (Thank you for your concern, but I very likey my trusty [VS Code](https://code.visualstudio.com/)).
+Every little thing is specified in code, from backups to network settings and even complex editor workflows (thanks for your concern, but I very likey my trusty [VS Code](https://code.visualstudio.com/)).
 Heck, even my **_Printer_** configuration is defined in a Nix file.
 
-**Oh, you thought that would be enough to satiate me?**
+**Well what else do ya need?**
 
-Please.
+I still wanted to play games and run Android apps. A normal person would dual-boot or use an emulator.
 
-I needed to know that my system was _spiritually_ pure. So I formatted my drive with [ZFS](https://github.com/openzfs/zfs) (it's own [merits](https://itsfoss.com/what-is-zfs/) aside) and implemented [**Impermanence**](https://github.com/nix-community/impermanence).
-Every time I reboot, my root filesystem is nuked. Wiped. Gone. My OS is resurrected from a blank slate every boot, preserving only what I explicitly whitelist on a separate dataset.
-To manage secrets without them dying in the purge, I use [**sops-nix**](https://github.com/Mic92/sops-nix) to encrypt passwords and API keys using GPG, directly into my publicly hosted `git` repo, without leaking any sensitive data.
+I run [Waydroid](https://github.com/waydroid/waydroid) to run Android in a container.
+Then, for the _pièce de résistance_, I set up [VFIO](https://docs.kernel.org/driver-api/vfio.html) GPU Passthrough [^3]. I pass that GPU directly into a Windows VM and use [Looking Glass](https://looking-glass.io/) to stream the video output back to my PC screen with negligible latency.
+
+I've also declaratively configured [**Minecraft Servers**](https://github.com/Infinidoge/nix-minecraft) _(cuz that 2 week period happens every other month for me, don't judge)_.
 
 **At this point most people would stop**
 
 Well I didn't.
 
-I still wanted to play games and run Android apps. A normal person would dual-boot or use an emulator. I chose violence.
-
-I run [Waydroid](https://github.com/waydroid/waydroid) to virtualize Android directly on the Linux kernel.
-Then, for the _pièce de résistance_, I set up [VFIO](https://docs.kernel.org/driver-api/vfio.html) GPU Passthrough [^3]. I pass that GPU directly into a Windows Virtual Machine and use [Looking Glass](https://looking-glass.io/) to stream the video output back to my PC screen with negligible latency.
-
-I've also declaratively configured [**Minecraft Servers**](https://github.com/Infinidoge/nix-minecraft) (that 2 week period lasted for months actually, don't judge) and [Wine](https://www.winehq.org/) applications (shoutout to [Erosanix](https://github.com/emmanuelrosa/erosanix)).
+I needed to know that my system was _spiritually_ pure. So I formatted my drive with [ZFS](https://github.com/openzfs/zfs) (its own [merits](https://itsfoss.com/what-is-zfs/) aside) and implemented [**Impermanence**](https://github.com/nix-community/impermanence).
+Every time I reboot, my root dataset rolls back to an empty snapshot. Wiped. Gone. My OS comes back from a blank slate every boot, preserving only what I explicitly whitelist on a separate dataset.
+To manage secrets without em dying in the purge, I use [**sops-nix**](https://github.com/Mic92/sops-nix) to encrypt passwords and API keys using GPG, directly into my publicly hosted `git` repo, without leaking any sensitive data.
 
 **The result of all this?**
 
-If I buy a new computer today, I don't spend a week installing drivers and recovering passwords.
+If I buy a new computer today, I don't spend a week installing drivers and recovering my workflow.
 
 I clone my repository. I run one single command.
 
-And I go get a coffee. Soon as I return [^4], I spin up a AAA Windows game, displayed on a tiling Linux WM (heck even choose between [Hyprland](https://hypr.land/) and [Niri](https://github.com/YaLTeR/niri)), on a system that deletes and rebuilds itself on every boot.
+~~And I doomscroll~~. Soon as I return [^4], I spin up an AAA Windows game, displayed on a tiling Linux WM (heck, even choose between [Hyprland](https://hypr.land/) and [Niri](https://github.com/YaLTeR/niri)), on a system that deletes and rebuilds itself on every boot.
 
-God, I love NixOS.
+God, I love NixOS, and I hate it cuz now I can't go back to anything else.
 
 # A Fair Warning
 
@@ -107,11 +105,11 @@ Before you rush off to install this magical operating system, we need to have a 
 
 **NixOS is hard.**
 
-And I don't mean "Linux is hard" kind of hard. Its more "I have to relearn how my computer works" kind of hard.
+And I don't mean "Linux is hard" kind of hard. Its more "I have to relearn how everything works" kind of hard.
 
 - **It is not standard Linux**: Most tutorials you find on the internet simply will not work here. You can't just `apt install` your problems away.
-- **The Documentation is... sparse**: Sometimes you will be reading a manual, and sometimes you will be reading 5-year-old Reddit threads praying for an answer.
-- **Patience is key** (_or severe OCD tbh_): If you are not acquainted with the command line, programming languages, random crash logs, or want a computer that "just works" to play games or browse the web, consider yourself warned. Cuz this setup costs time, sanity, and a concerning amount of self-restraint to avoid mutilating your PC.
+- **The Documentation is... sparse**: Sometimes you will be reading a manual, and sometimes you will be reading 10-year-old Reddit threads praying for an answer.
+- **Patience is key** (_or severe OCD tbh_): If you are not acquainted with the command line, programming languages, random crash logs, or want a computer that "just works" to play games or browse the web, consider yourself warned. Cuz this setup costs time, sanity, and a concerning amount of self-restraint.
 
 # Still Reading?
 

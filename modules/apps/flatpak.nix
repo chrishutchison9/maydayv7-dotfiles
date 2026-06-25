@@ -58,7 +58,7 @@
           };
           Environment = {
             "DCONF_USER_CONFIG_DIR" = ".config/dconf";
-            "GTK_THEME" = config.gui.gtk.theme.name or "";
+            inherit (config.environment.variables) "GTK_THEME";
           };
         };
 

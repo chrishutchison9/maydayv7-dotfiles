@@ -16,16 +16,22 @@ in {
   in {
     # Environment
     imports = [./_mutable.nix];
-    xdg.mimeApps.defaultApplications = util.build.mime {
-      code = ["code.desktop"];
-      markdown = ["code.desktop"];
-      text = ["code.desktop"];
+    xdg.mimeApps = let
+      mime = util.build.mime {
+        code = ["code.desktop"];
+        markdown = ["code.desktop"];
+        text = ["code.desktop"];
+      };
+    in {
+      defaultApplications = mime;
+      associations.added = mime;
     };
 
     home = {
       persist.directories = [
         ".config/Code"
         ".vscode"
+        ".vscode-shared"
       ];
       packages = with pkgs; [
         nil

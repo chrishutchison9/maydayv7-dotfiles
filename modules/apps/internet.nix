@@ -55,26 +55,29 @@ in {
       mail = ["thunderbird.desktop"];
     };
 
-    home.packages = with pkgs; [
-      linux-wifi-hotspot
-      openfortivpn
-      teams-for-linux
-      zapzap
-      zoom-us
-    ];
-
-    home.persist = {
-      files = [".config/zoomus.conf"];
-      directories = [
-        ".config/BraveSoftware"
-        ".cache/BraveSoftware"
-        ".thunderbird"
-        ".cache/thunderbird"
-        ".local/share/ZapZap"
-        ".cache/ZapZap"
-        ".zoom"
-        ".cache/zoom"
+    home = {
+      packages = with pkgs; [
+        linux-wifi-hotspot
+        openfortivpn
+        teams-for-linux
+        zapzap
+        zoom-us
       ];
+
+      persist = {
+        files = [".config/zoomus.conf"];
+        directories = [
+          ".config/BraveSoftware"
+          ".cache/BraveSoftware"
+          ".thunderbird"
+          ".cache/thunderbird"
+          ".config/ZapZap"
+          ".local/share/ZapZap"
+          ".cache/ZapZap"
+          ".zoom"
+          ".cache/zoom"
+        ];
+      };
     };
   };
 }

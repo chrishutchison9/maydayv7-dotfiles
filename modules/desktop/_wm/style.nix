@@ -14,24 +14,12 @@
       };
     };
 
-    gui = {
-      gtk.theme = {
-        name = "catppuccin-macchiato-blue-standard";
-        package = pkgs.catppuccin-gtk.override {
-          accents = ["blue"];
-          variant = "macchiato";
-        };
-      };
-
-      qt = {
-        style = "kvantum";
-        theme = {
-          name = "catppuccin-macchiato-blue";
-          package = pkgs.catppuccin-kvantum.override {
-            accent = "blue";
-            variant = "macchiato";
-          };
-        };
+    # QT Theme
+    gui.qt = {
+      theme = "catppuccin-macchiato-blue";
+      package = pkgs.catppuccin-kvantum.override {
+        accent = "blue";
+        variant = "macchiato";
       };
     };
   };
@@ -39,10 +27,12 @@
   home = {
     config,
     lib,
+    pkgs,
     options,
     ...
   }: let
     inherit (lib) attrNames elem filter genAttrs hasPrefix;
+    theme = "${pkgs.custom.adw-catppuccin}/share/adw-catppuccin/macchiato";
 
     # Use Catppuccin over Stylix
     alias = {
@@ -68,6 +58,12 @@
           kvantum.enable = false;
         }
         // genAttrs except (_: {enable = false;});
+
+      # GTK Theme
+      gtk = {
+        gtk3.extraCss = builtins.readFile "${theme}/catppuccin-macchiato-blue-gtk3.css";
+        gtk4.extraCss = builtins.readFile "${theme}/catppuccin-macchiato-blue.css";
+      };
     };
   };
 }

@@ -49,12 +49,10 @@ in {
           type = types.bool;
           default = false;
           description = ''
-            Whether to copy the file without the read-only attribute instead of
-            symlinking. If you set this to `true`, you must also set `force` to
-            `true`. Mutable files are not removed when you remove them from your
-            configuration.
-            This option is useful for programs that don't have a very good
-            support for read-only configurations.
+            Whether to copy the file without the read-only attribute instead of symlinking.
+            If you set this to 'true', you must also set 'force' to 'true'.
+            Mutable files are not removed when you remove them from your configuration.
+            This option is useful for programs that don't have a very good support for read-only configurations.
           '';
         };
       })
@@ -79,7 +77,7 @@ in {
       filterMutableFiles = filter (
         file:
           (file.mutable or false)
-          && assertMsg file.force "if you specify `mutable` to `true` on a file, you must also set `force` to `true`"
+          && assertMsg file.force "if you specify 'mutable' to 'true' on a file, you must also set 'force' to 'true'"
       );
 
       mutableFiles = filterMutableFiles allFiles;
@@ -93,10 +91,7 @@ in {
       '';
 
       command =
-        ''
-
-          echo "Copying mutable home files for $HOME"
-        ''
+        ''echo "Copying mutable home files for $HOME"''
         + concatLines (map toCommand mutableFiles);
     in
       hm.dag.entryAfter ["linkGeneration"] command;

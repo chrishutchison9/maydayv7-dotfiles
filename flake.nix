@@ -178,8 +178,28 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ## Hyprland
-    # Core
+    # Desktop Shell
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Login Greeter
+    noctalia-greeter = {
+      url = "github:noctalia-dev/noctalia-greeter";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Niri
+    niri = {
+      url = "github:epireyn/niri-flake";
+      inputs = {
+        nixpkgs.follows = "unstable";
+        nixpkgs-stable.follows = "stable";
+      };
+    };
+
+    # Hyprland
     hyprland = {
       url = "github:hyprwm/hyprnix/92cabda9b41bdf13c488f9cd8b646f2b352b6b1a";
       inputs = {
@@ -188,7 +208,6 @@
       };
     };
 
-    # Plugins
     hyprsplit = {
       url = "github:maydayv7/hyprsplit";
       # url = "github:shezdy/hyprsplit";
@@ -204,18 +223,6 @@
         nixpkgs.follows = "nixpkgs";
         hyprland.follows = "hyprland";
       };
-    };
-
-    # Desktop Shell
-    noctalia = {
-      url = "github:noctalia-dev/noctalia";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Login Greeter
-    noctalia-greeter = {
-      url = "github:noctalia-dev/noctalia-greeter";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

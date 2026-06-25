@@ -130,19 +130,6 @@ lib.mkIf (osConfig != null) (
             bezier = "zoom";
           }
           {
-            leaf = "layersIn";
-            enabled = true;
-            speed = 3;
-            bezier = "crash";
-            style = "slide";
-          }
-          {
-            leaf = "layersOut";
-            enabled = true;
-            speed = 1.6;
-            bezier = "zoom";
-          }
-          {
             leaf = "specialWorkspace";
             enabled = true;
             speed = 3;

@@ -47,7 +47,7 @@
     "wine"
     "games"
     #"libvirt"
-    "hyprland"
+    "niri"
   ];
 
   hmImports =

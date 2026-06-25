@@ -2,6 +2,7 @@
 
 ### June
 
+- Use [`adw-catppuccin`](https://github.com/LuminarLeaf/adw-catppuccin) for Catppuccin GTK Theme
 - Use Discord instead of Vesktop
 - Script to update Minecraft mods
 - Drop manually-packaged `wine` applications
@@ -16,7 +17,7 @@
 - Add `auth`, `syncthing`, `mouse`
 - Use Thunderbird for mail
 - Upgrade to NixOS 26.05
-- Drop Niri & Pantheon
+- Drop Pantheon Desktop
 - Support standalone `home-manager` configurations
 - Refactor NixOS Configuration to use [dendritic](https://github.com/mightyiam/dendritic) pattern
 - Switch back formatter to `alejandra`

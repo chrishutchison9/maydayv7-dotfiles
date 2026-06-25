@@ -7,127 +7,58 @@ _: {
       pkgs,
       ...
     }: let
-      inherit
-        (lib)
-        mkDefault
-        mkIf
-        mkMerge
-        mkOption
-        types
-        ;
-      inherit (config.gui) qt icons;
-      inherit (config.stylix) fonts;
+      inherit (lib) mkOption types;
+      cfg = config.gui.qt;
     in {
       options.gui.qt = {
-        style = mkOption {
-          description = "QT Application Style";
-          type = types.nullOr (
-            types.enum [
-              "gtk"
-              "kvantum"
-              "qtct"
-            ]
-          );
-          default = null;
+        theme = mkOption {
+          description = "QT Application Theme";
+          type = types.str;
+          default = "";
         };
 
-        theme = {
-          name = mkOption {
-            description = "QT Application Theme";
-            type = types.str;
-            default = "";
-          };
-
-          package = mkOption {
-            description = "QT Theme Package";
-            type = types.package;
-            default = pkgs.adwaita-qt;
-          };
+        package = mkOption {
+          description = "QT Theme Package";
+          type = types.package;
+          default = pkgs.adwaita-qt;
         };
       };
 
-      config = with qt.theme;
-        mkMerge [
-          {
-            stylix.targets.qt.enable = false;
-            qt = {
-              enable = true;
-              platformTheme = mkDefault "gtk2";
-            };
-          }
+      # Kvantum Style
+      config = {
+        stylix.targets.qt.enable = false;
+        qt = {
+          enable = true;
+          platformTheme = "qt5ct";
+          style = "kvantum";
+        };
 
-          (mkIf (qt.style == "gtk") {
-            qt = {
-              platformTheme = "gnome";
-              style = "adwaita-dark";
-            };
-          })
+        environment = {
+          systemPackages = [
+            cfg.package
+            pkgs.libsForQt5.qt5ct
+            pkgs.kdePackages.qt6ct
+          ];
 
-          (mkIf (qt.style == "kvantum") {
-            qt = {
-              platformTheme = "qt5ct";
-              style = "kvantum";
-            };
-
-            environment = {
-              systemPackages = [package];
-              etc."xdg/Kvantum/kvantum.kvconfig".text = ''
-                [General]
-                theme=${name}
-              '';
-            };
-          })
-
-          (mkIf (qt.style == "qtct") (
-            let
-              pkg = with pkgs; [
-                darkly
-                darkly-qt5
-              ];
-
-              conf = version:
-                lib.generators.toINI {} {
-                  Appearance = {
-                    style = "Lightly";
-                    standard_dialogs = "default";
-                    icon_theme = icons.name;
-                    custom_palette = true;
-                    color_scheme_path = "${package}/share/${version}/colors/${name}.conf";
-                  };
-
-                  Fonts = let
-                    size = fonts.sizes.applications;
-                  in {
-                    fixed = "\"${fonts.monospace.name},${size},-1,5,50,0,0,0,0,0,Regular\"";
-                    general = "\"${fonts.sansSerif.name},${size},-1,5,50,0,0,0,0,0,Regular\"";
-                  };
-                };
-            in {
-              qt.platformTheme = "qt5ct";
-              environment = {
-                systemPackages = pkg;
-                etc = {
-                  "xdg/qt5ct/qt5ct.conf".text = conf "qt5ct";
-                  "xdg/qt6ct/qt6ct.conf".text = conf "qt6ct";
-                };
-              };
-            }
-          ))
-        ];
+          etc."xdg/Kvantum/kvantum.kvconfig".text = ''
+            [General]
+            theme=${cfg.theme}
+          '';
+        };
+      };
     };
 
     homeManager.qt = {
       config,
-      lib,
       osConfig ? {},
       ...
     }: let
       inherit (builtins) concatStringsSep map;
-      qt = osConfig.gui.qt or {};
+      cfg = osConfig.gui.qt or {};
     in {
       gui._unmanaged = ["qt"];
-      xdg.configFile."Kvantum" = lib.mkIf ((qt.style or null) == "kvantum") {
-        source = "${qt.theme.package}/share/Kvantum";
+      xdg.configFile."Kvantum" = {
+        source = "${cfg.package}/share/Kvantum";
         recursive = true;
       };
 

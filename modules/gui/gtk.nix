@@ -3,40 +3,20 @@
   inherit (config.flake) files;
 in {
   flake.modules = {
-    nixos.gtk = {
-      config,
-      lib,
-      pkgs,
-      ...
-    }: let
-      cfg = config.gui.gtk;
-    in {
-      options.gui.gtk.theme = {
-        name = lib.mkOption {
-          description = "GTK+ Application Theme";
-          type = lib.types.str;
-        };
-
-        package = lib.mkOption {
-          description = "GTK+ Theme Package";
-          type = lib.types.package;
-        };
-      };
-
-      config = {
-        # Environment Setup
-        programs.dconf.enable = true;
-        services.dbus.packages = [pkgs.dconf];
-        environment = {
-          systemPackages = [cfg.theme.package];
-          variables."GTK_THEME" = cfg.theme.name;
-        };
+    nixos.gtk = {pkgs, ...}: {
+      # Environment Setup
+      programs.dconf.enable = true;
+      services.dbus.packages = [pkgs.dconf];
+      environment = {
+        systemPackages = [pkgs.adw-gtk3];
+        variables."GTK_THEME" = "adw-gtk3-dark";
       };
     };
 
     homeManager.gtk = {
       config,
       lib,
+      pkgs,
       osConfig ? null,
       ...
     }:
@@ -59,9 +39,14 @@ in {
         # Theming
         gui._unmanaged = ["gtk"];
         dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
-        gtk = {
+        gtk = let
+          theme = {
+            name = "adw-gtk3-dark";
+            package = pkgs.adw-gtk3;
+          };
+        in {
           enable = true;
-          inherit (osConfig.gui.gtk) theme;
+          inherit theme;
           cursorTheme = config.stylix.cursor;
           font = with config.stylix.fonts; {
             inherit (sansSerif) package name;
@@ -70,7 +55,7 @@ in {
 
           gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
           gtk4 = {
-            inherit (osConfig.gui.gtk) theme;
+            inherit theme;
             extraConfig = {
               gtk-application-prefer-dark-theme = 1;
 

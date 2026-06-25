@@ -5,19 +5,9 @@
 }: {
   nixos = {pkgs, ...}: {
     # Desktop Integration
-    gui = {
-      gtk.theme = {
-        name = "adw-gtk3-dark";
-        package = pkgs.adw-gtk3;
-      };
-
-      qt = {
-        style = "kvantum";
-        theme = {
-          name = "KvLibadwaitaDark";
-          package = pkgs.custom.kvlibadwaita;
-        };
-      };
+    gui.qt = {
+      theme = "KvLibadwaitaDark";
+      package = pkgs.custom.kvlibadwaita;
     };
 
     # Color Scheme

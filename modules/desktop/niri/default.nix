@@ -1,4 +1,4 @@
-## Hyprland WM ##
+## Niri WM ##
 {
   config,
   inputs,
@@ -16,7 +16,7 @@
   );
 in {
   flake.modules = {
-    nixos.hyprland.imports =
+    nixos.niri.imports =
       [
         (base.nixos or {})
         nixos.qt
@@ -24,9 +24,10 @@ in {
       ]
       ++ builtins.map (f: f.nixos or {}) features;
 
-    homeManager.hyprland.imports =
+    homeManager.niri.imports =
       [
         (base.home or {})
+        inputs.niri.homeModules.config
         homeManager.qt
         homeManager.gtk
       ]

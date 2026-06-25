@@ -104,34 +104,17 @@ in
               hyprshade on "$SHADER" && hyprctl seterror ""
             ;;
             "touchpad")
-              temp hyprutils_touchpad 1
-              STATUS="$TEMP/status"
               touchpad=$(hyprctl devices | grep touchpad | xargs)
-
-              enable() {
-                hyprctl eval 'hl.device({ name = "'"$touchpad"'", enabled = true })'
-                printf "true" >"$STATUS"
-                hyprnotify 1 "Touchpad Enabled"
-              }
-
-              disable() {
-                hyprctl eval 'hl.device({ name = "'"$touchpad"'", enabled = false })'
-                printf "false" >"$STATUS"
-                hyprnotify 1 "Touchpad Disabled"
-              }
-
-              if ! [ -f "$STATUS" ]
-              then
-                disable
-              else
-                if [ "$(cat "$STATUS")" = "true" ]
-                then
-                  disable
-                elif [ "$(cat "$STATUS")" = "false" ]
-                then
-                  enable
-                fi
-              fi
+              hyprctl eval '
+                if __touchpad_enabled == nil then __touchpad_enabled = true end
+                __touchpad_enabled = not __touchpad_enabled
+                hl.device({ name = "'"$touchpad"'", enabled = __touchpad_enabled })
+                hl.notification.create({
+                  text = "  Touchpad " .. (__touchpad_enabled and "Enabled" or "Disabled") .. "  ",
+                  duration = 1500,
+                  icon = 1,
+                })
+              '
             ;;
             "") fail "Expected an Option" ;;
             *) fail "Unexpected Option 'toggle $2'" ;;
