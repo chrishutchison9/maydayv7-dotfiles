@@ -4,8 +4,12 @@ blockquote {
   color: var(--color);
   font-style: italic;
   margin-left: 0.5em;
-  padding: 1em 10px 1px 20px;
+  padding: 1em 10px 0.8em 20px;
   position: relative;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
 
   &:before {
     color: var(--accent-alpha-70);
@@ -24,13 +28,18 @@ blockquote {
   &[class*="markdown-alert"] {
     border-left: 4px solid;
     font-style: normal;
-    padding: 0.25em 1em 0.25em 2em;
+    padding: 0.25em 1em 0.25em 2.8em;
     position: relative;
 
     &:before {
       position: absolute;
       left: 0.4em;
-      font-size: 1.5em;
+      top: 0.35em;
+      width: 1.2em;
+      font-family: "JetBrainsMono", monospace;
+      font-size: 1.2em;
+      line-height: 1;
+      text-align: center;
     }
 
     p {
@@ -42,7 +51,7 @@ blockquote {
     border-left-color: var(--accent-secondary);
 
     &:before {
-      content: "ℹ";
+      content: "\f449";
       color: var(--accent-secondary);
     }
   }
@@ -51,7 +60,7 @@ blockquote {
     border-left-color: var(--accent-secondary-alpha-70);
 
     &:before {
-      content: "✦";
+      content: "\f400";
       color: var(--accent-secondary-alpha-70);
     }
   }
@@ -60,7 +69,7 @@ blockquote {
     border-left-color: var(--accent);
 
     &:before {
-      content: "‼";
+      content: "\f643";
       color: var(--accent);
     }
   }
@@ -69,7 +78,7 @@ blockquote {
     border-left-color: var(--accent-alpha-70);
 
     &:before {
-      content: "⚠";
+      content: "\f421";
       color: var(--accent-alpha-70);
     }
   }
@@ -79,9 +88,18 @@ blockquote {
     background-color: var(--accent-alpha-20);
 
     &:before {
-      content: "◆";
+      content: "\f28b";
       color: var(--accent);
     }
+  }
+}
+
+.code-wrapper {
+  position: relative;
+
+  &:hover .copy,
+  .copy:focus {
+    opacity: 1;
   }
 }
 
@@ -91,10 +109,14 @@ blockquote {
   border-radius: $corner-radius;
   color: var(--color);
   font-family: inherit;
-  display: block;
   font-size: 0.8em;
-  margin: -15px 0 -2px auto;
+  opacity: 0;
   padding: 3px 8px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  transition: opacity 0.15s ease;
+  z-index: 1;
 
   &:active {
     background-color: var(--accent-alpha-70);

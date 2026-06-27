@@ -38,7 +38,7 @@ _: {
         ];
       })
 
-      (mkIf (cfg.model == "nvidia") (
+      (mkIf (cfg.enable && cfg.model == "nvidia") (
         let
           hybrid = with config.hardware.nvidia.prime; (amdgpuBusId != "" || intelBusId != "");
         in {

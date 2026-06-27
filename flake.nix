@@ -134,6 +134,12 @@
     # Declarative Flatpak Wrapper
     flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
 
+    # Declarative VM Management
+    nixvirt = {
+      url = "github:AshleyYakeley/NixVirt?ref=v0.6.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Discord Module
     nixcord = {
       url = "github:FlameFlag/nixcord";

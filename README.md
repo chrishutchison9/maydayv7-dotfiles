@@ -44,13 +44,10 @@ It also builds and deploys my website to [maydayv7.cc](https://maydayv7.cc).
 
 - [Adwaita GTK3](https://github.com/lassekongo83/adw-gtk3): Theme from `libadwaita` ported to GTK3
 - [KvLibadwaita](https://github.com/GabePoel/KvLibadwaita) Kvantum Theme: Integrates QT Apps with GNOME Desktop
-- Firefox [GNOME Theme](https://github.com/rafaelmardojai/firefox-gnome-theme): GNOME Theme for the Mozilla Firefox Browser, used for better desktop integration
+- Firefox [GNOME Theme](https://github.com/rafaelmardojai/firefox-gnome-theme): GNOME Theme for the Mozilla Firefox Browser
 - VS Code [Adwaita Theme](https://github.com/piousdeer/vscode-adwaita): Integrates Visual Studio Code with GNOME Desktop
 - Discord [GNOME Theme](https://github.com/ricewind012/discord-gnome-theme): A GNOME theme for Discord, following the Adwaita style & GNOME HIG
-
-- Firefox [Elementary Theme](https://github.com/Zonnev/elementaryos-firefox-theme): Elementary OS Theme for the Mozilla Firefox Browser, used for better desktop integration
-- VS Code [Elementary Theme](https://github.com/sixpounder/vscode-elementary-theme): Integrates Visual Studio Code with Pantheon Desktop
-- Logseq [Bonofix Theme](https://github.com/Sansui233/logseq-bonofix-theme): A clean Logseq theme with focus on long-time writing experience
+- Obsidian [Adwaita Theme](https://github.com/birneee/obsidian-adwaita-theme): A GNOME Adwaita theme for Obsidian
 
 </details>
 
@@ -108,7 +105,7 @@ It also builds and deploys my website to [maydayv7.cc](https://maydayv7.cc).
 - Support for Base16 color theming using [`stylix`](https://github.com/danth/stylix)
 - Support for declaratively installing [Flatpak](./modules/apps/flatpak.nix) applications using [`nix-flatpak`](https://github.com/gmodena/nix-flatpak)
 - Support for Android Virtualisation using [Waydroid](https://waydro.id/)
-- Support for VFIO PCI Device Passthrough along with [Looking Glass](https://looking-glass.io/) for high-performance VMs
+- Support for VFIO PCI Device Passthrough with a declarative, performant Windows VM using [NixVirt](https://github.com/AshleyYakeley/NixVirt) and [Looking Glass](https://looking-glass.io/) (see my [blog post](https://maydayv7.cc/blog/nixos/win11vm))
 
 ## Programs
 
@@ -381,12 +378,5 @@ A `git` [hook](./files/git/hooks) is used to check the commit message to adhere 
 - [`CACHIX_TOKEN`](./secrets/cachix-token.secret): Cachix Authentication Token
 
 ---
-
-<details>
-<summary><b>Known Limitations</b></summary>
-
-- [Logseq](./modules/apps/notes.nix) Plugins have to be manually installed
-
-</details>
 
 If you like this project, consider leaving a [star](https://github.com/maydayv7/dotfiles)

@@ -1,9 +1,0 @@
-{
-  "disabled": false,
-  "autoCheckSynced": true,
-  "autoPush": false,
-  "checkWhenDBChanged": true,
-  "customCommitMessage": "feat: Notes",
-  "typeCommitMessage": "Custom Message With Date",
-  "buttons": ["Check Status", "Show Log", "Pull Rebase", "Commit & Push"]
-}

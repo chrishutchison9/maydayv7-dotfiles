@@ -204,7 +204,7 @@ in {
                 "/var/log"
                 "/var/lib/AccountsService"
                 "/var/lib/nixos"
-                "/var/lib/systemd/coredump"
+                "/var/lib/systemd"
               ];
             };
           }

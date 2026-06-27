@@ -8,20 +8,13 @@ _: {
     }: let
       inherit (config.hardware.cpu) model;
     in {
-      environment.persist.directories = ["/var/lib/libvirt"];
-
       # Environment Setup
+      environment.persist.directories = ["/var/lib/libvirt"];
       security.virtualisation.flushL1DataCache = "cond";
       boot = {
         kernelModules = ["kvm-${model}"];
         extraModprobeConfig = "options kvm_${model} nested=1";
       };
-
-      # VM Utilities
-      programs.virt-manager.enable = true;
-
-      # VM Packages
-      environment.systemPackages = [pkgs.libguestfs];
 
       virtualisation = {
         kvmgt.enable = true;
@@ -38,6 +31,10 @@ _: {
           };
         };
       };
+
+      # VM Utilities
+      programs.virt-manager.enable = true;
+      environment.systemPackages = [pkgs.libguestfs];
     };
 
     homeManager.libvirt = _: {

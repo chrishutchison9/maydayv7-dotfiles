@@ -1,17 +1,7 @@
 ## Games Configuration ##
 _: {
   flake.modules = {
-    nixos.games = {
-      lib,
-      pkgs,
-      ...
-    }: {
-      # Packages
-      environment.systemPackages = with pkgs; [
-        bottles
-        lutris
-      ];
-
+    nixos.games = {lib, ...}: {
       # Steam
       programs.steam = {
         enable = true;
@@ -29,21 +19,19 @@ _: {
     };
 
     homeManager.games = {
-      config,
       lib,
+      osConfig ? {},
       ...
     }: {
-      # Runner
-      xdg.dataFile."lutris/runners/wine/wine-system" =
-        lib.mkIf (config.apps.wine or null != null)
-        {
-          source = config.apps.wine;
-        };
+      # Lutris
+      programs.lutris = {
+        enable = true;
+        steamPackage = osConfig.programs.steam.package;
+        winePackages = lib.optional ((osConfig.apps.wine or null) != null) osConfig.apps.wine;
+      };
 
-      # Directories
       home.persist.directories = [
         "Games"
-        ".local/share/bottles"
 
         # Lutris
         ".cache/lutris"

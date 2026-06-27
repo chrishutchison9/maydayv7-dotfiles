@@ -1,4 +1,4 @@
-{pkgs ? import ../., ...}:
+{pkgs ? import <nixpkgs> {}, ...}:
 pkgs.mkShell {
   name = "Website";
   packages = with pkgs; [

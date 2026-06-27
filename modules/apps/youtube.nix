@@ -9,9 +9,9 @@ in {
     osConfig ? {},
     ...
   }: let
-    isHyprland = osConfig.programs.hyprland.enable or false;
+    isWM = (osConfig.programs.hyprland.enable or false) || (osConfig.programs.niri.enable or false);
     style =
-      if isHyprland
+      if isWM
       then "@import url('https://youtubemusic.catppuccin.com/src/${config.catppuccin.flavor}.css');"
       else "";
   in {

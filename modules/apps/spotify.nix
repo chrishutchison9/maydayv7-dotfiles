@@ -6,7 +6,7 @@
     osConfig ? {},
     ...
   }: let
-    isHyprland = osConfig.programs.hyprland.enable or false;
+    isWM = (osConfig.programs.hyprland.enable or false) || (osConfig.programs.niri.enable or false);
   in {
     imports = [inputs.spicetify.homeManagerModules.default];
     home.persist.directories = [
@@ -36,7 +36,7 @@
           volumePercentage
         ];
       }
-      // lib.optionalAttrs isHyprland {
+      // lib.optionalAttrs isWM {
         theme = pkgs.spicetify.themes.catppuccin;
         colorScheme = "macchiato";
       };

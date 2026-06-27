@@ -22,6 +22,7 @@ _: {
         enable_audio_bell = "no";
         visual_bell_duration = "0.1";
 
+        background_blur = 1;
         cursor_shape = "beam";
         cursor_shape_unfocused = "underline";
         tab_bar_style = "powerline";

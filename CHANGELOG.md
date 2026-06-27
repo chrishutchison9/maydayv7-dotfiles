@@ -2,6 +2,11 @@
 
 ### June
 
+- Declaratively configure a Windows 11 VM
+- Fix and document VFIO
+- Use KVMFR with Looking Glass
+- Migrate from Logseq to Obsidian
+- Add Antigravity IDE & CLI
 - Use [`adw-catppuccin`](https://github.com/LuminarLeaf/adw-catppuccin) for Catppuccin GTK Theme
 - Use Discord instead of Vesktop
 - Script to update Minecraft mods

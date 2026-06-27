@@ -19,10 +19,13 @@ document.querySelectorAll("pre > code").forEach(function (codeBlock) {
   });
 
   var pre = codeBlock.parentNode;
-  if (pre.parentNode.classList.contains("highlight")) {
-    var highlight = pre.parentNode;
-    highlight.parentNode.insertBefore(button, highlight);
-  } else {
-    pre.parentNode.insertBefore(button, pre);
-  }
+  var block = pre.parentNode.classList.contains("highlight")
+    ? pre.parentNode
+    : pre;
+
+  var wrapper = document.createElement("div");
+  wrapper.className = "code-wrapper";
+  block.parentNode.insertBefore(wrapper, block);
+  wrapper.appendChild(block);
+  wrapper.appendChild(button);
 });

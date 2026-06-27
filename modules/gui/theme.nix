@@ -100,9 +100,10 @@ in {
         enable = lib.mkDefault true;
         targets = lib.mkMerge [
           {
-            firefox.enable = lib.mkDefault false;
             gnome.enable = lib.mkDefault false;
+            firefox.enable = lib.mkDefault false;
             vscode.enable = lib.mkDefault false;
+            obsidian.enable = lib.mkDefault false;
           }
           (lib.genAttrs (lib.unique config.gui._unmanaged) (_: {enable = false;}))
         ];

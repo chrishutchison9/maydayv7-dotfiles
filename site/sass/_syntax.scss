@@ -215,8 +215,8 @@
 .z-invalid.z-deprecated,
 .z-invalid.z-illegal,
 .z-invalid.z-unimplemented {
-  color: var(--accent);
-  font-style: italic;
+  color: var(--color);
+  background-color: transparent;
 }
 
 // Markup

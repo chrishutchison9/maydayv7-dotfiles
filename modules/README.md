@@ -24,12 +24,13 @@ An overview of every configuration module in this repository.
 | `discord`     | Home Manager | Discord chat client                |
 | `firefox`     | Home Manager | Firefox browser                    |
 | `internet`    | Home Manager | Internet apps                      |
-| `notes`       | Home Manager | Logseq note-taking                 |
+| `notes`       | Home Manager | Obsidian note-taking               |
 | `spotify`     | Home Manager | Spotify music client               |
 | `stream`      | Home Manager | Streaming tools                    |
 | `syncthing`   | Home Manager | Syncthing file sync                |
 | `youtube`     | Home Manager | YouTube Music & TUI                |
 | `vscode`      | Home Manager | Visual Studio Code editor          |
+| `antigravity` | Home Manager | Google Antigravity                 |
 | `flatpak`     | Both         | Flatpak app sandboxing             |
 | `latex`       | Both         | LaTeX typesetting                  |
 | `office`      | Both         | Office suite environment           |
@@ -101,9 +102,9 @@ An overview of every configuration module in this repository.
 
 | Module    | Type  | Description                 |
 | --------- | ----- | --------------------------- |
-| `libvirt` | Both  | Libvirt/QEMU virtualisation |
 | `android` | NixOS | Android virtualisation      |
 | `docker`  | NixOS | Docker containers           |
+| `libvirt` | Both  | Libvirt/QEMU virtualisation |
 | `vfio`    | NixOS | VFIO GPU passthrough        |
 
 ### [`secrets`](../secrets)
@@ -166,6 +167,8 @@ The following are the custom configuration options exposed by the modules above:
   - `vfio` -
     - `setup`: Enable VFIO Setup Mode - `true / false`
     - `passthrough`: PCI Device IDs for VFIO - Ex. `[ "10de:28e0" "10de:22be" ]`
+    - `isolate`: Host CPU set to isolate for pinned vCPUs - Ex. `"2-4,10-12"`
+    - `hugepages`: Number of 1 GiB hugepages to reserve - Ex. `16`
 
 - [`user`](./system/user) -
   - `credentials`: Individual User Credentials -

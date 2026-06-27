@@ -68,9 +68,9 @@
           "type": "switch",
           "title": "Windows",
           "icon": "im-msn-symbolic",
-          "start": "virsh -c qemu:///system start Windows",
-          "stop": "virsh -c qemu:///system shutdown Windows",
-          "check": "sh -c 'virsh -c qemu:///system list | grep Windows'",
+          "start": "virsh -c qemu:///system start windows",
+          "stop": "virsh -c qemu:///system shutdown windows",
+          "check": "sh -c 'virsh -c qemu:///system list | grep windows'",
           "interval_s": 10
         }
       ]

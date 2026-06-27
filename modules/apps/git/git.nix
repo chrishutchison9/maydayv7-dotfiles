@@ -136,7 +136,7 @@ in {
               ci = "commit -v";
               cam = "${ci} -am";
               cia = "${ci} -a";
-              cmx = "log -1 --pretty=%s";
+              cmx = "log -1 --format=%B";
               co = "checkout";
               cp = "cherry-pick";
               cpp = "!CURRENT=$(git ${bc}) && git ${st} && git ${co} -B $2 $3 && git ${cp} $1 && git ${pf} $4 && git ${co} $CURRENT && git ${stp} && :";

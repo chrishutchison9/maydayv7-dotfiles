@@ -9,12 +9,13 @@
 in {
   flake.files = rec {
     # File Paths
-    path = {
+    path = rec {
       toplevel = ./.;
 
       system = "/etc/nixos";
       persist = "/nix/state";
       data = "/data";
+      sync = "${data}/sync";
 
       gpg = "/etc/gpg";
       sops = ../secrets/secrets.yaml;
@@ -37,7 +38,7 @@ in {
     # Directory Bookmarks
     bookmarks = ''
       file://${path.data}/files Files
-      file://${path.data}/sync Sync
+      file://${path.sync} Sync
       file:/// Computer
     '';
 
@@ -89,12 +90,6 @@ in {
 
     # Password Manager
     keepassxc = readFile ./keepassxc.ini;
-
-    # Logseq Notes
-    logseq = {
-      settings = ./logseq/settings;
-      prefs = readFile ./logseq/preferences.json;
-    };
 
     # Nano Text Editor
     nano = readFile ./nanorc;

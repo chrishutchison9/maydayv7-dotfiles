@@ -1,7 +1,7 @@
 +++
 title = "Prelude"
 description = "My NixOS Configuration"
-date = 2025-12-15
+date = 2025-12-17
 
 [taxonomies]
 series = ["NixOS Desktop"]

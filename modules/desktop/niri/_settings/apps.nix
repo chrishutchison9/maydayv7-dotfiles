@@ -7,27 +7,8 @@ _: {
   programs.niri.settings = {
     ## Autostart
     spawn-at-startup = let
-      exec = app: args:
-        [
-          "uwsm"
-          "app"
-          "-t"
-          "service"
-          "-u"
-          "${app}.service"
-          "--"
-          app
-        ]
-        ++ args;
+      exec = app: args: [app] ++ args;
     in [
-      {
-        command = [
-          "uwsm"
-          "finalize"
-          "NIRI_SOCKET"
-          "DISPLAY"
-        ];
-      }
       {command = exec "pcmanfm-qt" ["--desktop"];}
       {command = [(lib.getExe pkgs.xwayland-satellite) ":0"];}
     ];
@@ -35,7 +16,7 @@ _: {
     ## Keybindings
     binds = with config.lib.niri.actions; let
       sh = spawn "sh" "-c";
-      runOnce = app: args: sh "pgrep ${app} || uwsm app -u ${app}.scope -- ${app} ${args}";
+      runOnce = app: args: sh "pgrep ${app} || ${app} ${args}";
     in {
       # Applications
       "Super+F" = {

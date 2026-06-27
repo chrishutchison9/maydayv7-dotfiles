@@ -17,10 +17,12 @@
     "docker"
     "mc-server"
     "roblox"
+    "vfio"
   ];
 
   hmModules = [
     "secrets"
+    "antigravity"
     "auth"
     "discord"
     "firefox"
@@ -46,7 +48,7 @@
     "latex"
     "wine"
     "games"
-    #"libvirt"
+    "libvirt"
     "niri"
   ];
 
@@ -56,6 +58,7 @@
 
   asus = import ./_asus {};
   dev = import ./_dev.nix {};
+  vm = import ./_vm {inherit inputs;};
 in {
   configurations.nixos.valkyrie = {
     system = "x86_64-linux";
@@ -67,7 +70,7 @@ in {
       imports =
         util.map.array nixosModules nixos
         ++ util.map.array mixedModules nixos
-        ++ [(asus.nixos or {}) (dev.nixos or {})]
+        ++ [(asus.nixos or {}) (dev.nixos or {}) (vm.nixos or {})]
         ++ util.map.array ["asus-zephyrus-ga402x-nvidia"] inputs.hardware.nixosModules;
 
       networking.hostId = builtins.substring 0 8 (builtins.hashString "md5" "valkyrie");
@@ -117,13 +120,15 @@ in {
       };
 
       # Virtualisation
-      # virt.vfio = {
-      #   setup = true;
-      #   passthrough = [
-      #     "10de:28e0" # Graphics
-      #     "10de:22be" # Audio
-      #   ];
-      # };
+      virt.vfio = {
+        setup = true;
+        passthrough = [
+          "10de:28e0" # Graphics
+          "10de:22be" # Audio
+        ];
+        isolate = "2-4,10-12";
+        hugepages = 16;
+      };
 
       # Minecraft Server
       games.mc-servers = [
@@ -164,8 +169,8 @@ in {
           "systemd-journal"
           "video"
           "minecraft"
-          #"kvm"
-          #"libvirtd"
+          "kvm"
+          "libvirtd"
         ];
       };
 

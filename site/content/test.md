@@ -59,17 +59,28 @@ fn foo(arg: String) -> Result<u32, Io::Error> {
 
 ## Alerts
 
+> [!NOTE]
+> Highlights information to be taken into account, even when skimming.
+
+> [!TIP]
+> Optional information for greater success.
+
+> [!IMPORTANT]
+> Necessary crucial information.
+
 > [!WARNING]
+> Critical content demanding immediate attention.
+
+> [!CAUTION]
+> Negative potential consequences of an action.
+
+## Block Quote
+
 > Do not fall in love with people like me.
 > I will take you to museums, and parks, and monuments, and kiss you in every beautiful place, so that you can never go back to them without tasting me like blood in your mouth.
 > I will destroy you in the most beautiful way possible.
 > And when I leave you will finally understand, why storms are named after people.  
 > --> **Caitlyn Siehl**
-
-## Block Quote
-
-> Heroes get remembered, but legends never die.  
-> --> **Babe Ruth**
 
 ## Math
 

@@ -198,7 +198,7 @@ lib.mkIf (osConfig != null) (
       "org/gnome/desktop/app-folders/folders/7464f88f-e282-4cd7-b4ec-956276e9f709" = {
         name = "Writing";
         apps = [
-          "Logseq.desktop"
+          "obsidian.desktop"
           "org.cvfosammmm.Setzer.desktop"
           "com.github.xournalpp.xournalpp.desktop"
           "org.gnome.gitlab.somas.Apostrophe.desktop"
@@ -239,7 +239,6 @@ lib.mkIf (osConfig != null) (
       "org/gnome/desktop/app-folders/folders/1c3e59e4-a571-4ada-af1d-ed1ced384cfb" = {
         name = "Wine";
         apps = [
-          "com.usebottles.bottles.desktop"
           "net.lutris.Lutris.desktop"
           "winetricks.desktop"
           "protontricks.desktop"
