@@ -91,11 +91,11 @@ An overview of every configuration module in this repository.
 | Module       | Type  | Description                         |
 | ------------ | ----- | ----------------------------------- |
 | `base` ★     | Both  | Base system configuration           |
+| `base-ext`   | Both  | Extended base configuration         |
+| `boot`       | NixOS | Boot loader configuration           |
+| `filesystem` | Both  | File system layout                  |
 | `nix` ★      | Both  | Nix daemon & settings               |
 | `user` ★     | Both  | User accounts & Home Manager wiring |
-| `filesystem` | Both  | File system layout                  |
-| `base-ext`   | NixOS | Extended base configuration         |
-| `boot`       | NixOS | Boot loader configuration           |
 | `security`   | NixOS | Security & hardening                |
 
 ### [`virt`](./virt)

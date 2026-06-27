@@ -31,6 +31,7 @@ in {
       # Recovery Account
       specialisation.recovery.configuration = {
         home-manager.verbose = true;
+        services.openssh.enable = lib.mkForce false;
         security.sudo.extraConfig = lib.mkAfter "recovery ALL=(ALL:ALL) NOPASSWD:ALL";
         users.extraUsers.recovery = {
           name = "recovery";

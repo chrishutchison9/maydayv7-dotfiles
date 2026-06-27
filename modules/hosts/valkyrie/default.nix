@@ -8,7 +8,6 @@
   inherit (config) util;
 
   nixosModules = [
-    "base-ext"
     "boot"
     "security"
     "prompt"
@@ -37,6 +36,7 @@
   ];
 
   mixedModules = [
+    "base-ext"
     "filesystem"
     "laptop"
     "mouse"

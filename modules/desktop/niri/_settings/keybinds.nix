@@ -66,10 +66,18 @@ in {
         # Mouse
         "Super+Shift+MouseRight".action = switch-preset-window-width;
         "Super+WheelScrollUp" = {
-          action = focus-workspace-up;
+          action = focus-column-left;
           cooldown-ms = 150;
         };
         "Super+WheelScrollDown" = {
+          action = focus-column-right;
+          cooldown-ms = 150;
+        };
+        "Super+Shift+WheelScrollUp" = {
+          action = focus-workspace-up;
+          cooldown-ms = 150;
+        };
+        "Super+Shift+WheelScrollDown" = {
           action = focus-workspace-down;
           cooldown-ms = 150;
         };

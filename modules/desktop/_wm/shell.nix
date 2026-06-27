@@ -29,11 +29,19 @@
           launch_apps_as_systemd_services = true;
           settings_show_advanced = true;
           panel.launcher_session_search = true;
+          shadow.direction = "center";
           screen_corners = {
             enabled = true;
             size = 30;
           };
-          shadow.direction = "center";
+
+          # Screenshots
+          screenshot = {
+            save_to_file = true;
+            copy_to_clipboard = true;
+            freeze_screen = true;
+            directory = "~/Pictures/Screenshots";
+          };
         };
 
         theme = {
@@ -137,14 +145,6 @@
             dnd = true;
             keyboard_layout = true;
           };
-        };
-
-        # Screenshots
-        shell.screenshot = {
-          save_to_file = true;
-          copy_to_clipboard = true;
-          freeze_screen = true;
-          directory = "~/Pictures/Screenshots";
         };
 
         # Wallpaper

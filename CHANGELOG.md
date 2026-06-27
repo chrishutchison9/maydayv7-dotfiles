@@ -2,6 +2,7 @@
 
 ### June
 
+- Disable keyless SSH Access
 - Declaratively configure a Windows 11 VM
 - Fix and document VFIO
 - Use KVMFR with Looking Glass

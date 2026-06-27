@@ -182,9 +182,6 @@ Inside Windows, install the following:
 
 Then run `looking-glass-client` on the host, and a full-resolution Windows desktop appears in a window, GPU-accelerated, captured off the GPU framebuffer over DirectX 12. Keyboard, mouse and clipboard ride back over SPICE.
 
-> [!NOTE]
-> Enabling **autologon** in Windows lets the host app (and the virtual display) come up automatically at boot - otherwise the desktop only exists after you log in.
-
 # Performance tuning
 
 The values below (which cores, how many hugepages) are **machine-specific** - compute them from your own topology.
@@ -249,7 +246,7 @@ Request them in the domain, and drop the memory balloon (it fights fixed hugepag
 <memballoon model='none'/>
 ```
 
-> [!IMPORTANT]
+> [!NOTE]
 > Keep these in sync: the `<cputune>` cpuset must match `isolcpus`, and the hugepage count must match the guest's RAM.
 
 ## Other tweaks
@@ -298,6 +295,62 @@ The virtio NIC on libvirt's default network gives the guest internet through NAT
 
 ```console
 $ virsh -c qemu:///system net-autostart default
+```
+
+# File sharing
+
+[virtiofs](https://virtio-fs.gitlab.io/) shares a host directory straight into the guest over a shared-memory transport - much faster than SMB.
+Point a `<filesystem>` device at the host path and give it a tag:
+
+```xml
+<filesystem type='mount' accessmode='passthrough'>
+  <driver type='virtiofs' queue='1024'/>
+  <source dir='/data/files'/>
+  <target dir='Files'/>
+</filesystem>
+```
+
+The device needs access to guest RAM, so the memory backing must be **shared**:
+
+```xml
+<memoryBacking>
+  <hugepages><page size='1048576' unit='KiB'/></hugepages>
+  <access mode='shared'/>
+</memoryBacking>
+```
+
+Host-side, libvirt spawns the `virtiofsd` daemon - just hand it the package:
+
+```nix
+virtualisation.libvirtd.qemu.vhostUserPackages = [ pkgs.virtiofsd ];
+```
+
+Inside Windows, the `virtio-win-guest-tools` installer ships the **VirtIO-FS** driver and the `VirtioFsSvc` service. You must additionally install [WinFSP](https://winfsp.dev/) - the user-mode filesystem layer it depends on, then start the service so it mounts (set it to Automatic so it survives reboots):
+
+```console
+> sc start VirtioFsSvc
+```
+
+# USB passthrough
+
+For an **ad-hoc** device, `virt-manager` is the easiest route: open the running guest, _Add Hardware → USB Host Device_, pick it from the list, and it's hot-plugged into Windows. SPICE USB redirection is also enabled, so the _Redirect USB Device_ menu option can be used as well.
+
+For something you want **always** attached - say a webcam - bind it by USB ID in the domain instead. Find it with `lsusb`:
+
+```console
+$ lsusb
+Bus 003 Device 002: ID 3277:0018 Sonix Technology Co., Ltd. USB2.0 FHD UVC WebCam
+```
+
+Then add a USB `<hostdev>`:
+
+```xml
+<hostdev mode='subsystem' type='usb' managed='yes'>
+  <source>
+    <vendor id='0x3277'/>
+    <product id='0x0018'/>
+  </source>
+</hostdev>
 ```
 
 # Useful commands

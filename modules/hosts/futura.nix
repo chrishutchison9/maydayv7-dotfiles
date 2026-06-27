@@ -18,7 +18,11 @@
 in {
   configurations.nixos.futura = {
     system = "x86_64-linux";
-    module = {pkgs, ...}: {
+    module = {
+      config,
+      pkgs,
+      ...
+    }: {
       imports =
         util.map.array [
           "boot"
@@ -67,11 +71,11 @@ in {
         uid = 1000;
         group = "users";
         shell = pkgs.zsh;
+        hashedPasswordFile = config.sops.secrets."navya.secret".path;
         extraGroups = [
           "wheel"
           "networkmanager"
         ];
-        initialHashedPassword = "";
       };
 
       home-manager.users.navya.imports =

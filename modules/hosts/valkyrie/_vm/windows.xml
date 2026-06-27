@@ -12,6 +12,7 @@
     <hugepages>
       <page size='1048576' unit='KiB'/>
     </hugepages>
+    <access mode='shared'/>
   </memoryBacking>
   <vcpu placement='static'>6</vcpu>
   <iothreads>1</iothreads>
@@ -79,6 +80,11 @@
       <target dev='vda' bus='virtio'/>
       <address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x0'/>
     </disk>
+    <filesystem type='mount' accessmode='passthrough'>
+      <driver type='virtiofs' queue='1024'/>
+      <source dir='/data/files'/>
+      <target dir='Files'/>
+    </filesystem>
     <!-- Disk images
     <disk type='file' device='cdrom'>
       <driver name='qemu' type='raw'/>
@@ -229,6 +235,12 @@
         <address domain='0x0000' bus='0x01' slot='0x00' function='0x1'/>
       </source>
       <address type='pci' domain='0x0000' bus='0x07' slot='0x00' function='0x0'/>
+    </hostdev>
+    <hostdev mode='subsystem' type='usb' managed='yes'>
+      <source> <!-- Webcam -->
+        <vendor id='0x3277'/>
+        <product id='0x0018'/>
+      </source>
     </hostdev>
     <redirdev bus='usb' type='spicevmc'>
       <address type='usb' bus='0' port='2'/>
