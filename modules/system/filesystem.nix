@@ -27,9 +27,10 @@ in {
         types
         ;
       inherit (builtins) listToAttrs map;
-      inherit (config.system.fs) scheme;
+      cfg = config.system.fs;
     in {
       imports = [
+        inputs.disko.nixosModules.disko
         inputs.impermanence.nixosModule
         (
           mkAliasOptionModule
@@ -51,19 +52,35 @@ in {
         )
       ];
 
-      options.system.fs.scheme = mkOption {
-        description = "Disk Filesystem Scheme";
-        type = with types;
-          nullOr (enum [
-            "simple"
-            "advanced"
-          ]);
-        default = null;
+      options.system.fs = {
+        scheme = mkOption {
+          description = "Disk Filesystem Scheme";
+          type = with types;
+            nullOr (enum [
+              "simple"
+              "advanced"
+            ]);
+          default = null;
+        };
+
+        disk = mkOption {
+          description = "Target Disk for Installation";
+          type = types.str;
+          default = "/dev/disk/by-id/disko-placeholder";
+          example = "/dev/disk/by-id/nvme-eui.0123456789abcdef";
+        };
+
+        swap = mkOption {
+          description = "Size of SWAP Partition";
+          type = types.str;
+          default = "8G";
+          example = "16G";
+        };
       };
 
       config = mkMerge [
         {
-          warnings = optional (scheme == null) "Disk Filesystem Scheme is unset";
+          warnings = optional (cfg.scheme == null) "Disk Filesystem Scheme is unset";
           boot = {
             supportedFilesystems = {
               ntfs = true;
@@ -72,25 +89,129 @@ in {
             };
             zfs.forceImportRoot = false;
           };
+
+          environment.persist.enable = mkDefault false;
+          system.fs.persist.enable = mkDefault false;
+
+          ## Disk Layout
+          disko.devices = mkMerge [
+            (mkIf (cfg.scheme != null) {
+              disk.main = {
+                type = "disk";
+                device = cfg.disk;
+                content = {
+                  type = "gpt";
+                  partitions = {
+                    # EFI System Partition
+                    ESP = {
+                      label = "ESP";
+                      type = "EF00";
+                      size = "1024M";
+                      content = {
+                        type = "filesystem";
+                        format = "vfat";
+                        mountpoint = "/boot";
+                        mountOptions = ["umask=0077"];
+                      };
+                    };
+
+                    # SWAP Partition
+                    swap = {
+                      label = "swap";
+                      size = cfg.swap;
+                      content = {
+                        type = "swap";
+                        resumeDevice = true;
+                      };
+                    };
+
+                    # System Partition
+                    System = {
+                      label = "System";
+                      size = "100%";
+                      content =
+                        if cfg.scheme == "advanced"
+                        then {
+                          type = "zfs";
+                          pool = "fspool";
+                        }
+                        else {
+                          type = "filesystem";
+                          format = "ext4";
+                          mountpoint = "/";
+                        };
+                    };
+                  };
+                };
+              };
+            })
+
+            (mkIf (cfg.scheme == "advanced") {
+              zpool.fspool = {
+                type = "zpool";
+                options.cachefile = "none";
+                rootFsOptions = {
+                  compression = "zstd";
+                  encryption = "on";
+                  keyformat = "passphrase";
+                  keylocation = "prompt";
+                  mountpoint = "none";
+                  xattr = "sa";
+                  acltype = "posixacl";
+                };
+
+                datasets = {
+                  # ROOT Dataset
+                  "system/root" = {
+                    type = "zfs_fs";
+                    mountpoint = "/";
+                    options.mountpoint = "legacy";
+                    postCreateHook = "zfs snapshot fspool/system/root@blank";
+                  };
+
+                  # NIX Store Dataset
+                  "system/nix" = {
+                    type = "zfs_fs";
+                    mountpoint = "/nix";
+                    options = {
+                      mountpoint = "legacy";
+                      atime = "off";
+                    };
+                  };
+
+                  # Persisted Dataset
+                  "data" = {
+                    type = "zfs_fs";
+                    mountpoint = files.path.data;
+                    options = {
+                      mountpoint = "legacy";
+                      "com.sun:auto-snapshot" = "true";
+                    };
+                  };
+
+                  # Reserved space
+                  # ? # Free with 'zfs set refreservation=none fspool/reserve'
+                  "reserve" = {
+                    type = "zfs_fs";
+                    options = {
+                      canmount = "off";
+                      mountpoint = "none";
+                      refreservation = "1G";
+                    };
+                  };
+                };
+              };
+            })
+          ];
         }
 
-        ## Common Partitions
-        (mkIf (scheme != null) {
+        (mkIf (cfg.scheme != null) {
           programs.fuse.userAllowOther = true;
-
-          # EFI System Partition
-          fileSystems."/boot" = {
-            device = "/dev/disk/by-partlabel/ESP";
-            fsType = "vfat";
-          };
-
-          # SWAP Partition
-          swapDevices = [{device = "/dev/disk/by-partlabel/swap";}];
-          boot.kernel.sysctl."vm.swappiness" = 1;
+          boot.kernel.sysctl."vm.swappiness" = 1; # SWAP Behaviour
 
           system.activationScripts.dotfiles = with files.path; let
             path =
-              if scheme == "advanced"
+              if cfg.scheme == "advanced"
               then "${persist}/"
               else "";
             dir = "${path}${system}";
@@ -100,22 +221,8 @@ in {
           '';
         })
 
-        ## Simple File System Configuration using EXT4 ##
-        (mkIf (scheme == "simple") {
-          # ROOT Partition
-          fileSystems."/" = {
-            device = "/dev/disk/by-partlabel/System";
-            fsType = "ext4";
-          };
-        })
-
-        {
-          environment.persist.enable = mkDefault false;
-          system.fs.persist.enable = mkDefault false;
-        }
-
         ## Advanced File System Configuration using ZFS ##
-        (mkIf (scheme == "advanced") (
+        (mkIf (cfg.scheme == "advanced") (
           let
             rollback = ''
               zfs rollback -r fspool/system/root@blank && echo "Rollback Complete!"
@@ -123,22 +230,7 @@ in {
           in {
             fileSystems =
               {
-                # ROOT Partition
-                "/" = {
-                  device = "fspool/system/root";
-                  fsType = "zfs";
-                };
-                # NIX Partition
-                "/nix" = {
-                  device = "fspool/system/nix";
-                  fsType = "zfs";
-                };
-                # PERSISTENT Partition
-                "${files.path.data}" = {
-                  device = "fspool/data";
-                  fsType = "zfs";
-                  neededForBoot = true;
-                };
+                "${files.path.data}".neededForBoot = true;
               }
               // filterAttrs (name: _: hasPrefix "/etc" name) (
                 listToAttrs (
@@ -157,12 +249,10 @@ in {
 
             # Early Boot Requirements
             boot = {
-              resumeDevice = "/dev/disk/by-partlabel/swap";
               # Boot Settings
               kernelParams = ["elevator=none"];
               zfs = {
                 forceImportAll = false;
-                unsafeAllowHibernation = true;
                 devNodes = "/dev/disk/by-partlabel/System";
               };
 

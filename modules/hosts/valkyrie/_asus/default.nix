@@ -28,6 +28,7 @@ _: {
         enable = true;
         asusdConfig.text = builtins.readFile ./asusd.ron;
         auraConfigs."19b6".text = builtins.readFile ./aura.ron;
+        fanCurvesConfig.text = builtins.readFile ./fan_curves.ron;
       };
     };
   };

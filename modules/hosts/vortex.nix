@@ -58,7 +58,11 @@ in {
 
       system = {
         scheme = "secure";
-        fs.scheme = "advanced";
+        fs = {
+          scheme = "advanced";
+          disk = "/dev/disk/by-id/disko-placeholder";
+        };
+
         kernel = "xanmod";
         kernelModules = [
           "nvme"

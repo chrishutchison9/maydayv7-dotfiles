@@ -59,6 +59,6 @@
     "editor.defaultFormatter": "ms-python.black-formatter"
   },
   "[xml]": {
-    "editor.defaultFormatter": "DotJoshJohnson.xml"
+    "editor.defaultFormatter": "redhat.vscode-xml"
   }
 }

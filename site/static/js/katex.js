@@ -9613,7 +9613,7 @@
                     ? ((this.tokenRegex.lastIndex = t.length),
                       this.settings.reportNonstrict(
                         "commentAtEnd",
-                        "% comment has no terminating newline; LaTeX would fail because of commenting the end of math mode (e.g. $)",
+                        "% comment has no terminating newline; LaTeX would fail because of commenting the end of math mode (Eg. $)",
                       ))
                     : (this.tokenRegex.lastIndex = s + 1),
                   this.lex()

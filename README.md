@@ -96,7 +96,8 @@ It also builds and deploys my website to [maydayv7.cc](https://maydayv7.cc).
 - Automatically builds and deploys my [Website](./site)
 - Credentials management using the [`sops-nix`](https://github.com/Mic92/sops-nix) module and [`gnupg`](https://gnupg.org/) keys
 - Comprehensive User Configuration using the [`home-manager`](https://github.com/nix-community/home-manager) module
-- Ephemeral, Opt-In filesystem state using the [`impermanence`](https://github.com/nix-community/impermanence) module and [ZFS](https://zfsonlinux.org/)
+- Ephemeral, opt-in filesystem state using the [`impermanence`](https://github.com/nix-community/impermanence) module and [ZFS](https://zfsonlinux.org/)
+- Declarative disk partitioning and installation using [`disko`](https://github.com/nix-community/disko)
 - Support for Secure Boot using [`lanzaboote`](https://github.com/nix-community/lanzaboote)
 - Multiple development [`shells`](./shells) integrated with [`direnv`](https://direnv.net/) and [`lorri`](https://github.com/nix-community/lorri)
 - Automatic `packages` updates using [`update.sh`](./packages/update.sh)
@@ -115,7 +116,7 @@ It also builds and deploys my website to [maydayv7.cc](https://maydayv7.cc).
 | Shells   |                          [`bash`](https://www.gnu.org/software/bash/), [`zsh`](https://www.zsh.org)                          |
 | Terminal |                          [Ghostty](https://ghostty.org/), [Kitty](https://sw.kovidgoyal.net/kitty/)                          |
 | Browser  |                                      [Firefox](https://www.mozilla.org/en-US/firefox/)                                       |
-| Desktops |                                [GNOME](https://www.gnome.org), [Hyprland](https://hypr.land/)                                |
+| Desktops |            [GNOME](https://www.gnome.org), [Hyprland](https://hypr.land/), [Niri](https://github.com/YaLTeR/niri)            |
 
 ## Structure
 
@@ -269,7 +270,7 @@ To use my configuration as-is for a fresh NixOS installation, you can try the fo
    _Replace_ **_PATH_** _with the path to the `secret`_
    <pre><code>sops --config <i>/path/to/<b>secrets.yaml</b></i> -i <b><i>PATH</i></b></code></pre>
 
-6. Add device-specific configuration by creating a new file in [`modules/hosts`](./modules/hosts). Do keep in mind that the filesystems must be appropriately created and labeled as defined [here](./modules/system/filesystem.nix).
+6. Add device-specific configuration by creating a new file in [`modules/hosts`](./modules/hosts), setting its `system.fs` options. The disk layout is then handled by [`disko`](./modules/system/filesystem.nix), which expects the partitions to carry the `ESP`, `System` and `swap` labels.
 
 7. Finally, run `nixos-rebuild switch --flake /etc/nixos#HOSTNAME` (as `root`) to switch to the configuration!
 
@@ -310,17 +311,18 @@ _Replace_ **_DEVICE_** _with the name of Device to build_
 
 #### Partition Scheme
 
-_The `install` script handles partition creation and labeling, so it is recommended to create only the partition table and ensure sufficient free space_
+> [!WARNING]
+> The `install` script **erases the entire target disk** and creates the layout below automatically.
 
-| Name           | Label  | Format | Size (minimum) |
-| :------------- | :----: | :----: | :------------: |
-| BOOT Partition |  ESP   |  vfat  |      500M      |
-| ROOT Partition | System |  ZFS   |      50G       |
-| SWAP Area      |  swap  |  swap  |       8G       |
-| DATA Partition | Files  |  ZFS   |      10G       |
+| Partition  | Label  | Format                                        | Size                            |
+| :--------- | :----: | :-------------------------------------------- | :------------------------------ |
+| EFI System |  ESP   | `vfat`                                        | 1 GiB                           |
+| SWAP Area  |  swap  | `swap`                                        | `system.fs.swap` (8GiB default) |
+| System     | System | `ext4` (`simple`) / ZFS `fspool` (`advanced`) | Remaining space                 |
 
 > [!NOTE]
-> For the `advanced` filesystem scheme only
+> The layout is derived from the device's `system.fs.scheme`.
+> The `advanced` scheme additionally creates the encrypted `fspool` datasets - `system/root` (opt-in state), `system/nix`, `data` and `reserve`
 
 #### Procedure
 

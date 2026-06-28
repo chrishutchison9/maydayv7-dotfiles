@@ -46,6 +46,7 @@ An overview of every configuration module in this repository.
 | ---------- | ---- | ------------------------- |
 | `gnome`    | Both | GNOME desktop environment |
 | `hyprland` | Both | Hyprland window manager   |
+| `niri`     | Both | Niri window manager       |
 
 ### [`games`](./games)
 
@@ -158,6 +159,8 @@ The following are the custom configuration options exposed by the modules above:
   - `scheme`: Supported Boot Firmware Scheme - `null / "mbr" / "efi" / "secure"`
   - `fs` -
     - `scheme`: Disk Filesystem Scheme - `null / "simple" / "advanced"`
+    - `swap`: Size of SWAP Partition - Ex. `"8G"`
+    - `disk`: Target Disk for Installation (Use `ls -l /dev/disk/by-id`) - Ex. `"/dev/disk/by-id/nvme-..."`
     - `persist`: System Files to preserve across reboots (while using the `advanced` File System Layout)
   - `nix` -
     - `index`: Enable Package Indexer - `true / false`

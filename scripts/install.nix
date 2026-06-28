@@ -6,90 +6,6 @@
 }:
 with files.path; let
   inherit (lib) licenses recursiveUpdate;
-
-  # File System Operations
-  partitions = ''
-    partition_disk() {
-      read -rp "Enter Path to Disk: /dev/" DISK
-      if [ -z "$DISK" ]
-      then
-        error "Path to Disk cannot be empty. If unsure, use the command 'fdisk -l'"
-      fi
-
-      echo "Deleting Partitions..."
-      dd if=/dev/zero of=/dev/"$DISK" bs=512 count=1
-      if [[ "$DISK" == nvme* ]]
-      then
-        parted /dev/"$DISK" --script mklabel gpt
-      else
-        parted /dev/"$DISK" --script mklabel msdos
-      fi
-
-      echo "Creating Partitions..."
-      parted /dev/"$DISK" -- mkpart ESP fat32 1MiB 1024MiB
-      parted /dev/"$DISK" -- set 1 esp on
-      parted /dev/"$DISK" -- name 1 ESP
-      mkfs.fat -F 32 /dev/disk/by-partlabel/ESP
-
-      parted /dev/"$DISK" -- mkpart primary 1025MiB -8GiB
-      parted /dev/"$DISK" -- name 2 System
-
-      parted /dev/"$DISK" -- mkpart primary linux-swap -8GiB 100%
-      parted /dev/"$DISK" -- name 3 swap
-      mkswap /dev/disk/by-partlabel/swap
-
-      mkdir -p /mnt
-    }
-
-    create_ext4() {
-      echo "Creating 'EXT4' Partition..."
-      mkfs.ext4 /dev/disk/by-partlabel/System
-    }
-
-    mount_ext4() {
-      echo "Mounting 'EXT4' Partition..."
-      mount /dev/disk/by-partlabel/System /mnt
-    }
-
-    create_zfs() {
-      echo "Creating 'ZFS' Volumes..."
-      read -rp "Enter Password for Pool Encryption: " PASS
-      echo "$PASS" | zpool create -f fspool -O compression=zstd -O encryption=on -O keyformat=passphrase /dev/disk/by-partlabel/System
-
-      zfs create -p -o mountpoint=legacy -o xattr=sa -o acltype=posixacl fspool/system/root
-      zfs snapshot fspool/system/root@blank
-      zfs create -o mountpoint=legacy -o atime=off fspool/system/nix
-
-      zfs create -p -o mountpoint=legacy -o xattr=sa -o acltype=posixacl -o com.sun:auto-snapshot=true fspool/data
-
-      # Use 'zfs set refreservation=none fspool/reserve' to free space
-      zfs create -o canmount=off -o refreservation=1G fspool/reserve
-    }
-
-    mount_zfs() {
-      echo "Mounting 'ZFS' Volumes..."
-      zpool import -f fspool
-      mount -t zfs fspool/system/root /mnt
-      mkdir -p /mnt/{nix,data}
-      mount -t zfs fspool/system/nix /mnt/nix
-      mkdir -p /mnt${persist}
-      mount -t zfs fspool/data /mnt${data}
-    }
-
-    mount_other() {
-      echo "Mounting Other Partitions..."
-      mkdir -p /mnt/boot
-      mount -t vfat /dev/disk/by-partlabel/ESP /mnt/boot
-      swapoff --all
-      swapon /dev/disk/by-partlabel/swap
-    }
-
-    unmount_all () {
-      echo "Unmounting All Partitions..."
-      umount -l /mnt
-      zpool export fspool
-    }
-  '';
 in
   recursiveUpdate
   {
@@ -106,20 +22,41 @@ in
       name = "os-install";
       runtimeInputs = with pkgs; [
         coreutils
-        dosfstools
+        disko.disko
         git
-        gparted
+        gptfdisk
+        netcat
         nixFlakes
-        ntfs3g
-        parted
+        nixos-install-tools
         util-linux
         zfs
       ];
 
       text = ''
-        set +eu
+        set -euo pipefail
         ${files.scripts.commands}
-        ${partitions}
+
+        TRIES=5
+
+        cleanup() {
+          umount -R /mnt 2> /dev/null || true
+          zpool export fspool 2> /dev/null || true
+        }
+
+        install_system() {
+          local attempt=0
+          while [ "$attempt" -lt "$TRIES" ]
+          do
+            attempt=$((attempt + 1))
+            if nixos-install --no-root-passwd --root /mnt --flake "$URL#$HOST"
+            then
+              return 0
+            fi
+            newline
+            info "Couldn't finish installation (attempt $attempt/$TRIES)"
+          done
+          return 1
+        }
 
         internet
         if [ "$EUID" -ne 0 ]
@@ -127,56 +64,74 @@ in
           error "This Command must be Executed as 'root'"
         fi
 
-        warn "Disk will be Completely Wiped for Automatic Partitioning"
-        read -rp "Do you want to Automatically Create the Partitions? (Y/*): " choice
-          case $choice in
-            [Yy]*) partition_disk;;
-            *) warn "You must Create, Format and Label the Partitions on your own"; gparted &> /dev/null;;
-          esac
-        newline
-        read -rp "Select Filesystem to use for Disk (simple/advanced): " choice
-          case $choice in
-            1|[Ss]*)
-              read -rp "Do you want to Create and Format the EXT4 Partitions? (Y/*): " choice
-                case $choice in
-                  [Yy]*) create_ext4; mount_ext4;;
-                  *) warn "Assuming that Required EXT4 Partition has already been Created"; mount_ext4;;
-                esac
-            ;;
-            2|[Aa]*)
-              read -rp "Do you want to Create the ZFS Pool and Datasets? (Y/*): " choice
-                case $choice in
-                  [Yy]*) create_zfs; mount_zfs;;
-                  *) warn "Assuming that Required ZFS Pool and Datasets have already been Created"; mount_zfs;;
-                esac
-            ;;
-            *) error "Choose (1)simple or (2)advanced";;
-          esac
-        newline
-
-        mount_other
-        systemd-machine-id-setup --root=/mnt
-        newline
-
+        # Target Device and Repository
         read -rp "Enter Name of Device to Install: " HOST
+        if [ -z "$HOST" ]
+        then
+          error "Device name cannot be empty"
+        fi
+
         read -rp "Enter Path to Repository (path/URL): " URL
         if [ -z "$URL" ]
         then
           URL=${flake}
         fi
-        echo "Installing System from '$URL'..."
-        until nixos-install --no-root-passwd --root /mnt --flake "$URL"#"$HOST"
+
+        # Target Disk
+        echo "Resolving target disk for '$HOST'..."
+        if ! DISK=$(nix eval --raw "$URL#nixosConfigurations.$HOST.config.system.fs.disk" 2> /dev/null)
+        then
+          error "Couldn't resolve 'system.fs.disk' for '$HOST'"
+        fi
+        if [ ! -b "$DISK" ]
+        then
+          error "'$DISK' is not a valid block device" "Set 'system.fs.disk' for '$HOST' to this device's disk"
+        fi
+
+        # Confirm Destructive Wipe
+        warn "ALL DATA on '$DISK' will be PERMANENTLY ERASED for Automatic Partitioning"
+        read -rp "Type the Disk path to confirm: " CONFIRM
+        if [ "$CONFIRM" != "$DISK" ]
+        then
+          error "Confirmation did not match '$DISK', aborting"
+        fi
+
+        # Wipe Stale Signatures
+        echo "Wiping existing signatures on '$DISK'..."
+        swapoff --all 2> /dev/null || true
+        zpool labelclear -f "$DISK" 2> /dev/null || true
+        for part in "$DISK"*
         do
-          newline
-          info "Couldn't finish installation. Trying again..."
+          if [ -b "$part" ]
+          then
+            zpool labelclear -f "$part" 2> /dev/null || true
+          fi
+        done
+        wipefs --all --force "$DISK" 2> /dev/null || true
+        sgdisk --zap-all "$DISK" 2> /dev/null || true
+        newline
+
+        # Partition, Format and Mount Target
+        echo "Partitioning and formatting '$DISK'..."
+        disko --mode destroy,format,mount --flake "$URL#$HOST"
+        newline
+
+        # Install
+        echo "Installing System '$HOST' from '$URL' onto '$DISK'..."
+        newline
+        until install_system
+        do
+          read -rp "Installation failed after $TRIES attempts. Try again? (Y/*): " choice
+          case $choice in
+            [Yy]*) newline; info "Retrying installation...";;
+            *) cleanup; error "Installation cancelled by user";;
+          esac
         done
         newline
 
-        unmount_all
-        newline
-
+        cleanup
         info "Run 'nixos setup' after rebooting to finish the install"
-        info "Select the (Recovery) boot menu option and run the above script as the 'recovery' user"
+        info "Select the (recovery) boot menu option and run the above script as the 'recovery' user"
         restart
       '';
     }

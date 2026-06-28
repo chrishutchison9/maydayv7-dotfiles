@@ -36,6 +36,7 @@ in {
                   config = nixpkgsConfig;
                 };
 
+                disko = disko.packages."${system}";
                 spicetify = spicetify.legacyPackages."${system}";
                 hyprworld = hyprland.packages."${system}" // hyprsplit.packages."${system}" // hyprcursors.packages."${system}";
               })

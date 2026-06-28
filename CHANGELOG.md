@@ -2,6 +2,7 @@
 
 ### June
 
+- Use [`disko`](https://github.com/nix-community/disko) for declarative disk partitioning
 - Disable keyless SSH Access
 - Declaratively configure a Windows 11 VM
 - Fix and document VFIO

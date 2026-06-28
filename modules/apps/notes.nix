@@ -81,8 +81,8 @@ in {
             {
               pkg = pkgs.custom.obsidian-style-settings;
               settings = lib.mkIf isWM {
-                "catppuccin-theme-dark" = "ctp-macchiato";
-                "catppuccin-theme-accents" = "ctp-accent-blue";
+                "catppuccin-theme-settings@@catppuccin-theme-dark" = "ctp-macchiato";
+                "catppuccin-theme-settings@@catppuccin-theme-accents" = "ctp-accent-blue";
               };
             }
           ];

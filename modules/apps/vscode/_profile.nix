@@ -25,6 +25,13 @@ with files.vscode; {
     (lib.mkIf isWM {
       "terminal.external.linuxExec" = "kitty";
     })
+    (let
+      lemminx = "${pkgs.lemminx}/bin/lemminx";
+    in {
+      "xml.server.preferBinary" = true;
+      "xml.server.binary.path" = lemminx;
+      "xml.server.binary.trustedHashes" = [(builtins.hashFile "sha256" lemminx)];
+    })
   ];
 
   ## Editor Extensions

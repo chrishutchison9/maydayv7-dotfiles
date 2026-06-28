@@ -116,6 +116,12 @@
       inputs.nixpkgs.follows = "unstable";
     };
 
+    # Declarative Disk Partitioning
+    disko = {
+      url = "github:nix-community/disko/v1.13.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Filesystem State Handler
     impermanence = {
       url = "github:nix-community/impermanence";

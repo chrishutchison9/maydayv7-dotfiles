@@ -50,7 +50,10 @@ in {
       system = {
         kernel = "lts";
         scheme = "efi";
-        fs.scheme = "simple";
+        fs = {
+          scheme = "simple";
+          disk = "/dev/disk/by-id/disko-placeholder";
+        };
       };
 
       hardware.cpu = {
