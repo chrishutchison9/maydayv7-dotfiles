@@ -52,26 +52,25 @@ _: {
     };
   };
 
-  home = _: {
-    home.persist.directories = [
-      ".copilot"
-      ".mongodb"
-      ".npm"
-      ".config/rog"
-      ".config/MongoDB Compass"
-      ".local/share/cloudflare-warp-gui"
-    ];
+  home = {config, ...}: {
+    programs.ssh.includes = [config.sops.secrets."ssh-config.secret".path];
 
-    # NPM
     home = {
+      persist.directories = [
+        ".copilot"
+        ".mongodb"
+        ".npm"
+        ".config/rog"
+        ".config/MongoDB Compass"
+        ".local/share/cloudflare-warp-gui"
+      ];
+
+      # NPM
       sessionPath = ["$HOME/.npm/packages/bin"];
       file.".npmrc".text = ''
         prefix=''${HOME}/.npm/packages
         cache=''${HOME}/.npm/cache
       '';
     };
-
-    # CC Server
-    programs.ssh.settings."ssh.codingclub.in".ProxyCommand = "cloudflared access ssh --hostname %h";
   };
 }

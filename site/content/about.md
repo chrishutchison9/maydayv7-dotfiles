@@ -17,5 +17,4 @@ Ways to follow or get in contact with me
 
 - Mail: <mail@maydayv7.cc>
 - GitHub: @[maydayv7 ](https://github.com/maydayv7)
-- Reddit: @[maydayv7 ](https://reddit.com/u/maydayv7)
-- Discord: @MayDayV7#8064
+- LinkedIn: [maydayv7 ](https://www.linkedin.com/in/maydayv7/)

@@ -17,6 +17,7 @@
     reload = "prompt";
     ruler = true;
     saveundo = true;
+    scrollbar = true;
     smartpaste = true;
     statusline = true;
     syntax = true;
@@ -25,12 +26,16 @@ in {
   flake.modules = {
     nixos.shell = {pkgs, ...}: {
       config = {
-        # Text Editor
-        environment.variables."EDITOR" = "micro";
-        environment.systemPackages = [pkgs.micro];
-        environment.interactiveShellInit = ''
-          e() { "''${EDITOR:-nano}" "$@"; }
-        '';
+        environment = {
+          shells = [pkgs.bashInteractive];
+
+          # Text Editor
+          variables."EDITOR" = "micro";
+          systemPackages = [pkgs.micro];
+          interactiveShellInit = ''
+            e() { "''${EDITOR:-nano}" "$@"; }
+          '';
+        };
 
         systemd.tmpfiles.rules = let
           settings = pkgs.writeText "micro-settings.json" (builtins.toJSON editor);
@@ -101,8 +106,6 @@ in {
             '';
           };
         };
-
-        environment.shells = [pkgs.bashInteractive];
         system.userActivationScripts.zshrc = "touch .zshrc";
       };
     };

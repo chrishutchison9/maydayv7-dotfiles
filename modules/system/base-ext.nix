@@ -23,8 +23,8 @@ _: {
         enable = true;
         hwRender = false;
         extraConfig = ''
+          mouse
           font-name=${config.stylix.fonts.monospace.name}
-          font-size=14
         '';
       };
 
@@ -39,8 +39,6 @@ _: {
         enable = true;
         settings = {
           PasswordAuthentication = false;
-          PermitEmptyPasswords = false;
-          KbdInteractiveAuthentication = false;
           PermitRootLogin = lib.mkForce "no";
         };
 
