@@ -51,7 +51,6 @@
           fakeNitro.enable = true;
           fixImagesQuality.enable = true;
           fixSpotifyEmbeds.enable = true;
-          friendsSince.enable = true;
           fullSearchContext.enable = true;
           imageZoom.enable = true;
           memberCount.enable = true;

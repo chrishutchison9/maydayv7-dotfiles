@@ -66,7 +66,7 @@
     ## Language Addendum
     # Supported Architectures
     systems = {
-      url = "github:maydayv7/dotfiles?ref=systems";
+      url = "github:maydayv7/dotfiles/systems";
       flake = false;
     };
 
@@ -106,7 +106,7 @@
 
     # Secure Boot
     boot = {
-      url = "github:nix-community/lanzaboote/v1.0.0";
+      url = "github:nix-community/lanzaboote/v1.1.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -138,11 +138,11 @@
     };
 
     # Declarative Flatpak Wrapper
-    flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
+    flatpak.url = "github:gmodena/nix-flatpak/latest";
 
     # Declarative VM Management
     nixvirt = {
-      url = "github:AshleyYakeley/NixVirt?ref=v0.6.0";
+      url = "github:AshleyYakeley/NixVirt/v0.6.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
