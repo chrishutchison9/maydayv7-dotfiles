@@ -70,7 +70,7 @@ in {
             }
           )
           // {
-            default = self'.apps.nixos;
+            default = self'.apps.os;
           };
       }
     );

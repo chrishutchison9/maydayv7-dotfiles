@@ -15,7 +15,6 @@ in {
             fd
             hstr
             lolcat
-            micro
             tree
             yazi
             zellij
@@ -58,10 +57,7 @@ in {
     homeManager.shell-utils = _: {
       home.persist = {
         files = [".hstr_favorites"];
-        directories = [
-          ".config/micro"
-          ".local/share/direnv"
-        ];
+        directories = [".local/share/direnv"];
       };
 
       programs = {
@@ -86,30 +82,6 @@ in {
           icons = "auto";
           git = true;
           extraOptions = ["--group-directories-first"];
-        };
-
-        # Text Editor
-        micro = {
-          enable = true;
-          settings = {
-            autoindent = true;
-            backup = true;
-            clipboard = "external";
-            cursorline = true;
-            eofnewline = false;
-            helpsplit = "vsplit";
-            hltrailingws = true;
-            infobar = true;
-            matchbrace = true;
-            keymenu = true;
-            mouse = true;
-            reload = "prompt";
-            ruler = true;
-            saveundo = true;
-            smartpaste = true;
-            statusline = true;
-            syntax = true;
-          };
         };
       };
     };

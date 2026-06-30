@@ -124,13 +124,13 @@ in
           read -rp "Installation failed after $TRIES attempts. Try again? (Y/*): " choice
           case $choice in
             [Yy]*) newline; info "Retrying installation...";;
-            *) cleanup; error "Installation cancelled by user";;
+            *) cleanup; error "Installation cancelled";;
           esac
         done
         newline
 
         cleanup
-        info "Run 'nixos setup' after rebooting to finish the install"
+        info "Run 'os setup' after rebooting to finish the install"
         info "Select the (recovery) boot menu option and run the above script as the 'recovery' user"
         restart
       '';

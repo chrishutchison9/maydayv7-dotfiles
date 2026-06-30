@@ -2,6 +2,8 @@
 
 ### June
 
+- Rename `nixos` script to `os` and adopt [`nh`](https://github.com/nix-community/nh)
+- Use `micro` as default editor
 - Use [`disko`](https://github.com/nix-community/disko) for declarative disk partitioning
 - Disable keyless SSH Access
 - Declaratively configure a Windows 11 VM

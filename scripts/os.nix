@@ -9,9 +9,7 @@ with files; let
   inherit (inputs) self;
   inherit (lib) licenses recursiveUpdate;
 
-  # Joins an attrset's names into a space-separated string (for shell `grep -wq`)
   list = attrs: builtins.foldl' (x: y: x + y + " ") "" (builtins.attrNames attrs);
-
   devShells = list self.devShells."${pkgs.stdenv.system}";
   nixosConfigurations = list self.nixosConfigurations;
 
@@ -20,55 +18,55 @@ with files; let
     script = ''
       # Legend #
         xxx - Command
-        [ ] - Optional                  - Command Description
+        [ ] - Optional                  - Description
         ' ' - Variable
 
       # Usage #
-        apply [ --'option' ]            - Applies Device and User Configuration
-        cache 'command'                 - Pushes Binary Cache Output to Cachix
-        check [ --trace ]               - Checks System Configuration [ Displays Error to Trace ]
-        clean [ --all ]                 - Garbage Collects and Optimises Nix Store
-        explore                         - Opens Interactive Shell to explore Syntax and Configuration
-        iso 'variant' [ --burn ]        - Builds Image for Specified Device [ Burns '.iso' to USB ]
-        list [ 'pattern' ]              - Lists all Installed Packages [ Returns Matches ]
-        locate 'package'                - Locates Installed Package
-        run [ 'path' ] 'command'        - Runs Specified Command [ from 'path' ] (Wraps 'nix run')
-        search 'term' [ 'source' ]      - Searches for Packages [ Providing 'term' ] or Configuration Options
-        secret 'choice' [ 'path' ]      - Manages 'sops' Encrypted Secrets
-        setup                           - Sets up NixOS System (on First Boot)
+        apply [ --'option' ]            - Applies device and user config
+        cache 'command'                 - Pushes binary output to Cachix
+        check [ --trace ]               - Checks system configuration [ Displays error trace ]
+        clean [ --all ]                 - Cleans and optimises Nix Store
+        explore                         - Opens interactive shell to explore syntax and config
+        iso 'variant' [ --burn ]        - Builds image for specified device [ Burns '.iso' to USB ]
+        list [ 'pattern' ]              - Lists all installed packages [ Returns matches ]
+        locate 'package'                - Locates installed package
+        run [ 'path' ] 'command'        - Runs specified command [ from 'path' ] (Wraps 'nix run')
+        search 'term' [ 'source' ]      - Searches for packages [ providing 'term' ] or config options
+        secret 'choice' [ 'path' ]      - Manages 'sops' encrypted secrets
+        setup                           - Sets up system (on first boot)
         shell [ 'name' ]                - Opens desired Nix Developer Shell
-        update [ 'repo' / --'option' ]  - Manages System Package Updates
+        update [ 'repo' / --'option' ]  - Manages system package updates
     '';
 
     apply = ''
       # Usage #
-        'specialisation'             - Activates Specified System Specialisation
-        --activate [ home ]          - Activates Current [ Home ] Configuration
-        --boot                       - Applies Configuration on boot
-        --delta                      - Shows Package Delta for Build
-        --rollback [ 'generation' ]  - Reverts to Last [ or Specified ] Build Generation
-        --test                       - Tests Configuration Build
+        'specialisation'             - Activates specified system specialisation
+        --activate [ home ]          - Activates current [ home ] config
+        --boot                       - Applies config on boot
+        --delta                      - Shows config build delta
+        --rollback [ 'generation' ]  - Reverts to last [ or specified ] build
+        --test                       - Tests config build
     '';
 
     search = ''
       # Usage #
-        cmd.'command'              - Searches for Package providing 'command'
-        pkgs.'package' [ 'repo' ]  - Searches for Package 'package' [ In Repository ]
-        'term'                     - Searches for Packages and Configuration Options and matching 'term'
+        cmd.'command'              - Searches for package providing 'command'
+        pkgs.'package' [ 'repo' ]  - Searches for 'package' [ In Repository ]
+        'term'                     - Searches for packages and config option (matching 'term')
     '';
 
     secret = ''
       # Usage #
-        create 'path'  - Creates desired Secret
-        edit 'name'    - Edits desired Secret
-        list           - Lists all 'sops' Encrypted Secrets
-        show 'name'    - Shows desired Secret
-        update         - Updates Secrets to defined Keys
+        create 'path'  - Creates desired secret
+        edit 'name'    - Edits desired secret
+        list           - Lists all 'sops' encrypted secrets
+        show 'name'    - Shows desired secret
+        update         - Updates secrets to defined keys
     '';
 
     update = ''
       # Usage #
-        --pkgs               - Automatically updates manually packaged apps
+        --pkgs               - Automatically updates custom packages
         --commit             - Updates 'inputs' and commits changes
         'repo' [ 'source' ]  - Updates 'repo' input [ To specified 'source' ]
     '';
@@ -77,7 +75,7 @@ in
   recursiveUpdate
   {
     meta = {
-      mainProgram = "nixos";
+      mainProgram = "os";
       description = "System Management Script";
       homepage = path.repo;
       license = licenses.gpl3Only;
@@ -86,7 +84,7 @@ in
   }
   (
     pkgs.writeShellApplication {
-      name = "nixos";
+      name = "os";
       runtimeInputs = with pkgs; [
         coreutils
         gnugrep
@@ -100,7 +98,7 @@ in
         nixFlakes
         cachix
         manix
-        dix
+        nh
         nix-output-monitor
       ];
 
@@ -125,43 +123,38 @@ in
         fi
 
         case $1 in
-        "") error "Expected an Option" "${usage.script}";;
+        "") error "Expected an option" "${usage.script}";;
         help|--help|-h) echo -e "## Tool for NixOS System Management ##\n${usage.script}";;
         "apply")
           case $2 in
           help|--help|-h) echo "${usage.apply}";;
           "")
-            if [ -z "$NIXOS_SPECIALISATION" ]
-            then
-              echo "Applying Configuration..."
-              sudo nixos-rebuild switch --flake ${path.system}#
-            else
-              echo "Applying Configuration ($NIXOS_SPECIALISATION)..."
-              sudo nixos-rebuild switch --specialisation "$NIXOS_SPECIALISATION"
-            fi
+            echo "Applying Configuration..."
+            nh os switch ${path.system}
           ;;
           "--activate")
             case $3 in
             "")
-              if [ -z "$NIXOS_SPECIALISATION" ]
+              SPEC=$(cat /etc/specialisation 2> /dev/null || true)
+              if [ -z "$SPEC" ]
               then
                 echo "Activating Configuration..."
                 sudo /nix/var/nix/profiles/system/bin/switch-to-configuration switch
               else
-                echo "Activating Configuration ($NIXOS_SPECIALISATION)..."
-                sudo /nix/var/nix/profiles/system/specialisation/"$NIXOS_SPECIALISATION"/bin/switch-to-configuration switch
+                echo "Activating Configuration ($SPEC)..."
+                sudo /nix/var/nix/profiles/system/specialisation/"$SPEC"/bin/switch-to-configuration switch
               fi
             ;;
             "home")
               echo "Applying Home Configuration..."
               sudo systemctl restart home-manager-"$USER"
             ;;
-            *) error "Unknown Option '$3'";;
+            *) error "Unknown option '$3'";;
             esac
           ;;
           "--boot")
             echo "Applying Configuration..."
-            if sudo nixos-rebuild boot --flake ${path.system}#
+            if nh os boot ${path.system}
             then
               restart
             else
@@ -170,27 +163,11 @@ in
           ;;
           "--delta")
             echo "Building Configuration..."
-            temp nixos_build 2
-            HOSTNAME=$(cat /etc/hostname)
-            if nom build ${path.system}#nixosConfigurations."$HOSTNAME".config.system.build.toplevel --out-link "$TEMP"
-            then
-              echo "Processing Delta..."
-              dix /run/current-system "$TEMP"
-              read -rp "Do you want to apply the configuration? (Y/*): " choice
-              case $choice in
-                [Yy]*)
-                  echo "Applying Configuration..."
-                  sudo "$TEMP"/bin/switch-to-configuration switch
-                ;;
-                *) exit;;
-              esac
-            else
-              error "Couldn't build generation successfully"
-            fi
+            nh os switch -a ${path.system}
           ;;
           "--test")
             echo "Testing Configuration..."
-            sudo nixos-rebuild test --no-build-nix --show-trace --flake ${path.system}#
+            nh os test ${path.system}
           ;;
           "--rollback")
             case $3 in
@@ -204,7 +181,7 @@ in
             ;;
             *)
               echo "Rolling Back to Generation '$3'..."
-              sudo nix-env --switch-generation "$3" -p "/nix/var/nix/profiles/system" && nixos apply --activate
+              sudo nix-env --switch-generation "$3" -p "/nix/var/nix/profiles/system" && os apply --activate
             ;;
             esac
           ;;
@@ -213,9 +190,9 @@ in
             if grep -wq "$2" <<<"$SPECIALISATIONS" &> /dev/null
             then
               echo "Applying Configuration ($2)..."
-              sudo nixos-rebuild switch --specialisation "$2"
+              nh os switch ${path.system} -s "$2"
             else
-              error "Unknown Option '$2'\n${usage.apply}" "# Available Specialisations #\n$SPECIALISATIONS"
+              error "Unknown option '$2'\n${usage.apply}" "# Available Specialisations #\n$SPECIALISATIONS"
             fi
           ;;
           esac
@@ -223,9 +200,9 @@ in
         "cache")
           if [ -z "$2" ]
             then
-              error "Expected a Build Command"
+              error "Expected a build command"
             else
-              echo "Executing Command '" "''${@:2}" "'..."
+              echo "Executing command '" "''${@:2}" "'..."
               cachix authtoken "$(find ${path.system} -name cachix-token.secret -exec sops --config ${path.sops} -d {} \+)"
               cachix watch-exec ${path.cache} "''${@:2}"
           fi
@@ -240,21 +217,17 @@ in
           esac
         ;;
         "clean")
-          echo "Running Garbage Collection..."
-          nix-collect-garbage -d
-          rm -rf /nix/var/nix/profiles/per-user/"$USER"/profile
           if [ "$EUID" -ne 0 ] && [ "$2" != "--all" ]
           then
-            warn "Run as 'root' or use Option '--all' to Clean System Generations"
+            echo "Running Garbage Collection..."
+            nh clean user --optimise
+            warn "Run as 'root' or use '--all' to clean system generations"
           else
-            sudo nix-collect-garbage -d
+            echo "Running Garbage Collection..."
+            sudo nh clean all --optimise
             sudo rm -rf /run/secrets/*
-            sudo nix-env --delete-generations old --profile /nix/var/nix/profiles/system
-            nixos apply --activate
+            os apply --activate
           fi
-          newline
-          echo "Running De-Duplication..."
-          nix store optimise
         ;;
         "explore")
           case $2 in
@@ -264,29 +237,29 @@ in
         ;;
         "iso")
           case $2 in
-          "") error "Expected a Device name";;
+          "") error "Expected a device name";;
           *)
             if grep -wq "$2" <<<"${nixosConfigurations}" &> /dev/null
             then
               echo "Building '$2' Image..."
               nom build ${path.system}#nixosConfigurations."$2".config.system.build.images.iso
             else
-              error "Unknown Device '$2'" "# Available Devices #\n ${nixosConfigurations}"
+              error "Unknown device '$2'" "# Available devices #\n ${nixosConfigurations}"
             fi
           ;;
           esac
           case $3 in
-          "") echo "The '--burn' Option can be used to Flash the Image onto a USB";;
+          "") echo "The '--burn' option can be used to flash the image to a USB";;
           "--burn")
             case $4 in
-            "") error "Expected a 'path' to USB Drive";;
+            "") error "Expected 'path' to USB";;
             *)
               IMAGE=$(find ./result/iso -type f -name "*.iso")
               sudo dd if="$IMAGE" of="$4" status=progress bs=1M
             ;;
             esac
           ;;
-          *) error "Unknown Option '$3'";;
+          *) error "Unknown option '$3'";;
           esac
         ;;
         "list")
@@ -304,7 +277,7 @@ in
         ;;
         "locate")
           case $2 in
-          "") error "Expected Package Name";;
+          "") error "Expected package name";;
           *)
             package=$(installed | grep "$2")
             if [ -z "$package" ]
@@ -346,11 +319,11 @@ in
         ;;
         "search")
           case $2 in
-          "") error "Expected an Option" "${usage.search}";;
+          "") error "Expected an option" "${usage.search}";;
           help|--help|-h) echo "${usage.search}";;
           cmd.*)
             command="''${2//cmd\./}"
-            echo "Searching for Package providing Command '$command'..."
+            echo "Searching for Package providing command '$command'..."
             output=$(nix-locate --whole-name --type x --type s --no-group --top-level --at-root "/bin/$command")
             if [ -z "$output" ]
             then
@@ -361,7 +334,7 @@ in
           ;;
           pkgs.*)
             package="''${2//pkgs\./}"
-            echo "Searching for Package '$package'..."
+            echo "Searching for package '$package'..."
             if [ -z "$3" ]
             then
               nix search nixpkgs#"$package"
@@ -370,34 +343,34 @@ in
             fi
           ;;
           *)
-            echo "Searching for Term '$2'..."
+            echo "Searching for term '$2'..."
             manix "$2"
           ;;
           esac
         ;;
         "secret")
           case $2 in
-          "") error "Expected an Option" "${usage.secret}";;
+          "") error "Expected an option" "${usage.secret}";;
           help|--help|-h) echo "${usage.secret}";;
           "create")
             case $3 in
-            "") error "Expected 'name' of Secret";;
+            "") error "Expected 'name' of secret";;
             *)
-              echo "Creating Secret '$3'..."
+              echo "Creating secret '$3'..."
               sops --config ${path.sops} -i ${path.system}/"$3".secret
             ;;
             esac
           ;;
           "edit")
             case $3 in
-            "") error "Expected 'name' of Secret";;
+            "") error "Expected 'name' of secret";;
             *)
               if secret_exists "$3"
               then
-                echo "Editing Secret '$3'..."
+                echo "Editing secret '$3'..."
                 find ${path.system} -name "$3".secret -exec sops --config ${path.sops} -i {} \+
               else
-                error "Unknown Secret '$3'"
+                error "Unknown secret '$3'"
               fi
             ;;
             esac
@@ -409,21 +382,22 @@ in
           "show")
             if secret_exists "$3"
             then
-              echo "Showing Secret '$3'..."
+              echo "Showing secret '$3'..."
               find ${path.system} -name "$3".secret -exec sops --config ${path.sops} -d {} \+
             else
-              error "Unknown Secret '$3'"
+              error "Unknown secret '$3'"
             fi
           ;;
           "update")
-            echo "Updating Secrets..."
+            echo "Updating secrets..."
             find ${path.system} -name '*.secret' ! -name '_*' -exec sops --config ${path.sops} updatekeys {} \;
           ;;
-          *) error "Unknown Option '$2'" "${usage.secret}";;
+          *) error "Unknown option '$2'" "${usage.secret}";;
           esac
         ;;
         "setup")
-          if [ -d ${path.persist} ]; then
+          if [ -d ${path.persist} ]
+          then
             DIR=${path.persist}${path.system}
           else
             DIR=${path.system}
@@ -435,11 +409,11 @@ in
           sudo chgrp -R keys "$DIR"
           newline
 
-          read -rp "Enter Path to GPG Keys (path/.git): " KEY
+          read -rp "Enter path to GPG Keys (path/.git): " KEY
           LINK='(https?|ftp|file)://[-A-Za-z0-9\+&@#/%?=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]'
           if [ -z "$KEY" ]
           then
-            error "Path to GPG Keys cannot be empty"
+            error "Path cannot be empty"
           elif [[ $KEY =~ $LINK ]]
           then
             echo "Cloning Keys..."
@@ -452,7 +426,7 @@ in
           rm -rf ./keys
           newline
 
-          nixos apply --activate
+          os apply --activate
         ;;
         "shell")
           case $2 in
@@ -477,11 +451,11 @@ in
             popd &> /dev/null
           ;;
           "--commit")
-            echo "Updating Flake Inputs..."
+            echo "Updating Flake inputs..."
             nix flake update --flake ${path.system} --commit-lock-file
           ;;
           "")
-            echo "Updating Flake Inputs..."
+            echo "Updating Flake inputs..."
             nix flake update --flake ${path.system}
           ;;
           *)
@@ -496,7 +470,7 @@ in
           ;;
           esac
         ;;
-        *) error "Unknown Option '$1'" "${usage.script}";;
+        *) error "Unknown option '$1'" "${usage.script}";;
         esac
       '';
     }

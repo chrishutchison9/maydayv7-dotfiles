@@ -60,12 +60,13 @@ _: {
         };
 
         environment = {
-          variables."NIXOS_SPECIALISATION" = with config.system.nixos;
-            mkIf (hasPrefix "special." label) (removePrefix "special." label);
+          etc."specialisation" =
+            mkIf (hasPrefix "special." cfg.nixos.label)
+            {text = removePrefix "special." cfg.nixos.label;};
 
           # Essential Utilities
           systemPackages = with pkgs; [
-            custom.nixos
+            custom.os
             cryptsetup
             file
             inxi

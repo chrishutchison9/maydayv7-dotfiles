@@ -6,11 +6,11 @@ User passwords are generated using `mkpasswd -m sha-512` and specified using the
 The `sops` encrypted secrets are of `binary` format (and have the extension `.secret`) and can be conveniently managed using the [`nixos`](../scripts/README.md) `secret` command.
 The `keys` directory contains the _public_ User GPG Keys which are automatically imported
 
-To create a secret, use the `nixos secret create` command, and append the directory along with requisite access permissions to the `secrets.yaml` file.
+To create a secret, use the `os secret create` command, and append the directory along with requisite access permissions to the `secrets.yaml` file.
 Device-specific secrets are automatically imported, if a directory (with the same name as the device `HOSTNAME`) containing them is present in this directory
 
 > [!NOTE]
-> Any update to a `creation_rule` in [`secrets.yaml`](./secrets.yaml) must be accompanied by a `nixos secret update` to re-encrypt for the new key set
+> Any update to a `creation_rule` in [`secrets.yaml`](./secrets.yaml) must be accompanied by an `os secret update` to re-encrypt for the new key set
 
 #### Per-User Secrets
 

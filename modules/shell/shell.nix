@@ -1,12 +1,45 @@
 ## Shell Configuration ##
 {config, ...}: let
   inherit (config.flake) files;
+
+  editor = {
+    autoindent = true;
+    backup = true;
+    clipboard = "external";
+    cursorline = true;
+    eofnewline = false;
+    helpsplit = "vsplit";
+    hltrailingws = true;
+    infobar = true;
+    matchbrace = true;
+    keymenu = true;
+    mouse = true;
+    reload = "prompt";
+    ruler = true;
+    saveundo = true;
+    smartpaste = true;
+    statusline = true;
+    syntax = true;
+  };
 in {
   flake.modules = {
     nixos.shell = {pkgs, ...}: {
       config = {
         # Text Editor
-        environment.variables."EDITOR" = "nano";
+        environment.variables."EDITOR" = "micro";
+        environment.systemPackages = [pkgs.micro];
+        environment.interactiveShellInit = ''
+          e() { "''${EDITOR:-nano}" "$@"; }
+        '';
+
+        systemd.tmpfiles.rules = let
+          settings = pkgs.writeText "micro-settings.json" (builtins.toJSON editor);
+        in [
+          "d /root/.config 0700 root root -"
+          "d /root/.config/micro 0700 root root -"
+          "L+ /root/.config/micro/settings.json - - - - ${settings}"
+        ];
+
         programs = {
           nano = {
             enable = true;
@@ -81,9 +114,16 @@ in {
           ".zsh_history"
         ];
         directories = [
+          ".config/micro"
           ".local/share/bash"
           ".cache/zsh"
         ];
+      };
+
+      # Text Editor
+      programs.micro = {
+        enable = true;
+        settings = editor;
       };
     };
   };

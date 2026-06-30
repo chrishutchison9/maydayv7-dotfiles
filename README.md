@@ -196,7 +196,7 @@ github:maydayv7/dotfiles
 │   └── map.nix
 ├── scripts
 │   ├── install.nix
-│   └── nixos.nix
+│   └── os.nix
 ├── packages
 │   ├── overlays
 │   └── patches
@@ -266,7 +266,7 @@ To use my configuration as-is for a fresh NixOS installation, you can try the fo
 
 4. Import all required GPG Keys into a convenient location (like `/etc/gpg`) using <code>gpg --homedir <i>DIR</i> import</code> and specify it at `config.sops.gnupg.home` (Required for decryption of `secrets` on boot, can also be on an external drive)
 
-5. Make new `secrets` and `passwords` in the desired directories by appending the paths to `secrets.yaml` and then using the following command (The [`nixos`](./scripts/README.md) script can be used to simplify the process):  
+5. Make new `secrets` and `passwords` in the desired directories by appending the paths to `secrets.yaml` and then using the following command (The [`os`](./scripts/README.md) script can be used to simplify the process):  
    _Replace_ **_PATH_** _with the path to the `secret`_
    <pre><code>sops --config <i>/path/to/<b>secrets.yaml</b></i> -i <b><i>PATH</i></b></code></pre>
 
@@ -328,7 +328,7 @@ _Replace_ **_DEVICE_** _with the name of Device to build_
 
 To install the OS, just boot the Live USB and run `sudo os-install`  
 _If the image doesn't boot, try disabling the `secure boot` and `RAID` options from `BIOS`_  
-After the reboot, run `nixos setup` to finish the install  
+After the reboot, run `os setup` to finish the install  
 _In case you are using the `advanced` filesystem scheme, you may need to set the boot flag `zfs_force=1` on first boot_
 
 </details>
